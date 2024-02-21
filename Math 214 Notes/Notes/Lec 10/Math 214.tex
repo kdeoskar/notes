@@ -1,0 +1,315 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 10},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 15 - Embedded Submanifolds, Slices}
+
+\vskip 1cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time we proved the Constant Rank Theorem and discussed some of its implications.
+  \item We also looked at Embedded Submanifolds. Today, we'll be talking more about these objects.
+  \item To recap, recall that for a smooth manifolds $M$, a subset $S \subseteq M$ is an \emph{\textbf{embedded submanifold}} of $M$ if endowing the subspace topology on it makes it a smooth manifold with smooth structure such that the inclusion $S \hookrightarrow M$ is a smooth map.
+\end{itemize}
+
+\vskip 1cm
+\subsection{More useful definitions}
+
+Now, we have not only a notion of embedded manifolds, but also \emph{properly} embedded manifolds.
+
+\begin{mathdefinitionbox}{}
+  A submanifold $S \subseteq M$ is \emph{\textbf{properly embedded}} if $S \hookrightarrow M$ is \emph{proper}. i.e. the inverse image of compact sets in $M$ are compact in $S$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Example:} The 2-sphere $\mathbb{S}^2$ with stereographic projection is \emph{not} a properly embedded manifold in $\R^2$ since the pre-image of $\mathbb{S}^2 \setminus \{N\}$ is the entire $\R^2$ plane (which is not compact).
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Proposition:}} A submanifold $S \subseteq M$ is properly embedded f and only if $S \subseteq_{closed} M$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}}
+
+\vskip 0.5cm
+\underline{"$\impliedby$" Direction:} If $K \subseteq M$ is compact, then $K \cap S$ is compact (closed subset of compact set).
+
+\vskip 0.5cm
+\underline{"$\implies$" Direction:} Let's check that $S$ contains all limit points (to show $S$ is closed). Taek a sequence $\{X_i\} \in S$ such that $X_i \rightarrow X_{\infty} \in M$. This implies that the set $\{X_1, X_2, \cdots, X_{\infty} \} \subseteq M$ is compact, so $\{X_1, X_2, \cdots, X_{\infty} \} \cap S $ is compact by properness. But this implies that $S_{\infty} \in S$ as otherwise we could construct an open cover of [complete this proof later].
+
+\vskip 1cm
+\subsection{Slice Charts}
+
+\begin{mathdefinitionbox}{}
+  Consider a smooth manifolds $M^n$ with smooth chart $(U, \phi)$ where $\phi = (x^1, \cdots, x^n)$. A \textbf{\emph{$k-$slice}} of the chart $(U, \phi)$, $k \leq n$ is the set 
+  \[ S = \{ p \in U :  \} \]
+  [Complete def later]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  A chart $(U, \phi)$ is a $k-$slice chart for $S \subseteq U$ if $S = S \cap U$ is a $k-$slice.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  A subset $S \subseteq M$ is said to satisfy the \emph{\textbf{local $k-$slice condition}} if every point $p \in S$ is in the domain of a (local) $k-$slice chart $(U, \phi)$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Example:} For a smooth function $f : \R^m \rightarrow \R^n$, the \emph{\textbf{graph}} 
+\[ S = \Gamma(f) = \{ (\vec{x}, f(\vec{x})) \in \R^m \times \R^n \} \]
+
+is a global $m-$slice chart [Complete this later]
+
+\vskip 1cm
+\subsection{$k-$slice theorem}
+
+\begin{dottedbox}
+\emph{\textbf{Theorem:}} Given a smooth manifold $M^n$ and subset $S \subseteq M$, $S$ is a $k-$dimensional submanifold of $M^n$ if and only if $S$ satsifies the local $k-$slice condition.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}}
+\vskip 0.5cm
+\underline{"$\implies$" Direction:} We have a smooth structure on $S$ such that the inclusion mao $F : S \hookrightarrow M$ is an embedding. For each point $p \in S$, we need to find a $k-$slice chart.
+
+\vskip 0.5cm
+[Insert image]
+
+\vskip 0.5cm
+The constant rank theorem tells us that there exist smooth charts $(U, \phi)$ and $(V, \psi)$ such that the coordinate representation of $F$ i.e. $\hat{F} = \psi \circ F \circ \phi^{-1}$, $\hat{F}(x^1, \cdots, x^k) = (x^1, \cdots, x^k, \underbrace{0, \cdots, 0}_{n - k})$. 
+% The issue is that we don't have much control over the point
+
+\vskip 0.5cm
+Let $\hat{U} = \phi(U), \hat{V} = \psi(V)$ and let's observe that $\hat{F}(\hat{U}) = \hat{U} \times \{\vec{0}\}$. Let's further define $\hat{V}' = \hat{V} \cap \left( \hat{U} \times \R^{(n-k)} \right)$ and define $V' = \psi^{-1}(\hat{V}')$. 
+
+\vskip 0.5cm
+By the subspace topology, there exists some $U' \subseteq_{open} M$ such that $U \subseteq_{open} S$ is $U = U' \cap S$.
+
+\vskip 0.5cm
+Set $V'' = V' \cap U'$ and set $\psi'' = \restr{\psi}{V''}$. We now claim that $(V'', \psi'')$ is a lcoal $k-$slice chart for $S$ at point $p$. To show this, we need to check 
+\begin{align*}
+  V'' \cap S = \left( \psi'' \right)^{-1} \left( \R^k \times \{\vec{0}\}\right)
+\end{align*}
+
+Let's check the inclusions in both directions:
+\begin{itemize}
+  \item if $p \in V'' \cap S$ then since 
+  \begin{align*}
+    V'' \cap S &= 
+  \end{align*}
+  we have $p \in U$
+
+  \[ \implies \psi''(p) = \psi(p) \in \R^k \times \{ \vec{0}\} \]
+
+  \vskip 0.5cm
+  \item Conversely, if $p \in (\psi''^{-1})(\R^k \times \{\vec{0}\})$ then
+  \begin{align*}
+    &\psi(p) \in \R^k \times \{\vec{0}\},  p \in V'' = V' \cap U' \\
+    \implies &\psi(p) \in \psi(V') = \hat{V} \cap \left( \hat{U} \times \R^{n-k} \right) \subseteq \hat{U} \times \R^{n-k} \\
+    & \text{ and } \psi(p) \in \R^k \times \{\vec{0}\} \\
+    \implies &\psi(p) \in \hat{U} \times \{\vec{0}\} = \hat{F\left( \hat{U} \right)} \\
+    \implies & p \in \phi^{-1}(\hat{U}) \in S
+  \end{align*} 
+\end{itemize}
+This concludes the $\implies$ direction of the theorem.
+
+\vskip 0.5cm
+\underline{"$\impliedby$" Direction:} Now, let;s suppose $S$ satisfies the local $k-$slice condition. We want to define a smooth manifold structure on $S$ and check that the embedding is smooth. 
+
+\vskip 0.5cm
+% Hausdorffness and Second-countability follow from $M$. Let's verify that $S$ is locally euclidean. 
+
+$S \hookrightarrow M$ is a bijection so take subspace topology on $S$, then it is second countable and hausdorff. In particular, the inclsion is bijective so it is an injective map. [rewrite all of this later, gave up on LiveTexing this proof]
+
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{Coroallary:} The smooth structure on $S$ si uniquely determined by requiring either
+  \begin{itemize}
+    \item $S \hookrightarrow M$ to be an embedding
+    \item for any $k-$slice chart $(U, \phi = (x^1, \cdots, x^n))$ of $S$
+    \[ \left( U \cap S, (x^1, \cdots, x^n)\right) \]
+    is a smooth chart of $S$.  
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Level sets}
+
+An important class of submanifolds is the class of submanifolds which form \emph{\textbf{level sets}} of functions from one smooth manifold to another.
+
+\vskip 0.5cm
+\subsubsection*{Examples:}
+\begin{itemize}
+  \item The level sets $f^{-1}(r^2)$ of $f(x,y) = x^2 + y^2$ are circles of radius $r$, where we follow the convention $f^{-1}(0) = \{\vec{0}\}$ and $a > 0 \implies f^{-1}(-a) = \emptyset$.
+  \item $f : \R^2 \rightarrow \R$ defined by $(x,y) \mapsto x^2 - y^2$. The level sets are hyperbolas embedded in $\R^2$.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Remark:} Given any closed $K \subseteq M$, there exists $f : M \rightarrow \R$ such that $f^{-1}(0) = K$ (application of partitions of unity.)
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Constant Rank Level Set Theorem}
+
+\begin{mathdefinitionbox}{}
+  \emph{\textbf{Theorem:}} If $F : M^m \rightarrow N^n$ is a smooth map of constant rank $r$, then for any $q \in N$ the level set $F^{-1}(q) \subseteq M$ is a proper $(m - r)$ dimensional submanifold (codim $F^{-1}(q) = r$).
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Example:}
+
+\begin{itemize}
+  \item  $f : \R^2 \rightarrow \R$ defined as $(x, y) \mapsto x^2 - y^2$ has Differential
+  \item \[ \restr{df}{(x,y)} = \begin{bmatrix}
+    2x & -2y
+  \end{bmatrix} \]
+  which has constant rank $1$ unless $x = y = 0$. Then, the map 
+  \[ F = \restr{f}{\R^2 \setminus \{0\}} \]
+  has constant rank which implies $F^{-1}(q)$ is a proper $1-$dimensional submanifold.
+\end{itemize}
+
+We'll see a proof of this theorem in the next lecture.
+
+\end{document}
+

@@ -1,0 +1,258 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 8},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 8}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{February 2 - Cauchy's Formula, Infinite Differentiability}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\subsection*{Recall}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Last time, we saw Cauchy's formula, which states that if $f : \C \rightarrow \C$ is holomorphic on an open neighborhood $\supseteq \overline{B_{r}(z_0)}$
+  \[ f(w) = \frac{1}{2\pi i} \int_{\partial B_r(z_0)} \frac{f(w)}{w - z} dw \]
+  This integral can be thought of as kind of a "weighted average".
+  
+  \item What we'll see soon is that this integral gives us the infinitely differentiability of a holomorphic function.
+  
+  \item Something to keep in mind is \emph{when we're allowed to interchange an integral and derivative} i.e. when the following equation is valid 
+  \[ \frac{\partial}{\partial z} \int_{\gamma} g(z, w) dw = \int_{\gamma} \frac{\partial g(z, w)}{\partial z} dw \]
+  \item We can interchahnge them when $g(z, w)$ and all of its derivatives are both continuous (jointly on both $z, w$).
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{Infinite differentiability of a holomorphic function}
+
+\vskip 0.5cm
+Consider a function $f$ which is holomorphic on an open neighborhood $\supseteq \overline{B_{r}(z_0)}$. Then, by Cauchy's formula, for $z \in B_r(z_0)$ we have 
+\[  f(z) = \frac{1}{2\pi i} \int_{\partial B_r(z_0)} \frac{f(w)}{w - z} dw  \]
+
+Then, differentiating both sides of the equation 
+\begin{align*}
+  f'(z) &= \frac{1}{2\pi i} \int_{\partial B_r(z_0)} \frac{d}{dz} \frac{f(w)}{w - z} dw \\
+  &= \frac{1}{2\pi i } \int_{\partial B_r(z_0)} \frac{f(w)}{(w - z^2)} dw 
+\end{align*}
+
+But notice that all functions in the above expression are still contniuous! So, we can differentiate again 
+\[ f''(z) = \frac{2}{2\pi i} \int_{\partial B_r(z_0)} \frac{f(w)}{(w-z)^3} dz \]
+...and again!
+\[ f''(z) = \frac{6}{2\pi i} \int_{\partial B_r(z_0)} \frac{f(w)}{(w-z)^4} dz  \]
+
+\vskip 1cm
+..and we can keep going! In general, the $n^{\text{th}}$ derivative is given by 
+
+\[\boxed{ f^{(n)} (z) = \frac{n!}{2\pi i} \int_{\partial B_r(z_0)} \frac{f(w)}{(w-z)^{n+1}} dz}  \]
+
+\vskip 0.5cm
+So, Given $f$ is holomorphic i.e. it is once complex-differentiable, Cauchy's formula tells us that its derivative also holomorphic, and then that functions derivate is holomorphic, and... so on. 
+\begin{dottedbox}
+  \underline{Corollary:} If $f$ is holomorphic at $z_0$, then $f$ is infinitely $\C-$ differentiable in at $z_0$.
+\end{dottedbox}
+
+\vskip 0.5cm
+It is impossible for a once-differentiable complex function to not be infinitely differentiable! This is in stark contrast to real valued functions where we can have once differentiable functions.
+
+\vskip 0.5cm
+\subsection{Where Now? Contour Integration}
+Next, we use Cauchy's Theorem + Cauchy's formula to do \emph{\textbf{contour integration}}. [Write snazzy section intro]
+
+\vskip 0.5cm
+\underline{Example:} Consider the Integral
+\[ \int_{\partial B_4(0)} \frac{z}{z^2 + 1} dz \]
+
+The integrand has singularities at $z = \pm i$ as $z^2 + 1 = (z-i)(z+i)$, so the integrand doesn't immediately vanish. How do we actually calculate the integral then? We have three main methods.
+
+
+\vskip 1cm
+\textbf{Method A: By Cauchy's Theorem} 
+
+[Insert image and explain why the following is true]
+\[ \int_{\partial B_4(0)} f(z)dz  = \int_{\partial B_{1/2} (i)} f(z)dz + \int_{\partial B_{1/2} (-i)} f(z)dz  \]
+
+Now, the function $f(z)$ can be viewed from two different perspectives:
+\[ f(z) = \frac{z}{(z-i)(z+i)} = \frac{g(z)}{(z-i)} = \frac{h(z)}{(z+i)}\]
+where $g(z) = $ and $h(z) = $
+
+Viewing $f(z)$ as $g(z) / (z-i)$ on the island where $(z-i)$ has a pole, and as $h(z)/(z+i)$ on the island where $(z+i)$ has a pole, we can then apply Cauchy's formula so that 
+
+\begin{align*}
+  \int_{\partial B_4(0)} f(z)dz &= \int_{\partial B_{1/2} (i)} f(z)dz + \int_{\partial B_{1/2} (-i)} f(z)dz  \\
+  &= 2\pi i \left( \frac{1}{2i} \right) + 2\pi i \left( \frac{-i}{-2i} \right) \\
+  &= 2\pi i
+\end{align*}
+
+\vskip 0.5cm
+\textbf{Method B: Partial Fraction Decomposition}
+
+Another way to do the integral is to recognize 
+\[ \frac{z}{z^2 + 1} = \frac{1}{2 i} \left( \frac{z}{z-i} - \frac{z}{z+1} \right)\]
+
+So, 
+\begin{align*}
+  \int_{\partial B_4(0)} \frac{z}{z^2 + 1} dz &= \frac{1}{2i} \left( \int \frac{z}{z - i} dz - \int \frac{z}{z + i} dz \right) \\
+  &= 2\pi i
+\end{align*}
+
+
+\vskip 0.5cm
+\textbf{Method C: U-substitution}
+
+Carry out the substitution $u = z^2 + 1$. Then, $du = 2z dz$. This gives us 
+\begin{align*}
+  \int_{\partial B_4(0)} \frac{z}{z^2 + 1} dz &=^{?} \int_{B_{16}(i)} \frac{1}{2} \frac{du}{u} = \frac{1}{2} (2\pi i)
+\end{align*}
+
+Why are we off by a factor of $2$? 
+\begin{dottedbox}
+  We changed the contour of integration as needed, but \emph{not} the "rate" at which we traverse the contour.
+  [Give more careful explanation with graph]
+\end{dottedbox}
+
+So, really, the expression after $u-$ substitution should be 
+\begin{align*}
+  \int_{\partial B_4(0)} \frac{z}{z^2 + 1} dz &= 2 \times \int_{B_{16}(i)} \frac{1}{2} \frac{du}{u} = 2 \times \frac{1}{2} (2\pi i) \\
+  &= 2\pi i
+\end{align*}
+and this is consistent with our previous methods.
+
+\end{document}

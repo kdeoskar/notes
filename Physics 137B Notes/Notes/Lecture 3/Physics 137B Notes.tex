@@ -1,0 +1,312 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 3}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 22 - More about symmetries}
+
+\subsection{Last time}
+
+\begin{itemize}
+  \item Symmetries are transformations which leave a system invariant.
+  \item Can be continuous or discrete.
+  \item Active: $\ket{\psi} \rightarrow \ket{\psi'} = \hat{U} \ket{\psi}$ 
+  Passive: $\hat{\Theta} \rightarrow \hat{\theta'} = \hat{U}^{\dagger} \hat{\Theta} \hat{U}$
+  \item Unitary operators preserve norm: 
+  \begin{align*}
+    &\inner{\psi}{\psi} = \inner{\psi'}{\psi'} \\
+    \implies& \hat{U}^{\dagger} \hat{U} = 1 = \hat{U} \hat{U}^{\dagger}
+  \end{align*}
+
+  \item If $\hat{U}$ transformations are a symmetry, $\mean{\hat{U}}$ is a conserved quantity since 
+  \begin{align*}
+    \frac{d}{dt}\mean{\hat{U}} &= \frac{i}{\hbar}\mean{\underbrace{\left[ \hat{U}, \hat{H} \right]}_{=0, \text{symmetry}}} + \cancelto{0}{\mean{\frac{\partial \hat{U}}{\partial t}}} \;\;\text{ Ehrenfest's Theorem} \\
+  \end{align*}
+  \[ \implies \boxed{ \frac{d}{dt}\mean{U} = 0 } \]
+\end{itemize}
+
+\vskip 1cm
+\section{Parity $\hat{\Pi}$}
+This operator "flips" the coordinate system i.e.
+\[ \hat{\Pi} \underbrace{\ket{\vec{r}}}_{\ket{x} \otimes \ket{y} \otimes\ket{z} } = \ket{-\vec{r}} = \ket{-x} \otimes \ket{-y} \otimes\ket{-z}   \]
+
+\vskip 0.5cm
+Note that \[\hat{\Pi}^2 \ket{\vec{r}} = \hat{\Pi} \ket{-\vec{r}} = \ket{\vec{r}}\]
+
+Thus, $\hat{\Pi}^2 = \mathbf{1} \implies \boxed{\hat{\Pi}^{-1} = \hat{\Pi}}$
+This tells us that the \textbf{eigenvalues of $\hat{|pi}$ are $\lambda_{\pm} = \pm 1$}
+
+\vskip 0.5cm
+\textbf{Proof:} Suppose 
+\[ \hat{\Pi} \ket{n} = \lambda_n \ket{n} \]
+Then
+\begin{align*}
+  &\hat{\Pi}^2 \ket{n} = \lambda_n \hat{\Pi} \ket{n} - \lambda_n^2 \ket{n} \\
+  \implies& \lambda_n^2 = 1 \\
+  \implies& \lambda_n = \pm 1
+\end{align*}
+
+Parity states can only have positive or negatve parity.
+
+\begin{dottedbox}
+
+\textbf{Claim:} $\hat{\Pi}$ is Hermitian. i.e. $\hat{\Pi}^{\dagger} = \hat{\Pi}$.
+
+\vskip 0.5cm 
+\textbf{Proof:} Consider some arbitrary position states $\ket{f}, \ket{g}$ and
+\begin{align*}
+  \inner{f}{\hat{\Pi} | g} &= \int d\vec{r} \inner{f}{\hat{\Pi}|\vec{r}}\inner{\vec{r}}{g} \\
+  &= \int d\vec{r} \inner{f}{|-\vec{r}} g(\vec{r}) \\
+  &= \int_{\infty}^{\infty} d\vec{r} f^{*}(-\vec{r'}) g(\vec{r'}) \\
+  &= -\int_{\infty}^{-\infty} d\vec{r'} f^{*}(\vec{r'})g(-\vec{r'})\;\;\text{(Change of variables $\vec{r'} = -\vec{r}$)} \\
+  &= \int_{-\infty}^{\infty} d\vec{r'} f^{*}(\vec{r'})g(-\vec{r'})\;\;\text{(Change of variables $\vec{r'} = -\vec{r}$)} \\
+  &= \int d\vec{r'} \inner{f}{\vec{r'}} \inner{-\vec{r'}}{g} \\
+  &= \int d\vec{r'} \inner{f}{\vec{r'}} \inner{\vec{r'}|\hat{\Pi}^{\dagger}}{g} \\
+  &= \inner{f|\hat{\Pi}^{\dagger}}{g}
+\end{align*}
+So, we have 
+
+\[ \boxed{\hat{\Pi} = \hat{\Pi}^{\dagger}} \]
+\end{dottedbox}
+
+
+\vskip 1cm
+Symmetries make our calculations very simple.
+\begin{dottedbox}
+
+\textbf{Example:} Let $\hat{\Theta}$ be odd under parity i.e.
+\[ \hat{\Pi} \hat{\Theta} = - \hat{\Theta} \]
+
+Then, $\inner{n}{\hat{\Theta}|n} = 0$.
+
+\vskip 0.5cm
+\textbf{Proof:}
+\begin{align*}
+  \inner{n|\hat{\Theta}}{n} &= \inner{n|\hat{\Pi}^{\dagger}\hat{\Theta} \hat{\Pi} }{n} \\
+  &=  \left( \bra{n} \hat{\Pi} \right)\left( \hat{\Pi} \hat{\Theta} \hat{\Pi}\ \right) \left( \hat{\Pi}\ket{n} \right)\\
+  &= -\lambda_n^2 \inner{n}{\hat{\Theta}|n} \\
+  &= \inner{n}{\hat{\Theta}|n} \\
+  &= 0
+\end{align*}
+\end{dottedbox}
+
+\vskip 1cm
+Vectors like Position and Momentum have odd parity, while pseudoscalars like the dot product and pseudovectors like angular momentum have positive parity.
+
+\begin{itemize}
+  \item $\hat{\Pi} \vec{r} \hat{\Pi} = -\vec{r}$
+  \item $\hat{\Pi} \vec{p} \hat{\Pi} = -\vec{p}$
+  \item $\hat{\Pi} \vec{r} \cdot \vec{r} \hat{\Pi} = |\vec{r}|^2$
+  \item \begin{align*}
+    \hat{\Pi} \vec{L} \hat{\Pi} &= \hat{\Pi} \vec{r} \times \vec{p} \hat{\Pi} \\
+    &= (-1)^2 \vec{r} \times \vec{p} \\
+    &=\vec{L}
+  \end{align*}
+  \item $\hat{\Pi} \vec{S} \hat{\Pi} = \vec{S}$
+\end{itemize}
+
+\vskip 1cm
+\subsection{Continuous Transformations}
+One Example of a continuous transformations is \textbf{translation in 1D} whose operator is denoted as $\hat{\T}$.
+
+\vskip 0.5cm
+[Insert Figure]
+
+\vskip 0.5cm
+The Translation operator is defined by the action
+\[ \hat{T}(a) \psi(x) = \psi'(x) = \psi(x - a) \]
+
+Taylor expanding the last expression, we have 
+\begin{align*}
+  \hat{T}(a)\psi(x) &= \psi(x - a) \\
+  &= \psi(x) - a\frac{d}{dx}\psi(x) + \cdots
+\end{align*}
+
+We can relate this to the momentum operator since 
+\[ \hat{P} = -i\hbar\frac{d}{dx} \iff \frac{d}{dx} = \frac{i}{\hbar}\hat{P} \]
+
+Which gives us 
+\begin{align*}
+  \hat{T}(a) \psi(x) &\approx \left( \mathbf{1} - \frac{ia\hat{P}}{\hbar} + \cdots \right)\psi(x) \\
+  \implies \hat{T}(a) &= \sum_{n = 0}^{\infty} \frac{1}{n!} \left( \frac{-ia\hat{P}}{\hbar}^2 \right) \\
+  &= \exp\left( \frac{-ia\hat{P}}{\hbar} \right)
+\end{align*}
+
+One thing we can deduce from this is that the \textbf{Translation operator is Unitary}.
+
+\begin{dottedbox}
+  \begin{align*}
+    (\hat{T}(a))^{\dagger}(\hat{T}(a)) &= \exp\left( \frac{+ia\hat{P}}{\hbar} \right)\exp\left( \frac{-ia\hat{P}}{\hbar} \right) \\
+    &= \exp\left( \frac{ia\hat{P - P}}{\hbar} \right) \;\;\text{ (This is valid because $\hat{P}$ commutes with itself)}\\
+    &= \mathbf{1}
+  \end{align*}
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Momentum conservation}
+If $\hat{T}(a)$ is a symmetry of the system we have 
+\[ [\underbrace{\hat{T}(a)}_{e^{\frac{-ia\hat{P}}{\hbar}}}, \hat{H}] = 0 \] 
+
+\begin{align*}
+  \implies& \left[ \exp\left( -\frac{ia \hat{P}}{\hbar} \right), \hat{H} \right] = 0 \\
+  \implies& \left[ \hat{P}, \hat{H} \right] = 0
+\end{align*}
+
+But then, Ehrenfest's Theorem tells us that $\mean{\hat{P}} = 0$ as  
+\begin{align*}
+  \frac{d}{dt}\mean{\hat{P}} = \frac{i}{\hbar} \mean{\left[ \hat{P}, \hat{H} \right]}  0
+\end{align*}
+
+So, the value of momentum measured is conserved.
+
+\textbf{Momentum conservation is the result of Translation Symmetry.}
+
+\subsection{Time Translation ($\hat{U}(\Delta)$)}
+\begin{align*}
+  \hat{U}(\Delta)\psi(t) &= \psi(t - \Delta) \\
+  &= \left( 1 - \Delta\frac{d}{dt} + \cdots \right) \psi(t) \\
+  &=\left( 1 + \frac{i \Delta \cdot \hat{H}}{\hbar} \cdots \right)\psi(t) \\
+  &= \exp\left( \frac{i \Delta \cdot \hat{H}}{\hbar} \right) \psi(t)
+\end{align*}
+where in the third equality, we used that 
+\[ \hat{H} = i\hbar\frac{d}{dt} \implies \frac{d}{dt} = -i\frac{\hat{H}}{\hbar} \]
+
+If Time Translation is a symmetry, then this is equivalent to saying that 
+the energy of the system is conserved. \textbf{So, Energy Conservation is a result of Time Translation.}
+
+\end{document}

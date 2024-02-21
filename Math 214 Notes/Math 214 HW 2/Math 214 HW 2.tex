@@ -1,0 +1,739 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 2}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-4.} Let $M$ be a topological manifold, and let $\mathcal U$ be an open cover of $M$.
+\begin{enumerate}[label=(\alph*)]
+  \item Assuming that each set in $\mathcal U$ intersects only finitely many others, show that $\mathcal U$ is locally finite.
+  \item Give an example to show that the converse of (a) might be false.
+  \item Now assume that the sets in $\mathcal U$ are precompact and prove the converse: If $\mathcal U$ is locally finite, then each set in $\mathcal U$ intersects only finitely many others. 
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+We have a topological manifold $M$ and an open cover $M \subset \mathcal U$. Recall that a collection of sets is said to be \textbf{locally finite} if each point of $M$ has a neighborhood which only intersects finitely many sets in the collection.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Assume each set in $U$ intersects only finitely many others. Since $\mathcal U$ is an open cover of $M$, for any point $p \in M$ there exists an open set such that $p \in U \in \mathcal U$. By assumption, $U$ intersects only finitely many sets in $\mathcal U$. Therefore, $\mathcal U$ is locally finite.
+  
+  \vskip 0.5cm
+  \item Consider the set $\R$ and the open cover generated by the open intervals $(n, n+1)$ and their unions i.e. 
+  \[ \mathcal U = \{ U = \bigcup_{k \in K} (k, k+2), \text{ where $K \subseteq \mathbb{Z}$} \} \]
+  The set is certainly an open cover of $\R$ and is locally finite since at each point, the corresponding interval say $(k, k+2)$ only intersects with the $(k - 1, k+1)$ and $(k+1, k+3)$ intervals. However $\R$ itself is also a member of $\mathcal U$ and it intersects with infinitely many other members of $\mathcal U$.
+  
+  \vskip 0.5cm
+  \item Suppose the sets $U \in \mathcal{U}$ are pre-compact and $\mathcal{U}$ is locally finite. 
+  
+  \vskip 0.25cm
+  We know from LeeSM Lemma 1.13 that if $\mathcal{U}$ is locally finite then $\overline{\mathcal{U}} \defeq \{ \overline{U} : U \in \mathcal{U} \}$ is also locally finite. So, for any set $U \in \mathcal{U}$, consider the closure $\overline{U}$. Then, around each point $p \in M$ there is an open subset $V_p \subseteq_{\text{open}} M$ which intersects with only finitely many $\overline{U_i} \in \overline{\mathcal{U}}$. 
+
+  \vskip 0.25cm
+  The collection $\{V_{x}\}_{x \in \overline{\mathcal{U}}}$ is an open cover of $\overline{\mathcal{U}}$. Since $\overline{U}$ is compact, there is a finite subcover $\{V_1, \dots, V_n\}$ so that 
+  \[ U \subset \overline{U} \subset \bigcup_{k = 1}^n V_k \]
+
+  Each $V_k$ intersects with only finitely many $U_i \in \mathcal{U}$, thus so does their union. As a result, $U$ only intersects with finitely many other sets in $\mathcal{U}$.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-5.} Suppose $M$ is a locally Euclidean Hausdorff space. Show that $M$ is second countable if and only if it is paracompact and has countably many connected components.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+% Recall that a space $M$ is said to be \textbf{paracompact} if every open cover of $M$ admits an open, locally finite refinement.
+
+% \vskip 0.25cm
+% Now, $M$ is a locally Euclidean Hausdorff space of dimension, say, $n$. So, for any point there exists a chart $(U, \phi : U \rightarrow \tilde{U} \subset_{\text{open}} \mathbb{R}^n)$ and for distinct points there exist disjoint open sets.
+
+\vskip 0.25cm
+
+$M$ is a locally euclidean and hausdorff space.
+\vskip 0.5cm
+
+\textbf{$\implies$ Direction:} Suppose $M$ is second-countable i.e. its topology has a countable basis $\mathcal B$. 
+\begin{itemize}
+  \item We know that a connected component of $M$ is open in $M$, so the set of connected components forms an open cover. Since $M$ is second-countable, any open cover must have a countable sub-cover. So, the collection of connected components must have a countable sub-cover. But any two connected components are disjoint with each other, so the collection of connected components must have been countable in the first place. \textbf{$\mathbf{M}$ has countably many connected components.}
+  
+  \vskip 0.5cm
+  \item Consider $M$, an open cover $\mathcal{U}$, and a countable basis $\mathcal{B}$. A second-countable, locally euclidean, hausdorff space admits an exhaustion by open sets (LeeSM Proposition A.60), so let $(K_j)_{j = 1}^{\infty}$ be a compact exhaustion of $M$.
+  
+  \vskip 0.25cm
+  For each $j$, define $V_j = K_{j+1} \setminus \text{Int}(K_j)$ and $W_j = \text{Int}(K_{j+2}) \setminus K_{j - 1}$. Note that $V_j$ is a compact set contained in the open set $W_j$. Now, for each $x \in V_j$ there exists an open set $U_x \ni x$. Then since $\mathcal{B}$ is a basis, there exists a basis set $B_x$ such that $x \in B_x \subseteq U_x \cap W_j$ (since $U_x$ and $W_j$ are two open sets).
+
+  \vskip 0.25cm
+  The collection of sets $\{B_x\}_{x \in V_j}$ forms an open cover of the compact set $V_j$, so there must be a finite subcover for each $V_j$. The union of these finite collections as $j$ ranges over the positive integers is then a countable open cover of $M$. 
+  
+  \vskip 0.25cm
+  Since each $B_x \subseteq U_x \cap W_j$, the cover formed is indeed a countably open refinement. Further since $W_j \cap W_{j'} = \emptyset$ unless $j - 2 < j' < j + 2$, the collection is locally finite. \textbf{So, any open cover of $\mathbf{M}$ has an (countable), locally finite open refinement.}
+\end{itemize}
+
+So, $M$ has countably many connected components and is paracompact.
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{Lemma:} If topological space $X$ is the union of countably many compact sets, then $X$ is second-countable.
+
+  \vskip 0.5cm
+  \underline{Proof:} (write later)
+\end{dottedbox}
+
+
+\vskip 1cm
+\textbf{$\impliedby$ Direction:} Suppose $M$ is paracompact and has countably many connected components.
+
+\vskip 0.25cm
+Since $M$ has countably many connected components, showing that each connected component has a countable basis suffices to show $M$ is second countable.
+
+\vskip 0.25cm
+Consider an arbitrary connected set, $X \subset_{open} M$. We know that $X$ is then Precompact, Hausdorff and Locally Euclidean of dimension $n$. Consider the open cover formed by charts $\{(U_{\alpha}, \phi_{\alpha})\}_{\alpha \in A}$. Then, $\phi_{\alpha}(U_{\alpha}) \subset_{open} \R^n$ has a countable basis of precompact sets (for example, open balls in $\R^n$). Since $\phi_{\alpha}$ is a homeomorphism between $U_{\alpha}$ and $\phi_{\alpha}(U_{\alpha})$, the preimages of these open balls form an open cover of $U_{\alpha}$ consisting of countably many precompact coordinate domains. Let's denote this cover as $\mathcal{U}$.
+
+\vskip 0.25cm
+Since $X$ is precompact, we can find a locally finite open refinement for $\mathcal{U}$ denoted $\mathcal{V}$. For every $V \subseteq \mathcal{V}$, there exists $U \subseteq \mathcal{U}$ such that $V \subseteq U \subseteq \underbrace{\overline{U}}_{\text{compact}}$, so we fnd that $\overline{V}$ is compact.
+
+\vskip 0.25cm
+Fix $V_1$ in $\mathcal{V}$. The collection $\mathcal{V}$ is locally finite, so for each $V \in \mathcal{V}$ there is an integer $n$ and string of sets $V_1, \dots, V_n \in \mathcal{V}$ such that $V_i \cap V_{i+1} \neq \emptyset$. By mapping each set $V \in \mathcal{V}$ to the integer $n$, we obtain a mapping $\mathcal{V} \rightarrow \mathbb{Z}_{\geq 1}$. If we can show that the fibers of this map are countable, we will have shown that $\mathcal{V}$ is countable. In turn, $X$ can be written as a union of countably many compact sets, making it second countable. We'll show this by induction.
+
+\vskip 0.25cm
+Let $\mathcal{V}_{\leq k}$ be the preimage of $\{1, 2, \dots,  k \} \subseteq \mathbb{Z}_{\geq 1}$. The base case is $n = 1$, where the pre-image of ${1}$ is exactly $\mathcal{V}_{\leq 1} = \{V_1\}$ which is clearly finite. Now assume for induction $\mathcal{V}_n$ is finite. Then, 
+\[ K_n \defeq \overline{\bigcup_{V \in \mathcal{V}_{\leq n}} V } \]
+is compact (since it's a closed set contained in the compact set $\bigcup_{V \in \mathcal{V}_{\leq n}} \overline{V}$).
+
+By local-finiteness of $\mathcal{V}$, for every $x \in K_n$ there exists an open neighborhood $U_x$ which intersects only finitely many sets in $\mathcal{V}$. These sets $U_x$ form an open cover for $K_n$, which is compact, so we can take an open subcover $\{U_x\}_{x \in K_n}$. This means the set $\mathcal{V}_{K_n}$ of \emph{all} $V \in \mathcal{V}$ which intersect $K_n$ is finite. But $\mathcal{V}_{\leq n + 1}$ is a subset of $\mathcal{V}_{K_n}$, so it must also be finite.
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-6.} Let $M$ be a nonempty topological manifold of dimension $n \geq 1$. If $M$ has a smooth structure, show that it has uncountably many distinct ones.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+Following the hint, we first show that $F_s(x) = |x|^{s-1} x : \mathbb{B}^n \rightarrow \mathbb{B}^n$ is a homeomorphism for each $s \geq 1$, and is also a diffeomorphism if and only if $s = 1$.
+
+\vskip 0.25cm
+\underline{\textbf{Homeomorphism:}} For $x \in \mathbb{B}^{n}$ we have $|x| = 1$, so $|F_s(x)| = |x|^s < 1$ so the image does indeed lie in $\mathbb{B}^n$ and since $F_s(x)$ is just a rational function of $x$, it's continuous. (Note that, for $s \leq 1$, $|x|^{s-1}x$ is undefined at $x = 0$, however defining $F$ such that $F_s(0) = 0$ for $s \leq 1$ makes it continuous.)
+
+\vskip 0.25cm
+The inverse of $F_s$ is given by $F_s^{-1}(x) = |x|^{\frac{1}{s} - 1} x$, where once again we define $F_s^{-1}(0) = 0$. This function is also clearly continuous, and so $F_s(x)$ is a homeomorphism from $\mathbb{B}^n$ to itself for each $s \geq 1$.
+
+\vskip 0.5cm
+\underline{\textbf{$s = 1$ $\iff$ Diffeomorphism:} }
+\begin{itemize}
+  \item If $s = 1$, $F_s(x) = F_1(x) = |x|^0 x = x$, so $F_s$ is just the identity map on $\mathbb{B}^n$ which is certainly a diffeomorphism.
+  \item Suppose $s \neq 1$. It suffices to show that $F_x(x)$ is not a diffeomorphism for $s < 1$ as the same proof shows the that $F_s^{-1}$ is not a diffeomorphism for $s > 1$. 
+  
+  \vskip 0.5cm
+  Suppose, for contradiction, that $F_s$ is smooth. Then, it should have continuous partial derivatives of all orders along each component. However, the first derivative along the first component is
+  \begin{align*}
+    \frac{\partial}{\partial x_1} \left[ |x|^{s-1} x_1 \right]
+    &= (s-1)|x|^{s-2} \cdot \frac{\partial|x|}{\partial x_1} \cdot x_1 + 1 \cdot |x|^{s-1} \\
+    &= (s-1)|x|^{s-3} x_1 + |x|^{s-1}
+  \end{align*}
+  which is not continuous at $x = 0$.
+\end{itemize}
+So, $F_s(x)$ is a diffeomorphism if and only if $s = 1$.
+
+\vskip 0.5cm
+Now, that we've shown $F_s$ is a homeomorphism for all $s > 0$ but a diffeomorphism if and only if $s = 1$, we will develop a method to construct a family of smooth atlases on $M$ indexed by $s$.
+
+\vskip 0.25cm
+let $\mathcal{A}$ be any smooth atlas on $M$. Pick a point $p \in M$ and a chart $(U, \phi) \in \mathcal{A}$ containing $p$. Then, there is $r > 0$ such that $B_r(\phi(p)) \subseteq \phi(U)$. Let $V$ denote the pre-image of this $r-$ball $V = \phi^{-1} \left( B_r(\phi(p)) \right)$ and define a map $\psi : U \rightarrow \R^n$ by  
+
+\[ \psi(q) = \frac{\left( \phi(q) - \phi(p) \right)}{r} \]
+
+Note that $\psi(p) = 0$ and $\psi(V) = B_1(0)$, so $\psi$ essentially recales and translates $V$ to be the unit ball centered at the origin i.e $\mathbb{B}^n$. This will allow us to use $F_s$ later. 
+
+\vskip 0.25cm
+Let $\mathcal{A}^{\star} = \mathcal{A} \cup (V, \restr{\psi}{V})$. This is a smooth atlas since the transition map between any chart in $\mathcal{A}$ and $(V, \restr{\psi}{V})$ is the composition of a linear map and a transition map involving $\phi$.
+
+\vskip 0.25cm
+Now, given $\mathcal{A}^{\star}$, let $\mathcal{A}'$ be the smooth atlas obtained after replacing every chart $(W, \theta)$ (except for $(V, \psi)$) with $(W', \theta')$ where $W'= W \setminus \{p\}$ and $\theta' = \restr{\theta}{W'}$.
+
+\vskip 0.25cm
+Now, let $\mathcal{A}_{s}$ be the atlas obtained from $\mathcal{A}'$ by replacing $(V, \psi)$ with $(V, F_s \circ \psi)$. This can be done since $F_s$ is a homeomorphism from the unit ball onto itself and $\psi(V) = \mathbb{B}^n$, and it's a smooth atlas because every transition map is the composition of $F_s$ (away from $\mathbf{0}$) with a transition map from $\mathcal{A}'$. Since it's a smooth chart, it generates a unique smooth structure on $M$.
+
+\vskip 0.25cm
+Finally, we're done with the constuction. Now, if $\mathcal{A}_s$ and $\mathcal{A}_t$ are two smooth atlases which define the same smooth structure on $M$, then the transition map from $(V, F_s \circ \psi)$ and $(V, F_t \circ \psi)$ must be smooth. That is, 
+\[ (F_s \circ \psi) \circ (F_t \circ \psi)^{-1} = F_s \circ F_t^{-1} = F_{s/t} \]
+
+\vskip 0.25cm
+But this map is smooth if and only if $s = t$, meaning the charts only generate the same smooth structure on $M$ if $s = t$. Thus the smooth structures generated by $\{ \mathcal{A}_s \}_{s \geq 1}$ are all distinct. 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-7.} Let $N$ denote the north pole $(0, \dots, 0, 1) \in \mathbb{S}^n \subseteq \R^{n+1}$, and let $S$ denote the south pole $(0, \dots, 0, -1)$. Define the stereographic projection $\sigma : \mathbb{S}^n \setminus \{N\} \rightarrow \R^n$ by
+\[ \sigma(x^1, \dots, x^{n+1}) = \frac{(x^1, \dots, x^{n})}{1 - x^{n+1}} \]
+
+Let $\tilde{\sigma}(x) = -\sigma(-x)$ for $x \in \mathbb{S}^n \setminus S$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\begin{enumerate}[label=(\alph*)]
+  \begin{dottedbox}
+    \item For any $x \in \mathbb{S}^n \setminus N$, show that $\sigma(x) = u$ where $(u, 0)$ is the point where the line through $N$ and $x$ intersects the linear subspace where $x^{n+1} = 0$. Similarly, show that $\tilde{\sigma}(x)$ is the point where the line through $S$ and $x$ intersects the same linear subspace.
+  \end{dottedbox}
+  
+  \vskip 0.5cm
+  \underline{\textbf{Proof:}} A point $r$ on the line passing through $N$ and $x$ is given by 
+  \begin{align*}
+    &r = x + t(N - x), t \in \R \\
+    \implies &r = (x^1, \dots, x^n, x^{n+1}) + t(-x^1, \dots, -x^n, 1-x^{n+1}) \\
+    \implies &r = \left( (1-t)x^1, \dots, (1-t)x^n, t(1-x^{n+1}) - x^{n+1} \right)
+  \end{align*}
+  For which value of $t$ does $r$ interesect the $\{x^{n+1} = 0\}$ subspace of $\R^{n+1}$? 
+  \begin{align*}
+    &t(1-x^{n+1})-x^{n+1} = 0 \\
+    \implies& \boxed{t = \frac{x^{n+1}}{1-x^{n+1}}} \\
+    \implies& \boxed{1 - t = \frac{1}{1 - x^{n+1}}}
+  \end{align*}
+
+  So, plugging in this expression for $(1-t)$ as the coefficient for $x^1, \dots, x^n$, the point where the line intersects the $\{x^{n+1} = 0\}$ subspace of $\R^{n+1}$ is $(u, 0)$ where 
+  \[ u = \frac{(x^1, \dots, x^n)}{1 - x^{n+1}} = \sigma(x) \]
+
+  Similarly for any $S \setminus \{S\}$, a point on the line passing through $x$ and $S$ is given by 
+  \begin{align*}
+    &r = x + t(S - x), t \in \R \\
+    \implies& r = (x^1, \dots, x^{n}, x^{n+1}) + t(-x^1, \dots, -x^{n}, -1-x^{n+1}) \\
+    \implies& r = \left( (1-t)x^1, \dots, (1-t)x^n, x^{n+1} - t(1 + x^{n+1}) \right)
+  \end{align*}
+  For which value of $t$ does the point $r$ has $(n+1)-$ component equal to zero? i.e. lies on the $\{x^{n+1} = 0\}$ subspace of $\mathbb{R}^{n+1}$:
+  \begin{align*}
+    &x^{n+1} - t(1+x^{n+1}) = 0 \\
+    \implies& \boxed{t = \frac{-x^{n+1}}{1+x^{n+1}}} \\
+    \implies& \boxed{1 - t = \frac{1}{1+x^{n+1}}} \\
+  \end{align*}
+  Plugging in this expression for $(1-t)$, we find that the line passing through $x$ and $N$ intersects the subspace at the point $(v, 0)$
+  \[ v = \frac{(x^1, \dots, x^{n})}{1 + x^{n+1}} \]
+  and 
+  \begin{align*}
+    \tilde{\sigma}(x) &= -\sigma(-x) \\
+    &= -\frac{(-x^1, \dots, -x^n)}{1 - (-x^{n+1})} \\
+    &= \frac{(x^1, \dots, x^n)}{1 + x^{n+1}} \\
+    &= v
+  \end{align*}
+
+  \vskip 1cm
+  \begin{dottedbox}
+    \item Show that $\sigma$ is bijective and 
+    \[ \sigma^{-1}(u^1, \dots, u^{n}) = \frac{(2u^1, \dots, 2u^n, \lvert u^2 \rvert^2) - 1}{\lvert u^1 \rvert + 1} \]
+  \end{dottedbox}
+  \vskip 0.5cm
+  To show bijection, we need to show injectivity and surjectivity
+  \begin{enumerate}[label=(\arabic*),ref=\arabic*]
+    \item \underline{injectivity:} 
+    
+    Consider any $x, y \in \mathbb{S}^n \setminus \{N\}$ such that $x \neq y$. Then, there is atleast one $i, 1 \leq i \leq n+1$ such that $x^i \neq y^i$.
+    
+    \vskip 0.25cm
+    \underline{If $i = n+1$:} $1 - x^{n+1} \neq 1 - y^{n+1}$ so clearly, 
+    \begin{align*}
+      &\frac{(x^1, \dots, x^{n})}{1 - x^{n+1}} \neq \frac{(y^1, \dots, y^{n})}{1 - y^{n+1}} \\
+      \implies &\sigma(x) \neq \sigma(y)
+    \end{align*} 
+
+    \vskip 0.25cm
+    \underline{If $1 \leq i \leq n$:} Then, 
+    \begin{align*}
+      &(x^1, \dots, x^i, \dots, x^n) \neq (y^1, \dots, y^i, \dots, y^n) \\
+      \implies& \frac{(x^1, \dots, x^i, \dots, x^n)}{1 - x^{n+1}} \neq \frac{(y^1, \dots, y^i, \dots, y^n)}{1 - y^{n+1}} \\
+      \implies& \sigma(x) \neq \sigma(y)
+    \end{align*}
+    This shows injectivity.
+
+    \vskip 0.5cm
+    \item \underline{Surjectivity:}
+    
+    Consider any $u = (u^1, \dots, u^n) \in \R^{n}$. If we can figure out which $x \in \mathbb{S}^n \setminus \{N\}$ maps to $u$ under $\sigma$ then we will have shown that any $u \in \R^{n}$ has a pre-image under $\sigma$ i.e. $\sigma$ is surjective.
+
+    \vskip 0.5cm
+    Suppose there exists $x \in \mathbb{S}^n \setminus \{N\}$ such that $\sigma(x) = u$.
+    \begin{align*}
+      &\frac{(x^1, \dots, x^{n})}{1 - x^{n+1}} = (u^1, \dots, u^n) \\
+      \implies & \boxed{ \frac{x^i}{1 - x^{n+1}} = u^i} \;\;\;\;(1)
+    \end{align*}
+
+    Now, 
+    \begin{align*}
+      &\lvert u \rvert^2 = (u^1)^2 + \cdots + (u^n)^2 \\
+      \implies& \lvert u \rvert^2 = \frac{1}{(1-x^{n+1})^2} \cdot \left[ (x^1)^2 + \cdots + (x^{n})^2 \right] \\
+      \implies& \lvert u \rvert^2 = \frac{1}{(1-x^{n+1})^2} \cdot \left[ 1 - (x^{n+1})^2 \right] \\
+      \implies& \boxed{\lvert u \rvert^2 = \frac{ 1 - (x^{n+1})^2 }{(1-x^{n+1})^2} } 
+    \end{align*}
+    \vskip 0.5cm
+    We can then isolate $x^{n+1}$ by noticing that
+    \begin{align*}
+      &\lvert u \rvert^2 - 1 = \frac{1 - (x^{n+1})^2 - 1 - (x^{n+1})^2 + 2x^{n+1}}{(1 - x^{n+1})^2} \\
+      \implies&\lvert u \rvert^2 - 1 = \frac{2x^{n+1} - 2(x^{n+1})^2}{(1 - x^{n+1})^2} \\
+      \implies&\lvert u \rvert^2 - 1 = \frac{2x^{n+1}}{(1 - x^{n+1})} 
+    \end{align*}
+    and
+    \begin{align*}
+      &\lvert u \rvert^2 + 1 = \frac{1 - (x^{n+1})^2 + 1 + (x^{n+1})^2 - 2x^{n+1}}{(1 - x^{n+1})^2} \\
+      \implies&\lvert u \rvert^2 + 1 = \frac{2 - 2x^{n+1}}{(1 - x^{n+1})^2}\\
+      \implies&\lvert u \rvert^2 + 1 = \frac{2}{1-x^{n+1}} 
+    \end{align*}
+    So, 
+    \begin{align*}
+      &\frac{\lvert u \rvert^2 - 1}{\lvert u \rvert^2 + 1} = \frac{2x^{n+1}}{(1 - x^{n+1})} \cdot \frac{(1 - x^{n+1})}{2} \\
+      \implies& \boxed{\frac{\lvert u \rvert^2 - 1}{\lvert u \rvert^2 + 1} = x^{n+1}}
+    \end{align*}
+
+    \vskip 0.5cm
+    Plugging this expression into equation (1), we can find $x^i$:
+    \begin{align*}
+      &\frac{x^i}{1-x^{n+1}} = u^i \\
+      \implies&x^i = u^i \cdot (1-x^{n+1}) \\
+      \implies&x^i = u^i \cdot \left( 1 - \frac{\lvert u \rvert^2 - 1}{\lvert u \rvert^2 + 1} \right) \\
+      \implies&x^i = u^i \cdot \left( \frac{2}{\lvert u \rvert^2 + 1} \right) \\
+      \implies& \boxed{x^i = \left( \frac{2}{\lvert u \rvert^2 + 1} \right) u^i}
+    \end{align*}
+    
+    \vskip 0.5cm
+    So, every $u \in \R^n$ has pre-image given by 
+    \[\boxed{ x = (x^1, \dots, x^n, x^{n+1}) = \frac{\left( 2u^1, \dots, 2u^{n}, \lvert u \rvert^2 - 1 \right)}{\lvert u \rvert^2 + 1} = \sigma^{-1}(u) } \]
+    And indeed $x \in \mathbb{S}^n \setminus \{N\}$ since $x^{n+1} \neq 1$ always, and $(x^1)^2 + \cdots + (x^{n+1})^2 = 1$.
+  \end{enumerate}
+
+  \vskip 0.5cm
+  \begin{dottedbox}
+    \item Compute the transition map $\tilde{\sigma} \circ \sigma^{-1}$ and verify that the atlas consisting of the two charts $(\mathbb{S}^{n} \setminus \{N\}, \sigma)$ and $(\mathbb{S}^{n} \setminus \{S\}, \tilde{\sigma})$ defines a smooth structure on $\mathbb{S}^n$.
+  \end{dottedbox}
+
+  \vskip 0.5cm
+  For ease of notation, let's denote $X \defeq \mathbb{S}^{n} \setminus \{N\}$ and $Y \defeq \mathbb{S}^{n} \setminus \{S\}$. Consider some $u \in \mathbb{R}^n$. Then, 
+  \begin{align*}
+    \restr{\left(\tilde{\sigma} \circ \sigma^{-1}\right)}{\sigma(X \cap Y)}(x) &= \tilde{\sigma}(u) \\
+    &= \tilde{\sigma}\left( \frac{\left( 2u^1, \dots, 2u^n, \lvert u \rvert^2 - 1 \right)}{\lvert u \rvert^2 + 1} \right) \\
+    &= \tilde{\sigma}\left( \frac{2u^1}{\lvert u \rvert^2 + 1}, \dots,  \frac{2u^n}{\lvert u \rvert^2 + 1},  \frac{\lvert u \rvert^2 - 1}{\lvert u \rvert^2 + 1} \right) \\
+    &= \left[ 
+      \frac{\left(  2u^1, \dots, 2u^n\right)}{|u|^2 + 1}
+     \right] \cdot \frac{1}{1+ \left( \frac{|u|^2 - 1}{|u|^2 + 1} \right)} \\
+     &= \frac{2}{|u|^2 + 1} \left( u^1, \dots, u^n \right) \cdot \frac{|u|^2 + 1}{2|u|^2} \\
+     &= \frac{1}{|u|^2} \left( u^1, \dots, u^n \right) \\
+     &= \frac{1}{|u|^2} \cdot u
+  \end{align*}
+  This function is well defined because $\sigma(X \cap Y) = \R \setminus \{0\}$.
+
+  \vskip 0.5cm
+  To verify that $\mathcal{A} \defeq \{ (U, \sigma), (V, \tilde{\sigma}) \}$ forms a smooth atlas, we need to verify that the transition maps 
+  \[ \restr{\tilde{\sigma} \circ \sigma^{-1}}{\sigma(X \cap Y)}, \text{  and  }\restr{\sigma \circ (\tilde{\sigma})^{-1}}{\tilde{\sigma}(X \cap Y)} \]
+  are smooth.
+
+  \vskip 0.5cm
+  We just found $\restr{\left(\tilde{\sigma} \circ \sigma^{-1}\right)}{\sigma(X \cap Y)}$ is a rational function, so it is smooth. Let's find $\restr{(\sigma \circ (\tilde{\sigma})^{-1})}{\tilde{\sigma}(X \cap Y)}$ and verify that it's smooth.
+
+  \vskip 0.5cm
+  \begin{dottedbox}
+    Using the same methods as earlier, we find that for $u \in \R$
+    \[ \tilde{\sigma}^{-1}(u) = \frac{(2|u|^2u^1, \dots, 2|u|^2u^n, |u|^2 - 1)}{|u|^2 + 1} \]
+  \end{dottedbox}
+  \vskip 0.5cm
+  Then,
+  \begin{align*}
+    \restr{(\sigma \circ (\tilde{\sigma})^{-1})}{\tilde{\sigma}(X \cap Y)} &= \sigma(\tilde{\sigma}(u)) \\
+    &=\sigma\left( \frac{(2|u|^2u^1, \dots, 2|u|^2u^n, |u|^2 - 1)}{|u|^2 + 1} \right) \\
+    &= \sigma \left( \frac{2|u|^2}{|u|^2 + 1}u^1, \dots, \frac{2|u|^2}{|u|^2 + 1}u^n, \frac{|u|^2 - 1}{|u|^2 + 1}\right) \\
+    &= \frac{(2|u|^2 \cdot u^1, \dots, 2|u|^2)}{(|u|^2 + 1)} \cdot \frac{1}{1 - \left( \frac{|u|^2 - 1}{|u|^2 + 1} \right)} \\
+    &= \frac{2|u|^2}{|u|^2 + 1} \left( u^1, \dots, u^n \right) \cdot \frac{|u|^2 + 1}{2} \\
+    &= |u|^2 \cdot \left( u^1, \dots, u^n \right) \\
+    &= |u|^2 \cdot u 
+  \end{align*} 
+  This maps is also smooth as it's a rational function.
+
+  \vskip 0.5cm
+  We've now shown that $\restr{\tilde{\sigma} \circ \sigma^{-1}}{\sigma(X \cap Y)} $ and $ \restr{\sigma \circ (\tilde{\sigma})^{-1}}{\tilde{\sigma}(X \cap Y)}$ are smooth, so  $\mathcal{A}$ is a smooth atlas, and we know that any smooth atlas on a manifold generates a smooth structure on that manifold (Propsition 1.17(a) in LeeSM).
+
+  \vskip 0.5cm
+  \item To show that this atlas $\mathcal{A}_1 = \{ (X, \sigma), (Y, \tilde{\sigma}) \}$ and the atlas $\mathcal{A}_2 = \{(U_i^{\pm}, \phi_i^{\pm})\}$ define the same smooth structure on $\mathbb{S}^n$ we need to show that their union $\mathcal{A}_{12} = \mathcal{A}_1 \cup \mathcal{A}_2$ is also a smooth atlas on $\mathbb{S}^n$. To do, we need to show that the transition maps between any two charts in $\mathcal{A}_{12}$ are smooth.
+  
+  \vskip 0.5cm
+  So, there are three types of charts from $\mathcal{A}_2$ to consider: 
+  \begin{enumerate}
+    \item $(U_{n+1}^+, \phi_{n+1}^+)$ which contain $N$
+    \item $(U_{n+1}^-, \phi_{n+1}^-)$ which contain $S$
+    \item $(U_{i}^{\pm}, \phi_{ i}^{\pm})$ for $1 \leq i \leq n$
+  \end{enumerate}
+
+  \vskip 0.5cm
+  The transition functions between $(X, \sigma)$ with the first and second types of charts are :
+  \[ \phi_{n+1}^{\pm} \circ \sigma^{-1}(u^1, \dots, u^n) = \frac{(2u^1, \dots, 2u^n)}{|u^2| + 1} \]
+  and their inverses are 
+  \[ \sigma \circ (\ph_{n+1}^{\pm}^{-1})(u^1, \dots, u^n) = \frac{(u^1, \dots, u^n)}{1 \mp \sqrt{1 - |u|^2}} \]
+
+  These are all smooth. The transition functions with the third type are :
+  \[ \phi_{i}^{\pm} \circ \sigma^{-1}= \frac{2u^1, \dots, \widehat{u^i}, 2u^n, |u|^2 - 1}{|u|^2 + 1}  \]
+  and the inverse is 
+  \[ (\phi_{i}^{\pm} \circ \sigma^{-1}^{-1})= \frac{u^1, \dots, \sqrt{1 - |u|^2}, u^{n-1}}{1 - u^n}  \]
+  which are also all smooth. Thus, the atlas is smooth and generates the same smooth structure.
+\end{enumerate}
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-8.} An \textbf{\emph{angle function}} on a subset $U \subseteq \sphere^{1}$ is a continuous function $\theta : U \rightarrow \R$ such that $e^{i \theta(z)} = z$ for all $z \in U$. Show that there exists an angle function $\theta$ on an open subset $U$ if and only if $U \neq \sphere^1$. For any such angle function, show that $(U, \theta)$ is a smooth coordinate chart for $\sphere^1$ with the standard smooth structure. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\textbf{First, let's show that such a function exists on $U$ if and only if $U \neq \sphere^1$. }
+
+\vskip 0.5cm
+\underline{$\implies$ Direction:} 
+
+Suppose, for contradiction, there exists a continuous function $\theta : U = \sphere^1 \rightarrow \R$ such that $e^{i \theta(z)} = z$.
+
+Note that $\theta$ is injective and surjective on $\theta(\sphere^1)$ i.e. so $\theta : \sphere^1 \rightarrow \theta(\sphere^1)$ is a continuous bijection from a Compact space to a Hausdorff space. Thus, it is a homeomorphism. 
+\[ \boxed{ \sphere^1 \cong_{h} \theta(\sphere^1) } \]
+
+
+Now, $\sphere^1$ is compact and connected, so $\theta(\sphere^1)$ must be a closed interval $[a, b] \subset \R$. However, deleting any point from $\sphere^1$ gives us a connected space while deleting a point in the interior of $[a, b]$ gives us a disconnected space. So we cannot have $\sphere^1 \cong_{h} \theta(\sphere^1)$. We've arrived at a contradiction.
+
+\vskip 0.5cm
+\underline{$\impliedby$ Direction:}
+If $U \neq S$ is an open subset, there is some $p \in \mathbb{S}^1 \setminus U$. Consider the map $arg : \C \setminus \{0\} \rightarrow \R$ defined to be the argument of the complex number $z$ where the branch cut is taken along the line passing through $0$ and $p$. We know from complex analysis that $arg$ is a continuous function, so it restricts to a continuous function on $U$.
+
+\vskip 0.5cm
+\textbf{Next, let's demonstrate the smooth structure on $\mathbb{S}^1$ generated by $(U, \theta)$ is the standard smooth structure.}
+
+\vskip 0.25cm
+We showed earlier in the $\implies$ direction that $\theta$ is injective. Then, by the theorem on \emph{\textbf{invariance of domain}}, $\theta : U \rightarrow \theta(U)$ is a homeomorphism. This shows that $(U, \theta)$ is a chart on $\mathbb{S}^1$.
+
+\vskip 0.25cm
+Next we need to show that $(U, \theta)$ is a chart for $\mathbb{S}^1$ with the \textbf{\emph{standard smooth structure}}. We can do so by showing that $\{(U, \theta)\} \cup \{ (U_1^{\pm}, \phi_1^{\pm}), (U_2, \phi_2^{\pm}) \}$ is a smooth atlas. i.e. by showing that the transition maps $\theta \circ (\phi_i^{\pm})^{-1}$ and $\phi_i^{\pm} \circ \theta$ are smooth where they are defined.
+
+\vskip 0.25cm
+To do so, recall that the $\theta$ function has the property $e^{i \theta(z)} = z$. If we parametrize $\mathbb{S}^1$ as $e^{it}, t$ then 
+\[ e^{i \theta \left(e^{it}\right)} = e^{it} \]
+
+and $\theta(e^{it}) = t + 2\pi \cdot k(e^{it})$ for some $k(t) \in \mathbb{Z}$. Now, by assumption, $\theta$ is continuous. So $k : U \rightarrow \mathbb{Z}$ must also be continuous, which means it must be constant on each connected component of $U$. 
+
+\vskip 0.25cm
+We can split $U$ into its connected components and consider each one separately so, without loss of generality, we may assume $U$ is connected. Thus, $\theta(t) = t + k \cdot 2\pi $.
+
+\vskip 0.25cm
+Also, as we saw earlier that $\theta$ is injective and $e^{i \theta(x)} = x$, so the inverse is given by $\theta^{-1}(x) = e^{ix} = \cos(x) + i\sin(x)$
+
+\vskip 0.25cm
+Now that we have the groundwork in place, we can compute the transition maps.
+
+\begin{align*}
+  \theta \circ (\phi_i^{\pm})(x) &= \theta\left( \pm \sqrt{1 - x^2}, x \right) \\
+  &= \theta \left( e^{i \phi(\sqrt{1 - x^2}, x)} \right) \\
+  &= \phi(\sqrt{1 - x^2}, x) + k \cdot 2\pi
+\end{align*}
+
+where 
+\[ \phi(x, y) = \begin{cases}
+  \arctan(\frac{y}{x}), x > 0 \\
+  \arctan(\frac{y}{x}) + \pi, x < 0 \text{ and } y \geq 0 \\
+  \arctan(\frac{y}{x}) + \pi, x < 0 \text{ and } y < 0 \\
+  \frac{\pi}{2}, x = 0 \text{ and } y > 0 \\
+  -\frac{\pi}{2}, x = 0 \text{ and } y < 0 \\
+  0, x = 0 \text{ and } y = 0 
+\end{cases} \]
+This function $\phi$ is simply the argument of a complex number $x + iy$. Thus, the transition map $\theta \circ (\phi_i^{\pm})^{-1}$ is smooth.
+
+\vskip 0.25cm
+Now, in the other direction, we have 
+\[ \phi_1^{\pm} \circ \theta^{-1}(t) = \phi_1^{\pm} (\cos(x) + i\sin(x)) = \cos(x) \]
+and 
+\[ \phi_2^{\pm} \circ \theta^{-1}(t) = \phi_2^{\pm} (\cos(x) + i\sin(x)) = \sin(x) \]
+which are both smooth.
+
+\vskip 0.25cm
+Thus, the angle function is a chart on $\mathbb{S}^1$ with the standard smooth structure.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-9. Complex Projective Space, } denoted $\mathbb{CP}^{n}$ is the set of all $1-$ dimensional complex-linear subspaces of $\C^{n+1}$, with the quotient topology inherited from the natural projection $\pi : \C^{n+1} \setminus \{ 0 \} \rightarrow \mathbb{CP}^{n}$. Show that $\mathbb{CP}^{n}$ is a compact $2n-$dimensional topological manifold, and show how to give it a smooth structure analogous to the one we constructed for $\mathbb{RP}^n$. (We use the correspondence 
+\[ (x^1 + iy^1, \dots, x^{n+1} + iy^{n+1}) \xleftrightarrow{} (x^1, y^1, \dots, x^{n+1}, y^{n+1}) \]
+to identify $\mathbb{C}^{n+1}$ with $\R^{2n+2}$
+)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+\underline{\textbf{Locally Euclidean:}}
+
+\vskip 0.25cm
+For $1 \leq j \leq n+1$, let $\tilde{U}_j$ be the set 
+\[ \tilde{U}_j = \{ (z^1, \dots, z^{n + 1}) \in \left( \C \setminus \{0\} \right) : z^{j} \neq 0 \} \]
+and denote $U \defeq \pi(\tilde{U}_j)$.
+
+\vskip 0.25cm
+Now, let's define the map $ \tilde{\phi}_j : \tilde{U}_j \rightarrow \C^n $ by 
+\[ \tilde{\phi}_j(z^1, \dots, z^{n+1}) = \left( \frac{z^1}{z^j}, \dots, \frac{z^{j - 1}}{z^j}, \frac{z^{j + 1}}{z^j}, \dots, \frac{z^{n+1}}{z^j} \right) \]
+
+\vskip 0.25cm
+This map is continuous and constant on fibers of $\pi$, so there is a unique continuous map $\phi_j : U_j \rightarrow \rightarrow \C^n$ so that the following diagram commutes:
+
+\[\begin{tikzcd}
+	{\mathbb{C}^{n+1} \setminus \{0\}  } & {\tilde{U}_j} & {\mathbb{C}^n} \\
+	{\mathbb{CP}^n} & {U_j}
+	\arrow["{\tilde{\phi}_j}", from=1-2, to=1-3]
+	\arrow["{\phi_j}"', from=2-2, to=1-3]
+	\arrow["\pi"', from=1-2, to=2-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow[hook', from=2-2, to=2-1]
+	\arrow[hook', from=1-2, to=1-1]
+\end{tikzcd}\]
+
+\vskip 0.25cm
+Also, $\phi_j$ is a bijection since for any $w = (w^1, \dots, w^{n}) \in \mathbb{C}^n$ we have the inverse map $\phi_j^{-1}$ defined as 
+\[ (w^1, \dots, w^n) \mapsto \left[ w^1, \dots, w^{j-1}, 1, w^{j+1}, w^n \right] \]
+
+Further, since $\phi_j^{-1} = \pi \circ (\tilde{\phi_j})^{-1}$ is the composition of two continuous maps, it is continuous. So, $\phi_j$ is a homeomorphism, and since $\C^n$ is homeomorphic to $\R^{2n}$, we find that $\mathbb{CP}^n$ is locally euclidean with dimension $2n$.
+
+\vskip 1cm
+\underline{\textbf{Second Countable:}}
+% Let $[z^1 : \cdots : z^{n+1}]$ be the equivalence class of $(z^1, \dots, z^{n+1})$ under $\pi$ i.e. 
+% \[ [z] = [z^1 : \cdots : z^{n+1}] = \{ w \in \C^{n+1} \setminus \{0\} \;\vert\; \exists \lambda \in \C, \text{ such that } \lambda w = z \} \]
+
+We've shown that each $U_j$ is homeomorphic to $\C^n \cong \R^{2n}$, meaning each $U_j$ is second countable. Now, since $\mathbb{CP}^{n} = \bigcup_{j = 0}^{n+1} U_j$, it also h as a countable basis formed by the union of the bases for each $U_j$. Thus, $\mathcal{CP}^n$ is second-countable.
+
+\vskip 0.5cm
+Alternatively, second-countability follows since $\mathcal{CP}^n$ is the quotient of a second countable space with respect to an open quotient map.
+
+\vskip 1cm
+\underline{\textbf{Hausdorff:}}
+If $[z_1], [z_2] \in U_j \subseteq \mathbb{CP}^n$ for some $1 \leq j \leq n+1$, the two can easily be separated by disjoint open sets since $\phi_j(z_1), \phi_j(z_2) \in \mathbb{C}^{n}$ can be separated. In the case that there's no $U_j$ containing both $[z_1], [z_2]$ consider the set 
+\[ A_{m, n} = \{ [z] : |z^j| > |z^k| \} \]
+
+\vskip 0.25cm
+Note that $A_{m,n}$ is open in $\mathbb{CP}^n$ since its preimage is open in $\C \setminus \{0\}$.
+
+\vskip 0.25cm
+Since there's no single $U_j$ containing both $[z_1], [z_2]$ there exists integers $m \neq n$ such that $[z_1] \in U_m, [z_2] \in U_n$ and $z_1^{m} = 0 = z_2^{n}$. Then, $[z_1] \in A_{m, n}$ while $[z_2] \in A_{n, m}$. So we've found disjoint open sets around $[z_1]$ and $[z_2]$. Thus, the space is Hausdorff.
+
+\vskip 0.5cm
+To show $\mathbb{CP}^n$ is compact, let $\mathbb{S}^{2n+1} \subseteq \C^{n+1} \approx \R^{2n+2}$ be the unit sphere. Then, define the map $\tau : \mathbb{C}^{n+1} \rightarrow \mathbb{S}^{2n+1}$ by 
+\[ \tau(\mathbf{z}) = \frac{\mathbf{z}}{|\mathbf{z}|} \]
+where, as usual, $|\mathbf{z}| = \left( \sum_j |z^j|^2 \right)^{1/2}$. Denoting the restriction of the natural projection $\pi$ to $\mathbb{S}^{2n+1}$ as $\hat{\pi}$, we see that $\pi = \hat{\pi} \circ \tau$. This makes $\mathbb{CP}^n$ a quotient space of $\mathbb{S}^{2n+1}$ via the map $\tau$. Because $\mathbb{S}^{2n+1}$ is compact, so is $\mathbb{CP}^n$.
+
+\vskip 0.5cm
+Finally, to give $\mathbb{CP}^n$ a smooth structure, we check that $\mathcal{A} = \{ (U_j, \phi_j) \}_{j = 1}^{n+1}$ forms a smooth atlas for $\mathbb{CP}^n$.
+
+\vskip 0.25cm
+WLOG, suppose $j < k$, then the transition map $\restr{\phi_k \circ (\phi_j^{-1})}{\phi_j(U_j \cap U_k)}$ is given by 
+
+\begin{align*}
+  \phi_k \circ (\phi_j)^{-1}(w^1, \dots, w^n) &= \phi_k \left[ w^1, \dots, w^{j-1}, 1, w^{j+1}, w^{n} \right] \\
+  &= \left( \frac{w^1}{w^k}, \cdots, \frac{w^{j-1}}{w^k}, \frac{w^{j+1}}{w^k}, \cdots \frac{w^{k-1}}{w^k}, \frac{1}{w^k}, \frac{w^{k+1}}{w^k}, \cdots, \frac{w^{n+1}}{w^k}  \right)
+\end{align*}
+
+Each of the coordinate functions is of the form $w^l / w^k$ for some $l$. Writing $w^j = x^j + i y^j$ and simplifying $w^l / w^k$, we find that the coordinate function maps 
+\[ (x, y) \mapsto \frac{(x^l x^j + y^l y^j)}{(x^j)^2 + (y^j)^2} \text{ or } (x, y) \mapsto \frac{(y^l x^j - x^l y^j)}{(x^j)^2 + (y^j)^2} \]
+for some $l$. These are both smooth as long as $(x, y) \neq (0, 0)$ which holds for $\psi_j(U_j)$, so the transition maps are smooth as maps on $\R^{2n+2}$. This smooth atlas then generates a smooth structure on $\mathbb{CP}^n$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1-11.} Let $M = \overline{B}$, the closed unit ball in $\R^n$. Show that $M$ is a topological manifold wth boundary in which each point in $\mathbb{S}^{n-1}$ is a boundary point is a boundary point and each point in $\mathbb{B}^n$ is an interior point. Show how to give it a smooth structure such that every smooth interior chart is a smooth chart for the standard smooth structure on $\mathbb{B}^n$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+To show that $M$ is a manifold with boundary, we must show that $M$ is
+\begin{itemize}
+  \item Hausdorff
+  \item Second countable
+  \item Locally Euclidean i.e. for every point $p \in M$ there exists a chart $(U, \phi)$ such that $U$ is an open set in $M$ and $\phi : U \rightarrow \phi(U) \subseteq \mathbb{H}^n$ is a homeomorphism. 
+\end{itemize}
+
+\vskip 0.25cm
+Hausdorffness and Second-countability follow immediately as $M$ is a subspace of $\mathbb{R}^n$.
+
+\vskip 0.25cm
+Let $U_i^{+} = \{ (x^1, \dots, x^n) \in \mathbb{B}^n : x^i > 0 \}$ and $U_i^{-} = \{ (x^1, \dots, x^n) \in \mathbb{B}^n : x^i < 0 \}$. The collection $\{ U_i^{\pm} \}$ forms an open cover of $\mathbb{B}^n$.
+
+\vskip 0.25cm
+Let's define a collection of maps $\phi_i^{\pm} : U_i^{\pm} \rightarrow \mathbb{B}_i^{\pm}$ as 
+\[ (x^1, \dots, x^n) \mapsto \left( x^1, \dots, x^{i-1}, x^i \mp \sqrt{1 - (x^1)^2 - \cdots - \widehat{(x^i)^2} - \cdots (x^n)^2}, \dots, x^n \right) \]
+
+where $\mathbb{B}_i^{+} = \{ (x^1, \dots, x^{n}) \in \mathbb{B}^{n : x^i \geq 0} \}$ and $\mathbb{B}_i^{-} = \{ (x^1, \dots, x^{n}) \in \mathbb{B}^{n : x^i \leq 0} \}$. The map $\phi_i^{\pm}$ essentially 
+
+\vskip 0.5cm
+The inverse of this map is 
+\[ (\phi_i^{\pm})^{-1} : \mathbb{B}_i^{\pm} \rightarrow U_i^{\pm}, \;\; (x^1, \dots, x^n) \mapsto  \left( x^1, \dots, x^{i-1}, x^i \pm \sqrt{1 - (x^1)^2 - \cdots - \widehat{(x^i)^2} - \cdots (x^n)^2}, \dots, x^n \right) \]
+
+Since both $\phi_i^{\pm}$ and $(\phi_i^{\pm})^{-1}$ are continuous, we conclude that $(U_i^{\pm}, \phi_i^{\pm})$ are boundary charts covering $M = \overline{\mathbb{B}^n}$, so it is a topological manifold. All that remains now is to investigate the boundary and interior.
+\vskip 0.5cm
+\begin{itemize}
+  \item Consider a point $x \in \mathbb{S}^{n-1}$ i.e. $(x^1)^2 + \dots + (x^n)^2 = 1$. Suppose its component entries are such that $x \in U_i^{\pm}$. That means the $x^i$ component is
+  \[ x^i = \pm \sqrt{1 - (x^1)^2 - \cdots - \widehat{(x^{i})^2} - \cdots (x^n)^2} \]
+  So, under the action of $\phi_i^{\pm}$, we get $x \mapsto 0$, and so the point $x$ gets mapped to $\phi_i^{\pm}(x) = \left( x^1, \dots, x^{i-1}, 0, x^{i+1}, \dots, x^n \right)$. Thus, each point in $\mathbb{S}^{n-1}$ is a boundary point.
+
+  \item If $x \in \mathbb{B}^n$, then it lies in the interior chart $(\mathbb{B}^n, \mathrm{id}_{\mathbb{B}^n})$ and is thus an interior point.
+\end{itemize}
+
+\vskip 0.5cm
+\textbf{How do we endow the closed unit ball with a smooth structure?}
+
+\vskip 0.25cm
+The maps $\phi_i^{\pm}$ and $(\phi_i^{\pm})^{-1}$ can be extended to maps from $\R \times \R \times \cdots \times (-1, 1) \times \cdots \times \R$ to itself where $(-1, 1)$ is the $i^{\text{th}}$ factor, which will both be diffeomorphisms. Since both extensions are diffeomorphisms, the transition maps between the charts will all be smoothly compatible, and so the smooth atlas consisting of these charts generates a smooth structure on $\mathbb{B}^n$.
+
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+% \printbibliography
+
+\end{document}

@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'Physics 137B Notes.blg'
+[164] biber-MSWIN64:340> INFO - === 
+[214] Biber.pm:419> INFO - Reading 'Physics 137B Notes.bcf'
+[368] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[390] bbl.pm:660> INFO - Writing 'Physics 137B Notes.bbl' with encoding 'UTF-8'
+[390] bbl.pm:763> INFO - Output to Physics 137B Notes.bbl
+[391] Biber.pm:131> WARN - The file 'Physics 137B Notes.bcf' does not contain any citations!
+[391] Biber.pm:133> INFO - WARNINGS: 1

@@ -1,0 +1,265 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 4}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 24 - Introduction to Perturbation Theory}
+
+\vskip 0.5cm
+In 137A, we could solve $\hat{H} \ket{n} = E_n \ket{n}$ exactly and obtain the stationary states, then build the general solution as 
+\[ \ket{\psi(t = 0)} = \sum_{n} c_n \ket{n} \]
+and 
+\[ \ket{\psi(t)} = \sum_{n} c_n e^{-iE_n t / \hbar} \ket{n} \]
+
+This was possible because we were studying systems with relatively simple/convenient Hamiltonians, but \emph{most} situations that we want to study aren't so simple.
+
+\vskip 1cm
+\subsection*{Where can we apply P.T.?}
+
+\begin{itemize}
+  \item Perturbation Theory allows us to study Hamiltonians of the form 
+  \[ \hat{H} = \hat{H}_0 + \lambda \hat{H}' \]
+  
+  where $\hat{H}_0$ is a Hamiltonian we can solve 
+  \[ \hat{H}_0 \ket{n^{(0)}} = E_n^{(0)} \ket{n^{(0)}} \]
+  
+  and $\lambda \in (0, 1]$.
+
+  \vskip 0.5cm
+  \item The idea is to parametrize our solutions in terms of $\lambda$ and find the $\lambda \rightarrow 1$ solution.
+  
+  \begin{dottedbox}
+    Why avoid $\lambda = 0$? 
+    \vskip 0.5cm
+    
+    We can think of PT as doing 
+    \begin{align*}
+      \hat{H} &= \hat{H}_0 + \hat{H}_1 \\
+              &= \hat{H}_0 + \lambda \left( \frac{\hat{H}_1}{\lambda} \right) \\
+              &= \hat{H}_0 + \lambda \hat{H}'
+    \end{align*}
+    So, $\lambda = 0$ would be a problem.
+  \end{dottedbox}
+\end{itemize}
+
+\vskip 1cm
+\subsection{Time Independent Perturbation Theory}
+
+We want to solve the Hamiltonian
+\[ \hat{H}\ket{n} = \left(\hat{H}_0 + \lambda \hat{H}'\right) \ket{n} = E_n \ket{n} \;\;\;\; (1)\]
+
+We assume that our solutions can be parametrized as functions of $\lambda$. Then, we taylor expand them as  
+\[ \ket{n} = \sum_{j = 0}^{\infty} \lambda^{j} \ket{n^{(j)}} \]
+
+\[ E_n = \sum_{j = 0}^{\infty} E_n^{(j)} \lambda^j  \]
+
+Now, if we bring the RHS of equation (1) to the left, we have
+\begin{align*}
+  0 &= \left(\hat{H}_0 + \lambda \hat{H}' - E_n \right) \ket{n} \\
+  &= \left(\hat{H}_0 + \lambda \hat{H}' - \sum_{j = 0}^{\infty} E_n^{(j)} \lambda^j \right) \left( \sum_{k = 0}^{\infty} \lambda^{k} \ket{n^{(k)}} \right) \\
+  &= \left(\hat{H}_0 + \lambda \hat{H}' - (E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \cdots )\right) \left( \ket{n}^{(0)} + \lambda \ket{n}^{(1)} + \lambda^2 \ket{n}^{(2)} + \cdots  \right) 
+\end{align*}
+
+Now, let's see what happens when we trunate the resulting sum at different powers of $\lambda$:
+
+\begin{align*}
+  &\mathcal{O}(\lambda^0) \;:\; \left( \hat{H}_0 - E_n^{0} \right) \ket{n^{0}} = 0\;\;\left[ \inner{k^{(0)}}{n^{(0)}} = \delta_{kn} \right] \\
+  &\mathcal{O}(\lambda^1) \;:\; \lambda \left( \left( \hat{H}' - E_n^{(1)} \right) \ket{n^{(0)}}  +  \left( \hat{H}_0  - E_n^{(0)} \right)\ket{n^{1}} \right)
+\end{align*}
+
+In the $\mathcal{O}(1)$ seres, we don't know what $E_n^{(1)}$ is. To obtain this correction, we simply \textbf{act $\bra{n^{(0)}}$ on the equation:}
+
+\begin{align*}
+  0 &= \inner{n^{(0)}}{\left( \hat{H}' - E_n^{(1)} \right) | n^{0}} + \underbrace{\inner{n^{(0)}}{\left( \hat{H}_n^{(0)} - E_n^{(0)} \right) | n^{1} }}_{ = 0, \text{ since } E_n^{(0)} \bra{n^{(0)}} - E_n^{(0)} \bra{n^{(0)}}  = 0} \\
+  &= \inner{n^{(0)}}{\hat{H}'|n^{(0)}} - E_n^{(1)} \underbrace{\inner{n^{(0)}}{n^{(0)}}}_{1}
+\end{align*}
+\[ \implies \boxed{E_n^{1} = \inner{n^{(0)}}{\hat{H}'|n^{(0)}}} \]
+
+\vskip 0.5cm
+This gives us the leading order Eigenenergy correction! But we still need to find actual states. So, next, we need to solve for $\ket{n^{(1)}}$.
+\vskip 1cm
+\begin{dottedbox}
+  So far we've been studynig Non-degenerate Perturbation Theory. This only applies for Hamiltonians with no degeneracies i.e. Hamiltonians for which 
+  \[ E_n^{(0)} = E_k^{(0)} \iff n = k \]
+\end{dottedbox}
+
+\vskip 1cm
+We can solve for $\ket{n}^{(0)}$ in terms of the non-perturbative stationary states $\ket{k^{(0)}}$ as 
+\begin{align*}
+  \ket{n^{(1)}} &= \sum_{k} c_{nk}^{(1)} \ket{k^{(0)}} \\
+  &= c_{nn}^{(1)} \ket{n^{(0)}} + \sum_{k \neq n} c_{nk}^{(1)} \ket{k^{(0)}}
+\end{align*}
+
+Note that $ \ket{n}$ is not yet normalized, so for now we can assume $\ket{n^{(\lambda)}}$ is some arbitrary linear combination of the $\{ \ket{n^{(0)}}, \ket{n^{(1)}}, \dots\}$ and worry about the norm \emph{later}.
+
+\vskip 0.5cm
+So,
+\begin{align*}
+  \ket{n^{(\lambda)}} &= \ket{n^{(0)}} + \lambda \ket{n^{(1)}} + \cdots \\
+  &= \underbrace{\left( 1 + \lambda c_{nn}^{(0)} \right) }_{A} \left( \ket{n^{(0)}} + \underbrace{\left(\frac{\lambda}{A}\right)}_{\lambda^{1}} \sum_{k \neq n} c_{nk}^{(1)} \ket{k^{(0)}} + \cdots \right)
+\end{align*}
+
+
+Let 
+\[ \boxed{\ket{n^{(1)}} = \sum_{k \neq n} c_{nk}^{(1)} \ket{k^{(0)}} }  \]
+
+Our current goal, then, is to find $c_{nk}^{(1)}$.
+
+Then, 
+\begin{align*}
+  0 &= \left( \hat{H}_0 - E_n^{(0)} \right) \ket{n^{(1)}} + \left( \hat{H}' + E_n^{(1)} \right) \ket{n^{(0)}} \\
+  &= \left( \hat{H}_0 - E_n^{(0)} \right) \sum_{k \neq n} c_{nk}^{(1)} \ket{k}^{(0)} + \left( \hat{H}' - E_n^{(1)} \right) \ket{n^{(0)}} \\
+  &= \sum_{k \neq n} c_{nk}^{(1)} \left( E_k^{(0)} - E_n^{(0)} \right) \ket{k^{(0)}} + \left( \hat{H}' - E_n^{(1)} \right) \ket{n^{(0)}}
+\end{align*}
+
+Now, to extract $\ket{n^{(0)}}$, we act using another stationary state $\ket{l^{(0)}}$ where $l \neq n$.
+\[ \implies \sum_{k \neq n} c_{nk}^{(1)} \left( E_{k}^{(0)}  - E_n^{(0)} \right) \underbrace{\inner{l^{(0)}}{k^{(0)}}}_{\delta_{lk}} + \inner{l^{(0)}}{\hat{H}'| n^{(0)} } - E_n^{(1)} \underbrace{\inner{l^{(0)}}{n^{(0)}}}_{0} = 0 \]
+
+[Lecture ended, so stopped abruptly. Pick up from here in lec 5 notes.]
+
+\end{document}

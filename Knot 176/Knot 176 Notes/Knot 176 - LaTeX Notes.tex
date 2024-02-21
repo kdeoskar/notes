@@ -1,0 +1,479 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Knot 176: Introduction to Low-Dimensional Topology
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturers: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{3}{August 28}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 \mid}
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+%The firist three lectures will review Point-Set Topology, with this one convering Metric Spaces.
+
+%When we think of spaces like $\R$ o,r more relatably, the surface of the earth, there is a reasonable sense of \emph{distance} between two points. For example, the distance between Berkeley and San Francisco is 13.6 miles. Similarly. the distance between the numbers $5$ and $7$ is $2$. But what if one is asked to consider two elements or "points" in the set of functions $f : \R \mapsto \R$ and
+
+\lecture{21}{September 27}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+\section*{CW Complexes}
+
+\begin{align*}
+   L_z &= x_1 p_2 - x_2 p_1 \\
+       &= \epsilon_{3ij}x_i p_j
+\end{align*}
+
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+\lecture{0000}{October 9}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+\section*{Review of some basic Knot Theory:}
+What is a knot?
+
+\underline{def:} A Knot is a smooth embedding from $K\;:\;S^1 \rightarrow S^3$ (note: should be curly arrow for embedding).
+\\
+\\
+We consider knots to be embedded in $S^3$ because it is a compact space and that's nice. We study these objects up to smooth isotopy i.e. maps $S^1 \times I \rightarrow S^3$.
+\\
+\\
+insert figure
+\\
+\\
+How do we tell that both of these knots are really the same (i.e. the unknot?)
+\\
+\\
+Further, how can we decide whether these two are both the trefoil? 
+\\
+\\
+insert image
+\\
+\\
+More generally, is there some machinery/algorithm that we can use to tell if two knots are the same?
+\\
+\\
+Well, in fact, there is machinery which allos us to tell if two knots are really projections of the same knot. These are called \underline{\textbf{Reidemeister Moves}}
+\\
+\\
+insert image of R1, R2, R3 -- Reidemeister moves.
+\\
+\\
+\underline{\textbf{Theorem (essential):}} If two knots $K_1$ amd $K_2$ are isotopic, then there exists a sequence of Reidemeister moves from the projection of $K_1$ to the projection of $K_2$.
+
+\textbf{Given a projection, Is there some sort of algorithm that tells us whether or not it is the unknot?}
+\\
+\\
+There is one algorithm by Haken, but it's time complexity is super bad so there's no effective way to write a computer program to do this.
+
+\section*{More Morse Theory:}
+\begin{enumerate}
+   \item One very basic \emph{Knot Invariant} is that given a knot, what is the minimum number of maximums.
+   \item So, for example, anything with only $1$ maximum is the unknot.
+   \item This invariant is called the \textbf{Bridge Number} of a knot.
+\end{enumerate}
+
+\section*{Seifert Genus:}
+\begin{enumerate}
+   \item Recall that a Seifert Surface of $K$ is an orientable, embedded surface $\Sigma \subset S^3$ such that the boundary of the surface is $K$ i.e. $\partial \Sigma = K$.
+   
+   \item There can be multiple different Seifert surfaces for the \underline{same knot} which have different genus, however there is a minimal genus.
+   
+   \item This \emph{minimal genus} is the \underline{Siefert Genus}.
+\end{enumerate}
+We can define the Genus of a surface $g(\Sigma)$ in terms of the \underline{\textbf{Euler Characteristic}, $\chi$}, as 
+\[\boxed{ 2g(\Sigma) - 2 - \#b = \chi }\]
+
+\textbf{Claim:} The Unknot is the only knot of genus zero.\\
+\textbf{Proof:} Write later... Insert figure (note: Inverse function theorem used :sad:)
+
+Can we classify genus 1 knots? There is no hope.
+
+Insert image of the pretzel knot $P(3,-3,1)$.
+
+\section*{One more stupid invariant: Tricolorability}
+
+Note: This extends to p-colorability where $p$ is a prime.
+
+We say a Knot $K$ is Tricolorable if we can color arcs of $K$ with exactly three colors. (arc of a knot if a segment that "goes behind") such that
+\begin{enumerate}
+   \item All three colors are used at least once.
+   \item At each crossing, either all colors are the same or all colors are different.
+\end{enumerate}
+
+\begin{enumerate}
+   \item Tricolorability is a Knot Invariant.
+   \item This one allows us to differentiate between the trefoil knot and the unknot.
+\end{enumerate}
+
+\underline{\textbf{Claim:}} The Trefoil Knot is Tricolorable.
+
+\underline{\textbf{Proof:}} Insert picture. Proof by image lmao. 
+
+The trefoil knot is tricolorable while the unknot is not, so they cannot be the same knot.
+
+\section*{A Knot Invariant That's Good at Detecting the Unknot:}
+The invariant $v(K)$ is defined as 
+\[ v(k) = 1 if unknot, 0 otherwise \]
+
+Another invariant that is equally hard to compute is the Fundamental Group of the Knot Complement.
+\[ \pi_1(S^2 \setminus k, x_0) = \mathbb{Z} if k is unknot, something else otherwise \]
+
+This actually classifies all knots, but it gives us a presentation and determining whether two presentations are the same is really hard.
+
+\lecture{0000}{October 11}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+\subsection*{Review:}
+
+The siefert genus of a knot is given by 
+\[ g(k) = min\{genus(F) : F \text{is a siefert surface.} \} \]
+
+\textbf{Qn: Do all knots have Siefert Surfaces?}
+
+The answer is yes.
+
+(Missed first few minutes and then was lost during this lecture; try to catch up after midterms.)
+
+Recall that the Euler Characteristic of a given CW Complex is 
+(Write from picture)
+\vskip 0.5cm
+
+\textbf{Note:} Composite knots are \underline{sums} of prime knots.
+
+\textbf{What is a Knot Sum?}
+
+Given $K_1, K_2$, look at the "unknotted spannimare".
+
+\subsection*{Knot Genus is Additive}
+That is, $g(K_1 + K_2) = g(K_1) + g(K_2)$
+
+\textbf{Proof:}
+
+First, we'll want to show that $g(K_1 + K_2) \leq g(K_1) + g(K_2)$ and then show the inequality in the other direction.
+
+\underline{Forward Direction:} Construct Seifert Surface for $(K_1 + K_2)$ from minimal surfaces from $K_1$, $K_2$, $F_1$ seifer for $K_1$ and minimal, $F_2$ seifert for $K_2$ and minimal. (Attach images and expand on this direction of the prrof.)
+
+\underline{Backward Direction:} Now we move to show that $g(K_1) + g(K_2) \leq g(K_1 + K_1)$
+
+(Insert image)
+
+We want to pick out a sphereical surface $\Sigma$ which separates the knots and then pick out any arc $\beta$ on the sphere's surface which intersects $K_1 + K_2$ only at two points and this intersection is "transverse".
+
+Now, who's to say the Seifert surface $F$ doesn't run up and intersect the sphere? Perhaps it does. So, what we can say is 
+\[ \Sigma \cap F = \beta + \text{a bunch of simple closed curves} \]
+
+(Note that since all of our surfaces are embedded in $R^3$, we can perturb them slightly to ensure that all intersections are transverse -- this is why the intersections of the seifert surface are simple closed curves.)
+
+lost for the rest of the lecture. understand it later.
+
+\lecture{0001}{October 13}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+Today we will cover another Knot invariant, which is a bit more useful/easy to work with than the invariants discussed thus far. This invariant is called the 
+\emph{Alexander Polynomial, $\Delta_k(T)$}.
+
+\section*{Some definitions:}
+The Alexander Polynomial has multiple equivalent definitions
+\begin{enumerate}
+   \item Skein relation
+   \item Seifert form
+   \item Kauffman States
+   \item $\pi_1(S^3 / K)$
+   \item Cyclinc Branched Cover
+\end{enumerate}
+
+\section*{Skein Relation:}
+This is a tool that helps us compute the Alexander Polynomial of a knot.
+\vskip 0.5cm
+insert figure
+\vskip 0.5cm
+
+We can define the Alexander Polynomial via the (recursive) Skein Relation with 
+\begin{align*}
+   &\Delta(L_{+}) - \Delta(L_{-}) = (t^{1/2} - t^{-1/2})\Delta(L_0) \\
+   &\Delta_u(t) = 1
+\end{align*}
+where $\Delta_u(t)$ represents the Alexander Polynomial of the Unknot. 
+
+For example,
+\vskip 0.5cm
+insert picture
+\vskip 0.5cm
+
+And another more complicated example:
+\vskip 0.5cm
+insert picture
+\vskip 0.5cm
+(In this example, $L_{-}$ is the unknot and $L_0$ is the Hopf Link.)
+
+For this knot, the Alexander Polynomial is given by the relation
+\begin{align*}
+   \Delta(L_+) &= -(t^{1/2} - t^{-1/2})^2 + 1 \\
+               &= -t - t^{-1} + 3
+\end{align*}
+So far, in our examples, we've been able to obtain the Alexander Polynomial by considering just one crossing but there are cases where we may need to consider more. (look up such examples)
+\\
+\\
+However, \emph{showing} that just considering one crossing was \emph{enough} is a difficult matter.
+\\
+\\
+\textbf{Note:} Alexander Polynomials are well defined once we are allowed to multiply by $t^n$. Sort of. More on this next lecture. 
+
+\section*{Seifert Forms:}
+(For more rigor, see Lickorish Ch. 6)
+
+Consider some knot $K$ and its Seifert Surface $F$. We're going to look at \emph{loops} in the Seifert Surface to obtain \emph{linking numbers} which give us the \emph{Seifert Form} -- from which we can finally obtain the Alexander Polynomial.
+
+\subsection*{Linking Number:}
+Given two oriented Links $L$, $L'$ the linking number if the sum of \underline{\emph{linkings with sign}.}
+
+For example, the linking number of the two unknots below is $+2$:
+\vskip 0.5cm
+insert picture
+\vskip 0.5cm
+
+\textbf{Def:}
+
+Given a seifert surface $F$ with generators $f_i$ of $H_1(F, \mathbb{Z})$, the seifert form $A_{ij}$ is the matrix with entries
+\[ lk(f_i, f_j^+) = A_ij \]
+
+where $lk$ represents the linking number.
+
+Had to leave early; get notes from someone else for last 10 minutes.
+\\
+\\
+Missed lecture on monday and wednesday(15, 17 Oct)
+\lecture{4343}{October 20}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+\section*{The Jones Polynomial:}
+
+Similarly to the Alexander Polynomail, Jones polynomials can be defined usnig Seni Relations. More specifcially, we use something called the \emph{Kauffman Bracket}
+
+
+\subsection*{The Kauffman Bracket:}
+A Kauffman Bracekt is a function from an unorentated links diagram to a Laurent Polynomial $K[t, t^{-1}]$.
+
+For a diagram $D$, the Kauffman Bracket $ \langle D \rangle$ is tis polynomal.
+
+\begin{enumerate}
+   \item $\langle 0 \rangle$ = 1 where $0$ represents the unknot.
+\end{enumerate}
+
+read the book and add notes later.
+
+Note: Jones polynomial distinguishes between knot and its mirror image, but the Alexander polynomial does not.
+
+\subsection*{Jones Polynomials in TQFTs:}
+Knots can be generalized to 3-manifolds -- we keep the Kauffman Bracket around but with some conditions modified/relaxed.
+
+Also, 3-manifolds can be built from Knots.
+
+\lecture{4344}{October 23}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+Not paying attention today; figure out what the lecture was later.
+
+\lecture{4343}{October 25}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+\\
+Today, we cover  Surgery Theory:
+
+\subsection*{Topics for today:}
+\begin{enumerate}
+   \item Surgery
+   \item Dehn Surgery
+   \item Lens Surgery
+\end{enumerate}
+
+Notation: $S^{-1} = \emptyset = \partial D^0$
+
+\section*{Surgery:}
+We want to systtematcally build new manifolds using existing manifolds. \emph{Surgery} allows us to do this by creating cuts and sewing thnigs back together.
+
+\textbf{Def:}
+
+-Let $M$ be an n-dimensioinal manifold. An $S^k$ sphere ($-1 \leq k \leq n$) specify a \textbf{\emph{framing}} f.
+
+The pair $(\phi, f)$ determnies an embeddnig $\hat{\phi} : S^k \times D^{n-k} \rightarrow M$
+
+(Look up the technical definition of framing; essentially it tells us if we have twists in our manifold.)
+
+-Surgery on this pair $(\phi, f)$ is the process of removing $\hat{\phi}(S^k \times D^{n-k})$ and glue back a copy of $D^{k+1} \times S^{n-k-1}$ via $\phi$. (The thing we removed and the thing we glued back have the same boundary by construction).
+
+\subsection*{Example:} $S^1$ surgery on a torus
+
+Insert picture and explain
+
+Now, within the realm of Knot theory, there is a more specific type of surgery we can employ calld \emph{Dehn Surgery}.
+
+\section*{Dehn Surgery:}
+Given a Knot (or Link) $K \subset S^3$, take the (tubular) neighborhood $N(k)$ of the knot, remove from $S^3$ the solid torus $Q = S^3 - N(k)$. Then, we glue back a copy of $D^2 \times S^1$ by some homeomorphism $h : T^2 \rightarrow T^2$. i.e. specify where the meridian of the torus goes as $m \mapsto p\mu + q\lambda$ 
+
+Here, $m$ is the meridian of the original $T^2$, $\lambda$ is the unique longitude such that $lk(\lambda, k) = 0$ for the image $T^2$.
+(insert picture)
+
+Call $N = Q \cup_h D^2 \times S^1 = S^{3}_{p/q} (k)$ where $S^{3}_{p/q} (k)$ is called the Dehn Surgery on $k$ with slope $p/q \in \mathbb{Q} \cup \{\infty\}$.
+
+\section*{Lens Space:}
+
+On friday, we'll talk about the following BIG theorem by Lickorish and Wallace:
+
+\textbf{Any closed, orientable 3-manifold is obtained by Dehn Surgery on a link $\mathcal{L} \in S^3$ with $\pm 1$ slope.}
+
+
+This theorem classifies \emph{all closed, orientable 3-manifolds} based on results of surgery. This is super deep!! 
+
+\subsection*{Cosmetic Surgery:} 
+We say a knot $K$ admits cosmetic surgeries if $S^3_r (k) \cong S^3_{r'} (k)$ for $r \neq r'$. 
+
+Conjecture: No cosmetic surgeries.
+
+\lecture{4345}{October 27}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+Didn't pay attention in lecture today but it was about the Fundamental Theorem of Lcikorish and Wallace.
+
+Try to figure out the material later.
+
+Things that were mentioned:
+
+- Twist Equivalence\\
+- 'Separating' curves
+
+\lecture{434565}{October 30}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+For the rest of the semester, no set topics. We'll see how it goes.
+
+\textbf{Dependence Chart}:
+
+insert picture
+
+
+Today, we'll discuss Handlebody theory:
+\section*{Handlebody Theory}
+
+\textbf{Def:}
+
+Let $0 \leq k \leq n$. Let $X$ be an n-manifold. An n-dimensional handle is a copy of $D^ \times D^{n-k}$ attached to $\partial X$ along $\partial D^k \times D^{n-k} \cong $ complete these notes later.
+
+\end{document}
+
+
+
+
+

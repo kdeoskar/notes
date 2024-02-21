@@ -1,0 +1,522 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def:}}}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+\title{Math H185 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 17 - Introduction to Complex Numbers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\subsection{Real Numbers}
+Before jumping into Complex Numbers, let's recall a property of Real Numbers - the set containing which is denoted $\mathbb{R}$.
+\vskip 0.5cm
+
+\underline{\textbf{Note:}} If $a \in \mathbb{R}$ then $a^2 \geq 0$.  
+So, in this number system  negative real numbers do not have square roots in $\mathbb{R}$. 
+\vskip 0.5cm
+
+This is a limitation of $\mathbb{R}$, which we can fix by enlargening our field. (Similar to how the set of rationals was enlargened to the set of reals in Real Analysis).
+\vskip 0.5cm
+
+
+\subsection{Imaginary Numbers}
+We can introduce a new kind of object called an "Imaginary number" such that imaginary numbers square to negatve $(\leq 0)$ real numbers.
+\vskip 0.5cm
+
+We write $i = \sqrt{-1}$.
+\vskip 0.5cm
+
+\underline{\textbf{Proposition:}} Any imaginary number can be expressed as $bi$, $b \in \mathbb{R}$.
+\vskip 0.5cm
+
+\underline{\textbf{Proof:}}
+
+\subsection{Complex Numbers}
+
+\begin{mathdefinitionbox}{Complex Numbers}
+  \begin{itemize}
+  \item A complex number is an expression $z = a + bi$ where $a, b \in \mathbb{R}$
+  \item The set of complex numbers is denoted $\mathbb{C}$
+  \end{itemize}
+\end{mathdefinitionbox}
+\vskip 0.5cm
+
+\underline{\textbf{Remark:}} $\mathbb{C}$ is the \underline{algebraic closure} of $\mathbb{R}$. 
+
+\vskip 0.5cm
+In a sense, this is saying that there are no more "deficiencies" - Unlike polynomials in the reals, \emph{every} complex polynomials is guaranteed to have some complex roots. We will return to this statement later in the course when studying the Fundamental Theorem of Algebra.
+
+\vskip 0.5cm
+Let $z = a + bi$ be a complex number. Then, 
+\begin{itemize}
+  \item The \emph{real part} of $z$ is $Re(z) = a \in \mathbb{R}$ and the \emph{imaginary part} of $z$ is $Im(z) = b \in \mathbb{R}$.
+  \item The \emph{complex conjugate} of $z$ is $\bar{z} = a - bi$
+\end{itemize} 
+
+\vskip 0.5cm
+\subsection{Operations on Complex Numbers}
+
+"Addition is componentwise"
+
+\begin{align*}
+  \text{Addtion: } z &= a + bi \\
+                  +w &= c + di \\
+              z+w&=(a+c) + (b+d)i
+\end{align*}
+
+\vskip 0.5cm
+"Multiplication distributes"
+
+For $z = (a + bi)$, $w = (c + di)$ we have 
+\begin{align*}
+  z \cdot w &= (a + bi) \cdot (c + di) \\
+            &= a \cdot (c + di) + bi \cdot (c + di) \\
+            &= (ac - bd) + (ad + bc)i
+\end{align*}
+
+\vskip 0.5cm
+Addition and Multiplication satisfy the usual commutativity, associativity, and distributivity. However, Division is a bit more complicated. 
+
+\vskip 0.5cm
+\textbf{\textbf{Division:}} If $z \in \mathbb{C}$, $w \in \mathbb{C} \setminus \{0\}$, then $z/w \in \mathbb{C}$ is the \underline{unique} complex number such that $w \cdot (z/w) = z$.
+
+\vskip 0.5cm
+\textbf{Examples:} Write the following complex numbers as $a + bi$ where $a, b \in \mathbb{R}$
+
+\begin{enumerate}
+  \item $(9-12i) + (12i - 16) = (9 - 16) + (-12i + 12i) = -7$ 
+  \item $(3 + 4i) \cdot (3 - 4i) = 9 -12i + 12i - 16i^2 = 25$
+  \item $\frac{50 + 50i}{3 - 4i} = \frac{50 + 50i}{3 - 4i} \cdot \frac{3 + 4i}{3 + 4i} = \frac{150 + 200i + 150i + 200i^2}{25}  = \frac{-50 + 350i}{25} = -2 + 14i$ 
+\end{enumerate}
+
+\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 19 - The Complex Plane}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\subsection{What does $\C$ look like geomertrically?}
+
+[Insert Diagram of $\C$ with Real and Imaginary Axes]
+
+\vskip 0.5cm
+\defn\; The \textbf{Modulus} or \textbf{absolute value} of $z = a + bi$ is $|z| = a^2 + b^2$. It is the distance to $0$.
+
+\vskip 0.5cm
+There is a correspondence between the structure of $\C$ and the vector structure of $\R^2$.
+\[ \text{Addition in $\C$} \iff \text{Vector Addition in $\R^2$} \]
+
+\vskip 0.5cm
+\underline{\textbf{Exercise:}} Draw the subset of $z \in \C$ defined by 
+\begin{enumerate}
+  \item $\{ |z| = 1 \}$
+  \item $\{ |z - 6| = 1 \}$
+  \item $\{ |z - 6i| \leq 1 \}$
+  \item $\{ \text{Re}(z) \leq \text{Im}(z) \}$
+  \item $\{ |z| = \text{Re}(z) + 1 \}$
+\end{enumerate}
+
+\vskip 0.5cm
+\underline{\textbf{Answers:}} [Insert figures later.]
+\begin{enumerate}
+  \item Circle with radius $1$ centered at point $z = 0 + 0i$.
+  \item Circle with radius $1$ centered at point $z = 6 + 0i$.
+  \item Disk with radius $1$ centered at point $z = 0 + 6i$.
+  \item Everything above the line making $45$-degree angle with the real axis.
+  \item (Horizontal) Parabola with vertex at $z = 0 + 1i$ since 
+  \begin{align*}
+    \sqrt{x^2 + y^2} &= x + 1 \\ 
+    \implies x^2 + y^2 &= x^2 + 2x + 1 \\
+    \implies y^2 = 2x + 1 \\
+    \implies x = \frac{y^2 - 1}{2}
+  \end{align*}
+  So, we get a horizontal parabola.
+\end{enumerate}
+
+\vskip 0.5cm
+\subsection{Polar Coordinates}
+Rather than using the rectangular (cartesian) coordinates to describe $\C$, we can equvalently use \textbf{Polar coordinates} wherein we use the distance from the origin (modulus) and the angle made wtih the real axis (argument).
+
+\begin{align*}
+  &(x, y) \rightarrow (r, \theta) \\
+  &r = \sqrt{x^2 + y^2} \\
+  &\theta = \arctan\left(\frac{y}{x}\right)
+\end{align*}
+
+Notice however there is an amibiguity in the angle $\theta$ since $\theta + 2n\pi$ would describe the same point. Thus, we define the \textbf{Principal value branch} as the restriction $\theta \in [0, 2\pi]$.
+
+\vskip 0.5cm
+\underline{\textbf{Recall:}} The exponential Function is defined as below for $z \in \C$.
+\[ e^z = 1 + \frac{1}{1!} z + \frac{1}{2!} z^2 + \frac{1}{3!} z^3 + \cdots \]
+
+\vskip 0.5cm
+Now the usual definitions for the cosine and sine as in $\R$ in terms of the unit circle doesn't quite work for complex numbers. However, we can still define them using the exponential!
+
+\begin{align*}
+  \cos(z) &= 1 - \frac{1}{2!}z^2 + \frac{1}{4}z^4 + \cdots\\
+  \sin(z) &= z - \frac{1}{3!}z^3 + \frac{1}{5!}z^5 + \cdots
+\end{align*}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  \underline{\textbf{Euler's Theorem:}} $e^{iz} = \cos(z) + i\sin(z)$, $z \in \C$.
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} 
+Expanding the exponential, we have
+\begin{align*}
+  e^{iz} &= 1 + \frac{1}{1!} z + \frac{1}{2!} z^2 + \frac{1}{3!} z^3 + \cdots 
+\end{align*}
+and note that 
+\[ \frac{1}{(2n)!} (iz)^{2n} = \frac{1}{(2n!)} z^{2n} (i^{2n}) = \frac{(-1)^n z^{2n}}{(2n)!} \]
+
+\vskip 0.5cm
+Similarly,
+\[ \frac{1}{(2n-1)!} (iz)^{2n-1} = \frac{(-1)^{n-1} z^{2n-1}}{(2n-1)!} \]
+
+\vskip 0.5cm
+Thus,
+\begin{align*}
+  e^{iz} &= \underbrace{\sum_{2n} \frac{(-1)^n z^{2n}}{(2n)!}}_{\cos(z)} + \underbrace{\left( \sum_{2n-1} \frac{(-1)^{n-1} z^{2n-1}}{(2n-1)!} \right)}_{\sin(z)} i
+\end{align*}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Additionally, we can convert back from Polar coordinates to Cartesian Coordinates as 
+
+\begin{align*}
+  &(r, \theta) \rightarrow (x, y) \\ 
+  &x =r\cos(\theta) \\ 
+  &y =r\sin(\theta)  
+\end{align*}
+
+\vskip 0.5cm
+\underline{\textbf{Multiplication:}}
+The multiplication of two complex numbers can be thought of in terms of polar coordniates as scaling by $r$ and rotating by $\theta$.
+
+\vskip 1cm
+\subsection*{Topology of $\C$}
+The set $\C$ is a \textbf{metric space}, and the metric on $\C$ is $\text{dist}(z, w) = |z - w|$ ($\iff$ Eucldiean metric on $\R^2$).
+
+\vskip 0.5cm
+\underline{\textbf{Notation:}}
+\begin{itemize}
+  \item Given a complex number $z_0 \in \C$ and $r > 0, r \in \R$, the set
+  \[ B_{r} (z_0) = \{ z \in \C : |z - z_0| < r \} \]
+  is called the \textbf{open ball around $z_0$ of radius $r$}. 
+
+  \vskip 0.5cm
+  \item Similarly, the set $\overline{B_r (z_0)}$ is the \textbf{closed ball}:
+  \[ \overline{B_r (z_0)} = \{ z \in \C : |z - z_0| \leq r \} \]
+\end{itemize}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Open and Closed sets}
+\vskip 0.5cm
+  \begin{itemize}
+    \item A subset $U \subseteq \C$ is \textbf{open} if for all $z \in U$, there exists $r > 0$ such that $B_r (z) \subset U$.
+    
+    \item A subset $V \subseteq \C$ is said to be \textbf{closed} if its complement $V^c$ is open in $\C$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+
+
+\vskip 0.5cm
+\underline{\textbf{Ex:}} The set $\C \setminus \R_{\geq 0}$ is closed. This set will be important when studying the complex logarithm.
+
+
+[Insert figure.]
+
+\vskip 0.5cm
+Note that while the closed ball is not open (since the points on the boundary i.e. points with $|z - z_0| = r$ don't satisfy the requirement), a set \emph{can} be both open and closed. For example, the sets $\C$ and $\emptyset$ are both closed and open.
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 22 - Holomorphic functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+\subsection{Sequences and Series}
+
+\vskip 0.5cm
+Recall that a sequence of complex numbers $\{z_n \in \C\}$ is said to \emph{converge} to $z \in \C$ if for all $\epsilon > 0$ there exists a natural number $N \geq 1$ such that 
+\[ |z_n - z| < \epsilon \] for all $n \geq N$.
+
+Equivalently, 
+\[ \lim_{n \rightarrow N} |z_n - z| = 0 \]
+\begin{dottedbox}
+  In HW1, we show that if $z_n = x_n + iy_n$ and $z = x + iy$ where $x, y, x_n, y_n \in \R$ then
+  \[ \lim_{n \rightarrow \infty} |z_n - z| = 0 \iff \begin{cases}
+    \lim_{n \rightarrow \infty} |x_n - x| = 0 \\
+    \lim_{n \rightarrow \infty} |y_n - y| = 0
+  \end{cases} \]
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Complex Dfferentiability}
+Let $f : U \subseteq_{\text{open}} \C \rightarrow \C$.
+
+\begin{mathdefinitionbox}{Holomorphic Functions}
+\vskip 0.5cm
+  $f$ is Holomorphic at $z_0 \in U$ if \[ \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} = \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0} \] exists. If so, call the limit at $f'(z_0)$. 
+
+\vskip 0.5cm
+Note: Keep in mind that $h$ is a complex number.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item   This means that for any sequence $h_n \rightarrow 0$ \underline{or} $\forall \epsilon > 0$ $\exists \delta > 0$ such that 
+  \[ |h| < \delta \implies \lvert \frac{f(z_0 + h)-f(z_0)}{h} - f'(z_0) \rvert < \epsilon\]
+
+  \item This is the most important definition of the course.
+\end{itemize}
+
+\underline{\textbf{Remark:}} Although $\C$ is the same as $\R^2$ as a metric space, Holomorphicity is much stronger than differentiability of a function $f : \R^2 \rightarrow \R^2$ because the limits along every path to a point are required to be equal.
+
+\vskip 0.5cm
+\underbar{\textbf{Example:}} Consider the function $f(z) = \overline{z}$.
+
+\vskip 0.5cm
+We observe that 
+\begin{align*}
+  \frac{f(z+h)-f(z)}{h} &= \frac{\overline{z+h}-\overline{z}}{h} \\
+  &= \frac{\overline{h}}{h}
+\end{align*}
+Now, if we take the limit as $h \rightarrow 0$ along the real line, we get $\frac{\overline{h}}{h} = \frac{h}{h} = 1$, however if we take the limit along 
+the imaginary line we get $\frac{\overline{h}}{h} = \frac{-h}{h} = -1$
+
+\vskip 0.5cm
+On the other hand if we consider the counterpart of this function in $\R^2$ as 
+$f(x, y) = (x, -y)$, this function is \emph{smooth everywhere}. In contrast to this, the complex function $f(z) = \overline{z}$ is \emph{not holomorphic at \underline{any} $z_0 \in \C$}.
+
+\vskip 0.5cm
+We will see that holomorphic functions have strong \underline{rigidity} properties not shared by real differentiable functions. For instance,
+\begin{itemize}
+  \item If $f, g$ are holomorphic on a connected open set $U \subseteq \C$ and $f = g$ on a line segment in $U$, then in fact they agree at \emph{all} points in $U$: $f(z) = g(z) \forall z \in U$. This is the \textbf{Principle of Analytic Continuation.}
+  \item Another example of surprising rigidity is that if $f$ is holomorphic on $U$ i.e. it is one differentiable on $U$, then in fact it is \emph{infinitely} differentiable on $U$.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{\textbf{Examples:}}
+\begin{enumerate}
+  \item $f(z) = z^n$ 
+  
+  \vskip 0.5cm
+  \underline{Calculate:} 
+  \begin{align*}
+    \frac{f(z+h)-f(z)}{h} &= \frac{(z+h)^n - z^n}{h} \\
+    &=_{\text{binom thm.}} \left[  \frac{1}{h} \left( z^n + nz^{n-1}h + \cdots + nzh^{n-1} + h^n \right) - z^n  \right] \\
+    &= nz^{n-1} + h(\cdots)
+  \end{align*}
+  \[ \implies \lim_{h \rightarrow 0} \frac{f(z + h) - f(z)}{h} = nz^{n-1} \]
+\end{enumerate}
+
+\vskip 1cm
+\subsection{Stability Properties}
+While holomorphicity is different from real Dfferentiability, there are a number of properties which are justified by the same $\epsilon-\delta$ proofs as those from $\R$ analysis.
+
+\begin{itemize}
+  \item If $f,g : U \rightarrow \C$ are holomorphic at $z_0 \in U$ then 
+  \begin{itemize}
+    \item $(f+g)$ is holomorphic at $z_0$ and 
+    \[ (f+g)'(z_0) = f'(z_0) + g'(z_0) \]
+  
+    \item $fg$ is holomorphic at $z_0$ and
+    \[ (fg)'(z_0) = f'g(z_0)g(z_0) + f(z_0)g'(z_0) \]
+    
+    \vskip 0.5cm
+    \item \underline{Chain Rule:} $(f \circ g)$ is holomorphic at $z_0$ and 
+    \[ (f \circ g)'(z_0) = f'(z_0) \cdot g'(z_0) \]
+    
+    \vskip 0.5cm
+    \item \underline{Division:} $(f/g)$ is holomorphic at $z_0$ if $g(z_0) \neq 0$ and
+    \[ \left( \frac{f}{g} \right) = \frac{f'(z_0)g(z_0) + f(z_0)g(z_0)}{g(z_0)^2} \]
+  \end{itemize}
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Polynomials:} Finite sum of monomials.
+  \[ f(z) = a_nz^n + \cdots + a_0 \]
+  By linearity (Stability property 1), \emph{all} Polynomials are holomorphic on $C$.
+  
+  \vskip 1cm
+  \underline{Rational Functions:} Ratios of Polynomials.
+  \[ h(z) = \frac{f(z)}{g(z)} \]
+  By Stability property 3, all rational functions are holomorphic on $\{ z \in \C : g(z) \neq 0 \} \subseteq_{\text{open}} \C$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Warm-down examples:}} Where are the following functions holomorphic, and what are their derivatives in those regions?
+
+\begin{enumerate}
+  \item $f(z) = \frac{1}{z}$
+  \item $f(z) = z^2 + 3z + \frac{1}{2}$
+  \item $f(z) = \text{Re}(z)$
+  \item $f(z) = i \cdot \text{Im}(z)$
+  \item $f(z) = \text{Re}(z) + i \cdot \text{Im}(z)$
+\end{enumerate}
+
+\vskip 0.5cm
+\underline{\textbf{Answers:}}
+\begin{enumerate}
+  \item Holomorphic on $\C \setminus \{0\}$, and derivative in the region is 
+  \[ \frac{-1}{z^2} \]
+  
+  \item Holomorphic on $\C$, and derivative in the region is 
+  \[ 2z + 3 \]
+
+  \item Not holomorphic \emph{anywhere}, snice limit vertically is always zero but limit horizontally will be non-zero. 
+
+  \item Not holomorphic \emph{anywhere}, snice limit horizontally is always zero but limit vertically will be non-zero. 
+
+  \item Holomorphic on $\C$, and derivative in the region is $1$ ($f(z) = z$, so $f'(z) = 1$ at all points).
+\end{enumerate}
+
+
+
+% \printbibliography
+
+
+\end{document}

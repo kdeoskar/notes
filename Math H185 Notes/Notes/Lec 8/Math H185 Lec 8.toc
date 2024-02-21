@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}February 2 - Cauchy's Formula, Infinite Differentiability}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Infinite differentiability of a holomorphic function}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Where Now? Contour Integration}{3}{subsection.1.2}%

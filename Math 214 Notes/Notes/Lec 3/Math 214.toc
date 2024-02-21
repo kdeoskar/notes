@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 23 - More examples, Transition Maps, Smooth Atlases}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Charts}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Smooth Manifolds}{3}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Transition Maps}{3}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Smoothness and Atlases}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Smooth manifolds}{5}{subsubsection.1.2.3}%

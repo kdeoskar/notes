@@ -1,0 +1,531 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{bbm}
+
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill PSET #1, Due #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid#1\rangle}
+\newcommand{\bra}[1]{\langle#1\mid}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\ham}{\hat{H}}
+\newcommand{\mom}{\hat{P}}
+
+
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{05}{October 12}{Chien-I Chiang}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 1:}}
+
+\begin{enumerate}
+   \item We want to find the normalized position space wavefunction for a momentum eigenstate $\ket{p}$ i.e. we want to find $\inner{x}{p} \equiv \psi_p (x)$.
+   
+   Since $\ket{p}$ is an eigenvector of the momentum operator $\hat{P}$, we have 
+   \[ \hat{P}\ket{p} = p\ket{p} \]
+
+   Now, we know how the momentum operator acts on a ket $\ket{\psi}$ in position space:
+   \[ \inner{x}{\hat{P}|\psi} = -i\hbar \frac{d\psi}{dx}\]
+
+   So, then, fro an eigenvector $\ket{p}$, we have $\inner{x}{\hat{P}|\psi} = \inner{x}{(p|p}) = p\inner{x}{p} = p\psi_p(x)$
+
+   \[ p\psi_p = -i\hbar \frac{d\psi_p}{dx} \]
+   
+   Since we are dealing with just one variable, we can carry out a simple separation of variables to get 
+   \[ \frac{ip}{\hbar} \int dx = \int \frac{d\psi_p}{\psi_p}\] (since $\frac{1}{(-i)} = i$) which gives us 
+   \begin{align*}
+      \frac{ip}{\hbar} x &= \ln(\psi_p) + C_1 \\
+                         &= \ln{C_0 \psi_p} 
+   \end{align*} where $C_0 = \ln(C_1)$
+   So, exponentiating both sides, we obtain
+   \[ \psi_p = \frac{1}{C_0} e^{\frac{ipx}{\hbar}}\]
+   But again, we can write $\frac{1}{C_0}$ more simply as some other constant $C$. So,
+   \begin{equation}
+      \boxed{\psi_p(x) = \inner{x}{p} = C e^{\frac{ipx}{\hbar}}} 
+   \end{equation}
+   
+   We can find the constant $C$ using the normalization condition $\inner{p}{p'} = \delta(p - p')$ as 
+
+   \begin{align*}
+      \inner{p}{p'} &= \inner{p}{\mathbbm{1}|p'} \\
+                    &= \int dx\; \inner{p}{x} \inner{x}{p'} \\
+                    &= \int dx\; \inner{x}{p}^{*} \inner{x}{p'} \\
+                    &= \int dx\; C^{*}e^{-\frac{ipx}{\hbar}} \cdot Ce^{\frac{ipx}{\hbar}} \\
+                    &= |C|^2 \int dx\; e^{i(p'-p)x/h}
+   \end{align*}
+   To proceed, we use the following mathematical identity:
+   \[ \int dk\; e^{ik(x-x')} = 2\pi\delta(x-x') \]
+   or, in the notation we will apply it to,
+   \[ \boxed{\int dx\; e^{ik(p-p')} = 2\pi\delta(p-p')} \]
+
+   So, we have 
+   \begin{align*}
+      \inner{p}{p'} &= |C|^2 \int dx\; e^{i(p'-p)x/h} \\
+                    &= \hbar|C|^2 \int \left(\frac{dx}{\hbar}\right)\;e^{i\frac{x}{h}(p-p')} \\
+                    &= \hbar|C|^2 \cdot (2\pi\delta(p-p')) \\
+                    &= (2\pi\hbar)\cdot|C|^2 \delta(p-p')
+   \end{align*}
+   So, 
+   \[ \delta(p-p') = (2\pi\hbar)\cdot|C|^2 \delta(p-p') \]
+   Thus, we obtain the result
+   \[ |C| = \frac{1}{\sqrt{2\pi\hbar}} \]
+
+   By convention, we choose $C$ to be a real number, so we simply have 
+   \[ C = \frac{1}{\sqrt{2\pi\hbar}} \]
+
+   Finally, the expression for the momentum wavefunction in position space is 
+   \[ \boxed{\inner{x}{p} \equiv \psi_p(x) = \frac{1}{\sqrt{2\pi\hbar}} e^{ipx/\hbar}} \]
+
+   \item Now, we want to find the matrix elements of the position operator in the momentum space. 
+   
+   We know that in position space, the position operator looks like
+   \[ \inner{x}{\hat{X}|x'} = x\delta(x-x')  \]
+
+   and we want to carry out a change of basis from the position eigenvectors to the momentum eigenvectors.
+
+   We can do this by kind of going in the opposite direction and starting off with $\inner{p}{\hat{X}|p'}$ and inserting completenes i.e. $\mathbbm{1} = \int dx\; \ket{x}\bra{x}$
+
+   We have 
+   \begin{align*}
+      \inner{p}{\hat{X}|p'} &= \inner{p}{\hat{X}|p'} \\
+                            &= \int dx\; \inner{p}{X|x}\inner{x}{p'} \\
+                            &= \int dx\;x\inner{p}{x}\inner{x}{p'} \\
+                            &= \int dx\; x \left( \frac{1}{\sqrt{2\pi\hbar}}e^{-ipx/\hbar} \right) \cdot \left( \frac{1}{\sqrt{2\pi\hbar}}e^{ip'x/\hbar} \right) \\
+                            &= \frac{1}{2\pi\hbar} \int dx\; x e^{i\frac{x}{\hbar}(p'-p)} \\
+                            &= \frac{1}{2\pi\hbar} \int dx\;(i\hbar) \cdot \left( \frac{d}{dp} e^{i\frac{x}{\hbar}(p-p)} \right) \\
+                            &= \frac{i\hbar}{2\pi\hbar} \left( \frac{d}{dp} \int dx\; e^{i\frac{x}{h}(p'-p)} \right) \\
+   \end{align*}
+   Now, using the same identity we used in part(a), we know that 
+   \[ \int dx\; e^{i\frac{x}{\hbar}(p-p')} =  \int dx\; e^{ix(\frac{p-p'}{\hbar})} = 2\pi\delta\left(\frac{p-p'}{\hbar}\right) \]
+
+   So, our postion operator in momentum space is 
+   \begin{align*}
+      \inner{p}{\hat{X}|p'} &= \frac{i\hbar}{2\pi\hbar} \cdot \frac{d}{dp} \left( 2\pi\delta\left(\frac{p-p'}{\hbar}\right) \right) \\
+                            &= \frac{i\hbar}{2\pi\hbar} \cdot \frac{d}{dp} \left[ 2\pi\hbar\delta(p-p') \right] \\
+                            &= i\hbar \frac{d}{dp} \delta(p-p')
+   \end{align*}
+   So, the representation of our position operator in momentum space is 
+   \[ \boxed{ \inner{p}{\hat{X}|p'} = i\hbar \frac{d}{dp} \delta(p-p') } \]
+
+   This means that for a general state $\ket{\psi}$ we have 
+   \[ \inner{p}{\hat{X}|\psi} = i\hbar \frac{d}{dp} \psi(p) \]
+
+   So, in position space, applying the Position operator looks like 
+   \[ \inner{p}{\hat{X}|\psi} = \hat{\mathcal{X}}\psi(p) \]
+
+   where $\hat{\mathcal{X}} = i\hbar \frac{d}{dp}$ and $\psi(p) \equiv \inner{p}{\psi}$
+
+   \item Now, we had originally \emph{defined} the position operator $\hat{P}$ to be the generator of spatial translations. i.e. 
+   \[ e^{iaP/\hbar}\ket{x} = \ket{x+a} \]
+
+   And considering $a$ to be some infinitessimal translation $\epsilon$, we found that $\mom$ in position space could be expressed as 
+   \[ \inner{x}{\mom|x'} = -i\hbar\frac{d}{dx} \delta(x-x') \]
+   or 
+   \[ \inner{x}{\mom|\psi} = -i\hbar\frac{d}{dx} \psi(x) \]
+
+   We found a VERY similar expression for the \underline{\emph{postiion operator}} in \underline{\emph{momentum space}} as 
+   \[ \inner{p}{\hat{X}|\psi} = i\hbar \frac{d}{dp} \psi(p) \]
+
+   This suggests to us that the position operator plays a similar role in momentum space i.e. \textbf{The postiion operator is the generator of momentum translation.}
+
+   % In fact, consider a momentum translation $\ket{p} \rightarrow \ket{p+\epsilon}$
+
+   % Before the translation, i.e. when we have momentum $\ket{p}$, the position can be expressed as 
+   % \[ \psi(x) = \frac{1}{\sqrt{2\pi\hbar}} \int dp\; e^{ipx/\hbar} \tilde{\psi}(p) \]
+
+   % where $\psi(x) \equiv \inner{x}{\psi}$ and $\tilde{\psi}(p) \equiv \inner{p}{\psi}$
+
+   % Once the momentum translation $\ket{p} \rightarrow \ket{p + \epsilon}$ has occured, the position wavefunction is given by 
+   % \[ \psi(x) = \frac{1}{\sqrt{2\pi\hbar}} \int dp\; e^{i(p+\epsilon)x/\hbar} \tilde{\psi}(p+\epsilon) \]
+
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\underline{\textbf{Problem 2:}}
+
+\begin{enumerate}
+   \item Suppose we have two states $\ket{\psi_1}$ and $\ket{\psi_2}$. Then, we can shift into the position space to express their inner product as
+   \begin{align*}
+      \inner{\psi_2}{\psi_1} &= \int dx\; \inner{\psi_2}{x} \inner{x}{\psi_1} \\
+                             &= \int dx\; \inner{x}{\psi_2}^{*} \inner{x}{\psi_1} \\
+                             &= \int dx\; \psi_2(x)^{*} \psi_1(x)
+   \end{align*}
+   Therefore, 
+   \[ \boxed{\inner{\psi_2}{\psi_1} = \int dx\; \psi_2(x)^{*} \psi_1(x)} \]
+
+   \item A state $\ket{\psi}$ is normalized if $\inner{\psi}{\psi} = 1$. Using part (a), we have 
+   \[ \inner{\psi}{\psi} = \int dx\; \psi(x)^{*} \psi(x)  \]
+
+   But, since $\psi(x)$ is just some complex number, we know that $\psi(x)^{*} \psi(x) = |\psi(x)|^2$
+
+   Thus, in the position basis, the normalization condition looks like
+   \[ \boxed{\int dx\; |\psi(x)|^2 = 1} \]
+
+   \item We know that, in position space, the position operator $\hat{X}$ acts on a state $\ket{\psi}$ by multiplying the (position-space) wavefunction with $x$. That is,
+   \[ \hat{X}\ket{\psi} \rightarrow x\psi(x) \]
+
+   Now, the expectation value for the operator is found as 
+   \begin{align*}
+      \inner{\psi}{\hat{X}|\psi} &= \inner{\psi}{\mathbbm{1}\hat{X}\mathbbm{1}|\psi} \\
+                                 &= \int dx\;dx'\; \inner{\psi}{x} \inner{x}{\hat{X}|x'} \inner{x'}{\psi}
+   \end{align*}
+   We know, from studying the eigenvalue problem of $\hat{X}$, that 
+   \[ \inner{x}{\hat{X}|x'} = x\delta(x-x') \]
+
+   So, we have 
+   \begin{align*}
+      \inner{\psi}{\hat{X}|\psi} &= \int dx\;dx'\; \inner{x}{\psi}^{*} x\delta(x-x') \inner{x'}{\psi} \\
+                                 &= \int dx\;dx'\;\delta(x-x') \psi(x)^{*} x \psi(x') \\
+                                 &= \int dx\; \psi(x)^{*} x \psi(x)
+   \end{align*}
+   Therefore, the expecation value of $\hat{X}$ is 
+   \[ \boxed{\inner{\psi}{\hat{X}|\psi} = \int dx\; \psi(x)^{*} x \psi(x)} \]
+
+   \item In momentum space, the momentum operator $\hat{P}$ acts on a state $\ket{\psi}$ as 
+   \[ \hat{P}\ket{\psi} \rightarrow -i\hbar \frac{d\psi(x)}{dx} \]
+   Or more precisely,
+   \[ \inner{x}{\hat{P}|\psi} = -i\hbar \frac{d\psi(x)}{dx} \]
+
+   Now, the expectation value for the momentum operator is given by 
+   \begin{align*}
+      \inner{\psi}{\hat{P}|\psi} &= \inner{\psi}{\mathbbm{1}\hat{P}\mathbbm{1}|\psi} \\
+                                 &= \int dx\;dx'\;\inner{\psi}{x} \inner{x}{\hat{P}|x'} \inner{x'}{\psi} \\
+                                 &= \int dx\;dx'\; \inner{x}{\psi}^{*} \inner{x}{\hat{P}|x'} \inner{x'}{\psi}
+   \end{align*}
+   From our earlier studies of the momentum operator, we know that the matrix elements of the operator in the position space are given by 
+   \[ \inner{x}{\hat{P}|x'} = -i\hbar\frac{d}{dx}\psi(x) \]
+
+   So, we have 
+   \begin{align*}
+      \inner{\psi}{\hat{P}|\psi} &= \int dx\;dx'\; \psi(x)^{*} \left( -i\hbar \frac{d}{dx} \delta(x-x') \right) \psi(x') \\
+                                 &= \int dx\; \psi(x)^{*} \left( -i\hbar\frac{d}{dx} \right) \psi(x)
+   \end{align*}
+   Therefore, the expecation value of the momentum operator can be found in position space as 
+   \[ \boxed{\inner{\psi}{\hat{P}|\psi} = \int dx\; \psi(x)^{*} \left( -i\hbar\frac{d}{dx} \right) \psi(x)} \]
+
+   \item The operator $\hat{P}^2$ can be thought as 
+   \begin{align*}
+      \hat{P}^2 &= \hat{P} \cdot \hat{P} \\
+                &= \left( -i\hbar\frac{d}{dx} \right) \cdot \left( -i\hbar\frac{d}{dx} \right) \\ 
+                &= -\hbar^2 \frac{d^2}{dx^2}
+   \end{align*}
+   and the matrix elements of this operator should be given by 
+   \[ \inner{x}{\hat{P}^2|x'} = -\hbar^2 \frac{d^2}{dx^2} \delta(x-x') \]
+
+   So, the expectation value of the squared momentum operator can be found as 
+   \begin{align*}
+      \inner{\psi}{\hat{P}^2|\psi} &= \inner{\psi}{\mathbbm{1}\hat{P}^2\mathbbm{1}|\psi} \\
+                                   &= \int dx\;dx'\; \inner{\psi}{x} \inner{x}{\hat{P}^2|x'} \inner{x'}{\psi} \\
+                                   &= \int dx\;dx'\; \psi(x')^{*} \left( -\hbar^2 \frac{d^2}{dx^2} \delta(x-x') \right) \psi(x) \\ 
+                                   &= \int dx\; \psi(x) \left( -\hbar^2 \frac{d^2}{dx^2} \right) \psi(x)
+   \end{align*}
+   Therefore, the expectation value for $\hat{P}^2$ is 
+   \[ \boxed{\inner{\psi}{\hat{P}^2|\psi} = \int dx\; \psi(x) \left( -\hbar^2 \frac{d^2}{dx^2}  \right) \psi(x)} \]
+
+   \item We have a system with potential $V(x)$ and hamiltonian $\ham = \frac{\mom^2}{2m} + V$.
+   
+   \underline{TISE:}
+   The Time Independent Schrödinger Equation is 
+   \[ \ham\ket{E} = E\ket{E} \]
+
+   In position space, the left hand side becomes 
+   \begin{align*}
+      \inner{x}{\ham|E} &= \bra{x} \left( \frac{\mom^2}{2m} + V \right) \ket{E} \\
+                        &= \inner{x}{\left[ \left( \frac{\mom^2}{2m} + V \right) |E} \right] \\
+                        &= \frac{1}{2m}\inner{x}{\mom^2|E} + \inner{x}{V|E}
+   \end{align*}
+   From our earlier studies, we know that 
+   \[ \inner{x}{\mom^2|E} = -\hbar \frac{d^2}{dx^2}\psi_E(x)\;\;\;\text{and}\;\;\;\inner{x}{V|E} = V(x)\]
+   
+   Thus, the left hand side of the TISE is 
+   \begin{equation}
+      \ham\ket{E} = -\frac{\hbar}{2m} \frac{d^2}{dx^2}\psi_E(x) + V(x) 
+   \end{equation}
+
+   The expression on the right hand, $E\ket{E}$, in the position-space is simply
+   \begin{equation}
+      \inner{x}{E|E} = E\inner{x}{E} = E\psi_E(x)
+   \end{equation}
+
+   So combining our results from equations (5.2) and (5.3), we find that the TISE in position-space is 
+   \[ \boxed{-\frac{\hbar}{2m} \frac{d^2}{dx^2}\psi_E(x) + V(x) = E\psi_E(x)} \]
+
+   \underline{TDSE:}
+   The Time-Dependent Schrödinger Equation says 
+   \[ i\hbar \frac{d}{dt} \ket{\psi(t)} = \ham \ket{\psi(t)} \]
+
+   Now, the left-hand expression in position space is 
+   \begin{align*}
+      \inner{x}{\left( i\hbar \frac{d}{dt} \right)|\psi(t)} &= i\hbar\frac{d}{dt} \inner{x}{\psi(t)} = i\hbar\frac{\partial}{\partial t} \psi_E(x,t)
+   \end{align*}
+   where we are able to pull out the linear operator $\left( i\hbar \frac{d}{dt} \right)$ because it is a unitary operator, and inner products are invariant under unitary translations.
+
+   The right hand expression, expressed in position-space, is 
+   \begin{align*}
+      \inner{x}{\ham|\psi(t)} &= \inner{x}{\left( \frac{\mom^2}{2m} + V\right)|\psi(t)} \\
+                              &= \frac{1}{2m}\inner{x}{\mom^2|\psi(t)} + \inner{x}{V|\psi(t)} \\
+                              &= 
+                              \frac{-\hbar}{2m} \frac{\partial^2 }{\partial x^2 } \psi_E(x,t) + V(x)\psi_E(x,t) \\
+                              &= \left[ \frac{-\hbar}{2m} \frac{\partial^2 }{\partial x^2 } + V(x) \right]\psi_E(x,t)
+   \end{align*}
+
+   So, in position-space, the TDSE is expressed as 
+   \[ \boxed{i\hbar\frac{\partial}{\partial t} \psi_E(x,t) = \left[ \frac{-\hbar}{2m} \frac{\partial^2 }{\partial x^2 } + V(x) \right]\psi_E(x,t)} \]
+\end{enumerate}
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\underline{Problem 3:}
+
+\begin{enumerate}
+   \item We have a particle confined to the x-axis whose wavefunction is described by 
+   \[ \psi = \begin{cases} 
+      0 & x\leq -a \\
+      C & -a\leq x\leq a \\
+      0 & c \geq a
+   \end{cases}
+   \]
+   where $C$ is a normalization constant.
+
+   We can find $C$ using the normalization condition 
+   \[ \int_{-\infty}^{\infty} dx\; |\psi(x)|^2 = 1\]
+
+   We have 
+   \begin{align*}
+      &0 + \int_{-a}^{a} dx\; |C|^2 + 0 = 1 \\
+      \implies& C^2 \int_{-a}^{a} dx = 1 \;\;\;(\text{By Convention, } C \in \mathbb{R} \text{ so } |C| = C) \\
+      \implies& C^2 \cdot (2a) = 1 
+   \end{align*}
+   Thus,
+   \[ \boxed{C = \frac{1}{\sqrt{2a}}} \]
+
+
+   \item The expectation value for $\hat{X}$ is given by 
+   \begin{align*}
+      \langle \hat{X} \rangle &= \int_{-\infty}^{\infty} \psi(x)^{*} x \psi(x) \\
+                              &= 0 + \int_{-a}^{a} dx\; \left(\frac{1}{\sqrt{2a}}\right)^{*} x \left(\frac{1}{\sqrt{2a}}\right) + 0 \\
+                              &= \frac{1}{2a} \int_{-a}^{a} dx\; x \\
+                              &= \frac{1}{2a} \cdot \left[ \frac{x^2}{2} \Biggr|_{-a}^{a} \right] \\
+                              &= \frac{1}{2a} \cdot \left( \frac{a^2}{2} - \frac{a^2}{2} \right) \\
+                              &= 0
+   \end{align*}
+   So, the expected position is $\boxed{ \langle \hat{X} \rangle = 0}$.
+
+
+   The expectation value for $\hat{X}^2$ is given by 
+   \begin{align*}
+      \langle \hat{X} \rangle &= \int_{-\infty}^{\infty} \psi(x)^{*} x^2 \psi(x) \\
+                              &= 0 + \int_{-a}^{a} dx\; \left(\frac{1}{\sqrt{2a}}\right)^{*} x^2 \left(\frac{1}{\sqrt{2a}}\right) + 0 \\
+                              &= \frac{1}{2a} \int_{-a}^{a} dx\; x^2 \\
+                              &= \frac{1}{2a} \cdot \left[ \frac{x^3}{3} \Biggr|_{-a}^{a} \right] \\
+                              &= \frac{1}{2a} \cdot \left( \frac{a^3}{3} + \frac{a^3}{3} \right) \\
+                              &= \frac{1}{2a} \cdot a^3 \\
+                              &= \frac{a^2}{2}
+   \end{align*}
+   So, the expected position is $\boxed{ \langle \hat{X}^2 \rangle = \frac{a^2}{2}}$.
+
+   \item There are some values of momentum $p_x$ which the probability to find the particle in is zero. Our goal is to find these momenta.
+   
+   Recall that  the probability of having a particular momentum $p$ is given by $|\inner{p}{\psi}|^2$. 
+   
+   Inserting completeness (in the position-space), we can write
+   \begin{align*}
+      \inner{p}{\psi} &= \int dx\; \inner{p}{x} \inner{x}{\psi} \\
+                          &= \int_{-\infty}^{\infty} dx\; \inner{x}{p}^{*} \inner{x}{\psi} \\
+                          &= \int_{-\infty}^{\infty} dx\; (\psi_p(x)^{*})(\psi(x)) \\
+                          &= \int_{-\infty}^{\infty} \left( \frac{1}{\sqrt{2\pi\hbar}} e^{-\frac{ipx}{\hbar}} \right) \psi(x) \\
+                          &= 0 + \int_{-a}^{a} dx\; \left( \frac{1}{\sqrt{2\pi\hbar}} e^{-\frac{ipx}{\hbar}} \right) \cdot \left(\frac{1}{\sqrt{2a}}\right) + 0 \\
+                          &= \frac{1}{\sqrt{2a}} \cdot \frac{1}{\sqrt{2\pi\hbar}} \int_{-a}^{a} e^{-\frac{ipx}{\hbar}} \\
+                          &= \frac{1}{\sqrt{2a}} \cdot \frac{1}{\sqrt{2\pi\hbar}} \left[ \frac{-\hbar}{ip} e^{-\frac{ipx}{\hbar}} \right]_{-a}^{a} \\
+                          &= \frac{1}{\sqrt{2a}} \cdot \frac{1}{\sqrt{2\pi\hbar}} \left[ \frac{i\hbar}{p} e^{-\frac{ipx}{\hbar}} \right]_{-a}^{a} \\
+                          &= \frac{1}{\sqrt{2a}} \cdot \frac{1}{\sqrt{2\pi\hbar}} \cdot  \frac{i\hbar}{p} \left[e^{-\frac{ipx}{\hbar}} \right]_{-a}^{a} \\
+                          &= \frac{i}{2p} \cdot \sqrt{\frac{\hbar}{\pi a}} \left( e^{-\frac{ipa}{\hbar}} -  e^{\frac{ipa}{\hbar}} \right) \\
+                          &= \frac{i}{2p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot (-2)\sinh\left(\frac{ipa}{h}\right)
+   \end{align*}
+   That is 
+   \[ \boxed{\inner{p}{\psi} =  \frac{-i}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sinh\left(\frac{ipa}{h}\right) } \]
+
+   Further, we can note that $\sinh(z) = -i\sin(iz)\;\; \forall z \in \mathbb{C}$ which means
+   \begin{align*}
+      \frac{-i}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sinh\left(\frac{ipa}{h}\right) &= \frac{-i}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot (-i)\sin\left(-\frac{pa}{h}\right) \\
+              &= \frac{-i \cdot i}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sin\left(\frac{pa}{h}\right) \\
+              &= \frac{1}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sin\left(\frac{pa}{h}\right) 
+   \end{align*}
+   so, 
+   \[ \boxed{\inner{p}{\psi} = \frac{1}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sin\left(\frac{pa}{h}\right)  } \]
+
+   Now, since this is a real number, we have 
+   \[ \inner{\psi}{p} = \inner{p}{\psi}^{*} = \inner{p}{\psi} \]
+
+   Which means the probability of the particle posessing the momentum $p$ is 
+   \[ \mathcal{P}(p) = \left[ \frac{1}{p} \cdot \sqrt{\frac{\hbar}{\pi a}}\cdot \sin\left(\frac{pa}{h}\right) \right]^2 \]
+
+
+   The momenta whose probabilities of ocurring are given by 
+   \[ \mathcal{P}(p) = 0 \]
+
+   In order for this to be the case, we must have \[ \sin\left(\frac{pa}{\hbar}\right) = 0 \]
+
+   So, we have 
+   \begin{align*}
+      &\frac{pa}{\hbar} = \pi n \\
+      \implies &p = \frac{n\pi\hbar}{a}
+   \end{align*}
+   Therefore, the momenta of zero probability are given by 
+   \[ \boxed{p = \frac{n\pi\hbar}{a},\;\;n \in \mathbb{Z}} \]
+\end{enumerate}
+
+\hrule
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+
+\end{document}
+
+
+
+
+

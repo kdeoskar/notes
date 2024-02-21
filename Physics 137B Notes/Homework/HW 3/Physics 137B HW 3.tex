@@ -1,0 +1,778 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{tensor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B HW 3 - KDEOSKAR},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Homework 3}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+% \pagebreak 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question 1: 2D Infinite Square Well Potential} 
+\section*{Question 1: 2D Infinite Square Well Potential} 
+
+Consider the 2-D Infitnite Square Well Potential 
+\[ V_0(x, y)  = \begin{cases}
+  0, -\frac{L}{2} \leq x, y \leq \frac{L}{2} \\
+  \infty, \text{ otherwise}
+\end{cases}\]
+
+With this, we can write the unperturbed Hamiltonian as 
+\[ \hat{H}^{(0)} = \frac{\hat{P}_x^2 + \hat{P}_y^2}{2m} + V_0(\hat{X}, \hat{Y}) \]
+
+which has eigenstates 
+\[ \inner{x, y}{n, n'^{(0)}} = \psi_n^{(0)}(x) \psi_{n'}^{(0)}(y) \]
+
+where 
+\[ \psi_n(x) = \begin{cases}
+  \sqrt{\frac{2}{L}} \cos(\frac{n x \pi}{L}), \text{  $n$ odd} \\
+  \sqrt{\frac{2}{L}} \sin(\frac{n x \pi}{L}), \text{  $n$ even} 
+\end{cases} \]
+
+with energies given by 
+\[ E_{n n'}^{(0)} = \left( \frac{\pi \hbar}{L} \right)^2 \frac{1}{2m}(n^2 + n'^2) = E_0 \cdot (n^2 + n'^2), \;\;\;E_0 = \left(\frac{\pi \hbar}{L}\right) \cdot \frac{1}{2m} \]
+
+Let us consider the perturbation to the Hamiltonian 
+\[ \hat{H'}(x, y) = \lambda E_1 \sin \left(\hat{X} \frac{\pi}{L}\right) \sin \left( \hat{Y} \frac{\pi}{L} \right) \]
+
+Calculate the first order correction to the energy of the states with unperturbed energy $E^{(0)} = 5E_0$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+We want to find the first order correction to the energy of the states with unperturbed energy $E^{(0)} = 5E_0$ i.e. to the $\ket{n = 1, n' = 2}$, $\ket{n = 2, n' = 1}$ states.
+
+\vskip 0.25cm
+Let's denote these states as 
+\begin{align*}
+  \psi_{a}^{(0)}(x, y) &= \psi_1(x)\psi_2(y) = \frac{2}{L} \cos\left(x \frac{\pi}{L}\right) \sin\left(2 y \frac{\pi}{L}\right) \\
+  \psi_{b}^{(0)}(x, y) &= \psi_2(x)\psi_1(y) = \frac{2}{L} \sin\left(2 x \frac{\pi}{L}\right) \cos\left(y \frac{\pi}{L}\right)
+\end{align*}
+
+\vskip 0.25cm
+
+Since we only have two-fold degeneracy, we can directly apply the \textbf{emph
+fundamental result of degenerate perturbation theory},
+
+\[ E_{\pm}^{(1)} = \frac{1}{2} \left[ \hat{H}_{aa}' + \hat{H}_{ab}' \pm \sqrt{(\hat{H}_{aa}' - \hat{H}_{bb}')^2 + 4 \left| \hat{H}_{ab}' \right|^2 } \right] \]
+
+where 
+\[ H_{ij} = \inner{i}{\hat{H}' | j} \]
+
+So, let's find each  of these matrix elements $H_{ij}$ by expanding them out in the position basis:
+
+\begin{align*}
+  H_{aa} &= \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2}  \psi_a^{*}(x, y) \hat{H}'(x, y) \psi_a(x, y) dx dy \\
+  &= \frac{4}{L^2} \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2} \left[ \cos\left(x \frac{\pi}{L}\right) \sin\left(2 y \frac{\pi}{L}\right) \right]^{*} \cdot \left[ \lambda E_1 \sin \left(x \frac{\pi}{L}\right) \sin \left( y \frac{\pi}{L} \right)  \right] \cdot \left[ \cos\left(x \frac{\pi}{L}\right) \sin\left(2 y \frac{\pi}{L}\right) \right] dx dy \\
+  &= \frac{4\lambda E_1}{L^2} \int_{-L/2}^{L/2} \int_{-L/2}^{L/2} \left[ \cos\left(x \frac{\pi}{L}\right) \sin\left(2 y \frac{\pi}{L}\right) \right]^2 \cdot \left[ \sin \left(x \frac{\pi}{L}\right) \sin \left( y \frac{\pi}{L} \right)  \right] dx dy \\
+  &= \frac{4\lambda E_1}{L^2} \int_{-L/2}^{L/2} \int_{-L/2}^{L/2} \sin \left( y \frac{\pi}{L} \right)  \left[ \cos\left(x \frac{\pi}{L}\right) \right]^2 \cdot \sin \left(x \frac{\pi}{L}\right) dx dy \\
+  &= \frac{4\lambda E_1}{L^2}  \int_{-L/2}^{L/2} \sin^2\left( 2y\frac{\pi}{L} \right) \sin \left( y \frac{\pi}{L} \right) \left( \int_{-L/2}^{L/2}   \cos^2\left(x \frac{\pi}{L}\right) \cdot \sin \left(x \frac{\pi}{L}\right) dx\right) dy \\
+\end{align*}
+
+But notice that the integral over $x$ vanishes because we are integrating an odd function over a symmetrical interval. Thus, the entire term vanishes
+\[ \boxed{H_{aa} = 0} \]
+
+\vskip 0.25cm
+Next, $H_{bb}$:
+\begin{align*}
+  H_{bb} &= \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2}  \psi_b^{*}(x, y) \hat{H}'(x, y) \psi_b(x, y) dx dy \\
+  &= \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2} \left[ \frac{2}{L} \sin\left(2 x \frac{\pi}{L}\right) \cos\left(y \frac{\pi}{L}\right)\right]^{*} \cdot \left[ \lambda E_1 \sin \left(x \frac{\pi}{L}\right) \sin \left( y \frac{\pi}{L} \right)  \right] \cdot \left[ \frac{2}{L} \sin\left(2 x \frac{\pi}{L}\right) \cos\left(y \frac{\pi}{L}\right) \right] dx dy \\
+\end{align*}
+
+However, notice that this is essentially the same integral as $H_{aa}$ but with $x$ and $y$ interchanged. This time, if we separate the double integral into the integral over $y$ and $x$, the integral over $y$ will vanish. So, 
+\[ \boxed{H_{bb} = 0} \]
+
+\vskip 0.25cm
+Finally, the cross term $H_{ab}$:
+\begin{align*}
+  H_{ab} &= \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2}  \psi_a^{*}(x, y) \hat{H}'(x, y) \psi_b(x, y) dx dy \\
+  &= \int_{-L/2}^{L/2}  \int_{-L/2}^{L/2} \left[ \frac{2}{L} \cos\left(x \frac{\pi}{L}\right) \sin\left(2 y \frac{\pi}{L}\right) \right]^{*} \cdot \left[ \lambda E_1 \sin \left(x \frac{\pi}{L}\right) \sin \left( y \frac{\pi}{L} \right)  \right] \cdot \left[ \frac{2}{L} \sin\left(2 x \frac{\pi}{L}\right) \cos\left(y \frac{\pi}{L}\right) \right] dx dy \\
+  &= \frac{4\lambda E_1}{L^2} \left[\int_{-L/2}^{L/2}  \cos\left( x \frac{\pi}{L} \right) \sin \left( x \frac{\pi}{L} \right) \sin \left( 2x \frac{\pi}{L} \right) dx\right] \cdot \left[\int_{-L/2}^{L/2} \sin\left(2y \frac{\pi}{L}\right) \sin\left(y \frac{\pi}{L}\right) \cos \left( y \frac{\pi}{L} \right) dy\right] \\
+\end{align*}
+
+This time the two integrals are non-zero. Using Mathematica, we find that each of the integrals has a value of $\frac{L}{4}$.
+
+\begin{align*}
+  \implies &H_{ab} = \frac{4 \lambda E_1}{L^2} \cdot \frac{L^2}{4^2} \\
+  \implies & \boxed{H_{ab}= \frac{\lambda E_1}{4}}
+\end{align*}
+
+Therefore, the first order corrections to the energy are 
+\begin{align*}
+  E_{\pm}^{(1)} &= \frac{1}{2} \left[ H_{aa} + H_{bb} \pm \sqrt{(H_{aa} - H_{bb})^2 + 4 \left| H_{ab} \right|^2 } \right] \\
+  &= \frac{1}{2} \left[ (0 + 0) \pm \sqrt{(0 - 0)^2 + 4\left( \frac{\lambda E_1}{4} \right)^2} \right] \\
+  &= \frac{1}{2} \left(\pm \sqrt{\frac{\lambda^2 E_1^2}{2^2}}\right) \\
+  &= \pm \frac{1}{2} \cdot \frac{\lambda E_1}{2} \\
+  &= \pm \frac{\lambda E_1}{4}
+\end{align*}
+
+\[ \boxed{ E_{\pm}^{(1)} = \pm \frac{\lambda E_1}{4} } \]
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 2: Degenerate Perturbation Theory for the 2D Harmonic Oscillator} 
+
+
+\begin{enumerate}[label=(\alph*)]
+  \item Derive $\hat{H}'\ket{n, n'}^{(0)}$ for arbitrary $n, n'$.
+  \item Using the solution from part (a), write the 3 by 3 $\mathbf{W}$ matrix in the space of $\ket{1, 1}^{(0)}, \ket{2, 0}^{(0)}, \ket{0, 2}^{(0)}$.
+  \item Solve for the corrections for the energy of these states at leading order in $\lambda$.
+  \item Compare these solutions to the exact result derived in class.
+  \item Find the "good" states of this system. In other words, find the linear combination of $\ket{1, 1}^{(0)}, \ket{2, 0}^{(0)}, \ket{0, 2}^{(0)}$ that diagonalizes $\hat{H}$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+The 2D Harmonic Oscillator has unperturbed hamiltonian 
+\[ \hat{H}_{HO}^{(0)} = \frac{1}{2m} \left( \hat{p}_x^2 + \hat{p}_y^2 \right)  + \frac{1}{2} m\omega^2 \left( \hat{x}^2 + \hat{y}^2 \right)\]
+
+% \vskip 0.25cm
+and the unperturbed states are given by 
+\[ \ket{n, n'}^{(0)} = \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b \]
+
+Also recall that the raising and lowering operators in the $x, y$ directions are given by 
+\begin{align*}
+  \hat{a}_{\pm} &= \frac{1}{\sqrt{2\hbar m \omega}} \left( \mp i\hat{p}_x + m\omega \hat{x} \right) \\
+  \hat{b}_{\pm} &= \frac{1}{\sqrt{2\hbar m \omega}} \left( \mp i\hat{p}_y + m\omega \hat{y} \right) 
+\end{align*}
+
+We consider the perturbation 
+\[ \hat{H}' =  \lambda m \omega^2 \hat{x} \hat{y} \]
+
+\vskip 0.5cm
+
+\begin{enumerate}[label=(\alph*)]
+  \item To derive $\hat{H}'\ket{n, n'}^{(0)}$, let's first write the perturbation in terms of the raising and lowering operators.
+
+  We can express the position operators in terms of the lowering and raising operators as 
+  \begin{align*}
+    \hat{x} &= \sqrt{\frac{\hbar}{2m\omega}} \left( \hat{a}_+ + \hat{a}_- \right) \\
+    \hat{y} &= \sqrt{\frac{\hbar}{2m\omega}} \left( \hat{b}_+ + \hat{b}_- \right) \\
+  \end{align*}
+
+  Now, 
+  \begin{align*}
+    \hat{H}' &=  \lambda m \omega^2 \hat{x} \hat{y} \\
+    &= \lambda m \omega^2 \cdot \frac{\hbar}{2 m \omega} \left( \hat{a}_+ + \hat{a}_- \right)\left( \hat{b}_+ + \hat{b}_- \right) \\
+    &= \frac{\lambda \omega \hbar}{2} \left( \hat{a}_{+} \hat{b}_{+} + \hat{a}_{+} \hat{b}_{-} + \hat{a}_{-} \hat{b}_{+} + \hat{a}_{-} \hat{b}_{-} \right)  
+  \end{align*}
+
+  
+  So, for arbitrary $n, n'$
+  \begin{align*}
+    \hat{H}' \ket{n, n'}^{(0)} &= \frac{\lambda \omega \hbar}{2} \left( \hat{a}_{+} \hat{b}_{+} + \hat{a}_{+} \hat{b}_{-} + \hat{a}_{-} \hat{b}_{+} + \hat{a}_{-} \hat{b}_{-} \right) \ket{n, n'}^{(0)} \\
+    &= \frac{\lambda \omega \hbar}{2} \left( \hat{a}_{+} \hat{b}_{+} + \hat{a}_{+} \hat{b}_{-} + \hat{a}_{-} \hat{b}_{+} + \hat{a}_{-} \hat{b}_{-} \right) \left( \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b \right) \\
+    &= \frac{\lambda \omega \hbar}{2} \left( \hat{a}_{+} \hat{b}_{+} \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b + \hat{a}_{+} \hat{b}_{-} \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b + \hat{a}_{-} \hat{b}_{+} \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b + \hat{a}_{-} \hat{b}_{-} \ket{n^{(0)}}_a \otimes \ket{n'^{(0)}}_b \right)  \\
+    &= \frac{\lambda \omega \hbar}{2} [ \sqrt{n+1}\ket{(n+1)^{(0)}} \otimes \sqrt{n'+1}\ket{(n'+1)^{(0)}} + \sqrt{n+1}\ket{(n+1)^{(0)}} \otimes \sqrt{n}\ket{(n'-1)^{(0)}} + \\
+    &\sqrt{n}\ket{(n-1)^{(0)}} \otimes \sqrt{n'+1}\ket{(n'+1)^{(0)}} + \sqrt{n}\ket{(n-1)^{(0)}} \otimes \sqrt{n'}\ket{(n'-1)^{(0)}} ] \\
+  \end{align*}
+
+  Thus, we obtain The following expression:
+
+  \begin{equation*}
+\boxed{    \resizebox{\textwidth}{!}
+    {$ \hat{H}' \ket{n, n'}^{(0)} = \frac{\lambda \omega \hbar}{2}  \left[\sqrt{(n+1)(n'+1)}\ket{n+,n'+1}^{(0)} + \sqrt{(n+1)(n)}\ket{n,n'-1}^{(0)} + \sqrt{(n)(n'+1)}\ket{n-1,n'}^{(0)} + \sqrt{(n)(n')}\ket{n-1,n-1'}^{(0)}\right] $
+    }}
+  \end{equation*}
+
+  \vskip 0.5cm
+  \item Now, we want to find the $3 \times 3$ matrix $\mathbf{W}$ in the space of $\ket{1,1}^{(0)}, \ket{2,1}^{(0)}, \ket{0,2}^{(0)}$.
+  
+  \vskip 0.5cm
+  Looking at the result obtained in part (a), we see that the diagonal entries of $\mathbf{W}$ are all zero when we apply the bra $ \tensor[^{(0)}]{\bra{n, n'}}{}$ to $\hat{H}'\ket{n,n'}^{(0)}$, because each of term in the expression obtained in part (a) either raises or lowers the state each of the $x, y$ states.
+
+  \vskip 0.5cm
+  The only non-zero entries are 
+  \begin{align*}
+    \tensor[^{(0)}]{\bra{1,1}}{}\hat{H}'\ket{2,0}^{(0)}, \tensor[^{(0)}]{\bra{1,1}}{}\hat{H}'\ket{0,2}^{(0)}, \tensor[^{(0)}]{\bra{2,0}}{}\hat{H}'\ket{1,1}^{(0)}, \tensor[^{(0)}]{\bra{0,2}}{}\hat{H}'\ket{1,1}^{(0)} 
+  \end{align*}
+  
+  Now, writing out only the non-zero terms, we have
+  \begin{align*}
+    \tensor[^{(0)}]{\bra{1,1}}{}\hat{H}'\ket{2,0}^{(0)} &= \frac{\lambda \omega 
+    \hbar }{2} \left[ \inner{1,1}{\sqrt{2 \cdot 1}|1,1}  \right] \\
+    &= \frac{\lambda \omega \hbar}{2} \cdot \sqrt{2} \cdot 1 \\
+    &= \frac{\lambda \omega \hbar}{\sqrt{2}}\\
+  \end{align*}
+
+  Calculating the other non-zero matrix entires, we find that they're all equal to the same value $\frac{\lambda \omega \hbar}{\sqrt{2}}$.
+
+  Therefore, the $3 \times 3$ matrix is given by 
+  \[ \mathbf{W} = \begin{pmatrix}
+    0 & \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 \\
+    \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 & \frac{\lambda \omega \hbar}{\sqrt{2}} \\
+    0 & \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 \\
+  \end{pmatrix} \]
+
+  where the columns ( rows ) are along $\ket{2,0}$, $\ket{1,1}$, and $\ket{0,2}$ from left to right ( up to down ) respectively.
+
+  \vskip 0.5cm
+  \item Now, let $E^{(1)}$ denote the possible energy corrections. We obtain the value(s) of $E^{(1)}$ and the corresponding states by solving the Eigenvalue problem
+
+  \begin{align*}
+    &\begin{pmatrix}
+      0 & \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 \\
+      \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 & \frac{\lambda \omega \hbar}{\sqrt{2}} \\
+      0 & \frac{\lambda \omega \hbar}{\sqrt{2}} & 0 \\
+    \end{pmatrix} \begin{pmatrix}
+      \alpha \\
+      \beta \\
+      \gamma 
+    \end{pmatrix} = E^{(1)} \begin{pmatrix}
+      \alpha \\
+      \beta \\
+      \gamma 
+    \end{pmatrix} 
+  \end{align*}
+  \[ \implies \left(\mathbf{W} - E^{(1)} \mathbf{I}_{3}\right)\begin{pmatrix}
+    \alpha \\
+    \beta \\
+    \gamma 
+  \end{pmatrix} =  0 \]
+
+  \[ \implies \begin{pmatrix}
+    -E^{(1)} & \delta & 0 \\
+    \delta & -E^{(1)} &  \delta  \\
+    0 &  \delta  & -E^{(1)} \\
+  \end{pmatrix} \begin{pmatrix}
+    \alpha \\
+    \beta \\
+    \gamma 
+  \end{pmatrix} = \mathbf{0}  \]
+
+  where $\delta = \frac{\lambda \omega \hbar}{\sqrt{2}}$. This equation holds only if 
+  \[ \text{det}\begin{pmatrix}
+    -E^{(1)} & \delta & 0 \\
+    \delta & -E^{(1)} &  \delta  \\
+    0 &  \delta  & -E^{(1)} \\
+  \end{pmatrix} = 0\]
+  which means 
+  \begin{align*}
+    &-E^{(1)}(\delta^2 - {E^{(1)}}^2) - \delta(-\delta E^{(1)}  - 9) + 0 = 0\\
+    \implies& - E^{(1)}(\delta^2 - {E^{(1)}}^2) + \delta E^{(1)} = 0 \\
+    \implies& E^{(1)} \left[ 2 \delta - {E^{(1)}}^2 \right] = 0 \\
+    \implies& \boxed{E^{(1)} = 0, E^{(1)} = + \sqrt{2} \delta, E^{(1)} = - \sqrt{2}\delta}
+  \end{align*}
+
+  Thus the energy corrections in the first order of $\lambda$ are 
+  \begin{align*}
+    E^{(1)} &= +\lambda \omega \hbar \\
+    E^{(1)} &= 0 \\
+    E^{(1)} &= -\lambda \omega \hbar \\
+  \end{align*}
+
+  % We can find the corresponding states to which these corrections apply. Doing so, we find
+
+  \item In class, we derive the \emph{exact energies} to be 
+  \[ E_{n,n'} = \left( n + \frac{1}{2} \right) \hbar\omega \left( 1 + \lambda \right)^{1/2} + \left( n' + \frac{1}{2} \right) \hbar\omega \left( 1 - \lambda \right)^{1/2} \]
+  and expanding to first order in $\lambda$, we found 
+  \[ E_{n,n'} = E_{n,n'}^{(0)} + (n - n') \frac{\hbar \omega \lambda}{2} + \mathcal{O}(\lambda^2) \]
+
+  Then, the exact energies for $\ket{2,0}$, $\ket{1,1}$, and $\ket{0, 2}$ states are 
+  \vskip 0.25cm
+  \begin{align*}
+    E_{2, 0} &= E_{2, 0}^{(0)} + \underbrace{2 \frac{\lambda \omega 
+    \hbar}{2}}_{E_{2, 0}^{(1)} = +\lambda \omega \hbar} \\
+    E_{1,1} &= E_{1,1}^{(0)} + \underbrace{0}_{E_{1,1}^{(1)} = 0} \\
+    E_{0,2} &= E_{0,2}^{(0)} - \underbrace{2 \frac{\lambda \omega 
+    \hbar}{2}}_{E_{0,2}^{(1)} = -\lambda \omega \hbar} \\
+  \end{align*}
+  Therefore, the corrections obtained from our solution to the first-order perturbation match exactly with the exact solution up to leading order in $\lambda$.
+
+  \item Next, we want to find the "good states" for this system i.e. a linear combination of $\ket{1, 1}^{(0)}, \ket{2, 0}^{(0)}, \ket{0, 2}^{(0)}$ that diagonalizes $\hat{H}$.
+  
+  We do so by finding the corresponding egenstates to the energy corrections found in part (d). The states corresponding to the corrections $0, +, -$ are 
+
+  \begin{align*}
+    &\frac{1}{\sqrt{2}} \left( \ket{2, 0} - \ket{0, 2} \right) \\
+    &\frac{1}{\sqrt{2}} \left( \ket{2, 0} + \sqrt{2}\ket{1,1} \ket{0, 2} \right) \\
+    &\frac{1}{\sqrt{2}} \left( \ket{2, 0} - \sqrt{2}\ket{1,1} + \ket{0, 2} \right) \\
+  \end{align*}
+  These are the good states. (Didn't have enough time to type in the algebra. apologies.)
+\end{enumerate}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+\pagebreak
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question : } 
+\section*{Question 3: The Stark Effect} 
+
+We have the following modification to the Hamiltonian 
+\[ \hat{H}' = eE_0 \hat{z} \]
+
+and we want to 
+\begin{enumerate}[label=(\alph*)]
+  \item Find the "good states" and energy corrections for the $n = 2$ states.
+  \item Construct a Hermitian operator $\hat{A}$ such that 
+  \[ \left[\hat{H}_0, \hat{A}\right] = \left[\hat{H}', \hat{A}\right] = 0  \]
+  and reconcile this with the solutions found in part $(a)$.
+  \item Explain what would change if we kept track of the electron's spin.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+Recall that the unperturbed solutions for the Hydrogen atom can be written in teh $\ket{nlm}$ basis and have unperturbed energies given by 
+\[ E_n^{(0)} = \frac{E_1^(0)}{n^2} \]
+where $E_1^{(0)} = -\frac{m_e}{2\hbar^2} \left( \frac{e^2}{4\pi \epsilon_0}\right)^2$
+
+\begin{enumerate}[label=(\alph*)]
+  \item The $n=2$ state has four-fold degeneracy since there are four eigenstates $\ket{n = 2,l,m}$ corresponding to the same energy $E_2$. Since we're only considering the $n=2$ states, let's just label the states with $l,m$. The degenerate state, written in the position basis, are 
+  \begin{align*} 
+    &\inner{x \;}{l = 0, m = 0} = \psi_{00}(x) = \\
+    &\inner{x \;}{l = 1, m = 1} = \psi_{10}(x) = \\
+    &\inner{x \;}{l = 1, m = 0} = \psi_{01}(x) = \\
+    &\inner{x \;}{l = 1, m = -1} = \psi_{1-1}(x) = \\
+  \end{align*} 
+
+  To calculate the first-order energy corrections, we need to find the $4 \times 4$ matrix with matrix elements $\inner{l,m}{\hat{H}'| l', m'}$. But notice! The Perturbation has azimuthal symmetry since it only has dependence on $r, \theta$ and \emph{not} $\phi$. As a result, $\inner{l,m}{\hat{H}'| l', m'} = 0$ unless $m = m'$. Further, $\hat{H}' = eE_0 \hat{z} = eE_0 (r\cos(\theta))$ has odd parity. Hence, it gives non-zero values only for $l = 0, l = 1$.
+ 
+\vskip 0.5cm 
+Therefore, the only non-zero values in the matrix are $\inner{0, 0}{\hat{H}'|1, 0}$ and its conjugate $\inner{1, 0}{\hat{H}'|0, 0}$
+
+Carrying out the calculation, we find 
+\begin{align*}
+  \inner{2, 0, 0}{r\cos(\theta)|2, 1, 0} &= \frac{\sqrt{3}}{4\pi} \cdot \frac{1}{\sqrt{12}a_0^3} \frac{1}{2a_0}2\pi \int_{0}^{\infty} \left( 1 - \frac{r}{2a_0} \right) r^4 e^{-4/a_0} \int_{0}^{\pi} \cos^2(\theta) \sin(\theta) d\theta \\
+  &\text{(Skipping algebra because there's no time to type it out)} \\
+  &= -3a_0
+\end{align*}
+
+So, the perturbation matrix is 
+\[ \mathbf{W} = e E_0 \begin{pmatrix}
+  0 & -3a_0 & 0 & 0 \\
+  -3a_0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 \\
+\end{pmatrix} \]
+
+We find the eigenvalues for this operator to be 
+\[ \Delta = \pm 3eE_0 a_0 \]
+
+The corresponding eigenstates can be found to be 
+\begin{align*}
+  \psi_{+} &= \frac{1}{\sqrt{2}} \left( \ket{2, 0, 0} + \ket{2, 1, 0} \right) \\
+  \psi_{+} &= \frac{1}{\sqrt{2}} \left( \ket{2, 0, 0} - \ket{2, 1, 0} \right) 
+\end{align*}
+
+\item The operator $A$ is the operator 
+\[ \frac{1}{\sqrt{2}}\begin{pmatrix}
+  1 & 1 \\
+  1 & -1 \\
+\end{pmatrix} \]
+in the basis of $\ket{2,0,0}, \ket{2,1,0}$. This operator is spanned by $\psi_+, \psi_-$ which are eigenstates of the perturbation as found in part (a), but are also eigenstates of the unperturbed hamiltonian because they are linear combinations of $\ket{2,0,0}$ and $\ket{2,1,0}$ which are themselves solutions of the unperturbed hamiltonian with the same energy.
+
+\item So far we ignored the spin. However, the electron is really a spin-1/2 particle so there's an extra level of degeneracy. Each of the unperturbed eigenstates is really two degenerate states - one with spin up and the other with spin down.
+
+In order to account for the effects of spin, we have to add extra terms. In particular, we need to account for Spin-Coupling, the Zeeman Effect, and the Darwin effect.
+\end{enumerate}
+
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 4: Feynman-Hellman Theorem} 
+
+Consider a Hamiltonian $\hat{H}$ that depends linearly on an external parameter $\lambda$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Prove the Feynman-Hellman Theorem, which states 
+  \[ \restr{\frac{\partial E_n(\lambda)}{\partial \lambda}}{\lambda = 0} =  \langle \psi_n(0) \left| \frac{\partial \hat{H}}{\partial \lambda} \right| \psi_n(0)  \rangle \]
+  \item Explain how this can be reconciled with the leading order correction obtained in perturbation theory.
+  \item Using a similar trick, derive the second order correction i.e. what we called $E_n^{(2)}$ in class. Clearly explain the assumptions made.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+alph\begin{enumerate}[label=(\alph*)]
+  \item Consider a hamiltonian $\hat{H}$ that depends linearly on $\lambda$. The Schroedinger equation states 
+  \[ \hat{H}(\lambda)  \ket{\psi_n(\lambda)} = E_n(\lambda) \ket{\psi_n(\lambda)} \]
+  Taking the inner product on both sides with $\bra{\psi_n(\lambda)}$, we get 
+  \begin{align*}
+    \bra{\psi_n(\lambda)} \hat{H}(\lambda)  \ket{\psi_n(\lambda)} &= E_n \inner{\psi_n(\lambda)}{\psi_n(\lambda)} \\
+    &= E_n
+  \end{align*}
+  assumng the states are normalized. 
+
+  Then, differentiating with respect to $\lambda$, we get 
+  \begin{align*}
+    \frac{\partial E_n}{\partial \lambda} &= \frac{\partial }{\partial \lambda} \inner{\psi_n(\lambda)}{\hat{H}(\lambda)|\psi_n(\lambda)} \\ 
+    &= \inner{\frac{\partial \psi_n}{\partial \lambda}}{\hat{H}(\lambda) | \psi_n(\lambda)} + \inner{\psi_n}{ \frac{\partial \hat{H}}{\partial \lambda} | \psi_n} + \inner{\psi_n}{\hat{H}(\lambda) | \frac{\partial \psi_n}{\partial \lambda}} \\
+    &= E_n \inner{\frac{\partial \psi_n}{\partial \lambda}}{\psi_n} + \inner{\psi_n}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n} + E_n \inner{\psi_n}{\frac{\partial \psi_n}{\partial \lambda}} \\
+    &= \inner{\psi_n}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n} + E_n \inner{\frac{\partial \psi_n}{\partial \lambda}}{\psi_n} + E_n \inner{\psi_n}{\frac{\partial \psi_n}{\partial \lambda}} \\
+    &= \inner{\psi_n}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n} + E_n\left( \inner{\frac{\partial \psi_n}{\partial \lambda}}{\psi_n} + \inner{\psi_n}{\frac{\partial \psi_n}{\partial \lambda}}\right) \\
+    &= \inner{\psi_n}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n} + E_n \frac{\partial}{\partial \lambda} \left( \inner{\psi_n}{\psi_n} \right) \\
+    &= \inner{\psi_n}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n} + E_n \underbrace{\frac{\partial}{\partial \lambda} \left( 1 \right) }_{ = 0}\\
+    &= \inner{\psi_n(\lambda)}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n(\lambda)}
+  \end{align*}
+  Therefore, taking the limit $\lambda \rightarrow 0$ we get 
+  \[ \boxed{ \restr{\frac{\partial E_n}{\partial \lambda}}{\lambda = 0} = \inner{\psi_n(0)}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n(0)}} \]
+
+  \vskip 0.5cm
+  \item In class, we found the leading order correction to energy as 
+  \[ E^{(1)} = \inner{\psi_n^{(0)}}{\hat{H}'|\psi_n^{(0)}} \]
+
+  We reconcile this with the Feynman-Hellman Theorem as if we expand the eigenstate and eigenenergies in terms of $\lambda$
+  \begin{align*}
+    E_n &= \sum_{k = 0}^{\infty} \lambda^k E^{(k)} \\
+    \ket{n} &= \sum_{k = 0}^{\infty} \lambda^k \ket{n^{(k)}} \\
+  \end{align*}
+
+  and write the Hamiltonian as 
+  \[ \hat{H} = \hat{H}_0 + \lambda \hat{H}' \]
+  since it depends linearly on $\lambda$, then 
+  \begin{align*}
+    \restr{\frac{\partial E_n}{\partial \lambda}}{\lambda = 0} &= \frac{\partial}{\partial \lambda} \restr{\left( E^{(0)} + \lambda E^{(1)} + \lambda^2 E^{(2)} + \cdots \right){\lambda = 0}}{\lambda = 0} \\
+    &= E^{(1)}
+  \end{align*}
+
+  and the Feynman-Hellman Theorem tells us that 
+  \begin{align*}
+    E_n^{(0)} = \restr{\frac{\partial E_n}{\partial \lambda}}{\lambda = 0} &= \inner{\psi_n(0)}{\frac{\partial \hat{H}}{\partial \lambda}|\psi_n(0)} \\
+    &= \inner{\psi_n(0)}{\frac{\partial }{\partial \lambda} (\hat{H}_0 + \lambda \hat{H}')|\psi_n(0)} \\
+    &= \inner{n^{(0)} + 0 \cdot n^{(1)} + 0 \cdot n^{(2)} + \cdots }{\hat{H}'| n^{(0)} + 0 \cdot n^{(1)} + 0 \cdot n^{(2)} + \cdots} \\
+    &= \inner{n^{(0)}}{ \hat{H}' | n^{(0)}}
+  \end{align*}
+  which matches up exactly with the expression we obtained for the first-order correction!
+  
+  \vskip 0.5cm
+  \item The expression for $E_n^{(2)}$ derived in class was 
+  \[ E_n^{(2)} = \sum_{k \neq n} \frac{\left|\inner{k^{(0)}}{\hat{H}'|n^{(0)}}\right|^2}{E_n^{(0)} - E_k^{(0)}} \]
+
+  Note that $\partial_{\lambda} \hat{H} = \partial_{\lambda} \left( \hat{H}_0 + \lambda \hat{H}' \right) = \hat{H'}$.
+
+%   Then, if we denote the matrix elements of $\hat{H}'$ by $\hat{V}_{ij} = \inner{i^{(0)}}{\hat{H}'|j^{(0)}}$ we have 
+%   \begin{align*}
+%     \hat{V}_{ij} &= \inner{i^{(0)}}{\hat{H}'|j^{(0)}} \\
+%     &= \inner{i^{(0)}}{\left(\partial_{\lambda} \hat{H}\right)|j^{(0)}} \\
+%     &= \bra{i^{(0)}} \partial_{\lambda} \left( \hat{H} \ket{j^{(0)}} \right) - \bra{i^{(0)}} \hat{H}\left(\partial_{\lambda} \ket{j^{(0)}}\right) \\
+%     &= \bra{i^{(0)}} \partial_{\lambda} \left( E_j \ket{j^{(0)} }\right) - \bra{ \hat{H} i^{(0)}} \left(\partial_{\lambda} \ket{j^{(0)}}\right) \\
+%     &= \partial_{\lambda} E_j \inner{i^{(0)}}{j^{(0)}} - E_i \inner{i^{(0)}}{\partial_{\lambda} j^{(0)}} \\
+%   \end{align*}
+  
+  Now, 
+  \begin{align*}
+    &\inner{m}{\partial_{\lambda} \hat{H}|n} + \inner{m}{\hat{H}| \partial_{\lambda} n} = \partial_{\lambda} E_n \inner{m}{n} + E_n \inner{m}{\partial_{\lambda} n}  \\
+    \implies&\inner{m}{\partial_{\lambda} \hat{H}|n} + \inner{\hat{H}m}{ \partial_{\lambda} n} = \partial_{\lambda} E_n \inner{m}{n} + E_n \inner{m}{\partial_{\lambda} n}  \\
+    \implies&\inner{m}{\partial_{\lambda} \hat{H}|n} + E_m \inner{m}{\partial_{\lambda} n} = \partial_{\lambda} E_n \delta_{mn} + E_n \inner{m}{\partial_{\lambda} n}  \\
+    \implies&\inner{m}{\partial_{\lambda} \hat{H}|n} = \partial_{\lambda} E_n \delta_{mn} +( E_n - E_m)\inner{m}{\partial_{\lambda} n}  
+  \end{align*}
+  where $E_n, E_m$ are the \emph{exact} eigenenergies and eigenstates rather than the unperturbed energies and states.
+
+  Thus, the matrix elements of $\hat{H}' = \partial_{\lambda} H$ are given by 
+  \[\boxed{ V_{mn} = \inner{m}{V|n} = \inner{m}{\partial_{\lambda} \hat{H}|n} = \partial_{\lambda} E_n \delta_{mn} +( E_n - E_m)\inner{m}{\partial_{\lambda} n }} \]
+
+  Therefore, when $m \neq n$, we have 
+  \begin{align*}
+    &V_{mn} = (E_n - E_m) \inner{m}{\partial_{\lambda} n} \\
+    \implies& \boxed{\inner{m}{\partial_{\lambda} n} = \frac{V_{mn}}{(E_n - E_m)}}
+  \end{align*}
+
+  and similarly, 
+  \[ \implies \boxed{\inner{\partial_{\lambda} m}{n} = \frac{V_{nm}}{(E_m - E_n)}} \]
+
+  When $n = m$, we simply have $V_nn = \partial_{\lambda} E_n$
+
+  We showed in part (a) that 
+  \[ \partial_{\lambda} E_{n} = V_nn = \inner{n}{\partial_{\lambda} \hat{H}|n} \]
+
+  Let's now differentiate the above equation \emph{again} with respect to $\lambda$. Then 
+  \begin{align*}
+    \partial^2_{\lambda} E_n &= \partial_{\lambda}\inner{n}{\partial_{\lambda} \hat{H}|n} \\
+    &= \inner{\partial_{\lambda} n}{\partial_{\lambda} \hat{H}|n} + \inner{n}{\partial^2_{\lambda} \hat{H}|n} + \inner{n}{\partial_{\lambda} \hat{H}| \partial_{\lambda}n }
+  \end{align*}
+  But recall that $\hat{H} = \hat{H}_0 + \lambda \hat{H}'$ so $\partial^2_{\lambda} \hat{H} = 0$. Then, we have just the two terms remaining.
+  \[ \partial^2_{\lambda} E_n  = \inner{\partial_{\lambda} n}{\partial_{\lambda} \hat{H}|n} + \inner{n}{\partial_{\lambda} \hat{H}| \partial_{\lambda}n } \]
+
+  Now, inserting unity, we have 
+  \begin{align*}
+    \partial^2_{\lambda} E_n  &= \sum_{m} \left(\inner{\partial_{\lambda} n}{m} \inner{m}{\partial_{\lambda} \hat{H} | m} \inner{m}{n} + \inner{n}{m}\inner{m | \partial_{\lambda} \hat{H}}{m} \inner{m}{\partial_{\lambda} n}\right) \\
+    &= \sum_{m \neq n} \left(\inner{\partial_{\lambda} n}{m} \inner{m}{\partial_{\lambda} \hat{H} | m} \inner{m}{n} + \inner{n}{m}\inner{m | \partial_{\lambda} \hat{H}}{m} \inner{m}{\partial_{\lambda} n}\right) \\
+    &+ \left(\inner{\partial_{\lambda} n}{n} \inner{n}{\partial_{\lambda} \hat{H} | n} \inner{n}{n} + \inner{n}{n}\inner{n | \partial_{\lambda} \hat{H}}{n} \inner{n}{\partial_{\lambda} n}\right) \\
+    &= 2 \sum_{m \neq n} \left( \frac{V_{nm}V_{mn}}{E_n - E_m} \right) + V_{nn}\left( \inner{\partial_{\lambda} n}{n} + \inner{n}{\partial_{\lambda} n} \right) \\
+    &= 2 \sum_{m \neq n} \left( \frac{V_{nm}V_{mn}}{E_n - E_m} \right)  + V_{nn} \underbrace{\delta_{\lambda} \left( \inner{n}{n} \right)}_{ = 0} \\
+    &= 2 \sum_{m \neq n} \left( \frac{V_{nm}V_{mn}}{E_n - E_m} \right) \\  
+    &= 2 \sum_{m \neq n} \left( \frac{\left|V_{mn}\right|^2}{E_n - E_m} \right) \\  
+  \end{align*}
+
+  Now, since $E_n$ is a power series in terms of $\lambda$ and the energy corrections,
+  \[ E_n = \sum_{k} \lambda^k E^{(k)} \]
+  we have 
+  \[ E^{(2)} = \frac{1}{2} \frac{\partial^2 E_n}{\partial \lambda^2} = \frac{1}{2} \partial^2_{\lambda} E_n \]
+
+  Therefore, the second-order correction is given by 
+  \[ E_{n}^{(2)} = \sum_{m \neq n} \frac{\left| \inner{m}{\hat{H}'|n} \right|^2}{E_n - E_m} \]
+  
+  This matches up with the result obtained in class.
+\end{enumerate}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 5: Conserved Quantities with Spin-Orbit Coupling}
+
+In quantum mechanics, when one says that the vector $\vec{J}$ is conserved, one means that for any state the system is in, the expectation values of the $3$ components of $\vec{J}$ are constant. This follows if these $3$ operators all commute with $\hat{H}'$. Show that for the Hydrogen atom with spin-orbit coupling, $\hat{H}' \propto \hat{\vec{L}} \cdot \hat{\vec{S}}, \hat{\vec{L}}$, and $\hat{\vec{S}}$ are not conserved but $\hat{\vec{J}}$ is conserved.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+For a Hydrogen atom with spin-orbit coupling, we have 
+\[ \hat{H}' \propto \vec{L} \cdot \vec{S} = \sum_i L_i S_i = L_x S_x + L_y S_y + L_z S_z \]
+
+% We know from earlier studies of the Hydrogen atom that the unperturbed hamiltonian $\hat{H}_0$ commutes with each of 
+
+Now, the operators $\vec{L}$ and $\vec{S}$ can be written as 
+\begin{align*}
+  \vec{L} &= \hat{L}_x + \hat{L}_y + \hat{L}_z \\ 
+  \vec{S} &= \hat{S}_x + \hat{S}_y + \hat{S}_z \\ 
+\end{align*}
+
+Let's consider the commutators of these operators with $\hat{H}'$.
+
+\begin{align*}
+  [\vec{L}, \hat{H}'] &= [\hat{L}_x + \hat{L}_y + \hat{L}_z, \hat{H}'] \\
+  &= [\hat{L}_x, \hat{H}'] + [\hat{L}_y, \hat{H}'] + [\hat{L}_z, \hat{H}'] 
+\end{align*}
+
+
+\subsection*{Commutator of $\vec{L}$ with $\hat{H}'$}
+Let's consider just the first commutator for now:
+\begin{align*}
+  [\hat{L}_x, \hat{H}']  &= [\hat{L}_x, \hat{L}_x\hat{S}_x + \hat{L}_y\hat{S}_y + \hat{L}_z\hat{S}_z] \\
+  &= [\hat{L}_x, \hat{L}_x\hat{S}_x] + [\hat{L}_x, \hat{L}_y\hat{S}_y] + [\hat{L}_x, \hat{L}_z\hat{S}_z] \\
+\end{align*}
+
+Now using the identity
+\[ [A, BC] = [A, B]C + B[A, C] \]
+
+we have 
+
+\begin{align*}
+  [\hat{L}_x, \hat{H}']  &= \underbrace{([L_x, L_x]S_x + L_x[L_x, S_x])}_{= 0} + \left( [L_x, L_y]S_y + L_y\underbrace{[L_x, S_y]}_{ = 0} \right) +  \left( [L_x, L_z]S_z + L_z\underbrace{[L_x, S_z]}_{ = 0} \right) \\
+  &= [L_x, L_y]S_y + [L_x, L_z]S_z 
+\end{align*}
+
+Recalling the commutation relations between Angular Momentum Operators, we have 
+\begin{align*}
+  [\hat{L}_x, \hat{H}']  &= (i\hbar L_z)S_y  + (-i\hbar L_y)S_z
+\end{align*}
+
+Carrying out the same procedure for the other commutators, we find 
+\begin{align*}
+  [\hat{L}_y, \hat{H}']  &= (-i\hbar L_z)S_x  + (-i\hbar L_x)S_z \\
+  [\hat{L}_z, \hat{H}']  &= (i\hbar L_y)S_x  + (i\hbar L_x)S_y \\  
+\end{align*}
+
+So, the total commutator is 
+\[ \boxed{ [\vec{L}, \hat{H}'] = (i\hbar L_z)S_y  + (-i\hbar L_y)S_z + (-i\hbar L_z)S_x  + (-i\hbar L_x)S_z +  (i\hbar L_y)S_x  + (i\hbar L_x)S_y } \]
+This commutator is non-zero, so the operator $\vec{L}$ does not commute with $\hat{H}'$, and thus is not conserved.
+
+\vskip 0.5cm
+\subsection*{Commutator of $\vec{S}$ with $\hat{H}'$}
+
+Since the spin operators follow exactly the same algebra as the orbtial angular momentum operators, and $\hat{H}' = \vec{L}\cdot \vec{S}$ is symmetrical in $\vec{L}$ and $\vec{S}$, we can find the commutator with $\vec{S}$ in exactly the same way
+
+\[ \boxed{ [\vec{S}, \hat{H}'] = (i\hbar L_y)S_z  + (-i\hbar L_z)S_y + (-i\hbar L_x)S_z  + (-i\hbar L_z)S_x +  (i\hbar L_x)S_y  + (i\hbar L_y)S_x  } \]
+
+This commutator is also non-zero, so $\vec{S}$ does not commute with $\hat{H}'$,and thus is not conserved.
+
+\vskip 0.5cm
+\subsection*{Commutator of $\vec{J} = \vec{L} + \vec{S}$ with $\hat{H}'$}
+
+Since $\vec{J} = \vec{L} + \vec{S}$, we obtain its commutator by simply adding the commutators of $\vec{S}$ and $\vec{L}$ with $\hat{H}$.
+
+\begin{align*}
+  [\vec{J}, \hat{H}'] &= [\vec{L}, \hat{H}'] + [\vec{S}, \hat{H}'] \\
+  &= \left[  (i\hbar L_z)S_y  + (-i\hbar L_y)S_z + (-i\hbar L_z)S_x  + (-i\hbar L_x)S_z +  (i\hbar L_y)S_x  + (i\hbar L_x)S_y \right] \\
+  &+ \left[ (i\hbar L_y)S_z  + (-i\hbar L_z)S_y + (-i\hbar L_x)S_z  + (-i\hbar L_z)S_x +  (i\hbar L_x)S_y  + (i\hbar L_y)S_x  \right] \\
+  &= 0
+\end{align*}
+
+Thus, the total angular momentum is conserved.
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+\pagebreak
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \textbf{Question :} 
+% \section*{Question : } 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Solution:}} 
+
+% \vskip 0.5cm
+
+
+% \vskip 0.5cm 
+% \hrule 
+% \vskip 0.5cm
+% % \pagebreak
+
+
+\end{document}

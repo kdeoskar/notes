@@ -1,0 +1,307 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture 8},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 8}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 2 - Degenerate Perturbation Theory Continued}
+
+\vskip 1cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time we considered a system with two-fold degeneracy i.e. two orthonormal states $\psi_a, \psi_b$ with the same energy $E$. The energies being the same causes our formula for the first-order correction obtained in non-degenerate PT to diverge.
+  \item However, we found that if we consider linear combinations of the degenerate states $\ket{\Psi}_{\pm} = \alpha \ket{\psi_a} + \beta \ket{\psi_b}$ and solve the eigenvalue problem 
+  \[ \mathbf{W} \cdot \mathbf{\vec{V}} = E^{(0)} \mathbf{\vec{V}} \] 
+  where 
+  \[ \mathbf{W} = \begin{pmatrix}
+    H_{aa}' & H_{ab}' \\
+    H_{ba}' & H_{bb}' \\
+  \end{pmatrix} \]
+  then we obtain $\alpha, \beta$ such that $\ket{\Psi}_{\pm}$ diagonalize the degenerate subspace and allow us to lift the degeneracy.
+
+  \vskip 0.5cm
+  \item We saw an example in the 2D Harmonic Oscillator, where we wrote the unperturbed hamiltonian in terms of raising and lowering operators as 
+  \[ \hat{H}_0 = \hbar \omega \left( \hat{a}_{+} \hat{a}_{-} + \hat{b}_{+} \hat{b}_{-} + 1 \right) \]
+  and then introduced the perturbation 
+  \[ \hat{H}' = \lambda m \omega^2 \hat{x} \hat{y}\]
+  
+  \item We were able to solve this problem exactly by changing to \emph{normal coordinates} and found the energy to be 
+  \[ E_{nn'} = \left( n + \frac{1}{2} \right) \hbar \omega \left( 1 + \lambda \right)^{1/2} +  \left( n' + \frac{1}{2} \right) \hbar \omega \left( 1 - \lambda \right)^{1/2}   \]
+\end{itemize}
+
+\vskip 0.5cm
+Today, we will solve for the first order correction using Perturbation Theory and check that it agrees with the exact solution.
+
+\vskip 1cm
+\subsection{Perturbation Theory approach to 2D Harmonic Oscillator}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item The perturbation $\hat{H}' = \lambda m\omega^2 \hat{x}\hat{y}$ can be written in terms of the raising and lowering operators as
+
+  \begin{align*}
+    \hat{H}' = \frac{\lambda \hbar \omega}{2} \left( \hat{a}_{+} + \hat{a}_{-} \right) \left( \hat{b}_{+} + \hat{b}_{-} \right)
+  \end{align*}
+  
+  
+  \item The unperturbed solutions can be written as 
+  \begin{align*}
+    \ket{n, n'}^{(0)} &= \ket{n^{(0)}}_a \otimes \ket{n'}^{(0)}_b \\
+    &= \frac{(\hat{a}_{+})^n}{\sqrt{n!}} \frac{(\hat{b}_{+})^{n'}}{\sqrt{(n')!}} \ket{00}^{(0)}
+  \end{align*}
+  where $\ket{00}^{(0)}$ is the unperturbed ground state.
+
+  \item These are all the tools we need to approach the problem. Let's now calculate the first order energy correction to the first excited state.  
+\end{itemize}
+
+\vskip 0.5cm
+Let's get to evaluating the $\mathbf{W}$ matrix.
+\begin{align*}
+  \mathbf{W} &= \begin{pmatrix}
+    \inner{10}{\hat{H}'|10} & \inner{10}{\hat{H}'|01} \\
+    \inner{01}{\hat{H}'|10} & \inner{01}{\hat{H}'|01} 
+  \end{pmatrix}
+\end{align*}
+
+\vskip 0.25cm
+The algebra here seems tedious but we can notice that the perturbation contains raising and lowering operators, which means the diagonal elements are all going to be zero.
+
+\vskip 0.25cm
+Further,
+\begin{align*}
+  \hat{H}' \ket{10} &= \frac{\hbar \omega}{2} \left( \hat{a}_{+} + \hat{a}_{-}  \right) \left( \hat{b}_{+} + \hat{b}_{-}  \right) \ket{10} \\
+  &= \frac{\hbar \omega}{2} \left( \hat{b}_{+} + \hat{b}_{-}  \right) \left( \sqrt{2}\ket{2 0} + \ket{00} \right) \\
+  &= \frac{\hbar \omega}{2} \left(\sqrt{2} \ket{2 1} + \ket{0 1}\right) 
+\end{align*}
+
+So, 
+\begin{align*}
+  \inner{10}{\hat{H}'|10} &= 0 \\
+  \inner{01}{\hat{H}'|10} &= \frac{\hbar \omega}{2} 
+\end{align*}
+
+Calculating the other column values, we find 
+\[ \mathbf{W} = \frac{\hbar \omega}{2} \begin{pmatrix}
+  0 & 1 \\
+  1 & 0
+\end{pmatrix}  \]
+
+Now that we've found $\mathbf{W}$, we can find the first-order energy corrections:
+
+\begin{align*}
+  E_0^{(1)} &= \frac{1}{2} \left[ H_{aa}' + H_{bb}' + \sqrt{(H_{aa}' - H_{bb}') + 4|E_{ab}'|^2}  \right] \\
+  &= \pm \frac{1}{2} \sqrt{4 \cdot \left( \frac{\hbar \omega}{2} \right)^2} \\
+  &= \pm \frac{\hbar \omega}{2} \lambda
+\end{align*}
+
+
+So the energy corrections to the first excited state are 
+\[ \boxed{E_{\pm}^{(1)} = \pm \frac{\hbar \omega}{2} \lambda} \]
+
+\vskip 0.5cm
+Let's now compare this result to the exact solution, which is given by 
+
+\[ E_{nn'} = \left( n + \frac{1}{2} \right) \hbar \omega \left( 1 + \lambda \right)^{1/2} +  \left( n' + \frac{1}{2} \right) \hbar \omega \left( 1 - \lambda \right)^{1/2}   \]
+
+\vskip 0.5cm
+So, the exact $\ket{01}$ energy is 
+\begin{align*}
+  E_{0,1} &= \left( 0 + \frac{1}{2} \right) \hbar \omega \underbrace{\left( 1 + \lambda \right)^{1/2}}_{=\left( 1 + \frac{\lambda}{2} + \cdots \right)} + \left( 1 + \frac{1}{2} \right) \hbar \omega \underbrace{\left( 1 - \lambda \right)^{1/2}}_{=\left( 1 - \frac{\lambda}{2} + \cdots \right)} \\
+  &= \left( 0 + \frac{1}{2} + 1 + \frac{1}{2} \right)\hbar \omega + \lambda \left( \frac{1}{4} - \frac{1}{2} - \frac{1}{4} \right) \hbar \omega + \mathcal{O}(\lambda^2) \\
+  &\approx \underbrace{2\hbar \omega}_{=E_{01}^{(0)}} - \underbrace{\frac{\hbar \omega}{2} \lambda }_{E_{01,(-)}^{(1)}}
+\end{align*}
+
+and this matches up with the result we using the $\mathbf{W}$ matrix. Similiarly, we can check that the results match up for the $\ket{10}$ energy correction, or more generally the $\ket{n,n'}$ correction.
+
+\vskip 0.25cm
+For the $\ket{n,n'}$ case, we have 
+\begin{align*}
+  E_{n,n'} &= \left( n + \frac{1}{2} \right) \hbar \omega \underbrace{\left( 1 + \lambda \right)^{1/2}}_{=\left( n' + \frac{\lambda}{2} + \cdots \right)} + \left( 1 + \frac{1}{2} \right) \hbar \omega \underbrace{\left( 1 - \lambda \right)^{1/2}}_{=\left( 1 - \frac{\lambda}{2} + \cdots \right)} \\
+  &= \left( n + \frac{1}{2} + n' + \frac{1}{2} \right)\hbar \omega + \lambda \left( \frac{n}{2} \frac{1}{4} - \frac{n'}{2} - \frac{1}{4} \right) \hbar \omega + \mathcal{O}(\lambda^2) \\
+  &\approx \underbrace{(n + n' + 1)\hbar \omega}_{=E_{n,n'}^{(0)}} - \underbrace{(n - n')\frac{\hbar \omega}{2} \lambda }_{E_{n,n'}^{(1)}}
+\end{align*}
+
+\begin{dottedbox}
+  \emph{Note:} If the states $\ket{a}, \ket{b}$ are degenerate \emph{but still} give us a $\mathbf{W}$ matrix whose off diagonals are trivial, 
+  \[ \mathbf{W} = \begin{pmatrix}
+    H_{aa}' & 0 \\
+    0 & H_{bb}'\\
+  \end{pmatrix} \]
+
+  then the eigenvalue problem is solved by default! The $\ket{a}-$state energy correction and the $\ket{b}-$state energy correction are simply $H_{aa}'$ and $H_{bb}'$
+  \begin{align*}
+    E_{a}^{(1)} &= H_{aa}' \\
+    E_{b}^{(1)} &= H_{bb}' 
+  \end{align*}
+
+  In other words, the basis we started off with was already the "good" basis! We didn't need to solve the Eigenvalue problem to find a different degenerate-eigenspace-basis to diagonalize it.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Good States}
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $\ket{a}, \ket{b}$ are degenerate with respect to $\hat{H}$ and there exists a hermitian operator $\hat{A}$ such that 
+  \begin{enumerate}
+    \item The states $\ket{a}, \ket{b}$ are eigenstates of $\hat{A}$ with distinct eigenvalues ($a \neq b$)
+    \begin{align*}
+      \hat{A} \ket{a} = a \ket{a} \\
+      \hat{A} \ket{b} = b \ket{b} 
+    \end{align*}
+    and $\hat{A}$ commutes with the unperturbed hamiltonian as well as the perturbation,
+    \item 
+    \[ [\hat{A}, \hat{H}'] = [\hat{A}, \hat{H}_{0}] = [\hat{A}, \hat{H}] = 0 \]
+  \end{enumerate}
+  then the eigenvectors of $\hat{A}$ form a "good basis" to use in the perturbation theory.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} Let $\hat{H}(\lambda) = \hat{H}_0 + \lambda \hat{H}'$ and $\hat{A}$ commute.
+
+[Finish later]
+
+\end{document}

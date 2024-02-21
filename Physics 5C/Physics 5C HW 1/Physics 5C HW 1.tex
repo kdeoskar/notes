@@ -1,0 +1,492 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 5C: Introductory Thermodynamics and Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework #1: Due Date: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 \mid}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{1}{September 07}{Swapan Chatterji (Chattopadhyay)}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1.} 
+\\
+\\
+\textbf{Sol:} 
+
+\begin{enumerate}[label=(\alph*)]
+   \item The probability that life exists in a given Solar System is simply
+   \[ \boxed{p \cdot q \cdot r  = 10^{-6}} \]
+   \vskip 0.25cm
+
+   \item Next, we want to find the probability of life existing in \emph{at least} one solar system. First, let's consider the probability that life exists in \emph{no solar systems} i.e. there are no solar systems with life. 
+
+   The probability that a given solar system does not have life is 
+   \[ (1 - 10^{-6})\]
+
+   and we have $10^{11}$ independent solar systems. So, we have
+   \[ \mathbb{P}(\text{no solar systems with life}) = (1 - 10^{-6})^{10^{11}}\]
+   
+   Notice that 
+   \[ \Prob{\text{at least one system with life})} + \Prob{(\text{zero systems with life})} = 1 \]
+
+   So,
+   \[ \boxed{\Prob{\text{at least one system with life})} = 1 - (1 - 10^{-6})^{10^{11}} } \]
+
+   \emph{Note:} We can rewrite the expression $(1 - 10^{-6})^{10^{11}}$ as 
+   \[ \left(\left(1 - \frac{1}{10^{6}}\right)^{10^{6}}\right)^{10^{5}} \]
+   
+   And recognize that $\lim_{x \rightarrow \infty} \left( 1 - \frac{1}{x} \right)^x = \frac{1}{e}$, so because $10^6$ is an extremely large number we can write 
+   \[ \left(\left(1 - \frac{1}{10^{6}}\right)^{10^{6}}\right)^{10^{5}} \approx \left(\frac{1}{e}\right)^{10^{5}} \]
+
+   So,
+   \[ \boxed{\Prob{\text{at least one system with life})} \approx 1 - \left(\frac{1}{e}\right)^{10^{5}}} \]
+\end{enumerate}
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2.} 
+\\
+\\
+\textbf{Sol:} 
+
+\begin{enumerate}[label=(\alph*)]
+   \item What is the ratio of the two chambers' pressures?
+   
+   We know from the Ideal Gas law that $P_i V_i = N_i k_b T_i$ where the subscript $i=1,2$ denotes the two boxes. The two volumes are equal, so we have 
+   \[  \frac{P_1 V_1}{P_2 V_1} = \frac{N_1 k_b T_1}{N_2 k_b T_2} \]
+
+   So,
+   \[ \boxed{\frac{P_1}{P_2} = \frac{N_1 T_1}{N_2 T_2}} \]
+
+   \item If we remove the divider, the gasses will mix and exchange energy until the entire system attains an equilibrium temperature. Throughout this process, however, the total energy within the system (entire box) does not change. 
+   \\
+   \\
+   We know that the mean Kinetic Energy of a gas molecule is given by 
+   \[ \mean{E_{\text{KE}}} = \frac{3}{2}k_B T \]  
+
+   So, the mean Kinetic Energies of each box before we remove the divider are
+   \[ \mean{E_1} = \frac{3}{2}N_1 k_B T_1,\;\;\;\; \mean{E_2} = \frac{3}{2}N_2 k_B T_2\]
+   where we've multiplied the mean KE of a single molecule by the number of molecules in each box. Then, by conservation of energy, we have 
+   \[ \frac{3}{2}(N_1 + N_2) k_B T_{eq} = \frac{3}{2}N_1 k_B T_1 + \frac{3}{2}N_2 k_B T_2 \]
+   So,
+   \begin{align*}
+      &(N_1 + N_2)T_{eq} = N_1 T_1  +  N_2 T_2 \\
+      \implies & \boxed{T_{eq} = \frac{N_1 T_1  +  N_2 T_2}{(N_1 + N_2)} }
+   \end{align*}
+
+   \item Now, once the system has attained equilibrium, we can calculate the Pressure due to the mixed gas on the walls as 
+   \begin{align*}
+      P_{eq}(2V) &= (N_1 + N_2) k_B T_{eq} \\
+      \implies P_{eq} &= \frac{(N_1 + N_2) k_B T_{eq}}{2V} \\
+      \implies P_{eq} &= \frac{(N_1 + N_2) k_B}{2V} \cdot \frac{N_1 T_1  +  N_2 T_2}{(N_1 + N_2)} \\
+      \implies P_{eq} &= \frac{P_1 + P_2}{2}
+   \end{align*}
+
+   \item Once equilibrium has been attained, we have pressure and temperatures of $P_{eq}$ and $T_{eq}$. If we think of the left chamber during this final state, we have the following Ideal Gas Equation:
+   \[ P_{eq} V = (N) k_B T_{eq} \]
+   where $N$ is the total number of molecules in the left chamber at equilibrium.
+   \\
+   \\
+   Then, 
+   \begin{align*}
+      N &= \frac{P_{eq}V}{k_B T_{eq}} \\
+        &= \frac{(N_1 + N_2)k_B T_{eq}}{2V} \cdot \frac{V}{k_B T_{eq}} \\
+      \implies N &= \frac{(N_1 + N_2)}{2}
+   \end{align*}
+   Thus, the number of particles that must have moved from left to right is
+   \[ N_1 - \frac{N_1 + N_2}{2} = \frac{(N_2 - N_1)}{2} \]
+\end{enumerate}
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3.} 
+\\
+\\
+\textbf{Sol:} Assuming the gasses in the two chambers follow the Ideal Gas Law we know that, at each moment,
+\[ P_i V_i = N_i k_b T_i \] where the subscript $i$ tells us which box we are talking about (i = 1 for left, i = 2 for right).
+\\
+\\
+We know that the temperatures in the two chambers are maintained constant throughout the entire process, and since we are not removing the divider the number of particles in each chamber cannot change either. In other words, $N_i k_b T_i$ is constant for each box -- meaning that at each moment in time we must have $P_{i, t_1} V_{i, t_1} = P_{i, t_2} V_{i, t_2}$.
+\\
+\\
+So, $(4P_0)(L) = (P_{eq})(L')$ and $(P_0)(3L) = (P_{eq})(4L - L')$. So,
+\begin{align*}
+   P_0 (3L) &= P_{eq}(4L) - (4P_0)(L) \\
+   \implies 7P_0 L &= P_{eq} (4L)\\
+   \implies P_{eq} &= \frac{7}{4}P_0 
+\end{align*}
+So,
+\begin{align*}
+   (4P_0)(L) &= \frac{7}{4}P_0(L') \\
+   \implies L' &= \frac{16}{7}L
+\end{align*}
+Hence, the length of the left box is $\boxed{\frac{16}{7}L}$
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q4.} 
+\\
+\\
+\textbf{Sol:} 
+We have a collection of particles confined on a $2d$ (say, x-y) plane, each with mass $m$, which do not interact with each other.
+\begin{enumerate}[label=(\alph*)]
+   \item First off, we could arbitrarily switch our $x-y$ axes without changing the physical system, so we should have symmetric distributions in the $x$ and $y$ velocity components. That is,
+   \[ \boxed{F_x(v_x) = F_y(v_y)} \]
+
+   \item \underline{\textbf{Method 1:}}
+   \\
+   \\
+   Now, we want to find the probability density function of $v$, namely $F(v)$. Since $x$ and $y$ are independent random variables, we should have 
+   \[ F(v) = F(v_x)F(v_y) \]
+
+   Then 
+   \[ \ln(F(v)) = \ln(F(v_x)) + \ln(F(v_y)) \]
+
+   Let's assume that $\ln(F(v))$ can be written as a power series in $v$:
+   \[ \boxed{\ln(F(v)) = \sum_{n=0}^{\infty} C_n v^n = C_0 + C_1 v^1 + C_2 v^2 + \cdots} \]
+
+   Since we're looking for the probability density distribution of $v$, $\ln(F(v))$ should have no dependence on $v_x$ or $v_y$. 
+   \\
+   \\
+   So, the only term we can guarantee to be non-zero right now is $C_0$. However, we can get more compllete information by considering the partial derivatives with respect to $v_x$ and $v_y$.
+   \\
+   \\
+   If we take $\frac{\partial}{\partial x}$ of $\ln(F(v))$, we should obtain a function with only $v_x$ dependence, and similarly with $v_y$.
+   \begin{align*}
+      \frac{\partial \ln(F(v))}{\partial x} &= \sum_{n = 0}^{\infty} C_n \cdot nv^{n-1} \cdot \frac{\partial v}{\partial  v_x} \\
+      &= \sum_{n = 0}^{\infty} C_n \cdot nv^{n-1} \cdot C\frac{v_x}{v} \\ 
+      &= \sum_{n = 0}^{\infty} C_n \cdot nv^{n-2} \cdot v_x
+   \end{align*}
+   So,
+   \[ \boxed{ \frac{\partial \ln(F(v))}{\partial x} = 0 + C_1 \frac{v_x}{v} + C_2 (2v_x) + C_3 (3V \cdot v_x) + \cdots} \]
+   
+   But recall that $\frac{\partial (\ln(F(v)))}{\partial v_x}$ should only depend on $v_x$. Thus, the only terms in this sum that can be non-zero are $C_0$ and $C_2$. 
+   \\
+   \\
+   Carrying out a similar procedure with $v_y$, we again see that the only non-zero coefficients are $C_0$ and $C_2$.
+   \\
+   \\
+   Thus,
+   \begin{align*}
+      \ln(F(v)) &= C_0 + C_2 v^2 \\
+      \implies F(v) &= e^{C_0 + C_2 v^2}
+   \end{align*}
+   So,
+   \[ \boxed{F(v) = C^{'}_1e^{C^{'}_2 v^2}} \]
+
+   This makes sense, since this is consistent with our expectation that $F(v)$ should follow the Maxwell-Boltzmann Distribution -- which is a Gaussian.
+   \\
+   \\
+   \underline{\textbf{Method 2:}}
+   \\
+   \\
+   We know from part (a) that $F_x(v_x) = F_y(v_y)$. If we consider one particle vs. the entirety of the remaining collection, it can be considered as a \textbf{canonical ensemble} in which the singular particle under consideration is the system and the rest of the collection is the reservoir. 
+   \\
+   \\
+   Then, we know that the distribution of a given microstate $r$ with energy $E_r$ is 
+   \[ \Prob{\text{microstate r}} \propto e^{-E_r / k_B T} \]
+
+   The energy associated with a particle whose x-velocity is $v_x$ is $\frac{1}{2}mv^2_x$, so 
+   \[ \Prob{v_x} \propto e^{-mv^{2}_{x}/2k_B T}\]
+
+   The same goes for the probability distribution of $v_y$.
+   \[ \Prob{v_y} \propto e^{-mv^{2}_{y}/2k_B T} \]
+
+   Then, the distribution of particles with velocities between $(v_x, v_y)$ and $(v_x + dv_x, v_y + dv_y)$ is 
+   \[ \propto e^{-m(v_x^2 + v_y^2)/2k_B T} = e^{-mv/2k_B T} \]
+
+   Thinking in terms of the velocity space, the region consisting of particles with these velocities is a disc of area $2\pi v dv$, so, finally, we have 
+   \[ \Prob{v} \propto v dv e^{-m(v_x^2 + v_y^2)/2k_B T} = e^{-mv/2k_B T} \]
+
+   To normalize this function so that the integral from $0$ to $\infty$ is equal to 1, we must evaluate 
+   \[ \int_{0}^{\infty} v dv e^{-mv/2k_B T} = \]
+   
+\end{enumerate}
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q5.} A system of $n$ atoms, each of which can only have zero or one quanta of energy. How many ways can you arrange $r$ quanta of energy when
+\begin{enumerate}[label=(\alph*)]
+   \item $n = 2$, $r = 1$
+   \item $n = 20$, $r = 1$
+   \item $n = 2 \times 10^{23}$, $r = 10^{23}$
+\end{enumerate}
+
+\textbf{Sol:} If we have $n$ atoms which can have states $0$ or $1$, and we have a total of $r$ quanta (i.e. $r$ one's), the number of ways we can arrange the quanta is equal to 
+\[ \binom{n}{r} = \frac{n!}{k!(n-k)!} \]
+
+Evaluating this for each of the cases, we have 
+\begin{enumerate}[label = (\alph*)]
+   \item \[ \binom{2}{1} = \frac{2!}{1!(1)!} = \boxed{2} \]
+   
+   \item \[ \binom{20}{1} = \frac{20!}{1!19!} = \boxed{20} \]
+   
+   \item
+   \begin{align*}
+      \binom{(2\times 10^{23})!}{10^{23}!} &= \frac{(2\times 10^{23})!}{10^{23}!10^{23}!} \\
+                                           &= \frac{(2 \times 10^{23})!}{(10^{23}!)^2} 
+   \end{align*}
+   Since the numbers we're dealing with are big, we can use Stirling's Approximation
+   \[ \ln(n!) \approx n\ln(n) - n = n(\ln(n) - 1) \]
+   to estimate the answer:
+   \[ \ln((2\cdot10^{23})!) \approx (2\cdot10^{23})\left( \ln(2\cdot10^{23}) - 1 \right) \]
+   and 
+   \[ \ln((10^{23})!) \approx (10^{23})\left( \ln(10^{23}) - 1 \right) \]
+   So,
+   \begin{align*}
+      \frac{(2 \times 10^{23})!}{(10^{23}!)^2} &= \frac{e^{2\cdot 10^{23}(\ln(2\cdot 10^{23})-1)}}{(e^{10^{23}(\ln(10^{23})-1)})^2} \\
+                                               &= \frac{e^{2\cdot 10^{23}(\ln(2\cdot 10^{23})-1)}}{e^{2\cdot10^{23}(\ln(10^{23})-1)}} \\
+                                               &= \frac{e^{\ln(2\cdot 10^{23})-1}}{e^{\ln(10^{23})-1}} \\
+                                               &= e^{\ln(2\cdot10^{23}) - 1 - \ln(10^{23}) + 1} \\
+                                               &= e^{\ln(2)+\ln(10^{23})-\ln(10^{23})} \\
+                                               &= e^{ln(2)} \\
+                                               &= \boxed{2}
+   \end{align*}
+
+\end{enumerate}
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6.} What is the mass of 3 moles of $CO_2$?
+\\
+\\
+\textbf{Sol:} One mole of $O_2$ molecules has a mass of $16g$ and One mole of Carbon has a mass of $12g$. So, one mole of $CO_2$ has a mass of $2\cdot16 + 12 = 44g$. Thus, three moles of $CO_2$ have a total mass of $\boxed{132g}$.
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7.} 
+\\
+\\
+\textbf{Sol:} Stirling's Approximation allows us to approximate $\ln(n!)$ as 
+\[ \ln(n!) \approx n\ln(n) - n = n(\ln(n) - 1) \]
+
+\begin{enumerate}[label=(\alph*)]
+   \item So, using Stirling's Approximation, we have 
+   \begin{align*}
+      \ln(10!) &\approx 10(ln(10) - 1) \\
+              &= 13.02585093
+   \end{align*}
+   and value obtained by straightforward calculation is $\ln(10!) = 15.10441257$. So, the fractional error is 
+   \[ \frac{15.10441257 - 13.02585093}{15.10441257} = 0.1376128752\]
+   or $\boxed{\approx 13.76 \text{ percent}}$.
+
+   \item Now, we have 
+   \begin{align*}
+      \ln(50!) &\approx 50(ln(50) - 1) \\
+      &= 145.6011503
+   \end{align*}
+   and the value obtained by straightforward calculation is $ln(50!) = 148.477767$. So, the fractional error is 
+   \[ \frac{148.477767 - 145.6011503}{148.477767} = 0.01937405673\]
+   or $\boxed{\approx  1.94 \text{ percent}}$.
+
+   We observe a dramatic drop in the fractional error with increase in $n$. Our approximation gets better and better.
+\end{enumerate}
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8.} 
+\\
+\\
+\textbf{Sol:} Suppose the coin is biased more towards 'Heads' than 'Tails'. Then one way Alice might cheat Bob is my proposing that Alice's side be 'Heads', Bob's side be 'Tails', and with each coin toss the person whose side comes up 'wins' -- i.e. doesn't have to pay.
+\\
+\\
+A strategy Bob can employ to counter this is to propose that him and Alice switch sides every time. If the coin is fair, then it shouldn't matter who is assigned Heads and who is assigned Tails -- both of them will have a fifty-fifty chances of winning each time. 
+\\
+\\
+On the other hand, suppose the coin IS biased, say to Heads with probability $p$ and Tails with probability $1-p$. Suppose we keep track of the number of times Bob and Alice have won in $2k$ coin flips by giving them scores -- initially both zero -- and adding $1$ to it each time they win (and adding $0$ if they lose).
+\\
+\\
+Then, using the above strategy, Bob's expected score after $2k$ coin flips is 
+\[ \underbrace{k}_\text{Bob is heads} [p \cdot 1 + (1-p) \cdot 0] + \underbrace{k}_\text{Bob is tails} [(p-1)\cdot 1 + p \cdot 0] = k \]
+
+similarly, Alice's expected score after $2k$ coin flips is 
+\[ \underbrace{k}_\text{Alice is heads}[p \cdot 1 + (1-p) \cdot 0] + \underbrace{k}_\text{Alice is tails}[(p-1) \cdot 1 + p \cdot 0] = k \]
+
+That is, both of their expected scores are the same. We can expect each of them to win half of the time.
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+
+
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Chapter 1: Smooth Manifolds}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Topological Manifolds}{2}{subsection.1.1}%

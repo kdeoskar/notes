@@ -1,0 +1,308 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 18 - Topological Properties of Manifolds}
+\vskip 0.5cm
+
+\subsection{Connectivity}
+\vskip 0.5cm
+
+\textbf{Def:} A topologcial space $X$ is connected if $\emptyset, X$ are the only two subsets of $X$ which are both open and closed.
+
+\vskip 0.5cm
+\textbf{Path-connectedness:} If for any two points $p, q \in X$ there exsits a path i.e. a continuous map $\gamma : [0, 1] \rightarrow X$ with $\gamma(0) = p, \gamma(1) = q$ then $X$ is path-connected.
+
+\vskip 0.5cm
+In general, these are two distinct properties of topological spaces. For example, the Topologist's sine curve is connected but not path connected. However, for manifolds they do coincide.
+
+\vskip 0.5cm
+\underline{\textbf{Theorem:}} A top. manifold $M^n$ is connected if and only if it is path-connected.
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+\vskip 0.5cm
+The backwards direction holds for all topological spaces. Suppose $M$ not connected. Then, $M = U \coprod V$ where $U, V$ are open nonempty disjoint sets. Now if $M$ is path-connected then for any $p, q \in M$ there exists a path $\gamma : [0, 1] \rightarrow U \coprod V$ which is \textbf{continuous.} This would mean $[0, 1] = \gamma^{-1}(U) \coprod \gamma^{-1}(V)$ is disconnected, which is a contradiction.
+
+\vskip 0.5cm
+In the forwards Direction, fix a point $p \in M$ and let $U_p = \{ q \in M : \exists \text{path from p to q}\} \subseteq_{open} M$ and consider $U_p^{c} = M \setminus U_p$. Now, $U_p^c$ is also open. 
+
+\vskip 0.5cm
+\begin{dottedbox}
+  
+\underline{\textbf{Note:}} Why are $U_p$ and $U_p^c$ open sets? 
+
+Consider a point $q \in U_p$. Since $M$ is an $n-$ dimensional manifold, there is some chart $(U, \phi)$ around $q$ taking mapping $U$ to an open set $\tilde{U} \subseteq \mathbb{R}^n$. One can find a small open ball $B_{\phi(q)} \subseteq \tilde{V}$ containing $\phi(q)$ and any point in the open ball can be connected to $\phi(q)$ by a line segment. Thus, any point $w$ in $\phi^{-1}(B_{\phi(q)})$ can be connected to $q$, further meaning $w$ can be connected to $p$, and so $p \in U_p$. That is, $q \in \phi^{-1}(B_{\phi(q)}) \subset U_p$. Thus, $U_p$ is open.
+
+\vskip 0.5cm
+The exact same argument can be applied to $U_p^c$, meaning it is also an open set.
+\end{dottedbox}
+
+\vskip 0.5cm
+Of course, $M = U_P \coprod U_p^c$. If $U_q^c$ is non-empty, then $M$ is the union of two disjoint open sets, which contradicts its connectedness. Thus, it must be the case that $U_p^c = \emptyset, U_p = M$. Thus, $M$ is path-connected.
+
+$\qedsymbol$
+
+\vskip 1cm
+\subsection{Compactness and local compactness}
+\vskip 0.5cm
+
+\underline{\textbf{Def:}} A top. space $X$ is locally compact if every point has a neighborhood $U$ around it which is contained in a compact subset $U \subseteq K \subseteq X$.
+
+\vskip 0.5cm
+\underline{\textbf{Remark:}} If $X$ is also Hausdorff (If Hausdorff, compact $\implies$ closed) then $\underbrace{\bar{U}}_{\text{closed}} \subseteq \bar{K} = K$ so $\bar{U}$ is compact. (We say $U$ is \textbf{paracompact}.)
+% \printbibliography
+
+\vskip 0.5cm
+\underline{Examples of spaces not locally compact are} (Explain why...)
+\begin{itemize}
+  \item Infinte dimensional normed vector spaces.
+  \item $\mathbb{Q}$ with the subspace topology from $\mathbb{R}$.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{\textbf{Def:}} An \textbf{exhaustion} of a top. space $X$ by compact subsets is a sequence of compact subsets $K_1 \subseteq K_2 \subseteq K_3 \cdots$ satisfying
+\begin{enumerate}
+  \item $K_i$ is compact.
+  \item $X = \bigcup_{ i = 1}^{\infty} K_i$
+  \item $K_i \subseteq \text{Int}(K_{i+1})$  
+\end{enumerate}
+\vskip 0.5cm
+For example, the collection of closed balls $\overline{B_1(i)}, i \in \mathbb{N}$ is an exhaustion of $\mathbb{R}$.
+
+\vskip 1cm
+\underline{\textbf{Proposition:}} If $M^n$ is a topological manifold, $M$ is locally compact.
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} For any point $p \in M$, take a chart $(U, \phi)$ such that $p \in U$ and $\phi : U \rightarrow \mathbb{R}^n$ is a homeomorphism and such that $\phi(p) = 0$ (This can always be done since if $\phi(p) = a$ then we can just define a new function $\tilde{\phi}(p) = \phi(p) - a$). Now, let $r > 0$ be a real number such that $\phi^{-1}(B_r (0)) \subset U$ and, shrinking $r$ if necessary, that $\phi^{-1}(\overline{B_r (0)}) \subset U$. Note that the closed ball is compact in $\mathbb{R}^n$ since it is closed and bounded (Heine-Borel Theorem). 
+
+\vskip 0.5cm
+$\phi$ is a homeomorphism meaning both $\phi$ and $\phi^{-1}$ are continuous. Continuous maps between topological manifolds preserve openness and compactness. Thus, around each point $p \in M$ there is an open neighborhood $\phi^{-1}(B_r(0))$ contained within a compact set $\phi^{-1}(\overline{B_r(0)})$ so the manifold is locally compact.
+
+$\qedsymbol$
+
+\vskip 0.5cm
+\underline{\textbf{Prop A.60 From Lee:}} A Topological Space $X$ that is second-countable, locally compact, and Hausdorff has an exhaustion by compact sets.
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} Take $\mathcal B$ to be a countable basis for the topology on $X$ (guaranteed to exist by second countability). Now, reduce to subbasis $\mathcal{B}' \subseteq \mathcal{B}$ which is a countable bass of pre-compact (has compact closure) open sets. 
+
+\vskip 0.5cm
+How are we able to do this reduction? Given an open set $U_1 \ni p$, there exists nbd $V$ of $p$ such that $\bar[V]$ is closed (by local compactness). Now, $V \cap U$ is open so there exsits a basis element $B \subseteq \mathcal B$ such that $B \subseteq V \cap U$. Then, $\bar{B} \subseteq \underbrace{\bar{V}}_{\text{compact}}$ which imples that $\bar{B}$ is compact as well, so we place $B \in \mathcal{B}'$.
+
+\vskip 0.5cm
+Now, $\mathcal{B}' = \{\}$. To construct our exhaustion:
+\begin{enumerate}
+  \item Let $K_1 = \bar{B_1}$.
+  \item Choose $m2 > 1$ such that $K_1 \subseteq \underbrace{B_1 \cap \dots \cap B_{m_2}}_{open}$ (fintie lsit by compactness) and define $K_2 = \bar{B_1} \cap \dots \cap \bar{B_{m_2}}$.
+  \item Choose $m_3 > m_2$ such that $K_3 \subseteq B_1 \cap \dots \cap B_{m_3}$ (fintie lsit by compactness) and define $K_3 = \bar{B_1} \cap \dots \cap \bar{B_{m_3}}$. \\
+  \vdots
+\end{enumerate}
+Continue the same procedure inductively.
+
+$\qedsymbol$
+
+\vskip 1cm
+\subsection{Paracompactness}
+
+\vskip 0.5cm
+\underline{\textbf{Some more definitions:}} 
+\begin{itemize}
+  \item Let $X$ be a top. space, Then $\mathcal U \subseteq \mathcal P (X)$ is a \textbf{cover} of $X$ uf $X = \bigcup_{A \in \mathcal{U} A}$
+  \item $\mathcal U$ is said to be \textbf{locally finite} if for any point $p \in X$ there exists a neghborhood $W$ of $p$ such that $W$ nitersects only fintiely many $A \in \mathcal U$
+  \item $\mathcal V \subseteq \mathcal P(X)$ is said to be a \textbf{refinement} of $\mathcal{U}$ if for every $V \in \mathcal V$ there exists $U \subseteq \mathcal U$ such that $V \subseteq U$.
+  \item $X$ is \textbf{paracompact} if every open cover has a locally fintie open refinement.
+\end{itemize}
+
+\vskip 0.5cm
+We will show that all manifolds are paracompact. This is useful because paracompactness allows us to do some very nice things such as form partitions of unity.
+
+\vskip 1cm
+\underline{\textbf{Theorem 1.15 from Lee:}} Every topological manifold is paracompact. 
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} Given a manfold $M$ and an open cover $\mathcal U$, we take a compact exhaustion of $M$, $(K_i)_{i = 1}^{\infty}$. Then, we define the sets $V_j = K_{j+1} \setminus \text{Int} K_j$ (this set is compact) and $W_j = \text{Int} K_{j+2} \setminus K_{j-1}$.
+
+\vskip 0.5cm
+Consider $x \in V_j$ and pick $U_x \in \mathcal U$. Then, take $U_X \cap W_j$ (open since intersection of two open sets) and then note that if we do this for every $x \in V_j$ we obtain an open cover $\{ U_x \cap W_j \}_{x \in V_j}$ of $V_j$ which can be reduced to a finite subcover $A_j \subseteq \{ U_x \cap W_j \}_{x \in V_j}$.
+
+\vskip 0.5cm
+Now, let's call the countable union of all $A_j$'s as $\mathcal V$. Then, since each $A_j$ covers $V_j$ and $\{V_j\}$ covers the entire manifold, we have that $\mathcal V$ covers $M$. So, $\mathcal V$ is a refinement (it is locally fintie by construction since we cut out the parts of $U_x$ not contained in $W_j$).
+
+\vskip 1cm
+\subsection{Fundamental Groups of Manifolds} (This section from Lee is assigned as reading...)
+
+\vskip 0.5cm
+\underline{\textbf{Proposition 1.16 from Lee:}} The fundamental group of a topological manifold $M$ is countable.
+
+\vskip 1cm
+\subsection{Charts}
+
+\vskip 0.5cm
+Let $M^n$ be a topological manifold.
+\vskip 0.5cm
+
+\underline{\textbf{Def:}} A \textbf{coordinate chart} on $M$ is a pair $(U, \phi)$ where $U \subseteq M$ is an open subset and $\phi: U \rightarrow \hat{U} \subseteq \mathbb{R}^n$ is a homeomorphism.
+
+\vskip 0.5cm
+\underline{\textbf{Remarks:}}
+\begin{itemize}
+  \item By definition, \[ M = \bigcup_{ (U, \phi) \text{ coordinate charts}} U \]
+  
+  \item We often write 
+  \begin{align*}
+    \phi(p) &= \left( \phi^1(p), \dots, \phi^n(p) \right) \\
+    &= \left( x^1(p), \dots, x^n(p) \right)
+  \end{align*}
+  and we call $x^1(p), \dots, x^n(p) : U \rightarrow \mathbb{R}$ as \textbf{coordinate functions.}
+
+  \item $(U, \phi)$ gives a bijection $ U \rightarrow \hat{U} \subseteq \mathbb{R}^n$
+  
+  \item $(\phi^i)^{-1} : \hat{U} \rightarrow U$ are called local parameterizations.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{\textbf{Ex:}} The graph of a function. [Type later.]
+
+\vskip 1cm
+\subsection{More Examples}
+
+(Read about product manifolds, torii).
+
+Next time we will talk about spheres and torii, then move to smooth manifolds.
+
+\end{document}

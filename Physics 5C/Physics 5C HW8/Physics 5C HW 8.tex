@@ -1,0 +1,361 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 5C: Introductory Thermodynamics and Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework #1:\hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 \mid}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{8}{October 26}{Swapan Chatterji (Chattopadhyay)}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q1.} 
+
+The range of visible wavelengths of light is roughly $\lambda_1 = 400nm$ to $\lambda_2 = 700nm$. The energy carried by a photon of light with wavelength $\lambda$ is given by  
+\[ E = h\nu  = \frac{hc}{\lambda} \]
+
+Thus, the range of Photon Energies corresponding to visible wavelengths if $E_{min}$ up to $E_{max}$ where
+
+\begin{align*}
+   E_{min} &= \frac{hc}{\lambda_2} \\
+   &= \frac{(6.62607015 \times 10^{-34} J \cdot Hz^{-1})(299 792 458 m \cdot s^{-1})}{700 \times 10^{-9}m} \\
+   &= 2.8377798\times10^{-19} J \\
+   &\approx 1.77 eV
+\end{align*}
+
+and the energy corresponding to $400nm$ is
+
+\begin{align*}
+   E_{max} &= \frac{hc}{\lambda_1} \\
+   &= \frac{(6.62607015 \times 10^{-34} J \cdot Hz^{-1})(299 792 458 m \cdot s^{-1})}{400 \times 10^{-9}m} \\
+   &= 4.96611464\times10^{-19} J \\
+   &\approx 3.01 eV
+\end{align*}
+
+So, the range of Photon energies for visible light is roughly $[1.77, 3.01]$ eV.
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2.} 
+
+The De-Broglie wavelength, $\lambda$, of a free electron of mass $m_e$ possessing momentum $p$ is given by 
+\[ \lambda = \frac{h}{p} \]
+
+Since the electron is free, the Momentum Operator commutes with the Hamiltonian, so the electron has a well defined energy (only kinetic, since there is no potential) which is related to momentum as 
+\[ K = \frac{p^2}{2m_e} \]
+or 
+\[ p = \sqrt{2m_eK} \]
+
+Thus, the De-Broglie Wavelength of a free electron with Kinetic Energy $K$  is
+\[ \lambda = \frac{h}{(2m_eK)^{1/2}} \]
+
+The mass of an electron is $m_e = 9.10938356  \times 10^{-31} kg$, and Planck's constant is $6.62607015 \times 10^{-34} J \cdot s$, so
+\[ \frac{h}{(2m_e)^{1/2}} = \frac{6.62607015 \times 10^{-34} J \cdot s}{(2 \cdot  9.10938356  \times 10^{-31} kg)^{1/2}} = 4.90903962\times10^{-19} J \cdot s \cdot kg^{-1/2} \]
+
+So, the De-Broglie Wavelength in SI units is 
+\begin{align*}
+   \lambda &= \frac{4.90903962\times10^{-19}}{\sqrt{K}} \cdot J^{1/2} \cdot s \cdot kg^{-1/2} \\
+   &= \frac{4.90903962\times10^{-19}}{\sqrt{K}} \cdot \frac{s \cdot kg^{-1/2}}{J^{-1/2}}
+\end{align*}
+
+The units work out to give back meters, $m$, since 
+\[ \frac{s \cdot kg^{-1/2}}{J^{-1/2}} = \frac{s \cdot kg^{-1/2}}{(kg \cdot m^2\cdot s^{-2})^{-1/2}} = m\]
+
+Now, replacing one joule, $1 J$, with the equivalent number of Electron Volts, which is $6.2415 \times 10^{18}$, should leave everything unchanged. So,
+
+\[ \lambda = \frac{4.90903962\times10^{-19}}{\sqrt{K}} \cdot \frac{s \cdot kg^{-1/2}}{(6.2415 \times 10^{18} eV)^{-1/2}} \]
+
+and the wavelength obtained above is in meters, so for the answer to be in nanometers, we should multiply further by $10^9$, so that finally, the wavelength is given by 
+
+\begin{align*}
+   \lambda &= \frac{4.90903962\times10^{-19} \cdot 10^9}{(6.2415 \times 10^{18})^{-1/2}} \frac{1}{\sqrt{K}} \\
+   &= \frac{1.226425084}{\sqrt{K}} \\
+   &\approx \frac{1.23}{\sqrt{K}} 
+\end{align*} 
+Thus, if wavelength is to be found in nanometers and kinetic energy is expressed in electron volts, then we get the relation
+\[ \boxed{\lambda = \frac{1.23}{\sqrt{K}}}\]
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3.} 
+
+Maximum energy transfer to the electron occurs when the change in frequency of the photon is maximum.
+
+If the photon comes in with energy $E = h \nu_0 = \frac{hc}{\lambda_0}$, and gets scattered off it's original path by angle $\theta$, then the new frequency of the photon is given by
+
+\[ \nu = \frac{\nu_0}{1 + \left( \frac{h\nu_0}{mc^2} \right)(1 - \cos(\theta))} \]
+
+So, the change in the energy of the photon is 
+\begin{align*}
+   \Delta E_{photon} &= h(\nu - \nu_0) \\
+   &= h\nu_0 \left( \frac{1}{1 + \left( \frac{h\nu_0}{mc^2} \right)(1 - \cos(\theta))} - 1 \right) \\
+   &= E \left( \frac{1}{1 + \left( \frac{E}{mc^2} \right)(1 - \cos(\theta))} - 1 \right)
+\end{align*}
+
+Now, the amount of energy transferred to the electron is equal in magnitude to $\Delta E_{photon}$, but is opposite in sign. So,
+
+\[ \boxed{ T \equiv \Delta E_{electron} = E \left( 1 - \frac{1}{1 + \left( \frac{E}{mc^2} \right)(1 - \cos(\theta))} \right) } \]
+
+This transfer-energy is maximized when the subtracted term is minimized. That is, when the denominator $1 + \frac{E}{mc^2}(1 - \cos(\theta))$ is at its greatest value.
+
+This happens when $1-\cos(\theta)$ is at its greatest, which is is $1-(-1) = 2$.
+
+Thus, the greatest amount of energy that can be transferred to the electron in Compton Scattering is
+
+\begin{align*}
+   T &=  E \left( 1 - \frac{1}{1 + \left( \frac{2E}{mc^2} \right)} \right) \\
+   &= E \left(\frac{1 + \left( \frac{2E}{mc^2} \right)}{1 + \left( \frac{2E}{mc^2} \right)} - \frac{1}{1 + \left( \frac{2E}{mc^2} \right)} \right) \\
+   &=  E \left( \frac{\frac{2E}{mc^2}}{1 + \left( \frac{2E}{mc^2} \right)} \right) \\
+   &=  E \left( \frac{1}{\frac{mc^2}{2E} \left[1 + \left( \frac{2E}{mc^2} \right)\right]} \right) \\
+   &=  E \left( \frac{1}{\frac{mc^2}{2E} + 1} \right) \\
+\end{align*}
+
+Thus, the max energy that can be transferred is 
+\[ \boxed{T_{max} = E \left( \frac{1}{1 + \frac{mc^2}{2E}} \right)} \]
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q4.} 
+
+In the Free Electron Gas (Fermi Gas) model of a solid, if we have a rectangular solid of dimensions $(l_x, l_y, l_z)$, the Free Electron Gas potential 
+\[ V(x) = \begin{cases}
+   0,\;\;\text{for}\;\; 0 < x < l_x , 0 < y < l_y, 0 < z < l_z \\
+   \infty,\;\;\text{otherwise} 
+\end{cases} \]
+
+The wavefunction is zero in the region with infinite potential. In the region with zero potential, the Schroedinger Equation,
+
+\[ -\frac{\hbar}{2m} \nabla^2 \psi = E\psi \]
+
+which we can solve by separation of variables exactly as we did in Question 1 of this HW.
+
+Following the exam same steps as the solution for question 1, but with the length in each dimension now being $l_x$, $l_y$, or $l_z$ respectively, we find the wavefunction to be
+
+\[ \psi_{n_x n_y n_z} = \sqrt{\frac{8}{l_x l_y l_z}} \sin\left( \frac{n_x \pi}{l_x} x \right) \sin\left( \frac{n_y \pi}{l_y} y \right) \sin\left( \frac{n_z \pi}{l_z} z \right)  \]
+
+and the allowed energies are 
+
+\[ E_{n_x n_y n_z} = \frac{\hbar^2 \pi^2}{2m} \left( \frac{n_x^2}{l_x^2} + \frac{n_y^2}{l_y^2} + \frac{n_z^2}{l_z^2} \right) = \frac{\hbar^2 k^2}{2m} \]
+
+where $k$ is the magnitude of the wave vector $\vec{k} = (k_x, k_y, k_z)$.
+
+Then, in the $k$-space, if we imagine the 3-d space with axes along $k_x$, $k_y$, $k_z$ with lines drawn at each integer value of $n_x$, $n_y$, $n_z$, each intersection point represents a distinct stationary state.
+
+Each one of these blocks (and so each one of the states) occupies a volume 
+\[ \frac{\pi^2}{l_x l_y l_z} = \frac{\pi^3}{V} \]
+
+of $k$-space, where $V$ is the volume of the actual physical solid.
+
+Suppose our sample contains $N$ atoms, and each one contributes $d$ free atoms. Now, due to the Pauli Exclusion Principle, each block in $k$-space can accomodate two electrons.
+
+Now, because $N$ is a huge number (on the order of $10^{23}$ due to the value of Avogadro's constant), the rectangular volume in $k$-space can be approximated by a sphere of some radius $k_F$ (called the Fermi Radius). The radius is determined by the requirement that each pair of electrons requires a volume of $\frac{\pi^3}{V}$.
+
+\[ \frac{1}{8} \left( \frac{4}{3} \pi^2 k_F \right) = \frac{Nd}{2} \left( \frac{\pi^3}{V} \right) \]
+
+Thus,
+\[ k_F = \left( 3 \frac{Nd}{V} \pi^2 \right)^{1/3} \]
+
+The corresponding energy, $E_F$, is called the Fermi Energy 
+\[ E_F = \frac{\hbar^2 k_F^2}{2m} = \frac{\hbar^2}{2m}\left( 3 \frac{Nd}{V} \pi^2 \right)^{2/3}  \]
+
+So, we have 
+
+\[ \boxed{ E_F = \frac{\hbar^2}{2m}\left( 3 \frac{Nd}{V} \pi^2 \right)^{2/3} } \]
+\vskip 1cm
+
+We can calculate the \textbf{total energy} of the degenerate Fermi Gas by considering spherical shells of thickness $dk$ in the $k$-space.
+
+A shell of thickness $dk$ has volume 
+\[ dV = \frac{1}{8} \left( 4\pi k^2 \right) dk \]
+
+So, the number of electron states in the shell is 
+\[ \frac{2 [(1/2) \pi k^2 dk] }{(\pi^3 / V)} = \frac{V}{\pi^2} k^2 dk \]
+
+Each one of these electron states carries energy $\frac{\hbar^2 k^2}{2m}$, so the energy of the shell of radius $k$ in $k$-space is 
+\[ dE = \frac{\hbar^2 k^2}{2m} \cdot \frac{V}{\pi^2} k^2 dk \]
+
+Therefore, the Total Energy is given by 
+\begin{align*}
+   E_{tot} &= \frac{\hbar^2 k^2 V}{2m \pi^2} \int_{0}^{k_F} k^4 dk \\
+   &= \frac{\hbar^2 V}{2m \pi^2} \left[\frac{k^5}{5}\right]_{0}^{k_F} \\
+   &= \frac{\hbar^2 V}{2m \pi^2} \cdot \frac{k_F^5}{5} \\
+   &= \frac{\hbar^2 V}{10m \pi^2} \cdot \left( 3 \frac{Nd}{V} \pi^2 \right)^{5/3}
+\end{align*}
+
+So, the total energy \emph{per electron} is 
+\begin{align*}
+   \frac{E_{tot} }{Nd} &= \frac{\hbar^2 V}{10m \pi^2} \cdot \left( 3 \frac{Nd}{V} \pi^2 \right)^{5/3} \cdot \frac{1}{Nd} \\
+   &= \frac{3}{5} \cdot \frac{\hbar^2}{2m} \left( 3 \frac{Nd}{V} \right)^{2/3} \\
+   &= \frac{3}{5} E_F
+\end{align*}
+Thus, the energy per electron of a 3D Degenerate Fermi Gas is related to the Fermi Energy as $(3/5) E_F$.
+\vskip 0.25cm
+\hrule
+\vskip 1cm
+
+
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+\end{document}
+
+
+
+
+

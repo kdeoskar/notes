@@ -1,0 +1,276 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 2}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 19 - Review (Continuation)}
+
+\begin{itemize}
+  \item Dirac Ket $\ket{\psi}$
+  \[ \inner{\psi_{\alpha}}{\psi_{\beta}} = \int dx \psi_{\alpha}^{*}(x) \psi_{\beta}(x) \]
+
+  \item Observables are associated with Hermitian operators 
+  \[ \hat{\Theta}^{\dagger} = \hat{\Theta} \]
+  and the expermientally measured values are the expectation values of operators\[ \mean{\hat{\Theta}} = b \] Hermitian operators have real eigenvalues.
+
+  \item If $\underbrace{\hat{Q}}_{hermitian} \ket{a} = a \ket{a}$ and $\underbrace{\hat{Q}}_{hermitian} \ket{b} = b \ket{b}$ with $a \neq b$ then 
+  \[ \inner{a}{b} = 0 \]
+  
+  \item Eigenvectors of $\hat{Q}$ form a \underline{complete basis}.
+\end{itemize}
+
+\vskip 0.5cm
+In this class we will primarily focus of operators that are Hermitian and/or unitary.
+
+\begin{itemize}
+  \item \underline{Untiary Operators:} 
+  \[ \hat{Q}^{\dagger} = \hat{Q}^{-1} \]
+  \begin{align*}
+    \implies \hat{Q}^{\dagger}\hat{Q} &= \hat{Q}^{-1}\hat{Q} = \mathbf{1}\\
+                                      &= \hat{Q}\underbrace{\hat{Q}^{\dagger}}_{\hat{Q}^{-1}}
+  \end{align*}
+
+  \item Two observbles arae simultaneously diagonalizeable if ther operators textbf{commute} i.e. 
+  \[ [\hat{A}, \hat{B}] = 0 \]
+  such that 
+  \begin{align*}
+    \hat{A} \ket{a, b} &= a \ket{a,b } \\
+    \hat{A} \ket{a, b} &= b \ket{a,b } 
+  \end{align*}
+
+  \item \underline{Generalized Uncertainty principle:} 
+  \[ \sigma_A^2 \sigma_B^2 \geq \left( \frac{\mean{[A, B]}}{2i} \right)^2\]
+
+  \item \underline{Ehrenfest Theorem:} 
+  \item \[ \frac{d}{dt} \mean{\hat{Q}} = \frac{i}{h} \mean{[\hat{H}, \hat{Q}]} + \mean{\frac{\partial \hat{Q}}{\partial t}} \]
+  \item THis will be important later when consdering symmetries and conservations.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Review of 3D QM:}
+
+\begin{itemize}
+  \item $\ket{\vec{r}} = \ket{x} \otimes \ket{y} \otimes \ket{z} $ where $\inner{x}{x'}  \delta(x - x')$.
+  
+  \item The inner product of general position space kets is just \begin{align*}
+    \inner{\vec{r}}{\vec{r}'} &= \inner{x}{x'}\inner{y}{y'} \inner{z}{z'} \\
+    &= \delta(x - x')\delta(y - y')\delta(z - z').
+  \end{align*}
+
+  \item $\psi(\vec{r}, t) = \inner{\vec{r}}{\psi(t)}$.
+  \item The TISE in three dimensions is 
+  \[ write later \]  
+
+  \item For a central potential, i.e. $V(\vec{r}) = V(r)$ (no angular dependence) we can get the general solution
+  \[ \psi(\vec{r}) = R(r) Y(\theta, \phi) \]
+
+  \item $Y_{lm}(\theta, \phi) = \inner{\theta, \phi}{l, m}$.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Introduction to Symmetries}
+
+This is one of the most fundamental concepts in physics. Three of the four fundamental forces are heavily based on symmetry arguments. A theorem of great importance is \textbf{Noether's Theorem}.
+
+\begin{mathdefinitionbox}{Noether's Theorem}
+  There is a correspondence between Symmetries and Conservation laws.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+For instance, the facts that charge and energy are conversed in nuclear reactions are due to this theorem. Rather than being postulates, as they were in our earlier studies of Classical Mechanics, these conservations are the results of symmetries.
+
+\vskip 0.5cm
+\underline{In 137B}
+ 
+We wll encounter many situations where the Hamiltonian is of the form 
+\[  \hat{H}(\lambda) = \underbrace{\hat{H}_0}_{\text{known sol.}} + \lambda \delta \hat{H}\]
+
+and generally there wll be some \textbf{degeneracies} i.e. spaces of Eigenvectors such that $\ket{n_1}, \ket{n_2}$ have the same energy $E_{n_1} = E_{n_2}$.
+
+\vskip 0.5cm
+Then, we will usually introduce a \textbf{Perturbation}. [Insert graph]
+% \printbibliography
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{What is a symmetry in Physics?}
+  \begin{itemize}
+    \item A symmetry in Physics is an action/transformation that leaves a system unchanged or invariant.
+    \item There can be \textbf{continuous} or \textbf{discrete} symmetries.
+    \item Draw images and give example of continuous $\rightarrow$ circle and discrete $\rightarrow$ square.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Some more examples of continuous symmetries that we will be considering are 
+\begin{itemize}
+  \item Translations in space-time.
+  \begin{itemize}
+    \item momentum, energy.
+  \end{itemize}
+  \item Rotations in space.
+  \begin{itemize}
+    \item orbital angular momentum ($\vec{L}$).
+    \item spin.
+  \end{itemize}
+\end{itemize}
+and some discrete ones are 
+\begin{itemize}
+  \item Parity.
+  \item Time reversal.
+\end{itemize}
+
+\vskip 1cm
+\subsection*{Active vs. Passive Transformations}
+Transformations can be thought of as acting on the state $\ket{\psi}$ or on the operator $\hat{\Theta}$, but physcially both are \textbf{equivalent}. 
+
+\[ \implies \inner{\psi'}{\hat{\Theta}| \psi'} = \inner{\psi}{\hat{\theHtable}'|\psi} \]
+
+\vskip 0.5cm
+[Draw images from lecture of function on graph example.]
+
+\begin{itemize}
+  \item Let's define the transformation operator as $\hat{U}$ such that 
+  \begin{align*}
+    \ket{\psi'} &= \hat{U} \ket{\psi} \\
+    \implies \bra{\psi'} &= \bra{\psi} \hat{U}^{\dagger}
+  \end{align*}
+
+  \item This tells us that $\hat{U}$ is unitary. Why? 
+  \begin{align*}
+    1 &= \inner{\psi}{\psi} \\
+    &= \inner{\psi'}{\psi'} \\
+    &= \inner{\psi|\underbrace{\hat{U}^{\dagger} \hat{U} }_{\mathbf{1}}}{\psi}
+  \end{align*}
+  and 
+  \begin{align*}
+    \inner{\psi|\hat{U}^{\dagger} \hat{\Theta} \hat{U} }{\psi} &= \inner{\psi}{\hat{Q}' | \psi} 
+  \end{align*}
+  \[ \implies \hat{\Theta}' = \hat{U}^{\dagger} \hat{\Theta} \hat{U} \]
+  which tells us that $\hat{U}$ is a unitary operator.
+
+  \item Now, the system is \textbf{invariant} under the transformation $\ket{\psi} \rightarrow \hat{U} \ket{\psi}$.
+\end{itemize}
+
+\end{document}

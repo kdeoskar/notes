@@ -1,0 +1,653 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{mdframed}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\newcounter{discnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Principles of Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+\newcommand{\discussion}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{discnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Principles of Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Discussion Section #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it GSI: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+
+\textbf{Physics 137A: Quantum Mechanics}
+\\
+\\
+\textbf{Purpose of these notes:}
+This is a compilation of notes taken during UC Berkeley's Physics 137A lectures in Fall 2023 under the lecturer Chien-I Chiang. The purpose of these notes is mainly just to deepen my own understanding of the material by explaining it, but to any other readers, I hope these notes serve to supplement your studies. 
+
+\tableofcontents
+
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               LECTURE 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{1}{August 23}{Chien-I Chiang}{Keshav Deoskar}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\section{Transition from Classical to Quantum}
+Up until the early $20^{th}$ century, classical mechanics seemed to be an accurate description for all natural phenomena. Cracks began to form as phenomena like the Photoelectric Effect and Double-Slit Experiment were investigated, and "Quantum Mechanics" was developed. 
+\\
+\\
+It turns out that the most natural model for Quantum "States" is Vector Spaces. We will follow the transition from Classical to Quantum Mechanics, asking questions about what a Quantum "State" is, how exactly these states are characterized, and more.
+\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               LECTURE 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{2}{August 25}{Chien-I Chiang}{Keshav Deoskar}
+
+\section{The Single-Slit experiment}
+Consider an emitter placed before a single-slit, with a screen at some distance from the slit -- as shown in the figure below.
+\\\
+\\
+insert figure
+\\
+\\
+In some sense, the action of putting a screen there is a "measurement". Once the particle lands on the screen and we make a measurement, the particle has a "definite" \textbf{state} (x-position) which we denote as $\ket{x}$
+\[measurement \mapsto \mid x \rangle \] 
+
+But we don't really know anything about the state of the particle before making a measurement. It is natural to guess that it is somehow dependent on all possible states $\ket{x}$ with different values of $x$ -- weighted by some probability density function, $\mathcal{P}$.
+\[ \ket{\psi} =^{?} \int_{-\infty}^{\infty} dx\; \mathcal{P}(x) \ket{x} dx \]
+\\
+\\
+If we shoot a laser from the emitter, we see a diffraction pattern on the screen -- which allludes to light having a wave-like nature. We observe regions where more photons land, and regions where less land.
+\\
+\\
+insert figure
+\\
+\\
+
+\section{Double-Slit}
+Now, instead, consider a double-slit configuration. If we don't place a detector by the slits, we don't know exactly which slit each particle goes through. So, we conjecture that the state of each particle should consist of two possibilities:
+
+\[ \mid \psi \rangle = \mid\psi_1 \rangle + \mid \psi_2 \rangle \] 
+
+where the subscript represents the corresponding slit.
+
+But then from our conjecture regarding the single-slit case, we should have
+\[\mid \psi \rangle =^{?} \int_{-\infty}^{\infty} dx \mathcal{P}_1(x)\mid x \rangle +\int_{-\infty}^{\infty} dx \mathcal{P}_2(x)\mid x \rangle \]
+
+But if this were true, then the pattern of the double-slip experiment should just be two single-slit patterns overlapped. \textbf{This is experimentally found to not be the case.}
+
+\subsection*{Lesson learnt from Light}
+Probability proportional Intensity proportional $|\vec{E}|^2$
+\\
+\\
+In a double slit, we should have 
+\[ \vec{E_{screen}} = \vec{E_{1}} + \vec{E_{2}} \] 
+So,
+\[  |\vec{E_{screen}}|^2 = |\vec{E_{1}} + \vec{E_{2}}|^2 = \]
+
+So, because of the interference term $2\vec{E_1}\vec{E_2}$, the probability is not simply $\mathcal{P_1} + \mathcal{P_2}$! So, our simplest guess doesn't work. Let's take a different approach.
+
+Let's take inspiration from the Electric Field - Intensity dynamic.
+We know that it is not the intensity which adds linearly, but the electric field. Furthermore, we add the electric fields and THEN square to get the net intensity. \textbf{Instead of writing probabilities that sum, let's write states that sum and whose square produces the probability.}
+
+So, instead of writing 
+\[ \mid \psi \rangle = \int_{-\infty}^{\infty} dx \mathcal{P}(x)\mid x \rangle  \]
+
+Let us try to use some soft of intermediate function $\psi(x)$ which gives us each state as 
+\[ \mid \psi \rangle = \int_{-\infty}^{\infty} dx  \psi(x) \mid x \rangle \]
+
+Such that the probability is proportional to $|\psi(x)|^2$. i.e. Probability is the square of the linear combination.
+
+\section{Polarization of Photons}
+Consider polarizing a beam of light linearly as shown in the figure below. Then the outgoing intensity and initial intensity are related as 
+\[ |E_{out}|^2 = |E_0|^2\cos(\theta) \]
+
+But if the intensity s low, so that only one photon is fired at the polarizer at each instant, the photon either passes through the polarizer or is blocked. We can't have a fractional photon.
+\\
+\\
+Now, instead of thinking about initial and outgoing \emph{intensity}, we think of the \emph{probability} of each photon going through.
+\\
+\\
+When the photon hits the polarizer, a \emph{measurement} occurs -- it is measuring the polarization of the photon, for which there are two outcomes.
+%\[ \text{passing through} \implies \text{polarized in the x-axis:} \mid x \rangle \]
+%\[ \text{not passing through} \implies \text{polarized in the y-axis:} \mid y \rangle \]
+(write this more cleanly later.)
+
+
+If we think of light as disturbances in EM Fields, then 
+\[ E_0 = E_0 \cos(\theta) \hat{x} + E_0 \sin(\theta) \hat(y) \]
+
+We can think of this as superposition of \emph{two possible states}, measured by the polarizer. So,
+\[ \mid \psi \rangle = E_0 \cos(\theta) \mid x \rangle + E_0 \sin(\theta) \mid y \rangle \]
+
+where $\mid \psi \rangle$ gives is the state before passing through the polarizer.
+
+\section{Double-Slit 2: Electric Boogaloo (This time with Detectors)}
+Now, if we place detectors at each of the slits, we find that the pattern is \underline{different} from the regular double-slit experiment. This makes sense, because the detectors are making \emph{measurements} and changing the state of the light before it reaches the screen.
+\\
+\\
+For instance, if we place two polarizers at the slits, we find: (insert picture and elaborate)
+\\
+\\
+\textbf{Measurements generally change the state of the system.}
+
+\subsection*{General Summary}
+When we measure an observable $\Omega$, we have several possible outcomes $\{ \omega_1, \omega_2, \omega_3, \dots \}$. Right after measurements, the system is in these "determinant states"  $\mid \omega_1 \rangle$, $\mid \omega_2 \rangle$, $\mid \omega_3 \rangle$, $\dots$.
+\\
+\\
+These are called determinant states because if we carry out the exact same experiment/measurement immediately one after the other, we will see the same outcome i.e. the outcome of the second measurement is \emph{determined}.
+\\
+\\
+Before the measurement, generally the state is a \emph{linear combination} of these states.
+\[ \mid \psi \rangle = \sum_{i}  c_i  \mid \omega_i \rangle \]
+
+The probability of getting measurement $\omega_i$ is 
+\[ \mathcal{P}(\omega_i) = |c_i|^2 \]  (normalized)
+
+\[ \mid \psi \rangle \xrightarrow[\text{measurement}]{\text{after}} \mid \omega_i \rangle \]
+
+\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               LECTURE 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{3}{August 28}{Chien-I Chiang}{Keshav Deoskar}
+
+\section{Recap of last lecture}
+\begin{itemize}
+	\item From studies of light and experiments such as the Double-Slit experiment, we know that classical mechanics is deficient.
+
+	\item We know that quantities like the energy, momentum, position etc. of light (and other subatomic particles) must be described using a \emph{wavefunction}, 			say, $\psi$.
+
+	\item We know there is an analogy of between the pair of (Electric Field, Intensity) and (Wavefunction, Probability) in that, there are parallels between their 				relationships. 
+
+	\item Both the Electric Field and Wavefunction satisfy Superposition, and the corresponding Intensity/Probability is found by finding the net field/wavefunction and 			then finding the square of the norm.
+
+	\underline{Superposition:} $\vec{E_1} + \vec{E_2} \xleftrightarrow{} \ket{\psi_1} + \ket{\psi_2}$ \\
+	\underline{Intensity/Probability:} $\mid \vec{E_1} + \vec{E_2} \mid^2 \xleftrightarrow{} |\ket{\psi_1} + \ket{\psi_2}|^2$ 
+
+	\vskip 0.5cm
+
+	\item We know exactly what the state of the system is when we make a measurement, but before that, we cannot definitively say which state the wavefunction 			 is in. 
+
+	\item Suppose we have a set of possible states the system can be in when we make a measurement $\{\omega_1, \omega_2, \dots \}$. Since the 						wavefunction attains one of these values when we measure it (a.k.a it "collapses to one of these states"), we conjecture that the wavefunction is some 				linear combination of these states 
+		\[ \ket{\psi} = \sum_i  c_i \ket{\omega_i} \] 
+
+		Then, we can't say with certainty which state it will collapse to, but we \emph{can} assign each state with a \emph{probability}.
+		\[ \mathbb{P}\left( \ket{\omega_1} \right) = |c_i|^2 \]			
+
+	\item The theory built upon this conjecture lines up with experiments, so we do not need to explore more complicated combinations of the states.
+
+	\item The mechanism under which the wavefunction collapses is still a mystery to us. This is what introduces the probabilistic element QM is known for, and which 			separates it from Classical Mechanics. 
+
+	\item HOWEVER, once we've measured the wavefunction at an instant of time, say $t = 0$, and found the state $\ket{\psi(t=0)}$, we can predict how the 				state will evolve over time using the Time-Dependent Schrödinger equation. This is similar to classical mechancis, where we can predict how a system will 				evolve using the correct dynamical laws.
+\end{itemize}
+
+\section{Linear Algebra Review}
+From our earlier discussions, it is clear that we will have to deal with linear combinations of states in every section of our study. 
+\\
+\\
+Quantum Mechanics makes heavy use of objects from the branch of math called functional analysis. In particular, our quantum systems are modelled using \emph{Hilbert Spaces}. But before that, let us review Linear Algebra, of which Functional Analysis is a generalization.
+
+\begin{definition}[Vector Space]
+A complex vector space $\V$ is a set where scalar multiplication and vector addition are defined, such that a set of \underline{Vector Space Axioms} holds. (write the axioms later). We denote vectors using "kets" such as $\ket{x}, \ket{y}$.
+\end{definition}
+
+\subsection*{Abstract Vector Spaces}
+
+\begin{claim}
+For a finite vector space $\V$, there is a \underline{complete basis} $\{ \ket{e_1},  \ket{e_2}, \dots,  \ket{e_n} \}$ such that for all $\ket{V} \in \V$ we can express $\ket{V}$ as a linear combination of the basis vectors
+\[\ket{V} = \sum_i V_i \ket{e_i} \]
+\end{claim}
+
+For example, the set of \underline{polynomial functions} of order $N$ form a vector space under the scalar multiplication and the following sense of "vector" addition
+\begin{align*}
+	f(x) &= a_0 + a_1 x + \dots + a_N x^N \\
+	g(x) &= b_0 + b_1 x + \dots + b_N x^N \\
+\text{then } (f+g)(x) &= (a_0 + b_0) + (a_1 + b_1)x + \dots + (a_N + b_N)x^N
+\end{align*}
+
+Note that $\{ 1, x, x^2, x^3 \dots, x^N \}$ forms a \underline{basis} for this vector space.
+\\
+\\
+So, we can represent any polynomial function as 
+\[ \ket{f} = a_0 \ket{e_0} + \dots + a_N \ket{e_N} \] 
+
+\subsection*{Dual Spaces}
+
+\begin{definition}[Dual Space]
+   For any vector space $\V$, there exists a \underline{dual space} $\V^*$ (same dimension as $\V$) where the dual vectors are linear mappings/operators $f : \V \rightarrow \C$. We denote dual vectors as "bras", such as $\bra{W}$, $\bra{V}$.
+\end{definition}
+
+\subsection*{Inner Products}
+
+Now, recall the dot product and how useful it is in fields such as E\&M. The dot product is just one example of a more general structure on a vector space called the \emph{Inner Product}.
+\\
+\\
+Recall how, in $\R^n$, we found that the length of a vector $\vec{v}$ is related to the dot product of $\vec{v}$ with itself as $|\vec{v}| = \sqrt{\vec{v} \cdot \vec{v}}$. In more general vector spaces, we define the length or \emph{norm} of a vector in a similar fashion using the inner product.
+\\
+\\
+So, what exactly are inner products?
+
+\begin{definition}[Inner Product]
+   An inner product associated with a vector space is a binary operation that maps a pair of vectors to a scalar if it satisfies three properties:
+   \[ \inner{\cdot}{\cdot} : \V \times \V \rightarrow \C \]
+
+   Namely, to be a valid inner product, the following three properties must be satisfied:
+   \begin{itemize}
+      \item $\inner{V}{aU + bW} = a\inner{V}{U} + b\inner{V}{W}$
+      
+      \item $\inner{V}{W} = \inner{W}{V}^{*}$
+      
+      \item $\inner{V}{V}$ if and only if $V = \ket{0}$
+
+   \end{itemize}
+\end{definition}
+
+The second condition is called \emph{Antisymmetry}, and allows us to ensure that $\inner{V}{V} \in \R$ for all $\V$. This, along with property 3, allows us to define the \emph{norm} of a vector as 
+\[ |V| = \sqrt{\inner{V}{V}} \] 
+
+Further, using properties 1 and 2, we can show that inner products are \emph{antilinear} in the first argument.
+\begin{align*}
+   \inner{aU + bW}{V} &= \left( \inner{V}{aU + bW} \right)^{*} \\
+                      &= \left( \inner{V}{aU} + \inner{V}{bW} \right)^{*} \\
+                      &= \left( a\inner{V}{U} + b\inner{V}{W} \right)^{*} \\
+                      &= a^{*} \inner{V}{U}^{*} + b^{*} \inner{V}{W}^{*} \\
+                      &= a^{*} \inner{U}{V} + b^{*} \inner{W}{V}
+\end{align*}
+So,
+\[ \boxed{ \inner{aU + bW}{V} = a^{*} \inner{U}{V} + b^{*} \inner{W}{V} } \]
+This doesn't matter much when our scalars are real numbers, but in Quantum Mechanics, our vector fields will overwhelmingly have the set of Complex Numbers as its underlying field -- where Antilinearity is important to remember.
+
+\begin{definition}[Orthogonality]
+   Two vectors, $\ket{V}$ and $\ket{W}$, are said to be orthogonal if their inner product is zero:
+   \[ \inner{V}{W} = \inner{W}{V} = 0 \]
+\end{definition}
+
+\begin{definition}[Orthonormal Basis]
+   A basis of a vector space is said to be orthonormal if the basis vectors are normalized (unit length) and are mutually orthogonal:
+   \[ \inner{e_i}{e_j} = \delta_{ij} \]
+   
+   where \[ \delta_{ij} = 
+      \begin{dcases}
+          0 & i \neq j \\
+          1 & i = j \\
+      \end{dcases}
+  \]
+\end{definition}
+\hrule
+
+\discussion{1}{August 28}{Andres Franco Valiente}{Keshav Deoskar}
+\\
+We know that Quantum Mechanics was developed in response to the deficiencies of Classical Mechanics, but that does not mean they are completely disjoint from each other. Many of the techniques and mathematical structures employed in Classical Mechanics are carried over to Quantum Mechanics.
+
+\subsection*{Similarities between CM and QM:}
+\begin{itemize}
+   \item In Classical Mechanics, we are interested in the properties of systems of bodies -- like their Energy (Kinetic, Potential), Momentum, Angular Momentum, etc. 
+
+   \item We find that we can express effectively all of the quantites we're interested in using only the position ($\vec{x}$) and momentum ($\vec{p}$) of the system/bodies. This is especially so in the framework of \underline{Hamiltonian Mechanics}.
+
+   \item In Newtonian Mechanics, we have the foundational law $\vec{F} = m\vec{a}$ which governs the evolution of systems. The equation must be obeyed at all times, so at each timestep, we can apply Newton's Law and figure out the various quantities of the different bodies under study. Netwon's law is like an 'updater' which tells us how the system evolves over time.
+
+   \item In Hamiltonian Mechanics, we rewrite Newton's Famous $\vec{F} = m\vec{a}$ in terms of position and momentum, and using methods from the Calculus of Variations, formulate a system of equations called \emph{Hamilton's Equations} which serve as the 'updaters' for the dynamics in this framework.
+
+   \item Hamilton's Equations and Newton's Law predict the same outcomes -- they are equivalent. However, Newton's law gives us a local approach where we can study the system's evolution by incrementing over timesteps. Hamilton's Equations, on the other hand, use the \emph{Principle of Least Action} to give us a \emph{global} approach. 
+
+   \item In Quantum Mechanics too, we will deal mainly with the observables of position and momentum, then build the rest of the observables with this basis -- and we will do so using Hamiltonians and Lagrangians of our systems.
+\end{itemize}
+
+\subsection*{Differences between CM and QM:}
+\begin{itemize}
+   \item Recalling our earlier studies, all quantities range over a continuous spectrum. For eg. the position of a body can be $x = 5$, or $x = -4.2$ or any other real number. 
+   
+   \item However, phenomena like the Photoelectric Effect showed us that quantites like, say, the energies of electrons in an atom are not continuous but are instead found to be \emph{discrete packets} called \textbf{\emph{Quanta}}. 
+   
+   \item Further experiments, such as the \emph{Double-slit experiment} showed us that the properties of a particle are \emph{sensitive to measurement}. That is, they are changed when we interact with an object to make a measurement. This is in contrast with Classical Mechanics where quantities are \emph{not} sensitive to measurement. For instance, one can throw a ball in the air and measure it's y-positon simply by visally analysing its trajectory -- such simple measurements are not possible at the small scales where QM applies.
+   
+   \item \textbf{So far, it seems as though the main distinction between CM and QM is the (1) Discrete and (2) Measurement sensitive nature of Quantities in QM.}
+   
+   \item This is one of the reasons why linear algebra seems to be the natural mathematical framework for Quantum Mechanics -- we can represent physical observables using Linear Operators. Then, the set of \textbf{eigenstates} serves as our discrete set of states.
+\end{itemize}
+
+\subsection*{Plot twist, not everything is purely quantized!}
+Aha! It seem's we've been tricked. Further investigations show that a Hydrogen atom has energy levels that are \textbf{both discrete and continuous}. 
+\\
+\\
+Up to a certain threshold, they are discrete, but beyond it they form a continuum. This threshold is precisely the \textbf{Ionization Energy} of the Hydrogen atom.
+
+\subsection*{Conundrum: Is linear algebra the right tool?}
+Now, we have a problem. We chose to model QM using Linear Algebra because it allowed us to use eigenstates to represent discrete allowed values of physical observables. What do we do now that we must accomodate both discrete and continuous values?
+\\
+\\
+When we analyse the kinds of operators that can be used to represent this complicated system, we find that they are matrices of uncountably infinite size. Further, the vectors they act on are also uncountably infinite in size, they're functions! We now graduate from Linear Algebra to \textbf{Functional Analysis}.
+\\
+\\
+Functional Analysis is the study of uncountably infinite vector spaces.
+\[ \boxed{\text{Linear Algebra} \subset \text{Functional Analysis} } \]
+
+To deal with all of the uncountably infinite quantities, we need to use the powerful tools that are \textbf{Hilbert Spaces.}
+
+Also, in QM, we deal with probabilities. As such, often we will need to calculate, say, the expected value of a quantity -- for eg. the expected energy of a Hydrogen atom may be found as
+\[ \langle E \rangle = \sum_{n=1}^{\infty} \frac{E_0}{n^2} = \lim_{N \rightarrow \infty} \left( \sum_{n=1}^{N} \right) \]
+
+But in order to ensure that these quantities make sense, we need to study \textbf{convergence}, which falls under the domain of \textbf{Topology.}
+
+\subsection*{Summary}
+In summary, we need the more powerful mathematical branch of Functional Analysis to rigorously formalize Quantum Mechanics.
+\begin{itemize}
+   \item How do we compare expected values to finite sums> How do we check/quantify how \underline{similar} they are?
+
+   \[ \text{Dot Product} \xrightarrow{Generalize} \text{Inner Product} \]
+
+   \item $ \text{Vector Space (can be uncountably infinite)} + \text{Inner Product} \rightarrow \boxed{\text{Hilbert Space, } \mathcal{H}} $
+
+   \item The possible states for our observables are elements of a Hilbert Space -- represented as kets $\ket{\psi} \in \mathcal{H}$
+   
+   \item In order to produce a number out of a ket, we define the Dual Space $\Hilbert^{*}$ which is the set of all linear functionals $f$ such that 
+   \[ f \in \Hilbert^{*},\;\;\; f : \Hilbert \rightarrow \C \] 
+   We represent elements of the dual space as bras: $f = \bra{f}$
+
+   \item The Adjoint maps an equation of kets to the corresponding equation of bras.
+   \[ \ket{\psi} = c_1 \ket{1} + \dots + c_N \ket{N}  \xrightarrow{Adjoint} (\ket{\psi})^{\dagger} = \bra{1} c_{1}^{*} + \dots + \bra{N} c_{N}^{*}\]
+\end{itemize}
+\hrule
+
+\lecture{4}{August 30, 2023}{Chien-I Chiang}{Keshav Deoskar}
+\\
+\\
+Recall from the last lecture that for any vector space $\V$, there is a \textbf{Dual Space}, $\V^{*}$ where the dual vectors $\bra{W} \in \V^*$ are linear mappings/operators $\bra{W} : \V \rightarrow \C$.
+\\
+\\
+i.e. $\inner{W}{V} = c$ where $c \in \C$.
+
+\subsection*{Basis of the Dual Space}
+One way to construct a dual vector space is, using the  basis $\{ \ket{e_1}, 
+\dots, \ket{e_N} \}$ of $\V$, we can define the \textbf{dual basis} as $\{ \bra{e_1}, \dots, \bra{e_N} \}$ where 
+\[ \bra{e_i}\left( \ket{e_j} \right) = \inner{e_i}{e_j} = \delta_{ij}\]
+
+That is, the functional $\bra{e_i}$ maps the basis vector $\ket{e_j}$ to the complex number $1$ if $i = j$, and to $0$ otherwise.
+\\
+\\
+On the other hand, if the vector space $\V$ already has the structure of an Inner Product, it is natural to think of a dual vector $\bra{W}$ as a "half-filed" Inner Product $\inner{W}{\cdot}$ i.e.
+\[ \bra{W} \equiv \inner{W}{\cdot} \]
+
+\subsection*{The Adjoint Operation}
+For any $\ket{V} \in \V$, we define its adjoint, denoted as $(\ket{V})^{\dagger}$ as the corresponding dual vector $\bra{V}$. 
+\begin{itemize}
+   \item Thus, we can write, $(\ket{W})^{\dagger} (\ket{V}) = \inner{W}{V}$
+   \item In other words, $(\ket{W})^{\dagger} = (\bra{W})$
+\end{itemize}
+\underline{\textbf{Qn: What is} $(a \ket{W})^{*}$ \textbf{equal to?}}
+\\
+Consider the operator $(a\ket{W})^{\dagger}$ acting on a vector $\ket{V}$. Then,
+\begin{align*}
+   (a\ket{W})^{\dagger} (\ket{V}) &= \inner{aW}{V} \\
+                                  &= a^{*}\inner{W}{V}
+\end{align*}
+So, \[ \boxed{(a\ket{W})^{\dagger}  = a^{*} \bra{W}} \]
+
+\underline{A concrete example: Row and Column Vectors}
+For instance, if we have a vector $\ket{V} = V_1 \ket{e_1} + V_2 \ket{e_2}$ where 
+\[ \ket{e_1} \rightarrow \begin{pmatrix} 1 \\ 0 \end{pmatrix},\;\;\;\; \ket{e_2} \rightarrow \begin{pmatrix} 0 \\ 1 \end{pmatrix} \]
+
+then we can represent it as 
+\[ \ket{V} = V_1\begin{pmatrix} 1 \\ 0 \end{pmatrix} + V_2 \begin{pmatrix} 0 \\ 1 \end{pmatrix}   \]
+
+Then, our dual basis vectors would be 
+\[ \bra{e_1} \rightarrow \begin{pmatrix} 1 && 0 \end{pmatrix},\;\;\;\; \bra{e_2} \rightarrow \begin{pmatrix} 0 && 1 \end{pmatrix} \]
+
+But wait, this reminds us of something very useful. The Dot Product of a vector could be thought of as a $(row\;\;vector \times column\;\;vector)$ where $\times$ represents matrix multiplication of the components.
+
+\textbf{Can we find a general expression for the Inner product in terms of the vector and dual vector's components?}
+
+\subsection*{Inner Product in terems of components}
+\begin{align*}
+   \inner{W}{V} &= \left( \sum_i W_i^{*} \bra{e_i} \right) \left( \sum_j V_j \ket{e_j} \right) \\
+                &= \sum_i \sum_j W_i^{*} V_j \inner{e_i}{e_j} \\
+                &= \sum_i \sum_j W_i^{*} V_j \delta_{ij} \\
+                &= \sum_i  W_i^{*} V_i
+\end{align*}
+Therefore, we have 
+\[ \boxed{\inner{W}{V} = \sum_i  W_i^{*} V_i} \]
+This looks remarkably similar to the expression for a dot product of two vectors with real components -- where $W_i^* = W_i$. But of course! The Dot Product is a special case of the Inner Product!
+
+In the column/row vector notation we would have 
+\[ \inner{W}{V} = \begin{pmatrix} W_1^* && W_2^* \end{pmatrix} \begin{pmatrix} V_1 \\ V_2 \end{pmatrix}  = W_1^* V_1 + W_2^* V_2 \]
+
+\section{Linear Operators}
+A linear operator $\oper$ is a mapping $\oper : \V \rightarrow \V$ such that 
+\[ \oper(a\ket{V} + b\ket{W}) = a\oper(\ket{V}) + b\oper(\ket{W}) \]
+
+The addition of two linear opreators is defined as
+
+
+\discussion{6}{September 25}{Kai Ellers}{Keshav Deoskar}
+
+\subsection*{Postulates of Quantum Mechanics:}
+
+\textbf{1. Physical Obeservables:}
+In QM, we represent Physical observables using Hermitian Operators (i.e. $H$ such that $H^{\dagger} = H$).
+There are two reasons why Hermitian Operators, in particuar, are used:
+\begin{enumerate}
+   \item Their eigenvalues are guaranteed to be real.
+   \item The set of eigenvectors forms a complete basis for the hilbert space. i.e. 
+   \\
+   \\
+   %If $\hat{T} \ket{\alpha} = \alpha \ket{\alpha}$ and $\hat{T} \ket{\beta} = \beta \ket{\beta}$ then
+\end{enumerate}
+
+Let's prove the first fact:
+\begin{enumerate}
+   \item Let $\hat{T}$ be a hermitian operator on a hilbert space and let $\ket{\alpha}$ be an eigenvector of $\hat{T}$ such that 
+   \[  \hat{T}\ket{\alpha} = \alpha\ket{\alpha}  \]
+
+   Then, 
+   complete later.
+\end{enumerate}
+
+\textbf{2. Measurements:}
+If we are trying to measure some observable $\hat{T}$ of a systen, the possible outcomes of measurements are eigenvalues of $\hat{T}$, $\{\omega_i\}$.
+\\
+\\
+\textbf{3. The Ket of a system:}
+A system is represented wholly by some ket $\ket{\psi}$ in the Hilbert Space 
+\[ \ket{\psi} = \sum_i c_i \ket{\omega_i} \]
+
+\textbf{4. Probability of attaining a particular state:}
+The probability of measuring some Obeservable and obtaining the value $\omega_i$ is given by 
+\[  \mathcal{P}(\omega_i) = |c_i|^2  \]
+
+\textbf{5. Collapse of Wavefunction:}
+Once we make a measurement and obtain the value $\omega_i$, the state of the system is no longer described by the general ket $\ket{\psi}$. Instead, it is now completely described by the ket $\ket{\omega_i}$.
+\\
+\\
+\subsection*{Example:}
+Fill in later
+
+\subsection*{Polarization of Light:}
+Say we have beam of light whose direction of polarization is given by 
+\[ \ket{n} = \cos(\theta) \ket{x} + \sin(\theta)\ket{y} \]. Then, the perpendicular to the polarization direction is given by 
+\[ \ket{n_{\perp}} = \sin(\theta)\ket{x} - \cos(\theta) \ket{y} \]
+(which can be verified by taking the inner product $\inner{n}{n_{\perp}}$).
+\\
+\\
+Then, in the figure shown below, the polarization of the first lens is 
+\begin{align*}
+   \ket{n_{\frac{\pi}{4}}} &= \cos(\theta + \frac{\pi}{4}) \ket{x} + \sin(\theta + \frac{\pi}{4})\ket{y}\\
+   &= \frac{1}{\sqrt{2}}\left[\cos(\theta)\cdot (\cos(\theta) - \sin(\theta)) \ket{x} + \sin(\theta) \cdot (\sin(\theta) + \cos(\theta)) \ket{y}\right]
+\end{align*}
+
+The projection operator along $\ket{n_{\frac{\pi}{4}}}$ is 
+\[ \hat{P}_{\frac{\pi}{4}} = \ket{n_{\frac{\pi}{4}}} \bra{n_{\frac{\pi}{4}}}\]
+
+\lecture{0000}{Septermber 27}{Chien-I Chiang}{Keshav Deoskar}
+
+
+\subsection*{1D Free Non-relativistic Particle}
+If we have 
+\[ [ \hat{H}, \hat{P} ] = 0 \] then momentum eigenstates are also energy eigenstates.
+
+\textbf{\underline{missed the first 7 minutes -- see the lecture recording.}}
+
+\begin{align*}
+   \hat{H}\ket{p} = E\ket{p} &\implies \\
+                             &\implies \\
+                             &\implies E = \frac{p^2}{2m} \equiv \frac{\hbar^2 k^2}{2m}
+\end{align*}
+where $p = \hbar k$.
+\\
+\\
+The 
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+\end{document}
+
+
+
+
+

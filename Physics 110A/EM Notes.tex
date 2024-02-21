@@ -1,0 +1,219 @@
+\documentclass[12pt]{report}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{mdframed}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+% \usepackage[Sonny]{fncychap}
+
+% \usepackage{titlesec, blindtext, color}
+
+\usepackage[explicit]{titlesec}
+\usepackage{hyperref}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ {\fontfamily{cmr}\selectfont\thechapter}}{20pt}{\hyperlink{chap-\thechapter}{\Huge#1}
+\addtocontents{toc}{\protect\hypertarget{chap-\thechapter}{}}}
+\titleformat{name=\chapter,numberless}
+  {\normalfont\huge\bfseries}{}{-20pt}{\Huge#1}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{\hyperlink{sec-\thesection}{#1}
+\addtocontents{toc}{\protect\hypertarget{sec-\thesection}{}}}
+\titleformat{name=\section,numberless}
+  {\normalfont\Large\bfseries}{}{0pt}{#1}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{\hyperlink{subsec-\thesubsection}{#1}
+\addtocontents{toc}{\protect\hypertarget{subsec-\thesubsection}{}}}
+\titleformat{name=\subsection,numberless}
+  {\normalfont\large\bfseries}{\thesubsection}{0pt}{#1}
+
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=blue!30!black,
+    colback=blue!30, boxrule=1pt,
+    #1}
+
+% New commands (None rn)
+
+%% TO USE EQUATION BOX, USE THE FOLLOWING FORMAT:
+% \begin{empheq}[box=\mymath]{equation*}
+%     c_i = \langle\psi|\phi\rangle
+% \end{empheq}
+
+%% STACKEXCHANGE LINKS AND PACKAGES TO REFER TO 
+% https://tex.stackexchange.com/questions/32495/linking-the-section-text-to-the-toc
+
+% https://texblog.org/2012/07/03/fancy-latex-chapter-styles/
+
+% https://tex.stackexchange.com/questions/20575/attractive-boxed-equations
+
+\tcbset{highlight math style={boxsep=5mm,colback=blue!30!red!30!white}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{Some notes on Electrodynamics}
+\end{center}
+In these notes, I detail some concepts from electrodynamics (specifically, at the level of Griffith's Introduction to Electrodynamics \cite{Griffiths})
+\tableofcontents
+
+\chapter{Magnetostatics}
+
+So far, we have studied many situations that can be explained by Coulomb Force and concepts that derive from it such as the Electric Field, Electric Potential, and so on. 
+
+This was enough to describe \textbf{\emph{electrostatic}} systems. However, some peculiar phenomena in the early 1800s led Physicists to postulate the existence of a new force -- the Magentic Force!
+
+\section{Moving charges and the Lorentz Force}
+
+\subsection{Some experiments to consider}
+
+Consider two long wires placed side by side (with some separation, of say, $s$ units of length) with current $I$ flowing through each of them, but \emph{in opposite directions.}
+
+[Insert figure]
+
+If we are to actually assemble such a system, we see something peculiar happening; the two wires repel each other!
+
+One could suppose that this is somehow caused by the electric field, but if we had a stationary charge in place of one of the wires, we would see no such effect. After all, a wire with current flowing through it is \emph{still electrically neutral} in the sense that it has the same amount of total positive and total negative charge within it, meaning $Q_{net} = 0$ and so $E_{wire} = 0$. So there would be no force on the charge! (not $100\%$ true -- see here for more nuanced explanation) 
+
+What's more is that if we reverse the direction of current in one wire such that they're now \emph{both in the same direction}, we see the opposite effect! The two wires attract each other!
+
+Even more interestingly, if we increase the magnitude of the current, the attraction/repulsion becomes stronger! (DOUBLE CHECK THIS)
+
+[Insert figure]
+
+[Write a bit about compass needles near current carrying wire; and compass needles with iron filings]
+
+So, from these experiments, we gather the following:
+\begin{itemize}
+    \item This sort of interaction seems to only occur when the interacting charges are \emph{all in motion}. 
+    \item The interaction makes a distinction between parallel movement, anti-parallel movement, and some combination of both.
+    \item The field corresponding to the interaction seems to form circles around a current carrying wire, rather than point towards or away from it. In fact, the direction of the field is consistent with \emph{Maxwell's Rght Hand Thumb Rule.}
+\end{itemize}
+
+Let's call the vector field of the interaction the \textbf{Magnetic Field} and denote it with $\mathbf{B}$.
+
+\subsection{What do we know so far?}
+
+Returning to our current-carrying-wires example, we want to find (or guess) some sort of expression for the attractive (or repulsive) force between the two wires which
+\begin{enumerate}
+    \item Depends on the \emph{velocties} of charged particles being affected by the field.
+    \item Factors in the \emph{amount of charge} possessed by each of the particles.
+    \item Is caused by the magnetic field $\mathbf{B}$ i.e. its direction is likely dependent on the magnetic field (towards when current is parallel, but away when antiparallel).
+\end{enumerate}
+
+\subsection{Cross product joins the fray!}
+Earlier we made much use of the Dot Product, an operation whose usage is quite intuitive. We also defined the cross product, which seemed much more absract. 
+
+But notice that the Cross-product encapsulates all the behavior outlined in our list above! It:
+
+[Insert short list similar to the one in prev subsection]
+
+Therefore, we introduce the following \textbf{Axiom} called the \textbf{Lorentz Force Law}.
+\begin{empheq}[box=\mymath]{equation*}
+    \text{The magnetic force on a charge $q$ wth velocity $\mathbf{v}$ in field $\mathbf{B}$ is given by}\;\; F_{mag} = q\mathbf{v} \times \mathbf{B}
+\end{empheq}
+
+Note that this is not a derivation or proof. We are \emph{assuming} this axiom holds true and \emph{building our theory on top of it}. 
+
+So, currently, our theory is that \textbf{stationary charges} produce \textbf{electric fields} and \textbf{moving charges} additionally produce \textbf{magnetic fields}. 
+
+Why is it that moving charges produce both fields? We'll see this more clearly when we think about magnetism from a relativistic perspective but essentially it's because there exists an inertial frame in which the particle is stationary (the frame of the particle itself) and the electric field produced by it in that frame still sort of exists in other reference frames (REVISE THIS EXPLANATION).
+
+
+So, the total force on a charge $q$ moving with velocity $\mathbf{v}$ in a region of electric field $\mathbf{E}$ and magnetic field $\mathbf{B}$ is 
+% \[ \boxed{F_{net} = q[\mathbf{E} + \mathbf{v} \times \mathbf{B}]} \]
+\begin{empheq}[box=\mymath]{equation*}
+    F_{net} = q[\mathbf{E} + \mathbf{v} \times \mathbf{B}]
+\end{empheq}
+
+So, to study the dynamics of any system of charged particles, our goal will be to find both $\mathbf{E}$ and $\mathbf{B}$.
+
+\section{Motion of charged particles in Magnetic Fields}
+
+[Write about cyclotron]
+
+\section{Current}
+
+The rate of flow of charges is called their \emph{current}, usually denoted by $I$. This quantity has units of $Amperes$ in SI Units (One amp = 1 Coulomb / 1 second)
+\begin{empheq}[box=\mymath]{equation*}
+    I = \frac{Q}{t}
+\end{empheq}
+
+If the rate of flow isn't uniform, we define the Current at any given time to be 
+\begin{empheq}[box=\mymath]{equation*}
+    I = \frac{dQ}{dt}
+\end{empheq}
+
+Current is a directed quantity (note: not a vector since it doesn't obey the laws of vector addition -- explain more later). So, if we have a line charge $\lambda$ travelling with velocity $\mathbf{v}$ then the current is 
+\[ \mathbf{I} = \lambda \mathbf{v} \]
+
+The above holds for each line charge, so if there are multiple such line charges then we take the sum of all of them to obtain the net current flowing at each point.
+
+Now, the magnetic force on a line charge is 
+\begin{align*}
+    F_{mag}  &= \int (\mathbf{v} \times \mathbf{B}) \; dq \\
+             &= \int (\mathbf{v} \times \mathbf{B}) \; \lambda  d\mathbf{l} \\
+             &= \int (\lambda\mathbf{v} \times \mathbf{B}) \;  d\mathbf{l} \\
+\implies F_{mag} &= \int (\mathbf{I} \times \mathbf{B}) \; d\mathbf{l}    
+\end{align*}
+As long as the (vectorial) current $I$ and the line element $\mathbf{dl}$ are in the same direction (which holds at each infinitessimal time), we can just as well write 
+
+\[ \boxed{F_{mag} = \int I (d\mathbf{l} \times \mathbf{B})} \] 
+
+Furthermore, typically the current flowing through a wire is constant, so most times we can Write
+\begin{empheq}[box=\mymath]{equation*}
+    F_{mag}\; =\; I\int (d\mathbf{l} \times \mathbf{B})
+\end{empheq}
+
+[write about work done by mag field later]
+
+\subsection{Surface Charge}
+If instead, we have current flowing over a surface, we employ the notion of \textbf{surface charge density, $K$} to talk about surface density per unit width:
+
+If we have a ribbon of width $dl$ (running parallel to the current flow) through which a current $d\mathbf{I}$ is flowing, then the surface charge density is 
+\[ \boxed{\mathbf{K} \equiv \frac{d\mathbf{I}}{dl}} \]
+
+If the surface charge distribution is $\sigma$ and the distribution flows with velocity $v$ then, we have
+\[ \mathbf{K} = \sigma \mathbf{v} \]
+
+So, the magnetic force on a sheet with Surface Current Density $\mathbf{K}$ placed in a magnetic field $\mathbf{B}$ is 
+\begin{align*}
+    F_{mag} &= \int (\mathbf{v} \times \mathbf{B}) dq \\
+            &= \int (\mathbf{v} \times \mathbf{B}) \sigma da \\
+            &= \int (\sigma \mathbf{v} \times \mathbf{B}) da \\
+            &= \int (\mathbf{K} \times \mathbf{B}) da 
+\end{align*}
+\[ \boxed{F_{mag} = \int (\mathbf{K} \times \mathbf{B}) da } \]
+
+NOTE: Just as the electric field experiences discontinuities at surface charges, so does the magnetic field. So, we should be careful to use the \emph{average} field at a boundary/surface containing surface current.
+
+\section{Volume Current Density}
+
+In 3D volumes too, we have the same idea. 
+
+When current $d\mathbf{I}$ flows through a 3-D volume of cross sectional area $da$ (perpendicular to the current flow), we have a \textbf{volume current density} of 
+\[ \mathbf{J} = \frac{d\mathbf{I}}{da} \]
+
+so $J$ is the current per area. If the current consists of a mobile charge density $\rho$ moving with velocity $\mathbf{v}$, then 
+\[ \mathbf{J} = \rho \mathbf{v} \]
+
+and the magnetic force on a solid with volume current density $mathbf{J}$ flowing through it, placed in a magnetic field $\mathbf{B}$ is
+\[ F_{mag} = \int (\mathbf{v} \times \mathbf{B}) \rho d^3r = \int (\mathbf{J} \times \mathbf{B}) d^3r \]
+
+\printbibliography
+
+\end{document}

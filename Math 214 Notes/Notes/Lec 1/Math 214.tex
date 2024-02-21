@@ -1,0 +1,297 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 16 - Topology review, topological manifolds}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This class is on Differential Topology, so the objects we wll study are \emph{smooth manifolds}. Manifolds are topological spaces which are locally euclidean, and endowing a smooth structure onto a manfilod allows us to conduct some sort of \emph{calculus on the manifold}. For instance, using Smoothness we will define actions such as differentiation, integration and objects such as vector fields and their flows.
+
+\vskip 0.5cm
+Some examples of manifolds are
+\begin{itemize}
+  \item Submanfolds
+  \item Lie groups (these show up a lot in physics)
+  \item Quotient manifolds
+\end{itemize}
+
+\vskip 0.5cm
+In addition to the global structure of manifolds, we will also study some local structures such as Remannian metrics and curvature, differential forms, vector/tensor bundles, and de Rham cohomology.
+
+\subsection{Topological Spaces}
+Recall,
+
+\begin{mathdefinitionbox}{Topological Space}
+\vskip 0.25cm
+  A topological space is a pair $(X, O_X)$ where $O_X \subseteq \mathcal P (X)$ satisfying 
+\begin{itemize}
+  \item $\emptyset, X \in O_X$
+  \item Finite intersections are also in $O_X$ i.e. for each $U_{\alpha} \in O_X$, the intersection $\bigcap_{\alpha \in A, |A| < \infty} U_{\alpha} \in O_X$ 
+  \item Arbitrary unions are also in $O_X$ i.e. for each $U_{\alpha} \in O_X$, the union $\bigcup_{\alpha \in A} U_{\alpha} \in O_X$ 
+\end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+We say that $A \subseteq X$ is open if $A \in O_X$ $B \subseteq X$ is closed if $X \setminus B \in O_X$, $U \subseteq X$ is a neighborhood of $p \in X$ iff $p \in U, U \in O_X$.
+
+\vskip 0.5cm
+\underline{\textbf{Ex:}} Any metrci space $(X, d)$ has a topology induced by its metric defined as $(X, O_X)$ and for $A \subseteq X$, $A \in O_X$ iff for all $p \in A$ there exists $r > 0$ such that $p \in B_r(p) \subseteq A$.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Basis of a Topology}
+\vskip 0.25cm
+  Given $(X, O_X)$, we say $\mathcal B \subseteq \mathcal P(X)$ is a basis for the topology if 
+  \[ A \in O_X \;\;iff\;\; \forall p \in A, \exists B \in \mathcal B \;st\; p \in B \subseteq A\]
+\end{mathdefinitionbox}
+
+\vskip 0.25cm
+\underline{\textbf{Ex:}} The set of open ball with rational radii is a countable basis for the usual topology on $\mathbb{R}^n$.
+
+\vskip 0.5cm
+\subsection{Continuous maps between Topological Spaces}
+
+\begin{mathdefinitionbox}{Continuous Map}
+  Given topological spaces $(X, O_X)$ and $(Y, O_Y)$, the map $\phi : X \rightarrow Y$ is continuous if for every open $B \subseteq Y$ the pre-image $\phi^{-1}(B) \subseteq X$ is open.
+\end{mathdefinitionbox}
+
+\begin{mathdefinitionbox}{Homeomorphism}
+  $\phi : X \rightarrow Y$ s a Homeomorphism if $\phi$ and $\phi^{-1}$ are both continuous.
+\end{mathdefinitionbox}
+
+\underline{\textbf{Ex:}} The map from $[0, 2\pi)$ to the circule is continuous but its inverse is not, so the two spaces are not Homeomorphic.
+
+\vskip 0.5cm
+\subsection{Subspace Topology}
+
+\begin{mathdefinitionbox}{Subspace Topology}
+  Gven a topological space $(X, O_X)$, a subset $Y \subseteq X$ can be endowed with the subspace topology defined as 
+  \[ O_Y = \{ A \cap Y  : A \in O_X \} \]
+\end{mathdefinitionbox}
+
+\subsection{Compactness}
+
+\begin{mathdefinitionbox}{Compactness}
+  \begin{itemize}
+    \item An \textbf{open cover} of $X$ is a collection of open sets $U_{\alpha}$ such that $X \subseteq \bigcap_{\alpha \in A} U_{\alpha}$.
+    \item A subset $K \subseteq X$ of topological space $X$ is compact if every open cover $\{ U_{\alpha}\}_{\alpha}$ has a \textbf{finite} subcover.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+Add some more intuition regarding this later.
+
+\begin{mathdefinitionbox}{Hausdorff}
+  A topological space $X$ is Hausdorff if for any ponits $p, q \in X$ there exist open sets $U$ and $V$ such that $p \in U, q \in V$ and $U \cap V  \emptyset$.
+\end{mathdefinitionbox}
+
+Insert figure later.
+
+\subsection{Topological Manifolds}
+
+The following statement seems innoccuous enough, but it requires the heavy machinery of de Rham Cohomology to prove:
+\vskip 0.25cm
+\underline{\textbf{Lemma: (Topological Invariance of Dimension)}} \\
+If $\phi : U \rightarrow^{\text{homeo}} Y$ where $U \subseteq \mathbb{R}^n, V \subseteq \mathbb{R}^m$ then $n = m$.
+
+\vskip 0.5cm
+\underline{\textbf{Def:}}
+A Topological Space $X$ is locally eucldiean of dimension $n$ at $p \in X$ if there exists an open set $U \subseteq X$ such that $p \in U \subseteq X$ is Homeomorphic to some open $\tilde{U} \subseteq \mathbb{R}^n$.
+
+(Insert figure later, for instance of homeo. between sphere and open set in $\mathbb{R}^2$)
+
+\vskip 0.5cm
+\underline{\textbf{Exercise:} Can requrie $\tilde{U} = B_{1}(0) \subseteq \mathbb{R}^n$}
+
+\vskip 0.5cm
+\underline{\textbf{Lemma:}} The Dmiension $n$ in the defintiion above is uniquely determined by $p \in X$.
+
+(Insert figure later and write up proof)
+Basically, compose homeomorphisms $\phi_1^{-1}, \phi_2$ then use Invariance of Dimension to show $m = n$.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Topological Manifold}
+  \vskip 0.25cm
+  A Topological Space $M$ is an $n$-dimensional topological manifold if it is
+  \begin{itemize}
+    \item Hausdorff.
+    \item Second-countable (has a countable basis for its topology).
+    \item Locall Euclidean of dimension $n$ at all points.
+  \end{itemize}
+  \vskip 0.5cm
+  For ex. $\mathbb{R}^{n}$ is an $n$-dimensional manifold. 
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+
+\textbf{Some non-examples of manifolds:} 
+\begin{itemize}
+  \item Not Hausdorff: $X = \mathbb{R} \times \{0, 1\} \sim $ i.e. two copies of R with $(X, 0) \sim (X, 1)$ if $x < 0$ and the topology induced by 
+  \[ \pi : \mathbb{R} \times \{0, 1\} \rightarrow X \] and $A \subseteq X$ iff $\pi^{-1}(A) \subseteq \mathbb{R} \times \{0, 1\}$ is open.
+  (This is a standard example -- include a figure later.)
+
+  \item Not Locally Euclidean: Same as before, but $(X, 0) \sim (X, 1)$ if $x \leq 0$. We have a problem at $[(0, 0)] = [(0, 1)]$.
+
+  \item Not Second Countable: $S$ uncountable and having discrete topology, then the space $S \times \mathbb{R}$ is not a manifold because it doesn't have a countable basis. 
+  
+  \item Not Second Countable: "Long Line" \\
+  \underline{Claim:} There exists an uncountable, well ordered set $S$ such that the maximal element $\Omega \in S$ satsfies for all $\alpha \in S, \alpha \neq \Omega$, $\{ x \in S : x < \alpha \}$ is countable. 
+  
+  Consider the set $X = \bigslant{(S \times [0, 1])}{\{ \alpha_0 \} \times \{ 0 \}}$ where $\alpha_0$ is minimal in $S$.
+
+  We order lexicographically i.e.
+  \[ (\alpha, s) < (\tilde{\alpha}, \tilde{s}) \text{  if  } \alpha < \tilde{\alpha} \text{ or } \alpha = \tilde{\alpha}, s < \tilde{s} \]
+
+  And we endow the long line with the \emph{order topology} to be generated by the following basis 
+  \[  \]
+
+  This space is both Hausdorff and Locally Eucldean, but \emph{not second countable}.
+  complete this one later.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{Some examples of Topological Manfifolds:}
+\begin{itemize}
+  \item The unit circle $S^1 = \{ (x_1, x_2) \in \mathbb{R}^2 : x_1^2 + x_2^2 = 1 \}$  
+  \begin{itemize}
+    \item We can cover the circle by maps $\phi^+ : U_i^+ \rightarrow (-1, 1)$ defined by $(x_1, x_2) \mapsto x_2$ with inverse $(\phi^+)^{-1} : (-1, 1) \rightarrow U_i^+$ given by $(x_1, x_2) \mapsto \sqrt{arg}$ [Finish writing this later]
+  \end{itemize}
+\end{itemize}
+
+\pagebreak
+
+\section{January 18 - Topological Properties of Manifolds}
+\vskip 0.5cm
+
+\subsection*{Connectivity}
+\vskip 0.5cm
+
+\textbf{Def:} A topologcial space $X$ is connected if $\emptyset, X$ are the only two subsets of $X$ which are both open and closed.
+
+\vskip 0.5cm
+\textbf{Path-connectedness:} If for any two points $p, q \in X$ there exsits a path i.e. a continuous map $\gamma : [0, 1] \rightarrow X$ with $\gamma(0) = p, \gamma(1) = q$ then $X$ is path-connected.
+
+% \printbibliography
+
+\end{document}

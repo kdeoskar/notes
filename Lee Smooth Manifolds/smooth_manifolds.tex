@@ -1,0 +1,171 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[most]{tcolorbox}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Introduction to Smooth Manifolds - Some solutions}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is a collection of my personal solutions to some exercises from the book 'Introduction to Smooth Manifolds' (2nd edition) by John M. Lee.
+
+These solutions are being written up and I work through the book, however I do not write up every exercise/problem and leave many to be updated later.
+
+This has been written solely to deepen my own understanding of the material, but please feel free to contact me with corrections, concerns, or comments at kdeoskar@berkeley.edu.
+\end{abstract}
+
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter 1: Smooth Manifolds}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Topological Manifolds}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\textbf{Exercise 1.6:} Show that $\mathbb{RP}^n$ is Hausdorff and second-countable, and is therefore a topological $n$-manifold. 
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+To show Hausdorffness, consider two distinct points $x, y \in \mathbb{RP}^n, x \neq y$. Then, 
+
+\vskip 0.5cm
+To show second-countability, we use the following lemma:
+\begin{dottedbox}
+    For a topological space $X$ with countable basis $\mathcal{B}$
+  \begin{enumerate}[label=(\alph*)]
+    \item Any of its subsets $Y \subseteq X$ has a countable basis as well ($\mathcal{B}_Y = \{U : U = B \cap Y, B \in \mathcal{B}\}$)
+    \item If $Z = \bigslant{X}{\sim}$ is a quotient space of $X$ by an equivalence relation $\sim$, then 
+    \[ \{ [x]_{\sim} : x \in B \in \mathcal{B} \} \]
+    will be a countable base for the topology induced on $Z$ 
+\end{enumerate}
+\vskip 0.5cm
+
+\underline{\textbf{Proof of Lemma:}} Do later.
+\end{dottedbox}
+
+\vskip 0.5cm
+Applying $(a)$ tells us that $\mathbb{R}^{n+1} \setminus \{0\}$ as a subspace of $\mathbb{R}^n$ has a countable basis. Then, applying $(b)$ with $Z = \mathbb{RP}^n = \bigslant{\mathbb{R}^{n+1} \setminus \{0\}}{\sim}$ where $x \sim y$ if and only if $x = \lambda y$ for some $\lambda \in \mathbb{R}$, tells us that $\mathbb{RP}^n$ too has a countable basis.
+ 
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 1.7:} Show that $\mathbb{RP}^n$ is compact.  
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 1.:} 
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+\end{document}
+

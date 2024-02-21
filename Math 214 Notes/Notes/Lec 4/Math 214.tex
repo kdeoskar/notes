@@ -1,0 +1,348 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 4},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 25 - Smooth structure, Local coordinates}
+\vskip 0.5cm
+
+Recall that a smooth manifold is a pair $(M^n \mathcal{A})$ where $M^n$ is a topological manifold of dimension $n$, and $\mathcal{A}$ s a maxmial smooth atlas on $M$.
+
+\vskip 0.5cm
+\underline{\textbf{Remarks:}}
+\begin{itemize}
+  \item If $(U, \phi) \in \mathcal{A}$ then for $U' \subset U$ we have $(U, \restr{\phi}{U'})  \in \mathcal{A}$
+  \item If $(U, \phi) \in \mathcal{A}$ and $\mathcal{X} : \phi(U) \rightarrow \mathcal{X}(\phi(U)) \subset \R^n$ is a diffeomorphism then $(U, \mathcal{X} \circ \phi) \in \mathcal{A}$
+  \item If $\phi : U \rightarrow \R^n$ is injective and $U \subset_{open} M$, then for
+\end{itemize}
+
+\vskip 0.5cm
+Let's see some examples:
+\begin{dottedbox}
+  \begin{itemize}
+    \item $\R^n$ with $\mathcal{A} = \text{max smooth atlas containing }\{(\R^n, id_{\R^n})\}$
+    
+    \vskip 0.5cm  
+    \underline{Theorem:} If $(M^n, \mathcal{A})$ is a smooth manifold then for $M' \subset_{open} M$ and $\mathcal{A}' = \{ (U, \phi) | U \subset M' \}$, the pair $(M', \mathcal{A}')$ is also a smooth manifold.
+    \textbf{So, open subsets of $\mathcal{\R^n}$ have smooth manifold structure.}
+
+    \vskip 0.5cm  
+    \item $(\mathbb{S}^n, \mathcal{A})$ where
+    \begin{align*}
+      \mathcal{A} &= \text{max smooth atlas containing } \{(U_i^{\pm}, \phi_i)\} \\
+      &= \text{max smooth atlas containnig stereographic projection from N, S pole}
+    \end{align*}
+    
+    \vskip 0.5cm  
+    \item  where $V$ $n-$dimensional vector space over $\R$ and 
+    \begin{align*}
+      \mathcal{A}' &= \{ (V, \phi) | \phi : V \rightarrow \R^n \text{ is an isomorphism}\}
+    \end{align*}
+    can be enlarged to a maximal smooth atlas $\mathcal{A}$. $(V, \mathcal{A})$ s a smooth manifold. (Missing some detail, fill from picture)
+
+  \vskip 0.5cm  
+  \item $M = \mathbb{R}$, $\mathcal{A} = \text{max smooth atlas containing } \{(\R, id_{R})\}$ and $\mathcal{A}' = \text{max smooth atlas containing } \{(R, \phi)\}, \phi : \R \rightarrow \R$ defined as $x \mapsto x^3$.
+  
+  \vskip 0.5cm  
+  These are distinct smooth atlases $\mathcal{A} \neq \mathcal{A}'$ since the charts $(\R, id_{\R}), (\R, \phi)$ are not compatible.
+  \begin{align*}
+    (\phi \circ id_{\R})(x) &= x^3 \text{ s smooth, but} \\
+    (id_{\R} \circ \phi^{-1})(x) = \sqrt[3]{x} \text{  not diff at $x = 0$ so this map is \underline{not smooth}} 
+  \end{align*}
+  
+  \vskip 0.5cm  
+  Read about more examples lie $GL_n(\R)$, cartesian product, etc.
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm  
+\underline{\textbf{Note:}} We'll see more examples of multiple maximal smooth atlases on a manifold later.
+
+\vskip 1cm  
+\subsection*{Additional Discussion}
+
+\vskip 0.5cm  
+So far we've defined two major classes of objects: topological manifolds and smooth manifolds.
+
+\vskip 0.5cm  
+\begin{dottedbox}
+  \underline{Q:} Does every topological manifold $M^n$ admit a smooth structure?
+  \vskip 0.5cm  
+  \underline{A:} 
+  \begin{itemize}
+    \item If the dimension is $n \leq 3$ or lower, then yes \& they are unque up to diffeomorphism (Moise1952).
+    \item For $n \geq 4$, not necessarily \& even if they do, they may be nonunique ($M^{10}$, Kervaire 1960; $M^4$, Donaldson, Friedman, \& Kirby, 80s)
+  \end{itemize} 
+\end{dottedbox}
+
+\vskip 0.5cm  
+\begin{dottedbox}
+  \underline{Q:} Are there exotic (not diffeo to standard smooth structure) smooth structures on $\mathbb{S}^n$.
+  \vskip 0.5cm  
+  \underline{A:} 
+  \begin{itemize}
+    \item For $n \leq 3$, no (Relevant to Poincaré Conjecture).
+    \item For $n = 4$, unknown (Smooth Poincaré Conjecture).
+    \item For $n \geq 5$, depends on $n$ (See ManifoldAtlas - Exotic spheres; first one ($n = 7$) constructed by Milnor).
+  \end{itemize} 
+\end{dottedbox}
+
+\vskip 1cm  
+\subsection{Smooth Manifold Lemma}
+\vskip 0.5cm  
+\begin{dottedbox}
+  \underline{\textbf{Smooth Manifold Lemma:}} Let $M$ be a set, $\{ (\underbrace{U_{\alpha}}_{\text{subset of $M$}}, \phi_{\alpha}) \}_{\alpha \in I}$ where $\phi_{\alpha} : U_{\alpha} \rightarrow \R^n$ is injective such that 
+  \begin{itemize}
+    \item $\phi(U_{\alpha} \cap U_{\beta}) \subset \R^n$ is open for all $\alpha, \beta \in I$ \emph{(Gives topology and locally euc.)}
+    
+    \item $\restr{\phi_{\alpha} \circ \phi_{\beta}^{-1}}{\phi_{\beta}(U_{\alpha} \cap U_{\beta})}$ is smooth for all $\alpha, \beta \in I$ \emph{(Gives smooth transition maps)}
+    
+    \item $M$ is covered by countably many $U_{\alpha}$ \emph{(Gives second countability)}
+    
+    \item For all $p, q \in M$ where $p \neq q$ there are 
+    \begin{enumerate}
+      \item $\alpha \in I$ such that $p, q \in U_{\alpha}$ OR  
+      \item $\alpha, \beta$ such that $p \in U_{\alpha}, q \in U_{\beta}$ such that $U_{\alpha} \cap U_{\beta} = \emptyset$
+    \end{enumerate}
+    \emph{(Gives Hausdorffness)}
+  \end{itemize}
+  then $M$ has a unique topological and smooth structure such that $(U_{\alpha}, \phi_{\alpha})$ are smooth charts.
+\end{dottedbox}
+
+\vskip 0.5cm  
+
+
+\begin{mathdefinitionbox}{}
+\vskip 0.5cm  
+  \underline{\textbf{"Proof:"}}
+  Define a topology on $M$ by 
+  
+  \vskip 0.5cm  
+  $A \subset M$ is open if and only if
+  \[ \phi_{\alpha}(A \cap U_{\alpha}) \subset \R^n \]
+  is open for all $\alpha \in I$.
+
+  \vskip 0.5cm  
+  (Add more detail later).
+\end{mathdefinitionbox}
+
+\vskip 1cm  
+\begin{mathdefinitionbox}{Example: Grassmann Manifolds}
+  \vskip 0.25cm  
+  \[ M = \text{Gr}_{k}(\R^n) = \{ V \subset \R^n \text{ linear subspaces }: \text{ dim}(V) = k  \} \]
+\end{mathdefinitionbox}
+
+\vskip 1cm  
+\begin{dottedbox}
+To prove that the Grassmann Manifold is indeed a smooth manifoold, let 
+\[ I = \{ (P, Q) : P, Q \subset \R^n \text{ linear subspaces such that } \R^n = P \oplus Q, \text{ dim}(P) = k, \text{ dim}(Q) = n-k \} \]
+
+\vskip 1cm  
+For $\alpha = (P, Q) \in I$ define 
+\[ U_{\alpha} = \{ V \in \text{Gr}_k(\R^n) : V \cap Q = \{0\} \} \]
+
+\vskip 1cm  
+[Insert figure]
+
+\vskip 1cm  
+Then, for any $V \in U_{\alpha}$, there exists a unique linear map $A_{P, Q, V} : P \rightarrow Q$ st 
+\[ V = \{  \} \]
+
+[Complete this later]
+\end{dottedbox}
+
+\vskip 1cm  
+\underline{Note:} As to the four parts of the Smooth Manifold Lemma, 
+\begin{itemize}
+  \item (1) can be checked directly 
+  \item (2) we can check the transition maps are smooth from the above
+  \item (3) we can cover $M$ by finitely many charts
+  \item (4) given $P, P'$ we can find $Q$ such that $P \cap Q = P' \cap Q = \{ 0 \}$ 
+\end{itemize}
+
+\vskip 1cm  
+\subsection{Smooth Manifolds with Boundary}
+
+So far, we have been describing spaces like the open disk. But intuitively, the \emph{closed} disk should also be a manifold. So, we define a new kind of manifold:
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Topological Manifold with Boundary}
+\vskip 0.5cm
+  A topological manifold $M^n$ \textbf{with boundary} is a topological space such that it is
+  \begin{enumerate}
+    \item Hausdorff
+    \item Second-Countable
+    \item For any $p \in M$ there exsits an open neighborhood $U \subseteq M$ and homeomorphism 
+    \[ \phi : U \rightarrow \phi(U) \subset \mathbb{H}^n = \{(x_1, \dots, x_n) : x_n \geq 0 \}\]
+  \end{enumerate}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Def:}} 
+  \begin{itemize}
+    \item A point $p \in M$ is a \textbf{boundary point} if there exists a chart $(U_2, \phi_2)$ such that $\phi_2(p) \in \partial \mathbb{H}^n = \{(x_1, \dots, x_{n-1}, 0) \in \R^n \}$.
+    
+    \vskip 0.5cm
+    \item A point $q \in M$ is an \textbf{interior point} if there exists a chart $(U_1, \phi_1)$ such that $\phi_1(U)$ is open in $\R^n$.
+    
+    \vskip 0.5cm
+    \underline{Remark:} We will verify later that a point cannot be both an interior and boundary point.
+
+    \vskip 0.5cm
+    \underline{Remark:} Topological Manifolds are also topological manifolds with boundary ($\partial M = \emptyset$)
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm
+Now, usually when we discuss smoothness we work with \emph{open} sets. So, what about \emph{smooth manifolds with boundary}? How do we need to modify our notion of smoothness to account for the boundary?
+
+\vskip 1cm
+\subsection{Smoothness and Transition Maps}
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{\textbf{Def:}} For an arbitrary subset $A \subset \R^n$, we say $f : A \rightarrow \R^m$ is \emph{smooth} if we can extend to a smooth $\overline{f} : V \rightarrow \R^m$ where $A \subset V \subset_{open} \R^n$ and $\restr{\overline{f}}{A} = f$.
+\end{dottedbox}
+
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{\textbf{Seeley's Theorem:}} $\phi$ is smooth if all partial derivatives exist in the interor and can be extended countinuously to the boundary.
+\end{dottedbox}
+
+
+\end{document}

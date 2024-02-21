@@ -1,0 +1,262 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture 12},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 12}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 12 - Spin-Orbit Coupling continued}
+
+\vskip 1cm
+
+\subsection*{Recap}
+\begin{itemize}
+  \item Earlier, we discussed the three corrections to the Hydrogen-atom Hamiltonian, the second one being the \emph{spin-orbit coupling correction}
+  \[ \hat{H}_{SO} = \frac{e^2}{8m^2 \epsilon_0 c^2} \frac{\vec{S} \cdot \vec{L}}{r^3} \]
+  
+  \item We wrote $2 \vec{S} \cdot \vec{L} = \left( J^2 - S^2 - L^2 \right)$ and found the first-order energy correction to be 
+  \[ E_{SO}^{(1)} = \frac{e^2}{8m^2 \epsilon_0 c^2} \mean{\frac{1}{r^3}}_{nl} \cdot \left[ j(j+1) - l(l+1) -s(s+1) \right] \]
+  and we can derive 
+  \[ \mean{\frac{1}{r^3}}_{nl} = \frac{1}{l(l + \frac{1}{2})(l - 1)n^3 a^3} \]
+
+  \item Note that if $l = 0$ then we have $j = s$, the energy correction is just zero. So, Spin-Orbit coupling doesn't impact the energies of the zero-angular momentum states.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Darwin Term}
+
+\vskip 0.5cm
+Today, we'll find the correction due to the Darwin Term
+\[ \hat{H}_{DAR}' = \frac{\pi \hbar^2}{2m^2 c^2} \cdot \frac{e^2}{4\pi \epsilon_0} \delta^3(\vec{r}) \]
+which \emph{only} contributes to the $l = 0$ states.
+
+Why is this? One way to think about it is to recall that when we solved the Schrodinger Equation for the Coulomb potential, we had 
+\[ V_{eff}(r) = V_{coulomb}(r) + \underbrace{\frac{\hbar}{2m} \frac{l(l+1)}{r^2}}_{centrifugal} \]
+
+[Include picture]
+
+\vskip 0.5cm
+At lower $r$, the centrifugal potential dominates and is a large positive number whereas for large $r$ the coulomb potential dominates and is a negative number close to zero (negative since it's attractive). 
+
+\vskip 0.5cm
+As a result, we required our ormalizable states to go to satisfy $\psi_{nlm}(0) \rightarrow 0$ for all $l > 0$.
+
+[Explain more clearly; watch recording]
+
+\vskip 0.5cm
+Now, let's calculate the Darwin Correction. 
+
+\begin{align*}
+  E_{DAR}^{(1)} &= \frac{\pi \hbar^2}{2m^3 c^2} \frac{e^2}{4\pi \epsilon_0} \inner{n00}{\delta^3(\vec{r})|n00} \\
+  &=  \frac{\pi \hbar^2}{2m^3 c^2} \frac{e^2}{4\pi\epsilon_0} \frac{1}{\pi n^3 a^3}
+\end{align*}
+
+Note that 
+\begin{align*}
+  E_n^{(0)} &= -\frac{m}{2\hbar^2} \left( \frac{e^2}{4\pi \epsilon_0} \right)^2 \frac{1}{n} \\
+  &= -\frac{mc^2}{2} \underbrace{\left( \frac{e^2}{4\pi \epsilon_0} \frac{1}{c\hbar} \right)^2}_{\alpha^2} \frac{1}{n^2}
+\end{align*}
+and since $\alpha \approx \frac{1}{137} << 1$ we have 
+
+\[ E_n^{(0)} \approx \frac{E_1^{(0)}}{n^2} \]
+
+\subsection{Fine Structure corrections}
+
+\vskip 0.5cm
+Now that we've calculate each of the corrections individually, the total Fine Structure Corrections are given by 
+\begin{align*}
+  E_n^{(1)} &= E_{rel}^{(1)} + E_{SO}^{(1)} + E_{DAR}^{(1)} \\
+  &= E_n^{(0)} \frac{\alpha^2}{n^2} \left( \frac{n}{j + 1/2} - \frac{3}{4} \right)
+\end{align*} 
+
+Thus, 
+\begin{align*}
+  E^{(0)} &\sim \mathcal{O}(\alpha^2) \\
+  E^{(1)} &\sim \mathcal{O}(\alpha^4) 
+\end{align*}
+
+\subsection{Splitting of Energy Levels}
+
+[Include Image]
+
+\subsection{External Magnetic Fields - Zeeman Effect}
+Everything we've done earlier has been \emph{internal}. Now, we're going to submerge the entire atom i.e. \emph{both} the electron and proton in an external magnetic field $\vec{B}_{ext}$.
+
+\vskip 0.5cm
+Then, we have a perturbation to the Hamiltonian given by 
+\[ \hat{H}_z  =  -(\mu_s + \mu_L) \cdot \vec{B}_{ext} \]
+
+where the $z$-subscript stands for "Zeeman", \emph{not} $z-$axis.
+
+Earlier, we discussed how the magnetic moment of a charged particle is inversely proportional to its mass:
+\[ \mu_s = \frac{q}{m} \vec{S}, \;\;\; \mu_L = \frac{q}{2m} \vec{L} \]
+
+Because the proton is on the order of $1000$ times heavier than the electron, its magnetic moment $\mu_p$ is negligible compared to $\mu_e$. Thus, we will neglect the effect due to the proton and only worry about the electron.
+
+\vskip 0.5cm
+\[ \implies \hat{H}_z = \frac{e}{2m} \left( \vec{L}  + 2\vec{S} \right) \cdot \vec{B} \]
+
+Since we have a uniform magnetic field $\vec{B}(\vec{r}) = \vec{B}_0$. Let's consider a \emph{weak field} $\vec{B}_{ext} = B_0 \hat{z}$ where $B_0$ is small relative to the fine-structure corrections.
+
+All we need to do is use $J = L + S$ since it's a good quantum number.
+
+\begin{align*}
+  E_{zeeman}^{(1)} &= \frac{e}{2m} B_0 \mean{ (L_z + 2S_z) }_{rel} \\
+  &= \frac{e}{2m} B_0 \mean{(J_z + S_z)}_{rel} \\
+  &= \frac{e}{2m} B_0 \left( m_j \hbar + \mean{S_z}_{rel} \right)
+\end{align*}
+
+We can then evaluate the expectation value using the $\ket{l, m}$-space representation of the stat e $\ket{j = l \pm \frac{1}{2}, m_s}$ 
+
+\[ \ket{j = l \pm \frac{1}{2}, m_s} =  \]
+
+We find the expectation value to be 
+\[ \mean{S_z}_{rel} = \pm\frac{m_j \hbar}{2l+1} \]
+
+Thus, 
+\[ \boxed{ E_{zeeman}^{(1)} = \frac{eB_0}{2m} m_j \hbar \left( 1 \pm \frac{1}{2l+1} \right) } \]
+
+\end{document}

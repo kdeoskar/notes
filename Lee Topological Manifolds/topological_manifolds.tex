@@ -1,0 +1,1071 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[most]{tcolorbox}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Introduction to Topological Manifolds - Some solutions}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is a collection of my personal solutions to some exercises from the book 'Introduction to Topological Manifolds' (2nd edition) by John M. Lee.
+
+These solutions are being written up and I work through the book, however I do not write up every exercise/problem and leave many to be updated later.
+
+This has been written solely to deepen my own understanding of the material, but please feel free to contact me with corrections, concerns, or comments at kdeoskar@berkeley.edu.
+\end{abstract}
+
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter 2: Topological Spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Topologies}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\textbf{Exercise 2.5:} Suppose $X$ is a topological space and $Y$ is an open subset of $X$. Show that the collection of all subsets of $X$ contained in $Y$ form a topology on $Y$. 
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+Let the topology on $X$ be denoted $\mathcal T_X$ and let's call the collection of open subsets of $X$ contained in $Y$ as:
+\[ \mathcal T_Y = \{ U \in \mathcal T_X : U \subseteq Y \} \]
+
+\begin{itemize}
+  \item Now, clearly $\emptyset \subseteq Y$ and $\emptyset \in \mathcal T_{Y}$. Also, by definition, $Y \in \mathcal T_Y$.
+  \vskip 0.25cm
+
+  \item Let $\cup_{\alpha \in A} U_{\alpha}$ denote an arbitrary union of open sets $U_{\alpha} \in \mathcal T_X$ such that each $U_{\alpha} \subseteq Y$.
+  
+  Since each $U_{\alpha} \in \mathcal T_X$, the arbitrary union is also an open set in $\mathcal T_X$ i.e. \textbf{it is also an open set on X}. 
+  
+  To show that it is further a subset of $Y$, we note that for any $x$ in the union, $x$ must be contained by some open set $U_k \subseteq Y$, and so every element on the union is an element of $Y$. Thus, $\cup_{\alpha \in A} U_{\alpha} \subseteq Y$.
+  \vskip 0.25cm
+
+  \item Consider some \textbf{finite} intersection of sets $\cap_{\alpha \in A} U_{\alpha}$ where each $U_{\alpha} \in \mathcal T_Y$. Then, since each of these sets is also in the topology on $X$, their finite intersection is \textbf{also an open set on X}.
+  
+  Now, to show that the intersection is \textbf{a subset of $Y$}, we note that an element $x \in \cap_{\alpha \in A} U_{\alpha}$ must be an element of every $U_{\alpha} \subseteq Y$, so every element of the intersection is also contained in $Y$. Thus, $\cap_{\alpha \in A} U_{\alpha} \subseteq Y$.
+\end{itemize}
+
+Since all three properties are satisfied, $\mathcal T_Y$ does indeed form a topology on $Y$.
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.6:} Let $X$ be a set, and suppose $\{\mathcal T_\alpha\}_{\alpha \in A}$ is a collection of topologies on
+$X$. Show that the intersection $\mathcal T = \cap_{\alpha \in A} \mathcal T_{\alpha}$ is a topology on $X$. (The open subsets in this topology are exactly those subsets of $X$ that are open in each of the topologies $\mathcal T_{\alpha}$.)
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+\begin{itemize}
+  \item Clearly, $\phi \in \mathcal T$ and since $X$ must be a member of any topology we have $X \in \T_{\alpha}$ for every $\alpha \in A$, giving us $X \in \T$.
+  
+  \item Consider an arbitrary union of open sets $U_i \in \T$. Then, each $U_i$ must be contained within each of the topologies $\T_{\alpha}$, and by definition of a topology, the arbitrary unions of these sets must also be in each $\T_{\alpha}$. So, the arbitrary union must also be in $\T$.
+  
+  \item Consider a finite union of sets $U_i \in T$. Then, each $U_i$ must be an element of every $\T_{\alpha}$ as well and, again, by the definition of a topology, the finite intersection must also be in each topology i.e. $\cap_{i \in I} U_i \in \T_{\alpha}$. Thus, the finite intersection must be in $\T$ as well. 
+\end{itemize}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{Closed subsets}
+
+\textbf{Exercise 2.10:}  Show that a subset of a topological space is closed if and only if it contains all of its limit points.
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+Here, we're defining a subset $A \subset X$ to be closed if and only if $X \setminus A$ is open in $X$, and a point $p \in X$ to be a limit point of $A$ if every neighborhood of $p$ contains a point $x \in A$ such that $x \neq p$.
+
+\vskip 0.5cm
+
+\underline{"Forwards Direction":} Let $A$ be closed in $X$ and suppose, for contradiction, that $A$ does not contain one of its limit points $p \in X$. Then, $p \in X \setminus A$ which is open since $A$ is closed. However since it is open, every point in $X \setminus A$ must have a neighborhood which is contained in $X \setminus A$ (by Exercise 2.9 (g)). 
+
+\vskip 0.25cm
+
+But by the definition of a limit point, every neighborhood of $p$ must contain some point $p \neq x \in A$. So, we have a contradiction. Thus, $A$ is closed $\implies$ $A$ contains all of its limit points.
+
+\vskip 1cm
+
+\underbar{"Backwards direction":} Suppose $A \subset X$ contains all of its limit points so $A' \subseteq A$ where $A'$ is the set of limit points.
+
+\vskip 0.25cm
+
+Now, suppose that $A$ is \emph{not} closed. Then, the complement $X \setminus A$ is \emph{not} open. This means that there is at least one point $x \in X \setminus A$ such that for \emph{every} neighborhood $U \ni x$ we have $U \not\subseteq X \setminus A$. In other words, for every neighborhood of $x$, we have $U \cap A \neq \emptyset$. 
+
+These intersection points are then clearly in $A \setminus \{x\}$, meaning they are limit points (since their neighborhoods contain points in both $A$ and $X \setminus A$). But we assumed that $A$ already contained all of its limit points! Thus, we have arrived at a conclusion. 
+
+\vskip 0.5cm
+
+(Credit for the backwards argument: Henno Brandsma at \href{https://math.stackexchange.com/questions/3672998/closed-subset-and-accumulation-points}{this MathStackExchange post}.)
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.11:} Show that a subset $A \subseteq X$ is dense if and only if every nonempty open subset of $X$ contains a point of $A$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Convergence and Continuity}
+
+\textbf{Exercise 2.12:} Show that in a metric space, this topological definition of convergence is equivalent to the metric space definition
+
+(Also 2.13, 2.14 later)
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.13:} Let $X$ be a discrete topological space. Show that the only convergent sequences in $X$ are the ones that are eventually constant, that is, sequences $(x_i)$ such that
+$x_i = x$ for all but finitely many $i$.
+
+
+\vskip 0.5cm
+
+\textbf{Proof:} If we have a sequence such that $x_i = x$ for only finitely many $i$ i.e. we have a finite index set I such that $x_i = x$ whenever $i \in I$, then we can define $U = X \setminus \{x_i : i \in I\}$  to be the set of all points excluding the points which are equal to $x$. Then, $U$ is a neighborhood of $x$ since we have the discrete topology (every subset is an open set) and the sequence doesn't converge to $x$ due to the existence of $U$.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.14:} Suppose $X$ is a topological space, $A$ is a subset of $X$, and $(x_i)$ is a
+sequence of points in $A$ that converges to a point $x \in X$. Show that $x \in \bar{A}$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.15:} A map between topological spaces is continuous if and only if the preimage of every closed subset is closed.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+% \underline{"Forwards Direction":}
+
+% Suppose a map $f : X \rightarrow Y$ is continuous. That means, for every open set $V \subseteq Y$, the pre-image $f^{-1}(V) \subseteq X$ is open. 
+
+% The complement, $Y \setminus V \subseteq Y$ is closed. What about $f^{-1}(Y \setminus V)$?  
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.21:} Let $(X_1, \T_1)$ and $(X_1, \T_1)$ be topological spaces and let $f : X_1 \rightarrow X_2$ be a bijective map. Show that $f$ is a homeomorphism if and only if $f(\T_1) = \T_2$ in the sense that $U \in \T_1$ if and only if $f(U) \in \T_2$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} [Re-write this later]
+As a reminder, we define a function $f : X \rightarrow Y$ to be a homeomorphism if both $f$ and $f^{-1}$ are continuous maps.
+
+\vskip 0.5cm
+
+\underline{"Forwards Direction":}
+
+Suppose $f$ is a homeomorphism between $X$ and $Y$. Then, since $f : X \rightarrow Y $ is continuous, for any open set $V = f(U) \in \T_2$ we have the pre-image $f^{-1}(V) = U \subseteq X$ being open i.e. $U \in \T_1$. it is surjective  Thus, $f(\T_1) = \T_2$.
+
+\vskip 0.5cm
+
+\underline{"Backwards Direction":}
+
+Suppose $f : X \rightarrow Y$ is a function such that $f(\T_1) = \T_2$ in the sense that $U \in \T_1$ if and only if $f(U) \in \T_2$. So, clearly under for any open set $f(U) \subseteq Y$, the preimage $U \subseteq X$ is also open and similarly with $f^{-1} : Y \rightarrow X$, for any $U \subseteq X$ the preimage $f(U) \subseteq Y$ is also open.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Hausdorff Spaces}
+
+\textbf{Exercise 2.35:} Suppose $X$ is a topological space, and for every $p \in X$ there exists a continuous function $f : W \rightarrow \mathbb{R}$ such that $f^{-1}(0) = \{ p \}$. Show that $X$ is Hausdorff.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Consider a point $p \in X$ and the associated map $f : X \rightarrow Y$. Now, consider some other point $q \in X$ with $q \neq p$. Then, $f(p) = 0 \neq f(q)$.
+
+Since $\mathbb{R}$ is a Hausdorff space, there exist open neighborhoods $U$ and $V$ around $f(p)$ and $f(q)$ respectively which are disjoint. 
+
+Then, since $f$ is a continuous map, the pre-images $f^{-1}(U)$ and $f^{-1}(V)$ form disjoint open sets around the points $p$ and $q$ respectively.
+
+Thus, $X$ is a Hausdorff space.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 2.38:} Show that the only Hausdorff topology on a finite set is the discrete topology. 
+
+\vskip 0.5cm
+
+\textbf{Proof:} 
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Bases and Countability}
+
+\textbf{Exercise 2.51:} Suppose $X$ is a second countable space, then $X$ contains a countable dense subset.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Recall that a subset $A$ is dense in $X$ if $\cl(A) = X$. Further, in Exercise 2.11, we showed that a subset $A \subseteq X$ is dense in $X$ if and only if every nonempty open subset of $X$ contains a point of $A$. 
+
+\vskip 0.5cm
+
+FINISH LATER
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Manifolds}
+
+\textbf{Exercise 2.54:} Show that a topological space is a 0-manifold if and only if it is a countable discrete space.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Problem 2-1:} Long question
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Problem 2-7:} Suppose $X$ is a Hausdorff space and $A \subseteq X$.If $p \in X$ is a limit point of $A$, then every neighborhood of $p$ contains infinitely many points of $A$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Recall that given a topological space $X$ and subset $A \subseteq X$, we call point $p \in X$ a limit point of $A$ if every neighborhood of $p$ contains at least one point of $A$ other than itself. i.e. $U$ intersects $A \setminus \{p\}$.
+
+\vskip 0.5cm
+
+Suppose, for contradiction, that $p \in X$ is a limit point of $A \subseteq X$ having a neighborhood $U$ which has finite intersection with $A$ excluding $p$ i.e. the set $V = (U \cap A) \setminus \{p\}$ has finitely many points. 
+
+\vskip 0.5cm
+
+We know that finite subsets of a Hausdorff space are closed. Then, the complement $V^c$ is an open set containing $p$. But then, $V^{c}$ is an open subset containing $p$ and whose intersection with $A$ is empty i.e. $V \cap A = \emptyset$. The existence of $V^c$ would mean that $p$ is \emph{not a limit point}.
+
+\vskip 0.5cm
+
+We have a contradiction. Thus, if $p$ is a limit point of $A$ then \emph{every} open neighborhood of $p$ must contain infinitely many points of $A$.
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\pagebreak
+\section{Chapter 3: New Spaces from Old}
+
+\subsection{Subspaces}
+
+\textbf{Exercise 3.1:} Prove that $\T_S$ is a topology on $S$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} We have topological space $X$ with topology $\T_X$ and a generic subset $S \subseteq X$. We then define
+
+\[ \T_S = \{ U \subseteq S \; : \; U = V \cap S,\; V \in \T_X \} \]
+
+and show that $\T_S$ is a topology on $S$ by verifying it satisfies the three requirements. 
+
+\vskip 0.5cm
+
+\begin{itemize}
+  \item Trivially, $\emptyset \in \T_S$. And, since $X \in \T_X$ we can express $S$ as being $S = S \cap X$, so certainly we have $S \in \T_S$.
+  
+  \vskip 0.5cm
+  \item Consider an arbitrary union of sets $U = \bigcup_{\alpha \in A} U_{\alpha}$ where $U_{\alpha} \in \T_S$. ssince each $U_{\alpha}$ can be expressed as $V_{\alpha} \cap S$ for some open set $V_{\alpha}$ in $\T_X$, we have 
+  
+  \begin{align*}
+    \bigcup_{\alpha \in A} U_{\alpha} &= \bigcup_{\alpha \in A} (V_{\alpha} \cap S) \\
+    &= \left( \bigcup_{\alpha \in A} V_{\alpha} \right) \cap S \\
+    &= V \cap S
+  \end{align*}
+  where $V$ is again an open set of $X$.
+
+  So, arbitrary unions of open sets in $V$ remain open.
+  
+  \vskip 0.5cm
+  \item Now consider some finite union $U = \bigcap_{i \in I} U_i$ for each $U_i \in \T_S, \; |I| < \infty$. Then,
+  \begin{align*}
+    \bigcap_{i \in I} U_i &= \bigcap_{i \in I} (V_i \cap S) \\
+    &= \left(\bigcap_{i \in I} V_i\right) \cap S \\
+    &= V \cap S
+  \end{align*}
+  where again $V$ is open in $X$ because it's a finite union of open sets which are elements of $\T_X$.
+\end{itemize}
+Thus, $\T_S$ forms a topology on $S$, called the \emph{subspace topology}.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.2:} Suppose $S$ is a \textbf{subspace} of $X$. Prove that $B \subseteq S$ is closed in $S$ if and only if it is equal to the intersection of $S$ with some closed set in $X$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} 
+\vskip 0.5cm
+
+\underline{"Forwards Direction":} Suppose $B \subseteq S$ is closed in $S$. Then, $S \setminus B$ is open in $S$, and by definition of the subspace topology, there is some set $V$ open in $X$ such that 
+\[ S \setminus B = S \cap V \]
+
+Now,
+\begin{align*}
+  B &= S \setminus (S \setminus B) \\
+  &= S \setminus (S \cap V) \\
+  &= S \setminus V \\
+  &= S \cap (X \setminus V)
+\end{align*}
+Since $V$ is open in $X$, its complement $X \setminus V$ is closed in $X$. So, we have the forward direction.
+
+\vskip 0.5cm
+\underline{"Backwards Direction":} Suppose there exists some set $W \subseteq X$ which is closed in $X$ such that $B = S \cap W$.
+
+Then, we have 
+\begin{align*}
+  S \setminus B &= S \setminus (S \cap W) \\
+  &= S \setminus W \\
+  &= S \cap (X \setminus W)
+\end{align*}
+
+and $X \setminus W$ is open in $X$. So, by definition, $S \setminus B$ is open in $S$, which means that $B$ is closed in $S$. 
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.3:} Let $M$ be a metric space and let $ S \subseteq M$ be any subset. Show that the subspace topology on $S$ is the same as the metric topology obtained by restricting the metric of $M$ to pairs of points in $S$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.6:} Suppose $S$ is a subspace of the topological space $X$:
+
+\begin{enumerate}
+  \item If $U \subseteq S \subseteq X$, $U$ is open in $S$ and $S$ is open in $X$, then $U$ is open in $X$. The same true for "closed" instead of "open".
+  
+  \item If $U$ is a subset of $S$ that is either relatively open or closed in $X$, then it is also open or closed in $X$, respectively.
+\end{enumerate}
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+\textbf{Exercise 3.7:} Suppose $X$ is a topological space and $U 
+\subseteq S \subseteq X$.
+
+\begin{enumerate}
+  \item Show that the closure of $U$ in $S$ is $\bar{U} \cap S$.
+  \item Show that the interior of $U$ in $S$ contains $Int(U) \cap S$; give an example to show they may not be equal.
+\end{enumerate}
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.12:} 
+
+\vskip 0.5cm
+
+\textbf{Proof:} Write later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{Topological Embeddings}
+
+\textbf{Exercise 3.13:} Let $X$ be a topological manifold and $S$ be a subspace of $X$. Show that the inclusion map $S \hookrightarrow X$ is a topological embedding. 
+
+\vskip 0.5cm
+
+\textbf{Proof:} An injective continuous map that is a homeomorphism onto its image (in the subspace topology) is called a topological embedding.
+
+\vskip 0.5cm
+
+From the Characteristic property of Subspaces, we know that the inclusion is a continuous map (due to the diagram below). 
+
+\[\begin{tikzcd}
+	& X \\
+	S & S
+	\arrow["{f = i_S}"', from=2-1, to=2-2]
+	\arrow["{i_X \circ f}", from=2-1, to=1-2]
+	\arrow["{i_X}"', hook', from=2-2, to=1-2]
+\end{tikzcd}\]
+
+The inclusion is certainly injective since every element is mapped only to itself.
+
+\vskip 0.5cm
+All we need to do is show that $i_X : S \hookrightarrow X$ is a homeomorphism. Since we've already shown $i_X$ is continuous, we just need to show that $i_X^{-1} : X \rightarrow S$ is continuous.
+
+\vskip 0.5cm
+To do so, consider an open set $V \subseteq X$ If $V \cap S = \emptyset$ then $i_X^{-1}$ maps $V$ to the emptyset which is trivially open.
+
+If $V \cap S = B \neq \emptyset$, then it maps $V$ to $B$ -- which we've just written as an intersection of $S$ with an open set of $X$. So, $B$ is (relatively) open in $S$. Thus, $i_X^{-1}$ is continuous.
+
+\vskip 0.5cm
+So, the inclusion satisfies all the requirements and is a topological embedding.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.17:} Give an example of a topological embedding that is neither an open map nor a closed map.
+
+\vskip 0.5cm
+
+\textbf{Proof:} As pointed out by \href{https://math.stackexchange.com/users/41672/stefan-hamcke}{Stefan Hamcke} in \href{https://math.stackexchange.com/questions/1288421/topological-embedding-which-is-neither-open-nor-closed}{this StackExchange post} any inclusion of a subset is an embedding, so all we need to do is find a subset of topological space $X$ which is neither open nor closed and consider the embedding of the subset into $X$.
+
+\vskip 0.5cm
+For instance, if $X = $. FINISH LATER.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Product Spaces}
+
+\textbf{Exercise 3.25:} Prove that 
+\[ \mathcal{B} = \{ U_1 \times \cdots \times U_n : U_i \text{ is an open subset of }X_i, i = 1,2,3,\dots,n \} \]
+is a basis for a topology on the product space $X = \prod_{i = 1}^{n} X_i$.
+
+\vskip 0.5cm
+
+\textbf{Proof:} For $\mathcal{B}$ to be a basis of a topology, it must satisfy the following: 
+
+\begin{itemize}
+  \item $\cup_{B \in \mathcal B} B = X$.
+  \item For any $B_1, B_2 \in \mathcal B$ and any $x \in B_1 \cap B_2$, there exists some $B_3 \in \mathcal B$ such that $x \in B_3 \subseteq B_1 \cap B_2$.  
+\end{itemize}
+
+\emph{To show requirement 1}, we can show set containment in both directions.
+
+\vskip 0.5cm
+
+Suppose $x = (p_1, \dots, p_n) \in X = X_1 \times \cdots \times X_n$. So, $p_i \in X_i$. Then, for each $p_i$ there exists some set $U_i^{p_i}$ open in $X_i$ st $x \in U_i^{p_1}$. So, $x \in U_1^{p_1} \times \cdots \times U_n^{p_n} = B_x$. This holds for any point $x \in X$, so clearly, $X \subseteq \cup_{B \in \mathcal B} B$.
+
+\vskip 0.5cm
+
+On the other hand, suppose $x = (p_1, \dots, p_n) \in \cup_{B \in \mathcal B} B$. Then there is some $B_x = U_1^{p_1} \times \cdots \times U_n^{p_n} $ such that $p_i \in U_i^{p_i}$ and $U_i^{p_i} \subseteq X_i$. So, certainly, we have $x \in X$. This shows $\cup_{B \in \mathcal B} B \subseteq X$. Thus, the two are equal.
+
+\vskip 0.5cm
+
+\emph{To show requirement 2}, suppose we have $B_1, B_2 \in \mathcal B$ and $x \in B_1 \cap B_2$. We can write $x = (p_1, \dots, p_n) $, and express the basis sets as $B_1 = U_1 \times \cdots U_n$, $B_2 = V_1 \times \cdots \times V_n$ where $U_i$'s and $V_i$'s are open sets in $X_i$.
+
+\vskip 0.5cm
+
+Then, $x \in B_1 \cap B_2$ means that $p_i \in U_i \cap V_i$. Since each $U_i, V_i$ is open, the intersection $W_i = U_i \cap V_i \subseteq X_i$ is itself open in $X_i$. Then, we can write $x \in B_3 = (W_1, \dots, W_n) \subseteq B_1 \cap B_2$.  
+
+\vskip 0.5cm
+
+This shows the second requirement is fulfilled, and so $\mathcal B$ generates a topology (the product topology) on $X$.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.26:} Show that the product topology on $\mathbb{R}^n = \mathbb{R} \times \cdots \times \mathbb{R}$ is the same as the metric topology induced by the Euclidean distance function.
+
+\vskip 0.5cm
+
+\textbf{Proof:} We can show that the two topologies are equivalent by showing that any open set in the product topology contains an open set in the metric topology, and vice versa.
+
+\vskip 0.5cm
+We already know that the product topology is generated by the basis 
+\[ \mathcal{B} = \{ \prod_{i = 1}^{n} U_i : U_i \text{ is an open subset of } \mathbb{R}, i = 1,2,3,\dots,n \} \]
+so let's right away work with the basis sets. 
+
+\vskip 0.5cm
+Let $B \in \mathcal B$ be a basis set and let $\{U_k\}$ be the corresponding open sets in $\mathbb{R}$. Consider a point $x = (p_1, \dots, p_n) \in \mathbb{R}^n$. Since each $U_k$ is open in $\mathbb{R}$, each one will contain some $\epsilon-$ball. That is, we have the points $p_1, \dots, p_n$ (with $p_i \in U_i \subseteq \mathbb{R}$) and positive real numbers $\epsilon_1, \dots, \epsilon_n$ such that $B_{\epsilon_i}(p_i) \subseteq U_i$.
+
+\vskip 0.5cm
+So, if we let $\epsilon = min\{ \epsilon_1, \dots, \epsilon_n \}$, there an n-dimensional ball $B_{\epsilon}^{n}(x) \subset \mathbb{R}^{n}$ centered around the point $x = (p_1, \dots, p_n)$. So, any open set in the product topology contains an open set from the metric topology.
+
+\vskip 0.5cm
+Next, let $B_{\epsilon}^{n}(x) \subset \mathbb{R}^n$ be the $\epsilon-$ball around the point $x = (p_1, \dots, p_n)$ in $\mathbb{R}^n$. 
+
+By definition, the n-ball is the cartesian product of the $1$-dimensional $\epsilon-$ball around each coordinate $p_i$. i.e.
+
+\[ B_{\epsilon}^{n}(x) = \prod_{i = 1}^{n} B_{\epsilon}^1(p_i) \]
+
+and each of these 1-dimensional balls is open in $\mathbb{R}$, so we have exactly what we need -- $B_{\epsilon}^{n}(x)$ is a member of the product topology since it is the product of open sets in $\mathbb{R}$. 
+
+Thus, the basis of the product topology and the euclidean metric both induce the same topology on $\mathbb{R}^n$.
+
+\underline{\textbf{Characteristic Property of the Product Topology:}}
+
+Suppose $X_1 \times \cdots \times X_n$ is a product space. Then, a map from any topological space $Y$, $f : Y \rightarrow X_1 \times \cdots \times X_n$, is continuous if and only if each of its component functions $f_i = \pi_i \circ f$ is continuous, where $\pi_i : X_1 \times \cdots \times X_n \rightarrow X_i$ is the canonical projection.
+
+\[\begin{tikzcd}
+	& {X_1 \times \cdots \times X_n} \\
+	Y & {X_i}
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["{f_i = \pi_i \circ f}"', from=2-1, to=2-2]
+	\arrow["{\pi_i}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} Suppose each $f_i$ is continuous. To prove that $f$ is continuous, it suffices to show that the pre-image of each basis set $U_1 \times \cdots \times U_n$ is open, since that would guarantee the preimage of any open set is also open.
+
+\vskip 0.5cm
+For any $x = (p_1, \dots, p_n) \in U_1 \times \cdots \times U_n$, the pre-image $f^{-1}(x) \in f^{-1}(U_1 \times \cdots \times U_n)$ if and only if $f_i^{-1}(p_i) \in f_i^{-1}(U_i)$. So,
+\[ f^{-1}(U_1 \times \cdots \times U_n) = f^{-1}(U_1) \cap \cdots \cap f^{-1}(U_n) \]
+
+finish writing this proof later / delete it
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.29:} Prove the following only using the Characteristic Property of Product spaces:
+\vskip 0.5cm
+
+If $X_1, \dots, X_n$ are topological spaces, each canonical projection $\pi_i : X_1 \times \cdots \times X_n \rightarrow X_i$ is continuous.
+
+\vskip 0.5cm
+
+\textbf{Proof:} The Characteristic Property of Product Spaces tells us that, in the diagram below, $f$ is continuous if and only if every $f_i$ is continuous.
+
+\[\begin{tikzcd}
+	& {X_1 \times \cdots \times X_n} \\
+	Y & {X_i}
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["{f_i = \pi_i \circ f}"', from=2-1, to=2-2]
+	\arrow["{\pi_i}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+Suppose we have $Y = X$ where $X = X_1 \times \cdots \times X_n$ is the product space and $f = Id_X$ is the identity map on the product space. Then, we have the following commutative diagram
+
+\[\begin{tikzcd}
+	& {X} \\
+	X & {X_i}
+	\arrow["Id_x", from=2-1, to=1-2]
+	\arrow["{f_i = \pi_i \circ Id_X}"', from=2-1, to=2-2]
+	\arrow["{\pi_i}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+By the Characteristic property, $f_i$ is continuous if and only if $Id_X$ is open.
+But $f_i = \pi_i \circ Id_X = \pi_i$, and of course $Id_X$ is continuous since the preimage of any open set in $X$ under the identity map is just itself -- an open set. 
+
+\vskip 0.5cm
+Therefore, the projection map is continuous.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.32:} Prove proposition 3.31 (long question)
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.34:} Suppose $f_1, f_2 : X \rightarrow \mathbb{R}$ are continuous functions. Their pointwise sum $f_1 + f_2 : X \rightarrow \mathbb{R}$ and pointwise product $f_1 f_2 : X \rightarrow \mathbb{R}$ are real-valued functions defined by 
+
+\[ (f_1 + f_2)(x) = f_1(x) + f_2(x) \;\;\;\;\;\ (f_1 f_2)(x) = f_1(x)f_2(x) \]
+
+Pointwise sums and products of complex-valued functions are defined similarly. Use the characteristic property of the product topology to show that pointwise sums and products of
+real-valued or complex-valued continuous functions are continuous.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{Infinite Products}
+
+\textbf{Exercise 3.38:} Prove the \textbf{Characteristic Property of Infinite Product Spaces} as stated below:
+
+\vskip 0.5cm
+Let $(X_{\alpha})_{\alpha \in A}$ be an indexed family of topological spaces. For any topological space $Y$, a map $f : Y 
+\rightarrow \prod_{\alpha \in A} X_{\alpha}$ is continuous if and only if each of its component functions $f_{\alpha} = \pi_{\alpha} \circ f$ is continuous. The product topologyis the uniquetopology on $\prod_{\alpha \in A} X_{\alpha}$ that satisfies this property.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Consider the following (commutative) diagram:
+
+\[\begin{tikzcd}
+	& { \prod_{\alpha \in A} X_{\alpha}} \\
+	Y & {X_{\alpha}}
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["{f_{\alpha} = \pi_{\alpha} \circ f}"', from=2-1, to=2-2]
+	\arrow["{\pi_{\alpha}}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\vskip 0.5cm
+Suppose $f$ is continuous. That means, for any open set $U \subseteq \prod_{\alpha} X_{\alpha}$, $f^{-1}(U)$ is open in $Y$. We wish to show that $f_{\alpha}^{-1}(u_{\alpha}) = (f_{\alpha}^{-1} ( \pi_{\alpha}^{-1} (U_{\alpha}) ))$ is open in $Y$.
+
+\vskip 0.5cm
+Now, $\pi_{\alpha}^{-1}(U_{\alpha}) = U_{\alpha} \times \prod_{\alpha \neq \beta \in A} X_{\beta}$, which is open in the product space by the definition of the product topology. Then, by assumption, $f^{-1}(U_{\alpha} \times \prod_{\alpha \neq \beta \in A} X_{\beta})$ is open and since this holds for any arbitrary $\alpha$ we have that each $f_{\alpha}$ is continuous.
+
+\vskip 0.5cm
+Now, suppose each $f_{\alpha}$ is continuous. To prove that $f$ is continuous, it suffices to show that the pre-image of any basis set $B \subseteq \prod_{\alpha in A} X_{\alpha}$ under $f$ is open in $Y$. 
+
+\vskip 0.5cm
+Consider some basis set $B$. By definition, $B = \prod_{\alpha \in A} U_{\alpha}$ where $U_{\alpha}$ is open in $X_{\alpha}$ for each $\alpha$ and there are finitely many $\alpha$ such that $U_{\alpha} \neq X_{\alpha}$. Let $I$ denote the (finite) set of indices for which $U_{\alpha} \neq X_{\alpha}$
+
+\vskip 0.5cm
+A point $y = (p_1, \dots, p_{n}) \in f^{-1}(B)$ if and only if $f_{\alpha}(y) \in U_{\alpha}$, so $f^{-1}(\prod_{\alpha \in A} U_{\alpha}) = \bigcap_{\alpha \in A} f^{-1}_{\alpha}(U_{\alpha})$.
+
+\vskip 0.5cm
+Since each $U_{\alpha}$ is open in $X_{\alpha}$, each $f^{-1}_{\alpha}(U_{\alpha})$ is open in $Y$. But note that for any $\alpha \not\in I$, we have $f^{-1}_{\alpha}(U_{\alpha}) = f^{-1}_{\alpha}(X_{\alpha}) = Y$ since $f_{\alpha}$ is surjective.
+
+So, really, we only have finitely many intersections since 
+\begin{align*}
+  f^{-1}\left(\prod_{\alpha \in A} U_{\alpha}\right) &= \bigcap_{\alpha \in A} f^{-1}_{\alpha}(U_{\alpha}) \\
+  &= Y \cap \left( \bigcap_{\alpha \in I} f^{-1}(U_{\alpha}) \right) \\
+  &= \bigcap_{\alpha \in I} f^{-1}(U_{\alpha})
+\end{align*}
+and this is a finite intersection of sets which are open in $Y$, thus it is open itself. So, each of the $f_{\alpha}$'s being continuous implies the continuity of $f$.
+
+\textbf{Prove the uniqueness later.}
+
+\vskip 0.5cm
+Also see \href{https://math.stackexchange.com/questions/2106197/question-on-the-characteristic-property-of-infinite-product-spaces}{this Math.SE post}.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Disjoint Union Spaces}
+
+\subsection{Quotient Spaces}
+
+\textbf{Exercise 3.46:} Show that the quotient topology is indeed a topology.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Let $X$ be a topological space and $q : X \rightarrow Y$ be a surjective map. We define the \textbf{quotient topology} on $Y$ by declaring a set $U \subseteq Y$ to be open if and only if $q^{-1}(U)$ is open in $X$.
+
+\[ \T_q = \{ U \subseteq Y : q^{-1}(U) \in \T_X \} \]
+
+\vskip 0.5cm
+To show that this is indeed a topology, we note that 
+\begin{itemize}
+  \item $\emptyset \in \T_q$ and since $q^{-1}(Y) = X \in \T_X$ we have $Y \in \T_q$.
+  
+  \item Consider an arbitrary union of sets which are open in $Y$: $U = \bigcup_{\alpha \in A} U_{\alpha}$, $U_{\alpha} \in \T_q$. Now, 
+  \begin{align*}
+    q^{-1}(U) &= q^{-1}\left(\bigcup_{\alpha \in A} U_{\alpha}\right) \\
+    &= \bigcup_{\alpha \in A} q^{-1}\left(U_{\alpha}\right)
+  \end{align*}
+  and since each $q^{-1}(U_{\alpha})$ is open in $X$, the union in the last step is also open in $X$. So, $U$ is open in $Y$.
+
+  \item Consider a finite union of open sets in $Y$: $V = \bigcap_{\substack{i \in I, \\ |I| < \infty}} U_{\alpha}$, $U_{\alpha} \in A$. Now,
+  \begin{align*}
+    q^{-1}(V) &= q^{-1}\left( \bigcap_{\substack{i \in I, \\ |I| < \infty}} U_{\alpha} \right)\\
+    &= \bigcap_{\substack{i \in I, \\ |I| < \infty}} q^{-1}(U_{\alpha})
+  \end{align*}
+  and since this is a finite intersection of open sets in $X$, it is also open in $X$. Thus, finite intersections of open sets in $Y$ are also open in $Y$. 
+\end{itemize}
+\vskip 0.5cm
+Since the three requirements are satsified, $\T_q$ is indeed a topology.
+
+\vskip 0.5cm
+Note that nowhere in this proof did we use the fact that $q$ is \emph{surjective}. It is possible to define this kind of topology even if $q$ isn't surjective, but then it is not called the quotient topolgy. This \href{https://math.stackexchange.com/questions/2608654/proof-that-a-quotient-topology-is-indeed-a-topology}{Math.SE post} may be of interest.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.55:} Show that every  wedge sum of Hausdorff spaces is Hausdorff.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Suppose we have an indexed family of \emph{Hausdorff} topological spaces $(X_{\alpha})_{\alpha \in A}$ and a collection of base points $\{p_{\alpha}\}_{\alpha \in A}$. The wedge sum $W = \vee_{\alpha \in A} X_{\alpha}$ is the disjoint union quotiented by identifying the base points together i.e.
+
+\[ W = \vee_{\alpha \in A} X_{\alpha} = \bigslant{\left(\coprod_{\alpha \in A} X_{\alpha} \right)}{ \sim } \]
+
+by the identification $p_{i} \sim p_{j}$ for $i,j \in A$.
+
+(not sure if the above is proper notation for the quotient -- refine later.)
+
+\vskip 0.5cm
+Now, consider any two points $x, y \in W$. If they both belong to the same $X_{\alpha}$ then clearly there exist disjoint neighborhoods containing them since each $X_{\alpha}$ is Hausdorff. If they originally belonged to $X_{\alpha}$, then any open neighborhood of $x$ and $y$ not containing the point $p$ to which the base points $\{p_{\alpha}\}_{\alpha \in A}$ have been identified works. If one of the points is $p$
+
+\vskip 0.5cm
+(refine this answer later. basic idea is there.)
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{Recognizing Quotient Maps Between Known Spaces}
+
+\textbf{Exercise 3.59:} Let $q : X \rightarrow Y$ be a quotient map. For a subset $U \subseteq X$, show that the following are equivalent:
+\begin{enumerate}
+  \item $U$ is saturated.
+  \item $U = q^{-1}(q(U))$
+  \item $U$ is a union of fibers.
+  \item If $x \in U$, then every point $x' \in X$ such that $q(x) = q(x')$ is also in $U$.
+\end{enumerate}
+
+\vskip 0.5cm
+
+\textbf{Proof:} 
+
+Let's recall some required definitions:
+
+\vskip 0.5cm
+For map $q : x \rightarrow Y$, any subset of the form $q^{-1}(y) \subseteq X$ for some $y \in Y$ is called a \textbf{fiber of $q$}. A subset $U \subseteq X$ is said to be \textbf{saturated with respect to $q$} if $U = q^{-1}(V)$ for some $V \subseteq Y$.
+
+\vskip 0.5cm
+Now, let's tackle the question. To show that any pair of the above statements is equivalent, it suffices to show that $(1) \implies (2)$, $(2) \implies (3)$, $(3) \implies (4)$, and $(4) \implies (1)$.
+
+\begin{enumerate}
+  \item Suppose $U$ is saturated with respect to $q$. Then there is some $V \subseteq Y$ such that $U = q^{-1}(V)$. Then, for any $x \in U$ we know $x \in q^{-1}(V)$. So, of course, $q(x) \in V$. Since this holds for every $x \in U$, we have $V = q(U)$. Thus,
+  \[ U = q^{-1}(q(U)) \]
+  This proves the $(1) \implies (2)$ implication.
+  \vskip 0.5cm
+
+  \item Now, suppose the subset $U \subseteq X$ can be expressed as $U = q^{-1}(q(U))$. Then, since every element of $x \in U$ can be written as $x = q^{-1}(y)$ for some $y \in q(U) \subseteq Y$, $U$ is clearly the union of fibers. 
+  This proves the $(2) \implies (3)$ implication.
+  \vskip 0.5cm
+
+  \item Now, suppose $U$ is a union of fibers. i.e. 
+  \[ U = \bigcup_{i \in I} q^{-1}(y_i) \] for $y_i \in Y$.
+
+  Consider some $x \in U$. Then, $x \in q^{-1}(y_j)$ for some specific $j \in I$. Any $x' \in X$ such that $q(x) = q(x')$ also belongs to the same pre-image set i.e. $x' \in q^{-1}(y_j)$. So, certianly, we have $x' \in U$. This proves the $(3) \implies (4)$ implication.
+  \vskip 0.5cm
+
+  \item Finally, suppose that if $x \in U$ then every point $x' \in X$ such that $q(x) = q(x')$ is also in $U$. Then, we can write
+  \[ U = \bigcup_{i \in I} q^{-1}(y_i) \] for $y_i \in Y$.
+  
+  In other words,
+  \[ U = q^{-1} \underbrace{\left(\bigcup_{i \in I} y_i \right)}_{V} \] for $y_i \in Y$.
+  
+  So, $U$ is saturated with respect to $q$. This proves the $(4) \implies (1)$ implication. 
+\end{enumerate}
+
+Thus, we are done.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.61:} A continuous surjective map $q : X \rightarrow Y$ is a quotient map if and only if it takes saturated open subsets to open subsets, or saturated closed subsets to closed subsets.
+
+\vskip 0.5cm
+
+\textbf{Proof:} 
+
+\underline{"Forwards Direction":} Suppose $q : X \rightarrow Y$ is a quotient map between topological spaces. That is, $q$ is surjective map and $Y$ has the quotient topology indeuced by $q$. 
+
+\vskip 0.5cm
+Recall that the quotient topology is defined in the following way:
+
+A subset $V \subseteq Y$ is said to be open in $Y$ if and only if $q^{-1}(V)$ is open in $X$.
+
+\vskip 0.5cm
+Let $U$ be a saturated open set of $q$. Then, using the results of Exercise 3.59 we can write $U = q^{-1}(q(U))$ and since $U$ itself is open, $q(U)$ is clearly open in $Y$ by the definition of the quotient topology. 
+
+\vskip 0.5cm
+If $U$ is a saturated closed set, then we note that $X \setminus U = X \setminus q^{-1}(q(U)) = q^{-1}(Y \setminus q(U))$ where the last equality follows from a basic set theoretic argument.
+So, $X \setminus U$ is saturated and open, so our argument from above applies, and we know that $Y \setminus q(U)$ is open in  $Y$. Thus, $q(U)$ is closed in $Y$.
+
+\vskip 0.5cm
+\underline{"Backwards Direction":}
+Now, suppose $q : X \rightarrow Y$ is a continuous surjective map which takes saturated open/closed subsets in $X$ to open/closed subsets in $Y$. Then, $q$ is immediately a quotient map since for any $V \subset Y$ we are guaranteed to have a pre-image $U$ due to the surjectivity of $q$, meaning $U = q^{-1}(V)$ is saturated -- so for open $V$, $U$ is also open. This means $q$ induces the quotient topology on $Y$ and is thus a quotient map.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.63:} Proving various properties of quotient maps.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Make sure to do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{The Characteristic Property and Uniqueness}
+
+\textbf{Theorem 3.70: Characteristic Property of the Quotient Topology} 
+
+Suppose $X$ and $Y$ are topological spaces and $q : X \rightarrow Y$ is a quotient map. For any topological space $Z$, a map $f : Y \rightarrow Z$ is continuous if and only if $f \circ q : X \rightarrow Z$ is continuous.
+
+\[\begin{tikzcd}
+	X \\
+	Y & Z
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["{f \circ q}", from=1-1, to=2-2]
+\end{tikzcd}\]
+
+\vskip 0.5cm
+
+\textbf{Proof:} Consider some open set $U \subseteq Z$ and its pre-image $f^{-1}(U) \subseteq Y$. Now, $f^{-1}(U)$ is open if and only if $q^{-1}(f^{-1}(U)) = (f \circ q)^{-1}(U)$ is open in $X$. Thus, if $f \circ q$ is continuous then $f$ is continuous, and vice versa.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.71:} Given a topological space $X$, a set $Y$, and a surjective map $q : X \rightarrow Y$, the quotient topology is the only topology on $Y$ for which the characteristic property holds.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Let $Y_q$ be the $Y$ equipped with the quotient topology on $Y$ and $Y_g$ be $Y$ equipped with some other topology on $Y$ such that both $Y_q$ and $Y_g$ satisfy the characteristic property of quotient topologies. 
+
+\vskip 0.5cm
+To show that the two topologies are the same, it suffices to show that the identity map on $Y$ is a homeomorphism between $Y_q$ and $Y_g$. So, consider the following two diagrams:
+
+\[\begin{tikzcd}
+	X &&& X \\
+	{Y_q} & {Y_g} && {Y_g} & {Y_q}
+	\arrow["q"', from=1-1, to=2-1]
+	\arrow["{f_1 = id_{Y,g}}"', from=2-1, to=2-2]
+	\arrow["{f_1 \circ q}", from=1-1, to=2-2]
+	\arrow["{q'}"', from=1-4, to=2-4]
+	\arrow["{f_2 = id_{Y,q}}"', from=2-4, to=2-5]
+	\arrow["{f_2 \circ q}", from=1-4, to=2-5]
+\end{tikzcd}\]
+
+Note that $f_1$ and $f_2$ are inverses since they are identity maps on $Y$ in opposite directions. We must show that they are both continuous in order to show $Y_q$ and $Y_d$ are homeomorphic.
+
+\vskip 0.5cm
+COMPLETE LATER
+
+See \href{https://math.stackexchange.com/questions/75413/uniqueness-of-the-quotient-topology#:~:text=(1)%20There%20can%20be%20at,is%20unique%20if%20it%20exists.}{this Math.SE post}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Also, prove the uniqueness of quotient spaces later. (Theorem 3.75).}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsubsection{Adjunction Spaces}
+
+\textbf{Proposition 3.77: Properties of Adjunction Spaces}
+
+\vskip 0.5cm
+Let $X \cup_f Y$ be an Adjunction space and let $q : X \coprod Y \rightarrow X \cup_f Y$ be the associated quotient map.
+
+\begin{enumerate}
+  \item The restriction of $q$ to $X$ is a topological embedding with whose image $q(X)$ is a closed subspace of $X \cap_f Y$.
+  \item The restriction of $q$ to $Y \setminus A$ is a topological embedding with whose image $q(Y \setminus A)$ is an open subspace of $X \cap_f Y$.
+  \item $X \cup_f Y$ is the disjoint union of $q(X)$ and $q(Y \setminus A)$.
+\end{enumerate}
+
+\vskip 0.5cm
+
+\textbf{Proof:}
+Let's recall that the Adjunction space formed by attaching $Y$ to $X$ along $f$ is 
+\[ X \cup_f Y = \bigslant{\left(X \coprod Y\right)}{\sim} \]
+where the equivalence relation $\sim$ is given by $a \sim f(a), a \in A$ for attaching map $f : A \rightarrow X$ where $A$ is a closed subset of $Y$.
+
+\begin{enumerate}
+  \item We approach part (a) by first showing that the image of $\restr{q}{X}$ i.e. $q(X)$ is closed. Then, if we show injectivity, we immediately have that $\restr{q}{X}$ is a topological embedding from Propoisiton 3.69.
+  
+  \vskip 0.5cm
+  Consider a closed subset $B \subseteq X$. To show that $\restr{q}{X}$ is a closed map, we have to show that $q(B)$ is closed in the adjunction space. i.e. we have to show that $q^{-1}(q(B))$ is closed in $X \coprod Y$. In other words, we need to show that the intersections of $q^{-1}(q(B))$ with $X$ and $Y$ are both closed in the respective sets.
+
+  By the form of the equivalence relation, $q^{-1}(q(B)) \cap X = B$ which is closed by assumption and $q^{-1}(q(B)) \cap Y = f^{-1}(Y)$ which is closed in $Y$ by the continuity of $f$.
+  
+  So, $\restr{q}{X}$ is a closed map.
+  
+  \vskip 0.5cm
+  Next, injectivity. The map $\restr{q}{X}$ is injective since the equivalence relation $\sim$ does not identify any point of $X$ with each other, only points in $A$ with points in $X$.
+
+  Thus, the restriction to $X$ is a topological embedding whose image is a closed subspace of the adjunction space.
+  
+  \vskip 0.5cm
+  \item Now, we show that $\restr{q}{Y \setminus A}$ is a topological embedding whose image in an open subspace of $X \cup_f Y$.
+  
+  This time, we use Proposition 3.62(d) which states that the restriction of a quotient map to a saturated open/closed subset is also a quotient map.
+
+  Finish writing this later.
+  
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{NOTE TO SELF: Re-read and do exercises from Adjunction Spaces section later. Especially proof of Theorem 3.79.}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Topological Groups and Group Actions}
+
+\textbf{Exercise 3.83:} Verify that each of the following is a topological group (long question).
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{Exercise 3.85:} Prove proposition 3.84 as stated below:
+
+\emph{Any subgroup of a topological group is a topological group with the subspace topology. Any finite product of topologyical groups is a topological group with the direct product group structure and the product topology.}
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\textbf{NOTE TO SELF: Re-read and do exercises from Adjunction Spaces section later. Especially proof of Theorem 3.79.}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\section{Connectedness and Compactness}
+
+\subsection{Connectedness}
+
+\textbf{Exercise 4.3:} Suppose $X$ is a connected topological space, and $\sim$ is an equivalence relation on $X$ such that every equivalence class is open. Show that there is exactly one
+equivalence class, namely $X$ itself.
+
+\vskip 0.5cm
+
+\textbf{Proof:} Do later.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\end{document}
+

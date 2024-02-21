@@ -1,0 +1,564 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 3},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 3}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-1.} Define $f : \R \rightarrow \R$ by
+\[ f(x) = \begin{cases}
+  1, x \geq 0\\
+  0, x < 0
+\end{cases} \]
+Show that for every $x \in \R$, there are smooth coordinate charts $(U, \phi)$ containing $x$ and $(V, \psi)$ containing $f(x)$ such that $\psi \circ f \phi^{-1}$ is smooth as a map from $\phi(U \cap f^{-1}(V))$ to $\psi(V)$, but $f$ is not smooth in the sense we have defined in this chapter.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+The way we've defined smoothness implies continuity. Since $f : \R \rightarrow \R$ defined as 
+\[ f(x) = \begin{cases}
+  1, x \geq 0 \\
+  0, x < 0
+\end{cases} \] 
+
+is clearly not continuous at $x = 0$, it cannot be smooth (according to our definition).
+
+\vskip 0.5cm
+However, let's show there still exist smooth coordinate charts $(U, \phi)$ and $(V, \psi)$ such that $\psi \circ f \circ \phi^{-1}$ is smooth as a map from $\phi(U \cap f^{-1}(V))$ to $\psi(V)$. Away from zero $f$ is smooth so this is definitely true. To deal with the origin, let $\epsilon > 0$ and $U = (-\epsilon, \epsilon)$ and let $V = (\frac{1}{2}, \frac{3}{4})$. 
+
+\vskip 0.5cm
+
+Then, $U$ contains $x$, $V$ contains $f(0) = 1$, and $(U, \text{id})$, $(V, \text{id})$ are charts on $\R$, and $\psi \circ f \circ \phi^{-1} = \text{id} \circ f \circ \text{id}^{-1}$ is just the contant map on $\phi(U \cap f^{-1}(V))$ to $\psi(V)$.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-3.} For each of the following maps between spheres, compute sufficiently many coordinate representations to prove that it is smooth.
+\begin{enumerate}[label=(\alph*)]
+  \item $p_n : \mathbb{S}^1 \rightarrow \mathbb{S}^1$ is the \emph{\textbf{$n^{th}$ power map}} for $n \in \mathbb{Z}$, given in complex notation as $p_n(z) = z^n$.
+  \item $\alpha : \mathbb{S}^n \rightarrow \mathbb{S}^n$ is the \emph{\textbf{antipodal map}} $\alpha(x) = -x$.
+  \item $F : \mathbb{S}^3 \rightarrow \mathbb{S}^2$ is given by 
+  \[ F(w, z) = (z \overline{w} + w\overline{z}, i w\overline{z} - iz\overline{w}, z\overline{z} - w \overline{w}) \] where we think of $\mathbb{S}^3$ as the subset $\{ (w, z) : \left| w \right|^2 + \left| w \right|^2 = 1 \}$ of $\C^2$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item For (a), let's recall,
+  \begin{dottedbox}
+    From Problem 1-8 we know that if $U \subseteq \mathbb{S}^n$ is an open subset such that $U \neq \mathbb{S}^n$ there exists a continuous (angle) function $\theta : U \rightarrow \R$ such that $e^{i \theta(z)} = z$ and $\theta^{-1}(x) = e^{i\theta (\theta^{-1}(x))} = e^{ix}$. 
+
+    \vskip 0.5cm
+    We have that $e^{i \theta(z)} = z$, so $\theta(z) = -i\log(z)$ where we can make a branch cut on the line passing through the origin and any $p \in \mathbb{S}^{-1} \setminus U$.
+
+    \vskip 0.5cm
+    If $z = e^{it}$, then 
+    \begin{align}
+      \theta(e^{it}) &= -i \log(e^{it}) \\
+      &= -i (it) + k(e^{it}) \cdot 2\pi \\
+      &= t + k(e^{it}) \cdot 2 \pi
+    \end{align}
+    for some $k(e^{it})$ which is integer valued. But, $\theta$ is continuous, so $k$ must also be continuous, so it must attain constant values on each connected component of $U$. 
+
+    So, 
+    \[ \theta(e^{it}) = t + k \cdot 2\pi  \]
+  \end{dottedbox}
+
+  \vskip 0.5cm
+  Let $z \in \mathbb{S}^1$, and let $(U, \theta)$ be a chart containing $z$ where $\theta$ is an angle function, and let $(V, \phi)$ be a chart containing $z^n$ where $\phi$ is an angle function as well. Then, the coordinate representation is
+  $\phi \circ p_n \theta^{-1}(x) = \phi \circ p_n(e^{ix}) = \phi(e^{inx}) = nx + k \cdot 2\pi$ for some $k$ which must be  constant on each connected component of $U \cap p^{-1}(V)$. Note that $U \cap p^{-1}(V)$ is open since $p_n$ is continuous, meaning $p^{-1}(V)$ is open.
+
+  \vskip 0.5cm
+  We've shown the coordinate representation is smooth on any chart of $\mathbb{S}^1$, so the map $p_n$ is smooth.
+
+  \vskip 0.5cm
+  \item WLOG suppose $x \in \mathbb{S}^n$ such that $x$ is contained in the chart $(\mathbb{S} \setminus \{N\}, \sigma)$ where $\sigma$ denotes the usual stereographic projection. Then, the chart $(\mathbb{S}^n \setminus \{S\}, \tilde{\sigma})$ contains the antipodal point $\alpha(x)$.
+  
+  We can calculate the coordinate representation to be 
+  \begin{align*}
+  (\tilde{\sigma} \circ \alpha \circ \sigma^{-1})(u^1, \dots, u^n) &= \left( \tilde{\sigma} \circ \alpha \right)\left( \frac{(2u^1, \dots, 2u^n, \left| u \right|^2 - 1)}{\left| u \right|^2 + 1} \right)\\
+  &= \tilde{\sigma} \left( \frac{(-2u^1, \dots, -2u^n, -(\left| u \right|^2 - 1))}{\left| u \right|^2 + 1}  \right) \\
+  &= - \sigma \left( \frac{(2u^1, \dots, 2u^n, \left| u \right|^2 - 1)}{\left| u \right|^2 + 1}  \right)  \;\;\;\; \text{(Since $\tilde{\sigma} = - \sigma(-x)$ )} \\
+  &= -u
+  \end{align*}
+  Since the coordinate representation is smooth, so too is the map $\alpha$.
+  
+  \vskip 0.5cm
+  \item  Denote the stereographic projection (from the north) on the $\mathbb{S}^3$, identified with a subset of $\R^4$ as $\sigma_3$ (respectively $\sigma_2$ for the 2-sphere, which has one less coordinate in the chart, and denote projection from the south as $\tilde{\sigma}_i$), which we know are given by 
+  \begin{align*}
+    \sigma_3: (x^1, \ldots, x^4) &\mapsto \left( \frac{x^1}{1-x^4}, \ldots, \frac{x^3}{1-x^4} \right) \text{ defined on } \mathbb{S}^3 \setminus \{(0, 0, 0, 1)\} 
+  \end{align*}
+
+  \[ \sigma_{-1}^3: (x^1, x^2, x^3) \mapsto \left( \frac{2x^1}{(x^1)^2 + (x^2)^2 + (x^3)^2 + 1}, \frac{2x^2}{(x^1)^2 + (x^2)^2 + (x^3)^2 + 1}, \frac{2x^3}{(x^1)^2 + (x^2)^2 + (x^3)^2 + 1} \right)  \]
+  
+  Then, define $f$ as the real counterpart to $F$, given by:
+  
+  \begin{align*}
+    f(x^1, x^2, x^3, x^4) &= F(x^1 + ix^2, x^3 + ix^4) \\
+    &= ( 2x^1x^3 + 2x^2x^4, 2x^2x^3 - 2x^1x^4, (x^1)^2 + (x^2)^2 - (x^3)^2 - (x^4)^2 )
+  \end{align*}
+  
+  
+  Writing out all the coordinate representations of $f: \mathbb{S}^{3} \to \mathbb{S}^{2}$ for the required charts gives us
+  
+  \[
+  \begin{aligned}
+  \sigma^2 \circ f \circ \sigma^{-1}_3(x^1, x^2, x^3) &= \left( \frac{2x^1}{(x^1)^2 + (x^2 - 1)^2 + (x^3)^2} , x^2\right) \\
+  \sigma^2 \circ f \circ \tilde{\sigma}^{-1}_3(x^1, x^2, x^3) &= \left(\frac{2x^1}{(x^1)^2 + (x^2 - 1)^2 + (x^3)^2}, \frac{x^2}{ (x^1)^2 + (x^2)^2 + (x^3)^2}\right) \\
+  \tilde{\sigma}^2 \circ f \circ \tilde{\sigma}^{-1}_3(x^1, x^2, x^3) &= \left( \frac{2x^1}{(x^1)^2 + (x^2 + 1)^2 + (x^3)^2} , x^2\right) \\
+  \tilde{\sigma}^2 \circ f \circ \sigma^{-1}_3(x^1, x^2, x^3) &= \left(\frac{2x^1}{(x^1)^2 + (x^2 + 1)^2 + (x^3)^2}, \frac{x^2}{ (x^1)^2 + (x^2)^2 + (x^3)^2}\right) \\
+  \end{aligned}
+  \]
+  
+  Which are all smooth as rational functions with no singularities in the domains. Then, the smoothness of $f$ implies the smoothness of $F$. 
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-4.} Show that the inclusion map $\overline{B}^n \xhookrightarrow{} \R^n$ is smooth when $\overline{B}^n$ is regarded as a smooth manifold with boundary. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+% \vskip 0.25cm
+% A map between smooth manifolds (with or without boundary), $f : M \rightarrow N$, is smooth if for any point $p \in M$ there are smooth charts $(U, \phi)$ and $(V, \psi)$ such that 
+% \begin{itemize}
+%   \item $p \in U$
+%   \item $f(U) \subseteq V$
+%   \item $\psi \circ f \circ \phi^{-1}$ is smooth as a map  between euclidean spaces.
+% \end{itemize}
+
+\vskip 0.5cm
+% \subsubsection*{Approach \#1:}
+
+Consider the collection of charts $\{(U_i^{\pm}, \phi_i^{\pm})\}$ where
+\begin{align*}
+  U_i^+ &= \{ x = (x^1, \dots, x^n) \;:\; \left|x\right|^2 \leq 1, x^i > 0 \} \\
+  U_i^- &= \{ x = (x^1, \dots, x^n) \;:\; \left|x\right|^2 \leq 1, x^i < 0 \} 
+\end{align*}
+
+and $\phi_i^{\pm} : U_i^{\pm} \rightarrow B_i^{n, \pm}$ is defined by the mapping \
+\[ (x^1, \dots, x^n) \mapsto \left( x^1, \dots, x^i \mp \sqrt{1 - (x^1)^2 - \cdots - \widehat{(x^i)^2} - \cdots (x^n)^2}, \cdots, (x^n)^2 \right) \]
+
+These define a smooth structure on $\overline{\mathbb{B}^n}$. Now, let $x \in \overline{\mathbb{B}^n}$ be contained in some chart $(U_i^{\pm}, \phi_i^{\pm})$. The image of $x$ under inclusion is simply $\iota(x) = x$ and is certainly contained in the chart $(\R, \mathrm{id})$. Then,
+$\mathrm{id} \circ \iota \circ (\phi_i^{\pm})^{-1} = (\phi_i^{\pm})^{-1}$ is smooth.
+
+% \subsubsection*{Approach \#2:}
+
+% To show the inclusion map $\overline{\mathbb{B}}^n \xhookrightarrow{\iota} \R^n$ is smooth, we need to show there exist smooth coordinate representations around each point. i.e. for each $p \in \overline{\mathbb{B}}^n$ there exists a chart $(U, \phi)$ containing $p$ and $(V, \psi) $ containing $\iota(x)$  such that $\iota(U) \subseteq V$ and the composite map $\psi \circ \iota \circ \phi^{-1} : \phi(U) \rightarrow \psi(V)$ is smooth. 
+
+% We know that $\overline{\mathbb{B}}^{n} = \mathbb{B}^{n} \cup \partial \overline{\mathbb{B}}^{n}$ where $\mathbb{B}^{n} = \{ x = (x^1, \dots, x^n) : x^i \in \R, \sum_{i = 1}^{n} (x^i)^2 < 1 \}$ is the open ball and $\overline{\mathbb{B}^{n}} = \{ x = (x^1, \dots, x^n) : x^i \in \R, \sum_{i = 1}^{n} (x^i)^2 = 1 \}$ is the boundary.
+
+% Let's handle the open ball first. For any $x \in \mathbb{B}^n$, consider the chart $(U, \phi)$
+
+% come back to this.
+
+\vskip 0.25cm
+% First let's handle the open ball. Consider the charts $(U_i^{\pm}, \phi_i^{\pm})$ where
+% \begin{align*}
+%   U_i^{+} &= \{ (x^1, \dots, x^n) \in \mathbb{B}^n : x^i \geq 0 \} \\
+%   U_i^{-} &= \{ (x^1, \dots, x^n) \in \mathbb{B}^n : x^i \leq 0 \} 
+% \end{align*}
+
+% and the maps $\phi_i^{+} : U_i^{\pm} \rightarrow \R^{n}$ are defined as 
+% \begin{align*}
+%   \phi_i^{+} \;:\; (x^1, \dots, x^n) \mapsto \left(  \right)
+% \end{align*}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-6.} Let $P : \R^{n+1} \setminus \{0\} \rightarrow \R^{k+1} \setminus \{0\}$ be a smooth function, and suppose that for some $d \in \mathbb{Z}$, $P(\lambda x) = \lambda^d P(x)$ for all $\lambda \in \R \setminus \{0\}$ and $x \in \R^{n + 1} \setminus \{0\}$. Show that the map $\tilde{P} : \mathbb{RP}^n \rightarrow \mathbb{RP}^{k}$ defined by $\tilde{P}([x]) = [P(x)]$ is well defined and smooth.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+% The function $\tilde{P} : \mathbb{RP}^{n} \rightarrow \mathbb{RP}^{k}$ defined by $\tilde{P}([x]) = [P(x)]$ can be expressed as 
+% \[ \tilde{P} = \pi \circ P \]
+
+% \vskip 0.25cm
+% where $\pi^k : \mathbb{R}^{k+1} \setminus \{0\} \rightarrow \mathbb{RP}^{k}$ is the quotient map with respect to $\sim$ where $x \sim y$ if $x = \lambda y$ for some $\lambda \in \R \setminus \{0\}$.
+
+\[\begin{tikzcd}
+	{\mathbb{R}^{n+1} \setminus \{0\}} & {\mathbb{R}^{k+1} \setminus \{0\}} \\
+	{\mathbb{RP}^{n}} & {\mathbb{RP}^{k}} & {}
+	\arrow["{\pi^n}"', from=1-1, to=2-1]
+	\arrow["P", from=1-1, to=1-2]
+	\arrow["{\tilde{P}}"', from=2-1, to=2-2]
+	\arrow["{\pi^k}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+\vskip 0.25cm
+\underline{Well-defined:} 
+
+\vskip 0.25cm
+If we have two points in $n-$Real Projective space $[x], [y] \in \mathbb{RP}^{n}$ such that $[x] = [y]$, then $x = \lambda y$ for some $\lambda \in \R \setminus \{0\}$. So, 
+\[ P(x) = P(\lambda y) = \lambda^d P(y) \]
+
+\vskip 0.25cm
+Then, under the action of the quotient map $\pi^{k} : \mathbb{R}^{k+1} \rightarrow \mathbb{RP}^k$, defined in the usual way, $P(x)$ and $P(y)$ get mapped to the same point i.e. $\pi^k(P(x)) = \pi^k(P(y)) = [P(x)]$. Therefore, the map $\tilde{P}(x)$ which has the action $[x] \mapsto [P(x)]$ is well defined.
+
+\vskip 0.5cm
+\underline{Smoothness:}
+
+\vskip 0.25cm
+The quotient maps $\pi^n, \pi^k$ are diffeomorphisms, as shown when we proved Real Projective Spaces are smooth manifolds in class meaning $\left( \pi^n \right)^{-1}, \pi^k$ are smooth, and $P$ is smooth by hypothesis. Therefore, their composition $\pi^k \circ P \circ \left( \pi^n \right)^{-1} = \tilde{P}$ is smooth.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-10.} For any topological space $M$, let $C(M)$ denote the algebra of continuous functions $f : M \rightarrow \R$. Given a continuous map $F : M \rightarrow N$, define $F^{*} : C^{\infty}(N) \rightarrow C^{\infty}(M)$ by $F^*(f) \defeq f \circ F$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $F^*$ is a linear map.
+  \item Suppose $M$ and $N$ are smooth manifolds. Show that $F : M \rightarrow N$ is smooth if and only if $F^*(C^{\infty}(N)) \subseteq C^{\infty}(M)$.
+  \item Suppose $F : M \rightarrow N$ is a homeomorphism between smooth manifolds. Show that it is a diffeomorphism if and only if $F^*$ restricts to an isomorphism from $C^{\infty}(N)$ to $C^{\infty}(M)$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item The linearity of $F^*$ follows from the distributivity of function composition, and associativity of scalar multiplication.
+  
+  \begin{itemize}
+    \item For $x \in M$
+    \begin{align*}
+      F^*(f + g) (x) &= \left[\left( f + g \right) \circ F\right] (x) \\
+      &= \left[\left( f \circ F \right) + \left( g \circ F \right)\right] (x) \\
+      &= \left( f \circ F \right)(x) + \left( g \circ F \right)(x) \\
+      &= F^*(f)(x) + F^*(g)(x)
+    \end{align*}
+    \[ \implies \boxed{F^*(f + g) = F^*(f) + F^*(g)} \]
+
+
+    \vskip 0.25cm
+    \item For $x \in M, a \in \R$
+    \begin{align*}
+      F^*(af)(x) &= \left( (af) \circ F \right)(x) \\
+      &= a \left( f \circ F \right)(x) \\
+      &= a F^*(f)(x)
+    \end{align*}
+    \[ \implies \boxed{F^*(af) = aF^*(f)} \]
+  \end{itemize}
+  Thus, $F^{*}$ is a linear map.
+
+  \vskip 0.5cm
+  \item \underline{"$\implies$" Direction:} Consider any $f \in C^{\infty}(N)$. By hypothesis, $F$ is smooth, therefore their composition $F*(f) \defeq f \circ F$ is also smooth. Thus, $F^*(C^{\infty}(N)) \subseteq F^*(C^{\infty}(M))$.
+  
+  \vskip 0.25cm
+  \underline{"$\impliedby$" Direction:} 
+  Suppose $F^*(C^{\infty}(N)) \subseteq C^{\infty}(M)$. Let $\mathcal{B_N}$ be the atlas of coordinate balls $(V, \psi)$ covering $N^n$, and let $\mathcal{A_M}$ be an atlas of $M^m$. By the Extension Lemma for smooth functions, each $\psi$ can be extended to a smooth function $\tilde{\psi} = \left( \tilde{\psi}^1(x), \dots, \tilde{\psi}^n(x) \right) : N \rightarrow R^n$. Further, notice that each coordinate function is smooth i.e. $\tilde{\psi}^i(x) : N \rightarrow \R \in C^{\infty}(N)$
+
+  \vskip 0.25cm
+  Now, for any $p \in M$ contained in chart $(U, \phi)$ such that $F(p)$ is contained in the chart $(V, \psi)$, we want to show the smoothness of the coordinate function $\psi \circ F \circ \phi^{-1}$ is smooth from $\phi(U \cap F^{-1}(V))$ to $\psi(V)$.
+
+  Note that $U \cap F^{-1}(V)$ is open in $M$ since $F$ is continuous. Now, since each $\tilde{\psi}^{i}$ is continuous, we have that $\tilde{\psi} \circ F = (\tilde{\psi}^{1} \circ F, \dots,\tilde{\psi}^{n} \circ F)$ is smooth as each coordinate function $\tilde{\psi}^{i} \in F^*(C^{\infty}(N)) \subseteq C^{\infty}(M)$. Since  $U \cap F^{-1}(V)$, the restriction $\restr{\tilde{\psi} \circ F}{U \cap F^{-1}(V)}$ is also smooth. As a result, the coordinate representaton 
+  \[ \restr{\psi \circ F \circ \phi^{-1}}{\phi(U \cap F^{-1}(V))} \phi(U \cap F^{-1}(V)) \rightarrow \psi(V) \]
+  is smooth. So, we conclude that $F$ is smooth.
+
+  \vskip 0.5cm
+  \item Suppose $F : M \rightarrow N$ is a homeomorphism.
+  
+  \vskip 0.25cm
+  \underline{"$\implies$" Direction:} If $F$ is additionally a diffeomorphism, then $F, F^{-1}$ are smooth homeomorphisms between $M$ and $N$. Applying the result from part (b) in each direction gives  $F^*(C^{\infty}(N)) \subseteq C^{\infty}(M)$ and $(F^{-1})^*(C^{\infty}(M)) \subseteq C^{\infty}(N)$. Further, $F$ is a homeomorphism so it's bijective meaning $F^{*}$ must be injective. We conclude that $F^* : C^{\infty}(N) \rightarrow C^{\infty}(M)$ is a bijection. 
+
+  From part (a), we know it is a linear map. Furthermore, for functions $f, g \in C^{\infty}(N)$ we have 
+  \[ F^*(fg) \defeq (fg) \circ F = \left( f \circ F \right) \cdot \left( g \circ F \right) = F^*(f) \cdot F^*(g) \]
+  So, $F^*$ respects the binary operation of pointwise-multiplication on the algebra.
+
+  Therefore, $F^*$ is an algebra isomorphism between $C^{\infty}(N)$ and $C^{\infty}(M)$.
+
+  \vskip 0.25cm
+  \underline{"$\impliedby$" Direction:} Suppose $F^{*}(C^{\infty}(N)) \cong C^{\infty}(M)$. Then, $F^{*}(C^{\infty}(N)) \subseteq C^{\infty}(M)$ and $F^{*}(C^{\infty}(M)) \subseteq C^{\infty}(N)$ combined with the result from part (b) show that $F$ and $F^{-1}$ are smooth maps. Therefore, $F$ is a diffeomorphism.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-11.} Suppose that $V$ is a real vector space of dimension $n \geq 1$. Define the \emph{\textbf{projectivization of $V$}}, denoted by $\mathbb{P}(V)$, to be the set of 1-D linear subspaces of $V$ with the quotient topology induced by $\pi : V \setminus \{0\} \rightarrow \mathbb{P}(V)$ that sends $v \in V \setminus \{0\}$ to its span. Show that $\mathbb{P}(V)$ is an $(n-1)-$topological manifold, and has a unique smooth structure with the property that for each basis $(E_1, \dots, E_n)$ for $V$, the map $E : \mathbb{RP}^{n-1} \rightarrow \mathbb{P}(V)$ defined by $E \left[ v^1, \dots, v^n \right] = \left[ v^i E_i \right]$ is a diffeomorphism.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+Rather than proving that $\bP(V)$ has each of the three properties required of Topological Manifolds, let's instead show that the projectivization $\bP(V)$ is homeomorphic to Real Projective space $\mathbb{RP}^{n}$.
+
+Consider two $n-$dimensional vector spaces $V, W$ with the standard topologies induced by their norms and let $T : V \rightarrow W$ be a linear transformation between them. Let $\pi^V : V \setminus \{0\} \rightarrow \bP(V)$ and $\pi^W : W \setminus \{0\} \rightarrow \bP(W)$ be the natural projections and let $\tilde{T} : \bP(V) \rightarrow \bP(W)$ be the linear transformation between them defined as 
+\[ [v] \mapsto [T(v)] \] We show that $\tilde{T}$ is a homeomorphism.
+
+The map is well defined as for  $[u], [v] \in \bP(V)$ which are equal, we have 
+\begin{align*}
+  &[u]_{\bP(_{\bP(W)})} = [v]_{\bP(_{\bP(W)})} \\
+  \implies&u = \lambda v, \lambda \in \R \setminus \{0\} \\
+  \implies&T(u) = T(\lambda v) = \lambda T(v) \\
+  \implies&\pi^{W}(T(u)) = \pi^{W} (\lambda T(v)) \\
+  \implies& [T(u)]_{\bP(W)} = [T(u)]_{\bP(V)}  \\
+\end{align*}
+
+
+\vskip 0.25cm
+\underline{\emph{\textbf{$\tilde{T}$ is bijective}}}
+
+\vskip 0.25cm
+\underline{Injectivity:}
+Suppose $[u]_{\bP(_{\bP(W)})} \neq [v]_{\bP(_{\bP(W)})} \in \bP(V)$. Then,
+\begin{align*}
+  &[u]_{\bP(_{\bP(W)})} \neq [v]_{\bP(_{\bP(W)})} \\
+  \implies&u \neq \lambda v, \lambda \in \R \setminus \{0\} \\
+  \implies&T(u) \neq T(\lambda v) = \lambda T(v) \\
+  \implies&\pi^{W}(T(u)) \neq \pi^{W} (\lambda T(v)) \\
+  \implies& [T(u)]_{\bP(W)} \neq [T(u)]_{\bP(V)}  \\
+\end{align*}
+
+\vskip 0.25cm
+\underline{Surjectvity:}
+We know that $T$ and the two natural projections are all surjective maps. So for any $[w] \in \bP(W)$, there exists an element $[v] = \left(\pi^V \circ T \circ (\pi^W)^{-1}\right)([w])$ such that $\tilde{T}([v] = [w])$.
+
+\vskip 0.25cm
+\underline{\emph{\textbf{$\tilde{T}$ is continuous}}}
+For any open set $Y \subseteq \bP(W)$, the preimage $\tilde{Y}$ is continuous if and only if $(\pi^W)^{-1}(\tilde{T}^{-1}(Y)) = \left( \tilde{T} \circ \pi^{W} \right)^{-1}$ is continuous (By the characteristic property). But $\tilde{T} \circ \pi^{W} = \pi^{V} \circ T$, which is continuous. Therefore, the map $\tilde{T}$ is continuous. Exactly the same argument works for $\tilde{T}^{-1}$ because $T^{-1}$ is also continuous.
+
+\[\begin{tikzcd}
+	V & W \\
+	{\mathbb{P}(V)} & {\mathbb{P}(W)}
+	\arrow["{\pi^{V}}"', from=1-1, to=2-1]
+	\arrow["{\tilde{T}}"', from=2-1, to=2-2]
+	\arrow["{\pi^{W}}", from=1-2, to=2-2]
+	\arrow["T", from=1-1, to=1-2]
+\end{tikzcd}\]
+
+This shows that $\tilde{T}$ is a homeomorphism. Since $P$ is homeomorphic to $\R^n$, taking via any linear map which sends the basis of $V$ to the standard basis of $\R^n$, setting $W = \R^n$ gives us that 
+\[ \bP(V) \cong_{h} \bP(\R^n) = \mathbb{RP}^{n-1} \]
+
+Since, $\mathbb{RP}^{n}$ is an $(n-1)$-dimension topological manifold, so is $\bP(V)$.
+
+Now, let $(E_1, \dots, E_n)$ be a basis for $V$. To show the map $E : \mathbb{RP}^{n-1} \rightarrow \bP(V)$ defined by 
+\[ E(\left( [v^1, \dots, v^n] \right)) = [v^i E_i]\]
+is a diffeomorphism, we must show it is a smooth homeomorphism with smooth inverse.
+
+If we define a linear transformation $T : \mathbb{R}^n \rightarrow V$ as 
+\[ (v^1, \dots, v^n) \mapsto v^i E_i  \] 
+
+Then, the map $\tilde{T} : \mathbb{RP}^{n-1} \rightarrow \bP(V) $, $[v] \mapsto [T(v)]$ is exactly our map $E$. So, it follows from the work we did earlier that $E$ is a homeomorphism. 
+
+\vskip 0.25cm
+% Now, consider the charts $\{(U_i \subseteq \mathbb{R}^n, \phi_i : U_i \rightarrow \tilde{U}_i \subseteq \mathbb{RP}^{n-1})\}$ defined as 
+% \begin{align*}
+%   U_i &= \{ (x^1, \dots, x^n) : x^i \neq 0\} \\
+%   \phi_i : (x^1 , \dots , x^n) \mapsto \left( \frac{x^1}{x^i}, \dots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \dots, \frac{x^n}{x^i} \right) 
+% \end{align*}
+
+% These form a parametrization for $\mathbb{RP}^{n-1}$. Similarly, for $\mathbb{P}(V)$, we can define 
+
+Now, the coordinate representation of $E$ is 
+\begin{align*}
+  \left( \phi_i \circ \tilde{T}^{-1} \right) \circ \phi_j^{-1}(x^1, \dots, x^{n-1}) &= \phi_i \left[T^{-1} \circ F\left( x^1, \dots, x^{j-1}, 1, x^{i+1}, \dots, x^{n-1} \right) \right]
+\end{align*}
+where $F : \R^n \rightarrow V$ is defined by $F(v^1, \dots, c^{n}) = v^i E_i$ Now, $T^{-1} \circ F$ is an invertible linear map from $\R^n \rightarrow \R^n$ so it is a diffeomorphism. Now, $\phi_i$ and its inverse $\pi_i$ are also smooth. Therefore, the map is smooth.
+
+The coordinate representation of $E^{-1}$ is 
+\[ \phi_i \circ E^{-1 \circ \left( \phi_j \circ \tilde{T}^{-1} \right) ^{-1}(x^1, \dots, x^{n-1}) = \phi_i \left[ F T^{-1}(x^1, \dots, x^{j-1}), 1, x^{j+1}, \dots, x^{n-1}\right] }  \]
+
+So, $E^{-1}$ is also smooth.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q2-14.} Suppose that $A$ and $B$ are two disjoint closed subsets of a smooth manifold $M$. Show that there exists a smooth function $f \in C^{\infty}(M)$ such that $f^{-1}(0) = A$ and $f{-1}(1) = B$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+This follows from the following theorem:
+
+\begin{dottedbox}
+  \underline{Level sets of Smooth Functions: (Theorem 2.29 in LeeSM)}
+  Let $M$ be a smooth manifold. If $K$ is any closed subset of $M$, then there is a smooth non-negative function $f : M \rightarrow \R$ such that $f^{-1}(0) = K$.
+\end{dottedbox}
+
+So, there exist smooth functions $f, g : M \rightarrow [0, \infty)$ such that $f^{-1}(0) = A$ and $g^{-1}(0) = B$. Then, consider the function 
+\[ F \defeq \frac{f}{f+g} \]
+
+Then, $F = 0$ if and only if $f = 0$, so $F^{-1}(0) = f^{-1}(0) = A$, and $F = 1$ if and only if $f = f + g$, which occurs for $g = 0$, so $F^{-1}(1) = g^{-1}(0) = B$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q2-1.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

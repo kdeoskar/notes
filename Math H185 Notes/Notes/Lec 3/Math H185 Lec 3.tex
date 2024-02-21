@@ -1,0 +1,283 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def:}}}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 3}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 22 - Holomorphic functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+\subsection{Sequences and Series}
+
+\vskip 0.5cm
+Recall that a sequence of complex numbers $\{z_n \in \C\}$ is said to \emph{converge} to $z \in \C$ if for all $\epsilon > 0$ there exists a natural number $N \geq 1$ such that 
+\[ |z_n - z| < \epsilon \] for all $n \geq N$.
+
+Equivalently, 
+\[ \lim_{n \rightarrow N} |z_n - z| = 0 \]
+\begin{dottedbox}
+  In HW1, we show that if $z_n = x_n + iy_n$ and $z = x + iy$ where $x, y, x_n, y_n \in \R$ then
+  \[ \lim_{n \rightarrow \infty} |z_n - z| = 0 \iff \begin{cases}
+    \lim_{n \rightarrow \infty} |x_n - x| = 0 \\
+    \lim_{n \rightarrow \infty} |y_n - y| = 0
+  \end{cases} \]
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Complex Dfferentiability}
+Let $f : U \subseteq_{\text{open}} \C \rightarrow \C$.
+
+\begin{mathdefinitionbox}{Holomorphic Functions}
+\vskip 0.5cm
+  $f$ is Holomorphic at $z_0 \in U$ if \[ \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} = \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0} \] exists. If so, call the limit at $f'(z_0)$. 
+
+\vskip 0.5cm
+Note: Keep in mind that $h$ is a complex number.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item   This means that for any sequence $h_n \rightarrow 0$ \underline{or} $\forall \epsilon > 0$ $\exists \delta > 0$ such that 
+  \[ |h| < \delta \implies \lvert \frac{f(z_0 + h)-f(z_0)}{h} - f'(z_0) \rvert < \epsilon\]
+
+  \item This is the most important definition of the course.
+\end{itemize}
+
+\underline{\textbf{Remark:}} Although $\C$ is the same as $\R^2$ as a metric space, Holomorphicity is much stronger than differentiability of a function $f : \R^2 \rightarrow \R^2$ because the limits along every path to a point are required to be equal.
+
+\vskip 0.5cm
+\underbar{\textbf{Example:}} Consider the function $f(z) = \overline{z}$.
+
+\vskip 0.5cm
+We observe that 
+\begin{align*}
+  \frac{f(z+h)-f(z)}{h} &= \frac{\overline{z+h}-\overline{z}}{h} \\
+  &= \frac{\overline{h}}{h}
+\end{align*}
+Now, if we take the limit as $h \rightarrow 0$ along the real line, we get $\frac{\overline{h}}{h} = \frac{h}{h} = 1$, however if we take the limit along 
+the imaginary line we get $\frac{\overline{h}}{h} = \frac{-h}{h} = -1$
+
+\vskip 0.5cm
+On the other hand if we consider the counterpart of this function in $\R^2$ as 
+$f(x, y) = (x, -y)$, this function is \emph{smooth everywhere}. In contrast to this, the complex function $f(z) = \overline{z}$ is \emph{not holomorphic at \underline{any} $z_0 \in \C$}.
+
+\vskip 0.5cm
+We will see that holomorphic functions have strong \underline{rigidity} properties not shared by real differentiable functions. For instance,
+\begin{itemize}
+  \item If $f, g$ are holomorphic on a connected open set $U \subseteq \C$ and $f = g$ on a line segment in $U$, then in fact they agree at \emph{all} points in $U$: $f(z) = g(z) \forall z \in U$. This is the \textbf{Principle of Analytic Continuation.}
+  \item Another example of surprising rigidity is that if $f$ is holomorphic on $U$ i.e. it is one differentiable on $U$, then in fact it is \emph{infinitely} differentiable on $U$.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{\textbf{Examples:}}
+\begin{enumerate}
+  \item $f(z) = z^n$ 
+  
+  \vskip 0.5cm
+  \underline{Calculate:} 
+  \begin{align*}
+    \frac{f(z+h)-f(z)}{h} &= \frac{(z+h)^n - z^n}{h} \\
+    &=_{\text{binom thm.}} \left[  \frac{1}{h} \left( z^n + nz^{n-1}h + \cdots + nzh^{n-1} + h^n \right) - z^n  \right] \\
+    &= nz^{n-1} + h(\cdots)
+  \end{align*}
+  \[ \implies \lim_{h \rightarrow 0} \frac{f(z + h) - f(z)}{h} = nz^{n-1} \]
+\end{enumerate}
+
+\vskip 1cm
+\subsection{Stability Properties}
+While holomorphicity is different from real Dfferentiability, there are a number of properties which are justified by the same $\epsilon-\delta$ proofs as those from $\R$ analysis.
+
+\begin{itemize}
+  \item If $f,g : U \rightarrow \C$ are holomorphic at $z_0 \in U$ then 
+  \begin{itemize}
+    \item $(f+g)$ is holomorphic at $z_0$ and 
+    \[ (f+g)'(z_0) = f'(z_0) + g'(z_0) \]
+  
+    \item $fg$ is holomorphic at $z_0$ and
+    \[ (fg)'(z_0) = f'g(z_0)g(z_0) + f(z_0)g'(z_0) \]
+    
+    \vskip 0.5cm
+    \item \underline{Chain Rule:} $(f \circ g)$ is holomorphic at $z_0$ and 
+    \[ (f \circ g)'(z_0) = f'(g(z_0)) \cdot g'(z_0) \]
+    
+    \vskip 0.5cm
+    \item \underline{Division:} $(f/g)$ is holomorphic at $z_0$ if $g(z_0) \neq 0$ and
+    \[ \left( \frac{f}{g} \right) = \frac{f'(z_0)g(z_0) + f(z_0)g(z_0)}{g(z_0)^2} \]
+  \end{itemize}
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Polynomials:} Finite sum of monomials.
+  \[ f(z) = a_nz^n + \cdots + a_0 \]
+  By linearity (Stability property 1), \emph{all} Polynomials are holomorphic on $C$.
+  
+  \vskip 1cm
+  \underline{Rational Functions:} Ratios of Polynomials.
+  \[ h(z) = \frac{f(z)}{g(z)} \]
+  By Stability property 3, all rational functions are holomorphic on $\{ z \in \C : g(z) \neq 0 \} \subseteq_{\text{open}} \C$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Warm-down examples:}} Where are the following functions holomorphic, and what are their derivatives in those regions?
+
+\begin{enumerate}
+  \item $f(z) = \frac{1}{z}$
+  \item $f(z) = z^2 + 3z + \frac{1}{2}$
+  \item $f(z) = \text{Re}(z)$
+  \item $f(z) = i \cdot \text{Im}(z)$
+  \item $f(z) = \text{Re}(z) + i \cdot \text{Im}(z)$
+\end{enumerate}
+
+\vskip 0.5cm
+\underline{\textbf{Answers:}}
+\begin{enumerate}
+  \item Holomorphic on $\C \setminus \{0\}$, and derivative in the region is 
+  \[ \frac{-1}{z^2} \]
+  
+  \item Holomorphic on $\C$, and derivative in the region is 
+  \[ 2z + 3 \]
+
+  \item Not holomorphic \emph{anywhere}, snice limit vertically is always zero but limit horizontally will be non-zero. 
+
+  \item Not holomorphic \emph{anywhere}, snice limit horizontally is always zero but limit vertically will be non-zero. 
+
+  \item Holomorphic on $\C$, and derivative in the region is $1$ ($f(z) = z$, so $f'(z) = 1$ at all points).
+\end{enumerate}
+
+\end{document}

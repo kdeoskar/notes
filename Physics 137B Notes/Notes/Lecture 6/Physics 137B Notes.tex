@@ -1,0 +1,255 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture 6},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 6}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 29 - Second order and Degenerate Perturbation Theory}
+
+\vskip 1cm
+\subsection*{Recap}
+\begin{itemize}
+  \item We've been trying to develop \textbf{\emph{Perturbation Theory}} in order to solve problems with Hamiltonians of the form:
+  \[ \hat{H} = \underbrace{\hat{H}_0}_{\text{known sol.}} + \lambda\hat{H}' \]
+
+  \item We did so by assuming we could parametrize the Eigen-states and Eigen-energies as functions of some small parameter $\lambda$
+  \begin{align*}
+    \ket{n^{(\lambda)}} &= \sum_{j} \lambda^j \ket{n^{(j)}} \\
+    E_n^{(\lambda)} &= \sum_{j} \lambda^j E_n^{(j)} \\
+  \end{align*} 
+
+  (If this cannot be done, then the system we are studying is non-perturbative).
+
+  \item So far, we've found the \textbf{\emph{Leading order corrections}} for \emph{\textbf{non-degenerate systems}} to be
+  \begin{align*}
+    E_n^{(1)} &= \inner{n^{(0)}}{\hat{H}'|n^{(0)}} \\
+    \ket{n^{(1)}} &= \sum_{k \neq n} \ket{k^{(0)}} \frac{\inner{k^{(0)}}{\hat{H}'|n^{(0)}}}{E_n^{(0)} - E_k^{(0)}}
+  \end{align*}
+\end{itemize}
+
+\vskip 1cm
+\subsection{Second Order Perturbation Theory}
+In second order PT, we also grab the $\lambda^2$ coefficients:
+
+\[ \mathcal{O}(\lambda^2) : \lambda^2 \left[ (\hat{H}_0 - E_n^{(0)}) \ket{n^{(2)}} + (\hat{H}' - E_n^{(1)}) \ket{n^{(1)}} - E_n^{(2)}\ket{n^{(0)}} \right] = 0 \]
+
+\vskip 0.5cm
+Once again, we act on the equation with $\ket{n^{(0)}}$:
+
+\begin{align*}
+  \implies& \underbrace{\inner{n^{(0)}}{(\hat{H}_0 - E_n^{(0)})|n^{(2)}}}_{=0} + \inner{n^{0}}{\hat{H}' \ket{n^{(1)}}} - E_n^{(1)}\underbrace{\inner{n^{(0)}}{n^{(1)}}}_{=0} = 0 \\
+  \implies& \boxed{E_n^{(2)} = \inner{n^{0}}{\hat{H}' \ket{n^{(1)}}}}
+\end{align*}
+Using the expression we get for $\ket{n^{(1)}}$:
+\begin{align*}
+  \implies& E_n^{(2)} = \sum_{n \neq k} \frac{\inner{n^{(0)}}{\hat{H}'| k^{(0)}} \inner{k^{(0)}}{\hat{H}'|n^{(0)}} }{E_n^{(0)} - E_k^{(0)}}
+\end{align*}
+
+\vskip 0.5cm
+[Write about the possible interpretation as the state benig propagated and then returning back above by watching recording]
+
+\vskip 0.5cm
+\underline{Interesting fact:} When we were finding the states using 1st order PT we wrote 
+\[ \ket{n} = \ket{n^{(0)}} + \lambda \ket{n^{(1)}} \]
+and said we wouldn't worry about normalization, but in fact they are normalized up to second order corrections:
+\begin{align*}
+  \implies \inner{n}{n} &= \inner{n^{(0)}}{n^{(0)}} + \lambda \left( \underbrace{\inner{n^{(0)}}{n^{(1)}}}_{0} + \underbrace{\inner{n^{(1)}}{n^{(0)}}}_{0} \right) + \mathcal{O}(\lambda^2) \\
+  &= 1 + \mathcal{O}(\lambda^2)
+\end{align*}
+
+This came abbout because we had $\ket{n^{(1)}} = \sim_{k \neq n} (stuff)$ summing over states $k$ \emph{not equal to} $n$.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Now, what about $\ket{n^{(2)}}$? We have two choices:
+
+\vskip 0.5cm
+\underline{Choice \#1}: Once again sum over states $k \neq n$
+\[\ket{n^{(2)}} = \sum_{k \neq n} \ket{k^{(0)}}  c_{nk}^{(2)} \]
+
+
+In this case, we yet again get normalized states
+
+\vskip 0.5cm
+\underline{Choice \#2}: Include $k = n$
+\[\ket{n^{(2)}} = \sum_{k} \ket{k^{(0)}}  c_{nk}^{(2)} \]
+
+
+In this case, we can determine $c_{nn}^{(2)}$ from the normalization condition
+\[ \inner{n}{n} = 1 + \mathcal{O}(\lambda^3) \]
+\end{dottedbox}
+
+
+\vskip 0.5cm
+For now, we will follow Choice \#1. So, let
+\[\ket{n^{(2)}} = \sum_{k \neq n} \ket{^{(0)}}  c_{nk}^{(2)} \]
+
+Then 
+\begin{align*}
+  \implies \left( \hat{H}_0 - E_n^{(0)} \right)\sum_{k \neq n} \ket{k^{(0)}}  c_{nk}^{(2)} + \left( \hat{H}' - E_n^{(0)} \right) \ket{n^{(1)}} 0 E_n^{(2)}\ket{n^{(0)}} = 0
+\end{align*}
+Let $l \neq n$. Then,
+
+\begin{align*}
+  &\sum_{k \neq n} \inner{l^{(0)}}{k^{(0)}}  c_{nk}^{(2)} \left( E_k^{(0)} - E_n^{(0)} \right) + \inner{l^{(0)}}{\left( \hat{H}' - E_n^{(0)} \right) | k^{(0)}} - E_n^{(0)}\underbrace{\inner{l^{(0)}}{n^{(0)}}}_{0} = 0 \\
+  \implies &c_{nk}^{(2)} = \sum_{k \neq n} \frac{E_n^{(1)}}{E_n^{(0)} - E_l^{(0)}} + \sum_{k \neq n} \sum_{l \neq n} \frac{\inner{k^{(0)}}{\hat{H}'| l^{(0)}} \inner{l^{(0)}}{\hat{H}'| n^{(0)}} }{(E_n^{(0)} - E_k^{(0)})(E_n^{(2)} - E_l^{(0)})}
+\end{align*}
+
+[THE ABOVE ARE DUBIOUS; DOUBLE-CHECK THE CALCULATIONS LATER]
+
+\vskip 1cm
+\subsection{Degenerate Perturbation Theory}
+So far, we've assumed that our systems have stationary states which are non-degerate. However, in many situations we have orthogonal states $\ket{a^{(0)}}$ and $\ket{b^{(0)}}$ with $\inner{a^{(0)}}{b^{(0)}} = 0$ but with
+
+\begin{align*}
+  \hat{H}^{(0)}\ket{a^{(0)}} &= E^{(0)} \ket{a^{(0)}} \\
+  \hat{H}^{(0)}\ket{b^{(0)}} &= E^{(0)} \ket{b^{(0)}} 
+\end{align*}
+
+So, we'll have to tweak our approach. We will try to use the parameter $\lambda$ to split the energies.
+
+\end{document}

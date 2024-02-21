@@ -1,0 +1,274 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def:}}}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 2}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 19 - The Complex Plane}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+\subsection{What does $\C$ look like geomertrically?}
+
+[Insert Diagram of $\C$ with Real and Imaginary Axes]
+
+\vskip 0.5cm
+\defn\; The \textbf{Modulus} or \textbf{absolute value} of $z = a + bi$ is $|z| = a^2 + b^2$. It is the distance to $0$.
+
+\vskip 0.5cm
+There is a correspondence between the structure of $\C$ and the vector structure of $\R^2$.
+\[ \text{Addition in $\C$} \iff \text{Vector Addition in $\R^2$} \]
+
+\vskip 0.5cm
+\underline{\textbf{Exercise:}} Draw the subset of $z \in \C$ defined by 
+\begin{enumerate}
+  \item $\{ |z| = 1 \}$
+  \item $\{ |z - 6| = 1 \}$
+  \item $\{ |z - 6i| \leq 1 \}$
+  \item $\{ \text{Re}(z) \leq \text{Im}(z) \}$
+  \item $\{ |z| = \text{Re}(z) + 1 \}$
+\end{enumerate}
+
+\vskip 0.5cm
+\underline{\textbf{Answers:}} [Insert figures later.]
+\begin{enumerate}
+  \item Circle with radius $1$ centered at point $z = 0 + 0i$.
+  \item Circle with radius $1$ centered at point $z = 6 + 0i$.
+  \item Disk with radius $1$ centered at point $z = 0 + 6i$.
+  \item Everything above the line making $45$-degree angle with the real axis.
+  \item (Horizontal) Parabola with vertex at $z = 0 + 1i$ since 
+  \begin{align*}
+    \sqrt{x^2 + y^2} &= x + 1 \\ 
+    \implies x^2 + y^2 &= x^2 + 2x + 1 \\
+    \implies y^2 = 2x + 1 \\
+    \implies x = \frac{y^2 - 1}{2}
+  \end{align*}
+  So, we get a horizontal parabola.
+\end{enumerate}
+
+\vskip 0.5cm
+\subsection{Polar Coordinates}
+Rather than using the rectangular (cartesian) coordinates to describe $\C$, we can equvalently use \textbf{Polar coordinates} wherein we use the distance from the origin (modulus) and the angle made wtih the real axis (argument).
+
+\begin{align*}
+  &(x, y) \rightarrow (r, \theta) \\
+  &r = \sqrt{x^2 + y^2} \\
+  &\theta = \arctan\left(\frac{y}{x}\right)
+\end{align*}
+
+Notice however there is an amibiguity in the angle $\theta$ since $\theta + 2n\pi$ would describe the same point. Thus, we define the \textbf{Principal value branch} as the restriction $\theta \in [0, 2\pi]$.
+
+\vskip 0.5cm
+\underline{\textbf{Recall:}} The exponential Function is defined as below for $z \in \C$.
+\[ e^z = 1 + \frac{1}{1!} z + \frac{1}{2!} z^2 + \frac{1}{3!} z^3 + \cdots \]
+
+\vskip 0.5cm
+Now the usual definitions for the cosine and sine as in $\R$ in terms of the unit circle doesn't quite work for complex numbers. However, we can still define them using the exponential!
+
+\begin{align*}
+  \cos(z) &= 1 - \frac{1}{2!}z^2 + \frac{1}{4}z^4 + \cdots\\
+  \sin(z) &= z - \frac{1}{3!}z^3 + \frac{1}{5!}z^5 + \cdots
+\end{align*}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  \underline{\textbf{Euler's Theorem:}} $e^{iz} = \cos(z) + i\sin(z)$, $z \in \C$.
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} 
+Expanding the exponential, we have
+\begin{align*}
+  e^{iz} &= 1 + \frac{1}{1!} z + \frac{1}{2!} z^2 + \frac{1}{3!} z^3 + \cdots 
+\end{align*}
+and note that 
+\[ \frac{1}{(2n)!} (iz)^{2n} = \frac{1}{(2n!)} z^{2n} (i^{2n}) = \frac{(-1)^n z^{2n}}{(2n)!} \]
+
+\vskip 0.5cm
+Similarly,
+\[ \frac{1}{(2n-1)!} (iz)^{2n-1} = \frac{(-1)^{n-1} z^{2n-1}}{(2n-1)!} \]
+
+\vskip 0.5cm
+Thus,
+\begin{align*}
+  e^{iz} &= \underbrace{\sum_{2n} \frac{(-1)^n z^{2n}}{(2n)!}}_{\cos(z)} + \underbrace{\left( \sum_{2n-1} \frac{(-1)^{n-1} z^{2n-1}}{(2n-1)!} \right)}_{\sin(z)} i
+\end{align*}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Additionally, we can convert back from Polar coordinates to Cartesian Coordinates as 
+
+\begin{align*}
+  &(r, \theta) \rightarrow (x, y) \\ 
+  &x =r\cos(\theta) \\ 
+  &y =r\sin(\theta)  
+\end{align*}
+
+\vskip 0.5cm
+\underline{\textbf{Multiplication:}}
+The multiplication of two complex numbers can be thought of in terms of polar coordniates as scaling by $r$ and rotating by $\theta$.
+
+\vskip 1cm
+\subsection*{Topology of $\C$}
+The set $\C$ is a \textbf{metric space}, and the metric on $\C$ is $\text{dist}(z, w) = |z - w|$ ($\iff$ Eucldiean metric on $\R^2$).
+
+\vskip 0.5cm
+\underline{\textbf{Notation:}}
+\begin{itemize}
+  \item Given a complex number $z_0 \in \C$ and $r > 0, r \in \R$, the set
+  \[ B_{r} (z_0) = \{ z \in \C : |z - z_0| < r \} \]
+  is called the \textbf{open ball around $z_0$ of radius $r$}. 
+
+  \vskip 0.5cm
+  \item Similarly, the set $\overline{B_r (z_0)}$ is the \textbf{closed ball}:
+  \[ \overline{B_r (z_0)} = \{ z \in \C : |z - z_0| \leq r \} \]
+\end{itemize}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Open and Closed sets}
+\vskip 0.5cm
+  \begin{itemize}
+    \item A subset $U \subseteq \C$ is \textbf{open} if for all $z \in U$, there exists $r > 0$ such that $B_r (z) \subset U$.
+    
+    \item A subset $V \subseteq \C$ is said to be \textbf{closed} if its complement $V^c$ is open in $\C$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+
+
+\vskip 0.5cm
+\underline{\textbf{Ex:}} The set $\C \setminus \R_{\geq 0}$ is closed. This set will be important when studying the complex logarithm.
+
+
+[Insert figure.]
+
+\vskip 0.5cm
+Note that while the closed ball is not open (since the points on the boundary i.e. points with $|z - z_0| = r$ don't satisfy the requirement), a set \emph{can} be both open and closed. For example, the sets $\C$ and $\emptyset$ are both closed and open.
+
+% \printbibliography
+
+
+\end{document}

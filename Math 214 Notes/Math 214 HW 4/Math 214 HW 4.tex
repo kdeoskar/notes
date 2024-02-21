@@ -1,0 +1,381 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 4},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 4}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-1.} Suppose $M$ and $N$ are smooth manifolds with or without boundary, and $F : M \rightarrow N$ is a smooth map. Show that $dF_p : T_pM \rightarrow T_{F(p)}N$ is the zero map for each $p \in M$ if and only if $F$ is constant on each component of $M$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+\underline{"$\implies$" Direction:} Suppose the differential $dF_p : T_p M \rightarrow T_{F(p)} N$ is the zero map for every $p \in P$.  We want to show that $F$ is constant on the components of $M$.
+
+\vskip 0.5cm
+Recall that if a function between euclidean spaces $f : \R^m \rightarrow \R^n$ has components $f = (f^1(x), \cdots, f^n(x))$ such that each component has partial derivatives equal to zero with respect to each of $x^1, \cdots, x^m$, then the function is constant.
+
+
+\vskip 0.5cm
+For each point $p \in M$, let $(U, \phi)$ and $(V, \psi)$ be smooth charts such that $p \in U, F(p) \in V, F(U) \subseteq V$. Let's consider the coordinate representation $\hat{F} = \psi \circ F \circ \phi^{-1}$. For any $p \in M$, using the chain rule, the differential of $\hat{F}$ is given by 
+\begin{align*}
+  d(\hat{F})_{\phi(p)} &= d\left( \psi \circ F \circ \phi^{-1} \right)_{\phi(p)} \\
+  &= d\psi_{F(p)} \circ dF_{p} \circ d\left( \phi^{-1} \right)_{\phi(p)} \\
+  &= 0
+\end{align*}
+
+Since $dF_p$ is the zero map for any point $p \in U$. So, the jacobian matrix for $\hat{F}$ is just the zero matrix, so the coordinate representation $\hat{F}$ is a constant map on $U$. 
+
+\vskip 0.5cm
+Since this holds for all points $p \in M$, $F$ is locally constant so $F$ is constant over the components of $M$.
+
+\vskip 0.5cm
+\underline{"$\impliedby$" Direction:} Suppose $F$ is constant on each component $U$ of $M$. Since $M$ is a manifold, it's locally path connected, implying that $U$ is open in $M$. By hypothesis, we have $\restr{F}{U}$ is constant. Now, for a point $p \in U$, let $v \in T_p M$ and $f \in C^{\infty}(N)$. Then, 
+\begin{align*}
+  d(\restr{F}{U})_p(v)(f) = v(f \circ \restr{F}{U}) = 0
+\end{align*}
+
+since $f \circ \restr{F}{U} \in C^{\infty}$ is the constant map and the derivation of a constant map is zero. 
+
+% Recall that $dF_p : T_p M \rightarrow T_{F(p)} N$ is defined by the mapping 
+% \[ dF_p(v)(f) = v\left( f \circ F \right) \]
+% for $v \in T_pM$ and $f \in C^{\infty}(N)$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-3.} Prove that if $M$ and $N$ are smooth manifolds, then $T(M \times N)$ is diffeomorphic to $T(M) \times T(N)$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+By proposition 3.1, we know that the space $T_{(p,q)}\left( M, N \right)$ can be identified with the space $T_{p}M \oplus T_{q}N$ for every pair of points $(p,q)$ where $p \in M, q \in N$.
+
+\vskip 0.5cm
+To show that $T(M \times N)$ and $TM \times TN$, let's define the map 
+\[ F : T(M \times N) \rightarrow TM \times TN \]
+as 
+\[ \left( (p,q), u \oplus v  \right) \mapsto \left( (p, u), (q, v) \right) \]
+
+Of course, the inverse of this map is  $F^{-1} : TM \times TN \rightarrow T(M \times N)$ given by 
+\[ \left( (p, u), (q, v) \right) \mapsto  \left( (p,q), u \oplus v  \right) \]
+
+Let's show that $F$ is a diffeomorphism between the two spaces.
+
+\vskip 0.5cm
+Let $(U, \phi)$ and $(V, \psi)$ be smooth charts for $M$ and $N$ respectively. Let $\pi_X$ denote the projection from $TX \rightarrow X$ for any smooth manifold $X$. We have a corresponding charts $\left(\pi^{-1}_{M \times N}(U \times V), \alpha \right)$ nad $\left(\pi^{-1}_{M}(U) \times \pi^{-1}_{N}(V), \beta \right)$ for $T(M \times N)$ and $TM \times TN$ where 
+
+\[ \alpha : \left(\pi^{-1}_{M \times N}(U \times V) \right) \rightarrow \phi(U) \times \psi(V) \times \R^m \times \R^n, \;\;\; \left( (p, q), u^i \restr{\frac{\partial}{\partial x^i}}{p} \oplus v^j \restr{\frac{\partial}{\partial y^j}}{q} \right) \mapsto \left( \phi(p), \psi(q), u, v \right) \]
+
+\[ \beta : \left(\pi^{-1}_{M}(U) \times \pi^{-1}_{N}(V) \right) \rightarrow \phi(U) \times  \R^m \times \psi(V) \times \R^n, \;\;\; \left( \left( p, u^i \restr{\frac{\partial}{\partial x^i}}{p} \right),  \left( q, v^j \restr{\frac{\partial}{\partial y^j}}{p} \right)  \right) \mapsto \left( p, u, w, v \right) \]
+
+where $u = \left( u^1, \dots, u^m \right)$, $v = \left( v^1, \dots, v^n \right)$. The coordinate representation of $F$ is $\hat{F} = \beta \circ F \circ \alpha^{-1}(p, q, u, v) = (p, u, q, v)$ and the coordinate representation of $\hat{F}^{-1} = F^{-1}$ is $\alpha \circ F \circ \beta^{-1}(p, u, q, v) = (p, q, u, v)$.
+
+\vskip 0.5cm
+Since each of the component functions of $\hat{F}, \hat{F}^{-1}$ are smooth and bijective, the functions $F$ and $F^{-1}$ are themselves smooth. Thus $F$ is a diffeomorphism between $T(M \times N)$ and $TM \times TN$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-4.} Show that $T\mathbb{S}^1$ is diffeomorphic to $\mathbb{S}^1 \times \mathbb{R}$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+% We know that $\mathbb{S}^1$ is a smooth 1-manifold, and by LeeSM Proposition 3.18, that makes $T \mathbb{S}^1$ a smooth 2-manifold. i.e. $T \mathbb{S}^1 \cong_{\text{diff}} \R^{2}$. Further, the space $\mathbb{S}^1 \times \R$ is the product of two smooth $1-$manifolds without boundary, so it is also a smooth $2-$manifold. 
+
+% \vskip 0.5cm
+% Since diffeomorphism is an equivalence class on smooth manifolds, and the two spaces are both diffeomorphic to $\R^{2n}$, they must be diffeomorphic to each other. Thus, $T \mathbb{S}^1 \cong_{\text{diff}} \mathbb{S}^1 \times \R$.
+
+Recall that we can cover $\mathbb{S}^1$ with \emph{textbf{angle charts}}. Consider charts $(U, \theta)$ and $(V, \psi)$ covering $\mathbb{S}^1$ where $U = \mathbb{S}^1 \setminus \{1\}$, $\theta : U \rightarrow (0, 2\pi)$ and $V = \mathbb{S}^1 \setminus \{-1\}$ (where we are viewing $1$ an $-1$ as numbers in $\C$).
+
+\vsize 0.5cm
+Then, let's define $F : T\mathbb{S}^1 \rightarrow \mathbb{S}^1 \times \R$ as
+\[ F(z) = \begin{cases}
+  F\left(z, v\restr{\frac{d}{d\theta}}{z}\right) = (z, v), \text{ if } z \in U\\
+  F\left(z, \hat{v}\restr{\frac{d}{d\phi}}{z}\right) = (z, v), \text{ if } z \in V
+\end{cases} \]
+
+Note that for $z \in U \cap V$, we have 
+\[ \restr{\frac{d}{d\theta}}{z} = \restr{\frac{d}{d\phi}}{z} \]
+
+So, $F$ is well defined. Now, we notice that $\restr{F}{\pi^{-1}(U)}$ and $\restr{F}{\pi^{-1}(U\V)}$ are smooth bijections, so we have diffeomorphisms from $\pi^{-1}(U) \rightarrow U \times \R$ and $\pi^{-1}(V) \rightarrow V \times \R$ which agree on the overlap $\pi^{-1}(U) \cap \pi^{-1}(V)$.
+
+Thus, 
+\[ T\mathbb{S}^1 \cong_{\text{diff}} \mathbb{S}^1 \times \R \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-5.} Let $\mathbb{S}^1 \subseteq \R^2$ be the unit circle, and let $K \subseteq \R^2$ be the boundary of the square with side two centered at the origin: $K = \{(x,y)\;:\;\max \{|x|, |y|\} = 1 \}$. Show that there is a homeomorphism $F : R^2 \rightarrow R^2$ such that $F \left( \mathbb{S}^1 \right) = K$, but there is no diffeomorphism with the same property.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\vskip 0.5cm
+For any point $p \in \mathbb{S}^1$, we can simply draw the line passing through the origin and $p$, and move $p$ along the line until it hits the square. Points on the square can be traced back along the line. Points on the square lying in the same open neighborhood lie on lines which are close to each other, so their pre-images on the circle also lie in an open neighborhood. Thus, there exists a homeomorphism between $\mathbb{S}^1$ and $K$.  
+
+\vskip 0.5cm
+Suppose there is a diffeomorphism $F : \R^2 \rightarrow \R^2$ such that $F(\left( \mathbb{S}^1 \right)) = K$. Let $\gamma : \R \rightarrow \R^2$ be the path defined by 
+\[ \gamma(t) = \left( \cos(t), \sin(t) \right) \]
+
+Then, for any $t \in \R$, we have $\gamma(t) \in \mathbb{S}^1$ and $\gamma'(t) \neq 0$. To show there exists no diffeomorphism, we'll use the corners of the square. 
+
+\vsize 0.5cm
+Let $t_c \in \R$ be such that $F \circ \gamma(t_c) = (1,1)$, then for some $\epsilon > 0$ there exist intervals $I_- = (t_c - \epsilon, t_c)$ and $I_+ = (t_c, t_c + \epsilon)$ such that $F \circ \gamma(I_-) \subseteq \{1\} \times (-1, 1)$ (right edge of the square) and $F \circ \gamma(I_+) \subseteq (-1, 1) \times \{1\}$ (top edge of the square).
+
+\vskip 0.5cm
+Then, 
+\[ F \circ \gamma(t) = \begin{cases}
+  \left( 1, y \circ F \circ \gamma(t) \right), \text{  if } t \in I_-
+  \left( x \circ F \circ \gamma(t), 1 \right), \text{  if } t \in I_+
+\end{cases} \]
+
+and 
+
+\[ \left( F \circ \gamma \right)'(t_c) = \frac{d\left( x \circ F \circ \gamma \right)}{dt}(t_c) \restr{\frac{\partial}{\partial x}}{(1,1)} + \frac{d\left( y \circ F \circ \gamma \right)}{dt}(t_c) \restr{\frac{\partial}{\partial y}}{(1,1)}  \]
+
+By continuity of $\frac{d\left( x \circ F \circ \gamma \right)}{dt}$ and $\frac{d\left( y \circ F \circ \gamma \right)}{dt}$, they must both vanish at $t_c$. Hence, $\left( F \circ \gamma \right)'(t_c) = 0$, but we know from LeeSM Proposition 3.24 that $\left( F \circ \gamma \right)'(t_c) = dF(\gamma'(t_c))$. Since $F$ is a homeomorphism, $dF_p$ is an isomorphism for any $p \in \R^2$. Since $\gamma'(t) \neq 0$, we have $dF \left( \gamma'(t_c) \right)$ so in particular $dF(\gamma'(t))\neq 0$. Thus, $F$ cannot be a diffeomorphism.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-7.} Let $M$ be a smooth manifold with or without boundary and $p$ be a point of $M$. Let $C^{\infty}_p (M)$ denote the algebra of germs of smooth real-valued functions at $p$, and let $\mathcal{D}_{p} M $ denote the vector space of $C^{\infty}_p (M)$ of derivtaions of $C^{\infty}_p (M)$. Define a map $\Phi : \mathcal{D}_{p} M \rightarrow T_pM$ by $\left( \Phi_{v} \right) f = v\left( [f]_p \right)$. Show that $\Phi$ is an isomorphism.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+First, let's verify that $\Phi_v$ is a derivation at point $p$. For functions $f,g \in C^{\infty}(M)$, we have 
+
+\begin{align*}
+  \Phi_v \left( fg \right) &= v [fg]_p  \\
+  &= f(p) v[g]_p+ v[f]_p g(p) \\
+  &= f(p) \left( \Phi_v \right)_g + \left( \Phi_v\right)_f \\
+\end{align*}
+
+So, $\Phi_v$ is a derivation at $p$.
+
+\vskip 0.5cm
+To check that it's an isomorphism, we note that $\Phi$ is linear so we just need to show injectivity and surjectivity.
+
+\vskip 0.25cm
+For injectivity, let $Phi_v = 0$. Let $[f]_p$ be the germ of some pair $(f, U)$, where $U$ is open an contains $p$. By the extension lemma for smooth functions, there is a smooth function supported in $U$ such that $\psi \equiv 1$ on $U$. Then $\tilde{f} = \psi f$ is a smooth function such that $[\tilde{f}]_p = [f]p$. Then $v[f]_p = v[\tilde{f}]_p = (\Phi_v)(\tilde{f}) = 0$. Since $[f]_p$ was arbitrary, we conclude that $v = 0$, so the map $\Phi$ injective.
+
+\vskip 0.25cm
+For surjectivity, let $w \in T_p W$ be an arbitrary derivation. Then, define $v \in \mathcal{D}_p M$ by $v[f]_p = wf$. This is well defined because of Proposition 3.8 (On a neighborhood of $p$, $f = g \implies wf = wg$). Then, $\left( \Phi_v \right) f = v [f]_p = wf$ for any $f \in C^{\infty}M$, so $\Phi v = w$. This proves surjectivity.
+
+\vskip 0.25cm
+Since $\Phi$ is a linear bijection, it is an isomorphism between vector spaces. 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q3-8.} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+To show that the map $\Psi : \mathcal{V}_P M \rightarrow T_p M$ defined by $\Psi[\gamma] = \gamma'(0)$ is well defined and bijective, consider curves  $\gamma_1, \gamma_2$ starting at $p$ such that $[\gamma_1] = [\gamma_2]$.
+
+\vskip 0.25cm'
+Let $(U, \phi)$ be a chart containing $p$. Then, in the coordinates of this chart, we have 
+\[ \gamma_1'(0) = \left( x^i \circ \gamma_1 \right)'(0) \restr{\frac{\partial }{\partial x^i}}{p} = \left(x^i \circ \gamma_2\right)'(0) \restr{\frac{\partial }{\partial x^i}}{p}  =\gamma_2'(0)\]
+
+because $ \left( f \circ \gamma_1 \right)'(0) =  \left( f \circ \gamma_2 \right)'(0)$ for any smoot function $f \in C^{\infty}(M)$ in a neighborhood of $p$. 
+
+
+\vskip 0.5cm
+For injectivity, suppose $\gamma_1'(0) = \gamma_2'(0)$ and consider any smooth real valued function $f$ on a neighborhood of $p$. Then,
+
+\[ \left(f \circ \gamma_1\right)'(0) = d\left(f \circ \gamma_1\right)_0 \left(\restr{\frac{\partial}{\partial t}}{0}\right) = df_{\gamma(0)} \circ d\gamma_0 \left(\restr{\frac{\partial}{\partial t}}{0} \right) = df_{\gamma(0)} \circ \gamma_1'(0) =  df_{\gamma(0)} \circ \gamma_1'(0)  = \left(f_2 \circ \gamma\right)'(0)\]
+
+for some other path $\gamma$. Thus, $[\gamma_1] = [\gamma_2]$ and the map is injective.
+
+\vskip 0.5cm
+For surjectivity, let $v$ be an arbitrary derivation at $p$ and let $(U, \phi)$ be a chart containing $p$ such that $\phi(p) = 0$. Then, we can write 
+\[ v = v^i \restr{\frac{\partial}{\partial x^i}}{p} \]
+in the coordinates of $(U, \phi)$. For some $\epsilon > 0$, we can define a curve 
+
+\[ \tilde{\gamma} : [0, \epsilon), \;\; t \mapsto (tv^1, \cdots tv^n) \]
+
+and then let $\gamma = \phi^{-1} \circ \tilde{\gamma}$. Then, $\gamma$ is a smooth curve starting at $p$, since it is the composition of two smooth functions and
+\[ \gamma'(0) = \frac{\partial \gamma^i}{\partial t}(0)\restr{\frac{\partial}{\partial x^i}}{\gamma(0)} = \frac{\partial (\phi^{-1} \circ \gamma)}{\partial t}(0)\restr{\frac{\partial}{\partial x^i}}{\gamma(0)} = \frac{\partial (tv^i)}{\partial t}(0)\restr{\frac{\partial}{\partial x^i}}{\gamma(0)} = v^i \restr{\frac{\partial}{\partial x^i}}{\gamma(0)} = v\] 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q3-1.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

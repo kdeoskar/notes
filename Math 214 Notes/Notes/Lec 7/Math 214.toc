@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}February 6 - Tangent Vectors, Differentials of smooth maps}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Properties of Derivations}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Tangent Space to $\mathbb {R}^n$}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}The Differential of a Smooth Map}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Tangent Space of Smooth Manfiolds (with or without boundary)}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Coordinates}{5}{subsection.1.5}%

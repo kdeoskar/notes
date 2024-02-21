@@ -1,0 +1,341 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage{bbm}
+
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill PSET #1, Due #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\rvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}
+\newcommand{\inner}[2]{\left\langle #1 \bigg\rvert #2 \right\rangle}
+\newcommand{\ham}{\hat{H}}
+\newcommand{\mom}{\hat{P}}
+
+
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{1}{December 04}{Chien-I Chiang}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 1:}}
+
+In this question, we consider the 3D Particle in a box potential.
+\[ V(x,y,z) = \begin{cases}
+   0, \;\;\;x,y,z\text{ all between zero and 'a'} \\
+   \infty,\;\;\text{ otherwise}
+\end{cases} \]
+
+\begin{enumerate}[label=\alph*]
+   \item To find the wavefunctions of the time-independent energy eigenstates we will solve the Time Independent Schroedinger Equations, which presents itself in 3D as 
+   \[ -\frac{\hbar^2}{2m} \nabla^2 \psi + V\psi = E\psi\]
+
+   Outside the region $\{ (x,y,z) : 0 \leq x,y,z \leq a \}$, the potential is infinite i.e. $V(x,y,z) = \infty$. So, the PDE is 
+   \[ -\frac{\hbar^2}{2m} \nabla^2 \psi + \infty\psi = E\psi \]
+
+   But the energy $E$ must be some finite value, so the only valid wavefunction for this region is
+   \[ \boxed{\psi(x,y,z) = 0} \] 
+   \vskip 0.5cm
+
+   Inside of the box, we solve this PDE by \textbf{Separation of Variables} in cartesian coordinates.
+
+   Let's assume that the solutions to the PDE have the form 
+   \[ \psi(x,y,z) = X(x)Y(y)Z(z) \]
+
+   Then, the TISE reads as 
+   \begin{align*}
+      &-\frac{\hbar^2}{2m} \left[ \partial_x^2 + \partial_y^2 + \partial_z^2 \right](XYZ) + V(x,y,z) XYZ = E \cdot XYZ \\
+      \implies&\frac{-\hbar2}{2m} \left[ \frac{\partial^2 X}{\partial x^2} YZ +  \frac{\partial^2 Y}{\partial y^2} XZ +  \frac{\partial^2 Z}{\partial z^2} XY \right] + V(x,y,z) (XYZ) = E(XYZ)
+   \end{align*}
+
+   Dividing through by $X(x)Y(y)Z(z)$, we have 
+   \begin{align*}
+      \frac{-\hbar2}{2m} \left[ \frac{1}{X}\frac{\partial^2 X}{\partial x^2} +   \frac{1}{Y}\frac{\partial^2 Y}{\partial y^2}  +  \frac{1}{Z}\frac{\partial^2 Z}{\partial z^2}  \right] + V(x,y,z) = E
+   \end{align*}
+
+   And also, recall that inside the box, we have $V(x,y,z) = 0$. This, TISE in this region is equivalent to the equation 
+   \begin{align*}
+      \frac{-\hbar^2}{2m} \left[ \frac{1}{X}\frac{\partial^2 X}{\partial x^2} +   \frac{1}{Y}\frac{\partial^2 Y}{\partial y^2}  +  \frac{1}{Z}\frac{\partial^2 Z}{\partial z^2}  \right] = E
+   \end{align*}
+   
+   Notice that the LHS consists of three different functions, each dependent SOLELY on one of $x$, $y$, or $z$ being summed together to some constant.
+
+   The only way for this to holds for all possible $(x,y,z)$ inside the box is for each of the functions to be constant itself. i.e. we have 
+
+   \[ \frac{-\hbar^2}{2m}\frac{1}{X}\frac{\partial^2 X}{\partial x^2} = E_x \]
+   \[ \frac{-\hbar^2}{2m}\frac{1}{Y}\frac{\partial^2 Y}{\partial y^2} = E_y \]
+   \[ \frac{-\hbar^2}{2m}\frac{1}{Z}\frac{\partial^2 Z}{\partial z^2} = E_z \]
+
+   where $E_x + E_y + E_z = E$. 
+   
+   
+   But each of these equations is just the TISE for a free particle in the region $[0, a]$ for each of the directions $x, y, z$! This is a problem we've already solved, but Let's go through the solution for one of the dimensions and then extrapolate.
+   \vskip 0.5cm
+
+   Considering the $x$-direction, we have 
+   \begin{align*}
+      &\frac{-\hbar^2}{2m}\frac{1}{X}\frac{\partial^2 X}{\partial x^2} = E_x \\
+      \implies& X^{''}(x) = -\frac{2mE_x}{\hbar^2} X(x)
+   \end{align*}
+
+   Or, setting $k = \sqrt{\frac{2mE_x}{\hbar^2}}$, we have
+   \[ X^{''}(x) = -k^2 X(x) \]
+
+   and this differential equation has the general solution
+   \[ \boxed{ X(x) = Ae^{ikx} + Be^{-ikx}} \]
+
+   Further, the wavefunction $X(x)$ must be continuous. Outside the region $0 \leq x \leq a$, the wavefunction must be zero, so invoking continuity gives us the boundary conditions $X(0) = 0$ and $X(a) = 0$.
+
+   The first condition gives us 
+   \begin{align*}
+      &X(0) = A + B = 0 \\
+      \implies& X(x) = A(e^{ikx} - e^{-ikx}) = 2A\sin(kx)
+   \end{align*}
+
+   And so, now, the second condition tells us that 
+   \begin{align*}
+      &X(a) = 2A \sin(ka) = 0\\
+      \implies& ka = n\pi,\;\; n \in \mathbb{Z} \\
+      \implies& k = \frac{n\pi}{a}
+   \end{align*}
+   Our $k$ is quantized to only have certain values, which means the energy of the particle in the x-direction is also quantized.
+
+
+   Collecting everything we've found so far, we know
+   \[ X(x) = 2A\sin\left(\frac{n\pi}{a}x\right) \]
+
+   Finally, we use the normalization condition to find $A$ as
+   \begin{align*}
+      &\int_0^a |X(x)|^2 dx = 1 \\
+      \implies& 4A^2 \int_0^a \sin^2 \left( \frac{n\pi x}{a} \right) dx  = 1\\
+      \implies& 4A^2 \int_0^a \frac{1 - \cos(\frac{2n\pi x}{a})}{2} dx  = 1 \\
+      \implies& 4A^2 \left[ \frac{x}{2} - \frac{a}{2n\pi}\frac{\sin(\frac{2n\pi x}{a})}{2} \right]_{0}^{a}  = 1 \\
+      \implies& 4A^2 \left[ \frac{a}{2} - 0 \right] = 1 \\
+      \implies& 2aA^2  = 1 \\
+      \implies& A  = \frac{1}{\sqrt{2a}}
+   \end{align*}
+   Thus, the eigenfunction to the differential equation in the x-direction is 
+   \[ \boxed{X(x) = \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi}{a}x\right) } \]
+   with eigenvalue
+   \[ \boxed{E_x = \frac{\hbar^2 k^2}{2m} = \frac{\hbar^2 n^2 \pi^2}{2ma^2}} \]
+   where $n = 1,2,3...$ 
+
+
+   Solving the differential equations in the y and z directions, we would get the exact same result. Thus, we can conclude that the energy eigenstates of the 3D particle in a box are 
+   \begin{align*}
+      \psi(x,y,z) &= X(x)Y(y)Z(z) \\
+      &= \left(  \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi}{a}x\right) \right) \cdot \left(  \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi}{a}y\right) \right) \cdot \left(  \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi}{a}z\right) \right)  \\
+      &= \sqrt{\frac{8}{a^3}}\sin\left(\frac{n\pi}{a}x\right)\sin\left(\frac{n\pi}{a}y\right)\sin\left(\frac{n\pi}{a}z\right)
+   \end{align*}
+   with energy eigenvalues
+   \begin{align*}
+      E &= E_x + E_y + E_Z \\
+     &= \frac{\hbar^2 n_x^2 \pi^2}{2ma^2} + \frac{\hbar^2 n_y^2 \pi^2}{2ma^2} + \frac{\hbar^2 n_z^2 \pi^2}{2ma^2} \\
+     &= \frac{\hbar^2 \pi^2}{2ma^2} (n_x^2 + n_y^2 + n_z^2)
+   \end{align*}
+   \vskip 1cm
+
+   To conclude,
+   \[ \boxed{ \psi_E(x,y,z) = \sqrt{\frac{8}{a^3}}\sin\left(\frac{n_x\pi}{a}x\right)\sin\left(\frac{n_y\pi}{a}y\right)\sin\left(\frac{n_z\pi}{a}z\right) } \]
+
+   \[ \boxed{ E = \frac{\hbar^2 \pi^2}{2ma^2} (n_x^2 + n_y^2 + n_z^2) } \]  
+   where $n_x, n_y, n_z = 1,2,3...$ 
+
+   \item The Distinct Energies $E_1, E_2, E_3, E_4, E_5, E_6$ are found by finding calculating $E$ for different values of $n_x, n_y, n_z$.
+   
+   If we denote the number of degeneracies corresponding to each energy level as $d$, then
+   \begin{align*}
+      &E_1 = \frac{\hbar^2 \pi^2}{2ma^2} (3) \;\;:\;\; d = 1; \\
+      &E_2 = \frac{\hbar^2 \pi^2}{2ma^2} (6) \;\;:\;\; d = 3; \\
+      &E_3 = \frac{\hbar^2 \pi^2}{2ma^2} (9) \;\;:\;\; d = 3; \\
+      &E_4 = \frac{\hbar^2 \pi^2}{2ma^2} (11) \;\;:\; d = 3; \\
+      &E_5 = \frac{\hbar^2 \pi^2}{2ma^2} (12) \;\;:\; d = 1; \\
+      &E_6 = \frac{\hbar^2 \pi^2}{2ma^2} (14) \;\;:\; d = 6; \\
+   \end{align*}
+
+
+   \item Supposing we have 5 non-interacting particles doomed to live together in a box, the lowest attainable energy depends on what kind of particles are present.
+   
+   \begin{enumerate}
+      \item If the particles are \textbf{classical, distinguishable particles} then the ground state energy is zero. This is because, classically, energy is not quantized and can attain any value in a continuous range which includes zero.
+      \vskip 1cm
+      
+      \item If the particles are Spin-1 particles, the Spin-Statistics Theorem tells us that they are \textbf{Bosons}, which means they do not need to satisfy the Pauli Exclusion principle. 
+      
+      Thus, all five particles will have the lowest possible energies i.e. each one will have energy $E = \frac{3\hbar^2\pi^2}{2ma^2}$. So, the ground state energy of the 5 particle system will be 
+
+      \[ \boxed{E_{ground} = \frac{15\hbar^2\pi^2}{2ma^2}} \]
+      \vskip 1cm
+
+      \item If the particles are Spin-1/2, the Spin-Statistics Theorem tells us they are \textbf{fermions}. Thus, by the Pauli Exclusion Principle, each energy level can only accomodate two particles (of opposite spin).
+      
+      Thus, two particles will have energy $E_1 = \frac{\hbar^2 \pi^2}{2ma^2} (3)$, two will have energy $E_2 = \frac{\hbar^2 \pi^2}{2ma^2} (6)$, and one will have energy $E_3 = \frac{\hbar^2 \pi^2}{2ma^2} (9)$.
+
+      Thus, the ground state energy of the 5-particle system will be 
+      \[ \boxed{E_{ground} = 18 \frac{\hbar^2 \pi^2}{2ma^2}} \]
+   \end{enumerate}
+
+   \item 
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 2:}}
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 3:}}
+
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,267 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 14},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 14}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{February 16 - The Logarithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+
+Today we'll be discussing the logarithm. Before getting to it though, lte's revisit the exponential function, which we defined pretty early in the course.
+
+\subsection{Exponential Function}
+
+
+\begin{mathdefinitionbox}{The exponential function}
+  \[ \exp(z) =  e^z = 1 + z + \frac{z^2}{2!} + \cdots + \sum_{n = 0}^{\infty} \frac{1}{n!} z^n \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+The series expansion has infinite radius of convergence, making the exponential a holomorphic function, and further allowing us to obtain the derivative by just differentiating the series term by term.
+
+\vskip 0.5cm
+\begin{align*}
+  \implies \exp'(z) &=\sum_{n=1}^{\infty} \frac{1}{n!} nz^{n-1}\\
+  &= \sum_{n=1}^{\infty} \frac{1}{(n-1)!} z^{n-1} \\
+  &= \exp(z)
+\end{align*}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Note:}} There exists a power series $f$ with radius of convergence $\infty$ such that 
+  \[ f'(z) = f(z),\;\;\;\;f(0) = 1 \] 
+
+  This property actually haracterizes the exponential.
+\end{dottedbox}
+
+\subsection{Range of the Exponential Function}
+
+[Complete by watching recording]
+
+So, it turns out that every complex number other than the origin is a target of the exponential map.
+
+\vskip 0.5cm
+In showing this, we used the property $e^{a+b} = e^a e^b$. Strictly speaking, we must prove this holds for complex numbers. Let's do so quickly.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Lemma:}} For $z_1, z_2 \in \C$ we have 
+  \[ e^{z_1 + z_2} = e^{z_1} e^{z_2} \] 
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{\emph{Proof:}}
+If we fix $z_1$ and view the exponential as a function of $z_2$, we have 
+\[ \frac{\partial}{\partial z_2}\left(e^{z_1 + z_2}\right) = e^{z_1 + z_2} \]
+
+and similarly if we fix $z_2$ and view it as a function of $z_1$, we have
+\[ \frac{\partial}{\partial z_1}\left(e^{z_1 + z_2}\right) = e^{z_1 + z_2} \]
+
+[Finish this proof later]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Corollary:} $e^z \neq 0$ since for any $e^z$ there exists an inverse $e^{-z}$ such that $e^{z} e^{-z} = 1$.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{The Logarithm Function}
+We now want to define the logarithm, $\log(z)$, such that 
+\begin{itemize}
+  \item $e^{\log(z)} = z $
+  \item Logarithm is continuous.
+\end{itemize}
+
+% But this does not uniquely pin down the function since we could add any multiple of $2\pi$ to the exponent i.e. $e^{\log(z) + 2\pi n}$ without changing anything. This is an issue because then, 
+
+But we have a problem! If we start at $\theta = 0$, rotate around, and eventualy hit $\theta = 2\pi$ which is the same point as $\theta = 0$, we will have a discontinuity in the neighborhood of $\theta = 0$ since the function will be small if we move coounterclockwise but large if we move clockwise.
+
+\vskip 0.5cm
+So, let's tackle the issue using the following theorem:
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Theorem:}} Let $U \subseteq_{open} \C$ be simply connected such that $0 \neq U, 1 \neq U$. Then, there exists a unique function
+  \[ \log_{U} : U \rightarrow \C \]
+  such that 
+  \begin{itemize}
+    \item it is holomorphic
+    \item $\log_U(1) = 0$
+    \item $e^{\log_U(z)} = z$ for all $z \in U$.
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{\emph{Proof:}} Define $\log_U(z)$ to be the primitive of $\frac{1}{z}$ i.e. 
+\[ \log_U(z) = \int_{1}^{z} \frac{1}{w} dw \]
+This is well define since $U$ is simply connected and certaintly satisfies the condition $\log_U(1) = 0$.
+
+To check the last condition, let's verify that 
+\[ \frac{d}{dz} \log_U(z) = \frac{1}{z} \]
+
+[complete after lecture]
+
+\vskip 0.5cm
+
+\vskip 0.5cm
+To define the logarithm, we can choose a curve containing the origin and consider its \emph{complement} since the complement is guaranteed to be simply connected. The curve we choose is called a \textbf{\emph{branch cut}}.
+
+\vskip 0.5cm
+\subsubsection*{Examples of different branch cuts}
+
+\begin{itemize}
+  \item \textbf{\emph{Principal Branch cut:}} $U = \C \setminus \R_{\geq 0}$. Insert picture
+  
+  \vskip 0.25cm
+  This is kind of like the "canonical" branch cut since, even for real numbers, we usually don't bother defining the logarithm for negative numbers.
+\end{itemize}
+
+\vskip 0.5cm
+\subsubsection*{Midterm Monday March 4}
+\begin{itemize}
+  \item 10 true/false questions
+  \item 3-4 calculations
+  \item No proof on the first midterm.
+  \item A sample midterm will be released.
+\end{itemize}
+
+\end{document}

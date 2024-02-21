@@ -1,0 +1,265 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def:}}}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 4}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 26 - Geometry of Holomorphic functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+Whereas in the reals, we can simply look at the graph of a function and tell whether it's differentiable or not, functions on $\C$ are different.
+
+\vskip 0.25cm
+Our intuition that a function $\R^d \rightarrow \R^d$ is differentiable is to see whether it is "smooth-ish".
+
+\vskip 0.25cm
+The goal for today is to develop some sort of similar intuition for Holomorphic functions on $\C$. (Note: A characteristic equivalent to Holomorphicity s "conformality". We'll explore this today as well.)
+
+\vskip 1cm
+\subsection{Review of Differentiation}
+For a function $f : \R^d \rightarrow \R^d$, the derivative is supposed to be the \emph{best linear approximation} to $f$.
+
+\[ f(x) \approx f(x_0) + (x - x_0)f'(x_0) \]
+for $x \approx x_0$. (In 1D, $f'(x_0)$ is just a number, but in higher dimensions it's generally a \emph{matrix}).
+
+
+\vskip 0.5cm
+Now, the same idea holds for functions on the complex plane. That is, for $f : \Omega \subset_{open} \C \rightarrow \C$,
+
+\[\boxed{ f(z_0) \approx f(z_0) + \underbrace{f'(z_0)}_{\in \C} (z - z_0), z \approx z_0 }\]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Contrast this with $f : \Omega \subset_{open} \R^2 \rightarrow \R^2$ where 
+
+  \[ f(x, y) \approx f(x_0, y_0) + (x - x_0, y - y_0)f'(x_0, y_0) \]
+
+  where 
+  \[ f'(x_0, y_0) =  \begin{pmatrix}
+    \frac{\partial u}{\partial x} & \frac{\partial v}{\partial x} \\
+    \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+  \end{pmatrix} \]
+\end{dottedbox}
+
+[Listen to lecture recording and write about comparison between derivatives on $\C$ and $\R^2$ later]
+
+\vskip 1cm
+\subsection{Cauchy-Riemann Equations}
+
+Consider a complex function $f : \Omega \subset_{open} \rightarrow \C = \R^2$ and denote
+
+\[ f(z) = u(z) + iv(z) = u(x, y) + iv(x, y) = f(x, y)  \]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Lemma:} If $f$ is holomorphic at $z_0 = x_0 + i y_0$, then 
+  \begin{align*}
+    \frac{\partial u}{\partial x}(z_0) &= \frac{\partial v}{\partial y}(z_0) \\
+    \frac{\partial u}{\partial y}(z_0) &= - \frac{\partial v}{\partial x}(z_0) 
+  \end{align*}
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} Let $f$ be holomorphic at $z_0$. Then, 
+\[ \lim_{x \in \R \rightarrow 0} \frac{f(z_0 + x) - f(z_0)}{x} = f'(z_0) = \lim_{y \in \R \rightarrow 0} \frac{f(z_0 + iy) - f(z_0)}{y} \]
+
+but the Left Hand Expresson above is, by definition, $\partial f / \partial x (z_0)$, or in other words, 
+\[ \frac{\partial u}{\partial x}(z_0) + i \frac{\partial v}{\partial x}(z_0) \]
+
+and similarly the Right Hand Expression is $\frac{1}{i} \cdot \partial f / \partial x (z_0)$, or in other words, 
+\[ \frac{1}{i} \left( \frac{\partial u}{\partial xy}(z_0) + i \frac{\partial v}{\partial y}(z_0) \right) \]
+
+Then, since both of them are equal to $f'(z_0)$, we should have 
+\[ \boxed{\frac{\partial u}{\partial x}(z_0) + i \frac{\partial v}{\partial x}(z_0) = \frac{1}{i} \left( \frac{\partial u}{\partial xy}(z_0) + i \frac{\partial v}{\partial y}(z_0) \right) }\]
+
+The Real and Imaginary parts of the above must then be equal, so we get 
+
+\begin{align*}
+    \frac{\partial u}{\partial x}(z_0) &= \frac{\partial v}{\partial y}(z_0) \\
+    \frac{\partial u}{\partial y}(z_0) &= - \frac{\partial v}{\partial x}(z_0) 
+\end{align*}
+
+These are the \emph{Cauchy-Riemann Equations}.
+
+\vskip 0.5cm
+\underline{\textbf{Remark:}} There is a converse which is harder to prove. 
+\begin{dottedbox}
+  If $f$ is $C^1$ and the Cauchy-Riemann Equations hold at $z_0$, then $f$ is holomorphic at $z_0$.
+\end{dottedbox}
+
+This has important applications in PDEs.
+
+\vskip 1cm
+\underline{\textbf{Summary:}} The partial derivative matrix of a holomorphic function has the form 
+
+\[ \begin{bmatrix}
+  a & b \\
+  -b & a
+\end{bmatrix} \]
+
+\vskip 0.25cm
+where $a, b \in R$. Then, using polar coordinates $(a, b) \rightarrow (r, \theta)$ wherein $a = r\cos(\theta), b = r \sin(\theta)$ then the matrix is 
+
+\[ r \begin{pmatrix}
+  \cos(\theta) & \sin(\theta) \\
+  -\sin(\theta) & \cos(\theta) \\
+\end{pmatrix} \]
+
+\vskip 0.25cm
+So, the derivative $f'(z_0)$ of a complex function $f$ is a linear map of the form "scaling + rotaton". There are \emph{conformal mappings} i.e. they infinitessimally preserve angles or scale to zero.
+
+\vskip 0.5cm
+\underline{{Example:}} Consder $f(z) = \lambda z$, $\lambda - r e^{i \theta} \in \C$. Angles are certainly preserved by this map:
+
+[insert figure].
+
+\vskip 0.5cm
+\underline{{Example:}} In contrast to the last example, $f(z) = \overline{z}$ does \emph{not} preserve angles so it's not Holomorphic.
+
+[insert figure]
+
+\vskip 0.5cm
+\underline{Example:} $f(z) = z^2$: This one's a bit tricky. One may think this map is \emph{not} conformal because the real axis stays fixed while the positive imaginary axis becomes aligned with the negative real axis, changing the angle between them from 90 degrees to 180 degrees.
+
+\vskip 0.5cm
+\emph{However,} recall that conformal maps can also \emph{scale to zero}. In fact, that's essentially what happens to numbers in a very small neighborhood around the origin.
+
+[insert image and write some more explanation]
+
+\end{document}

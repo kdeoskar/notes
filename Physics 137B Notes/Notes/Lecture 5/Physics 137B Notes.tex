@@ -1,0 +1,265 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 5}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 26 - Perturbation Theory continued...}
+% Let 
+% \[ \boxed{\ket{n^{(1)}} = \sum_{k \neq n} c_{nk}^{(1)} \ket{k^{(0)}} }  \]
+
+% Then, 
+% \begin{align*}
+%   0 &= \left( \hat{H}_0 - E_n^{(0)} \right) \ket{n^{(1)}} + \left( \hat{H}' + E_n^{(1)} \right) \ket{n^{(0)}} \\
+%   &= \left( \hat{H}_0 - E_n^{(0)} \right) \sum_{k \neq n} c_{nk}^{(1)} \ket{k}^{(0)} + \left( \hat{H}' - E_n^{(1)} \right) \ket{n^{(0)}} \\
+%   &= \sum_{k \neq n} c_{nk}^{(1)} \left( E_k^{(0)} - E_n^{(0)} \right) \ket{k^{(0)}} + \left( \hat{H}' - E_n^{(1)} \right) \ket{n^{(0)}}
+% \end{align*}
+
+Last time, we left off while trying to extract $\ket{n^{(0)}}$.
+
+\vskip 0.5cm 
+
+To extract $\ket{n^{(0)}}$, we make use of the fact that $\{\ket{l^{(0)}}\}$ is orthonormal. Act using another stationary state $\ket{l^{(0)}}$ where $l \neq n$.
+
+\[ \implies \sum_{k \neq n} c_{nk}^{(1)} \left( E_{k}^{(0)}  - E_n^{(0)} \right) \underbrace{\inner{l^{(0)}}{k^{(0)}}}_{\delta_{lk}} + \inner{l^{(0)}}{\hat{H}'| n^{(0)} } - E_n^{(1)} \underbrace{\inner{l^{(0)}}{n^{(0)}}}_{0} = 0 \]
+
+\[ \implies \left( E_l^{(0)} - E_n^{(0)} \right) c_{nl}^{(1)} = - \inner{l^{(0)}}{\hat{H'} | n^{(0)}} \]
+
+Again, for emphasis, we are currently dealing with a special case: \textbf{Non-degenerate Perturbation Theory} wherein $E_{n}^{(0)} = E_l^{(0)}$ iff $n=l$. So, rearraning the equation, we finally get 
+
+\[ \boxed{ c_{nl}^{(1)} = \frac{\inner{l^{(0)}}{\hat{H'} | n^{(0)}}}{ \left( E_n^{(0)} - E_l^{(0)} \right) } } \]
+
+This gives us the first order correction for the state i.e.
+
+\[ \boxed{ \ket{n^{(1)}} = \sum_{ k \neq n }  \frac{\inner{l^{(0)}}{\hat{H'} | n^{(0)}}}{ \left( E_n^{(0)} - E_l^{(0)} \right) \ket{k^{(0)}} } } \]
+
+
+\vskip 0.5cm
+Before moving on to second-order PT and degenerate PT, let's see some nice examples.
+
+\vskip 1cm
+\subsection{Example: 1D Infinite Square Well with a $\delta-$potential}
+
+\vskip 0.5cm
+The known potential is 
+\[ \hat{H}_0 = \frac{\hat{P}^2}{2m} + V_0(x); \;\;\;\; V_0(x) = \begin{cases}
+  0 \;\; -\frac{L}{2} \leq x \leq \frac{L}{2}\\
+  \infty \;\;\text{otherwise}
+\end{cases} \]
+
+and we have $\hat{H}' = \alpha\delta(x)$
+
+\vskip 0.5cm
+The goal is to find $E_{n}^{(1)}$ and $\ket{n^{(1)}}$. We follow the standard procedure:
+\begin{enumerate}
+  \item Find $\ket{n^{(0)}}$ and $E_n^{(0)}$
+  \item Use $E_n^{(1)} = \inner{n^{(0)}}{\hat{H}'|n^{(0)}}$
+  \item Use $\ket{n^{(1)}} = \sum_{ k \neq n }  \frac{\inner{k^{(0)}}{\hat{H'} | n^{(0)}}}{ \left( E_n^{(0)} - E_k^{(0)} \right)} \ket{k^{(0)}}$
+  \item "think" : do your solutions make sense?
+\end{enumerate}
+
+\vskip 1cm
+\underline{\textbf{Step 1:}}
+To get the \emph{unperturbed} eigenstates and eigenenergies, we set up the TISE:
+\[ -\frac{\hbar^2}{2m} \frac{d^2}{dx^2} \psi_n^{(0)}(x) = E_n^{(0)} \psi_n^{(0)}  \]
+and impose the \emph{boundary conditions}.
+
+\vskip 1cm
+Doing so, we obtain 
+
+\[ \psi_n^{(0)}(x) = 
+\begin{cases}
+  \frac{2}{L} \cos\left( \frac{n\pi x}{L} \right) \;\;\;n = 2n' + 1 \\
+  \frac{2}{L} \sin\left( \frac{n\pi x}{L} \right) \;\;\;n = 2n'
+\end{cases} \]
+
+and 
+\[ E_n^{(0)} = \frac{\hbar^2}{2m}\left( \frac{\pi}{L} \right)^2 n^2 \]
+
+
+\vskip 1cm
+\underline{\textbf{Step 2:}}
+
+\vskip 0.5cm
+The energy correction is 
+\begin{align*}
+  E_n^{(1)} &= \inner{n^{(1)}}{\hat{H}'| n^{(0)}} \\
+  &= \int dx \; \inner{n^{(0)}}{x} \inner{x}{\hat{H}'|x'}\inner{x'}{n^{(0)}} \\
+  &= \int dx \psi(x)^{*} \alpha \delta(x) \psi(x) \\
+  &= \alpha |\psi_n(0)|^2 \\
+  &= \begin{cases}
+    \frac{\alpha 2}{L} \;\;n = \text{ odd} \\
+    0 \;\;n = \text{ even}
+  \end{cases}
+\end{align*}
+
+So, the overall eigenenergy is given by 
+\[ E_n^{(0)} = \left( \frac{\pi \hbar}{L} \right)^2 \frac{n^2}{2m} + \begin{cases}
+  \alpha \frac{L}{2} \;\;\text{iff }n = \text{ odd} \\
+  0 \;\;\text{iff }n = \text{ even} \\
+\end{cases} \]
+
+\vskip 0.5cm
+Note that this makes sense if and only if 
+\begin{align*}
+  &\alpha \frac{L}{2} < \left( \frac{\pi \hbar}{L} \right)^2 \frac{n^2}{2m} \\
+  \implies& \alpha < \frac{2}{L} \left( \frac{\pi h}{L} \right)^2 \frac{n^2}{2m}
+\end{align*}
+
+So, if experimental values of $\alpha$ tell us that the 1st order correction is bigger than the 0-order corrrection, we most definitely have a problem and our system may be \emph{non-perturbative}.
+
+\vskip 1cm
+\underline{\textbf{Step 3:}}
+
+\vskip 0.5cm
+The eigenstate correction is 
+
+\begin{align*}
+  \ket{n^{(1)}} &= \sum_{ k \neq n }  \frac{\inner{k^{(0)}}{\hat{H'} | n^{(0)}}}{ \left( E_n^{(0)} - E_k^{(0)} \right)} \ket{k^{(0)}}  \\
+\end{align*}
+
+\end{document}

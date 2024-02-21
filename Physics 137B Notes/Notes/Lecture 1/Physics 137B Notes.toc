@@ -1,0 +1,5 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 18 - Review and Intro to Symmetries}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Why Quantum?}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Topics covered in 137A}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Review of 1D QM}{2}{subsection.1.3}%

@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Finite-volume functions}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Analytic Continuation of $c_{JM}^{(n)}$}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Volume Effect on Energy and Phase Shift $\delta s$}{4}{subsection.1.2}%

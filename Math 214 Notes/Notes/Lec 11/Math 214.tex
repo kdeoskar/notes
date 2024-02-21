@@ -1,0 +1,360 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 11},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 20 - }
+
+\vskip 1cm
+\subsection*{Recap}
+Some important results we've built in the last few lectures are:
+\begin{itemize}
+  \item Rank Theorem (enter the statement here later). Last time, we applied this to $k-$slices. We argued that if we have $\S^k \hookrightarrow M^m$ and if locally $S^k$ is a $k-$slice [finish later]
+  \item Then, we spoke about Level Sets. Recall that if we have a smooth map $F : M^m \rightarrow N^n$, the inverse image of a point $q \in N$ i.e. $F^{-1}(q) \subseteq M$ is an embedded submanifold, given that it satisfies certain properties.
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{Constant Rank Level Set Theorem:}
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $F: M^m \rightarrow N^n$ is smooth and of constant rank $r$, then for any $q \in N$, the level set $F^{-1}(q) \subset M$ is a proper submanifold of $M$ with dimension $(m-r)$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\emph{Proof:}} We want to employ the rank theorem.
+
+\vskip 0.5cm
+Let $S = F^{-1}(q)$. Applying the rank theorem, we obtain charts $(U, \psi)$ on $M$ and $(V, \psi)$ on $N$ such that $\psi \circ F \circ \phi^{-1}$ has the coordinate representation 
+\[ (x^1, \dots, x^r, x^{r+1}, \dots, x^{m}) \mapsto (x^1, \dots, x^r, 0, dots, 0)  \]
+
+So, if $\psi(q) = (c^1, \dots, c^r, 0, \dots 0)$, then the preimage in local coordinates on $M$ has the form $\{(c^1, \dots, c^r, x^{r+1}, x^{m}) :  x^{r+1}, x^{m} \in \R \} \cap \phi(U)$ such that 
+
+But this is just a $k-$slice. So, around each point, we have a local k-slice. And we saw last time that a l ocal $k$-slice is an embedded submanifold of $M$. Further, $F^{-1}(q)$ is closed in $M$ so it is a proper embedding.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Corollary:}} If $F: M \rightarrow N$ is a submersion, then $F^{-1}(q)$ is an $(m-n)$-dimensional submanifold.
+\end{dottedbox}
+
+\vskip 0.5cm
+\subsection*{Regular Level sets}
+
+\begin{mathdefinitionbox}{}
+  Given a smooth map $F : M^m \rightarrow N^n$
+  \begin{itemize}
+    \item a point $p \in M$ is \emph{\textbf{regular}} if $dF_p$ is surjective at that point.
+    \item Otherwse, the point $p$ is called a \emph{\textbf{critical point}}.
+    \item A point $q \in N$ is a \emph{\textbf{regular value}} if all points in $F^{-1}(q)$ are regular.
+    \item Otherwise, $q$ is called a \emph{\textbf{critical value}}.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Example:} For a smooth function $F : R \rightarrow R$, $x \in \R$ is a critcal point if and only if $f'(x) = 0$.
+
+\vskip 0.5cm
+[Insert Image]
+
+\vskip 0.5cm
+Just visually speaking, it looks like there are much fewer critical values than critical points. We'll say more about this in the next chapter when we deal with \emph{Sard's Theorem}.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Remark:} 
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem (Regular Level Set THeorem:)}} If $F : M^m \rightarrow N^n$ is a smooth map between manifolds and $q \in N$ is a regular value, then its inverse image $F^{-1}(q) \subseteq M$ is a smooth $(m-n)-$dimensional submanifold of $M$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} Let $U = \{p \in M \;:\; rank(dF_p) = dim N\} \subseteq M$. i.e. the set of points where $F$ has full rank. This is an open subset of $M$ because if $q \in N$ is a regular value then $F^{-1}(q) \subseteq U$.
+
+\vskip 0.5cm
+Then $\restr{F}{U}$ is a submersion and by the Constant Rank Theorem for Level Sets, $F^{-1}(q) \hookrightarrow U$ is a smooth embedding of an $(m-n)$ dimensional submanifold.
+
+\vskip 0.5cm
+Finally, $U \hookrightarrow M$ is also a smooth embeddnig, so the composition $\restr{F}{U} \hookrightarrow U \hookrightarrow M$ is also a smooth embedding.
+
+[Re-write the above].
+
+\vskip 0.5cm
+\underline{Examples:} 
+\begin{itemize}
+  \item Consider $F : \R^2 \rightarrow \R^2$ defined as 
+  \[ (x, y) \mapsto x^2 - y^2 \]
+  
+  Then, 
+  \[ dF_{(x, y)} = \begin{bmatrix}
+    2x & -2y
+  \end{bmatrix} \]
+  
+  which has rank $1$ unless $x = y = 0$. i.e. the set of regular values if $\R^2 \setminus \{0\} \subseteq_{open} \R^2$.
+  
+  So, $F^{-1}(c)$ is an embedded $(2-1) = 1$ dimensional submanifold of $\R^2$.
+
+  \vskip 0.5cm
+  \item $\mathbb{S}^n \subseteq \R^{n+1}$ can be thought of as a level set of 
+  \[  F : \R^{n+1} \rightarrow \R^{1}, \;\;\; (x^1, \dots, x^{n+1}) \mapsto (x^1)^2 + \cdots + (x^{n+1})^2 \]
+
+  So, $\mathbb{S}^n = F^{-1}(1)$. If we can check that $1 \in \R$ is a regular value of $F$ then our results above tell us that $\mathbb{S}^n = F^{-1}(1)$ is an embedded submanifold of $\R^2$.
+
+  \vskip 0.5cm
+  To do so, we calculate the differential of $F$ and make sure it is of constant rank at any pre-image of $1$.
+
+  \vskip 0.5cm
+  The differential of $F$ is 
+  \[ df_{(x, y)} = \begin{bmatrix}
+    2x^1 & \cdots & 2x^{n+1}
+  \end{bmatrix}  \]
+  and this map has constant rank except at $(0, \dots, 0) \not\in \mathbb{S}^n$. Thus, the Regular Level Set Theorem (RLST) tells us that 
+  \[ \mathbb{S}^n \subseteq \mathbb{R}^{n+1} \] is an $(n+1-1) = n$ dimensional submanifold.
+
+  \vskip 0.5cm
+  \item (Converse not necessarily true) Consider the function $F : \R^2 \rightarrow \R$ which acts as 
+  \[ (x, y) \mapsto \left( (x^1)^2  + (x^2)^2 - 1 \right)^2 \]
+
+  Then, the differential is 
+  \[ dF_{(x, y)} = \begin{bmatrix}
+    4x^1\left( (x^1)^2 + (x^2)^2 - 1 \right) & 4x^2\left( (x^1)^2 + (x^2)^2 - 1 \right)
+  \end{bmatrix} \]
+
+  THen, all points of $\mathbb{S}^1$ are critical, but $\mathbb{S}^1$ is still an embedded submanifold of $\R^2$. So, the converse of RLST does not necessarily hold.
+
+  \vskip 0.5cm
+  \item Consider the "height function" on a torus $F : \mathbb{T}^2 \xrightarrow{\text{"height func."}} \R^2$
+\end{itemize}
+
+\vskip 0.5cm
+Above, what we did was find the conditions where a level set of a function is a submanifold. Now, given a manifold, how do we \emph{define} a function such that the submanifold forms one of its level sets?
+
+\vskip 1cm
+\subsection{Defining Functions}
+
+
+\begin{mathdefinitionbox}{}
+  Given a submanifold $S^k \subseteq M^m$ of $M$, 
+  \begin{itemize}
+    \item a smooth map $F : M^m \rightarrow N^n$ such that $S = F^{-1}(q)$ for some regular value $q \in N$ is a \emph{\textbf{defining function for $S$}} 
+    \item if $p \in S$ and $p \in U \subseteq_{open} M$, then a smooth map $F : U \rightarrow N$ is a \emph{\textbf{local defining function}} for $S$ at $p$ if $S \cap U = F^{-1}(q)$ for some regular value $q \in N$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\emph{Theorem:}} Given a subset $S \subseteq M^m$, $S$ is a $k-$dimensional submanifold if and only if there exsit local defining functions $F : U \rightarrow \R^{m-k}$ at every point $\in S$.
+
+  \vskip 0.5cm
+  (Proof follows from k-slicing and constant rank level set theorem)
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Tangent Space to a Submanifold}
+[Write from image]
+
+\vskip 0.5cm
+In a local k-slice chart for $M$, $\left( U, \left( x^1, \dots, x^m \right) \right) $ we have 
+\[ S \cap U = \{x^{+1} = c^{k+1}, \dots, x^m = c^{m}\} \]
+
+[Write from image]
+
+\vskip 0.5cm
+If $F : U \subseteq M \rightarrow N$ is a local defining function for $S$, i.e. $U \cap S = F^{-1}(q)$ for a regular value $q$, then the extrnisic tangent space to $S$ is 
+\[ T_{p}^{\text{extrnisic}} S = \ker dF_p \]
+
+\vskip 1cm
+\subsection*{Example: The group of orthogonal matrices}
+
+\vskip 0.5cm
+The orthogonal group is 
+\[ O(n) = \{ A \in \R^{n \times n} \;:\; A^{T} A = \text{Id}_{n \times n} \} \subseteq \R^{n \times n} = \R^{{n^2}} \]
+
+Defining the map $F : \R^{n \times n} \rightarrow \R^{n \times N}_{\text{symm.}} \left(\cong \R^{n(n+1)/2}\right)$ defined as 
+\[ A \mapsto A^T A \]
+
+\begin{dottedbox}
+  \emph{Note:} $\left(A^T A\right)^T = A^T \left(A^T\right)^T = A^T A$
+\end{dottedbox}
+
+\vskip 0.5cm
+Then, the orthogonal group is just the pre-image of the identity i.e. $O(n) = R^{-1}\left(\text{Id}_{n \times n}\right)$. We want to check that $\text{Id}_{n \times n}$ is a regular value of $F$.
+
+\vskip 0.5cm
+Let $A \in O(n)$, and compute the differential which maps tangent vectors as
+\begin{align*}
+  dF_{A} : T_A \R^{n \times n} &\rightarrow T_{F(A)} \R^{n \times n}_{\text{Symm.}} \\
+  B &\mapsto \restr{\frac{d}{dt}}{t = 0} F(A + tB)
+\end{align*}
+
+Now, 
+\begin{align*}
+  \restr{\frac{d}{dt}}{t = 0} F(A + tB) &= \restr{\frac{d}{dt}}{t = 0} (A + tB)^T (A + tb) \\
+  &= \restr{\frac{d}{dt}}{t = 0} A^T A + t\left( B^T A + A^T B \right) + t^2 B^T B \\
+  &= B^T A + A^T B
+\end{align*}
+
+We need to check that $dF_A$ is surjective, which is equivalent to checking that the kernal satisfies the Rank Nullity Theorem.
+
+\begin{align*}
+  \dim \ker dF_A &=\dim \R^{n \times n} - \dim \R^{n \times n}_{\text{symm.}} \\
+  &= n^2 - \frac{n(n+1)}{2} \\
+  &= \frac{n(n-1)}{2}
+\end{align*}
+
+Notice that this is exactly the dimension of the space of $n \times n$ anti-symmetric matrices which maes sense as 
+
+\begin{align*}
+  \ker (dF_A) &= \{  B \in \R^{n \times n} \;:\; B^T A = -A^T B \} \\
+  &= \{  B \in \R^{n \times n} \;:\; \left(A^T B\right)^T = -A^T B \} \\
+  &= \{ B \in \R^{n \times n} \;:\; B = A C, \text{ for some antsymmetric }C \}
+\end{align*}
+
+\vskip 0.5cm
+[Fill in from images]
+
+\vskip 0.5cm
+Also, a very often used tangent space is 
+\[ T_{{\text{Id}_{n \times n}}} \]
+
+$O(n)$ is a lie group and $\R^{n \times n}_{\text{antisymm.}}$ is its Lie Algebra.
+
+
+
+\end{document}
+

@@ -1,0 +1,256 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 12},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 12}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{February 12 - Proof of Cauchy's Theorem (Sketch)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+Recall that a primitive (i.e. an antiderivative) of $f : U \subseteq_{open} \C \rightarrow \C$ is a function $F: U \rightarrow \C$ such that $F'(z) = f(z)$ for all $z \in U$.
+
+\vskip 0.5cm
+Now, by the Fundamental Theorem of Calculus, 
+\begin{dottedbox}
+If 
+\begin{itemize}
+  \item $f$ has a primitive on an open neighborhood of $\gamma$ and
+  \item $\gamma$ is closed 
+\end{itemize}
+Then 
+\[ \int_{\gamma} f(z)dz = 0 \]
+\end{dottedbox}
+
+\vskip 0.5cm
+This is to be contrasted with the \emph{Cauchy-Goursat Theorem} which states that 
+\begin{dottedbox} 
+If $f$ is holomorphic on a neighborhood of $U$, then 
+\[ \int_{\partial U} f(z) dz = 0 \]
+\end{dottedbox}
+
+
+\vskip 0.5cm
+Though the two statements above are very similar, they're not quite the same. The first one requires a primitive locally whereas the second requires it over an entire region.
+
+
+\vskip 0.5cm
+We will \underline{sketch} a proof of Cauchy's Theorem.
+
+
+\vskip 1cm
+\subsection{Sketch}
+
+\begin{itemize}
+\vskip 0.5cm
+\item \underline{Step 1:} Approximate the path $\gamma$ by polygons.
+
+\vskip 0.25cm
+[Draw Image]
+
+\vskip 0.5cm
+\item \underline{Step 2:} Subdivide into triangles.
+
+\vskip 0.25cm
+[Draw Image]
+
+\vskip 0.25cm
+Then the integral over the entire curve is the same as the sum of the integrals over triangles.
+
+We then want to show that 
+\[ \int_{\Delta} f = 0\]
+
+where $\Delta$ is a triangle. We can do so by taking the triangle $\Delta$ and carrying out the barycentric subdivision i.e. take the midpoints of all sides and draw lines between them. Then, we get 
+
+\[ \int_{\Delta}  = \int_{\Delta_{1}} + \int_{\Delta_{2}} + \int_{\Delta_{3}} + \int_{\Delta_{4}}   \]
+
+By the Triangle inequality $\left| A + B \right| \leq \left| A \right| + \left|B \right|$, we have 
+
+\begin{align*}
+  \implies \left| \int_{\Delta} f(z)dz \right| \leq 4 \sup_{i} \left| \int_{\Delta_{i}} f(z)dz \right|
+\end{align*}
+
+Then, we take the biggest $\Delta_i$ and do the same procedure again. Repeatedly subdividing and using the Triangle Inequality, we have 
+
+\begin{align*}
+  \implies \left| \int_{\text{original }\Delta} f(z)dz \right| \leq 4^n \sup_{\Delta^{(n)}} \left| \int_{\Delta^{(n)}} f(z)dz \right|
+\end{align*}
+where $\Delta^{(n)}$ is the triangle obtained after subdividing $n-$times. So, $\Delta^{(1)} \supseteq \Delta^{(2)} \cdots \Delta^{(n)}$.
+
+Now, there exists a limit point $z_0$ for this sequence of shrinking triangles. The limit point lies in the intersection of all the triangles
+\[ z_0 \in \bigcap_{n} \Delta^{(n)} \]
+
+\vskip 0.25cm
+\underline{Key:} Near a point $z_0$, the function $f$ is well approximated by a linear function $f(z) = f(z_0) + f'(z_0)(z-z_0) + \epsilon(z)$ where $\lim_{z \rightarrow z_0} \frac{\epsilon(z)}{z - z_0} = 0$. We want to use this fact to control how big the integral over $\Delta^{(n)}$ can get.
+
+\begin{align*}
+  \int_{\Delta^{(n)}} f &= \underbrace{\int_{\Delta^{(n)}} f(z_0)}_{=0} + \underbrace{\int_{\Delta^{(n)}}  f'(z_0)(z - z_0)}_{=0} + \int_{\Delta^{(n)}}  \epsilon(z) 
+\end{align*}
+where the first two integrals are zero because constant and linear functions have primitives on $\C$ and thus their integrals over any closed curve is zero by the Fundamental Theorem of Calculus. So, what we really need to control is the \emph{error term}.
+
+\vskip 0.5cm
+We have 
+\begin{align*}
+  4^n \left| \int_{\Delta^{(n)}} \epsilon(z) dz \right| \leq 4^n \left| \int_{\Delta^{(n)}} \left|\epsilon(z)\right| \left|dz\right|  \right| <<< 4^n \int_{\Delta^{(n)}}  \left| z - z_0 \right| \left| dz \right|
+\end{align*}
+
+where $\left|dz\right| = \left|z'(t)\right| \left|dt\right|$ and  $A_n <<< B_n$ denotes 
+\[ \lim_{n \rightarrow \infty} \frac{A_n}{B_n} = 0 \]
+
+Let's call the greatest possible distance between two points in a triangle as the \emph{diameter} of the triangle, diam$(\Delta^{(n)})$. So, 
+\[ \left| z - z_0 \right| \leq \text{diam}(\Delta^{(n)}) = 2^{-n}\text{diam}(\Delta^{(\text{original})}) \]
+
+[Get some more details from lecture recording]
+
+\vskip 0.5cm
+\subsection*{Conclusion}
+
+\[ \left| \int_{\Delta} f(z)dz \right| <<< C \]
+where $C$ is some fixed constant, and the LHS and RHS are constant sequences (but sequences none-the-less), meaning LHS/RHS $\rightarrow 0$ as $n \rightarrow \infty$ and so LHS $ = 0$.
+
+\end{itemize}
+
+\subsection*{Summary}
+\begin{itemize}
+  \item Subdivide $\Delta$ into small triangles where $f$ is well approximated by a linear function (because it's holomorphic).
+\end{itemize}
+
+
+\end{document}

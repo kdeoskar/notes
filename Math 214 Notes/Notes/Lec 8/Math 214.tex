@@ -1,0 +1,341 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 8},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 8 - }
+
+\vskip 0.5cm
+% \subsection*{Recap}
+% Last time, we saw
+% \begin{itemize}
+%   \item At each point $p \in M^n$ where $M^n$ is a smooth manifold, we have a chart $(U, \phi)$ which allows us to describe the point $p$ in coordinates $\phi(p) = \left( x^1(p), \dots, x^n(p) \right)$. In a similar vein, we can write the \emph{tangent vectors} at $p$ in terms of coordinates 
+% \end{itemize}
+
+\subsection{Defining Tangent Spaces via velocity vectors}
+
+\vskip 0.5cm
+For a point $p \in M$ on smooth manifold $M$, contained by chart $(U, \phi)$, lets define 
+\[ \mathcal{J}_p(M) = \{ \gamma : (-\epsilon, \epsilon) \rightarrow M : \gamma(0) = p , \epsilon > 0, smooth\} \]
+
+and we set $\gamma_1 \sim \gamma_2$ if for any $f \in C^{\infty}(M)$, 
+\[ \left( f \circ \gamma_1 \right)'(0) = \left( f \circ \gamma_2 \right)'(0) \]
+
+Intuitively, this equvalence relation tellls us that all velocity vectors which are tangent to $p$ are equivalent.
+
+\vskip 0.25cm
+\begin{dottedbox}
+  \underline{Lemma:} $\gamma$ is an equuivalence relation.
+\end{dottedbox}
+
+So, we can alternatively define the tangent space at $p$ as 
+\[ T_pM = \bigslant{\mathcal{J}_p(M)}{\sim} \]
+
+\vskip 0.5cm
+\subsubsection*{Relating this to $T_pM$ defined using Derivations}
+
+\vskip 0.5cm
+We will basically show 
+
+\begin{align*}
+  \underbrace{T_pM}_{\text{curves}} &\xrightarrow{\cong}  \underbrace{T_pM}_{\text{derviations}} \\
+  [\gamma] &\mapsto D[\gamma]
+\end{align*}
+
+For example, one way to do this is to check on coordinate charts.
+\vskip 0.5cm
+Note: Look up definition of tangent space using \emph{germs}.
+
+\vskip 1cm
+\subsection{Relating the Tangent Spaces at different points}
+
+\vskip 0.5cm
+\subsubsection*{In $\R^n$}
+Consider $p, q \in \R^n, p \neq q$. There is a natural way to associate the the two \emph{different} tangent space $T_pM$ and $T_qM$ simply by "translating" it, but on a general manifold, this isn't usually possible.
+
+\emph{Note:} Smooth structure isn't enough, we need more structure. For example, This is where \emph{connections} and \emph{parallel transport} come into play. Eg. For a manifold with Riemannian Metric, it is possible to do this "translation" of tangent spaces.
+
+
+\vskip 1cm
+\subsection{Tangent Bundle}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Tangent Bundle}
+  \vskip 0.5cm
+  \begin{itemize}
+    \item  Given a smooth manifold $M^n$, the \emph{\textbf{Tangent Bundle}} is a smooth manifold of dimension $2n$.
+    \item As a set, it is $TM \equiv \coprod_{p \in M} T_p M$ i.e. the disjoint union of the tangent spaces at all points.
+    \item We have the associated projection $\pi : TM \rightarrow M$
+    \[ v \in T_pM \mapsto p \in M \]
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+For example, $M = \mathbb{S}^1$, the at each point the tangent space is just a copy of $\R$. Therefore, 
+\[ T \mathbb{S}^1 \cong \mathbb{S}^1 \times \R \]
+
+[Insert figure -- note that the image is just a depiction of the collection of objects, without any additional structure.]
+
+\vskip 1cm
+\subsubsection{Topology and Smooth Structure on $TM$}
+
+Given a smooth chart $(U, \phi)$ of $M^n$, we take $\left( \pi^{-1}(U), \tilde{\phi} \right)$ to be a chart on $TM$, where 
+\begin{align*}
+  \tilde{\phi} : \pi^{-1}(U) &\rightarrow \phi(U) \times \R^n  \\
+  \sum_{i = 1}^{n} v^i \restr{\frac{\partial}{\partial x^i}}{p} &\mapsto \left( \phi(p), v^1, \dots, v^n \right)
+\end{align*}
+
+\vskip 0.25cm
+That these charts generate a smooth structure on $TM$ by the Smooth manifold construction lemma (\emph{LeeSM Lemma 1.35}) since it satsfies all four conditions.
+
+% \begin{enumerate}[label=(\alph*)]
+   $\tilde{\phi}$ is a bijection from $\pi^{-1}(U)$ into an open subset of $\R^{2n}$
+  
+   For $\pi^{-1}(U), \pi^{-1}(V)$ 
+  \begin{align*}
+    \tilde{\phi}(\pi^{-1}(U) \cap \pi^{-1}(V)) &= \tilde{\phi}( \pi^{-1}(U \cap V)) \\
+    &= \phi(U \cap V) \times \R^n
+  \end{align*}
+  and this is open in $\R^{2n}$.
+
+
+   $\tilde{\phi} \circ \tilde{\psi}^{-1} : \tilde{\psi}(\pi^{-1}(U) \cap \pi^{-1}(V)) \rightarrow \tilde{\phi}(\pi^{-1}(U) \cap \pi^{-1}(V))$ is smooth as $\phi \circ \psi^{-1} = (\overline{y}^1, \dots, \overline{y}^n)$ so the mapping is 
+  \[ \left( \tilde{x}^1, \dots, \tilde{x}^n, v^1, \dots, v^n \right) \rightarrow \left( \phi \circ \psi^{-1} \right) (\vec{\tilde{x}}), \sum_{j = 1}^n [complete later] \]
+% \end{enumerate}
+
+\begin{itemize}
+  \item Second countability: Countably many $\left( \tilde{\phi}, \pi^{-1}(U) \right)$ cover $TM$.
+  \item Hausdorffness: For $p neq q$ in $TM$, either both lie in the same $\pi^{-1}(U)$ which is itself Hausdorff; or $p \in \pi^{-1}(U), q \in \pi^{-1}(V)$ which are disjonit and hence there exist open neighborhoods around the points $p, q$.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Is there a nice basis for this topology?
+\end{dottedbox}
+
+\vskip 0.5cm
+\subsection{Examples}
+\begin{itemize}
+  \item $T\R^n = \R^n \times \R^n$ (i.e. if a tangent bundle splits as a direct product as $TM^n \cong M \times \R^n$ then it's called a "trival bundle")
+  \item $T\mathbb{S}^n$, $T\mathbb{S}^1 = \mathbb{S}^1 \times \R$ but $T\mathbb{S}^n \neq \mathbb{S}^2 \times \R^2 $ (by Hairy-ball theorem, also for $n$ even in general), $T\mathbb{S}^3 = \mathbb{S}^3 \times \R^3$, $T\mathbb{S}^7 = \mathbb{S}^7 \times \R^7$, otherwsie $T\mathbb{S}^n = \mathbb{S}^n \times \R^n$, (Adams 1962).
+\end{itemize}
+
+\vskip 1cm
+\subsection{Chapter 4 Begins! Submersions, Immersions, and Embeddings}
+
+Before we begin, we revew some useful theorems.
+
+\subsubsection{Inverse Function Theorem.}
+
+In the $\R^n$ case, the Inverse Function Theorem tells us that if the derivative at a point $x$ is non-singular, then we can invert the function in the locality of $x$.
+
+\begin{dottedbox}
+  \underline{Theore:} If $f : \R^n \rightarrow \R^n$ is smooth, then if $n \times n$ matrix representing the linear map
+  \[ df_{x_0} : T_{x_0} \R^n \rightarrow T_{f(x_0)} \R^n \] 
+  is invertible, then 
+  \[ \restr{f}{U} : U \rightarrow f(U) \]
+  is a diffeomorphsm (smooth, with smooth inverse).
+\end{dottedbox}
+
+% \vskip 0.5cm
+\subsubsection{Inverse Function Theorem for smooth manifolds (without boundary)}
+
+\begin{dottedbox}
+  \underline{Theorem:} For smooth manifolds $M^n, N^n$ and a smooth map $F : M \rightarrow N$, at a given point $p \in M$ if the map 
+  \[ dF_p : T_pM \rightarrow T_{F(p)N} \] is invertble, then there exsits a neighborhood $U \subseteq_{open} M$ such that $p \in U$ and $\restr{F}{U} : U \rightarrow F(U)$ is a dffeomorphism.
+
+  \vskip 0.5cm
+  For the proof, we work on smooth charts and apply the IFT between euclidean spaces.
+\end{dottedbox}
+
+\underline{Remark:} 
+\begin{itemize}
+  \item In fact, $F$ is a \emph{\textbf{local diffeomorphism}} at $p$ if and only if $dF_p$ is invertible.
+  \item If $F$ is a local diffeomorphsm at all $p \in M$ and $F$ is invertible, then $F$ is a global diffeomorphism.
+\end{itemize}
+
+\subsubsection*{Example:} 
+For an example of something which is a local, but not global, diffeomorphism we can think of the Covering map $F : \R \rightarrow \mathbb{S}^1 \subseteq \C, t \mapsto e^{2\pi i t}$. Locally, the differential is an isomorphism so the map is a local diffeomorphism. However, it isn't injectve! So it can't be a global diffeomorphism.
+
+\vskip 0.5cm
+\underline{Read:} Properties of dffeomorphisms.
+
+\vskip 1cm
+\subsection{Maps of Constant Rank}
+
+
+\begin{mathdefinitionbox}{}
+  A smooth map $F : M^m \rightarrow N^n$ is an 
+  \begin{itemize}
+    \item \emph{\textbf{Immersion}}: if $dF_p$ is injective for all $p \in M$.
+    \item \emph{\textbf{Submersion}}: if $dF_p$ is surjective for all $p \in M$.
+    \item \emph{\textbf{Full rank}}: if the rank $dF_p = \min{\{m, n\}}$ $p \in M$.
+    \item \emph{\textbf{Constant rank}}: if the rank of $dF_p$ is contant at all $p \in M$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+We will see later that immersions and submersions act, locally, like intjective and surjective maps.
+
+\vskip 0.5cm
+
+
+\begin{dottedbox}
+  \underline{Theorem:} If $dF_p$ has full rank, then there exists a neighborhood $p \in U \subseteq_{open} M$ such that $\restr{F}{U}$ has full rank.
+  % (i.e. $dF_q$ has full rank for all $q \in U$).
+
+  \vskip 0.25cm
+  ($dF_p$ has an invertble $\min{\{m,n\}} \times \min{\{m,n\}}$ submatrix with non-zero determinant. This is an open condition.)
+\end{dottedbox}
+
+\vskip 0.5cm
+\subsubsection*{Examples:}
+
+\begin{itemize}
+  \item A map $M_1 \rightarrow M_1 \times M_2$ defined by fixing some $x_1 \in M_2$ and then mapping 
+  \[ x_1 \mapsto (x_1, x_2) \] is an immersion.
+
+  \item A map $\gamma : \R \rightarrow \R^2$ which is smooth and has $\gamma(t) \neq 0$ for all $t \in \R$ is an immersion.
+  
+  \item The map $M_1 \times M_2 \rightarrow M_1$, $(x_1, x_2) \rightarrow x_1$ is a submersion.
+  
+  \item The projection $\pi : TM^n \rightarrow M^n$ is a submersion.
+\end{itemize}
+
+\end{document}
+

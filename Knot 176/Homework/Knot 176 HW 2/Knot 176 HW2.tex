@@ -1,0 +1,268 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Knot 176: Introduction to Low-Dimensional Topology
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework #1 \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturers: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 \mid}
+\newcommand{\R}{\mathbb{R}}
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{2}{September 08}{Vatatmaja, Huang, and Lideros}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\section*{\underline{Compactness}}
+
+\textbf{Q2.1.1:} Suppose $(X, \tau_{X})$ and $(Y, \tau_{Y})$ are two compact topological spaces. Show that $X \times Y$ equipped with the product topology is also compact. 
+\\
+\\
+\textbf{Proof:} 
+Given two topological spaces $(X, \tau_{X})$ and $(Y, \tau_{Y})$, their product $X \times Y$ is a topological space when endowed with the product topology, which has a basis $\mathcal{B}$ given as
+\[ \mathcal{B} = \{ U_i \times V_j \;\;|\;\; U_i \subset \tau_X, V_j \subset \tau_Y \} \]
+\\
+\\
+In order to show that $X \times Y$ inherits compactness from $X$ and $Y$, it would be useful to study how $X \times Y$ can be "decomposed" in terms of the orginial spaces, so let's think about projections. 
+\\
+\\
+\subsection*{Projection Maps}
+Consider the projection map 
+$\Pi_{X} : X \times Y \rightarrow X $ given by $(x,y) \mapsto y$. 
+\\
+\\
+Then, if $Z$ is some open set in $X \times Y$, 
+\[ \Pi_{X}(Z) = U \]
+where $U$ is some open set in $X$. 
+\\
+\\
+Why is this? Because any open set (such as) $Z \in X \times Y$ can be written as a (arbitrary) union or (finite) intersection of the basis sets, and the basis sets of the product topology for $X \times Y$ look like $U_{i} \times V_{j}$ where $U_i \in \tau_X$ and $V_i \in \tau_Y$.
+
+For any sets $U_i$ open in $X$ and $V_j$ open in $Y$, we have $\Pi_X(U_i \times V_j) = U_i$, and clearly, the map respects unions and intersection in that 
+\begin{align*}
+   \Pi_X\left(\bigcup_{i \in I} U_i \times V_i \right) &= \Pi_X (\{ (x \times y) : \text{x and y are in some } U_i \text{ and } V_i \}) \\
+   &= \{x : x \in U_i \text{ for some } i \in I\} \\
+   &= \bigcup_{i \in I} U_i
+\end{align*}
+and 
+\begin{align*}
+   \Pi_X\left(\bigcap_{i \in I} U_i \times V_i \right) &= \Pi_X (\{ (x \times y) : \text{x and y are in all } U_i \text{ and } V_i, i \in I \}) \\
+   &= \{x : x \in U_i \text{ for all } i \in I\} \\
+   &= \bigcap_{i \in I} U_i
+\end{align*}
+
+The open set $Z$ in $X \times Y$ can be expressed as some union or finite intersection of the basis sets $U_i \times V_j$, so its projection $\Pi_X(Z)$ simply extracts the sets $U_i$ from the basis sets $U_i \times V_j$ which are used to "build" Z via intersections and unions. After extracting these sets, it unions / finitely intersects them together, giving us some open set in $X$.
+\\
+\\
+So, \underline{the projection map $\Pi_X((x,y)) = x$ is an open map.}
+\\
+\\
+Similarly, \underline{the map $\Pi_Y((x,y)) = y$ is also an open map.}
+\\
+\\
+\subsection*{Showing $X \times Y$ is compact}
+Now, suppose $\{Z_{\alpha}\}$ is an open cover of $X \times Y$. Pick some $x_0 \in X$ and let 
+\[ A_{x_0} = \{ \alpha \;\;|\;\; (x_0, y) \in Z_{\alpha} \} \]
+
+Since $\{Z_{\alpha}\}$ covers $X \times Y$, we must have $\Pi_Y(\{Z_{\alpha}\})_{\alpha \in \mathcal{A}_{x_0}}$ covering $Y$. So, there is some finite subcover $\Pi_Y(\{Z_{\alpha}\})_{\alpha \in I_{x_0}}$ where $I_{x_0}$ is finite. Then, there is some $W_{x_0} \in X$ such that $W_{x_{0}} \times Y$ is covered by  $\{Z_{\alpha}\}_{\alpha \in I_{x_0}}$.
+\\
+\\
+The sets $\{W_{x_0}\}_{x_0 \in X}$ form an open cover of $X$, hence there is a finite subcover of $\{W_{x_0}\}_{x_0 \in F}$ where $F \subset X$ is finite.
+\\
+\\
+So, the collection $\{Z_{\alpha}\}_{\alpha \in \mathcal{A}_{x_0}, x_0 \in F}$ is finite and covers the entire space $X \times Y$. Thus, $X \times Y$ equipped with the product topology is compact!
+\vskip 0.25cm
+\hrule
+\vskip 1cm 
+
+\textbf{Q2.1.1:} The interval $I = [0, 1]$ is a compact space.
+\\
+\\
+\textbf{Proof:} 
+
+\vskip 0.25cm
+\hrule
+\vskip 1cm 
+
+% \textbf{Q1.2.2:} Let $X$ be a set, and $\sigma \subset \mathcal{P}(X)$ be a basis. Show that the set of arbitrary unions of elements of $\sigma$ form a topology on $X$. 
+% \\
+% \\
+% \textbf{Proof:} We know that $\sigma$ is a base of $X$. That is, for each $x \in X$
+% \begin{enumerate}[label=(\alph*)]
+%    \item There exists $A \in \sigma$ such that $x \in A$.
+%    \item If $x \in A \cap B$, for $A,B \in \sigma$, then there exists a $C \in \sigma$ such that $x \in C$ and $C \subset A \cap B$. 
+% \end{enumerate}
+% Let's denote an arbitrary union of elements of $\sigma$ as 
+% \[ U_{\alpha} = \bigcup_{i \in I_{\alpha}} U_i\] where each $U_i \in \sigma$.
+
+% We want to show that the \underline{\textbf{set of arbitrary unions}}, $\{U_\alpha\}_{\alpha \in A} = \tau$, forms a topology on $X$. That is,
+% \begin{enumerate}[label=(\alph*)]
+%    \item Arbitrary unions of elements in $\tau$ are also in $\tau$.
+%    \item Finite intersections of elements in $\tau$ are also in $\tau$.
+%    \item $X$ and $\emptyset$ are in $\tau$.
+% \end{enumerate}
+% Let's show that the conditions hold.
+% \begin{enumerate}[label=(\alph*)]
+%    \item Elements of $\tau$ (which we denote as $U_{\alpha}$) are themselves arbitrary unions of elements of $\sigma$. So, arbitrary unions of these $U_{\alpha}$'s are arbitrary unions of arbitrary unions of elements of $\sigma$ -- which are of course, arbitrary unions of elements of $\sigma$! So, the first condition holds.
+   
+%    \item Now consider a finite intersection of elements in $\tau$, 
+%    \begin{align*}
+%       V &= U_{\alpha_1} \cap \cdots \cap U_{\alpha_n} \\
+%         &= \left( \bigcup_{i \in I_{\alpha_{1}}} U_i \right) \cap \left( \bigcup_{i \in I_{\alpha_{2}}} U_i \right) \cap \cdots \cap \left( \bigcup_{i \in I_{\alpha_{n-1}}} U_i \right) \cap \left( \bigcup_{i \in I_{\alpha_{n}}} U_i \right) \\
+%    \end{align*}
+%    where each $U_i \in \sigma$.
+
+%    Then, by distributivity of intersection of sets, we can express $V$ as a union of many intersections the $U_i$'s i.e. as a union of intersections of elements of $\sigma$. 
+%    i.e.
+
+%    Consider an arbitrary intersection of elements $A_j \in \sigma$, $j \in J$
+%    \begin{align*}
+%       V' &= \bigcap_{j \in J} A_j \\
+%          &= A_{j_1} \cap A_{j_2} \cap A_{j_2} \cdots \\
+%          &= (A_{j_1} \cap A_{j_2}) \cap A_{j_2} \cdots
+%    \end{align*} 
+   
+
+% \end{enumerate}
+
+% \vskip 0.25cm
+% \hrule
+% \vskip 1cm
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,198 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 112 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Relativity delivered by Ori Ganor for UC Berekley's Physics 112 class in the Spring 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+
+\vskip 0.5cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Jan 18 (Lecture 2) - Special Relativity SR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Goals for today:
+\begin{itemize}
+  \item Notation
+  \item Extend point-particle SR to Hydrodynamics (Continuous Fluid) -- in cosmology, the universe is modelled as a fluid whose molecules are the galaxies. We'll see that "large pressure" of the fluid introduces some new relativistic behavior.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Terminology}
+\begin{itemize}
+  \item \underline{Spacetime: } The set of all points $(x^0 = ct, x^1 = x, x^2 = y, x^3 = z)$.
+  \item We typically represent spacetime using \underline{Spacetime Diagrams}. 
+  \item Each point in the spacetime diagram is called an \underline{event}.
+  
+  \item A \underline{Coordinate system} assigns to each event a specific point $(x^0, \underbrace{x^1, x^2, x^3}_{space})$.
+  \item Unit of time $\rightarrow 1 m/c$.
+  
+  \item A \underline{Reference Frame (RF)} is the same as a coordinate system.
+  \item An \underline{Observer} is the same as a reference frame.
+  
+  \item An \underline{Inertial Reference Frame} is one in which Newton's frist law holds true.
+  \item \underline{World Line} is the set of events which describe a particle.
+\end{itemize}
+
+\vskip 0.5cm
+We will usually denote events with capital letters $A, B, C, \dots$ and spacetime coordinates as $x^{\alpha}, \alpha = 1,2,3, \dots$ or with other greek letters. When talking specifically about \underline{space} coordinates, we will use subscript $x_a, a = 1, 2, 3$ (doesn't matter whether we use subscript or superscript for space-only coords since in euclidean geometry we have isomorphism between contra- and co-variant.)
+
+\vskip 0.5cm
+We will refer to our reference frames as $K, K', K'', \dots$ and we describe an event $A$ with coordinates in the frames as 
+\[\begin{tikzcd}
+	& A \\
+	{X^{\alpha}} && {X^{\alpha'}}
+	\arrow["K"', from=1-2, to=2-1]
+	\arrow["{K'}", from=1-2, to=2-3]
+\end{tikzcd}\]
+
+\vskip 1cm
+\subsection{Postulates of SR}
+\begin{enumerate}
+  \item The laws of physics are the same in \emph{all} inertial reference frames.
+  \item The speed of light is $c \approx 3 \times 10^ m/s$ and is \emph{also} the same in every inertial reference frame.
+  \item \emph{To be added $\rightarrow$ (Postulate of Isotropy):} All directions are the same.
+  \item \emph{To be added $\rightarrow$ (Homogeneity)} 
+\end{enumerate}
+
+\vskip 1cm
+\subsection{Doppler Effect experiment - 1842}
+
+[Write later from pictures.]
+
+\vskip 1cm
+\subsection{Relativistic Doppler Effect - 1938, Ives and Stilwell}
+
+The classical theory of the Doppler Effect has three wavelengths involved: $\lambda_{\text{behind}}$, $\lambda_{\text{ahead}}$, and $\lambda_{\text{base}}$ which are respectively proportional to $u_s - v$, $u_s$, and  $u_s + v$ such that the $\lambda_{\text{base}}$ wave is right in the middle of the other two.
+
+\vskip 0.5cm
+Now, there is a way to derive the Classical Doppler Effect without every switching reference frames, so the effect still occurs. However, now, we have addtional effects. This time, due to time dilation, the frequencies are modified as 
+\[ f = \frac{f'}{\gamma} \]
+so we notice that the ahead and behind beams have speeds multiplied by a factor of $\gamma$. The middle beam is then no longer in the middle of the other two waves.
+
+\vskip 0.5cm
+So, to detect this effect, Ives-Stilwell used the the radiation from the balmer series $n' = 4, n = 2$ transition of $H$ atom with $\lambda = 4861$ Angstrom. [Complete this section later by reading online]
+
+% \printbibliography
+
+
+\end{document}

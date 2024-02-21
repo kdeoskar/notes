@@ -1,0 +1,251 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage{bbm}
+
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill PSET #1, Due #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid#1\rangle}
+\newcommand{\bra}[1]{\langle#1\mid}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\ham}{\hat{H}}
+\newcommand{\mom}{\hat{P}}
+
+
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{06}{October 16}{Chien-I Chiang}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 1:}}
+
+We have a wavefunction 
+   \[ \psi(x) = \frac{A}{x^2 + a^2},\;\;for\;\;(-\infty < x < \infty) \]
+   for positive constants $A$ and $a$.
+
+\begin{enumerate}[(a)]
+   \item First, we want to find $A$ by normalizing the wavefunction.
+   
+   We know 
+   \[ \int_{\infty}^{\infty} dx\; |\psi(x)|^2 = 1 \]
+
+   So, 
+   \begin{align*}
+      &\int_{\infty}^{\infty} dx\; |\psi(x)|^2 = 1 \\
+      \implies&\int_{\infty}^{\infty} dx\; \psi(x)^{*}\psi(x) = 1 \\
+      \implies&\int_{\infty}^{\infty} dx\; \left(\frac{A}{x^2 + a^2}\right)^{*} \left(\frac{A}{x^2 + a^2}\right) = 1 \\
+      \implies&\int_{\infty}^{\infty} dx\; \left(\frac{A}{x^2 + a^2}\right)^{2} = 1 \\
+      \implies&A^2 \cdot \int_{\infty}^{\infty} dx\; \left(\frac{1}{x^2 + a^2}\right)^2 = 1
+   \end{align*}
+   
+   To evaluate this integral, we employ a slightly round-about method. We have the following identity:
+   \[ \int \]
+
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\underline{\textbf{Problem 2:}}
+
+We have a particle in an infinite square well with the following position wavefunction
+
+\[ \Psi(x, 0) = \psi(x) = \begin{cases}
+   Ax & 0 \leq x \leq L/2 \\
+   A(L-x) & L/2 \leq x \leq 
+\end{cases} \]
+
+\begin{enumerate}[(a)]
+   \item The wavefunction looks like:
+   \vskip 0.5cm
+   insert figure
+   \vskip 0.5cm
+
+   We can find the overall constant $A$ using
+   \[ \int_{0}^{L} dx\; \psi(x) = 1\]
+   So, we have 
+   \begin{align*}
+      &\int_{0}^{L/2} dx\;Ax + \int_{L/2}^{L} dx\;A(L-x) = 1 \\
+      \implies&A \left(\frac{x^2}{2} \Biggr|_{0}^{L/2}\right) + AL \cdot \left(x \Biggr|_{L/2}^{L}\right) -A\left(\frac{x^2}{2} \Biggr|_{L/2}^{L}\right) = 1 \\
+      \implies& \frac{A}{2}\cdot \left(L^2 - 0^2\right) + AL \cdot \left(L - \frac{L}{2}\right) - \frac{A}{2}\cdot \left(L^2 - \frac{L^2}{4}\right) = 1 \\
+      \implies& \frac{AL^2}{2} + \frac{AL^2}{8} = 1 \\
+      \implies& \frac{10AL^2}{16} = 1 \\
+      \implies& \boxed{A = \frac{8}{5L^2}}
+   \end{align*}
+
+   So, the initial wavefunction is 
+   \[ \boxed{\Psi(x, 0) = \begin{cases}
+      \frac{8}{5L^2}x & 0 \leq x \leq L/2 \\
+      \frac{8}{5L^2}(L-x) & L/2 \leq x \leq 
+   \end{cases}
+      } \]
+
+   
+   \item The system's wavefunction at time $t = 0$ can be written in the Energy Eigenbasis as 
+   \[ \ket{\Psi(0)} = \sum_{0}^{\infty} c_n \ket{E_n} \]
+
+   We can find these energy eigenstates by solving the TDSE:
+   \[ \left(-\frac{-\hbar^2}{2m}\frac{d^2}{dx^2} + V(x)\right)\psi_E = E\psi_E \]
+   where $\psi_E \equiv \inner{x}{E}$
+\end{enumerate}
+
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 19 - The Complex Plane}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}What does $\mathbb {C}$ look like geomertrically?}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Polar Coordinates}{2}{subsection.1.2}%

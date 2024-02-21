@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 24 - Power Series}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Convergence}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Differentiation of Power Series}{5}{subsection.1.2}%

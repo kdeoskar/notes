@@ -1,0 +1,391 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 9},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 13 - }
+
+\vskip 0.5cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time, we saw a few different types of functions:
+  \begin{align*}
+    &\text{immersion   } dF_p &\text{injective} \\
+    &\text{submersion   } dF_p &\text{surjective} \\
+    &\text{constant rank   } \text{rank}(dF_p) &\text{constant} \\
+  \end{align*}
+\end{itemize}
+
+\subsection{Rank Theorem}
+
+The Rank Theorem tells us that if we have a map of constant rank between manifolds, we can essentially think of it as a projection map. 
+
+
+\vsize 0.25cm Before tackling the rank theorem, let's recall something from Linear Algebra.
+
+\begin{itemize}
+  \item Recall that if $L : V \rightarrow W$ is a linear map between finite dmiensional vector spaces then there exst bases of $V$ and $W$ such that the matrx representation of $L$ is of the form 
+  \[ \begin{pmatrix}
+    I_r & 0 \\
+    0 & 0 \\
+  \end{pmatrix} \]
+  where $r$ is the rank of the linear map.
+
+  \item The above is the \emph{\textbf{Canonical Form Theorem}} for linear maps. 
+  \item The rank theorem is essentially the non-linear version of this.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem: (Constant Rank Thm)}} Given smooth manifolds $M^m, N^n$, smooth map $F : M \rightarrow N$ which has constant rank $rank(F) = r$, the for any point $p \in M$ there exsit smooth charts $(U, \phi)$ on $M$, $(V, \phi)$ on $N$ such that $p \in U$, $F(p) \in V$, $F(U) \subseteq V$, and $F$ has the coordinate representation 
+  \[ F(x^1, \cdots, x^r, x^{r+1}, \cdots x^m) = (x^1, \cdots, x^n, 0, \cdots, 0) \]
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Note: The goal is to find coordinate representations such that the pre-image(s) get "straighted" out.
+
+  [Include image]
+
+  i.e. we want to find diffeomorphisms  
+  \begin{align*}
+    &\phi \text{ on } \vec{0} \in U \subseteq \R^m \\
+    &\psi \text{ on } F(\vec{0}) \in V \subseteq \R^n \\
+  \end{align*}
+  such that 
+  \[ F(U) \subseteq V \psi \circ F \circ \phi^{-1} \] has the desired form.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} We many assume $M = \R^m$ and $N = \R^n$ with $F \R^m \rightarrow \R^n$, $\vec{p} = \vec{0}$, $F(\vec{0}) =  \vec{0}$ 
+
+\vskip 0.25cm
+\underline{Step 1:} Replace $F$ with $A \circ F \circ B$ where $A : \R^n \rightarrow \R^n$ and $B : \R^m rightarrow \R^m$ are linear isomorphsms so 
+\[ dF_{\vec{0}} = \begin{bmatrix}
+  I_r & 0 \\
+  0 & 0
+\end{bmatrix} \]
+
+This "rotates" $\phi(U)$ as needed.
+
+\vskip 0.5cm
+
+\underline{Step 2:} Deal with possble stretching.
+
+We replace our old $F$ with $A \circ F \circ B$, and rite 
+\[ \begin{bmatrix}
+  \vec{x} \\
+  \vec{y}
+\end{bmatrix} \in \R^m\;\;\; \begin{bmatrix}
+  \vec{x'} \\
+  \vec{y'}
+\end{bmatrix} \in \R^n \]
+
+where $\vec{x}, \vec{y}, \vec{x'}, \vec{y'}$ has dimensions $r, (m-r), r, (n-r)$ respectively. Also, 
+\[ F \left( \begin{bmatrix}
+  \vec{x} \\
+  \vec{y}
+\end{bmatrix}\right) = \begin{bmatrix}
+  \vec{Q}(\vec{x}, \vec{y}) \\
+  \vec{P}(\vec{x}, \vec{y}) \\
+\end{bmatrix}\]
+
+Then set 
+\[ \phi \left( \begin{bmatrix}
+  \vec{x} \\
+  \vec{y}
+\end{bmatrix}\right) = \begin{bmatrix}
+  \vec{Q}(\vec{x}, \vec{y}) \\
+  \vec{y} \\
+\end{bmatrix} \in \R^m \]
+
+\vskip 0.25cm
+We want to set things up to "scale" our domain so that the domain and target have the same scale. This will set us up to use the Inverse Function Theorem.
+
+\vskip 0.25cm
+Note that 
+\[ d\phi_{\vec{0}} = \begin{bmatrix}
+  I_r & 0 \\
+  0 & I_{(m-r)}
+
+\end{bmatrix} = \mathrm{Id}_{\R^m} \]
+
+So, by the inverse function theorem, $\phi$ is invertible in the neighborhood of $\vec{0}$.
+
+\vskip 0.25cm
+\underline{Step 3:} Now that we know $\phi$ is invertible, let's see if it gives the action we want.
+
+\begin{align*}
+  \left( F \circ \phi^{-1} \right) \left( \begin{bmatrix}
+    \vec{x^*} \\
+    \vec{y^*} \\
+  \end{bmatrix} \right) &= \begin{bmatrix}
+    \vec{x^*} \\
+    \left( \vec{R} \circ \phi^{-1} \right) \left( \vec{x^*}, \vec{x^*} \right)
+  \end{bmatrix} 
+\end{align*}
+
+This map is smooth near $\vec{0}$. Computing the differental, we have 
+\[ d\left( F \circ \phi^{-1} \right)_{\begin{bmatrix}
+  \vec{x^*} \\
+  \vec{y^*}
+\end{bmatrix}} = \begin{bmatrix}
+  I_r & 0 \\
+  \frac{\partial (R \circ \phi^{-1})}{\partial \vec{x^*}} \\ \frac{\partial (R \circ \phi^{-1})}{\partial \vec{y^*}}
+\end{bmatrix} \]
+
+But $F$ is a map of constant rank $r$ and $\phi$ is a diffeomorphism, so it doesn't change the rank. Thus, the differential must also have rank $r$, which implies we must have 
+\[ \frac{\partial (R \circ \phi^{-1})}{\partial \vec{y^*}} = \vec{0} \]
+
+So, we write $\left( \vec{R} \circ \phi^{-1} \right)\left( \vec{x^*}, \vec{y^*} \right) = \vec{S}(\vec{x^{*}})$ near $\vec{0}$ since it has not $y$ dependence.
+i.e. 
+\[ \left( F \circ \phi^{-1} \right) \left( \begin{bmatrix}
+  \vec{x^*} \\
+  \vec{y^*} \\
+\end{bmatrix} \right) = \begin{bmatrix}
+  \vec{x^*} \\
+  \vec{S}\left(\vec{x^*} \right)
+\end{bmatrix} \]
+
+\vskip 0.25cm
+\underline{Step 4:} Define 
+\[ \psi(\begin{bmatrix}
+  \vec{x'} \\
+  \vec{y'} \\
+\end{bmatrix}) = \begin{bmatrix}
+  \vec{x'} \\
+  S\left(\vec{x'}\right) - \vec{y'} \\
+\end{bmatrix} \]
+
+Then, 
+\[ \restr{d\psi}{\vec{0}} \]
+is invertible, thus it is a local diffeomorphism and 
+\[ \left( \psi \circ F \phi^{-1} \right) \left( \begin{bmatrix}
+  \vec{x^*} \\
+  \vec{y^*} \\
+\end{bmatrix} \right) = \begin{bmatrix}
+  \vec{x^*} \\
+  \vec{0} 
+\end{bmatrix} \in \R^{n} \]
+
+near $\vec{0}$.
+
+\vskip 0.1cm
+\subsection{Embeddings}
+
+\begin{mathdefinitionbox}{}
+  \begin{itemize}
+    \item Given smooth manifolds $M^m, N^n$, the smoooth map $F : M \rightarrow N$ is an \emph{\textbf{embedding}} if it is an injective immersion and $F : M \rightarrow \underbrace{F(M)}_{\text{subspace topology}} \subseteq N$ is a homeomorphism.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\begin{dottedbox}
+  \emph{\textbf{Lemma:}} The map $F$ is an embedding if and only if it is 
+  \begin{enumerate}
+    \item An injective immersion 
+    \item $F(x_i) \xrightarrow{i \rightarrow \infty} F(x_{\infty}) \implies x_i \rightarrow x_{\infty}$
+  \end{enumerate}
+\end{dottedbox}
+ 
+\vskip 0.5cm
+\underline{Example:} 
+\[ M_1 \times \{p\} \hookrightarrow M_1 \times M_2, p \in M_2 \] is an embedding.
+
+\subsection*{Non-examples of embeddings}
+
+\begin{itemize}
+  \item Any curve intersecting itself in non-injectvie, and thus not an embedding.
+  \item The mapping of the open interval into $\R^2$ pictured below is not an embedding since it fails the second condition.
+  \item $F : \R_{+} \coprod (-1, 1) \rightarrow \R^2$ [complete this example later]
+  \item $T^2 = \mathbb{S}^1 \times \mathbb{S}^1$, $F : R \rightarrow T^2$ defined as 
+  \[ t \rightarrow \left( e^{2\pi i a t}, e^{2\pi i b t} \right) \]
+  \begin{itemize}
+    \item If the ratio $\frac{a}{b} \in \mathbb{Q}$ then the function $F$ is periodic and thus not injective.
+  
+    \vskip 0.5cm
+    \item If $\frac{a}{b} \not\in \mathbb{Q}$ then $F(\R) \subseteq T^2$ is dense.
+  \end{itemize}
+  \end{itemize}
+
+\vskip 0.5cm
+\subsection*{Additional results on Embeddings}
+
+Some of the pathalogical examples we saw earlier had to do with the \emph{domain} of the function n ot being nice. If the domain itself is compact, it makes it "easier" for an immersion to be an embedding.
+
+\vsize 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $F : M \rightarrow N$ is an injective immersion and $M$ is compact then $F$ is an embedding. 
+\end{dottedbox}
+
+\vsize 0.5cm
+\emph{\textbf{Proof:}} Given a closed subset $A \subseteq M$ we want to show that $F(A) \subseteq F(M)$ is closed. This follows from the Hausdorffness of the range.
+
+\vsize 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $F : M \rightarrow N$ is an imersion, $p \in M$ then there exists a neighborhood $U$ such that $p \in U \subseteq_{open} M$ and $\restr{F}{U}$ is an embedding.
+\end{dottedbox}
+
+\textbf{\emph{Proof:}} (Prove this later; follows from Rank Theorem which we proved earlier).
+
+\vsize 0.5cm
+\subsection*{Read:} Submersions, Smooth Covering Maps.
+
+\vsize 1cm
+\subsection{On to Chapter 5! Submanifolds.}
+
+\subsubsection{Embedded Smooth Manifolds}
+
+\begin{mathdefinitionbox}{}
+  \begin{itemize}
+    \item Given a smooth manifold $M$, we say a subset $S \subseteq M$ is an \emph{\textbf{embedded smooth submanifold}} if it is a topological manifold when endowed with the subspace topology and has smooth structure such that the inclusion map $S \hookrightarrow M$ is a smooth embedding.
+    \item\underline{Equivalently}, we can characterize $S$ as being an embedded smooth submanifold if there exists an embedding $F : N \rightarrow M$ such thta $F(N) = S$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vsize 0.5cm
+\underline{Examples:}
+\begin{itemize}
+  \item $S \subseteq_{open} M$ such that dim$S$ = dim$M$ (codim$S = 0$).
+  \item $S \subseteq_{open} M$ such that dim$S = 0$ (codim$S = $dim$M$).
+  \item $F : \R_{+} \rightarrow \R^2$ defined as 
+  \[ t \mapsto \left( t, \sin(1/t) \right) \] is a 1-D submanifold of $\R^2$.
+\end{itemize}
+
+
+\end{document}
+

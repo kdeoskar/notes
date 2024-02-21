@@ -1,0 +1,295 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage{bbm}
+
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Some exercises from Shankar \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\mid#1\rangle}
+\newcommand{\bra}[1]{\langle#1\mid}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}
+\newcommand{\inner}[2]{\left\langle #1 \bigg\rvert #2 \right\rangle}
+\newcommand{\ham}{\hat{H}}
+\newcommand{\mom}{\hat{P}}
+
+
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{10}{November 21}{Chien-I Chiang}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Exercise 10.1.2:}}
+
+We have basis vectors $\ket{+}, \ket{-}$ and operators
+\begin{align*}
+   \sigma_1^{(1)} = \begin{bmatrix}
+      a & b \\
+      c & d
+   \end{bmatrix}
+\end{align*} 
+
+and 
+
+\begin{align*}
+   \sigma_2^{(2)} = \begin{bmatrix}
+      e & f \\
+      g & h
+   \end{bmatrix}
+\end{align*} 
+
+\begin{enumerate}
+   \item We know that
+   \begin{align*}
+      \sigma^{(1) \otimes (2)} = \sigma^{(1)} \otimes \mathbbm{1}^{(2)}
+   \end{align*}
+   can be written in terms of how it acts on the basis vectors $\ket{+} \otimes \ket{-}$, $\ket{+} \otimes \ket{+}$, $\ket{-} \otimes \ket{-}$, and $\ket{-} \otimes \ket{-}$ in the sense that the element $\left(\sigma^{(1)} \otimes \mathbbm{1}^{(2)}\right)_{11}$ is given by 
+
+   \begin{align*}
+      \left(\sigma^{(1)} \otimes \mathbbm{1}^{(2)}\right)_{11} &= \left(\bra{+}\otimes\bra{+}\right)\left(\sigma_1^{(1)} \otimes \mathbbm{1}^{(2)}\right)\left(\ket{+}\otimes\ket{+}\right) \\
+      &= \left(\bra{+}\otimes\bra{+}\right) \left( \ket{\sigma_1^{(1)} | 1} \otimes \ket{\mathbbm{1}|+}\right) \\
+      &= \inner{+}{\sigma_1^{(1)}|+} \inner{+}{+} \\
+      &= a
+   \end{align*}
+   and so on.
+
+   Thus, carring out all such calculations, the matrix has $4 \times 4$ elements and is given by 
+
+   \[ \sigma_1^{(1) \otimes (2)} = \sigma^{(1)} \otimes \mathbbm{1}^{(2)} = \begin{bmatrix}
+         a & 0 & b & 0 \\
+         0 & a & 0 & b \\
+         c & 0 & d & 0 \\
+         0 & c & 0 & d 
+      \end{bmatrix} \]
+
+
+   \item Similar procedure for $\sigma_2^{(1) \otimes (2)}$. We find that 
+   \[ \sigma_2^{(1) \otimes (2)} = \mathbbm{1}^{(1)} \otimes \sigma^{(2)} = \begin{bmatrix}
+      e & f & 0 & 0 \\
+      g & h & 0 & 0 \\
+      0 & 0 & e & f \\
+      0 & 0 & g & h 
+   \end{bmatrix} \]
+   
+   \item There is a better way to show parts (a) and (b). In this method, we prove a more general statement that if 
+   \[ A_1^{(1)} = \begin{bmatrix}
+      a_{11} & a_{12} \\
+      a_{21} & a_{22} \\
+   \end{bmatrix} \]
+
+   and 
+   \[ B_2^{(2)} = \begin{bmatrix}
+      b_{11} & b_{12} \\
+      b_{21} & b_{22} \\
+   \end{bmatrix} \]
+
+   Then, their direct product is given by 
+   \[ M = A_1^{(1)} \otimes B_2^{(2)} = \begin{bmatrix}
+      a_{11} \begin{pmatrix}
+         b_{11} & b_{12} \\
+      b_{21} & b_{22} \\
+      \end{pmatrix} &       a_{12} \begin{pmatrix}
+         b_{11} & b_{12} \\
+      b_{21} & b_{22} \\
+      \end{pmatrix} \\
+      a_{21} \begin{pmatrix}
+         b_{11} & b_{12} \\
+      b_{21} & b_{22} \\
+      \end{pmatrix} &       a_{22} \begin{pmatrix}
+         b_{11} & b_{12} \\
+      b_{21} & b_{22} \\
+      \end{pmatrix}
+   \end{bmatrix} \]
+
+   \textbf{Proof:}
+   The matrix element $M_{(i_1 \cdot i_2), (j_1 \cdot j_2)}$ is related to entries in $A$ and $B$ as 
+   \begin{align*}
+      M_{(i_1 \cdot i_2), (j_1 \cdot j_2)} &= \left( \bra{i_1} \otimes \bra{i_2} \right) \left( A_1^{(1)} \otimes B_2^{(2)} \right) \left( \ket{j_1} \otimes \ket{j_2} \right) \\
+      &= \left( \bra{i_1} \otimes \bra{i_2} \right) \left( A_1^{(1)} \ket{j_1} \otimes B_2^{(2)} \ket{j_2} \right) \\
+      &= \inner{i_1}{ A_1^{(1)} \biggr\rvert j_1}\inner{i_2}{ B_2^{(2)} \biggr\rvert j_2} \\
+      &= (A_1^{(1)})_{i_1, j_1} \cdot (B_2^{(2)})_{i_2, j_2}
+   \end{align*}
+   and this is equivalent to the matrix form written above.
+
+   Thus, we can directly apply this result in finding the tensor product between $\sigma_1^{(1)}$ and $\sigma_2^{(2)}$:
+   
+   \begin{align*}
+      (\sigma_1 \sigma_2)^{(1)\otimes(2)} &= \sigma_1^{(1)} \otimes \sigma_2^{(2)} \\
+      &= \begin{bmatrix}
+         a \begin{pmatrix}
+            e & f \\
+            g & h
+         \end{pmatrix} &          b \begin{pmatrix}
+            e & f \\
+            g & h
+         \end{pmatrix} \\
+         c \begin{pmatrix}
+            e & f \\
+            g & h
+         \end{pmatrix} &          d \begin{pmatrix}
+            e & f \\
+            g & h
+         \end{pmatrix} 
+      \end{bmatrix} \\
+   &= \begin{bmatrix}
+      ae & af & be & bf \\
+      ag & ah & bg & bh \\
+      ce & cf & de & df \\
+      cg & ch & dg & dh \\
+   \end{bmatrix}
+   \end{align*}
+
+   DO SECOND METHOD OF PART 3 LATER
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem}}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+
+
+
+\end{document}
+
+
+
+
+

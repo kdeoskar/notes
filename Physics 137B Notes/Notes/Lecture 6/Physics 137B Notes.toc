@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 29 - Second order and Degenerate Perturbation Theory}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Second Order Perturbation Theory}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Degenerate Perturbation Theory}{3}{subsection.1.2}%

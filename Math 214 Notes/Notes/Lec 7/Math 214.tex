@@ -1,0 +1,378 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 7},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 6 - Tangent Vectors, Differentials of smooth maps}
+
+\vskip 0.5cm
+\subsection*{Recap}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Intuitively, we can visualize the tangent plane to a point on a sphere embedded in $\R^3$, however this doesn't generalize very well to hugher dimensions.
+  \item For abstract manifolds, recall that we defined a map $v : C^{\infty}(M) \rightarrow \R$ to be a \emph{\textbf{derivation at $p \in M$}} if it satisfies two properties:
+  \begin{itemize}
+    \item \underline{$R$-linearity:}
+    \[ v(af + bg) = av(f) + bv(g) \]
+
+    \item \underline{"Product Rule":} 
+    \[ v(fg) = f(p)v(g) + v(f)g(p) \]
+  \end{itemize} 
+  \item The space of derivations at $p$ is defined to be the Tangent Plane $T_pM$, and it has a natural vector space structure. Intuitively, each element of the tangent space is a direction in which we can take a directional derivative.
+  
+  \item \underline{Example:} Take $M = \R^n$ and $\vec{p} \in \R^n$, $\vec{v}_0 = (v^1, \dots, v^n) \in \R^n$
+  
+  \vskip 0.5cm
+  Let 
+  \[ v(f) = \sum_{i = 1}^n v^i \left(\frac{\partial }{\partial x^i} f\right)(p) \]
+  % for $f \in C^{\infty}$. Then, $v$ is a \underline{derivation at $\vec{p}}$ (check this later!) and so $v \in T_{\vec{p}} \R^n$
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{Properties of Derivations}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Lemma:} If $v \in T_p M$, then $v(c) = 0$ where $c \in \R$ is constant.
+
+  \vskip 0.5cm
+  \underline{Proof:} $v(c) = v(c \dot 1) = c \cdot v(1)$, so it suffices to show that $v(1) = 0$. Now, 
+  \begin{align*}
+    v(1) &= v(1 \cdot 1) \\
+    &= 1 \cdot v(1) + v(1) \cdot 1 \\
+  \end{align*}
+  \[ \implies v(1) = 0 \]
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Lemma:} If $f, g \in C^{\infty}(M)$ agree on a neighborhood $U \subseteq M$ containing $p$, and $v \in T_pM$, then $v(f) = v(g)$.
+
+  \vskip 0.5cm
+  \underline{Proof:} Find a precompact neighborhood $B \ni p$ such that $p \in \overline{B} \subseteq U$. There exists a bump function $\psi_n \in C^{\infty}$ such that 
+  \[ \begin{cases}
+    \psi \equiv 1 \text{ on } \overline{B} \\
+    \text{supp}(\psi) \subseteq U
+  \end{cases} \]
+
+  Note that $\psi \cdot (f - g) \equiv 0$ on all of $M$, so 
+  \begin{align*}
+    0 &= v(\psi \cdot (f - g)) \\
+      &= \psi(p) \cdot v(f - g) + \underbrace{v(\psi) cdot (f-g)(p)}_{=0} \\
+      &= v(f - g) \\
+      &= v(f) - v(g)
+  \end{align*}
+\end{dottedbox}
+
+\vskip 0.5cm
+Now that we've proved some properties of derivations, we can consider other perspectives from which we can understand the tangent plane $T_pM$.
+
+\vskip 0.5cm
+\subsection{Tangent Space to $\R^n$}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Lemma:} At $\vec{a} = (a^1, dots, a^n) \in \R^n$, for each $\vec = (v^1, \dots, v^n) \in \R^n$ we can define the map 
+  \[ \restr{D_{\vec{v}}}{\vec{a}} : C^{\infty}(\R^n) \rightarrow \R^n \] as 
+  \[ f \mapsto \left( \partial_{\vec{v}}f\right)(\vec{a}) = \sum_{i = 1}^n v^i \restr{\frac{\partial f}{\partial x^i}}{\vec{a}} \]
+  which is a derivation at $\vec{a}$, so $\restr{D_{\vec{v}}}{\vec{a}} \in T_{\vec{a}} \R^n$
+
+  and we wll prove that 
+  \[ D : \R^n \rightarrow T_{\vec{a}} \R^n \] defined by 
+  \[ \vec{v} \rightarrow \restr{D_{\vec{v}}}{\vec{a}} \] is an isomorphism.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{Proof:} 
+
+Leaving linearity and injectivity as exercises, we show surjectivity. Take a derivation $v \in T_{\vec{a}}\R^n$, and let $u^i = v(x^i) \in \R, i = 1, \dots, n$ (we're going to essentially do the reverse of $D$).
+
+\vskip 0.5cmc
+We will show that 
+\[ v = \restr{D_{\vec{u}}}{\vec{a}} = \sum_{i = 1}^n u^i \restr{\frac{\partial}{\partial x^i}}{\vec{a}}  \]
+
+\vskip 0.5cm
+First note, for $f \in C^{\infty}(M)$, we have 
+\begin{align*}
+  f(\vec{x}) &= f(\vec{a}) + \int_0^1 \frac{d}{dt} f(\vec{a} + t(\vec{x} - \vec{a})) dt \\
+  &= f(\vec{a}) + \sum_{i = 1}^{n} (x^i - a^i) \int_{0}^{1} \underbrace{\frac{\partial f}{\partial x^i} \left( \vec{a} + t(\vec{x} - \vec{a})\right)}_{h^i(\vec{x})} dt
+\end{align*}
+
+\vskip 0.5cm
+Note that 
+\[ h^{i}(\vec{a}) = \frac{\partial f}{\partial x^i}(\vec{a}) \]
+
+
+\vskip 0.5cm
+Apply the derivation $v$ to $f(\vec{x})$:
+\begin{align*}
+  v(f) &= v(f(\vec{a})) + \sum_{i = 1}^{n} v(x^i - a^i) h^i(\vec{a}) + \sum_{i = 1}^{n} v(a^i - a^i) v(h^i) \\
+  &= \sum_{i = 1}^{n} u^i \cdot \frac{\partial f}{\partial x^i}(\vec{a})
+\end{align*}
+
+
+\vskip 1cm
+\subsection{The Differential of a Smooth Map}
+
+\begin{mathdefinitionbox}{}
+  Give smooth manifolds $M^m, N^n$ and a smooth map $F : M \rightarrow N$, the \emph{\textbf{differential of F}} at $p \in M$ is defined as 
+
+  \begin{align*}
+    dF_p : T_pM &\rightarrow T_{F(p)}N \\
+    v &\mapsto dF_p(v)
+  \end{align*}
+  where $(dF_p(v))(f) = v(f \circ F)$, for $f \in C^{\infty}(N)$.
+
+  \vskip 0.5cm
+  [Insert image]
+
+  \vskip 0.5cm
+  One way to inperpret this is as follows: If we think of a derivative (derivation at point $p \in M$) to be a tangent/velocity curve then $dF_p$ tells us how this velocity curve changes under the map $F : M \rightarrow N$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Example:} Take $M = \R^m$, $N = \R^n$ and 
+\[ F(\vec{x}) = \left( F^1(x^1, \dots, x^m), \dots, F^n(x^1, \dots, x^m) \right) \]
+
+Then, for $f \in C^{\infty}(N)$, 
+\begin{align*}
+  \left( dF_p \left( \restr{\frac{\partial}{\partial x_i}}{p} \right) \right) (p) &= \left( \restr{\frac{\partial}{\partial x_i}}{p} \right) \left( f \circ F \right) \\
+  &= [finish after lec]
+\end{align*}
+
+
+\vskip 0.5cm
+\underline{Read:} More properties of differential (Maybe prove later).
+
+\begin{itemize}
+  \item Composition of diffeomorphisms, differential of identity is isomorphism, etc.
+\end{itemize}
+
+Now that we've studied the differental of a map between euclidean spaces, let's work with more general manifolds.
+
+\vskip 1cm
+\subsection{Tangent Space of Smooth Manfiolds (with or without boundary)}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Proposition:} Let $M^n$ be a smooth manifold, $p \in U \subseteq_{open} M$ and consider the inclusion map $\iota : U \rightarrow M$. Then, 
+  \begin{align*}
+    d \iota_p : T_pU &\rightarrow T_pU \\
+    v &\mapsto d \iota_p(v)
+  \end{align*}
+  is an isomorphism [Recall that by definition $(d \iota_p(v))(f) = v\left( f \circ \iota \right)$].
+\end{dottedbox}
+
+\vskip 0.5cm
+This is essentially an application of the property we proved earlier that the derviation only depends on a small neighborhood at each point.
+
+\vskip 0.5cm
+\underline{Proof:} 
+
+\vskip 0.5cm
+\emph{Injectivity:} Since it's a linear map, it is injective if 
+\begin{align*}
+  d \iota_o(v) = 0 &\iff d\iota_p(v) (f) = 0 \text{ for all} f \in C^{\infty}(M) \\
+  &\iff v \left( f \circ \iota \right) = 0 \\
+  &\iff v \left( \restr{f}{U} \right) = 0 
+\end{align*}
+
+We want to show $f(\tilde{f}) = 0$ for all $\tilde{f} \in C^{\infty}(U)$. Choose $f \in C^{\infty}(M)$ such that $\tilde{f} = f$ near $p$. Then, 
+\begin{align*}
+  0 &= v \left( \restr{f}{U} \right) \\
+  &= v(\tilde{f}) \text{  (by locality of derivations)}
+\end{align*}
+
+This shows injectivity.
+
+\vskip 0.5cm
+\emph{Surjectivity:} Given a derivation $\tilde{v} \in T_pM$, we want to find $v \in T_pU$ such that $\tilde{v}(f) = v\left( \restr{\tilde{f}}{U} \right)$ for all $\tilde{f} \in C^{\infty}$. Given a function $f \in C^{\infty}(U)$, define $v \in T_pU$ by 
+\begin{itemize}
+  \item Choose \underline{some} (doesn't matter which) extension $\tilde{f} \in C^{\infty}(M)$ such that $f = \tilde{f}$ on a neighborhood of $p$.
+  \item Set $v(f) \equiv \tilde{v}(\tilde{f})$ and check that this is well defined i.e. independet of $\tilde{f}$ choice (results from locality of derivations)
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Corollary:} dim$\left( T_pM^m \right) = m$
+  
+  \vskip 0.5cm
+  \underline{Proof:} Given $p \in M^m$, choose a smooth chart $(U, \phi)$ with $p \in U$. Then, from the above result, we know 
+  \[ T_pM \xleftarrow[d \iota_p, \text{by prop} ]{\cong} T_pU \xrightarrow[d \phi_p, \text{isom.}]{\cong} T_{\phi(p)} \phi(U) \xrightarrow[\text{by incl. map}]{\cong} T_{\phi(p)} \R^m = \R^m \]
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Coordinates}
+
+\vskip 0.5cm
+[Write from image and include graphic]
+
+\vskip 0.5cm
+Note that
+\[ \restr{\frac{\partial}{\partial x^1}}{p}, \cdots, \restr{\frac{\partial}{\partial x^m}}{p} \]
+is a basis for $T_pM$.
+
+\vskip 0.5cm
+\underline{Read:} Differential of a smooth map in coordinates.
+
+\vskip 0.5cm
+\subsection*{Change of Coordinates}
+If we have a manifold $M$, and two charts $(U, \phi)$, $(V, \psi)$ which overlap. 
+
+\vskip 0.5cm
+[Insert image]
+
+\vskip 0.5cm
+Set 
+\[ \left( \psi \circ \phi^{-1} \right)(x^1, \dots, x^m) = \left( \overline{y}^1(\vec{x}), \dots, \overline{y}^m(\vec{x}) \right)  \]
+
+Then 
+\begin{align*}
+  \restr{\frac{\partial}{\partial y^j}}{p} y^k &= \left(  \right)
+  [Complete later from picture]
+\end{align*}
+
+So, for $v \in T_p M$, we have 
+\begin{align*}
+  v &= \sum_{i = 1}^m v^k \restr{\frac{\partial}{\partial y^i}}{p}, v^k = v(y^k)\\
+\end{align*}
+
+Applying to
+
+\end{document}

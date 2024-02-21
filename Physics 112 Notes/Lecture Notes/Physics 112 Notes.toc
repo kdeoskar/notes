@@ -1,0 +1,12 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 17}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Introduction}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Part 1: Thermodynamics}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}January 22}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Equilibrium}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Variables of State}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}February 7}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Statements of the Second Law of Thermodynamics}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Revisiting the Carnot Cycle}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Implications}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Carnot yet again!}{10}{subsection.3.4}%

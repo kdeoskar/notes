@@ -1,0 +1,264 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 7},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 7}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 31 - Cauchy's Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\subsection*{Review}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Recall that the \underline{boundary} of a set $\Omega \subset \C$ is
+  \[ \partial \Omega = \underbrace{\overline{\Omega}}_{\text{closure}} \setminus \underbrace{\Omega^{\circ}}_{\text{interior}} \]
+
+  \item For example, the boundary of the (closed or open) ball of radius $r$ centered at $z_0$ i.e. $\Omega = \partial B_r(z_0)$ is $\partial B_r(z_0) = \partial \overline{B_r(z_0)}$ is the circle of radius $r$ around $z_0$.
+  
+  \item When integrating over a curve, we can do a sort of $u$-substitution 
+  \[ \int_{\gamma} f(z) dz = \int_{u \circ \gamma} f(z) u'(z) dz \] as long as $u$ is holomorphic in an open neighborhood of $\gamma$.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Last time}
+Last time, we calculated the following integral:
+
+\begin{mathdefinitionbox}{}
+  \[ \int_{\partial B_r(0)} z^n dz = \begin{cases}
+    0\;\;n \neq -1 \\
+    2\pi i \; n = 1
+  \end{cases}  \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Doing the substitution $u(z) = z - z_0$. The integral on the circle around some other point $z_0$ also gives us the same answer i.e. 
+\[ \int_{\partial B_r(z_0)} (z - z_0)^n dz = \int_{\partial B_r(0)} z^n dz \]
+
+\vskip 1cm
+\subsection{Cauchy's Theorem}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  \underline{\textbf{Theorem (Cauchy):}} If $U \subset_{open} \C$ has piece-wise smooth boundary and $f(z)$ is holomorphic around a neighborhood of $\overline{U}$ then 
+  \[ \int_{\partial U} f(z) = 0 \] 
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+As you may have read in many books, this is \emph{\textbf{the most important result in Complex Analysis!}} So many other results fall out as a result of this, but it'll take us some time to really appreciate its importance.
+
+\vskip 0.5cm
+\underline{Example:} If we want to calculate the integral
+\[ \int_{\partial B_r(0)} z^n dz \]
+
+we know that $z^n$ is holomorphic on the ball for all $n \geq 0$, so Cauchy's Theorem immediately tells us the integral is zero.
+
+\vskip 0.5cm
+For $n < 0$ though, the function is not holomorphic on the ball because it is not holomorphic at the origin. So, Cauchy's theorem doesn't immediately apply. We'll need to be bit more clever.
+
+\vskip 0.5cm
+Consider the annulus formed the the crcles around $z = 0$ of radius $r$ and $r'$, ($r' < r$). The boundary of this region consists of the two circles, but with the inner circle having the reversed orientation i.e. $\partial U = \partial B_r(0) \cup \partial B_{r'}(0)^{-}$.
+
+\vskip 0.5cm
+[Include picture]
+
+\vskip 0.5cm
+The origin is excluded, so $z^n$ is holomorphic and Cauchy's theorem tells us the integral is zero, for all $n$.
+
+\vskip 0.5cm
+So, 
+\begin{align*}
+  &\int_{\partial B_r(0)} z^n dz + \int_{\partial B_{r'}(0)^{-}} z^n dz = 0 \\
+  \implies&\int_{\partial B_r(0)} z^n dz = - \int_{\partial B_{r'}(0)^{-}} z^n dz \\
+  \implies& \boxed{\int_{\partial B_r(0)} z^n dz = \int_{\partial B_{r'}(0)} z^n dz }
+\end{align*}
+
+\vskip 0.5cm
+This verifies our observation from last lecture that the integral of $z^n$ along a circle centered at the origin is \emph{\textbf{independent of $r$}}.
+
+\vskip 0.5cm
+\subsubsection*{Upshots}
+\begin{itemize}
+  \item We will see that it's useful to apply Cauchy's Theorem to creative choices of $U$.
+  \item Cauchy's Theorem allows us to do contour manipulation i.e. we can deform the curve $\gamma$ in the domain where $f$ (the function we're integrating) is holomorphic.
+  [Include squiggly wiggly nasty curve diagram and show it's equivalent to just a ball]
+\end{itemize}
+
+
+\vskip 0.5cm
+\subsection{Cauchy's Formula}
+
+\begin{mathdefinitionbox}{}
+  Suppose $f : \Omega_{open} \rightarrow \C$ be holomorphic on $\Omega$ and let $z_0 \in \Omega, r > 0$ such that $B_r(z_0) \in \Omega$. Then, for all $z \in B_r(z_0)$, 
+  \[ f(z) = \frac{1}{2\pi i} \int_{\partial B_r(z_0)}  \frac{f(w)}{w - z} dw  \] 
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+This, too, is an incredible statement. Cauchy's formula allows us to calculate the value of the function at \emph{any} point inside $B_r(z_0)$, only using the values of the function on the ball $B_r(z_0)$ or any path homologous to it.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Proof:}} Define a $g(w) = \frac{f(w)}{w -  z}$. This function is holomorphic on $B_r(z_0) \setminus \{z\}$. Let $\delta > 0$ such that $B_{\delta}(z_0) \subset B_r(z_0)$ and define $U = B_r(z_0) \setminus B_{\delta}(z)$.
+
+  \vskip 0.5cm
+  Then, the boundary of $U$ is $\partial U = \partial B_{r}(z_0) \cup \partial B_{\delta} (z)^{-}$.
+
+  \vskip 0.5cm
+  By Cauchy's Theorem, 
+  \[ \int_{\partial B_r(z)} g(w) dw = \int_{\partial_{\delta}(z)} g(w) dw \]
+
+  Then, since $ff$ is holomorphic at $z$, we have $f(w) = f(z) + \epsilon(w)$ where $\epsilon$
+
+  [Complete later, when recording is out]
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Summary:} Cauchy's formula says 
+  \[ f(z) = \frac{1}{2 \pi i} \int_{\partial B_r(z)} \frac{f(w)}{w-z} dw \]
+
+  \begin{itemize}
+    \item [Explain how but] the fact that a holomorphic functions is automtically infinitely differentiable is a result of Cauchy's formula.
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm
+\end{document}

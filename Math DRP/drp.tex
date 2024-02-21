@@ -1,0 +1,101 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[most]{tcolorbox}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{An Introduction to Differentiable Manifolds}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+There exist certain topological spaces, known as  Manifolds, which locally 'resemble' euclidean spaces. These structures are the objects of rich and deep study within Differential Topology, Differential Geometry, and other branches of mathematics. In this paper, we introduce the notion of a Manifolds and that of doing calculus on these objects. Further we obtain the Jordan-Brouwer Separation Theorem, a non-trivial result from topology.
+\end{abstract}
+
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What is Topology?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+Very broadly, Topology is the study of geometric properties which remain invariant under continuous deformation. The basic objects studied in this field are called \textbf{Topological Spaces}, and their definition is very simple albeit abstract. 
+\\
+\\
+% Decide whether to replace the full definition with a less detailed version.
+
+\begin{Definition}{}{TopologicalSpace}
+A Topological Space is a pair $(X, \mathcal{T})$ where $X$ is a set and $\mathcal{T}$ is a collection of subsets of $X$ such that:
+\begin{enumerate}
+    \item The union of any collection of sets in $\mathcal{T}$ is also in $\mathcal{T}$.
+    \item The intersection of any \emph{finite} collection of sets in $\mathcal{T}$ is also in $\mathcal{T}$.
+    \item Both $\empty$ and $X$ are in $\mathcal{T}$.
+\end{enumerate}
+
+The collection $\mathcal{T}$ is called a \emph{topology} on $X$ and its elements are called \emph{open sets}.
+\end{Definition}
+\vskip 0.25cm
+
+A regular set of elements can be thought of as simply a bag of elements with no structure. The topology $\mathcal{T}$ on a space $X$ can be thought of as providing some additional structure; it gives us a sense of what a "neighbourhood" looks like in the space.
+\\
+\\
+For example, consider the usual definition 
+\\
+\\
+This definition is, well, notably abstract! As such, we will not deal much with abstract Topological Spaces in this paper. We will focus on subsets of n-dimensional euclidean space, $\mathbb{R}^n$, while considering more abstract spaces on occasion.
+
+
+
+\end{document}

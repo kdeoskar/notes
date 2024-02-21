@@ -1,0 +1,208 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture 9},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture 9}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 5 - Hydrogen Atom}
+
+\vskip 1cm
+\subsection{Review of the Hydrogen Atom}
+
+
+\vskip 0.5cm
+Super quickly, let's go over what we know about the Hydrogen Atom. If any of this is unfamiliar, refer to a Griffiths Intro to QM Chapter 4 or any other popular textbook.
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Recall that the Hydrogen Atom is an example of a \emph{\textbf{central potential}} i.e. a Potential with Spherical Symmetry
+  \[ V(\vec{r}) = V(r) \]
+
+  \vskip 0.25cm
+  \item In general, when we have central potentials, we can assume \emph{\textbf{separable solutions}} 
+  \[ \underbrace{\psi(\vec{r})}_{nlm} = \underbrace{R(r)}_{nl} \underbrace{Y(\theta, \phi)}_{lm} \]
+  where the Radial Wavefunction is characterized by the quantum numbers $n, l$ while the Spherical Wavefunction is characterized by $l, m$.
+
+  \vskip 0.25cm
+  \item The Schrodinger Equation then separates into radial and spherical parts 
+  \begin{align*}
+    &\text{Radial: } \frac{\partial}{\partial r} \left( r^2 \frac{\partial}{\partial r} R(r) \right) - \frac{2mr^2}{\hbar^2} \left( V(r) - E \right) R(r) = l(l+1)R(r) \\
+    &\text{Spherical: } \frac{1}{\sin(\theta)} \frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial}{\partial \theta} Y(\theta, \phi) \right) \frac{1}{\sin^2(\theta)} \frac{\partial^2 Y(\theta, \phi)}{\partial \phi^2} = -l(l+1)Y(\theta, \phi) \\
+  \end{align*}
+
+  \vskip 0.25cm
+  \item The solutions to the Spherical Equation are called the \emph{\textbf{Spherical Harmonics}} and are given by 
+  \[ Y_{lm}(\theta, \phi) = \sqrt{\frac{(l-m)!(2l+1)}{(l+m)!}} \frac{e^{i\phi m}}{\sqrt{4\pi}} P^m_l(\theta, \phi) \]
+  where $ P^m_l(\theta, \phi)$  is an associated Legendre Polynomial. They have the following Normalizataion condition 
+
+  \[ \int \mathrm{d}\Omega\; Y_{lm}^{*}(\theta, \phi) Y_{l'm'}(\theta, \phi) = \delta_{l,l'} \cdot \delta_{m,m'} \]
+
+  \vskip 0.25cm
+  \item The particular central potential which describes the Hydrogen atom is the \emph{\textbf{Coulombic Potential}}
+  \[ V(r) = - \frac{e^2}{4\pi \epsilon_0} \frac{1}{r} \]
+
+  \vskip 0.25cm
+  \item Solving the Schrodinger Equation, we find the Eigen-energies are given by 
+  \[ E_n = -\frac{n}{2\hbar^2} \left( \frac{e^2}{4\pi \epsilon_0} \right) \frac{1}{n^2} = \frac{E_1}{n^2}\]
+  Notice that the energies only depend on $n$, so we have degeneracies due to \emph{both} $l$ and $n$.
+
+  \vskip 0.25cm
+  \item The natural lengthscale for this problem isthe \emph{\textbf{Bohr Radius}}, and we can express the energies in terms of the Bohr Radius, $a = 4\pi \epsilon_0 \hbar^2 / (m_e e^2)$ as
+  \[ E_1 = - \frac{\hbar^2}{a^2} \frac{1}{n^2} \]
+
+  \vskip 0.25cm
+  \item The general solutions to the Schrodinger Equation with the Coulombic Potential are given by 
+  \[ \psi_{nlm}(r, \theta, \phi) = R_{nl}(r) Y_{lm}(\theta, \phi) \]
+  $m \in [-l, l]$ and $0 \leq l < n$
+\end{itemize}
+
+\vskip 1cm
+\subsection{Degeneracies}
+
+We label the state $\psi_{nlm}(r, \theta, \phi)$ as $\ket{nlm}$
+
+\end{document}

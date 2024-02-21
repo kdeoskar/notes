@@ -1,0 +1,411 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+\usepackage{mathtools}
+
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Feynman Diagrams \& QFT Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Feynman Diagrams and QFT delivered by Ivan Burbano. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 26 - First meeting! Setting goals.}
+
+
+\vskip 1cm
+\subsection{The goal}
+This course wll be a very first-principles, barebones experience. Our goal for the next month will be to develop the tools to solve the integral
+
+\[ \int_{-\infty}^{\infty} dx \; e^{-S(x)} O(x)\]
+
+where $S(x) = \frac{1}{2}ax^2 + \frac{1}{3!} gx^3 + \frac{1}{4!}\lambda x^2 + \cdots$, the constants $a, g, \lambda$ etc. must be positive reals and are called \emph{coupling constants} and $O(x)$ is a polynomial in $x$. 
+
+\vskip 1cm
+\subsection*{What is the physical motvation for this integral?}
+
+There are \emph{two} sides to the physics related to this integral: Quantum (this is what we want!) and Statistical (this is what we do!).
+\vskip 1cm
+
+[Insert picture]
+
+\vskip 0.5cm
+\subsection{The Quantum regime}
+In the Quantum regime, \emph{fields} become \emph{fuzzy!} We can't quite pin down what the configuration of the field is, rather we can tell what the \emph{probability amplitude} of any given field configuration will be at a point in (space)time.
+
+\vskip 0.5cm
+So, the fundamental question in QM is: 
+
+\begin{dottedbox}
+  If at time $t_i$ we prepare a field $\phi_i$, what is the probability amplitude that, at $t_f$, I measure $\phi_f$?
+\end{dottedbox}
+
+We can say that 
+\[ \phi_f = \inner{\phi_f}{U(t_f, t_i)| \phi_i} \]
+where $U(t_f, t_i)$ is called the \emph{propagator} or the \emph{time-evolution operator.}
+
+% \vskip 0.5cm
+
+According to feynman, the answer can be found by integrating the \emph{action} over the space of all field configurations.
+
+
+
+i.e.
+\[ = \int \mathcal{D}\Phi e^{i S(\Phi)} \]
+where we are integrating over all field configurations $\Phi(x)$ such that $\Phi = \phi_i$ at $t_i$ and $\Phi = \phi_f$ at $t_f$.
+
+
+
+In more formal notation, the set over which we are integrating is
+\[ \{ \phi \in C^{\infty}([t_i, t_f] \times \Sigma) \;\;:\;\; \restr{\phi}{\Sigma_i} = \phi_i; \restr{\phi}{\Sigma_f} = \phi_f \} \] where $\Sigma$ denoted the space we're working on.
+
+
+\vskip 0.5cm
+\subsection{The Statistical Side of Things}
+This is what we actually do! 
+
+\vskip 0.5cm
+Suppose we have some region, say a table, $T$ populated by some \emph{field} $\phi(x)$. For instance, it could be some spin distrbiution i.e. the field assigns each point on the table $T$ with some spin.
+
+\vskip 0.5cm
+Boltzmann showed that the probability (\emph{not} probability amplitude) for the field to be in configuration $\phi$ is proportional to 
+\[ e^{-S(\phi)} \]
+where $S(\phi)$ is the energy of the field configuration.
+
+\vskip 0.5cm
+In particular, the probablity is 
+\[ \frac{e^{-S(\phi)}}{\mathcal{Z}} \]
+
+where 
+\[ \mathcal{Z} = \int \mathcal{D}\phi e^{-S(\phi)} \]
+is the integral over the space (of all field configurations) of probabilities. It's called the \textbf{Partition Function}.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Quick aside, what about dimensions? 
+
+  \vskip 0.5cm
+  The partition function is dimensionless, whereas the feynman path integral we covered in the Quantum Regime \emph{is} dimension-ful. This is our first hint that something is amiss with the path-integral. (Has to do with renomalization).
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Note: The ket $\ket{x}$ \emph{does have units}. In particular, the completeness relation tells us 
+  \[ \int dx\; \ket{x} \bra{x} = 1\] 
+  So, $\ket{x}$ has units of $\frac{1}{\sqrt{\text{Length}}}$
+\end{dottedbox}
+
+\subsection{An example from Stat. Mech: Kinetic Theory of gasses}
+
+\vskip 0.5cm
+Now, let's actually solve an integral! Let's compute 
+\[ \int_{-\infty}^{\infty} d\phi e^{-S(\phi)} O(\phi) \]
+
+where 
+\[ S(\phi) = \frac{1}{2} \phi m^2 \phi - \frac{g}{3!} \phi^3 -  \frac{\lambda}{4!}  \phi^4 \] where $m^2 > 0$.
+
+\begin{enumerate}
+  \item Partition Function : $O = 1$
+  For a \underline{free theory}, we have $g = \lambda = \cdots = 0$
+\end{enumerate}
+
+So, our integral turns into 
+
+\[ \boxed{\int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}m^2 \phi^2}} \]
+
+This integral is intimately connected to the Kinetic Theory of Gasses.
+
+\underline{\textbf{Sol:}}
+
+\begin{align*}
+  \int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}m^2 \phi^2} &= \sqrt{\left( \int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}m^2 \phi^2} \right)^2} \\
+  &= \sqrt{\int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}m^2 \phi^2} \int_{-\infty}^{\infty} d\psi e^{-\frac{1}{2}m^2 \phi^2}} \\
+  &= \sqrt{\int_{\R^2} \;d\phi d\psi\; e^{-\frac{1}{2}m^2(\phi^2 + \psi^2)}} 
+\end{align*}
+
+Now, we convert to polar coordinates with $r^2 = \psi^2 + \phi^2$, $u = \frac{1}{2}r^2 m^2$, $du = dr r$
+
+\begin{align*}
+  &= \sqrt{\int_{\R^2} \;\underbrace{d\phi d\psi}_{=r dr d\theta}\; e^{-\frac{1}{2}m^2(\phi^2 + \psi^2)}} \\
+  &= \sqrt{2\pi \int_0^{\infty} \;dr\;r\;e^{-\frac{1}{2} r^2 m^2 } } \\
+  &= \sqrt{\frac{2\pi}{m^2}} \int_0^{\infty} du\;e^{-u} \\
+  &= \sqrt{\frac{2\pi}{m^2}}
+\end{align*}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Exercises!}
+
+  \vskip 0.5cm
+  \begin{enumerate}
+    \item \[ \int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}m^2 \phi^2 + J\phi} \]
+    \item \[ \int_{-\infty}^{\infty} d\phi_1 d\phi_2 e^{-\frac{1}{2} \vec{\phi^T} \cdot A \vec{\phi} } \]
+    where $A$ is any symmetric $2 \times 2$ matrix (can generalize to $n \times n$ matrices!).
+  \end{enumerate}
+\end{dottedbox}
+
+
+\pagebreak
+\section{February 2 - } 
+
+\subsection{Last time}
+\begin{itemize}
+  \item We computed the integral ($m^2 > 0$)
+  \[ \mathcal{Z} = \int_{-\infty}^{\infty} d\phi e^{\phi m^2 \phi} = \sqrt{\frac{2\pi}{m^2}} \]
+  \item We called this integral the \emph{\textbf{partition function of our free theory}} (the "free" tells us that the action $S(\phi) = \frac{1}{2}\phi m^2 \phi$ is quadratic).
+\end{itemize}
+
+\vskip 1cm
+\subsection{Today}
+\begin{itemize}
+  \item If we have a polynomial $\mathcal{O}(\phi)$, we want to calculate the expectation value 
+  \[ \langle \mathcal{O} \rangle \defeq \frac{1}{\mathcal{Z}}\int_{-\infty}^{\infty} d\phi e^{-\frac{1}{2}\phi m^2 \phi} \mathcal{O}(\phi) \]
+\end{itemize}
+
+\vskip 1cm
+\subsection{Schwinger-Dyson equation}
+
+Consider the following where $S(\phi)$ and $\mathcal{O}(\phi)$ are just some polunomails and $S(\phi) \rightarrow \infty$ as $\phi \rightarrow \pm \infty$
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Theorem (Version 1)}
+  \[ \int_{-\infty}^{\infty} d\phi e^{-S(\phi)} \frac{d\mathcal{O}}{d\phi} = \int_{-\infty}^{\infty} d\phi e^{-S(\phi)}\frac{dS}{d\phi} \mathcal{O} \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+We can divide both integrals by $\mathcal{Z}$ to obtain the other form of the theorem:
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Theorem (Version 2)}
+  \[ \mean{\frac{d\mathcal{O}}{d\phi}} = \mean{\frac{dS}{d\phi} \mathcal{O}} \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Proof:}
+\vskip 0.5cm
+
+\begin{align*}
+  \int_{\infty}^{\infty} d\phi \frac{d}{d\phi} \left( e^{-S(\phi)} \mathcal{O}(\phi) \right) &= \left[ e^{-S(\phi)} \mathcal{O}(\phi) \right]_{-\infty}^{\infty} = 0
+\end{align*}
+
+\vskip 0.5cm
+Now, why is this useful? Our whole goal today was to compute Expectation values but we haven't been calculating a whole lot of them.
+
+\vskip 0.5cm
+Well, notice the following:
+\begin{itemize}
+  \item $\mean{1} = 1$
+  \item deg$\frac{d\mathcal{O}}{d\phi} =$ deg$\mathcal{O}$ - 1
+  \item deg$\left(\frac{dS}{d\phi} \cdot \mathcal{O}\right) = $ deg $S$ + deg$\mathcal{O}$ - 1
+\end{itemize}
+
+\vskip 0.5cms
+By proving the Schwniger-Dyson equation, we've gotten a relation between something of higher of degree and something of lower degree. So, we can go recursively until we reach a polynomial of degree $1$, whose expectation value will be piss easy to calculate since $\mean{1} = 1$.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Also, quick side note, $\frac{dS}{d\phi}$ give us the \emph{\textbf{Lagrange Equations}}, and so are called the \emph{\textbf{Equations of motion!}}
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{Note}: We call anything that's a function of $\phi$ an operator. We'll relate this to the more familiar notion of an operator in Quantum Mechanics later.
+
+\vskip 1cm
+\subsection{Returning to our Free Theory}
+\vskip 0.5cm
+Now, returning to our free theory with action $S(\phi) = \frac{1}{2}\phi m^2 \phi$ (Equations of motion $\frac{dS}{d\phi} = m^2 \phi$). To caluclate the expectation value  $\mean{\phi^2}$ we express it as 
+\begin{align*}
+  \mean{\phi^2} &= \frac{1}{m^2} \mean{\underbrace{m^2 \phi}_{dS/d\phi} \underbrace{\phi}_{\mathcal{O}}} \\
+  &= \frac{1}{m^2} \mean{ \frac{dS}{d\phi} \mathcal{O}}
+\end{align*}
+
+Then, applying the Schwinger-Dyson Equation, we get 
+\begin{align*}
+  \mean{\phi^2} &= \underbrace{\frac{1}{m^2}}_{\mean{\phi \phi}} \mean{\frac{d\phi}{d\phi}} = \frac{1}{m^2}
+\end{align*}
+This term $1/m^2$ is "contracted" from the $\mean{\phi \phi}$ term, and is called the \emph{\textbf{propagator}}.
+
+\vskip 1cm
+\subsection{$\phi^4$ Free Theory}
+
+Let's now do something similar for $\phi^4$.
+
+\begin{align*}
+  \mean{\phi^4} &= \frac{1}{m^2} \mean{m^2 \phi \; \phi^3} \\
+  &= \frac{1}{m^2} \mean{\underbrace{\frac{d}{d\phi}(\phi^3)}_{\frac{d}{d\phi}(\phi \phi \phi)}} \text{  (By Schwinger-Dyson)} \\
+  &= \frac{1}{m^2} \mean{\frac{d\phi}{d\phi} \phi \phi} + \frac{1}{m^2} \mean{\phi \frac{d\phi}{d\phi} \phi}  +\frac{1}{m^2} \mean{\phi \phi\frac{d\phi}{d\phi}} \\
+  &= \mean{\phi \phi \phi} + \mean{\phi \phi \phi} + \mean{\phi \phi \phi} \\
+  &= [\text{Draw feynman diagrams}]
+\end{align*}
+
+
+[WATCH RECORDING AND ADD THE FEYNMAN DIAGRAM REPRESENTATIONS OF THESE TERMS -- IMPORTANT
+\begin{itemize}
+  \item Every $\phi$ is a dot with a line coming out of It
+  \item When we contract two $\phi$'s we connect their lines
+\end{itemize}
+]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Exercises:}
+  \begin{enumerate}
+    \item Show that 
+    \[ \mean{\phi^4} = \frac{(n - 1)!!}{m^n} \] where the double exclaimation is the double-factorial.
+
+  \vskip 0.5cm
+  \item Write the diagrams for $\mean{\phi^6}$ in a few dfferent ways:
+  \item \begin{align*}
+    \mean{\phi^6} &= \mean{\phi \phi \phi \phi \phi \phi} \\
+    &= \mean{\phi^2 \phi^4} \\
+    &= \mean{\phi^3 \phi^3} \\
+    &= \mean{(\phi^6) \phi^0}
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Compute the partition function
+  \[ \mathcal{Z} = \frac{1}{h} \int_0^{L} \mathrm{d}x \int_{-\infty}^{\infty} \mathrm{d}p\;e^{-\frac{-\beta p^2}{2m}} \]
+  explicitly (\emph{Hint: Convert into the same form as we've solved in class using the substitution $\phi = \frac{Lp}{h}$ and then figure out what the action $S(\phi)$ should be.})
+
+  \item Also Compute the free Energy $F$, where $e^{-\beta F} = \mathcal{Z}$.
+  \begin{itemize}
+    \item Note that $F =  E - TS, dF = -S dT - pdV$
+    \item $p = -\left( \frac{\partial F}{\partial V} \right)_{\beta} \implies$ Ideal Gas Law
+  \end{itemize}
+  \end{enumerate}
+\end{dottedbox}
+
+\pagebreak
+
+\section{February 9 - }
+
+\end{document}

@@ -1,0 +1,411 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,tikz-cd}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\newcounter{discnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 5C: Introductory Thermodynamics and Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Lecture #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+\newcommand{\discussion}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{discnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Principles of Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Discussion Section #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it GSI: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+\newcommand{\dbar}{{\mkern3mu\mathchar'26\mkern-12mu d}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+
+\tableofcontents
+
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+\lecture{1}{August 24}{Swapan Chatterji}{Keshav Deoskar}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+% **** YOUR NOTES GO HERE:
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+\section{Topics of study}
+In this class, we study Thermodynamics and Statistical Mechanics, as well as Quantum Mechanics. But why these two branches of physics together? 
+\\
+\\
+\subsection{How are they related?}
+It turns out that the two are intimately connected, with both using probabilistic and statistical methods and with Quantum Mechanics being motivated by some phenomena in Stat Mech.
+\\
+\[\begin{tikzcd}
+	{\text{Thermal Energy in motion/flow}} & {\text{Heat (Capacity)}} & {\text{Transport + Diffusion}} && {} \\
+	\\
+	{} & {\text{Kinetic Theory (microscopic -- domain of QM)}} &&& {} \\
+	& {\text{ Laws of Thermodynamics}} \\
+	{2^{nd} \text{ Law}} && {3^{rd} \text{ Law}} && {} \\
+	{\text{Classical Information Theory}} && {\text{Absolute Zero}} && {} \\
+	{\text{Quantum Statistics}} \\
+	{\text{Light as a Gas of Photons}} \\
+	{\text{Quantum Theory of Light}}
+	\arrow[from=5-1, to=6-1]
+	\arrow[from=6-1, to=7-1]
+	\arrow[from=7-1, to=8-1]
+	\arrow[from=8-1, to=9-1]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=5-3, to=6-3]
+	\arrow[from=4-2, to=5-3]
+	\arrow[from=4-2, to=5-1]
+	\arrow[from=1-3, to=3-2]
+	\arrow[from=3-2, to=4-2]
+\end{tikzcd}\]
+
+
+% Lecture 2
+\lecture{2}{August 28}{Swapan Chatterji}{Keshav Deoskar}
+
+\section{Preliminaries: Moles, Avogadro's Number}
+
+\textbf{Mole:} write definition from Blundell -- good defn
+\\
+\\
+Carbon was preferred in the definition of a mole because it is a solid, and so is easy to weigh.
+
+\textbf{Avogadro's Number, $N_A$:} The number of objects in a mole. 
+\[ N_A = 6.023 \times 10^{23} \]
+
+\textbf{Molar mass:} Mass of one mole of an object.
+\[ Molar nass = m \cdot N_A\]
+where $m$ is the weight of one object.
+\\
+\\
+\section{Thermodynamics vs. Kinetic Theory of Gasses vs. Statistical Mechanics}
+Write about each one from the slides:
+\\
+\\
+The historical development looks something like:\\
+\[ \begin{tikzcd}
+	{\text{Classical Thermodynamics}} & {\text{Kinetic Theory of Gases}} & {\text{Statistical Mechanics}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+\end{tikzcd} \]
+
+\section{Ideal Gas Laws}
+Write from slides
+\\
+\\
+We can combine these three laws to derive the \textbf{\emph{Ideal Gas Law}}.\\
+Why is it called the Ideal gas?
+Because 
+\begin{itemize}
+	\item  First Assumption. WWrite from slides
+	\item We assume there are no intermolectular forces.
+\end{itemize}
+
+\section{Concepts of Heat and Heat Capacity}
+Write about heat and heat capacity
+\\
+\\
+Note: Materials whose heat capacity is nonlinear are a big field of research.
+
+\section{Microstates and Macrostates}
+
+Consider $100$ identical coins in a box, with rach coin being in one of 2 states -- "Heads" or "Tails". There are $2^{100}$ different possibilities that an arbitary coin "shake" can produce. Each one of these states is a \textbf{microstate}.
+\\
+\\
+On the other hand, suppose we're not interested in the exact configuration of each coin, but rather in the gross number of coins which land on Heads. Then, many microstates have the overall property that for ex. 30 coins are heads. Then, this is a \textbf{Macrostate}.
+\\
+\\
+Note that microstates are all equally likely, whereas Macrostates are NOT equally likely. The system is completely described the set of all microstates, but what we usually measure is the macrostate of the system.
+\\
+\\
+Write combinatorics review.
+\\
+Write about the law of large numbers, logarithms, and Stirling's approximation.
+
+\section{Ergodicity: The "Erdogic" Hypothesis}
+"Ergo" $\rightarrow$  Indicates that this hypothesis has to do with the system doing work
+
+Write from slides and see picture in gallery describing 6N dimensional space (in which each point is a configuration of the system)
+
+\section{Statistical Definition of Temperature}
+Write from slides, and include picture in gallery on Density of States.
+\\
+\\
+Digression on Entropy:
+Changing bits in a computer changes the information and entropy, thus generating heat -- write this better later.
+
+\section{Concept of "Ensembles"}
+Write about Microcanonical Ensenble, Canonical Ense,ble. Grand Canonical Ensemble.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DISCUSSION; CHANGE THIS LATER
+\lecture{0}{September 19}{Juan}{Keshav Deoskar}
+
+(Fill missed stuff later)
+\\
+\\
+\subsection*{Q4 from homework: $\nabla^2$ in spherical coordinates}
+
+In Cylindrical Coordinates, the Laplacian is 
+\[ \nabla^2(v) = \sum_i \partial^2_{i}v = \partial^2_{x}v + \partial^2_{y}v + \partial^2_{z}v \]
+
+The conversion from cylindrical to spherical coordinates is 
+\begin{align*}
+	x &= r\sin\theta \cos\phi \\
+	x &= r\sin\theta \sin\phi \\
+	z &= r\cos\theta 
+\end{align*}
+So, $r = \sqrt{x^2 + y^2 + z^2}$
+Thus,
+\[ \frac{\partial r}{\partial x} = \frac{x}{r} = \sin\theta cos\phi \]
+
+etc. etc. complete the question later.
+\\
+\\
+\subsection*{Q5 from homework: Heat flow}
+We have the following system : (insert image) where the brick wall and insulated layer have two different thermal conductivities $\kappa_1$, $\kappa_2$.
+The system is in steady state. Find the Heat Loss Rate per unit area of the wall.
+\\
+\\
+\textbf{Sol:}
+\\
+Our end goal is to find the Heat Flux $\vec{J}$, or rather $\vec{J} \cdot \vec{A}$. We have a temperature function $T(x)$ which satisfies the diffusion equation:
+\[ \vec{J} = \kappa \nabla T\]
+
+Note: One of our boundary conditions is $J_1(p) = J_2(p)$ where $p$ is the interface between the Brick Wall and Insulated Layer.
+\\
+\\
+From the diffusion equation
+\[ J_{x_i} = - \kappa_i \nabla T_i \]
+where the subscript $i$ denotes which surface we're in.
+
+Let $T_1$ and $T_2$ be the temperature functions in the brick and insulated layers respectively. We know that in the steady state, $\frac{partial T}{\partial t} = 0$.
+\\
+\\
+\subsection*{Newton's Law of Cooling:}
+
+Experical law which states that a body's temperature cools off exponentially. So, fo example, if we have hot cup of Tea placed in room temperature air, then $T_{cup} \propto e^{-\lambda T}$
+\\
+\\
+(insert figure)
+\\
+\\
+So, the differential equation describing this system is 
+\[  \]
+
+
+\lecture{000}{September 26}{Swapan Chatterji}{Keshav Deoskar}
+
+\section*{Entropy:}
+
+Recall from Claussius' Theorem that for a \emph{reversible} process, we have 
+\[ \oint \frac{\dbar Q_{rev}}{T} dt = 0\]
+
+This implies, from vector calculus, that 
+\[ \int_{A}^{B} \frac{\dbar Q_{rev}}{T} dt \]
+is path-independent for some arbitrary points $A$ and $B$.
+\\
+\\
+This means that $\frac{\dbar Q}{T}$ is an \emph{exact differential} and so we \emph{define} the \textbf{entropy} to be
+\[\boxed{ dS = \frac{\dbar Q_{rev}}{T} }\]
+
+Complete lecture notes later.
+
+\discussion{7}{September 26}{Samuel Weiss}{Keshav Deoskar}
+
+In the study of thermodynamics, we forget about all the microscopic states of the atoms we are studying and instead focus on the experimentally measureable macroscopic values. 
+
+There are some \emph{Laws of Thermodynamics} -- of which some were derived experimentally and some theoretically.
+
+\subsection*{Laws of Thermodynamics:}
+
+\textbf{First Law:} $\Delta E = Q + W$ where $Q$ and $W$ are the Heat added and Work done to/on a system.
+
+We can write this in differential form as 
+\[ dE = \dbar Q + \dbar W \]
+where the line through the d means that it is an \emph{inexact} differential. So, Heat and Work done are inexact differentials whike Energy is an exact differential. That is, there is some function $E(V, P)$ such that 
+\[ dE = \frac{\partial E}{\partial V} dV + \frac{\partial E}{\partial P} dP \] but no such functions exist for the heat and work.
+
+As a consequence, the integral of $\dbar W$ i.e. $W_{AB} = \int_{A}^{B}  \dbar W $ depends on the path.
+
+\subsection*{Reversible and Irreversible Processes:}
+Write from picture.
+
+\subsection*{Closer look at reversible processes:}
+For a reversible process, we have 
+\[ \dbar W = -P dV \]
+
+So, for a \emph{finite} reversible process, we have 
+\[ W = \int \dbar W = -\int PdV\]
+
+Plugging this relation back into the first law, we get 
+\[ dE = \dbar Q - PdV \]
+
+So, considering some ideal gas -- which follows the Ideal Gas Law $PV = N k_B t$ and has Total Energy $\frac{d}{2} k_B T$ where $d$ is the number of degrees of freeddom, we have that 
+\[ \dbar Q = \frac{d}{2} Nk_B dT + PdV \]
+
+Let's examine some cases:
+\begin{itemize}
+	\item \underline{\textbf{At constant volueme i.e. $dV = 0$:}}
+	\\
+	\\
+	We have 
+	\[ \dbar Q = \frac{d}{2}Nk_B T = C_V dT\]
+	write out
+
+	\item \underline{\textbf{At constant pressure i.e. $dP = 0$:}}
+	write out
+\end{itemize}
+Notice that $C_P = C_V + Nk_B$ -- the heat capacity with pressure fixed is greater than the heat capacity with volume fixed!
+
+One more case is $\dbar Q = 0$.
+\\
+\\
+write more from picture taken of board.
+
+\subsection*{Second Law and Heat Engines:}
+
+\textbf{Heat Engines}
+Write about this stuff later.
+
+\subsection*{Some exercise problems:}
+
+\textbf{Q1. Some Quick Questions:}
+\begin{enumerate}
+	\item When an ideal gas undergoes adiabatic expansion, how does its temperature change?
+	\\
+	\underline{Ans:} During an adiabatic expansion, there is no flow of heat. So,
+	\[ \dbar Q = 0 \implies dU = \dbar W \]
+	
+	However, the gas is expanding which means work is done by the gas. 
+	
+\end{enumerate}
+%\section*{References}
+%\beginrefs
+%\bibentry{AGM97}{\sc N.~Alon}, {\sc Z.~Galil} and {\sc O.~Margalit},
+%On the Exponent of the All Pairs Shortest Path Problem,
+%{\it Journal of Computer and System Sciences\/}~{\bf 54} (1997),
+%pp.~255--262.
+
+%\bibentry{F76}{\sc M. L. ~Fredman}, New Bounds on the Complexity of the 
+%Shortest Path Problem, {\it SIAM Journal on Computing\/}~{\bf 5} (1976), 
+%pp.~83-89.
+%\endrefs
+
+
+\end{document}
+
+
+
+
+

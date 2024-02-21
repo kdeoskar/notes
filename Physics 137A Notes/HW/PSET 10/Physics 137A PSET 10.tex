@@ -1,0 +1,385 @@
+%
+% This is the LaTeX template file for lecture notes for CS294-8,
+% Computational Biology for Computer Scientists.  When preparing 
+% LaTeX notes for this class, please use this template.
+%
+% To familiarize yourself with this template, the body contains
+% some examples of its use.  Look them over.  Then you can
+% run LaTeX on this file.  After you have LaTeXed this file then
+% you can look over the result either by printing it out with
+% dvips or using xdvi.
+%
+% This template is based on the template for Prof. Sinclair's CS 270.
+
+\documentclass[twoside]{article}
+\usepackage{graphics}
+\usepackage{mathtools}
+\usepackage[]{mdframed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage{bbm}
+
+%\usepackage{asmfonts}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% The following commands set up the lecnum (lecture number)
+% counter and make various numbering schemes work relative
+% to the lecture number.
+%
+\newcounter{lecnum}
+\renewcommand{\thepage}{\thelecnum-\arabic{page}}
+\renewcommand{\thesection}{\thelecnum.\arabic{section}}
+\renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+\renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+\renewcommand{\thetable}{\thelecnum.\arabic{table}}
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Physics 137A: Quantum Mechanics
+                        \hfill Fall 2023} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill PSET #1, Due #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Lecturer: #3 \hfill #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   {\bf Disclaimer}: {\it LaTeX template courtesy of the UC Berkeley EECS Department.}
+   \vspace*{4mm}
+}
+
+%
+% Convention for citations is authors' initials followed by the year.
+% For example, to cite a paper by Leighton and Maggs you would type
+% \cite{LM89}, and to cite a paper by Strassen you would type \cite{S69}.
+% (To avoid bibliography problems, for now we redefine the \cite command.)
+% Also commands that create a suitable format for the reference list.
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
+%\footnotetext{These notes are partially based on those of Nigel Mansell.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Additional commands
+
+\newcommand{\ket}[1]{\rvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Prob}[1]{\mathbb{P}(#1)}
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}
+\newcommand{\inner}[2]{\left\langle #1 \bigg\rvert #2 \right\rangle}
+\newcommand{\ham}{\hat{H}}
+\newcommand{\mom}{\hat{P}}
+
+
+
+%% Install amsfonts or amssymb package so that below command can be defined 
+%\newcommand{\R}{\mathbb{R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% **** YOUR NOTES GO HERE:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%         HOMEWORK 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lecture{10}{November 21}{Chien-I Chiang}{Keshav Deoskar}
+
+
+% Some general latex examples and examples making use of the
+% macros follow.  
+%**** IN GENERAL, BE BRIEF. LONG SCRIBE NOTES, NO MATTER HOW WELL WRITTEN,
+%**** ARE NEVER READ BY ANYBODY.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 1:}}
+
+We consider two non-interacting particles in a harmonic oscillator potential with one particle being in state $\ket{\psi} = \ket{\psi_0}$ and the other is in the state $\ket{\phi} = \frac{1}{\sqrt{2}} \left( \ket{\psi_0} + \ket{\psi_1} \right)$ where $\ket{\psi_i}$ represents the $i^{th}$ energy eigenstate of the Harmonic Oscillator.
+
+\begin{enumerate}
+   \item First, we want to construct the symmetrized and anti-symmetrized wavefunctions of the two-particle system, corresponding to Bosons and Fermions respectively.
+   
+   The (un-normalized) symmetrized wavefunction would be 
+   \begin{align*}
+      \ket{\Psi, S} &= \ket{\psi} + \ket{\phi} \\
+      &= \ket{\psi_0} + \frac{1}{\sqrt{2}}\left( \ket{\psi_0} + \ket{\psi_1} \right) \\
+      &= \left(\frac{\sqrt{2} + 1}{\sqrt{2}}\right) \ket{\psi_0} + \frac{1}{\sqrt{2}}\ket{\psi_1}
+   \end{align*}
+
+   Whereas, the (unnormalized) anti-symmetrized wavefunction is 
+   \begin{align*}
+      \ket{\Psi, A} &= \ket{\psi} - \ket{\phi} \\
+      &= \left( \frac{1-\sqrt{2}}{\sqrt{2}} \right) \ket{\psi_0} - \frac{1}{\sqrt{2}} \ket{\psi_1}
+   \end{align*}
+   The states can then be appropriately normalized.
+
+   \vskip 1cm
+   \item Perhaps we could do an experiment like the Stern-Gerlach, which separates particles into different classes of spin (bosons and fermions have different spins.)
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 2:}}
+
+\begin{enumerate}
+   \item \textbf{Write down the totally symmetric three-particle state with proper normalization:}
+   
+   A totally symmetric three-particle state is one where switching any two indices does not change the state. i.e.
+   \[ \ket{\omega_1 \omega_2 \omega_3, S} = \ket{\omega_2 \omega_1 \omega_3, S} \]
+
+   A general symmetric 3-particle state is then a linear combination of the six states obtained by swapping two indices at a time.
+   \begin{align*}
+      \ket{\omega_1 \omega_2 \omega_3, S} = A \left[ \ket{\omega_1 \omega_2 \omega_3} + \ket{\omega_1 \omega_3 \omega_2} + \ket{\omega_2 \omega_3 \omega_1} + \ket{\omega_2 \omega_1 \omega_3} + \ket{\omega_3 \omega_2 \omega_1} + \ket{\omega_3 \omega_1 \omega_2}  \right]
+   \end{align*}
+   where $A$ is the overall normalization factor.
+
+   We can find $A$ using the normalization condition 
+   \[ \inner{\omega_1 \omega_2 \omega_3, S}{\omega_1 \omega_2 \omega_3, S} = 1 \]
+
+   That is,
+   \begin{align*}
+      1 = |A^2| \left(\text{A number of inner products} \right)
+   \end{align*}
+
+   Writing out each inner product would be a pain. We can skip that by recalling that only inner products of the form 
+   \[ \inner{\omega_i \omega_j \omega_k}{\omega_i \omega_j \omega_k} = \delta{ii}\delta_{jj}\delta{kk} = 1\]
+   will contribute, while the other inner products will vanish.
+
+   Thus, we have 
+   \begin{align}
+      6 \cdot |A|^2 = 1
+   \end{align}
+   Thus,
+   \[ \boxed{A = \frac{1}{\sqrt{6}}} \]
+   
+   \item Similarly, we can find the totally antisymmetric state as a linear combination of the states obtained by swapping two indices at a time (introducing a minus sign each time we swap!):
+   
+   \begin{align*}
+      \ket{\omega_1 \omega_2 \omega_3, A} = A \left[ \ket{\omega_1 \omega_2 \omega_3} - \ket{\omega_1 \omega_3 \omega_2} + \ket{\omega_2 \omega_3 \omega_1} - \ket{\omega_2 \omega_1 \omega_3} + \ket{\omega_3 \omega_1 \omega_2} - \ket{\omega_3 \omega_2 \omega_1}  \right]
+   \end{align*}
+
+   Once again, we use the normalization condition,
+   \[ \inner{\omega_1 \omega_2 \omega_3, A}{\omega_1 \omega_2 \omega_3, A} = 1 \]
+
+   Again, the only inner products that survive are those in which the ordering is the exact same in the first and second argument. Additionally, since any state which has a $(-1)$ takes an inner product with itself, also having a factor of $(-1)$, the negative factors cancel each other and once again we arrive at 
+
+   \[ 6 \cdot |A|^2 = 1 \]
+
+   or 
+
+   \[ \boxed{A = \frac{1}{\sqrt{6}}} \]
+
+   \item The totally anti-symmetric state is a linear combination of states such that swapping any two indices introduces a negative sign. So, for example,
+   \[ \ket{\omega_1 \omega_2 \omega_3, A} = - \ket{\omega_2 \omega_1 \omega_3, A} \]
+
+   Or, more generally, we have 
+   \[ \ket{\omega_i \omega_j \omega_k, A} = - \ket{\omega_j \omega_i \omega_k, A}  \]
+
+   and so on.
+
+   But this is exactly the kind of behavior which is encapsulated by the \textbf{Levi-Civita symbol} defined as 
+   \[ \epsilon_{ijk} = \begin{cases}
+      +1,\;\; \text{symmetric permutation of ijk}\\
+      0,\;\; \text{otherwise}\\
+      -1,\;\;\text{anti-symmetric permutation of ijk}
+      \end{cases} \]
+
+   Thus, the totally anti-symmetric three-particle state is 
+   \[ \boxed{\ket{\omega_i \omega_j \omega_k} = \sum_{i \neq j \neq k} \frac{1}{\sqrt{6}}\epsilon_{ijk} \ket{\omega_i \omega_j \omega_k, A} } \]
+
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Question 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Problem 3:}}
+
+\begin{enumerate}
+   \item \textbf{Using the representations of the position and momentum operators, we want to verify the canonical commutation relations:}
+   
+   The position and momentum operators are represented as 
+   \[ X_i \rightarrow x_i, \;\;\;\;  P_i \rightarrow -i\hbar\frac{\partial}{\partial x_i} \]
+
+   where $i,j = 1,2,3$ correspond to the x,y,z directions.
+   \vskip 1cm
+
+
+   First off, the commutator between $X_i$ and $P_j$ is
+   \begin{align*}
+      [X_i, P_j] &= X_i P_j - P_j X_i 
+   \end{align*}
+   So, applying the commutator to some ket $\ket{\psi}$ gives us 
+   \begin{align*}
+      [X_i, P_j]\ket{\psi} &= (X_i P_j - P_j X_i ) \ket{\psi} \\
+   \end{align*}
+   and projecting this equation onto position space, we have
+   \begin{align*}
+      [X_i, P_j]\psi(x) &= (X_i P_j - P_j X_i ) \psi(x) \\
+      &= x_i \cdot \left(-i\hbar \frac{\partial \psi(x)}{\partial x_j} \right) - \left(-i\hbar \frac{\partial}{\partial x_j} \right)(x_i\psi(x))
+   \end{align*}
+   We apply the product rule on the second term, giving us 
+   \begin{align*}
+      [X_i, P_j]\psi(x) &= (X_i P_j - P_j X_i ) \psi(x) \\
+      &= -i\hbar x \frac{\partial \psi(x)}{\partial x_j}  - \left(-i\hbar \frac{\partial x_i}{\partial x_j} \psi(x) - i\hbar x_i \frac{\partial \psi(x)}{\partial x_j}  \right) \\
+   \end{align*}
+   The first and third terms cancel and we are left with the basis independent result
+   \[ \boxed{[X_i, P_j] = i\hbar \delta_{ij}} \]
+
+   The commutators of the different position operators amongst themselves, and the momentum operators amongst themselves, are simpler.
+
+   Following the same idea, but writing it without reference to the basis in the interest of time, we have
+
+   \begin{align*}
+      [X_i, X_j] &= X_i X_j - X_j X_i \\
+      &= x_i x_j - x_j x_i \\
+      &= 0
+   \end{align*}
+
+   and 
+   
+   \begin{align*}
+      [P_i, P_j] &= P_i P_j - P_j P_i \\
+      &= \left(-i\hbar \frac{\partial}{\partial x_i}\right)\left(-i\hbar \frac{\partial}{\partial x_j}\right) - \left(-i\hbar \frac{\partial}{\partial x_j}\right)\left(-i\hbar \frac{\partial}{\partial x_i}\right) \\
+      &= \left(-i\hbar \frac{\partial}{\partial x_i x_j}\right) - \left(-i\hbar \frac{\partial}{\partial x_j x_i}\right) \\
+      &= 0 \;\;\text{For appropriate wavefunctions, according to Clairaut's Thm.}
+   \end{align*}
+   \vskip 1cm
+
+   \item The Angular Momentum operator is defined to be 
+   \[ L_i = \sum_{j,k} \epsilon_{ijk} X_j P_k \]
+
+   Now, the commutators of angular momentum with position and momentum are
+
+   \begin{align*}
+      [L_i, X_l] &= \left[\epsilon_{ijk} X_j P_k,\; X_l\right] \\
+      &= -\left[ X_, \epsilon_{ijk} X_j P_k\right]
+   \end{align*}
+   where we are using \textbf{einstein summation notation} and suppressing the sum.
+
+   Then, we can use the following commutator identity:
+   \[ [A, BC] = [A, B]C + B[A, C] \]
+
+   Thus, we get 
+   \begin{align*}
+      \left[ X_l, \epsilon_{ijk} X_j P_k\right] &= \epsilon_{ijk}[X_l, X_j]P_k + \epsilon_{ijk} X_j[X_l, P_k] 
+   \end{align*}
+   Now, since $[X_l, X_j] = 0$ and $[X_l, P_k] = i\hbar \delta_{lk}$, we have
+   \begin{align*}
+      \left[ X_l, \epsilon_{ijk} X_j P_k\right] &= \epsilon_{ijk}i\hbar X_j \delta_{lk} \\
+      &= i\hbar \epsilon_{ijl} X_j
+   \end{align*}
+   Therefore,
+   \[ \boxed{[L_i, X_l] = -i\hbar \epsilon_{ijl} X_j} \]
+   or, being explicit with the summation, 
+   \[ \boxed{[L_i, X_l] = -i\hbar \sum_j \epsilon_{ijl} X_j} \]
+
+   Carrying out the same procedure but with $[L_i, P_l]$, we find that 
+   \[ \boxed{[L_i, X_l] = -i\hbar \sum_j \epsilon_{ijl} P_j}\]
+   \vskip 1cm
+
+   \item Using the above results, we want to find the commutators amongst the different angular momentum operators:
+   
+   We have (using different indices less prone to being mistaken for one another)
+   \begin{align*}
+      [L_i, L_j] &= L_i L_j - L_j L_i \\
+      &= \epsilon{iab} \epsilon_{jcd} [X_a P_b, X_C, P_d] \\
+      &= \epsilon_{iab}\epsilon_{jcd} \left( X_a [P_b, X_c]P_d + X_c[X_a, P_d]P_b\right)
+   \end{align*}
+   where the last equality follows from commutator identities.
+
+   Then, using the commutator rules between the position and momentum operators, we can simplify this to be
+
+   \begin{align*}
+      [L_i, L_j] &= i\hbar \left( \epsilon_{iab} \epsilon_{bjd} + \epsilon_{dib} \epsilon_{bja}\right) X_a P_d 
+   \end{align*}
+   where we are summing over the indices other than $i, j$, so
+   
+   \begin{align*}
+      [L_i, L_j] &= i\hbar \left( \delta_{ij}\delta_{ad} - \delta_{id}\delta_{aj} + \delta_{dj}\delta_{ia} - \delta_{da}\delta_{ij} \right) X_a P_d \\
+      &= i\hbar (X_i P_j - X_j P_i) \\
+      &= i\hbar \epsilon_{ijk} L_k
+   \end{align*}
+   \vskip 1cm
+
+   \item The commutators $[L_z, r^2]$ and $[L_z, p^2]$ where $r^2 = X^2 + Y^2 + Z^2$ and $p^2 = P_x^2 + P_y^2 + P_z^2$ are each zero.
+   \vskip 1cm
+
+   \item 
+
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+\end{document}
+
+
+
+
+

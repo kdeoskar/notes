@@ -1,0 +1,336 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def:}}}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 3}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 24 - Power Series}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+\begin{mathdefinitionbox}{Power Series}
+  A \textbf{Power Series} is a formal expression
+  \[ \sum_{n \geq 0} a_n z^{n}, z_n \in \C \]
+  for which operations are defined as:
+
+  \begin{itemize}
+    \item \underline{Addition:} 
+    \[  \sum_{n \geq 0} a_n z^{n} \]
+    \item \underline{multiplication}
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\begin{itemize}
+  \item "Formal" here means we temporarily ignore whether it makes sense to plug in complex numbers into such formulae.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Convergence}
+Defining these formal expressions is cool, but when does a power seres actually define a function? It does so when the seres \textbf{converges}.
+
+\vskip 0.5cm
+\underline{Example:} Geometric series:
+
+Let $a \in \C$, then for the geometric series we have $a_n = a^n$. So, 
+\[ \sum_{n \geq 0} a^n z^n = 1 + az +  a^2z^2 + \cdots \]
+
+converges if $S_n = \sum_{n \geq 0}^{N-1} a^n z^n$ has a limit.
+
+\vskip 0.5cm
+By the same argument as in the reals, we can get a closed form expression for $S_N$:
+\[ S_N = \frac{1 - (az)^n}{1-(az)} \]
+
+To deal with convergence, we break into cases and take the limit.
+\begin{itemize}
+  \item \textbf{$|az| < 1$ case:}
+  
+  \[ |az| < 1 \implies |az|^{N} \rightarrow^{N \rightarrow \infty} 0 \]
+  So, 
+  \[ \lim_{N \rightarrow \infty} S_N = \frac{1}{1 - az} \]
+
+  \vskip 0.5cm
+  \item \textbf{$|az| > 1$ case:}
+  \[ |az| > 1 \implies |az|^{N} \rightarrow^{N \rightarrow \infty} \infty \]
+  so 
+  \[ \lim_{N \rightarrow \infty} S_N \text{ diverges} \]
+  
+  \vskip 0.5cm
+  \item \textbf{$|az| = 1$ case:}
+  
+  Diverges if $|az| \neq 1$ and if $|az| = 1$. In this case, both diverge, but in general there may be more complicated behavior.
+\end{itemize}
+
+\textbf{Conclusion:} The geometric series converges (absolutely) for when $|z| < |a|$.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Recall that 
+  \[ \sum_{n \geq 0} z_n, z_n \in \C \] coverges \underline{absolutely} if 
+  \[ \sum_{n \geq 0} |z_n| \] converges. 
+\end{dottedbox}
+
+\vskip 0.5cm
+So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. This region is just an open disk of radius $|a|$. In general, power series has radii of convergence.
+
+\begin{mathdefinitionbox}{Radius of Convergence}
+  \vskip 0.5cm
+  \underline{\textbf{Def: }} A complex Power Series
+  \[ \sum_{n \geq 0} a_n z^n \]
+  has \underline{Radius of Convergence}
+  \[ r = \left( \lim_{n \rightarrow \infty} \sup |a_n|^{1/n} \right)^{-1} \in \mathbb{R} \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{\textbf{Example:}} For $a_n = a^n$, we have
+\[ r = \left( \lim_{n \rightarrow \infty} \sup |a_n|^{1/n} \right)^{-1} = \frac{1}{|a|}  \] which matches with the result obtained earlier.
+
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} 
+  \begin{enumerate}
+    \item If $|z| < r$, then $f(z)$ converges absolutely.
+    \item If $|z| > r$, then it diverges.
+    \item At $|z| = r$, more care is needed.
+  \end{enumerate}
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof Sketch:}} 
+  \begin{enumerate}
+    \item Consider $z$ such that $|z| < (1 - \epsilon)r$ for some $\epsilon > 0$.
+    \begin{align*}
+      \implies |a_n z^n| &< |a_n|(1-\epsilon)^n r^n \\
+      &\leq |a_n| (1-\epsilon)^n \left(\frac{1}{|a_n|^{1/n}}\right)^n \;\;\text{ Assume $a_n \neq 0$}\\
+      &\leq (1-\epsilon)^n \;\;\text{ (If $a_n = 0$, this  inequality is true trivially)}
+    \end{align*}
+    \[ \implies \text{ Convergence by Geometric series} \]
+    Term by term, the series is smaller than the geometric series (which converges), thus it also converges(Dominated Convergence Theorem).
+
+    \vskip 0.5cm
+    \item If $|z| > r$, then $|z| > r/(1 - \epsilon)$ for some $\epsilon > 0$ while 
+    \[ |a_n|^{1/n} > \left( \lim_{k \rightarrow \infty} \sup |a_k|^{1/k} \right) (1 - \epsilon) \] for infinitely many $n$.
+
+    \begin{align*}
+      \implies &|a_n z^n| > \frac{1}{r^n}(1-\epsilon)^n \cdot \frac{r^n}{(1-\epsilon)^n} > 1 \;\;\text{ for inf. many $n$} \\
+      \implies &\text{the sum diverges}
+    \end{align*}
+  \end{enumerate}
+
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Example:}} Consider a polynomial 
+\[ f(z) = \sum_{n = 0}^{N} a_n z^n \]
+
+\begin{align*}
+  \implies &\lim_{n \rightarrow \infty} \sup |a_n|^{1/n} = 0 \\
+  \implies & r = \infty
+\end{align*}
+
+\vskip 0.5cm
+\underline{\textbf{Example:}} Consider the exponential function
+\[ \exp(z) = e^{z} = \sum_{n \geq 0} \frac{z^n}{n!} \]
+
+\begin{align*}
+  \implies &r = \lim_{n \rightarrow \infty} (n!)^{1/n} =_{\text{claim}} \infty
+\end{align*}
+
+\vskip 0.5cm
+\underline{Proof of claim:} We wll show that for any $b$, $\frac{1}{2}b < (n!)^{1/n}$ for all $n >> 0$.
+
+% \begin{align*}
+%   n! &= \underbrace{(1 \times 2 \times \cdots \times b)}_{\geq 1} \times \underbrace{(b+1)}_{\geq b} \times \underbrace{(b+2)}_{\geq b} \times \cdots \times \underbrace{(n)}_{\geq b} \\
+%   \implies (n!)^{1/n} &> (b^{n-b}^{1/n}) = b^{1-\frac{b}{n}} \\
+%   \text{Complete later}
+% \end{align*}
+
+Note that we can shift the center of the series from $0$ to some point $z_0$.
+
+So, instead of 
+\[ \sum_{n \geq 0} a_n z^n \]
+
+We have
+\[ \sum_{n \geq 0} a_n (z - z_0)^n \]
+
+The radius of convergence is given by the same expression.
+
+\vskip 1cm
+\subsection{Differentiation of Power Series}
+Knowing convergence properties of a series is also useful for the purposes of \emph{differentiation}.
+
+\begin{dottedbox}
+  \underline{\textbf{Theorem: }} Let $r$ be the radius of convergence of $f(z) = \sum_{n \geq 0} a_n (z - z_0)^n$. Then, $f$ is (complex) differentiable on $B_r(z_0)$ and 
+  \[ f'(z_0) = \sum_{n \geq 0} n a_n (z - z_0)^{n-1} \]
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof:}}
+  The proof follows the same argument as that in real analysis. Write the proof later. One proof can be found \href{https://proofwiki.org/wiki/Derivative_of_Complex_Power_Series/Proof_1}{here}.
+\end{dottedbox}
+
+We will break the proof into two parts:
+\begin{enumerate}[label=(\alph*)]
+  \item First, we show that if $\sum_{n \geq 0} a_n(z - z_0)^n$ has radius of convergence $r$, then so does $\sum_{n \geq 0} n a_n(z - z_0)^{n-1}$.
+  \item Second, we show that if $f(z) = \sum_{n \geq 0} a_n(z - z_0)^n$ then the derivative at $z_0$ is indeed 
+  \[ f(z_0) = \sum_{n \geq 0} n a_n(z - z_0)^{n-1} \]
+\end{enumerate}
+
+\underline{\textbf{Proof:}} (Check if this is correct in Office Hours)
+
+\begin{enumerate}[label=(\alph*)]
+  \item Earlier, we proved that for any complex power series there exists a number $r$ called the radius of convergence such that the series converges for any $z \in \C$ such that $|z| < r$. We also showed that $r$ is given by 
+  \[ r = \limsup_{n \rightarrow \infty} |a_n|^{1/n} \]
+
+  So, what we want to do here is show that the radii of convergence for the two series $R, R'$ are equal.
+
+  Now, 
+  \begin{align*}
+    R' &= \limsup_{n \rightarrow \infty} |n a_n|^{1/n} \\
+    &= \limsup_{n \rightarrow \infty} |n|^{1/n} \cdot |a_n|^{1/n} \\
+    &= \limsup_{n \rightarrow \infty} |n^{1/n}| \cdot |a_n|^{1/n} \\
+    &= \limsup_{n \rightarrow \infty} |1| \cdot |a_n|^{1/n} \\
+    &= R
+  \end{align*}
+  So the two series have equal radii of convergence $(=R)$.
+
+  \item Next, we want to show that if 
+  \[ f(z) = \sum_{n \geq 0} a_n(z - z_0)^n \]
+
+  and 
+  \[ g(z) = \sum_{n \geq 0} n a_n(z - z_0)^{n-1} \]
+  Then, in fact, $f'(z) = g(z)$.
+\end{enumerate}
+
+\end{document}

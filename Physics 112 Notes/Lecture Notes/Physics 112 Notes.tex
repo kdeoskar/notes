@@ -1,0 +1,518 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 112 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Statistical Mechanics delivered by Austin Hedeman for UC Berekley's Physics 112 class in the Spring 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+\section{January 17}
+\vskip 0.5cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this class, we cover the material in three main categories: Thermodynamics, Classical Statistical Mechanics, and Quantum Statistical Mechanics.
+
+[Write some more later]
+\vskip 1cm
+
+\subsection{Part 1: Thermodynamics}
+When we have one or two particles, Newtonian Mechanics (or quantum mechanics) works just fine. But for larger numbers we cannot solve the equations analytically. To describe the behavior of massive collections of atoms such as a cup of water, we \emph{could} model the system on a computer and run a simulation but... why bother? Most times, the properties we are actually interested in are bulk properties such as the temperature of the \emph{cup} of water rather than the properties of, say, atom 264506. So, instead of trying to study the behavior of each individual particle, we will study the \emph{emergent properties} of large collections of particles.
+
+\vskip 0.5cm
+
+Now let's define some common terms:
+\begin{mathdefinitionbox}{System and environment}
+  \begin{itemize}
+    \item \underline{System:} A thermodynamic system is defined by the matter and radiation fields in a region of space.
+    \item Everything not in the system is the \underline{environment}.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Some good examples of systems and environments are pictured below: 
+
+[Insert diagrams]
+
+\vskip 0.5cm
+Now, there are three different types of systems that we will often work with:
+\begin{enumerate}
+  \item \underline{Isolated:} No exchange at all with the environment.
+  \item \underline{Closed:} Exchange of energy with the environment is allowed.
+  \item \underline{Open:} Exchange of both energy and particles with the environment is allowed.
+\end{enumerate}
+
+[Complete this day's notes]
+
+\pagebreak
+
+\section{January 22}
+Today we'll cover  
+\begin{itemize}
+  \item Equilibrium
+  \item Pressure and temperature
+  \item Chemical Potential
+  \item State Variables
+  \item Defining Temperature
+\end{itemize}
+
+\vskip 1cm
+\subsection{Equilibrium}
+
+\begin{mathdefinitionbox}{Equilibrium}
+  \vskip 0.5cm
+  \underline{Equilibrium} between two systems occurs when the \underline{bulk properties} remain (roughly) fixed and don't spontaneously change.
+\end{mathdefinitionbox}
+
+\vskip 0.25cm
+There are numerous \emph{types} of Equilibrium, each one associated with some quantity which is exchanged until equilibrium is attained:
+\begin{itemize}
+  \item Mechanical Equilibrium - \underline{Volume} is exchanged but no direction is preferred.
+  \item Thermal Equilibrium - \underline{Energy} is exchanged but no direction is preferred.
+  \item Diffusive Equilibrium - \underline{Particles} are exchanged but no direction is preferred.
+\end{itemize}
+
+\vskip 0.5cm
+In order to \textbf{quantify} these equilibria, we define the following quantities:
+\begin{itemize}
+  \item \underline{Preessure ($P$):} For mechanical equilibrium (exchange of volume)
+  
+  \vskip 0.5cm
+  [Draw Diagram]
+
+  \vskip 0.25cm
+  If there is a pressure differential, say $P_2 > P_1$, then there is an \textbf{exchange of volume from low to high pressure regions.} We then obtain two regions of equal pressure $P_{eq}$ and the volumes adjust accordingly to $V_1 + \Delta V$ and $V_2 - \Delta V$. (Note that this has been phrased so as to frame the next few quantities analogously. We should really think of forces balancing out rather than the pressure coming to equilibrium.)
+
+  \vskip 0.5cm
+  \item \underline{Temperature ($T$):} For thermal equilibrium.
+  
+  \vskip 0.5cm
+  [Draw Diagram]
+
+  \vskip 0.25cm
+  If there is a temperature differential, say $T_2 > T_1$, then there is an \textbf{exchange of energy from high to low temperatures.} We then obtain two regions of equal temperature $T_{eq}$, with the regions having energies $U_1 - \Delta U$ and $U_2 + \Delta U$
+  
+  \vskip 0.5cm
+  \item \underline{Chemical Potential ($\mu$):} For diffusive equilibrium.
+  \vskip 0.25cm
+
+  [Draw Diagram]
+
+  Just like the two Potentials defined above, if there is a differential in Chemical Potential $\mu_2 > \mu_1$ then there is an \textbf{(net) exchange of particles from high to low potential.} 
+
+  \vskip 0.25cm
+  We specify that there is a \underline{net} change in this direction because particles flow in both directions, it's just that more go from higher $\mu$ to lower $\mu$ until diffusive equilibrium is achieved.
+
+  \vskip 0.25cm
+  Then, the number of particles in the two regions are adjusted and we obtain two regions of equal chemical potential $\mu_{eq}$.
+
+  \vskip 0.25cm
+  Note: Chemical Potential has units of energy -- that's why it has  potential in the name.
+\end{itemize}
+
+\vskip 0.5cm
+
+\begin{dottedbox}
+  \underline{Example:} Consider a sample of ideal gas in a gravitational field at height $z$. Then
+  \[ \mu = k_B T \ln\left( \frac{n}{n_q} \right) \]
+  where $n = \frac{N}{V}$ and $n_q$ is the \textbf{Quantum Concentration.}
+  \begin{itemize}
+    \item The closer the concentration gets to the Quantum Concentration, the worse the classical approximation becomes. At the Quantum Concentation, it becomes necessary to consider quantum mechanical effects.
+    \item $n_q$ is mass dependent, so particles of one kind will have the same Quantum Concentration.
+  \end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  Suppose we have a cylinder within which the temperature is a constant $T$ throughout the volume. Let's look at the column of air 
+  [Finish this example when recording comes out].
+\end{dottedbox}
+
+\begin{dottedbox}
+  Each type of particle gets its own chemical potential.
+    
+  \vskip 0.5cm
+  [Draw Diagram]
+
+  \vskip 0.5cm
+  In the above setup, to have chemical equilibrium, we require
+  \begin{align*}
+    \mu_{A, 1} &= \mu_{A, 2} \\
+    \mu_{B, 1} &= \mu_{B, 2} 
+  \end{align*}
+
+  \begin{itemize}
+    \item Chemical Reactions allow particles of one kind to turn into particles of another kind. For instance, 
+    \[ N_2 + 3H_2 \text{(reversible reaction symbol)} 2NH_3 \]
+
+    This chemical reaction gives us a relation between each of the chemical potentials. In partcular, the equation 
+    \[ \mu_{N_2} + 3\mu_{H_2} = 2\mu_{NH_3} \]
+    must hold in order for Chemcial Equilibrium to be maintained. Otherwise, the reaction is driven one way or the other.
+  \end{itemize}
+  
+  [Complete this when the recording comes out]
+\end{dottedbox}
+
+\vskip 0.5cm
+[Draw table of potentials and quantities]
+
+\vskip 0.5cm
+When every type of equilibrium is simultaneously achieved, then we say the system is at \textbf{Thermodynamic Equilibrium}.
+
+\vskip 0.5cm
+\subsection                     {Variables of State}
+
+
+\pagebreak 
+\section{February 7}
+
+\subsection{Statements of the Second Law of Thermodynamics}
+
+Today, we'll cover 
+\begin{itemize}
+  \item The Second Law!
+  \item Introducing\dots Entropy!
+  \item Entropy and the 2nd Law
+  \item The Third Law
+\end{itemize}
+
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time we spoke about the Carnot Cycle and the Carnot \emph{Theorem} which told us that the cycle depended only on the temperatures of the two heat baths.
+  \item We derived the \emph{Carnot Efficiency}
+  \[ \eta_{\text{carnot}} = 1 - \frac{T_C}{T_H} \]
+\end{itemize}
+
+Now, there are \emph{three} primary statements of the second law:
+
+\begin{dottedbox}
+  \emph{\textbf{1. Carnot Statement:}} No heat engine operating between a high temperature of $T_H$ and a low temperature of $T_C$ can be more efficient than a reversible engine operating between just those two temperatures.
+\end{dottedbox}
+
+This statement tells us that there is no engine that can possibly be more efficient than the Carnot engine.
+
+\begin{dottedbox}
+  \emph{\textbf{2. Claussius Statement:}} Heat can never pass from a colder to a hotter body without \emph{some} change - connected therewith - occuring at the same time.
+\end{dottedbox}
+
+This statement basically says that if we want to pull heat from a cold thing and deposit it into a hot thing, we need to do work. Heat naturally flows from Hot to Cold, going the other way requires energy.
+
+\begin{dottedbox}
+  \emph{\textbf{3. Kelvin-Planck Statement:}} It is impossble to construct a heat engine that produces \emph{no} effect other than absorbing heat and performing anequal amount of work.
+\end{dottedbox}
+
+The third statement basically says that if we operate an engine, there must be some \emph{waste} heat. There exist no perfectly efficient engines.
+
+\vskip 0.5cm
+These three statements are all equivalent, and in fact, if one of them is violated then we can show that the others are violated too. For example, if we have an engine that violates that Calussius statement then we can couple that with the Carnot Cycle and obtain an engine that violates the Carnot Statement.
+
+
+% \subsection{Entropy}
+
+\vskip 1cm
+\subsection{Revisiting the Carnot Cycle}
+
+\vskip 0.5cm
+Recall that the Carnot Cycle has four stages:
+\begin{enumerate}
+  \item Isothermal heat input @ $T_H$
+  \item Adiabatic Cooling 
+  \item Isothermal heat extraction @ $T_C$
+  \item Adiabatic Heating 
+\end{enumerate}
+
+And so we have 
+\begin{align*}
+  \oint_{{\Gamma_{\text{circle}}}} \frac{\delta Q}{T} &= \oint_{(i)} \frac{\delta Q}{T} + \underbrace{\oint_{(ii)} \frac{\delta Q}{T}}_{= 0, adiabatic} + \oint_{(iii)} \frac{\delta Q}{T} + \underbrace{\oint_{(iv)} \frac{\delta Q}{T}}_{= 0, adiabatic} \\
+  &= \frac{Q_{in}}{T_H} - \frac{Q_{out}}{T_C}
+\end{align*}
+
+Recall that the Carnot Efficiency is given by 
+\[ \eta_{C} = 1 - \frac{Q_{out}}{Q_{in}} = 1 - \frac{T_C}{T_H} \]
+
+which means \[ \frac{Q_{out}}{Q_{in}} = \frac{T_C}{T_H}  \]
+
+Thus, 
+\[ \boxed{\oint_{{\Gamma_{\text{circle}}}} \frac{\delta Q}{T}  = 0} \]
+
+\vskip 0.5cm
+This leads us to two ideas:
+
+\vskip 0.5cm
+\underline{Idea 1:} For a Carnot cycle, $\oint_{\Gamma} \frac{\delta Q}{T}  = 0$.
+
+\vskip 0.5cm
+\underline{Idea 2:} If one cycle has a reversble leg in one direction and another cycle has the "reversed" leg, then the two cycles can be conbined with the shared leg \emph{\textbf{canceling out}}.
+
+\vskip 0.5cm
+\begin{center}
+  \includegraphics*[scale=0.40]{feb7_reversible_legs.png}
+\end{center}
+
+\[ \int_{{\Gamma_{\text{combo}}}} = \int_{{\Gamma_{\text{1}}}} + \int_{{\Gamma_{\text{2}}}} \]
+
+\vskip 0.5cm
+\underline{Idea 3:} Any cycle built out of the Carnot Cycles with shared legs will \emph{also} have 
+\[ \oint \frac{\delta Q}{T} = 0 \]
+\vskip 0.5cm
+\begin{center}
+  \includegraphics*[scale=0.40]{112 Feb 7 Carnot Combine.png}
+\end{center}
+
+By Idea 2, we have 
+\[ \oint_{{\Gamma_{\text{combo}}}} \frac{\delta Q}{T} = \oint_{{\Gamma_{1}}} \frac{\delta Q}{T}  + \oint_{{\Gamma_{2}}} \frac{\delta Q}{T} = 0 \]
+
+
+\vskip 0.5cm
+\underline{Idea 4:} Any reversible process can be decomposed into a sequence of infinitessimal reversible sotherms and adiabats.
+
+\begin{itemize}
+  \item So, for example, we can take any constant-pressure process and rather than breaking it up into a bunch of little isobars, we can use the concept of infinitessimals to break it up into a bunch of isotherms and adiabats.
+  \item The smaller we make our isotherms and adiabats, the better the approximation will be.
+  \item In this limit as our segments become infinitessimal, both our curves (the one consisting of isobars, and the one consisting of isotherms+adiabats) will have the same internal energy $\Delta U$ (since it's a state variable), the same work $W$ (since work is the area under the curve, and the area gets closer and closer in the limit). Thus, the two curves will be characterized by the same Heat $Q$.
+  \item Moreover, if we can do that, we get Idea 5.
+\end{itemize}
+
+\vskip 0.5cm
+\underline{Idea 5:} Any reversible or quasi-static process can be decomposed into a sequence of combined Carnot Cycles.
+
+\begin{itemize}
+  \item This follows from the combination of Ideas 2 (we can combine cycles by canceling internal legs) and 4 (any path can be broken into isotherms and adiabats).
+  \item Insert diagram later
+\end{itemize}
+
+
+But recall that Idea 3 tols us that the loop integral for a Carnot cycle is zero. Therefore, Idea 5 + Idea 3 allow us to conclude that 
+
+\begin{dottedbox}
+  For any reversible cycle, $\Gamma$, 
+  \[ \boxed{\oint_{\Gamma} \frac{\delta Q}{T} = 0} \]
+\end{dottedbox}
+
+This has massive implications!!
+
+\vskip 1cm
+\subsection{Implications}
+
+Consider a reversible cycle $\Gamma$ consisting of two paths $\Gamma_{1}, \Gamma_{2}$. Then, 
+\begin{align*}
+  &\int_{\Gamma} \frac{\delta Q}{T} = 0 \\
+  \implies & \int_{{\Gamma_{1}}} \frac{\delta Q}{T} + \int_{{\Gamma_{2}}} \frac{\delta Q}{T} = 0 \\
+  \implies & \boxed{\int_{{\Gamma_{1}}} \frac{\delta Q}{T} = \int_{{\Gamma_{2}}} \frac{\delta Q}{T}}
+\end{align*}
+
+That means that our paths ${\Gamma_{1}}, {\Gamma_{2}}$ don't matter. The quantity we're integrating is path independent. In other words, 
+\[ \frac{\delta Q}{T} \text{ is \emph{\textbf{exact!}}}  \]
+
+So, this quantity is exact, \emph{even if $\delta Q$ is not exact} which means \emph{\textbf{there is some state variable $S$ such that}}
+\[ \delta S = \frac{\delta Q}{T} \]
+
+\vskip 0.25cm
+We've just invented a new state variable!
+
+\begin{align*}
+  dS &= \frac{1}{T} \delta Q \\
+  \Delta S &= \int_{\Gamma} \frac{\delta Q}{T} \;\text{ for reversible } \Gamma \\
+\end{align*}
+
+This also gives us an analogous way of expressing $\delta Q$, similar to how we write $\delta W$:
+\begin{align*}
+  \delta W &= -P dV \\
+  \delta Q &= T dS \\
+\end{align*}
+
+\begin{mathdefinitionbox}{Entropy}
+  \vskip 0.25cm
+  We call $S$ the \emph{\textbf{entropy}}.
+  \begin{itemize}
+    \item This is how it was discovered in Thermodynamics.
+    \item Later, we'll take a \emph{completely} different approach yet arrive at exactly the same expression in Statistical Mechanics.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\begin{dottedbox}
+  \emph{Spoiler:} We've really only defined the \emph{Change in Entropy} $\delta S$, but there \emph{does} exist an absolute scale for Entropy which has to do with the number of microstates associated with a certain thermodynamical configuration.
+  We'll study this in about two weeks.
+\end{dottedbox}
+
+
+\vskip 1cm
+\subsection*{What does the Entropy Change look like for different processes?}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Reversible Isotherm: $\Delta S = \frac{Q}{T}$
+  \item Reversible Adiabat: $\Delta S = 0$ (This is why these processes are also called \emph{"isentropic"}).
+  \item Reversible Isochor: $\Delta S = \int \frac{C_v dT}{T}$
+  \item Reversible Isobar: $\Delta S = \int \frac{C_p dT}{T}$
+\end{itemize}
+
+\vskip 0.5cm
+\subsection*{What are the units of Entropy?}
+\vskip 0.5cm
+\begin{itemize}
+  \item $[S] = \frac{\text{energy}}{\text{temperature}} = [k_b]$.
+  \item The Boltzmann Constant has the same units as Entropy, and serves as sort of a natural scale.
+  \item Often, it's convenient to use their ratio, which is dimensionless. This is often denoted as 
+  \[ \sigma \equiv \frac{S}{k_B} \]
+\end{itemize}
+
+\vskip 1cm
+\subsubsection*{Let's do an explicit calculation}
+\vskip 0.25cm
+We undergo a reversible isothermal transformation at temperature $T_0$ in which our volume goes from $V_0$ to $2V_0$. Then 
+\[ \Delta S = \frac{Q_0}{T_0} \]
+
+And the first-law tells us 
+\[ \Delta U = Q_0 + Q = 0  \]
+where the last inequality is because we're assuming the Equipartition Theorem and working with an Ideal gas. So,
+
+\begin{align*}
+  Q_0 &= - W \\
+  &= \int_{V_0}^{2V_0} P dV \\
+  &= Nk_B T \ln \left( \frac{2V_0}{V_0} \right)
+\end{align*}
+
+So, 
+\[ \boxed{ \Delta S = N k_B \ln(2)} \]
+
+Note that this is \emph{extensive}. Double the number of particles, double the entropy change.
+
+\vskip 1cm
+\subsection{Carnot yet again!}
+
+[Complete this later; too sleepy rn]
+
+% \printbibliography
+
+\end{document}

@@ -1,0 +1,375 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 5},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 30 - Manifolds with boundaries, Smooth maps}
+
+\vskip 0.5cm
+\subsection*{Recap}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item So far, we've seen \emph{\textbf{Smooth Manifolds}}, which are pairs of Topologcal manifolds with a maximal smooth atlas $(M^n, \A)$
+  \item Then, we saw a slight generalization by developing \emph{\textbf{Smooth Manifolds with Boundary}}.
+  \item Today, we'll build up some more on manifolds with boundaries, and then start talking about smooth maps on/between manifolds.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Smooth Manifolds with Boundary}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem 1.46 (LeeSM, Smooth Invariance of Boundary):}} If $p \in M$ where $M$ is a smooth manifold with boundary and there are two charts $(U, \phi), (V, \psi)$ covering $p$ then
+  \begin{align*}
+    \phi(p) \in \partial \mathbb{H}^n &\iff \psi(p) \in \partial \mathbb{H}^n \\
+    \phi(p) \in \text{Int} \mathbb{H}^n &\iff \psi(p) \in \text{Int} \mathbb{H}^n 
+  \end{align*}
+  and 
+  \[ \restr{\psi \circ \phi^{-1}}{\partial \mathbb{H}^n \cap \phi(U \cap V)} : \partial \mathbb{H}^n \cap \phi(U \cap V) \rightarrow \partial \mathbb{H}^n \cap \psi(U \cap V) \]
+  is a smooth transition map from $\restr{\phi}{U \cap V \cap \phi^{-1}(\partial \mathbb{H}^n)}$ to $\restr{\psi}{U \cap V \cap \psi^{-1}(\partial \mathbb{H}^n)}$
+\end{dottedbox}
+
+\begin{dottedbox}
+  \vskip 0.5cm
+\underline{"Proof": (Sketch; Only first part of Thm.)}
+
+\vskip 0.5cm
+Suppose, to the contrary, there exists $p \in M$ which is covered by interior (smooth) chart $(U, \phi)$ and boundary (smooth) chart $(V, \psi)$ i.e. $\psi(p) \in \partial \halfplane^n$.
+
+\begin{center}
+  \includegraphics*[scale=0.20]{Thm 1.46.png}
+\end{center}
+\vskip 0.5cm
+
+Then, denote the transition map $\psi \circ \phi^{-1}$ as $\tau$. By the compatibility of smooth charts, $tau$ and $tau^{-1}$ are smooth, in the sense that they can be extended to smooth functions if necessary.
+
+\vskip 0.25cm
+Then, there exists some open neighborhood $W$ around $\psi(p)$ and continuous map $\eta : W \rightarrow \R^n$ such that $\restr{\eta}{W \cap \psi(U \cap V)} = \tau^{-1}$.
+
+\vskip 0.25cm
+On the other hand, we assumed $\phi$ to be an interior map, meaning there exists an open ball $B$ centered around $\phi(p)$ and contained within $\phi(U \cap V)$, so $\tau$ is continuous on $B$ in the ordinary sense. After shrinking, if necessary, we can assume $B \subset \tau^{-1}(W)$.
+
+\vskip 0.25cm
+Then, $\restr{\eta \circ \tau}{B} = \restr{\tau^{-1} \circ \tau}{B} = id_{B}$. So, it follows from the chain rule that $D\eta(\tau(x)) \circ D\tau(x)$ is the identity map for each $x \in B$.
+
+\vskip 0.25cm
+The derivative map is a linear transformation, so it is a square matrix. This means it is non-singular. Corollary C.36 from LeeSM then tells us that $\tau(x)$ is an open map (maps open sets to open sets). But this contradicts our assumption that $(V, \psi)$ is a boundary chart! According to that assumption, $\psi(V)$ is not open. 
+
+\vskip 0.25cm
+So it must be the case that $p$ is an interior point or boundary point in \emph{both} charts.
+
+\end{dottedbox}
+
+\vskip 1cm
+\begin{dottedbox}
+
+\underline{\textbf{Corollary:}}
+Given a smooth manifolds $M$, we can split it up into two disjoint parts
+\[ M = \text{Int}M \coprod \partial M \]
+and Int$M$ us a smooth $n-$manifold without boundary, while $\partial M$ is a smooth $(n-1)$-manifold without boundary.
+
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{Note:} There's a \emph{further} generalization called \textbf{\emph{Manifolds with corners}} on which calculus can be extended as well (requires much more machinery than extending calculus to manifolds with boundary though).
+
+\vskip 0.5cm
+\underline{Remark:} It may be the case that 
+\[ \text{Int}_{mfd}M \neq \text{Int}_{top}M \]
+and
+\[ \partial_{mfd}M \neq \partial_{top}M \]
+
+\vskip 0.5cm
+\underline{Example:} 
+\begin{itemize}
+  \item $M = \{ x^n > 0 \} \subset \R^n$. As a manifold it has no boundary i.e. $\partial_{mfd}M  \emptyset$. However, as a topological space, its boundary is just the $x^n = 0 $ plane $\partial_{top}M = \{x^n = 0\}$. 
+  
+  \item Consider any manifold with nonempty boundary, $M$. Then viewing $M$ as a subspace of itself tells us
+  \begin{align*}
+    \partial_{top}M &= \emptyset \\
+    \text{Int}_{top}M &= \emptyset \\
+  \end{align*}
+
+  \item Consider $M = S^n \subset \R^{n+1}$. Then, $\partial_{mfd} M = \emptyset$ but $\partial_{top}M = \mathbb{S}^n$.
+  
+  \item Consider $M = \mathbb{H}^n \cap B_1(0)$. Then, $\partial_{mfd}M$ is just the "diameter" of the hemi-sphere but $\partial_{top}M$ is the entire "circumference."
+  
+  \begin{center}
+    \includegraphics*[scale=0.10]{boundary_discrepancy.png}
+  \end{center}
+
+\end{itemize}
+
+
+\vskip 1cm
+\subsection{Smooth maps (between mfds w/ or w/out bdy)}
+
+\vskip 0.5cm
+\subsubsection{Smooth maps from a Manifold to $\R^n$}
+
+\begin{mathdefinitionbox}{}
+We say a function $f : M^n \rightarrow \R^m$ is \textbf{\emph{smooth}} if for any point $p \in M$ there exists a smooth chart $(U, \phi)$ such that $p \in M$ and 
+\[ \restr{f \circ \phi^{-1}}{\phi(U)} : \phi(U) \rightarrow \R^m \]
+is smooth.
+
+\vskip 0.5cm
+\underline{\textbf{Notation}}: We defnote the set of all smooth functions $f : M \rightarrow \R$ as $C^{\infty}$.
+\end{mathdefinitionbox}
+
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Lemma:}} If $f : M^n \rightarrow \R^m$ is smooth, the for \emph{any} smooth chart $(V, \psi)$, the coordinate representation $f \circ \psi^{-1} : \psi(V) \rightarrow \R^m$ is smooth.
+\end{dottedbox}
+
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} Consider the chart $(V, \psi)$ and a point $p \in V$. Now, around $p$, there is another chart $(U, \phi)$ such that $p \in U$.
+
+Now, by the definition of smoothness, $f \circ \phi^{-1}$ is smooth. Using the compatibility of charts, the map $\phi \circ \psi^{-1}$ is also smooth. Thus, $f \circ \psi^{-1}$ is also smooth because 
+\[ f \circ \psi^{-1} = (f \circ \phi^{-1}) \circ (\phi \circ \psi^{-1}) \] 
+
+\vskip 0.5cm
+\underline{Example:} Charts give smooth maps to $\R^n$.
+
+\vskip 1cm
+\subsubsection{Smooth maps between Manifolds}
+
+Consider $m-$ and $n-$ dimensional smooth manifolds, $M^m$ and $N^n$. 
+
+\begin{mathdefinitionbox}{}
+% \vskip 0.5cm
+  A map $F : M^m \rightarrow N^n$ is \textbf{\emph{smooth}} if for all points $p \in M$ there are charts $(U, \phi)$ on $M$ and $(V, \psi)$ on $N$ such that 
+  \begin{itemize}
+    \item $p \in U$
+    \item $F(U) \subset V$ (OR $F^{-1}(V) \cap U$ is open in $M$)
+    \item $\psi \circ F \circ \phi^{-1}$ is smooth as a map between euclidean spaces. 
+  \end{itemize}
+  \underline{Note:} The function $\psi \circ F \circ \phi^{-1}$ is called the "coordinate representation of $F$ with respect to $(U, \phi), (V, \psi)$".
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+The above definition gives us the implication that smooth maps are continuous, which is important. There are other ways we could have generalized the notion of smoothness but many of them have pathological cases of non-continuous functions satisfying their conditions.
+
+\vskip 0.25cm
+(See also Proposition 2.4 in LeeSM)
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Lemma:} If $F : M \rightarrow N$ is smooth, $(U, \phi), (V, \psi)$ are charts on $M, N$ respectively, then: 
+  \begin{itemize}
+    \item If $F(U) \subset V$, then the coordinate representation $\psi \circ F \circ \phi^{-1}$ is smooth.
+  \end{itemize}
+
+  \vskip 0.5cm
+  \underline{Proof:} Exercise.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{Remark:} (Relating coordinate representations by diffeomorphisms) 
+
+If we have a function $F : M \rightarrow N$, charts $(U, \phi), (V, \psi)$ on $M, N$ respectively such that $F(U) \subset V$, and another set of charts $(\tilde{U}, \tilde{\phi}), (\tilde{V}, \tilde{\psi})$ on $M, N$ respectively such that $F(\tilde{U}) \subset \tilde{V}$, then we can pass between these dfferent coordinate representations by the transition maps $\phi \circ \psi{-1}$, $\psi \circ \psi^{-1}$, etc.
+
+
+\vskip 1cm
+\subsubsection{Examples}
+\begin{itemize}
+  \item Scalar functions $f : M \rightarrow \R$, such as morse functions (say, from a torus to the reals).
+  \item Paths on a manifold, $f : [0, 1] \rightarrow M$.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Partitions of Unity}
+\begin{itemize}
+  \item These give us nice ways of combining things to endow some global properties on our manifold.
+  \item In particular, they give us the paracompactness of manifolds.
+\end{itemize}
+
+\subsubsection*{Motivating example:}
+Suppose we're given two smooth functions on $\R$, $f_-, f_+ \in C^{\infty}(\R)$ and we want to paste the two functions together to get a new smooth function which coincides with $f_-$ below $x = 0$ and with $f_+$ above $x = 0$.
+
+\vskip 1cm
+[Fill in missing stuff from picture and book]
+
+\vskip 1cm
+Observe that 
+\[ \begin{cases}
+  \psi_+ + \psi_- = 1 \\
+  \text{supp}(\psi_-) \subset (-\infty, 1) \\
+  \text{supp}(\psi_+) \subset (-1, \infty) 
+\end{cases} \]
+
+We say that $\{\psi_+, \psi_-\}$ is a \emph{\textbf{partition of unity}} subordinate to the open cover $\{ (-infty, 1), (-1, \infty) \}$
+
+\vskip 1cm
+\begin{mathdefinitionbox}{}
+  Let $\mathfrak{X} = \{X_{\alpha}\}_{\alpha \in A}$ be an open cover of a topological space $X$. Then, a \emph{\textbf{partition of unity subordinate to $\mathfrak{X}$}} is a family of continuous maps $\{\psi_{\alpha} : X \rightarrow \R \}$ such that 
+  \begin{enumerate}
+    \item $0 \leq \psi_{\alpha} \leq 1$
+    \item supp$(\psi_{\alpha}) \subset X_{\alpha}$
+    \item $\{\text{supp}(\psi_{\alpha})\}_{\alpha}$ is locally finite
+    \item $\sum_{\alpha \in A} \psi_{\alpha}(x) = 1$ for all $x \in X$.
+  \end{enumerate}  
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} (Existence of Partition of Cover)
+  
+  For any open cover $\mathfrak{X}$ of a smooth manifold with boundary $M$, there exists a smooth partition of unity subordinate to $\mathfrak{X}$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}} We will construct smooth $(\tilde{\psi}_{\alpha})_{\alpha \in A}$ on $M$ such that 
+\begin{enumerate}
+  \item $\tilde{\psi}_{\alpha} \geq 0$ 
+  \item supp$(\tilde{\psi}_{\alpha}) \subset X_{\alpha}$
+  \item supp$(\tilde{\psi}_{\alpha})$ locally finite
+  \item $\bigcup_{\alpha \in A} \underbrace{\{ \tilde{\psi}_{\alpha} > 0 \}}_{ = \{x \in M : \tilde{\psi}_{\alpha}(x) > 0\}  } = M$ 
+\end{enumerate}
+
+(We'll construct the collection $\{ \tilde{\psi}_{\alpha} \}$ next time, but once we have them we can define 
+\[ \psi_{\beta} = \frac{}{} \]
+) 
+
+
+
+
+
+\end{document}

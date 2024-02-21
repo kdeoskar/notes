@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'Math H185.blg'
+[179] biber-MSWIN64:340> INFO - === 
+[225] Biber.pm:419> INFO - Reading 'Math H185.bcf'
+[453] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[485] bbl.pm:660> INFO - Writing 'Math H185.bbl' with encoding 'UTF-8'
+[486] bbl.pm:763> INFO - Output to Math H185.bbl
+[486] Biber.pm:131> WARN - The file 'Math H185.bcf' does not contain any citations!
+[487] Biber.pm:133> INFO - WARNINGS: 1

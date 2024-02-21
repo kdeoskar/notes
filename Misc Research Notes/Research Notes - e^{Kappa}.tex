@@ -1,0 +1,287 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tensor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\ki}{\hat{\mathbf{k}}_i^{\star}}
+\newcommand{\kf}{\hat{\mathbf{k}}_f^{\star}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\K}{\mathcal{K}}
+
+\DeclareMathOperator*{\SumInt}{%
+\mathchoice%
+  {\ooalign{$\displaystyle\sum$\cr\hidewidth$\displaystyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.14\height}{\scalebox{.7}{$\textstyle\sum$}}\cr\hidewidth$\textstyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+}
+
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+\title{Research Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+These are some random notes written while reading up on exponentially-suppressed effects in finte-volume matrix elements. These are mainly just for my own understanding, but if you've stumbbled upon these notes I hope they prove useful in some capacity.
+\end{abstract}
+
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Finite-volume functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The current objective is to understand Appendix C of \cite{Briceño} and reproduce results on page 18 of the paper. The paper studies $2 \rightarrow 2$ and $2 + \mathcal{J} \rightarrow 2$ transition amplitudes. We are interested in the \textbf{analytic-continuations of the finite-volume functions $F(P, L)$, $G(P, L)$, and $G^{\mu = 0}(P, L)$ below threshold}.
+
+\begin{mathdefinitionbox}{Analytic Continuation Below threshold - What does this mean?}
+
+  ***THIS IS A TEMPORARY EXPLANATION. RE-WRITE THIS.
+  \vskip 0.5cm
+  
+  \begin{itemize}
+    \item We are studying interactions between two particles, so the energy possessed by their combined system \emph{must be greater than} their rest-mass energy due to $E^2 = m^2c^4 + p^2c^2$. This minimum energy corresponding to the sum of their rest-masses is the \textbf{(kinematic) threshold} being referred to. 
+    
+    \vskip 0.5cm
+    \item The finite-volume functions are complex-functions with the energy-momentum of the pair being the input-parameter, and we are interested in the anayltic continuation of these functions below the energy/mass threshold described above.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+
+Note that here $L$ is the finite-box length and $P = (E, \mathbf{P})$ is the total energy-momentum of the two particle system. We can boost to the Center-of-Momentum Frame (CMF), where we define $P^{\star} = (E^{\star}, \mathbf{0})$. We have the relation 
+\[ (E^{\star})^2 \equiv s \equiv P_{\mu}P^{\mu} = E^2 - \mathbf{P}^2 \]
+where we have generic $P$ and the Mandelstam variable $s$. 
+
+\begin{mathdefinitionbox}{Mandelstam Variables}
+  \begin{itemize}
+    \item Numerical quantities used to encode energy, momentum, and scattering angle in $2 \rightarrow 2$ interactions. 
+    
+    \item If the Minkowski metric is chosen to be $diag(+, -, -, -)$ then the three Mandelstam variables are 
+    \begin{align*}
+      s &= (p_1 + p_2)^2 c^2 = (p_3 + p_4)^2 c^2 \\
+      t &= (p_1 - p_3)^2 c^2 = (p_4 - p_2)^2 c^2 \\
+      u &= (p_1 - p_4)^2 c^2 = (p_3 - p_2)^2 c^2 \\
+    \end{align*}
+    where $p_1, p_2$ and $p_1, p_2$ are the four-momenta of the incoming and outgoing particles.
+
+    \item $s$ and $t$ are the squares of CMF Energy and Momentum respectively. (Check this)
+    \href{https://en.wikipedia.org/wiki/Mandelstam_variables}{source.}
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Initial and final 3-momentum states in the Center-of-Momentum Frame are denoted as $\mathbf{k_i}^{\star}$ and $\mathbf{k_f}^{\star}$. With this notation we can introduce the partial-wave expansion of the Elastic Scattering Matrix $\mathcal{M}$:
+
+\[ \M (s, \ki, \kf) = 4\pi \sum_{l ,m_l} Y_{l m_l} (\kf) \M(s) Y_{l m_l}^{*}(\ki) \]
+
+Which we can express in terms of the $K-$matrix as
+\[ \M(s) = \K(s) \frac{1}{1 - i \rho(s) \K(s)} \]
+
+$\rho(s)$ is the two-body phase space 
+\[ \rho(s) = \frac{q^{\star}}{8\pi E^{\star}} = \frac{1}{16\pi}\sqrt{1 - \frac{4m^2}{s}} \]
+
+where $q^{\star}$ is the relative momentum of the two particles in the CMF, $q^{\star} = \sqrt{s/4 - m^2}$ -- the square root introduces a branch cut in the complex $s$ plane.
+
+\subsection{Analytic Continuation of $c_{JM}^{(n)}$}
+
+The functions $F(P, L), G(P, L), G^{\mu = 0}(P, L)$ can be expressed in terms of the function in terms of a class of functions 
+\[ c^{(n)}_{JM}(P, L) = \left[ \frac{1}{L^3} \SumInt_k \right] \frac{\omega_k^{\star}}{\omega_{k}} \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(q^{\star^{2}} - k^{\star^{2}} + i\epsilon)^n } \]
+
+The relations we require are given by 
+\begin{align*}
+  F(P, L) &= \frac{1}{2E^{\star}} c_{00}^(1)(P, L) \\
+  G(P, L) &= \frac{1}{4E^{\star}} c_{00}^(2)(P, L) \\
+  G^{\mu = 0}(P, L) &= -\frac{E}{4E^{\star^{3}}} c_{00}^(1)(P, L) \\
+\end{align*}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  We will end up using the \underline{\textbf{Poisson Summation Formula}} in the following form:
+  \[ \frac{1}{L^3} \sum_{\vec{k}} g(\vec{k}) = \int \frac{d^3 k}{(2\pi)^3} g(\vec{k}) + \sum_{\vec{l} \neq 0} \int \frac{d^3 k}{(2\pi)^3} e^{i L \vec{l} \cdot \vec{k}} g(\vec{k}) \]
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof:}}
+\end{dottedbox}
+
+\vskip 0.5cm
+
+\begin{itemize}
+  \item We want to analytically continue each of these functions below the kinematic threshold i.e. $P < (2m)^2$.
+  
+  \item At a sub-threshold momentum $P_{\kappa}$, we have 
+  \[ m^2 - P_{\kappa}^2/4 = \kappa^2 \] (why?)
+
+  \item We apply the Poisson Summation Formula 
+  \[ \boxed{ \frac{1}{L^3} \sum_{\vec{k}} g(\vec{k}) = \int \frac{d^3 k}{(2\pi)^3} g(\vec{k}) + \sum_{\vec{l} \neq 0} \int \frac{d^3 k}{(2\pi)^3} e^{i L \vec{l} \cdot \vec{k}} g(\vec{k}) } \]
+  to $c_{JM}^{(n)}$.
+  (source: https://arxiv.org/pdf/hep-lat/0507006.pdf)
+  
+  \item Since we are dealing with sub-threshold momenta, we don't need to worry about the singularity, so the $i \epsilon$ vanishes (check this logic...)
+\end{itemize}
+
+Then 
+\begin{align*}
+  &\left[ \frac{1}{L^3} \sum_{\vec{k}} - \int \frac{d^3 k}{(2\pi)^3} \right] g(\vec{k}) = \sum_{\vec{m} \neq 0} \int \frac{d^3 k}{(2\pi)^3} e^{i L \vec{m} \cdot \vec{k}} g(\vec{k}) \\
+  \implies &\left[ \frac{1}{L^3} \sum_{\vec{k}} - \int \frac{d^3 k}{(2\pi)^3} \right] \frac{\omega_k^{\star}}{\omega_{k}} \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(q^{\star^{2}} - k^{\star^{2}})^n } = \sum_{\vec{m} \neq 0} \int \frac{d^3 k}{(2\pi)^3} \cdot \frac{\omega_k^{\star}}{\omega_{k}} \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(q^{\star^{2}} - k^{\star^{2}})^n } \cdot e^{i L \vec{m} \cdot \vec{k}} \\
+  \implies & c_{JM}^{(n)}(P_{\kappa}, L) = \sum_{\vec{m} \neq 0} \int \frac{d^3 k}{(2\pi)^3} \cdot \frac{\omega_k^{\star}}{\omega_{k}} \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(q^{\star^{2}} - k^{\star^{2}})^n } \cdot e^{i L \vec{m} \cdot \vec{k}}
+\end{align*}
+
+Now, we use the facts that 
+\begin{itemize}
+  \item $q^{\star} = \sqrt{s/4 - m^2}$
+  \item $m^2 - P_{\kappa}^2/4 = \kappa^2$
+  \item The Integration measure is Lorentz Invariant i.e. 
+  \[ \frac{d^3 \mathbf{k}^{\star} }{\omega_{\mathbf{k}}^{\star}} = \frac{d^3 \mathbf{k} }{\omega_{\mathbf{k}}} \implies d^3 \mathbf{k}^{\star} = d^3 \mathbf{k} \cdot \frac{\omega_{\mathbf{k}}^{\star}}{\omega_{\mathbf{k}}} \]
+\end{itemize}
+
+\begin{align*}
+  \implies c_{JM}^{(n)}(P_{\kappa}, L) &= \sum_{\vec{m} \neq 0} \int \frac{d^3 \mathbf{k}^{\star}}{(2\pi)^3} \cdot \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(s/4 - m^2 - k^{\star^{2}})^n } \cdot e^{i L \vec{m} \cdot \vec{k}} 
+\end{align*}
+
+We're integrating with respect to $d^3 \mathbf{k}^{\star} / (2\pi)^3$ i.e. working in the Center-of-Momentum Frame, where $\mathbf{P}_{\kappa}^{\star} = (E_{\kappa}^{\star}, \mathbf{0})$ and so $E^{\star^2} = P_{\kappa}^2 = s$. Then we have 
+\[ s/4 - m^2 - k^{\star^2} = \frac{P_{\kappa}^2}{4} - m^2 - k^{\star^2} = -\kappa^2 - k^{\star^2} \] 
+
+Thus, 
+\begin{align*}
+  \implies c_{JM}^{(n)}(P_{\kappa}, L) &= \sum_{\vec{m} \neq 0} \int \frac{d^3 \mathbf{k}^{\star}}{(2\pi)^3} \cdot \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(-\kappa^2 - k^{\star^{2}})^n } \cdot e^{i L \vec{m} \cdot \vec{k}} \\ 
+\end{align*}
+
+\[ \implies \boxed{c_{JM}^{(n)}(P_{\kappa}, L) = (-1)^n \sum_{\vec{m} \neq 0} \int \frac{d^3 \mathbf{k}^{\star}}{(2\pi)^3} \cdot \frac{\sqrt{4\pi} k^{\star} \tensor[^J]{Y}{_{JM}} (\mathbf{\hat{k}}^{\star}) }{(\kappa^2 + k^{\star^{2}})^n } \cdot e^{i L \vec{m} \cdot \vec{k}} } \]
+
+% \vskip 0.5cm
+% \subsection{What are these functions: $F(P, L)$, $G(P, L)$, and $G^{\mu = 0}(P, L)$?}
+% **Write later after learning more
+
+
+\vskip 1cm
+\subsection{Volume Effect on Energy and Phase Shift $\delta s$}
+
+\pagebreak
+\printbibliography
+
+
+\end{document}

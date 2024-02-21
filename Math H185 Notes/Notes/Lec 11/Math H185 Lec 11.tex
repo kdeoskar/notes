@@ -1,0 +1,246 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 9},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 9}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{February 9 - }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\subsection*{Exercise}
+\begin{dottedbox}
+  Show that
+  \[ \int_{0}^{\infty} \frac{1 - \cos(x)}{x^2} dx = \frac{\pi}{2}\]
+\end{dottedbox}
+
+\vskip 0.5cm
+Recall Euler's theorem
+\begin{align*}
+  e^{iz} &= \cos(z) + i\sin(z) \\
+  \implies e^{-iz} &= \cos(-z) -i \sin(z) \\
+  \implies \cos(z) &= \frac{e^{iz}+ e^{-iz}}{2}
+\end{align*}
+
+and the series expansion of cosine is 
+\[ \cos(z) = \sum_{n = 0}^{\infty}  (-1)^n \frac{z^{2n}}{(2n)!} \]
+
+Now, 
+\begin{align*}
+  \int{0}^{\infty} \frac{1 - \cos(x)}{x^2} dx &= \int_{0}^{\infty} \frac{1 - \frac{(e^{iz} + e^{-iz})}{2}}{x^2} dx \\
+  &= \frac{1}{2} \int_{0}^{\infty} \frac{1 - e^{iz}}{x^2} dz + \frac{1}{2} \int_{0}^{\infty} \frac{1 - e^{-iz}}{x^2} dz \\
+\end{align*}
+By u-sub in the second integral we find that this is equal to 
+\begin{align*}
+  &=\frac{1}{2} \int_{0}^{\infty} \frac{1 - e^{iz}}{x^2} dz + \frac{1}{2} \int_{-\infty}^{0} \frac{1 - e^{iz}}{x^2} dz \\
+  &=\frac{1}{2} \int_{-\infty}^{\infty} \frac{1 - e^{iz}}{x^2} dz 
+\end{align*}
+
+If we consider the following contour $C$ in the complex plane, [insert image], and take the integral of the function $f(z) = \frac{1-e^{iz}}{z^2}$ then by Cauchy's theorem we have 
+\[ \int_C f(z) dz = 0 \]
+However, we can split the integral over the entire contour into integrals over different parts of the contour, and notice that the integral on line superimposed with the real line is exactly the integral we need.
+
+\vskip 0.5cm
+\underline{Claim:} The integral over the semi-cicle of radius $R$ in the complex plane goes to zero as $R \rightarrow \infty$.
+\[ \int_{\gamma_2}  \frac{1-e^{iz}}{2} dz \xrightarrow{R \rightarrow \infty} 0\]
+
+\vskip 0.25cm
+\underline{Proof:}
+
+\begin{align*}
+  \left| \int_{\gamma_2}  \frac{1-e^{iz}}{z^2} dz \right| &\leq \int_{\gamma_2}  \left|\frac{1-e^{iz}}{z^2}\right| d\left|z\right| \\
+  &=\int_{\gamma_2} \frac{\left|1-e^{iz}\right|}{\underbrace{\left|z^2\right|}_{R^2}} d\left|z\right| \\
+  &\leq \frac{2}{R^2} \times \pi R \\
+  &\xrightarrow{R \rightarrow \infty} 0
+\end{align*}
+
+where for the last inequality we are that 
+\begin{align*}
+  \left| 1 - e^{iz} \right| \leq \left|1\right| + \left|e^{iz}\right| \\
+  &\leq 1 + 1 = 2
+\end{align*}
+
+since 
+\begin{align*}
+  z = x + iy \implies \left|e^{iz}\right| &= \left|e^{x} e^{iy}\right|\\
+  &\leq 1 \text{ if } y \geq 0
+\end{align*}
+This is why we chose the circle in the upper half plane rather than the lower half.
+
+% \begin{dottedbox}
+%   Since this integral is zero, and the integral over the entire contour is zero, our original integral must also be zero.
+% \end{dottedbox}
+
+For the integral over $\gamma_4$, we can use the taylor expansion. Since the contour lies extremely close to zero, the later terms in the series expansion are bounded near $z = 0$.
+
+Writing the expansion,
+\begin{align*}
+  f(z) &= \frac{1 - e^{iz}}{z^2} \\
+  &= \frac{1 - (1 + iz + \frac{1}{2!}(iz)^2 + \cdots )}{z^2} \\
+  &= \frac{-i}{z} + \underbrace{Other terms}_{bounded near z = 0}
+\end{align*}
+
+So, we can get the integral over $\gamma_4$ as 
+% \begin{align*}
+%   \int_{\gamma_4} f(z) dz &= \int_{\gamma_4} \frac{-i}{z} dz + \underbrace{\int_{\gamma_4} (\cdots) dz}_{\text{\int_{\gamma_4} (\cdots) dz}}
+% \end{align*}
+
+[Complete the rest of the proof over weekend when recording comes out]
+
+\vskip 1cm
+\subsection{Jordan's Lemma:}
+
+\begin{dottedbox}
+  \underline{Jordan's Lemma} states that if we have a function of the form $f(z) = e^{aiz} g(z)$, $a \in \R_{\geq 0}$ and we integrate over a semi-circular contour of radius $R$ in the upper plane, then 
+  \[ \int_{C_R} f(z) dz  \leq \left( \sup_{C_R} \left| g(z) \right| \right) \cdot \frac{\pi}{a} \]
+\end{dottedbox}
+
+Why is this lemma useful? If we use our naive approach, as we did in the earlier integral, then 
+\begin{align*}
+  \left| e^{iaz} \right| \left| g(z) \right| \leq 1 \cdot \left| g(z) \right|
+\end{align*}
+
+But this is a \emph{super lossy estimation} because the exponential dies off really quickly and is only close to $1$ in magnitude in a small region. Jordan's Lemma give us a much tighter bound.
+
+\vskip 0.5cm
+
+[Complete the proof from recording]
+
+\end{document}

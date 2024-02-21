@@ -1,0 +1,261 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture64}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{January 28 - Integrating over curves}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+In calculus, we learned how to integrate over intervals. Today, we'll learn how to integrate complex valued functions over curves in the complex plane.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Integral over a curve}
+  \vskip 0.5cm
+  We define the integral of a function $f(z)$ over a curve $\gamma$
+  \[ \int_{\gamma} f(z) dz \defeq \int_{\gamma} \text{Re}(f(z))dz + i \int_{\gamma} \text{Im}(f(z))dz \]
+\end{mathdefinitionbox}
+
+
+\vskip 0.5cm
+\subsection{What is a curve?}
+\begin{itemize}
+  \item A \textbf{\emph{parameterized curve}} is a continuous function $\gamma : \underbrace{[a, b]}_{\subset \R} \rightarrow \C$
+
+  \item We say $\gamma$ is \textbf{\emph{piece-wise smooth}} if there exist finite subdivisions of $[a, b]$ on which $\gamma$ is smooth (in the Math 104 sense i.e. the real and imaginary parts are separately infinitely differentiable).
+  
+  [include graphs of piece-wise smooth paths]
+
+  \item \underline{Example:} $\gamma(t) = z_0 + re^{i\theta}$ where $z_0 \in \C$, $r \in \R_{\geq 0}$, $t \in [0, 2\pi]$. This path traces out a circle of radius $r$ centered around the point $z_0$.
+  
+  [include graph]
+
+  \item \underline{Example:} Given a path $\gamma : [a, b] \rightarrow \C$. Let $\gamma^{-} : [a, b] \rightarrow \C$ be $\gamma^{-}(t) = \gamma(a + b - t)$. Then $\gamma^{-}$ is the same curve but traversed in reverse orientation.
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{So, how do we actually integrate?}
+Let $\gamma : [a, b] \rightarrow \C$ be a "nice" curve, where "nice" means piece-wise smooth parameterized. Then,
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} The integral of $f(z)$ over $\gamma$ is
+  \[ \int_{\gamma} f(z) dz = \int_{a}^{b} f(\gamma(t)) \gamma'(t) dt \]
+  and these integrals have some nice properties:
+  \begin{enumerate}
+    \item \underline{Linearity:} Say $\lambda, \mu \in \C$ Then
+    \[ \int_{\gamma} \lambda f(z) + \mu g(z) dz = \lambda \in_{\gamma} f(z)dz + \mu \int_{\gamma} g(z)dz \]
+
+    \item \underline{orientation:} 
+    \[ \int_{\gamma} f(z) dz = - \int_{\gamma^{-}} f(z) dz \]
+  \end{enumerate} 
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{\textbf{Examples:}}
+\begin{enumerate}[label=(\alph*)]
+  \item $\gamma : [a,b] \rightarrow \C$ given by $\gamma(t) = t$:
+  \[ \int_{\gamma} f(z)dz = \int_{a}^{b} f(t)dt \]
+
+  \item $\gamma : [a,b] \rightarrow \C$ given by $\gamma(t) = it$:
+  \[ \int_{\gamma} f(z)dz = \int f(it) i dt = i \int f(it) dt \]
+\end{enumerate}
+
+\vskip 0.5cm
+Recall that a \textbf{\emph{primitive}} (i.e. antiderivative) of $f$ is $F$ such that $F'(z) = f(z)$. Then, the fundamental theorem of calculus is
+
+\begin{dottedbox}
+  \textbf{\emph{Fundamental Theorem of Calculus:}} For a "nice" curve $\gamma : [a,b] \rightarrow \C$ and function $f$ with primitive $F$,
+  \[ \int_{\gamma} f(z)dz = F(\gamma(b)) - F(\gamma(a)) \]
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{\emph{Corollary:}} If $\gamma$ is a \textbf{\emph{closed}} curve i.e. $\gamma(a) = \gamma(b)$ and $f$ has a primitive on (an open neighborhood of) $\gamma$, then 
+
+\[ \int_{\gamma} f(z)dz = 0 \]
+
+\vskip 1cm
+\subsection{Most fundamental example: $f(z) = z^n, n \in \mathbb{Z}$}
+  
+Consider  the function $f(z) = z^n, n \in \mathbb{Z}$ and the curve $\gamma : [0, 2\pi] \rightarrow \C$ where $\gamma(t) = re^{it}$. What is $\int_{\gamma} f(z) dz$?
+
+\begin{dottedbox}
+  The integral is 
+  \begin{align*}
+    \int_{\gamma} f(z) dz &= \int_{0}^{2\pi} re^{int} (ri e^{it})dt \\
+    &= r^{n+1}i \int_{0}^{2\pi} e^{i(n+1)t} dt
+  \end{align*}
+
+  \vskip 0.5cm
+  \underline{If $n \neq -1$:} $e^{i(n+1)t}dt$ has primitive 
+  \[ \frac{1}{i(n+1)}e^{i(n+1)t} \]
+
+  So, the integral is 
+  \[ \int_{0}^{2\pi} e^{i(n+1)t} dt = 0 \]
+
+  \vskip 0.5cm
+  \underline{If $n = -1$:} Then, we have 
+  \begin{align*}
+    \int_{\gamma}f(z) dz &= i\int_{0}^{2\pi} e^{i(n+1)t} dt \\
+    &= \int_{0}^{2\pi} \\
+    &= 2\pi i 
+  \end{align*}
+\end{dottedbox}
+
+\vskip 0.5cm
+Precisely why does the primitive not work for $n = -1$? The issue lies with the fact that the primitive of $\frac{1}{z}$ is the \textbf{\emph{logarithm}}.
+
+The complex logarithm isn't defined along a full circle around the origin. We'll revisit this when studying branch cuts soon.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Conclusion}
+  \vskip 0.5cm
+  We find that 
+  \[ \int_{\partial B_r(0)} z^n dz = \begin{cases}
+    0 \;\;\; n \neq -1 \\
+    2\pi i \;\;\; n = 1
+  \end{cases} \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\textbf{\emph{Note:}} A very interesting observation is that this in \textbf{\emph{independent of $r$}}. This is surprising, and foreshadows some incredible results we'll see soon.
+
+\end{document}

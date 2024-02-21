@@ -1,0 +1,333 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 Lecture 3},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{January 23 - More examples, Transition Maps, Smooth Atlases}
+\vskip 0.5cm
+
+So far, we've studied \underline{topological manifolds} whch are topologcal spaces with some additional properties, namely, they are
+\begin{itemize}
+  \item Hausdorff
+  \item Locally Euclidean
+  \item Second Countable
+\end{itemize}
+
+\vskip 0.5cm
+Some important properties of topologcial manifolds: They are
+\begin{itemize}
+  \item locally compact
+  \item admit compact exhaustions
+  \item paracompact
+\end{itemize}
+
+\vskip 1cm
+\subsection{Charts}
+Let $M^n$ be an $n-$dimensional manifoold. At each point $p \in M$, there exists a neighborgood $U$ and homeomorphism $\phi : U \rightarrow \tilde{U} \subseteq_{open} \mathbb{R}^n$.
+
+\vskip 0.5cm
+[Insert Figure]
+
+\vskip 0.5cm
+Then, the pair $(U, \phi)$ is called a \textbf{chart}. Also, the map $\phi(q)$ can be thought of as $\phi(q) = (\psi^1(q, \dots, \phi^n(q)))$ where the $\phi^i$ are called \textbf{coordinate functions}.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Example:} The unit circle $\mathbb{S}^n \subset \mathbb{R}^{n+1}$ is an $n-$dimensional manifold which can be covered by charts $(U_i^{\pm}, \phi_i^{\pm})$ where 
+  \begin{align*}
+    U_i^{\pm} &= \\
+    \phi_i^{\pm} &= 
+  \end{align*}
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{Example:} Projective Space is defined as 
+  \[ \mathbb{R P}^n = (\mathbb{R}^{n+1}/\sim) \]
+  with the equivalence relation $\vec{x} \sim \vec{y}$ f $\vec{x} = \lambda \vec{y}$ for $\lambda \in \mathbb{R}_{\neq 0}$.
+
+  \vskip 0.5cm
+  Projectvie space is the same as the equivalence class of lines $\{ \text{Lines } L \subset \mathbb{R}^{n+1}, \vec{ 0} \in L \}$ with the quotient Topology endowed by the quotient map
+  \[ \pi : (\mathbb{R}^{n+1} - \{ \vec{0} \}) \rightarrow \mathbb{RP}^{n} \]
+  where we say $A \subset \mathbb{RP}^{n}$ is open ff $\pi^{-1}(A)$ is open.
+\end{dottedbox}
+
+To show that Projective Space is a manifold by coordinate charts, wrirte
+\[ [(x_1, \dots, x_{n+1})] = [x_1 : \cdots : x_{n+1}] \]
+
+Note that 
+\[ [x_1 : \cdots : x_{n+1}] = [\lambda x_1 : \cdots : \lambda x_{n+1}] \] for any $\lambda \neq 0$.
+
+Then, define $U_i = \{ [x_1 : \cdots : x_{n+1}] : x_i =\neq 0 \} \subset_{open} \mathbb{RP}^n$ and the map $\phi_i : U_i \rightarrow \mathbb{R}^n$ as 
+\[ [x_1 : \cdots : x_{n+1}] \mapsto \left( \frac{x_1}{x_i}, \dots,  \frac{x_{i-1}}{x_i},  \frac{x_{i+1}}{x_i}, \dots,  \frac{x_{n+1}}{x_i} \right) \]
+
+
+[write the rest after class from photo taken]
+
+\vskip 1cm
+\subsection{Smooth Manifolds}
+
+\subsubsection{Transition Maps}
+Suppose $M^n$ is a topological manifold. 
+
+\begin{mathdefinitionbox}{Transition Map}
+\vskip 0.5cm
+  \underline{\textbf{Def:}} If $(U,  \phi)$, $(V, \psi)$ are charts of $M$, then 
+  \[ \restr{\psi \circ \phi^{-1}}{\psi(U \cap V)} : \phi(U \cap V) \rightarrow \psi(U \cap V)  \] is a \underline{transition map} or a \underline{change of coordinates map}.
+
+  \vskip 0.5cm
+  [Insert Image later]
+
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} Transition maps are homeomorphisms.
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof:}} $\restr{\psi \circ \phi^{-1}}{\psi(U \cap V)}$ and $\left( \restr{\psi \circ \phi^{-1}}{\phi(U \cap V)} \right)^{-1} = \restr{\phi \circ \psi^{-1}}{\psi(U \cap V)} $ are both continuous since they are the compositions (and then restrictions) of continuous functions.
+\end{dottedbox}
+
+\vskip 1cm
+For example, consider $M = \mathbb{R}^n$. 
+\begin{itemize}
+  \item We obtain one chart $(U, \phi)$ from \underline{Polar Coordinates}:
+  \begin{align*}
+    &U = \mathbb{R}^2 \setminus \{ \mathbb{R}_{\geq 0} \times \{ 0 \} \}\\
+    &\phi : U \rightarrow \mathbb{R}_{+} \times (0, 2\pi) \text{ defined by } \\
+    &\phi(\vec{z}) = (\lvert \vec{z} \rvert, \text{arg}(\vec{z}))
+  \end{align*}
+
+  \item And another chart $(V, \psi)$ from \underline{Euclidean coordinates}:
+  \begin{align*}
+    &V = \mathbb{R}^2 \\
+    &\psi : \mathbb{R}^2 \rightarrow \mathbb{R}^2 \text{ defined by} \\
+    &\psi(\vec{z}) = (z_1, z_2)
+  \end{align*}
+  \item We can then understand the transition map between them: [Write from picture taken]
+\end{itemize}
+
+\vskip 1cm
+Another example is $M = \mathbb{S}^2 \subset \mathbb{R}^3$ and its open charts $(U_i^{\pm}, \phi_i^{\pm})$.
+
+\begin{itemize}
+  \item Consider the charts $(U_1^+, \phi_1^+)$ and $(U_3^+, \phi_3^+)$. [Draw diagram from pciture taken]
+  \item The transition map between these charts is 
+  \begin{align*}
+    \phi_3^+ \circ (\phi_1^+)^{-1} (x_2, x_3) &= \phi_3^+(\sqrt{1-x_2^2 -x_3^2}, x_2, x_3) \\
+    &= (\sqrt{1-x_2^2-x_3^2}, x_2)
+  \end{align*}
+\end{itemize}
+
+\vskip 1cm
+\subsubsection{Smoothness and Atlases}
+
+\vskip 1cm
+\begin{mathdefinitionbox}{Smooth compatibility}
+  \begin{itemize}
+    \item   \underline{\textbf{Def:}} Given a topological manifold $M$, two of its charts $(U, \phi)$, $(V, \psi)$ are \textbf{smoothly compatible} if both transition maps are \textbf{smooth}
+    \[ \restr{\psi \circ \phi^{-1}}{\phi(U \cap V)}, \restr{\phi \circ \psi^{-1}}{\psi(U \cap V)} \]
+    
+    \item When we say both transitions are smooth, we mean infinitely differentiable.
+    \item \underline{Remark:} These transition maps are in fact \emph{diffeomorphisms}.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\begin{mathdefinitionbox}{Atlases}
+  \begin{itemize}
+    \item \underline{\textbf{Def:}} Given a topological manifold $M$, an atlas $\mathcal{A}$ of $M$ is a collection of charts such that 
+    \[ M = \bigcup_{(U, \phi) \in \mathcal{A}} U \]
+
+    \item $\mathcal A$ is \textbf{smooth} if all charts of $\mathcal A$ are smoothly compatible.
+    
+    \item $\mathcal{A}$ is a \textbf{maximal smooth atlas} if there is no smooth atlas $\mathcal{A}'$ such that $\mathcal{A} \subset \mathcal{A}$. 
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} Every smooth atlas $\mathcal{A}$ of $M$ is contained in a unique maximal smooth atlas.
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof:}} Let $\overline{\mathcal{A}} = \{ (U, \phi) \text{ charts on }M : (U, \phi) \text{ smoothly compatible with all } (V, \psi) \in \mathcal{A} \} \supset A$. 
+  \begin{enumerate}
+    \item Then, $\overline{\mathcal{A}}$ is a smooth atlas on $M$. 
+    
+    \vskip 0.5cm
+    We want to check $(U_1, \phi_1), (U_1, \phi_1) \in \overline{\mathcal{A}}$ are smoothly compatible i.e. the smoothness of the transition maps $\phi_2 \circ \phi_1^{-1}$ and $\phi_1 \circ \phi_2^{-1}$. 
+    
+    
+    Now, we may not know whether these charts are compatible. What we \emph{do} know is that for some point $p \in U_1 \cap U_2$ there is a chart $(V, \psi) \in \mathcal{A}$ such that $p \in V$.
+
+    Now, by definition of $\overline{\mathcal{A}}$ we know that $\phi_2 \circ \psi^{-1}$ and $\psi \circ \phi_1^{-1}$ are smooth (since those charts are smoothly compatible). Thus, 
+    \[ \phi_2 \circ \phi_1^{-1} = (\phi_2 \circ \psi^{-1}) \circ (\psi \circ \phi_1^{-1}) \] is smooth as a composition of smooth maps on appropriate domains.
+
+    [Draw Diagram]
+
+    \vskip 0.5cm
+    \item Next, we want to show that $\overline{\mathcal{A}}$ is maximal. 
+    
+    \vskip 0.25cm
+    \underline{Claim:} Suppose $\mathcal{A}' \supset \mathcal{A}$ where $\mathcal{A}'$ s a smooth atlas. Then, $\mathcal{A}' \subset \overline{\mathcal{A}}$.
+
+    \vskip 0.25cm
+    Note that fi $(U', \phi') \in \mathcal{A}'$ then this chart is compatble wth every chart in $\mathcal{A}'$. Since $\mathcal{A} \subset \mathcal{A}'$ we have that $(U', \phi')$ is compatible with all charts in $\mathcal{A}$. So, $(U', \phi') \in \overline{\mathcal{A}}$.
+  \end{enumerate}
+  $\implies$ Maximality and Uniqueness.
+
+  \vskip 0.5cm
+  \underline{Remark:} If smooth atlases $\mathcal{A}_1$, $\mathcal{A}_2$ are such that any $(U_1, \phi_1) \in \mathcal{A}_1$ is compatible with any $(U_2, \phi_2) \in \mathcal{A}_2$, then $\overline{\mathcal{A}_1} = \overline{\mathcal{A}_2}$.
+
+  \vskip 0.5cm
+  \underline{Proof:} $\mathcal{A}_{12} \defeq \mathcal{A}_1 \cup \mathcal{A}_2$. Then, $\overline{\mathcal{A}}_{12}$ is a maximal smooth atlas containing $\mathcal{A}_{12}$ and thus also containing both $\mathcal{A}_1$ and $\mathcal{A}_2$. 
+\end{dottedbox}
+
+\subsubsection{Smooth manifolds}
+\vskip 1cm
+\begin{mathdefinitionbox}{Smooth Structure and Smooth Manifolds}
+  \begin{itemize}
+    \item \underline{\textbf{Def:}} A maximal smooth atlas $\mathcal{A}$ on a topological manifold $M$ s a smooth structure on $M$.
+    \item \underline{\textbf{Def:}} A smooth manifold is a pair $(\underbrace{M^n}_{\text{top. mfd.}}, \underbrace{\mathcal{A}}_{\text{smooth structure on $M$}})$ 
+  \end{itemize}
+
+  \underline{\textbf{Remark:}}The above are $C^{\infty}$ manifolds but we can make similar definitions for $C^{k}, C^{k, \alpha}, \underbrace{C^{w}}_{\text{analytic}}$ or complex manifolds.
+\end{mathdefinitionbox}
+
+
+\end{document}
