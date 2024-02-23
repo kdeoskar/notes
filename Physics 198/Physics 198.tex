@@ -1496,5 +1496,162 @@ Calculate later.
 \vskip 1cm 
 The first homotopy and homology groups are very simply related as above. The higher groups have more complicated relations, but there do exist maps between the higher groups (for all orders?).
 
+\pagebreak
+
+\section*{February 22 - Applications of Homology}
+
+\vskip 0.5cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time, we saw that the Homology groups of the torus are given by 
+  \[ H_n\left( T^2 \right) = \begin{cases}
+    \mathbb{Z} \oplus \mathbb{Z}, n = 1 \\
+    \mathbb{Z}, n = 2, 0 \\
+    0, \text{ else}
+  \end{cases} \]
+\end{itemize}
+
+\vskip 0.5cm
+Let's calculate the Homology groups of the sphere now. 
+
+\vskip 0.5cm
+\subsection{Homology of $\mathbb{S}^n$}
+
+\vskip 0.5cm
+We can endow $\mathbb{S}^n$ with the $\Delta$ complex consisting of two $n$-simplices and the simplex group is 
+\[ \Delta_n \left(\mathbb{S}^n\right) = \mathbb{Z}\{U\} \oplus \mathbb{Z}\{L\}  \]
+
+With 
+\[ \ker \]
+[Finish from picture]
+
+\vskip 0.5cm
+Let's do one more calculation.
+
+\vskip 1cm
+\subsection{Homology of $\mathbb{RP}^2$}
+
+\vskip 0.5cm
+The Planar Diagram of $\mathbb{RP}^2$ is as below, where $U$ and $L$ are the 2-simplices, $(a, b, c)$ are the 1-simplices $v$ and $w$ are the 1-simplices. The black arrows denote the gluing, whereas the blue arrows denote the simplex orientations.
+
+\begin{center}
+  \includegraphics*[scale=0.50]{Homology of RP2.png}
+\end{center}
+
+\vskip 0.5cm
+[Write more from picture]
+
+\vskip 1cm
+\subsection{Formal Properties of Homologies}
+
+\vskip 0.5cm
+We want to make sure that Homology is indeed a topological \emph{invariant}, and we will do so using \emph{Induced maps} (we came across these when studying homotopy invariance as well).
+
+For homotopy, we defined the induced map $f_*$. For Homology, we will define $f_{\#}$.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  Rather than defining the map $F_{\#} : H_n(X) \rightarrow H_n(Y)$, we define a map on the level of chain groups 
+  \[ f_{\#} : \Delta_n(X) \rightarrow \Delta_n(Y) \] to have the action \[ \sigma \mapsto f \circ \sigma \]
+  where $f : X \rightarrow Y$ is a homeomorphism.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+This then gives us an mnduced map between the homology groups because of the following lemma:
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Lemma:}} 
+\end{dottedbox}
+
+The Kernel and Image of a map $\partial_n$ are preserved under the action of $f_{\#}$, thus so is their kernel (the homology group).
+
+\begin{dottedbox}
+  Note: $f$ is a homotopy equivalence, thus $f_{\#}$ is an isomorphism.
+\end{dottedbox}
+
+\vskip 0.5cm
+\subsection*{Degree of a map}
+
+\vskip 0.5cm
+In physics, often we are interested in maps from the $n-$Sphere to itself.
+
+\vskip 0.5cm
+Now, for any such map $f : \mathbb{S}^n \rightarrow \mathbb{S}^n$, the induced map is $f_{\#} : \underbrace{H_n(\mathbb{S}^n)}_{\mathbb{Z}} \rightarrow \underbrace{H_n(\mathbb{S}^n)}_{\mathbb{Z}}$. 
+
+\vskip 0.5cm
+But notice that any such map $\mathbb{Z} \rightarrow \mathbb{Z}$ can be characterized as just multiplying each integer by some other integer $m$. This number $m$ is called the \emph{\textbf{degree}} of the map:
+
+\vskip 0.5cm
+\subsubsection*{Some Properties of the degree}
+
+\begin{itemize}
+  \item $deg(\mathbf{1}) = 1$
+  \item $deg(\mathbf{1}) = 1$
+  \item $deg(\mathbf{f}) = 0$ if $f$ is not surjective
+  \item The degree of the antipodal map is $(-1)^{n+1}$
+\end{itemize}
+
+\vskip 0.5cm
+This will allow us to prove the \emph{\textbf{Hairy Ball Theorem}} for $\mathbb{S}^n$!
+
+\vskip 0.5cm
+
+\begin{dottedbox}
+  \emph{\textbf{Hairy Ball Theorem:}} Write statement later.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} Suppose $V(x)$ is a unit tangent vector field i.e. for all $x \in \mathbb{S}^b$ we have $x \perp V(x)$
+
+\vskip 0.25cm
+We can define a homotopy between the maps $\mathbf{x}$ and $\mathbf{v(x)}$. In particular, we can get a homotopy equivalence between $\mathbf{1}$ and $\mathbf{-1}$ as
+\[ f(tx) =  \]
+
+\vskip 0.5cm
+[complete after class]
+
+\vskip 1cm
+\section{Identical Particles} (Based on work by Leinass and Myrrheim)
+Now we come to a physical application of $\pi_1(X)$! 
+
+\vskip 0.5cm
+Let $X$ be the coordinate space or configuration space for a single particle. Then, for $n$ identical particles, we would naively assume the configuration space is $X \times \cdots \times X$, but this does not account for the fact that the $n$ particles are identical! 
+
+\vskip 0.5cm
+If we have a configuration $(x_1, x_2, \dots, x_n)$, swapping any pair of them makes no distance. So, the \emph{actual} configuration space is 
+\[ X / S_n \]
+where $S_n$ is the $n$-th permutation group. Physically, this is fine because $X^n / S_n$ is locally isomorphic to $X^n$.
+
+\vskip 0.5cm
+Any configuration/path in $X^n / S_n$ can be \emph{lifted} to a number of configurations/paths in $X^n$ -- and this is what we do in Classicaly Mechanics! We choose only of the paths in $X^n$ and work in its locality. More formally, $X^n / S_n$ is a covering space for $X^n$.
+
+\vskip 0.5cm
+However, this doesn't work in Quantum Mechanics.
+
+\vskip 0.5cm
+Dealing with $S_n$ is annoying so let's just consider two particles for now, with $X = \R^n$. Then, the configuration space -- when using generalzed radial coordinates -- is 
+\[ \left(\underbrace{\R^n}_{C.O.M.} \times \underbrace{\R_+}_{radial length} \times \underbrace{\mathbb{S}^{n-1}}_{rel. angular position}\right) / \left(\mathbb{Z}/2\mathbb{Z}\right) \]
+
+And recall that $\mathbb{S}^{n-1} / \left(\mathbb{Z} / 2\mathbb{Z}\right)\cong \mathbb{RP}^{n-1}$. This is not a simply connected space, so $\pi_1\left(\mathbb{RP}^{n-1}\right)$ is nontrivial. Now, $\mathbb{S}^{n-1}$ is the universal covering space of $\mathbb{RP}^{n-1}$.
+
+\vskip 0.5cm
+[Fill in some detail]
+
+\vskip 0.5cm
+When we quantize this system, the number of phases that the wavefunction can pick when we switch the two particles is given by 
+\[ \pi_1(\mathbb{RP}^{n-1}) = \begin{cases}
+  \mathbb{Z}, n = 2 \\
+  \mathbb{Z} / 2 \mathbb{Z}, n \neq 2 \\
+\end{cases} \]
+
+\vskip 0.5cm
+This measn that in 3-dimensions, we can only have two types of particles (bosons and fermions!) but in \emph{\textbf{two dimensions}}, the phase can be \emph{any} value. Thus, these particles are called \emph{\textbf{anyons}}!
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Note:} The correct way of talking about this situation is in terms of \emph{vector bundles} because the wavefunction is actually a vector bundle defined over the configuration space.
+\end{dottedbox}
+
 \end{document} 
 

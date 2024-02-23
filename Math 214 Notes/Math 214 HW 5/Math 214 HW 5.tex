@@ -221,8 +221,16 @@ has rank zero at the origin, whereas it has rank 1 everywhere else on $\R^2$. So
 \vskip 0.5cm
 The book proves that $E$ is a topological $(n-1)$ manifold and that there exists a smooth structure on it such that $\pi$ is a smooth covering map. Now, let's suppose $\tilde{E}$ is the same set but with a different smooth strucuture on it, such that $\tilde{\pi} : \tilde{E} \rightarrow M$ is smooth. To show that the two smooth structures on $E$ must be the same, let's prove that $\mathrm{id} : E \rightarrow \tilde{E}$ is a diffeomorphism.
 
+\[\begin{tikzcd}
+	E && {\tilde{E}} \\
+	& M
+	\arrow["{\mathrm{id}}", shift left, from=1-1, to=1-3]
+	\arrow["{\tilde{\pi}}", from=1-3, to=2-2]
+	\arrow["\pi"', from=1-1, to=2-2]
+\end{tikzcd}\]
+
 \vskip 0.5cm
-Every point in $E$ is in the pre-image of some evenly covered $V \subseteq S$.
+Every point in $E$ is in the pre-image of some evenly covered $V \subseteq S$. Let $U$ be the component of $\pi^{-1}(V)$ which contains $p$. Then, since $V$ is evenly covered,
 
 \vskip 0.5cm
 \hrule 
