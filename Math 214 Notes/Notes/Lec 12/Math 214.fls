@@ -1,7 +1,7 @@
-PWD c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Math 214 Notes\Math 214 HW 5
+PWD c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Math 214 Notes\Notes\Lec 12
 INPUT C:\Users\kesha\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Math 214 Notes\Math 214 HW 5\Math 214 HW 5.tex
-OUTPUT Math 214 HW 5.log
+INPUT c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Math 214 Notes\Notes\Lec 12\Math 214.tex
+OUTPUT Math 214.log
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -76,18 +76,6 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.s
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mhsetup.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
@@ -108,10 +96,6 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hyperref.sty
@@ -441,8 +425,16 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryfadings.code.tex
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
-OUTPUT Math 214 HW 5.pdf
+OUTPUT Math 214.pdf
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcbposter.code.tex
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\dashrule\dashrule.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\dashrule\dashrule.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\dashrule\dashrule.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\dashrule\dashrule.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\ifmtarg\ifmtarg.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\ifmtarg\ifmtarg.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\ifmtarg\ifmtarg.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\ifmtarg\ifmtarg.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\biblatex.sty
@@ -496,10 +488,10 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\x
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
-INPUT .\Math 214 HW 5.aux
-INPUT Math 214 HW 5.aux
-INPUT Math 214 HW 5.aux
-OUTPUT Math 214 HW 5.aux
+INPUT .\Math 214.aux
+INPUT Math 214.aux
+INPUT Math 214.aux
+OUTPUT Math 214.aux
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -512,15 +504,15 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-s
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT .\Math 214 HW 5.out
-INPUT Math 214 HW 5.out
-INPUT .\Math 214 HW 5.out
-INPUT Math 214 HW 5.out
-INPUT Math 214 HW 5.out
-INPUT Math 214 HW 5.out
-INPUT .\Math 214 HW 5.out
-INPUT .\Math 214 HW 5.out
-OUTPUT Math 214 HW 5.out
+INPUT .\Math 214.out
+INPUT Math 214.out
+INPUT .\Math 214.out
+INPUT Math 214.out
+INPUT Math 214.out
+INPUT Math 214.out
+INPUT .\Math 214.out
+INPUT .\Math 214.out
+OUTPUT Math 214.out
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
@@ -528,13 +520,13 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\lbx\english.lbx
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\lbx\english.lbx
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\biblatex\lbx\english.lbx
-OUTPUT Math 214 HW 5.bcf
-INPUT Math 214 HW 5.bbl
-INPUT .\Math 214 HW 5.bbl
-INPUT Math 214 HW 5.bbl
-INPUT .\Math 214 HW 5.bbl
-INPUT .\Math 214 HW 5.bbl
-INPUT Math 214 HW 5.bbl
+OUTPUT Math 214.bcf
+INPUT Math 214.bbl
+INPUT .\Math 214.bbl
+INPUT Math 214.bbl
+INPUT .\Math 214.bbl
+INPUT .\Math 214.bbl
+INPUT Math 214.bbl
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
@@ -562,6 +554,11 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsb.fd
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT .\Math 214.toc
+INPUT Math 214.toc
+INPUT Math 214.toc
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
@@ -571,24 +568,31 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
-INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+OUTPUT Math 214.toc
 INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
-INPUT Math 214 HW 5.aux
-INPUT .\Math 214 HW 5.out
-INPUT .\Math 214 HW 5.out
-INPUT Math 214 HW 5.run.xml
-OUTPUT Math 214 HW 5.run.xml
+INPUT Math 214.aux
+INPUT .\Math 214.out
+INPUT .\Math 214.out
+INPUT Math 214.run.xml
+OUTPUT Math 214.run.xml
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
@@ -601,6 +605,10 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb

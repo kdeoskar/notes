@@ -159,7 +159,7 @@
 
 \vskip 0.5cm
 \textbf{Proof:}
-
+From LeeSM Proposition 4.28, We know that if $\pi : M \rightarrow N$ is a smooth submersion between smooth manifolds then $\pi$ is an open map. Now, consider $M$ to be a non-empty smooth compact manifold and let $N = \R^k$. $M \subseteq M$ is open when viewed as a subset of itself. However, $F(M)$ is a compact subset of $\R^k$ since $F$ is a smooth map, and compact subsets of euclidean space are not open. Thus, we have a contradiction.
 
 \vskip 0.5cm
 \hrule 
@@ -174,6 +174,7 @@
 \vskip 0.5cm
 \textbf{Proof:}
 
+From Theorem 4.28, we know that surjective smooth submersions are quotient maps. Then, from the uniqueness of the quotient topology, we know there is no other smooth manifold structure on $N$ such that the conclusion of Theorem 4.29 holds.
 
 \vskip 0.5cm
 \hrule 
@@ -187,6 +188,17 @@
 \vskip 0.5cm
 \textbf{Proof:}
 
+
+For any $t \in \R$, we can simply choose $x = t, y = 1$. Then, $\pi(x, y) = \pi(t, 1) = t$, so the map is surjective. The map is also smooth since the partial derivatives with respect to $x^1, x^2 = x, y$ are smooth 
+\[ \frac{\partial f}{\partial x} = y \;\;\;\;\;\;\; \frac{\partial f}{\partial y} = x \] 
+
+However, $\pi$ is not a smooth submersion since the differential of $\pi$ 
+\[ d\pi_{(0,0)} = \restr{\begin{pmatrix}
+  x \\
+  y
+\end{pmatrix}}{(0,0)} = \mathbf{0} \]
+
+has rank zero at the origin, whereas it has rank 1 everywhere else on $\R^2$. So, $\pi$ is not a constant rank map.
 
 \vskip 0.5cm
 \hrule 
@@ -202,6 +214,15 @@
 \vskip 0.5cm
 \textbf{Proof:}
 
+\begin{dottedbox}
+  \emph{\textbf{Theorem 4.40:}} Suppose $M$ is a connected smooth $n-$manifold and $\pi : E \rightarrow M$ is a \emph{topological} covering map. Then $E$ is a topological $(n-1)$ manifold and there exsits a unique smooth structure on $E$ such that $\pi$ is a smooth covering map.
+\end{dottedbox}
+
+\vskip 0.5cm
+The book proves that $E$ is a topological $(n-1)$ manifold and that there exists a smooth structure on it such that $\pi$ is a smooth covering map. Now, let's suppose $\tilde{E}$ is the same set but with a different smooth strucuture on it, such that $\tilde{\pi} : \tilde{E} \rightarrow M$ is smooth. To show that the two smooth structures on $E$ must be the same, let's prove that $\mathrm{id} : E \rightarrow \tilde{E}$ is a diffeomorphism.
+
+\vskip 0.5cm
+Every point in $E$ is in the pre-image of some evenly covered $V \subseteq S$.
 
 \vskip 0.5cm
 \hrule 

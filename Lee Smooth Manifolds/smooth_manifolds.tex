@@ -166,6 +166,117 @@ Applying $(a)$ tells us that $\mathbb{R}^{n+1} \setminus \{0\}$ as a subspace of
 \hrule
 \vskip 0.5cm
 
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Chapter 4: Submersions, Immersions, and Embeddings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Maps of Constant Rank}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{\emph{Local Diffeomorphisms}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 1cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Exercise 4.9:} Show that the conclusions of Proposition 4.8 still hold if $N$ is a manifold with boundary but not if $M$ is.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof (Sketch):}
+
+\begin{itemize}
+  \item  It follows from the result of Problem 4-2 that if $p \in M$ such that $dF_p$ is non-singular, then $F(p) \in \mathrm{Int}(N)$, which is an manifold without boundary, so naturally the results still apply. 
+  
+  \item If, however, $M$ has non-empty boundary, then the Inverse Function Theorem for manifolds breaks down (See result of Problem 4-1).
+\end{itemize}
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Exercise 4.10:} Suppose $M, N, P$ are manifolds with or without boundary and $F : M \rightarrow N$ is a local diffeomorphism. Prove the following:
+\begin{enumerate}[label=(\alph*)]
+  \item If $G : P \rightarrow M$ is countinuous, $G$ is smooth iff $F \circ G$ is smooth.
+  \item If $F$ is surjective and $G : N \rightarrow P$ is any map, then $G$ is smooth iff $G \circ F$ is smooth.
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose $G$ is smooth, then at each point $p \in M$, $F \circ G$ is the composition of a two smooth maps (local diffeomorphisms restrict to smooth maps around each point). Conversely if $F \circ G$ is smooth, let $p \in P$ and let $U \subseteq M$ be an open set containing $G(p)$ such that $\restr{F}{U} : U \rightarrow V \subseteq N$ is a local diffeomorphsm. Since $G$ is continuous, $G^{-1}(U) \subseteq P$ is open. So, of course, $\restr{F \circ G}{G^{-1}(U)}$ restricts to a smooth map on $G^{-1}(U)$. Then, $\restr{G}{G^{-1}(U)} : G^{-1}(U) \rightarrow U$ can be written as 
+  \[ \restr{G}{G^{-1}(U)} = \restr{\left(F \circ G\right)}{G^{-1}(U)} \circ \restr{F^{-1}}{F(U)} \]
+  so $\restr{G}{G^{-1}(U)}$ is a composition of smooth maps, and is thus smooth itself. We have smooth restrictions for each point $p \in P$ which we can glue together using the Gluing Lemma for smooth functions, to find that $G$ is continuous.
+
+  \vskip 0.5cm
+  \item Suppose $G$ smooth, then $G \circ F$ is the composition of smooth maps and is thus smooth. Conversely, suppose $G \circ F$ is smooth. $F$ is a surjective local diffeomorphism, so for any point $n \in N$ we can write 
+  \[ G = \left( G \circ F \right) \circ F^{-1}   \]
+  So, $G$ is the composition of two smooth maps and is itself a smooth map.
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Rank Theorem:} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof:}
+See https://math.colorado.edu/~macz9339/math6230/outline.pdf.
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+\subsection{Embeddings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Exercise 4.16:} Show that every composition of smooth embeddings is a smooth embedding. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof:}
+
+
+Consider manifolds without boundaries $M, N, P$ and smooth embeddings $F : M \rightarrow N, G : N \rightarrow P$. Then, $F$ and $G$ are individually homeomorphisms onto their images, thus their composition $G \circ F$ is as well. 
+
+\vskip 0.25cm
+Also, since both $F, G$ are smooth immersions, they are both smooth maps whose differentials are injective. So, their composition $G \circ F$ is smooth too, and its differential (given by the chain rule as) at a point $p \in M$
+\[ d\left(G \circ F\right)_{p} = dG_{F(p)} \circ dF_{p} \]
+is the composition of two injective linear maps, thus it is also injective.
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Exercise 4.:} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+
+% \textbf{Proof:}
+
+
+
+% \vskip 0.5cm
+% \hrule
+% \vskip 0.5cm
+
+
 
 \end{document}
 

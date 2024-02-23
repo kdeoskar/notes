@@ -1,0 +1,299 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 12},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{February 22 - Onto Chapter 6! Sard's Theorem.}
+
+\vskip 1cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time, we saw how
+\end{itemize}
+
+\subsection{Measure zero sets in manifolds}
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Measure}
+  We say a subset $A \subseteq \R^n$ has \emph{\textbf{($n$-dimensional) measure zero}} if for any $\delta > 0$ there are $X_1, X_2, \dots \in \R^n$ and $r_1, r_2, \dots > 0$ such that 
+  \[ A \subseteq \bigcup_{i = 1}^{\infty} B_{{r_i}}(X_i) \]
+  and 
+  \[ \sum_{i = 1}^{\infty} r_i^{n} < \delta  \] 
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\subsubsection*{Properties (in $\R^n$):}
+
+\begin{enumerate}
+  \item If $A$ has measure zero, $B \subseteq A \implies B$ has measure zero.
+  \item If $A_1, A_2, \dots$ have measure zero, then $\bigcup_{i = 1}^{\infty} A_i$ has measure zero.
+  \item If $A \cap \left(\{c\} \times \R^{n-1}\right) \subseteq \{c\} \times \R^{n-1}$ has $(n-1)$-dim measure zero for all $c \in \R$, then $A$ has $n$-dim measure zero. (Version of Fubini's Theorem)
+  \item If $f : \cup \R^{n-1} \rightarrow R$ is continuous, then its graph $\Gamma(f) = \{(x, f(x)) :x \in U \} \subseteq \R^n$ has measure zero as well (follows from property 3).
+  \item Every non-trivial affine (linear subspace + constant translation) subspace of $\R^n$ has measure zero.
+  \item If $A \subseteq \R^n$ has measure zero, then $A^c = \R^n \setminus A$ is dense in $\R^n$.
+  \item If $A$ is measure zero, then for all $p \in A$ there exsts a neighborhood $p \in U_p \subseteq_{open} \R^n$ such that $A \cup U_p$ has measure zero.
+  \item If $A \subseteq \R^n$ is measure zero and $F : A \rightarrow \R^n$ is \emph{\textbf{Lipschitz}}, then $F(A)$ is also measure zero.
+  \begin{dottedbox}
+    \emph{\textbf{Lipschitz:}} There exists $K > 0$ such that, for all $x,y$, we have $|F(x) - F(y)| \leq K |x-y|$.
+  \end{dottedbox}
+  \item If $S^{k < n} \subseteq \R^{n}$ is a submanifold, then it has $n$-dim measure zero since it is covered by $k-slice$ charts, each of measure zero.
+\end{enumerate}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  An example of a function which can map a set of measure 0 onto a set of non-zero measure is the \emph{\textbf{Cantor Function}}. Write more later.
+\end{dottedbox}
+
+
+\vskip 1cm
+\subsection{Measure on smooth manifolds}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  \begin{itemize}
+    \item Given a smooth manifolds $M^n$, a subset $A \subseteq M$ is said to have measure zero if for any smooth chart $(U, \phi)$ of $M$, the set $\phi(U \cap A) \subseteq \R^{n}$ has measure zero.
+    \item The above is equivalent to saying there exist smooth charts $(U_i, \phi_i)_{i \in I}$ that cover $M$ i.e. $M = \bigcup_{i \in I} U_i$ such that $\phi_i(U_i \cap A)$ has measure zero for all $i \in I$. 
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Exercise:}} Check that the $A \subseteq \R^n$ has measure zero in the usual sense if and only if $A$ has measure zero when viewing $\R^n$ as a manifold.
+\end{dottedbox}
+
+\vskip 0.5cm
+Some of the properties from $\R^n$ are carried over to the setting wth manifolds. Namely, 
+\begin{enumerate}
+  \item $B \subseteq A$, $A$ has measure 0 miplieis $B$ has measure zero.
+  \item Each $A_i$ has measure zero implies $\bigcup_{i = 1}^{\infty} A_i$ has measure zero.
+  \vskip 0.5cm
+  (6), (7), (9) also hold for smooth manifolds.
+\end{enumerate}
+
+\vskip 1cm
+\subsection{Motivation for Sard's Theorem}
+
+Consider $F : R^2 \rightarrow \R$ defined as $(x,y) \mapsto x^2 - y^2$ and its level sets. 
+\begin{itemize}
+  \item We notice that $0$ is the only critical value, while $\R \setminus \{0\}$ is the set of regular values for this function.
+  \item Also, if we consider the function from last class, we notice that there are visually very few critcal values as compared to regular values.
+\end{itemize}
+Sards theorem makes this intuition more rigorous.
+
+\vskip 1cm
+\subsection{Sard's Theorem}
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $F : M \rightarrow N$
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}}
+
+If the $m=n$ case, we may assume $M = N = \R^n$.
+
+[Complete from image]
+
+\vskip 1cm
+Now the general case. It suffices to show that for all $p \in M$ there exists a neighborhood $p \in U \subseteq_{open} M$ such that the set of cirtical values of $\restr{F}{U}$ has measure zero. So, we may assume that $F : U \subseteq \R^m \rightarrow N$. By further restricting, we may also assume $N = \R^n$. We proceed by induction.
+
+\vskip 0.5cm
+\emph{Base case:} $m = 0$.
+
+\vskip 0.25cm
+All differentials $dF_p : \{\vec{0}\} \rightarrow T_{F(p)} \R^n$. Then, if $n = 0$, there are \emph{\textbf{no critical points/values}} whereas if $n > 0$ then \emph{\textbf{all}} points are critical, $F(M) \subseteq N$. (In fact, if $n = 0$ then $dF_p$ is surjective so we have no critical points/values)
+
+\vskip 0.25cm
+Now, we induct on $m$ for $m, n \geq 1$. Let $C = \{ \text{crit. pts of $F$} \subseteq U \subseteq \R^m \}$ and 
+\[ C_k = \{p \in U \;:\; \restr{\frac{\partial^{l} F}{\partial \left(x^1\right)^l \cdots \partial \left(x^i\right)^l}}{p = 0} = 0 \text{ for all } l \leq k, i_1, \cdots, i_l \in \{1, \dots, m\} \} \] i.e. $C_k$ is the set of points where all partial derviatives upto orer $k$ vanish.
+
+\vskip 0.25cm
+Note that $C \supset C_1 \supset C_2 \supset \cdots $ and each of them are closed in $U$. Now,  write 
+\[ F(C) = \underbrace{F(C - C_1) }_{(i)} \cup\underbrace{ F(C_1 - C_2) \cdots \cup F(C_k - C_{k+1})}_{(ii)} \cup \underbrace{F(C_k)}_{(iii)} \]
+
+\vskip 0.25cm
+We will show that each of (i), (ii), (iii) has measure zero.
+
+\vskip 0.25cm
+\subsubsection*{Part (i) : $F(C - C_1)$ has measure zero}
+Pick $p \in C - C_1$, then replace $U$ by $U - C_1$ and $C$ by $C - C_1$ since $C_1$ is closed. Let's work on these sets. 
+
+\vskip 0.25cm
+[insert image]
+
+\vskip 0.25cm
+WLOG, we have 
+\[ \frac{\partial F^1}{\partial x^1} \neq 0 \]
+
+Set $y^1 = F^1$. We can choose smooth functions $y^2, \cdots, y^m : U \rightarrow \R$ such that 
+\[ \left(  \frac{\partial y^i}{\partial x^j}  \right)_{i , j = 1, \dots, m} \]
+is invertible (for example, we could choose the sums of coordinate functions).
+
+\vskip 0.25cm
+[Write matrix form from picture]
+
+\vskip 0.25cm
+Then, $\Phi = \left(y^1, \dots, y^m \right)$ is a local diffeomorphism at $p$ so there exsits a neighborhood $p \in U^1 \subseteq U$ such that $\Phi\left( U^1 \right)$ is open and $\restr{\Phi}{U'} : U' \rightarrow \Phi(U')$ is invertible with smooth inverse.
+
+\vskip 0.25cm
+Let $\tilde{F} = F \circ \left( \restr{\Phi}{U'} \right)^{-1} : \Phi(U') \rightarrow \R^n$. Note that if $q \in U'$ is a critcal point of $F$ if and only if $\Phi(q)$ is a critical point of $\tilde{F}$. We need to show 
+
+\[ \{\text{Critical points of } \restr{F}{U'} \} = \{F(U' \cap C)\} =  \]
+
+has measure zero.
+
+\vskip 0.25cm
+Now, 
+\begin{align*}
+  F(x^1, \dots, x^m) &= \left( F^1(x^1,\dots, x^m), \dots,  \right) \\
+  &= \tilde{F} \circ \Phi(x^1, \dots, x^m) \\
+  &= \left( y^1 (x^1, \dots, x^m), y^2, \dots, y^m \right) 
+\end{align*}
+
+i.e. $\tilde{F}(x^1, \dots, x^m) = \left(x^1, \tilde{F}^2, \dots, \tilde{F}^m\right)$ and 
+
+\[ d\tilde{F} = \begin{bmatrix}
+  1 & 0 \cdots 0 \\
+  *  \\
+  \vdots & \left( \frac{\partial \tilde{F}^j}{\partial x^i} \right)_{i, j = 2, \dots, m}\\
+  *
+\end{bmatrix} \]
+
+This matrix has dimension $m \times n$ and it is surjective if and only if the smaller matrix 
+\[ \left( \frac{\partial \tilde{F}^j}{\partial x^i} \right)_{i, j = 2, \dots, m} \] is surjective. Define $\tilde{C}_S = C \cap $
+\end{document}
+

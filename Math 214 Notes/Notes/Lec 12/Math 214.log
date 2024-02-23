@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  22 FEB 2024 11:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  22 FEB 2024 15:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 5/Math 214 HW 5.tex"
-(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 5/Math 214 HW 5.tex
+**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex"
+(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-05-11> (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -142,35 +142,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.sty
-Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
- (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count276
-\calc@Bcount=\count277
-\calc@Adimen=\dimen159
-\calc@Bdimen=\dimen160
-\calc@Askip=\skip53
-\calc@Bskip=\skip54
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count278
-\calc@Cskip=\skip55
-) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
-Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
-)
-\g_MT_multlinerow_int=\count279
-\l_MT_multwidth_dim=\dimen161
-\origjot=\skip56
-\l_MT_shortvdotswithinadjustabove_dim=\dimen162
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen163
-\l_MT_above_intertext_sep=\dimen164
-\l_MT_below_intertext_sep=\dimen165
-\l_MT_above_shortintertext_sep=\dimen166
-\l_MT_below_shortintertext_sep=\dimen167
-\xmathstrut@box=\box53
-\xmathstrut@dim=\dimen168
-) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
@@ -183,16 +155,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen169
-\Gin@req@width=\dimen170
-) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip57
-\enit@outerparindent=\dimen171
-\enit@toks=\toks23
-\enit@inbox=\box54
-\enit@count@id=\count280
-\enitdp@description=\count281
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
@@ -226,14 +190,14 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count282
+\c@section@level=\count276
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count283
+\etb@tempcnta=\count277
 )
-\@linkdim=\dimen172
-\Hy@linkcounter=\count284
-\Hy@pagecounter=\count285
+\@linkdim=\dimen161
+\Hy@linkcounter=\count278
+\Hy@pagecounter=\count279
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2023-04-22 v7.00x Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -241,7 +205,7 @@ Now handling font encoding PD1 ...
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count286
+\Hy@SavedSpaceFactor=\count280
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2023-04-22 v7.00x Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -255,21 +219,21 @@ Package hyperref Info: Plain pages OFF on input line 4197.
 Package hyperref Info: Backreferencing OFF on input line 4202.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4449.
-\c@Hy@tempcnt=\count287
+\c@Hy@tempcnt=\count281
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4787.
-\XeTeXLinkMargin=\dimen173
+\XeTeXLinkMargin=\dimen162
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count288
-\Field@Width=\dimen174
-\Fld@charsize=\dimen175
+\Fld@menulength=\count282
+\Field@Width=\dimen163
+\Fld@charsize=\dimen164
 Package hyperref Info: Hyper figures OFF on input line 6066.
 Package hyperref Info: Link nesting OFF on input line 6071.
 Package hyperref Info: Hyper index ON on input line 6074.
@@ -281,9 +245,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6096.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count289
-\c@Item=\count290
-\c@Hfootnote=\count291
+\Hy@abspage=\count283
+\c@Item=\count284
+\c@Hfootnote=\count285
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -292,8 +256,8 @@ File: hpdftex.def 2023-04-22 v7.00x Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count292
-\c@bookmark@seq@number=\count293
+\Fld@listcount=\count286
+\c@bookmark@seq@number=\count287
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty
@@ -301,17 +265,17 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip58
+\Hy@SectionHShift=\skip53
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 27.
+Package hyperref Info: Option `colorlinks' set `true' on input line 25.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
 Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks24
-\pgfutil@tempdima=\dimen176
-\pgfutil@tempdimb=\dimen177
+\pgfutil@everybye=\toks23
+\pgfutil@tempdima=\dimen165
+\pgfutil@tempdimb=\dimen166
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
-\pgfutil@abb=\box55
+\pgfutil@abb=\box53
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
@@ -319,31 +283,31 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks25
-\pgfkeys@temptoks=\toks26
+\pgfkeys@pathtoks=\toks24
+\pgfkeys@temptoks=\toks25
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks27
+\pgfkeys@tmptoks=\toks26
 ))
-\pgf@x=\dimen178
-\pgf@y=\dimen179
-\pgf@xa=\dimen180
-\pgf@ya=\dimen181
-\pgf@xb=\dimen182
-\pgf@yb=\dimen183
-\pgf@xc=\dimen184
-\pgf@yc=\dimen185
-\pgf@xd=\dimen186
-\pgf@yd=\dimen187
+\pgf@x=\dimen167
+\pgf@y=\dimen168
+\pgf@xa=\dimen169
+\pgf@ya=\dimen170
+\pgf@xb=\dimen171
+\pgf@yb=\dimen172
+\pgf@xc=\dimen173
+\pgf@yc=\dimen174
+\pgf@xd=\dimen175
+\pgf@yd=\dimen176
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count294
-\c@pgf@countb=\count295
-\c@pgf@countc=\count296
-\c@pgf@countd=\count297
-\t@pgf@toka=\toks28
-\t@pgf@tokb=\toks29
-\t@pgf@tokc=\toks30
-\pgf@sys@id@count=\count298
+\c@pgf@counta=\count288
+\c@pgf@countb=\count289
+\c@pgf@countc=\count290
+\c@pgf@countd=\count291
+\t@pgf@toka=\toks27
+\t@pgf@tokb=\toks28
+\t@pgf@tokc=\toks29
+\pgf@sys@id@count=\count292
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -354,8 +318,8 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count299
-\pgfsyssoftpath@bigbuffer@items=\count300
+\pgfsyssoftpath@smallbuffer@items=\count293
+\pgfsyssoftpath@bigbuffer@items=\count294
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
@@ -377,52 +341,52 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
-\pgfmath@dimen=\dimen188
-\pgfmath@count=\count301
-\pgfmath@box=\box56
-\pgfmath@toks=\toks31
-\pgfmath@stack@operand=\toks32
-\pgfmath@stack@operation=\toks33
+\pgfmath@dimen=\dimen177
+\pgfmath@count=\count295
+\pgfmath@box=\box54
+\pgfmath@toks=\toks30
+\pgfmath@stack@operand=\toks31
+\pgfmath@stack@operation=\toks32
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count302
+\c@pgfmathroundto@lastzeros=\count296
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen189
-\pgf@picmaxx=\dimen190
-\pgf@picminy=\dimen191
-\pgf@picmaxy=\dimen192
-\pgf@pathminx=\dimen193
-\pgf@pathmaxx=\dimen194
-\pgf@pathminy=\dimen195
-\pgf@pathmaxy=\dimen196
-\pgf@xx=\dimen197
-\pgf@xy=\dimen198
-\pgf@yx=\dimen199
-\pgf@yy=\dimen256
-\pgf@zx=\dimen257
-\pgf@zy=\dimen258
+\pgf@picminx=\dimen178
+\pgf@picmaxx=\dimen179
+\pgf@picminy=\dimen180
+\pgf@picmaxy=\dimen181
+\pgf@pathminx=\dimen182
+\pgf@pathmaxx=\dimen183
+\pgf@pathminy=\dimen184
+\pgf@pathmaxy=\dimen185
+\pgf@xx=\dimen186
+\pgf@xy=\dimen187
+\pgf@yx=\dimen188
+\pgf@yy=\dimen189
+\pgf@zx=\dimen190
+\pgf@zy=\dimen191
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen259
-\pgf@path@lasty=\dimen260
+\pgf@path@lastx=\dimen192
+\pgf@path@lasty=\dimen193
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen261
-\pgf@shorten@start@additional=\dimen262
+\pgf@shorten@end@additional=\dimen194
+\pgf@shorten@start@additional=\dimen195
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box57
-\pgf@hbox=\box58
-\pgf@layerbox@main=\box59
-\pgf@picture@serial@count=\count303
+\pgfpic=\box55
+\pgf@hbox=\box56
+\pgf@layerbox@main=\box57
+\pgf@picture@serial@count=\count297
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen263
+\pgflinewidth=\dimen196
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen264
-\pgf@pt@y=\dimen265
-\pgf@pt@temp=\dimen266
+\pgf@pt@x=\dimen197
+\pgf@pt@y=\dimen198
+\pgf@pt@temp=\dimen199
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
@@ -431,17 +395,17 @@ File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen267
+\pgfarrowsep=\dimen256
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen268
-\pgf@sys@shading@range@num=\count304
-\pgf@shadingcount=\count305
+\pgf@max=\dimen257
+\pgf@sys@shading@range@num=\count298
+\pgf@shadingcount=\count299
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box60
+\pgfexternal@startupbox=\box58
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
@@ -452,93 +416,93 @@ File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box61
+\pgfnodeparttextbox=\box59
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen269
-\pgf@nodesepend=\dimen270
+\pgf@nodesepstart=\dimen258
+\pgf@nodesepend=\dimen259
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen271
-\pgffor@skip=\dimen272
-\pgffor@stack=\toks34
-\pgffor@toks=\toks35
+\pgffor@iter=\dimen260
+\pgffor@skip=\dimen261
+\pgffor@stack=\toks33
+\pgffor@toks=\toks34
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count306
-\pgfplotmarksize=\dimen273
+\pgf@plot@mark@count=\count300
+\pgfplotmarksize=\dimen262
 )
-\tikz@lastx=\dimen274
-\tikz@lasty=\dimen275
-\tikz@lastxsaved=\dimen276
-\tikz@lastysaved=\dimen277
-\tikz@lastmovetox=\dimen278
-\tikz@lastmovetoy=\dimen279
-\tikzleveldistance=\dimen280
-\tikzsiblingdistance=\dimen281
-\tikz@figbox=\box62
-\tikz@figbox@bg=\box63
-\tikz@tempbox=\box64
-\tikz@tempbox@bg=\box65
-\tikztreelevel=\count307
-\tikznumberofchildren=\count308
-\tikznumberofcurrentchild=\count309
-\tikz@fig@count=\count310
+\tikz@lastx=\dimen263
+\tikz@lasty=\dimen264
+\tikz@lastxsaved=\dimen265
+\tikz@lastysaved=\dimen266
+\tikz@lastmovetox=\dimen267
+\tikz@lastmovetoy=\dimen268
+\tikzleveldistance=\dimen269
+\tikzsiblingdistance=\dimen270
+\tikz@figbox=\box60
+\tikz@figbox@bg=\box61
+\tikz@tempbox=\box62
+\tikz@tempbox@bg=\box63
+\tikztreelevel=\count301
+\tikznumberofchildren=\count302
+\tikznumberofcurrentchild=\count303
+\tikz@fig@count=\count304
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count311
-\pgfmatrixcurrentcolumn=\count312
-\pgf@matrix@numberofcolumns=\count313
+\pgfmatrixcurrentrow=\count305
+\pgfmatrixcurrentcolumn=\count306
+\pgf@matrix@numberofcolumns=\count307
 )
-\tikz@expandcount=\count314
+\tikz@expandcount=\count308
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
 File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen282
-\pgfarrowlength=\dimen283
-\pgfarrowwidth=\dimen284
-\pgfarrowlinewidth=\dimen285
+\pgfarrowinset=\dimen271
+\pgfarrowlength=\dimen272
+\pgfarrowwidth=\dimen273
+\pgfarrowlinewidth=\dimen274
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2023/03/17 version 6.0.3 text color boxes
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks36
-\verbatim@line=\toks37
+\every@verbatim=\toks35
+\verbatim@line=\toks36
 \verbatim@in@stream=\read4
-) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+)
+(C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box66
-\tcb@upperbox=\box67
-\tcb@lowerbox=\box68
-\tcb@phantombox=\box69
-\c@tcbbreakpart=\count315
-\c@tcblayer=\count316
-\c@tcolorbox@number=\count317
+\tcb@titlebox=\box64
+\tcb@upperbox=\box65
+\tcb@lowerbox=\box66
+\tcb@phantombox=\box67
+\c@tcbbreakpart=\count309
+\c@tcblayer=\count310
+\c@tcolorbox@number=\count311
+\tcb@temp=\box68
+\tcb@temp=\box69
 \tcb@temp=\box70
 \tcb@temp=\box71
-\tcb@temp=\box72
-\tcb@temp=\box73
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.0.3'
-\c@tcbrastercolumn=\count318
-\c@tcbrasterrow=\count319
-\c@tcbrasternum=\count320
-\c@tcbraster=\count321
+\c@tcbrastercolumn=\count312
+\c@tcbrasterrow=\count313
+\c@tcbrasternum=\count314
+\c@tcbraster=\count315
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.0.3'
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzfill.image.sty
@@ -547,7 +511,7 @@ Package: tikzfill.image 2022/07/20 v1.0.0 Image filling library for TikZ
 Package: tikzfill-common 2022/07/20 v1.0.0 Auxiliary code for tikzfill
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzlibraryfill.image.code.tex
 File: tikzlibraryfill.image.code.tex 2022/07/20 v1.0.0 Image filling library
-\l__tikzfill_img_box=\box74
+\l__tikzfill_img_box=\box72
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.0.3'
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakable.code.tex
@@ -556,41 +520,41 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.0.3'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box75
-\tcb@totalupperbox=\box76
-\tcb@totallowerbox=\box77
+\tcb@testbox=\box73
+\tcb@totalupperbox=\box74
+\tcb@totallowerbox=\box75
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.0.3'
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbtheorems.code.tex
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.0.3'
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.0.3'
-\tcbfitdim=\dimen286
-\tcb@lowerfitdim=\dimen287
-\tcb@upperfitdim=\dimen288
-\tcb@cur@hbadness=\count322
+\tcbfitdim=\dimen275
+\tcb@lowerfitdim=\dimen276
+\tcb@upperfitdim=\dimen277
+\tcb@cur@hbadness=\count316
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.0.3'
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.0.3'
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count323
-\lst@gtempboxa=\box78
-\lst@token=\toks38
-\lst@length=\count324
-\lst@currlwidth=\dimen289
-\lst@column=\count325
-\lst@pos=\count326
-\lst@lostspace=\dimen290
-\lst@width=\dimen291
-\lst@newlines=\count327
-\lst@lineno=\count328
-\lst@maxwidth=\dimen292
+\lst@mode=\count317
+\lst@gtempboxa=\box76
+\lst@token=\toks37
+\lst@length=\count318
+\lst@currlwidth=\dimen278
+\lst@column=\count319
+\lst@pos=\count320
+\lst@lostspace=\dimen279
+\lst@width=\dimen280
+\lst@newlines=\count321
+\lst@lineno=\count322
+\lst@maxwidth=\dimen281
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count329
-\lst@skipnumbers=\count330
-\lst@framebox=\box79
+\c@lstnumber=\count323
+\lst@skipnumbers=\count324
+\lst@framebox=\box77
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
@@ -603,7 +567,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '6.0.3'
 Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 77.
 ))
-\c@tcblisting=\count331
+\c@tcblisting=\count325
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listingsutf8\listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.sty
@@ -620,73 +584,79 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.0.3'
-)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
+)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/dashrule\dashrule.sty
+Package: dashrule 2013/03/28 v1.3 Dashed rules
+ (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/ifmtarg\ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+)
+\c@hdr@segments=\count326
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count332
+\lrq@indent=\count327
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count333
-\c@listtotal=\count334
-\c@listcount=\count335
-\c@liststart=\count336
-\c@liststop=\count337
-\c@citecount=\count338
-\c@citetotal=\count339
-\c@multicitecount=\count340
-\c@multicitetotal=\count341
-\c@instcount=\count342
-\c@maxnames=\count343
-\c@minnames=\count344
-\c@maxitems=\count345
-\c@minitems=\count346
-\c@citecounter=\count347
-\c@maxcitecounter=\count348
-\c@savedcitecounter=\count349
-\c@uniquelist=\count350
-\c@uniquename=\count351
-\c@refsection=\count352
-\c@refsegment=\count353
-\c@maxextratitle=\count354
-\c@maxextratitleyear=\count355
-\c@maxextraname=\count356
-\c@maxextradate=\count357
-\c@maxextraalpha=\count358
-\c@abbrvpenalty=\count359
-\c@highnamepenalty=\count360
-\c@lownamepenalty=\count361
-\c@maxparens=\count362
-\c@parenlevel=\count363
-\blx@tempcnta=\count364
-\blx@tempcntb=\count365
-\blx@tempcntc=\count366
-\c@blx@maxsection=\count367
-\blx@maxsegment@0=\count368
-\blx@notetype=\count369
-\blx@parenlevel@text=\count370
-\blx@parenlevel@foot=\count371
-\blx@sectionciteorder@0=\count372
-\blx@sectionciteorderinternal@0=\count373
-\blx@entrysetcounter=\count374
-\blx@biblioinstance=\count375
-\labelnumberwidth=\skip59
-\labelalphawidth=\skip60
-\biblabelsep=\skip61
-\bibitemsep=\skip62
-\bibnamesep=\skip63
-\bibinitsep=\skip64
-\bibparsep=\skip65
-\bibhang=\skip66
+\c@tabx@nest=\count328
+\c@listtotal=\count329
+\c@listcount=\count330
+\c@liststart=\count331
+\c@liststop=\count332
+\c@citecount=\count333
+\c@citetotal=\count334
+\c@multicitecount=\count335
+\c@multicitetotal=\count336
+\c@instcount=\count337
+\c@maxnames=\count338
+\c@minnames=\count339
+\c@maxitems=\count340
+\c@minitems=\count341
+\c@citecounter=\count342
+\c@maxcitecounter=\count343
+\c@savedcitecounter=\count344
+\c@uniquelist=\count345
+\c@uniquename=\count346
+\c@refsection=\count347
+\c@refsegment=\count348
+\c@maxextratitle=\count349
+\c@maxextratitleyear=\count350
+\c@maxextraname=\count351
+\c@maxextradate=\count352
+\c@maxextraalpha=\count353
+\c@abbrvpenalty=\count354
+\c@highnamepenalty=\count355
+\c@lownamepenalty=\count356
+\c@maxparens=\count357
+\c@parenlevel=\count358
+\blx@tempcnta=\count359
+\blx@tempcntb=\count360
+\blx@tempcntc=\count361
+\c@blx@maxsection=\count362
+\blx@maxsegment@0=\count363
+\blx@notetype=\count364
+\blx@parenlevel@text=\count365
+\blx@parenlevel@foot=\count366
+\blx@sectionciteorder@0=\count367
+\blx@sectionciteorderinternal@0=\count368
+\blx@entrysetcounter=\count369
+\blx@biblioinstance=\count370
+\labelnumberwidth=\skip54
+\labelalphawidth=\skip55
+\biblabelsep=\skip56
+\bibitemsep=\skip57
+\bibnamesep=\skip58
+\bibinitsep=\skip59
+\bibparsep=\skip60
+\bibhang=\skip61
 \blx@bcfin=\read5
 \blx@bcfout=\write4
 \blx@langwohyphens=\language80
-\c@mincomprange=\count376
-\c@maxcomprange=\count377
-\c@mincompwidth=\count378
+\c@mincomprange=\count371
+\c@maxcomprange=\count372
+\c@mincompwidth=\count373
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-dm.def
@@ -694,88 +664,88 @@ File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count379
-\c@savedafterword=\count380
-\c@annotator=\count381
-\c@savedannotator=\count382
-\c@author=\count383
-\c@savedauthor=\count384
-\c@bookauthor=\count385
-\c@savedbookauthor=\count386
-\c@commentator=\count387
-\c@savedcommentator=\count388
-\c@editor=\count389
-\c@savededitor=\count390
-\c@editora=\count391
-\c@savededitora=\count392
-\c@editorb=\count393
-\c@savededitorb=\count394
-\c@editorc=\count395
-\c@savededitorc=\count396
-\c@foreword=\count397
-\c@savedforeword=\count398
-\c@holder=\count399
-\c@savedholder=\count400
-\c@introduction=\count401
-\c@savedintroduction=\count402
-\c@namea=\count403
-\c@savednamea=\count404
-\c@nameb=\count405
-\c@savednameb=\count406
-\c@namec=\count407
-\c@savednamec=\count408
-\c@translator=\count409
-\c@savedtranslator=\count410
-\c@shortauthor=\count411
-\c@savedshortauthor=\count412
-\c@shorteditor=\count413
-\c@savedshorteditor=\count414
-\c@labelname=\count415
-\c@savedlabelname=\count416
-\c@institution=\count417
-\c@savedinstitution=\count418
-\c@lista=\count419
-\c@savedlista=\count420
-\c@listb=\count421
-\c@savedlistb=\count422
-\c@listc=\count423
-\c@savedlistc=\count424
-\c@listd=\count425
-\c@savedlistd=\count426
-\c@liste=\count427
-\c@savedliste=\count428
-\c@listf=\count429
-\c@savedlistf=\count430
-\c@location=\count431
-\c@savedlocation=\count432
-\c@organization=\count433
-\c@savedorganization=\count434
-\c@origlocation=\count435
-\c@savedoriglocation=\count436
-\c@origpublisher=\count437
-\c@savedorigpublisher=\count438
-\c@publisher=\count439
-\c@savedpublisher=\count440
-\c@language=\count441
-\c@savedlanguage=\count442
-\c@origlanguage=\count443
-\c@savedoriglanguage=\count444
-\c@pageref=\count445
-\c@savedpageref=\count446
-\shorthandwidth=\skip67
-\shortjournalwidth=\skip68
-\shortserieswidth=\skip69
-\shorttitlewidth=\skip70
-\shortauthorwidth=\skip71
-\shorteditorwidth=\skip72
-\locallabelnumberwidth=\skip73
-\locallabelalphawidth=\skip74
-\localshorthandwidth=\skip75
-\localshortjournalwidth=\skip76
-\localshortserieswidth=\skip77
-\localshorttitlewidth=\skip78
-\localshortauthorwidth=\skip79
-\localshorteditorwidth=\skip80
+\c@afterword=\count374
+\c@savedafterword=\count375
+\c@annotator=\count376
+\c@savedannotator=\count377
+\c@author=\count378
+\c@savedauthor=\count379
+\c@bookauthor=\count380
+\c@savedbookauthor=\count381
+\c@commentator=\count382
+\c@savedcommentator=\count383
+\c@editor=\count384
+\c@savededitor=\count385
+\c@editora=\count386
+\c@savededitora=\count387
+\c@editorb=\count388
+\c@savededitorb=\count389
+\c@editorc=\count390
+\c@savededitorc=\count391
+\c@foreword=\count392
+\c@savedforeword=\count393
+\c@holder=\count394
+\c@savedholder=\count395
+\c@introduction=\count396
+\c@savedintroduction=\count397
+\c@namea=\count398
+\c@savednamea=\count399
+\c@nameb=\count400
+\c@savednameb=\count401
+\c@namec=\count402
+\c@savednamec=\count403
+\c@translator=\count404
+\c@savedtranslator=\count405
+\c@shortauthor=\count406
+\c@savedshortauthor=\count407
+\c@shorteditor=\count408
+\c@savedshorteditor=\count409
+\c@labelname=\count410
+\c@savedlabelname=\count411
+\c@institution=\count412
+\c@savedinstitution=\count413
+\c@lista=\count414
+\c@savedlista=\count415
+\c@listb=\count416
+\c@savedlistb=\count417
+\c@listc=\count418
+\c@savedlistc=\count419
+\c@listd=\count420
+\c@savedlistd=\count421
+\c@liste=\count422
+\c@savedliste=\count423
+\c@listf=\count424
+\c@savedlistf=\count425
+\c@location=\count426
+\c@savedlocation=\count427
+\c@organization=\count428
+\c@savedorganization=\count429
+\c@origlocation=\count430
+\c@savedoriglocation=\count431
+\c@origpublisher=\count432
+\c@savedorigpublisher=\count433
+\c@publisher=\count434
+\c@savedpublisher=\count435
+\c@language=\count436
+\c@savedlanguage=\count437
+\c@origlanguage=\count438
+\c@savedoriglanguage=\count439
+\c@pageref=\count440
+\c@savedpageref=\count441
+\shorthandwidth=\skip62
+\shortjournalwidth=\skip63
+\shortserieswidth=\skip64
+\shorttitlewidth=\skip65
+\shortauthorwidth=\skip66
+\shorteditorwidth=\skip67
+\locallabelnumberwidth=\skip68
+\locallabelalphawidth=\skip69
+\localshorthandwidth=\skip70
+\localshortjournalwidth=\skip71
+\localshortserieswidth=\skip72
+\localshorttitlewidth=\skip73
+\localshortauthorwidth=\skip74
+\localshorteditorwidth=\skip75
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-compat.def
@@ -785,19 +755,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count447
-\c@textcitetotal=\count448
-\c@textcitemaxnames=\count449
-\c@biburlbigbreakpenalty=\count450
-\c@biburlbreakpenalty=\count451
-\c@biburlnumpenalty=\count452
-\c@biburlucpenalty=\count453
-\c@biburllcpenalty=\count454
+\c@textcitecount=\count442
+\c@textcitetotal=\count443
+\c@textcitemaxnames=\count444
+\c@biburlbigbreakpenalty=\count445
+\c@biburlbreakpenalty=\count446
+\c@biburlnumpenalty=\count447
+\c@biburlucpenalty=\count448
+\c@biburllcpenalty=\count449
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count455
+\c@smartand=\count450
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -807,8 +777,8 @@ Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count456
-\c@bbx:relatedtotal=\count457
+\c@bbx:relatedcount=\count451
+\c@bbx:relatedtotal=\count452
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -837,8 +807,8 @@ Package biblatex Info: Document encoding is UTF8 ....
 Package: expl3 2023-05-11 L3 programming layer (loader) 
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count458
-\l__pdf_internal_box=\box80
+\l__color_backend_stack_int=\count453
+\l__pdf_internal_box=\box78
 ))
 Package biblatex Info: ... and expl3
 (biblatex)             2023-05-11 L3 programming layer (loader) 
@@ -849,36 +819,36 @@ Package: xparse 2023-02-02 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 ))
-\c@tcb@cnt@Theorem=\count459
-\c@tcb@cnt@Definition=\count460
+\c@tcb@cnt@Theorem=\count454
+\c@tcb@cnt@Definition=\count455
 
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count461
-\@quotereset=\count462
-(Math 214 HW 5.aux)
-\openout1 = `"Math 214 HW 5.aux"'.
+\@quotelevel=\count456
+\@quotereset=\count457
+(Math 214.aux)
+\openout1 = `"Math 214.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -916,33 +886,33 @@ LaTeX Font Info:    ... okay on input line 134.
 
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count463
-\scratchdimen=\dimen293
-\scratchbox=\box81
-\nofMPsegments=\count464
-\nofMParguments=\count465
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count466
-\MPscratchDim=\dimen294
-\MPnumerator=\count467
-\makeMPintoPDFobject=\count468
-\everyMPtoPDFconversion=\toks40
+\scratchcounter=\count458
+\scratchdimen=\dimen282
+\scratchbox=\box79
+\nofMPsegments=\count459
+\nofMParguments=\count460
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count461
+\MPscratchDim=\dimen283
+\MPnumerator=\count462
+\makeMPintoPDFobject=\count463
+\everyMPtoPDFconversion=\toks39
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 134.
- (Math 214 HW 5.out) (Math 214 HW 5.out)
+Package hyperref Info: Link coloring ON on input line 130.
+ (Math 214.out) (Math 214.out)
 \@outlinefile=\write5
-\openout5 = `"Math 214 HW 5.out"'.
+\openout5 = `"Math 214.out"'.
 
-\c@lstlisting=\count469
+\c@lstlisting=\count464
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks41
-\inpenc@posthook=\toks42
+\inpenc@prehook=\toks40
+\inpenc@posthook=\toks41
 )
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -952,46 +922,45 @@ File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout4 = `"Math 214 HW 5.bcf"'.
+\openout4 = `"Math 214.bcf"'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file '"Math 214 HW 5".bbl' found.
- (Math 214 HW 5.bbl)
-Package biblatex Info: Reference section=0 on input line 134.
-Package biblatex Info: Reference segment=0 on input line 134.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 136.
+Package biblatex Info: ... file '"Math 214".bbl' found.
+ (Math 214.bbl)
+Package biblatex Info: Reference section=0 on input line 130.
+Package biblatex Info: Reference segment=0 on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 132.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 136.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 132.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+) (Math 214.toc)
+\tf@toc=\write6
+\openout6 = `"Math 214.toc"'.
 
-{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (11.96802pt too wide) in paragraph at lines 253--255
-[]\OT1/cmr/m/n/10 This is called the \OT1/cmr/bx/it/10 Unit Tan-gent Bun-dle of $\OML/cmm/m/it/10 M$\OT1/cmr/bx/it/10 . \OT1/cmr/m/n/10 Prove that $\OML/cmm/m/it/10 UM$ \OT1/cmr/m/n/10 is an em-bed-ded $(2\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1)\OMS/cmsy/m/n/10 ^^@$\OT1/cmr/m/n/10 dimensional
- []
+ [1
 
-[2] (Math 214 HW 5.aux)
-Package rerunfilecheck Info: File `"Math 214 HW 5".out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to '"Math 214 HW 5".run.xml'.
-\openout1 = `"Math 214 HW 5.run.xml"'.
+{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] (Math 214.aux)
+Package rerunfilecheck Info: File `"Math 214".out' has not changed.
+(rerunfilecheck)             Checksum: 0C54F7A44C276F40F895F84CCDFC0B08;1050.
+Package logreq Info: Writing requests to '"Math 214".run.xml'.
+\openout1 = `"Math 214.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37298 strings out of 476361
- 766750 string characters out of 5788046
- 1867993 words of memory out of 5000000
- 57156 multiletter control sequences out of 15000+600000
- 520562 words of font info for 64 fonts, out of 8000000 for 9000
+ 36455 strings out of 476361
+ 751460 string characters out of 5788046
+ 1870993 words of memory out of 5000000
+ 56296 multiletter control sequences out of 15000+600000
+ 521190 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,11n,103p,770b,1761s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Math 214 HW 5.pdf" (2 pages, 158528 bytes).
+ 98i,13n,103p,764b,1822s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Math 214.pdf" (4 pages, 229344 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 25 named destinations out of 1000 (max. 500000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
