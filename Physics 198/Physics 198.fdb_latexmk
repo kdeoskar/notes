@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber Physics 198"] 0 "Physics 198.bcf" "Physics 198.bbl" "Physics 198" 1708654497 -1
+["biber Physics 198"] 0 "Physics 198.bcf" "Physics 198.bbl" "Physics 198" 1708657210 -1
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Physics 198.bcf" 1708654497 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Physics 198.bcf" 1708657209 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Physics 198.bbl"
   "Physics 198.blg"
   (rewritten before read)
-["pdflatex"] 1708654494 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Physics 198.tex" "Physics 198.pdf" "Physics 198" 1708654497 0
+["pdflatex"] 1708657205 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Physics 198.tex" "Physics 198.pdf" "Physics 198" 1708657210 0
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708107828 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
@@ -242,13 +242,13 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
   "Homology of RP2.png" 1708651671 11293 0487b19075fb9de498271c0fbfacfcc4 ""
-  "Physics 198.aux" 1708654497 9408 7130b289fc7db67b921e6f7eeda5c844 "pdflatex"
+  "Physics 198.aux" 1708657209 9653 ec5d9a1578f6262236ca4c445b55445f "pdflatex"
   "Physics 198.bbl" 1707445047 486 ee04f40f768daeed26442158e95aba61 "biber Physics 198"
-  "Physics 198.out" 1708654497 11973 bc1e091743d9c88ce5b7899391d76a3e "pdflatex"
-  "Physics 198.run.xml" 1708654497 2364 cfe9c0c59eabb60f6e902b9d53ad3976 "pdflatex"
-  "Physics 198.tex" 1708654494 65083 8f2c0ddb29806f3b96347aab87b5fc00 ""
-  "Physics 198.toc" 1708654497 6025 bc39ecf1eb8bf7d70dd34419c53cb050 "pdflatex"
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Physics 198.tex" 1708654494 65083 8f2c0ddb29806f3b96347aab87b5fc00 ""
+  "Physics 198.out" 1708657209 12213 090886c28670ff1859960ccea6118167 "pdflatex"
+  "Physics 198.run.xml" 1708657209 2364 cfe9c0c59eabb60f6e902b9d53ad3976 "pdflatex"
+  "Physics 198.tex" 1708657198 65084 5c70b5ed3be9cf6d5c5e60067af6586f ""
+  "Physics 198.toc" 1708657209 6188 9a42794d7846339959458f8805d49e55 "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Physics 198.tex" 1708657198 65084 5c70b5ed3be9cf6d5c5e60067af6586f ""
   (generated)
   "Physics 198.aux"
   "Physics 198.bcf"

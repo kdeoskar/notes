@@ -37,6 +37,8 @@
 \contentsline {subsection}{\numberline {4.4}Orientation}{15}{subsection.4.4}%
 \contentsline {subsection}{\numberline {4.5}Connected Sum}{16}{subsection.4.5}%
 \contentsline {section}{\numberline {5}February 6 - }{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Cell Complex}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Next Time}{17}{subsection.5.2}%
 \contentsline {section}{\numberline {6}Feburary 8 - Starting off with Algebraic Toplogy!}{18}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Recap of the past}{18}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Alg. Top. At. Last.}{18}{subsection.6.2}%
@@ -63,4 +65,4 @@
 \contentsline {subsection}{\numberline {9.4}Homology of $\mathbb {S}^n$}{30}{subsection.9.4}%
 \contentsline {subsection}{\numberline {9.5}Homology of $\mathbb {RP}^2$}{30}{subsection.9.5}%
 \contentsline {subsection}{\numberline {9.6}Formal Properties of Homologies}{31}{subsection.9.6}%
-\contentsline {section}{\numberline {10}Identical Particles}{32}{section.10}%
+\contentsline {subsection}{\numberline {9.7}Identical Particles}{32}{subsection.9.7}%
