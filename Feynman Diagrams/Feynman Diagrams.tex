@@ -13,7 +13,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
-
+\usepackage{simplewick}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -69,13 +69,18 @@
 
 
 %%%%%%%%%%% New Commands %%%%%%%%%%%%%%
-\newcommand*{\T}{\mathcal T}
-\newcommand*{\cl}{\text cl}
+\newcommand{\T}{\mathcal T}
+\newcommand{\cl}{\text cl}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+
 \newcommand{\defeq}{\vcentcolon=}
 \newcommand{\eqdef}{=\vcentcolon}
 \newcommand{\ket}[1]{|#1 \rangle}
 \newcommand{\bra}[1]{\langle #1|}
-\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}
 \newcommand{\inner}[2]{\langle #1 | #2 \rangle}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
@@ -406,6 +411,248 @@ Let's now do something similar for $\phi^4$.
 
 \pagebreak
 
-\section{February 9 - }
+\section{February 9 - Wick's Theorem and Interacting Partition Functions}
+
+\subsection*{Recap}
+So far, we've
+\begin{itemize}
+  \item Introduced the partition Function
+  \[ \cZ = \int_{\infty}^{\infty} \mathrm{d} \phi e^{-S(\phi)} \]
+
+  \item Talked about the expectation values of operators
+  \[ \mean{\cO} =\frac{1}{\cZ} \int_{-\infty}^{\infty} \mathrm{d}\phi e^{-S(\phi)} \cO(\phi) \]
+  also called correlation functions.
+
+  \item Derived the \emph{\textbf{Schwinger-Dyson Equation}} 
+  \[ \left\langle \frac{dS}{d\phi} \cO \right\rangle = \left\langle \frac{d\cO}{d\phi}  \right\rangle  \]
+\end{itemize}
+
+\begin{dottedbox}
+  \emph{Aside:} The Schwinger-Dyson Equation tells us 
+  \[ \mean{\frac{\delta S}{\delta \phi(x)} \cO} = \mean{\frac{\delta cO}{\delta \phi(x)}} \]
+  
+  where $\frac{\delta S}{\delta \phi(x)}$ define the Euler-Lagrange equations of motion:
+  \[ \frac{\partial \mathcal{L}}{\partial \phi} - \partial_{\mu} \frac{\partial \mathcal{L}}{\partial \partial_{\mu} \phi } = 0 \]
+
+  \vskip 0.25cm
+  Suppose we have point $x$ in space-time and an operator $\cO$ which only depends on some other region which does \emph{not} contain $x$ (eg. $\cO$ could just be the field at a point, in which case the value inside the other region wouldn't depend on $x$, or [insert other examples]).
+
+  \vskip 0.25cm
+  [Insert image]
+
+  \vskip 0.25cm
+  Then, the Schwinger-Dyson Equation tells us that 
+  \begin{align*}
+    &\mean{\frac{\delta \cO}{\delta \phi(x)}} = 0 \\ 
+    \implies& \mean{\frac{\delta S}{\delta \phi(x)} \cO} = 0
+  \end{align*}
+
+  i.e. the \emph{classical} equations of motion are satisfied even in the quantum theory! (as long as there are no other operators acting on $S$ which depend on $\phi(x)$ i.e. no other colliding operators).
+  
+\end{dottedbox}
+
+\begin{dottedbox}
+  \emph{Another Aside:} The way that Symmetries work in QFT is a consequence of the Schwinger-Dyson equation. It extends Noether's Theorem from Classical Mechanics to the \emph{\textbf{Ward-Takahashi Identities}}.
+
+  \vskip 0.5cm
+  It's also super useful in studying Non-perturbative theories! And induces the commutation relations! And is responsible for all joy and happiness in the world! The Schwinger-Dyson Equations are great.
+\end{dottedbox}
+
+\vskip 0.5cm
+[Write stuff related to Adarsh's Question and the ensuing discussion on the correlation function $\mean{m\ddot{x}(t) x(0)}$ for a free field theory with action given by $S = \int_{t_0}^{t_f} \mathrm{d}t \left( \frac{L}{2} m\dot{x}^2 \right) $ -- Couldn't hear well from recording]
+
+
+\begin{itemize}
+  \item For a free theory, the action is very specific - it has to be quadratic in $\phi$. For example, $S = \frac{1}{2}\phi m^ 2\phi $ Then, the Equations of Motion are 
+  \[ \frac{dS}{dt} = m^2 \phi \]
+  and the Schwinger-Dyson equation says 
+  \[ \mean{m^2 \phi \; \cO} = \mean{\frac{d \cO}{dt}} \] or equivalently that 
+  \[ \mean{\phi \; \cO} = \frac{1}{m^2} \mean{\frac{d \cO}{dt}} \] 
+  So basically, if we have $\phi$ in an expectation value, we can kill it but the price we pay is that we have to replace it with a derivative (w.r.t. $\phi$) and the propagator $\frac{1}{m^2}$.
+
+  \item Last time, we calculated 
+  \begin{align*}
+    \mean{{\phi \phi}} &= \frac{1}{m^2} \mean{\frac{d}{d\phi} \phi} = \frac{1}{m^2}
+  \end{align*}
+  This "contraction" is denoted as 
+  [include image]
+
+  % Reference: https://www.physicsforums.com/threads/how-to-include-contraction-symbols-in-latex.290341/
+
+  We can think of each of the $\phi$'s as being half-edges and the contraction operation as joining the two half-edges to get a single edge -- which has a \emph{cost} of $\frac{1}{m^2}$.
+
+  \vskip 0.25cm 
+  We can also think of the above as $\mean{\phi^2}$ which has slightly different notation. It is represented by two half-edges coming out of the \emph{same} vertex. When we contract them, we get a \emph{closed loop} rather than a single edge.
+\end{itemize}
+
+\vskip 0.5cm
+Okay, let's calculate $\mean{\phi \phi \phi \phi}$ now.
+
+\begin{align*}
+  \mean{\phi \phi \phi \phi} &= \frac{1}{m^2} \mean{\frac{d}{d\phi}\left(\phi \phi \phi\right)} \\
+  &= \frac{1}{m^2}\mean{\cdot\;\; \frac{d\phi}{d\phi} \phi \phi} + \frac{1}{m^2}\mean{\cdot\;\; \phi \frac{d\phi}{d\phi}  \phi} + \frac{1}{m^2}\mean{\cdot\;\; \phi \phi \frac{d\phi}{d\phi} }
+\end{align*}
+where the $\cdot$ just represents the $\phi$ which we killed off and replaced by the $\frac{1}{m^2}$ and derivative. Again, we can write this in Contraction Notation and Diagrammatic Notation as : 
+
+\vskip 0.5cm
+Insert figures.
+
+\vskip 0.5cm
+Now, we can apply the Schwinger-Dyson equation \emph{again!} i.e. contract again. In terms of contraction notation and diagrammation notation, this would be :
+
+\vskip 0.5cm
+Insert figures.
+
+and each of these gives us $\frac{1}{m^4}$, so in total we have 
+
+\[ \mean{\phi \phi \phi \phi} = \frac{3}{m^4} \]
+
+\vskip 0.5cm
+If we thought of this as $\mean{\phi^4}$ instead then we would end up with the diagrammatic representation : 
+
+\vskip 0.5cm
+Insert figure.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  What we just did is apply \emph{\textbf{Wick's Lemma}}, which can be expressed in many ways -- such as : 
+
+\begin{itemize}
+  \item \[ \boxed{\mean{\phi \cO} = \frac{1}{m^2} \mean{\frac{d\cO}{d\phi}} } \]
+  \item \[ \mean{\phi \phi \phi \cdots \phi} = \sum_{\text{all contractions}} \left( \cdots \right)\]
+  \item \[ \mean{\cO} = e^{\frac{1}{2}\frac{1}{m^2}\frac{d^2}{d\phi^2}} \restr{\cO}{\phi = 0} \]
+\end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+All of these are equivalent and contain the same information as the Schwinger-Dyson Equation for a free field theory.
+
+\begin{dottedbox}
+  \emph{What's the difference between Wick's Lemma and the Scwinger-Dyson Equation then?} Ask Ivan.
+\end{dottedbox}
+
+\begin{dottedbox}
+  \emph{How do we interpret the third form of Wick's Lemma?} Let's do an example. Consider the operator $\cO = \phi^2$. Then,
+
+  \begin{align*}
+    e^{\frac{1}{2}\frac{1}{m^2}\frac{d^2}{d\phi^2}} \restr{\phi^2}{\phi = 0} &= \left[ 1 + \frac{1}{2} \frac{1}{m^2} \frac{d^2}{d\phi^2} +  \frac{1}{2!} \left( \frac{1}{2}\frac{1}{m^2} \frac{d^2}{d\phi^2} \right)^2 + \cdots \right] \restr{\phi^2}{\phi = 0}  \\ 
+  \end{align*}
+  \begin{itemize}
+    \item But only the first two terms survive since all terms after that contain more than two derivatives and kill off the $\phi^2$.
+    \item The first term also gives zero because it gives us $1(\phi^2) = \phi^2$ but we are evaluating this at $\phi = 0$. So, we end up with 
+    \[ \mean{\cO} = \frac{1}{m^2} \]
+    \item We don't want to differentiate too many times, but if we don't differentiate enough, the terms are killed off. This perfectly represents the contractions: Insert image
+    
+    The factor of $\frac{1}{2}$ cancels out the symmetry in contractions (we can contract in two different ways: the first onto the second \emph{or} the second onto the first).
+  \end{itemize}
+\end{dottedbox}
+
+\begin{dottedbox}
+  \emph{Exercise:} Verify $\mean{\phi \phi \phi \phi} = \frac{3}{m^4}$ using the third version of Wick's Lemma.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Aside: Is there any topological significance to the shapes of the terms in our Feynman Diagrams?}
+
+\vskip 0.5cm
+No; not in the theory we are dealing with. If we're dealing with matrix models, however, we need to put in a little more theory. 
+
+\vskip 0.25cm
+If our fields $\phi$ are matrices, then we need to \emph{thicken up} our feynman diagrams. For example, the $\mean{\phi^4}$ diagrams would be 
+
+\vskip 0.25cm
+[Insert image]
+
+\vskip 0.25cm
+Note that the first two diagrams can be drawn on a sphere while the third cannot -- it must be drawn on a torus. The diagrams now have \emph{genus}, and they are organized by genus. The terms in the expansion will have some \emph{genus coefficient}, and the higher the genus coefficient of a diagram, the higher its genus will be. This is how diagrams in string theory are organized.
+
+\vskip 0.5cm
+An example such a theory is \emph{Yang-Mills Theory} which is the theory underlying Quantum Chromodynamics. QCD actually only has 3 colors but something people do to get a good approximation while making calculations easier is to pretend it has $N$ colors and take the $N \rightarrow \infty$ limit. In this limit, the higher genus terms are killed off and only \emph{planar diagram} terms remain.
+
+\vskip 0.5cm
+Write about the O(3) model stuff Ivan was mentioning.
+
+\vskip 1cm
+\subsection{Interacting Theories}
+Let's now move on from \emph{free theories} to \emph{interacting theories}. Suppose we have an interacting $\phi4$ theory whose  action is 
+\[ S = \frac{1}{2} \phi m^2 \phi - \frac{\lambda}{4!} \phi^4 \]
+
+where $S_0 = \frac{1}{2}\phi m^2 \phi$ is the \emph{free action}. 
+
+\vskip 1cm
+Let's try to calculate the quotient 
+\[ \frac{\cZ}{\cZ_0} \]
+
+where 
+\[ \cZ = \int_{-\infty}^{\infty} \mathrm{d}\phi e^{-S(\phi)} \] is the partition function of our interacting theory and 
+\[ \cZ_0 = \int_{-\infty}^{\infty} \mathrm{d}\phi e^{-S_0(\phi)} = \sqrt{\frac{2\pi}{m^2}}\] is the free partition function.
+
+Then, this ratio is given by 
+\begin{align*}
+  \frac{\cZ}{\cZ_0} &= \frac{1}{\cZ_0} \int_{-\infty}^{\infty} \mathrm{d}\phi e^{-\frac{1}{2}\phi m^2 \phi} e^{\frac{\lambda}{4!} \phi^4} = \mean{e^{\frac{\lambda}{4!} \phi^4}}_0
+\end{align*}
+i.e. it is equal to the expectation value of $e^{\frac{\lambda}{4!} \phi^4}$ in the free theory. 
+
+\vskip 0.5cm
+This is why we study the ratio! We wanted to study $\cZ$, but we already know $\cZ_0$ and the ratio looks just like an expectation value in the free theory, so we are able to express $\cZ$ immediately as
+
+\[\cZ = \cZ_0 \times  \mean{e^{\frac{\lambda}{4!} \phi^4}}_0  \]
+
+We can then expand the exponential in the expectation value and use linearity to write 
+
+\begin{align*}
+  \cZ = \cZ_0 \times \left[\frac{\mean{1}_0}{1} + \frac{\lambda}{4!}\mean{\phi^4}_0 + \frac{1}{2!} \left(\frac{\lambda}{4!}\right)^2 \mean{\phi^4 \phi^4}_0 + \cdots \right]
+\end{align*}
+
+This is Perturbation Theory! Let's write this in diagrams now. 
+
+\vskip 0.25cm
+Insert Image
+
+\vskip 0.25cm
+The three diagrams here are really the same, so we can write the total contribution from the $\frac{\lambda}{4!}\mean{\phi^4}_0$ term as $\lambda \times \frac{1}{8} \times \left(\infty\right)$ where $\infty$ is not infty, but the diagram. The claim is that we could have \emph{guessed} the number $8$. How so? (Brace yourself - this is gonna be cool as HELL)
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  \begin{center}
+  $8$ is the \emph{\textbf{number of symmetries of the diagram!}}
+  \end{center}
+\end{mathdefinitionbox}
+
+Doing this for the other terms too, we have\dots
+
+\vskip 0.5cm
+[Insert Diagrams]
+
+\vskip 1cm
+\begin{dottedbox}
+  \emph{Wait wait wait... how are we defining symmetries of diagrams?} Consider the diagram below.
+  
+  \vskip 0.25cm
+  Insert figure.
+
+  \vskip 0.25cm
+  It has a vertix in the center and then four \emph{half-edges} -- rememeber, these four half-edges are the four fields we have contracted together.
+
+  \vskip 0.25cm
+  A \emph{symmetry} of the diagram is a mapping of the half-edges into themselves such that 
+  \begin{enumerate}
+    \item Whenever two half-edges belong to the same vertex \emph{before mapping}, they must still belong to the same vertex after.
+    \item Whenever two half-edges form an edge before mapping, they must still form an edge after mapping.
+  \end{enumerate}
+\end{dottedbox}
+
+\vskip 0.5cm
+A cool consequence of this is that a mathematician trying to compute the number of symmetries of some graph might just be able to get the job done by hiring their physicist friend to compute the correlation function of some appropriate field theory! Because, at the end of the day, 
+\[ \frac{\cZ}{\cZ_0} = \sum_{\substack{\text{All diagrams } \Gamma \\ \text{with 4 valent vertices}}} \frac{w(\Gamma)}{\left| \text{Aut}(\Gamma) \right|} \]
+
+where $w(\Gamma)$ is a weightage, given by the Feynman Rules, equal to the propagator.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Exercise:} Compute 
+  \[ \frac{\cZ}{\cZ_0} = \mean{e^{\frac{g}{3!} \phi^3}}_0 = \cdots + \cO(\phi^6) \]
+  i.e. compute the perturbations up to the 6th order in $\phi$, using the third version of Wick's Lemma 
+\end{dottedbox}
 
 \end{document}

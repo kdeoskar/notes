@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  20 FEB 2024 15:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  24 FEB 2024 20:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -942,7 +942,24 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5] (Math 214.aux)
+{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+<critical points example.png, id=88, 2954.03625pt x 1499.6025pt>
+File: critical points example.png Graphic file (type png)
+<use critical points example.png>
+Package pdftex.def Info: critical points example.png  used on input line 195.
+(pdftex.def)             Requested size: 147.71046pt x 74.98451pt.
+<submfd example.png, id=91, 892.83563pt x 736.25063pt>
+File: submfd example.png Graphic file (type png)
+<use submfd example.png>
+Package pdftex.def Info: submfd example.png  used on input line 242.
+(pdftex.def)             Requested size: 89.28879pt x 73.62936pt.
+ [3 <./critical points example.png>]
+<torus_height.png, id=100, 1935.48094pt x 1245.15187pt>
+File: torus_height.png Graphic file (type png)
+<use torus_height.png>
+Package pdftex.def Info: torus_height.png  used on input line 276.
+(pdftex.def)             Requested size: 193.55943pt x 124.52248pt.
+ [4 <./submfd example.png> <./torus_height.png>] [5] [6] (Math 214.aux)
 Package rerunfilecheck Info: File `"Math 214".out' has not changed.
 (rerunfilecheck)             Checksum: C9FDF2BE92F75B49CBA601FCC11D3211;720.
 Package logreq Info: Writing requests to '"Math 214".run.xml'.
@@ -950,17 +967,17 @@ Package logreq Info: Writing requests to '"Math 214".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36434 strings out of 476361
- 751180 string characters out of 5788046
+ 36460 strings out of 476361
+ 751814 string characters out of 5788046
  1868993 words of memory out of 5000000
- 56286 multiletter control sequences out of 15000+600000
+ 56307 multiletter control sequences out of 15000+600000
  521190 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,18n,103p,764b,1822s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Math 214.pdf" (5 pages, 236498 bytes).
+Output written on "Math 214.pdf" (6 pages, 7078639 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 189 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 201 PDF objects out of 1000 (max. 8388607)
+ 15 named destinations out of 1000 (max. 500000)
+ 222 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -163,10 +163,52 @@ Stuff we want to review before the meat:
 \end{itemize}
 
 \vskip 1cm
-\section{Review of Topology}
+\subsection{Review of Topology}
 
 -Refer to Physics 198 notes lmao
 
 \subsection*{Why is the definition of a topology useful?}
+
+\pagebreak
+
+
+\section{Path integrals and Fractional Quantization}
+
+To consider the time evolution of a state, we need to calculate the 
+
+
+\vskip 0.5cm
+Why do we need fields? To preseve unitary while being able to talk about particle creation and annihilation.
+
+\vskip 0.5cm
+How do we evaluate 
+\[ \langle do \rangle = \int \mathcal{D A} e^{i\mathcal{S}[\mathcal{A}]} \]
+?
+
+\vskip 0.5cm
+This is an infinite dimensional integral and further the action is now a functional. The same issues come up when we try to evaluate correlation functions $\inner{0}{T\{ \phi(x_1), \dots, \phi(x_2) \}|0}$. \textbf{This is quite the conundrum}.
+
+\vskip 0.5cm
+We're going to try and use Feynman's Trick. To replicate feynman's trick, we perturb the action a bit 
+\[ \mathcal{S}[\mathcal{A}(x)] =  \]
+
+\emph{Note:} We call $\mathcal J$ a source, and it is a generator of the partition function $Z[\mathcal{J}]$
+
+We say 
+\[ \mathcal{Z}[\mathcal{J}] = \int \mathcal{D} \mathcal{A} e^{i \mathcal{S}[x]} \]
+
+Then, we get 
+\begin{align*}
+  \frac{d}{d\mathcal{J}(x)} \restr{\int \mathcal{D} \mathcal{A} e^{i \mathcal{S}[x]}}{\mathcal{J} = 0} &= 
+\end{align*}
+
+\vskip 0.5cm
+Usually, we have to deal with \emph{time ordering} to account for causality. When looking at a two point function, we have time ordering if 
+\[ \langle \mathcal{A}(x_1), \mathcal{A}(x_2) \rangle \] 
+
+
+\vskip 0.5cm
+But in the path integral above, these commute. But we get time ordering for free [explain why].
+
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  9 FEB 2024 16:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  3 MAR 2024 02:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -266,16 +266,26 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip53
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/simplewick\simplewick.sty
+Package: simplewick 2007/11/23 v1.2a
+
+Package: simplewick v1.2a (2007/11/23)
+\swb@xone=\box53
+\swb@xtwo=\box54
+\swb@xthree=\box55
+\swb@xfour=\box56
+\swdimen@ne=\dimen165
+\swdimentw@=\dimen166
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 25.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
 Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
 \pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen165
-\pgfutil@tempdimb=\dimen166
+\pgfutil@tempdima=\dimen167
+\pgfutil@tempdimb=\dimen168
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
-\pgfutil@abb=\box53
+\pgfutil@abb=\box57
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
@@ -288,16 +298,16 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
 \pgfkeys@tmptoks=\toks26
 ))
-\pgf@x=\dimen167
-\pgf@y=\dimen168
-\pgf@xa=\dimen169
-\pgf@ya=\dimen170
-\pgf@xb=\dimen171
-\pgf@yb=\dimen172
-\pgf@xc=\dimen173
-\pgf@yc=\dimen174
-\pgf@xd=\dimen175
-\pgf@yd=\dimen176
+\pgf@x=\dimen169
+\pgf@y=\dimen170
+\pgf@xa=\dimen171
+\pgf@ya=\dimen172
+\pgf@xb=\dimen173
+\pgf@yb=\dimen174
+\pgf@xc=\dimen175
+\pgf@yc=\dimen176
+\pgf@xd=\dimen177
+\pgf@yd=\dimen178
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
 \c@pgf@counta=\count288
@@ -341,9 +351,9 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
-\pgfmath@dimen=\dimen177
+\pgfmath@dimen=\dimen179
 \pgfmath@count=\count295
-\pgfmath@box=\box54
+\pgfmath@box=\box58
 \pgfmath@toks=\toks30
 \pgfmath@stack@operand=\toks31
 \pgfmath@stack@operation=\toks32
@@ -351,42 +361,42 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 \c@pgfmathroundto@lastzeros=\count296
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen178
-\pgf@picmaxx=\dimen179
-\pgf@picminy=\dimen180
-\pgf@picmaxy=\dimen181
-\pgf@pathminx=\dimen182
-\pgf@pathmaxx=\dimen183
-\pgf@pathminy=\dimen184
-\pgf@pathmaxy=\dimen185
-\pgf@xx=\dimen186
-\pgf@xy=\dimen187
-\pgf@yx=\dimen188
-\pgf@yy=\dimen189
-\pgf@zx=\dimen190
-\pgf@zy=\dimen191
+\pgf@picminx=\dimen180
+\pgf@picmaxx=\dimen181
+\pgf@picminy=\dimen182
+\pgf@picmaxy=\dimen183
+\pgf@pathminx=\dimen184
+\pgf@pathmaxx=\dimen185
+\pgf@pathminy=\dimen186
+\pgf@pathmaxy=\dimen187
+\pgf@xx=\dimen188
+\pgf@xy=\dimen189
+\pgf@yx=\dimen190
+\pgf@yy=\dimen191
+\pgf@zx=\dimen192
+\pgf@zy=\dimen193
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen192
-\pgf@path@lasty=\dimen193
+\pgf@path@lastx=\dimen194
+\pgf@path@lasty=\dimen195
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen194
-\pgf@shorten@start@additional=\dimen195
+\pgf@shorten@end@additional=\dimen196
+\pgf@shorten@start@additional=\dimen197
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box55
-\pgf@hbox=\box56
-\pgf@layerbox@main=\box57
+\pgfpic=\box59
+\pgf@hbox=\box60
+\pgf@layerbox@main=\box61
 \pgf@picture@serial@count=\count297
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen196
+\pgflinewidth=\dimen198
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen197
-\pgf@pt@y=\dimen198
-\pgf@pt@temp=\dimen199
+\pgf@pt@x=\dimen199
+\pgf@pt@y=\dimen256
+\pgf@pt@temp=\dimen257
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
@@ -395,17 +405,17 @@ File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen256
+\pgfarrowsep=\dimen258
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen257
+\pgf@max=\dimen259
 \pgf@sys@shading@range@num=\count298
 \pgf@shadingcount=\count299
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box58
+\pgfexternal@startupbox=\box62
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
@@ -416,19 +426,19 @@ File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box59
+\pgfnodeparttextbox=\box63
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen258
-\pgf@nodesepend=\dimen259
+\pgf@nodesepstart=\dimen260
+\pgf@nodesepend=\dimen261
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen260
-\pgffor@skip=\dimen261
+\pgffor@iter=\dimen262
+\pgffor@skip=\dimen263
 \pgffor@stack=\toks33
 \pgffor@toks=\toks34
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
@@ -436,20 +446,20 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@plot@mark@count=\count300
-\pgfplotmarksize=\dimen262
+\pgfplotmarksize=\dimen264
 )
-\tikz@lastx=\dimen263
-\tikz@lasty=\dimen264
-\tikz@lastxsaved=\dimen265
-\tikz@lastysaved=\dimen266
-\tikz@lastmovetox=\dimen267
-\tikz@lastmovetoy=\dimen268
-\tikzleveldistance=\dimen269
-\tikzsiblingdistance=\dimen270
-\tikz@figbox=\box60
-\tikz@figbox@bg=\box61
-\tikz@tempbox=\box62
-\tikz@tempbox@bg=\box63
+\tikz@lastx=\dimen265
+\tikz@lasty=\dimen266
+\tikz@lastxsaved=\dimen267
+\tikz@lastysaved=\dimen268
+\tikz@lastmovetox=\dimen269
+\tikz@lastmovetoy=\dimen270
+\tikzleveldistance=\dimen271
+\tikzsiblingdistance=\dimen272
+\tikz@figbox=\box64
+\tikz@figbox@bg=\box65
+\tikz@tempbox=\box66
+\tikz@tempbox@bg=\box67
 \tikztreelevel=\count301
 \tikznumberofchildren=\count302
 \tikznumberofcurrentchild=\count303
@@ -469,10 +479,10 @@ File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen271
-\pgfarrowlength=\dimen272
-\pgfarrowwidth=\dimen273
-\pgfarrowlinewidth=\dimen274
+\pgfarrowinset=\dimen273
+\pgfarrowlength=\dimen274
+\pgfarrowwidth=\dimen275
+\pgfarrowlinewidth=\dimen276
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2023/03/17 version 6.0.3 text color boxes
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
@@ -480,23 +490,22 @@ Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks35
 \verbatim@line=\toks36
 \verbatim@in@stream=\read4
-)
-(C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box64
-\tcb@upperbox=\box65
-\tcb@lowerbox=\box66
-\tcb@phantombox=\box67
+\tcb@titlebox=\box68
+\tcb@upperbox=\box69
+\tcb@lowerbox=\box70
+\tcb@phantombox=\box71
 \c@tcbbreakpart=\count309
 \c@tcblayer=\count310
 \c@tcolorbox@number=\count311
-\tcb@temp=\box68
-\tcb@temp=\box69
-\tcb@temp=\box70
-\tcb@temp=\box71
+\tcb@temp=\box72
+\tcb@temp=\box73
+\tcb@temp=\box74
+\tcb@temp=\box75
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.0.3'
 \c@tcbrastercolumn=\count312
@@ -511,7 +520,7 @@ Package: tikzfill.image 2022/07/20 v1.0.0 Image filling library for TikZ
 Package: tikzfill-common 2022/07/20 v1.0.0 Auxiliary code for tikzfill
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzlibraryfill.image.code.tex
 File: tikzlibraryfill.image.code.tex 2022/07/20 v1.0.0 Image filling library
-\l__tikzfill_img_box=\box72
+\l__tikzfill_img_box=\box76
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.0.3'
 )) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakable.code.tex
@@ -520,18 +529,18 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.0.3'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box73
-\tcb@totalupperbox=\box74
-\tcb@totallowerbox=\box75
+\tcb@testbox=\box77
+\tcb@totalupperbox=\box78
+\tcb@totallowerbox=\box79
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.0.3'
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbtheorems.code.tex
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.0.3'
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.0.3'
-\tcbfitdim=\dimen275
-\tcb@lowerfitdim=\dimen276
-\tcb@upperfitdim=\dimen277
+\tcbfitdim=\dimen277
+\tcb@lowerfitdim=\dimen278
+\tcb@upperfitdim=\dimen279
 \tcb@cur@hbadness=\count316
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.0.3'
@@ -539,22 +548,22 @@ Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.0.3'
 Library (tcolorbox): 'tcblistings.code.tex' version '6.0.3'
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
 \lst@mode=\count317
-\lst@gtempboxa=\box76
+\lst@gtempboxa=\box80
 \lst@token=\toks37
 \lst@length=\count318
-\lst@currlwidth=\dimen278
+\lst@currlwidth=\dimen280
 \lst@column=\count319
 \lst@pos=\count320
-\lst@lostspace=\dimen279
-\lst@width=\dimen280
+\lst@lostspace=\dimen281
+\lst@width=\dimen282
 \lst@newlines=\count321
 \lst@lineno=\count322
-\lst@maxwidth=\dimen281
+\lst@maxwidth=\dimen283
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count323
 \lst@skipnumbers=\count324
-\lst@framebox=\box77
+\lst@framebox=\box81
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
@@ -596,8 +605,8 @@ Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count327
 \calc@Bcount=\count328
-\calc@Adimen=\dimen282
-\calc@Bdimen=\dimen283
+\calc@Adimen=\dimen284
+\calc@Bdimen=\dimen285
 \calc@Askip=\skip54
 \calc@Bskip=\skip55
 LaTeX Info: Redefining \setlength on input line 80.
@@ -608,16 +617,16 @@ LaTeX Info: Redefining \addtolength on input line 81.
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
 \g_MT_multlinerow_int=\count330
-\l_MT_multwidth_dim=\dimen284
+\l_MT_multwidth_dim=\dimen286
 \origjot=\skip57
-\l_MT_shortvdotswithinadjustabove_dim=\dimen285
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen286
-\l_MT_above_intertext_sep=\dimen287
-\l_MT_below_intertext_sep=\dimen288
-\l_MT_above_shortintertext_sep=\dimen289
-\l_MT_below_shortintertext_sep=\dimen290
-\xmathstrut@box=\box78
-\xmathstrut@dim=\dimen291
+\l_MT_shortvdotswithinadjustabove_dim=\dimen287
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen288
+\l_MT_above_intertext_sep=\dimen289
+\l_MT_below_intertext_sep=\dimen290
+\l_MT_above_shortintertext_sep=\dimen291
+\l_MT_below_shortintertext_sep=\dimen292
+\xmathstrut@box=\box82
+\xmathstrut@dim=\dimen293
 ) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
@@ -836,7 +845,7 @@ Package: expl3 2023-05-11 L3 programming layer (loader)
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count457
-\l__pdf_internal_box=\box79
+\l__pdf_internal_box=\box83
 ))
 Package biblatex Info: ... and expl3
 (biblatex)             2023-05-11 L3 programming layer (loader) 
@@ -859,24 +868,24 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (Feynman Diagrams.aux)
 \openout1 = `"Feynman Diagrams.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 131.
-LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -915,13 +924,13 @@ LaTeX Font Info:    ... okay on input line 131.
 (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count462
-\scratchdimen=\dimen292
-\scratchbox=\box80
+\scratchdimen=\dimen294
+\scratchbox=\box84
 \nofMPsegments=\count463
 \nofMParguments=\count464
 \everyMPshowfont=\toks38
 \MPscratchCnt=\count465
-\MPscratchDim=\dimen293
+\MPscratchDim=\dimen295
 \MPnumerator=\count466
 \makeMPintoPDFobject=\count467
 \everyMPtoPDFconversion=\toks39
@@ -931,7 +940,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 131.
+Package hyperref Info: Link coloring ON on input line 136.
  (Feynman Diagrams.out) (Feynman Diagrams.out)
 \@outlinefile=\write5
 \openout5 = `"Feynman Diagrams.out"'.
@@ -955,13 +964,13 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"Feynman Diagrams".bbl' found.
  (Feynman Diagrams.bbl)
-Package biblatex Info: Reference section=0 on input line 131.
-Package biblatex Info: Reference segment=0 on input line 131.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 133.
+Package biblatex Info: Reference section=0 on input line 136.
+Package biblatex Info: Reference segment=0 on input line 136.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 138.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 133.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 138.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (Feynman Diagrams.toc)
@@ -973,39 +982,44 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 358.
+(hyperref)                removing `math shift' on input line 363.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\phi' on input line 358.
+(hyperref)                removing `\phi' on input line 363.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 358.
+(hyperref)                removing `superscript' on input line 363.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 358.
+(hyperref)                removing `math shift' on input line 363.
 
-[6] [7] [8] (Feynman Diagrams.aux)
+[6] [7]
+Overfull \hbox (4.5777pt too wide) in paragraph at lines 414--414
+[]\OT1/cmr/bx/n/14.4 February 9 - Wick's The-o-rem and In-ter-act-ing Par-ti-tion Func-
+ []
+
+[8] [9] [10] [11] [12] (Feynman Diagrams.aux)
 Package rerunfilecheck Info: File `"Feynman Diagrams".out' has not changed.
-(rerunfilecheck)             Checksum: 8AA1CA3188FFC19D233366634740FEFC;2025.
+(rerunfilecheck)             Checksum: 8F09A5D3A066DB622B268465913E1C53;3034.
 Package logreq Info: Writing requests to '"Feynman Diagrams".run.xml'.
 \openout1 = `"Feynman Diagrams.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37109 strings out of 476361
- 763874 string characters out of 5788046
- 1872993 words of memory out of 5000000
- 56934 multiletter control sequences out of 15000+600000
+ 37180 strings out of 476361
+ 765264 string characters out of 5788046
+ 1873993 words of memory out of 5000000
+ 56992 multiletter control sequences out of 15000+600000
  521190 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,16n,103p,761b,1824s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,20n,103p,761b,1824s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Feynman Diagrams.pdf" (8 pages, 279264 bytes).
+Output written on "Feynman Diagrams.pdf" (12 pages, 318117 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 269 words of extra memory for PDF output out of 10000 (max. 10000000)
 

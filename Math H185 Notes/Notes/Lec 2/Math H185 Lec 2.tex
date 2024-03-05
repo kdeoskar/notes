@@ -137,7 +137,7 @@ These are notes taken from lectures on Complex Analysis delivered by Professor T
 [Insert Diagram of $\C$ with Real and Imaginary Axes]
 
 \vskip 0.5cm
-\defn\; The \textbf{Modulus} or \textbf{absolute value} of $z = a + bi$ is $|z| = a^2 + b^2$. It is the distance to $0$.
+\defn\; The \textbf{Modulus} or \textbf{absolute value} of $z = a + bi$ is $|z| = \sqrt{a^2 + b^2}$. It is the distance to $0$.
 
 \vskip 0.5cm
 There is a correspondence between the structure of $\C$ and the vector structure of $\R^2$.
@@ -183,7 +183,11 @@ Rather than using the rectangular (cartesian) coordinates to describe $\C$, we c
 Notice however there is an amibiguity in the angle $\theta$ since $\theta + 2n\pi$ would describe the same point. Thus, we define the \textbf{Principal value branch} as the restriction $\theta \in [0, 2\pi]$.
 
 \vskip 0.5cm
-\underline{\textbf{Recall:}} The exponential Function is defined as below for $z \in \C$.
+\underline{\textbf{Recall:}} The taylor expansion of the the exponential for any real number $x \in \R $ is 
+\[ e^x = 1 + \frac{1}{1!} x + \frac{1}{2!} x^2 + \frac{1}{3!} x^3 + \cdots \]
+
+\vskip 0.25cm
+For $z \in \C$, the exponential function is defined as below.
 \[ e^z = 1 + \frac{1}{1!} z + \frac{1}{2!} z^2 + \frac{1}{3!} z^3 + \cdots \]
 
 \vskip 0.5cm
@@ -231,12 +235,21 @@ Additionally, we can convert back from Polar coordinates to Cartesian Coordinate
 \underline{\textbf{Multiplication:}}
 The multiplication of two complex numbers can be thought of in terms of polar coordniates as scaling by $r$ and rotating by $\theta$.
 
+\vskip 0.25cm
+For $z_1 = r_1e^{i\theta_1}$ and $z_2 = r_2e^{i\theta_2}$ we have 
+\begin{align*}
+  z_1 z_2 &= r_1e^{i\theta_1} \cdot r_2e^{i\theta_2} \\
+  &= \left(r_1 r_2\right) e^{i\theta_1 + \theta_2}
+\end{align*}
+So, the complex number obtained after multiplication has length equal to the product of the lengths of $z_1, z_2$ and has argument equal to the sum of the arguments of $z_1, z_2$.
+
 \vskip 1cm
-\subsection*{Topology of $\C$}
-The set $\C$ is a \textbf{metric space}, and the metric on $\C$ is $\text{dist}(z, w) = |z - w|$ ($\iff$ Eucldiean metric on $\R^2$).
+\subsection{Topology of $\C$}
+The set $\C$ is a \textbf{metric space}, and the metric on $\C$ is $\text{dist}(z, w) = |z - w|$ ($\iff$ Eucldiean metric on $\R^2$, so as metric spaces they are equivalent $\C \cong \R^2$).
 
 \vskip 0.5cm
-\underline{\textbf{Notation:}}
+\underline{\textbf{Notation:}} On any metric space, we have a notion of open sets and open balls. 
+
 \begin{itemize}
   \item Given a complex number $z_0 \in \C$ and $r > 0, r \in \R$, the set
   \[ B_{r} (z_0) = \{ z \in \C : |z - z_0| < r \} \]

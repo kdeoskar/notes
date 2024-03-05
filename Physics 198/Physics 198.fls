@@ -218,6 +218,10 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uni
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\bbm.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\bbm.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\bbm.sty
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\bbm.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
@@ -593,11 +597,20 @@ INPUT .\Homology of RP2.png
 INPUT .\Homology of RP2.png
 INPUT .\Homology of RP2.png
 INPUT .\Homology of RP2.png
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\bbm\ubbm.fd
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm10.tfm
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm7.tfm
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\tfm\public\bbm\bbm5.tfm
 INPUT Physics 198.aux
 INPUT .\Physics 198.out
 INPUT .\Physics 198.out
 INPUT Physics 198.run.xml
 OUTPUT Physics 198.run.xml
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\public\bbm\dpi600\bbm10.pk
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\public\bbm\dpi600\bbm10.pk
 INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb

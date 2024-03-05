@@ -571,16 +571,19 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
-INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT Math 214 HW 5.aux
 INPUT .\Math 214 HW 5.out
 INPUT .\Math 214 HW 5.out
 INPUT Math 214 HW 5.run.xml
 OUTPUT Math 214 HW 5.run.xml
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\kesha\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
@@ -589,6 +592,8 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
@@ -597,13 +602,19 @@ INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy5.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy5.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm7.pfb
+INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm7.pfb

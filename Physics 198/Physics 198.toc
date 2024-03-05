@@ -62,7 +62,17 @@
 \contentsline {subsection}{\numberline {9.1}Simplicial Homology}{26}{subsection.9.1}%
 \contentsline {subsection}{\numberline {9.2}Some useful homology calculations}{28}{subsection.9.2}%
 \contentsline {subsection}{\numberline {9.3}Some properties of Homology Groups}{28}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Homology of $\mathbb {S}^n$}{30}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Homology of $\mathbb {RP}^2$}{30}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Formal Properties of Homologies}{31}{subsection.9.6}%
-\contentsline {subsection}{\numberline {9.7}Identical Particles}{32}{subsection.9.7}%
+\contentsline {section}{\numberline {10}February 22 - Applications of Homology}{30}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Homology of $\mathbb {S}^n$}{30}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Homology of $\mathbb {RP}^2$}{30}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Formal Properties of Homologies}{31}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Identical Particles}{32}{subsection.10.4}%
+\contentsline {section}{\numberline {11}February 27 - Starting off with Differential Geometry!}{33}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Differentiable Maninfolds}{33}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Diffeomorphisms}{33}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Scalar Fields on Smooth Manifolds}{34}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Tangent and Cotangent Spaces}{34}{subsection.11.4}%
+\contentsline {section}{\numberline {12}Feb 29 - }{35}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Bundles}{35}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Sections}{35}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Tangent Bundle}{35}{subsection.12.3}%

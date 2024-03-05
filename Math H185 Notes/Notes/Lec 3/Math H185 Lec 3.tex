@@ -164,7 +164,7 @@ Let $f : U \subseteq_{\text{open}} \C \rightarrow \C$.
 
 \begin{mathdefinitionbox}{Holomorphic Functions}
 \vskip 0.5cm
-  $f$ is Holomorphic at $z_0 \in U$ if \[ \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} = \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0} \] exists. If so, call the limit at $f'(z_0)$. 
+ We say $f$ is Holomorphic at $z_0 \in U$ if \[ \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} = \lim_{z \rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0} \] exists in $\C$. If so, its value is denoted as $f'(z_0)$. 
 
 \vskip 0.5cm
 Note: Keep in mind that $h$ is a complex number.
@@ -178,7 +178,7 @@ Note: Keep in mind that $h$ is a complex number.
   \item This is the most important definition of the course.
 \end{itemize}
 
-\underline{\textbf{Remark:}} Although $\C$ is the same as $\R^2$ as a metric space, Holomorphicity is much stronger than differentiability of a function $f : \R^2 \rightarrow \R^2$ because the limits along every path to a point are required to be equal.
+\underline{\textbf{Remark:}} Although $\C$ is the same as $\R^2$ as a metric space, Holomorphicity is much stronger than differentiability of a function $f : \R^2 \rightarrow \R^2$ because the limits along every path to a point are required to be equal. In contrast to this, differentiability in $\R^2$ requires that \emph{a} limit exists along each path, but not that all limits are equal.
 
 \vskip 0.5cm
 \underbar{\textbf{Example:}} Consider the function $f(z) = \overline{z}$.
@@ -215,12 +215,13 @@ We will see that holomorphic functions have strong \underline{rigidity} properti
     &=_{\text{binom thm.}} \left[  \frac{1}{h} \left( z^n + nz^{n-1}h + \cdots + nzh^{n-1} + h^n \right) - z^n  \right] \\
     &= nz^{n-1} + h(\cdots)
   \end{align*}
-  \[ \implies \lim_{h \rightarrow 0} \frac{f(z + h) - f(z)}{h} = nz^{n-1} \]
+  So, just like in Real Analysis, we have 
+  \[ \boxed{\lim_{h \rightarrow 0} \frac{f(z + h) - f(z)}{h} = nz^{n-1}} \]
 \end{enumerate}
 
 \vskip 1cm
 \subsection{Stability Properties}
-While holomorphicity is different from real Dfferentiability, there are a number of properties which are justified by the same $\epsilon-\delta$ proofs as those from $\R$ analysis.
+While holomorphicity is different from real dfferentiability, there are a number of properties which are justified by the same $\epsilon-\delta$ proofs as those from $\R^2$ analysis.
 
 \begin{itemize}
   \item If $f,g : U \rightarrow \C$ are holomorphic at $z_0 \in U$ then 

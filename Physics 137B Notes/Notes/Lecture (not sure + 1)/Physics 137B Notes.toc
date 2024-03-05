@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}March 4 - Applications of the Fermi Gas Model}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Recap - Fermi Gas Model}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Finite Temperature}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Application - Stellar Evolution}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}White Dwarfs}{3}{subsection.1.4}%

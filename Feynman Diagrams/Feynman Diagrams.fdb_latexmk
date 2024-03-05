@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber Feynman Diagrams"] 0 "Feynman Diagrams.bcf" "Feynman Diagrams.bbl" "Feynman Diagrams" 1707523731 -1
+["biber Feynman Diagrams"] 0 "Feynman Diagrams.bcf" "Feynman Diagrams.bbl" "Feynman Diagrams" 1709460977 -1
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Feynman Diagrams.bcf" 1707523730 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Feynman Diagrams.bcf" 1709460976 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Feynman Diagrams.bbl"
   "Feynman Diagrams.blg"
   (rewritten before read)
-["pdflatex"] 1707523729 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Feynman Diagrams/Feynman Diagrams.tex" "Feynman Diagrams.pdf" "Feynman Diagrams" 1707523731 0
-  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1705760248 83523 c240498cc87ea350b68c7a1657f0afb7 ""
+["pdflatex"] 1709460975 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Feynman Diagrams/Feynman Diagrams.tex" "Feynman Diagrams.pdf" "Feynman Diagrams" 1709460977 0
+  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1709455302 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993058908 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -208,6 +208,7 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty" 1673775190 325 f9f16d12354225b7dd52a3321f085955 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657797096 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/simplewick/simplewick.sty" 1197194707 5639 ed992cfa51789e0e696e455d3da4694a ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbbreakable.code.tex" 1679051890 34642 fe3992acc7371a490bcf8e6f5088d89c ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbexternal.code.tex" 1679051890 9035 4b513840c732c6c5b8144fc5723eb425 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbfitting.code.tex" 1679051890 17109 9dbbbd29efed7c7e828c534633614e08 ""
@@ -235,13 +236,13 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Feynman Diagrams.aux" 1707523730 2260 0828b4b69c88ea011a2badc1058a722b "pdflatex"
+  "Feynman Diagrams.aux" 1709460976 2643 d79aff35744be08d9bf134273b8aaa65 "pdflatex"
   "Feynman Diagrams.bbl" 1706318198 486 ee04f40f768daeed26442158e95aba61 "biber Feynman Diagrams"
-  "Feynman Diagrams.out" 1707523730 2025 8aa1ca3188ffc19d233366634740fefc "pdflatex"
-  "Feynman Diagrams.run.xml" 1707523730 2399 e7f691b4b2146761bb1e4890834208d9 "pdflatex"
-  "Feynman Diagrams.tex" 1707523726 15154 a8d91fb5b3f9726bd99fef753e2f9b6a ""
-  "Feynman Diagrams.toc" 1707523730 1055 146c868a6378b0f5656bbc4a72081713 "pdflatex"
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Feynman Diagrams/Feynman Diagrams.tex" 1707523726 15154 a8d91fb5b3f9726bd99fef753e2f9b6a ""
+  "Feynman Diagrams.out" 1709460976 3034 8f09a5d3a066db622b268465913e1c53 "pdflatex"
+  "Feynman Diagrams.run.xml" 1709460976 2399 e7f691b4b2146761bb1e4890834208d9 "pdflatex"
+  "Feynman Diagrams.tex" 1709460974 27716 dd21fa3b016e151b078fcdc019d7049d ""
+  "Feynman Diagrams.toc" 1709460976 1355 2fbd0802cb69afd28b75d6493d10d7cc "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Feynman Diagrams/Feynman Diagrams.tex" 1709460974 27716 dd21fa3b016e151b078fcdc019d7049d ""
   (generated)
   "Feynman Diagrams.aux"
   "Feynman Diagrams.bcf"

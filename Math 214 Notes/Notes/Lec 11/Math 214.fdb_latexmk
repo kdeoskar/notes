@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber Math 214"] 1708461488 "Math 214.bcf" "Math 214.bbl" "Math 214" 1708472127 0
+["biber Math 214"] 1708461488 "Math 214.bcf" "Math 214.bbl" "Math 214" 1708834798 0
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Math 214.bcf" 1708472126 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Math 214.bcf" 1708834798 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Math 214.bbl"
   "Math 214.blg"
   (rewritten before read)
-["pdflatex"] 1708472123 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 11/Math 214.tex" "Math 214.pdf" "Math 214" 1708472127 0
+["pdflatex"] 1708834793 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 11/Math 214.tex" "Math 214.pdf" "Math 214" 1708834798 0
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708107828 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
@@ -230,13 +230,16 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Math 214.aux" 1708472126 1255 0558c4185cae65a194cfc2d5e10e64ec "pdflatex"
+  "Math 214.aux" 1708834798 1255 c8d74a00edcce623e35f865763c43880 "pdflatex"
   "Math 214.bbl" 1708461492 486 ee04f40f768daeed26442158e95aba61 "biber Math 214"
-  "Math 214.out" 1708472126 720 c9fdf2be92f75b49cba601fcc11d3211 "pdflatex"
-  "Math 214.run.xml" 1708472126 2343 0b9e2ea366d0583b2fc359a747aa8a93 "pdflatex"
-  "Math 214.tex" 1708472122 13734 6b56cd7d39644517283b56b08da4f7a9 ""
-  "Math 214.toc" 1708472126 378 6ad3014aaea4788327a431b844792ba8 "pdflatex"
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 11/Math 214.tex" 1708472122 13734 6b56cd7d39644517283b56b08da4f7a9 ""
+  "Math 214.out" 1708834798 720 c9fdf2be92f75b49cba601fcc11d3211 "pdflatex"
+  "Math 214.run.xml" 1708834798 2343 0b9e2ea366d0583b2fc359a747aa8a93 "pdflatex"
+  "Math 214.tex" 1708834793 15176 3c5881d500a9423e06f4c74272bc6c11 ""
+  "Math 214.toc" 1708834798 378 8e05439ca5999355d03d03010df5eb15 "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 11/Math 214.tex" 1708834793 15176 3c5881d500a9423e06f4c74272bc6c11 ""
+  "critical points example.png" 1708826642 2791110 db3c1e73f84258c780855add85d25910 ""
+  "submfd example.png" 1708834239 1210305 2edde9ccd15be26b19a5c78d24e209d7 ""
+  "torus_height.png" 1708834570 4859168 b964fb3ac39ce94506664efcbe26f093 ""
   (generated)
   "Math 214.aux"
   "Math 214.bcf"

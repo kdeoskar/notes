@@ -156,12 +156,12 @@ These are notes taken from lectures on Complex Analysis delivered by Professor T
 \end{mathdefinitionbox}
 
 \begin{itemize}
-  \item "Formal" here means we temporarily ignore whether it makes sense to plug in complex numbers into such formulae.
+  \item "Formal" here means we temporarily ignore whether or not it makes sense to plug in complex numbers into such formulae.
 \end{itemize}
 
 \vskip 1cm
 \subsection{Convergence}
-Defining these formal expressions is cool, but when does a power seres actually define a function? It does so when the seres \textbf{converges}.
+Defining these formal expressions is cool, but when does a power seres actually define a function? It does so when the series \textbf{converges}.
 
 \vskip 0.5cm
 \underline{Example:} Geometric series:
@@ -179,20 +179,28 @@ To deal with convergence, we break into cases and take the limit.
 \begin{itemize}
   \item \textbf{$|az| < 1$ case:}
   
-  \[ |az| < 1 \implies |az|^{N} \rightarrow^{N \rightarrow \infty} 0 \]
+  \[ |az| < 1 \implies |az|^{N} \xrightarrow{N \rightarrow \infty} 0 \]
   So, 
   \[ \lim_{N \rightarrow \infty} S_N = \frac{1}{1 - az} \]
 
   \vskip 0.5cm
   \item \textbf{$|az| > 1$ case:}
-  \[ |az| > 1 \implies |az|^{N} \rightarrow^{N \rightarrow \infty} \infty \]
+  \[ |az| > 1 \implies |az|^{N} \xrightarrow{N \rightarrow \infty} \infty \]
   so 
   \[ \lim_{N \rightarrow \infty} S_N \text{ diverges} \]
   
   \vskip 0.5cm
   \item \textbf{$|az| = 1$ case:}
   
-  Diverges if $|az| \neq 1$ and if $|az| = 1$. In this case, both diverge, but in general there may be more complicated behavior.
+  % Diverges if $|az| \neq 1$ and if $|az| = 1$. In this case, both diverge, but in general there may be more complicated behavior.
+  Now, if $\left|az\right| = 1$ but $az \neq 1$, then $(az)^N = \underbrace{(az) \times \cdots \times (az)}_{N \text{ times}}$ just means we rotate around on the unit circle without converging to any point in particular. So, the sum diverges.
+
+  \vskip 0.25cm
+  If instead we have $az = 1$, then the denominator $1 - az$ vanishes and the sum diverges again.
+
+  \vskip 0.25cm
+  \emph{Note:} This time it happened to be the case that both case falling under $|az| = 1$ diverged, but in general we can have more complicated behavior.
+
 \end{itemize}
 
 \textbf{Conclusion:} The geometric series converges (absolutely) for when $|z| < |a|$.
@@ -205,7 +213,7 @@ To deal with convergence, we break into cases and take the limit.
 \end{dottedbox}
 
 \vskip 0.5cm
-So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. This region is just an open disk of radius $|a|$. In general, power series has radii of convergence.
+So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. This region is just an open disk of radius $|a|$. In general, power series have radii of convergence.
 
 \begin{mathdefinitionbox}{Radius of Convergence}
   \vskip 0.5cm
@@ -237,7 +245,7 @@ So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. Thi
       &\leq (1-\epsilon)^n \;\;\text{ (If $a_n = 0$, this  inequality is true trivially)}
     \end{align*}
     \[ \implies \text{ Convergence by Geometric series} \]
-    Term by term, the series is smaller than the geometric series (which converges), thus it also converges(Dominated Convergence Theorem).
+    Term by term, the series is smaller than the geometric series (which converges), thus it also converges (Dominated Convergence Theorem).
 
     \vskip 0.5cm
     \item If $|z| > r$, then $|z| > r/(1 - \epsilon)$ for some $\epsilon > 0$ while 
@@ -269,7 +277,7 @@ So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. Thi
 \end{align*}
 
 \vskip 0.5cm
-\underline{Proof of claim:} We wll show that for any $b$, $\frac{1}{2}b < (n!)^{1/n}$ for all $n >> 0$.
+\underline{Proof of claim:} We wll show that for any $b$, $b < (n!)^{1/n}$ for all $n >> 0$.
 
 % \begin{align*}
 %   n! &= \underbrace{(1 \times 2 \times \cdots \times b)}_{\geq 1} \times \underbrace{(b+1)}_{\geq b} \times \underbrace{(b+2)}_{\geq b} \times \cdots \times \underbrace{(n)}_{\geq b} \\
@@ -277,7 +285,20 @@ So, we notice that the series converges for any $z$ such that $|z| < 1/|a|$. Thi
 %   \text{Complete later}
 % \end{align*}
 
-Note that we can shift the center of the series from $0$ to some point $z_0$.
+For very large $n$, we have $n! = \underbrace{1 \cdot 2 \cdots b}_{\geq 1} \cdot \underbrace{(b+1)}_{\geq b} \cdot \underbrace{(b+2)}_{\geq b} \cdots \underbrace{n}_{\geq b}$. So, 
+\[ \left(n!\right)^{1/n} > \left(b^{n-m}\right)^{1/n} = b^{1-m/n}= b \cdot b^{-m/n}\]
+and
+\[ \lim_{n \rightarrow \infty} b^{-m/n} = 1 \]
+So, in the $n \rightarrow \infty$ limit, 
+\[ \left(n!\right)^{1/n} > b \]
+
+Since this holds for \emph{any} constant $b$, it must be the case that 
+\[ \lim_{n \rightarrow \infty} \left(n!\right)^{1/n} = \infty \implies \boxed{r = \infty} \]
+
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Note:} So far we've only considered series centered at hte origin but  we can shift the center of the series from $0$ to some point $z_0$.
 
 So, instead of 
 \[ \sum_{n \geq 0} a_n z^n \]
@@ -286,6 +307,7 @@ We have
 \[ \sum_{n \geq 0} a_n (z - z_0)^n \]
 
 The radius of convergence is given by the same expression.
+\end{dottedbox}
 
 \vskip 1cm
 \subsection{Differentiation of Power Series}
@@ -297,7 +319,7 @@ Knowing convergence properties of a series is also useful for the purposes of \e
 
   \vskip 0.5cm
   \underline{\textbf{Proof:}}
-  The proof follows the same argument as that in real analysis. Write the proof later. One proof can be found \href{https://proofwiki.org/wiki/Derivative_of_Complex_Power_Series/Proof_1}{here}.
+  The proof follows the same argument as that in real analysis. Write the proof later. One proof can be found \href{https://proofwiki.org/wiki/Derivative_of_Complex_Power_Series/Proof_1}{here}. Otherwise see Stein-Shakarchi Theorem 2.6.
 \end{dottedbox}
 
 We will break the proof into two parts:
@@ -307,30 +329,30 @@ We will break the proof into two parts:
   \[ f(z_0) = \sum_{n \geq 0} n a_n(z - z_0)^{n-1} \]
 \end{enumerate}
 
-\underline{\textbf{Proof:}} (Check if this is correct in Office Hours)
+% \underline{\textbf{Proof:}} (Check if this is correct in Office Hours)
 
-\begin{enumerate}[label=(\alph*)]
-  \item Earlier, we proved that for any complex power series there exists a number $r$ called the radius of convergence such that the series converges for any $z \in \C$ such that $|z| < r$. We also showed that $r$ is given by 
-  \[ r = \limsup_{n \rightarrow \infty} |a_n|^{1/n} \]
+% \begin{enumerate}[label=(\alph*)]
+%   \item Earlier, we proved that for any complex power series there exists a number $r$ called the radius of convergence such that the series converges for any $z \in \C$ such that $|z| < r$. We also showed that $r$ is given by 
+%   \[ r = \limsup_{n \rightarrow \infty} |a_n|^{1/n} \]
 
-  So, what we want to do here is show that the radii of convergence for the two series $R, R'$ are equal.
+%   So, what we want to do here is show that the radii of convergence for the two series $R, R'$ are equal.
 
-  Now, 
-  \begin{align*}
-    R' &= \limsup_{n \rightarrow \infty} |n a_n|^{1/n} \\
-    &= \limsup_{n \rightarrow \infty} |n|^{1/n} \cdot |a_n|^{1/n} \\
-    &= \limsup_{n \rightarrow \infty} |n^{1/n}| \cdot |a_n|^{1/n} \\
-    &= \limsup_{n \rightarrow \infty} |1| \cdot |a_n|^{1/n} \\
-    &= R
-  \end{align*}
-  So the two series have equal radii of convergence $(=R)$.
+%   Now, 
+%   \begin{align*}
+%     R' &= \limsup_{n \rightarrow \infty} |n a_n|^{1/n} \\
+%     &= \limsup_{n \rightarrow \infty} |n|^{1/n} \cdot |a_n|^{1/n} \\
+%     &= \limsup_{n \rightarrow \infty} |n^{1/n}| \cdot |a_n|^{1/n} \\
+%     &= \limsup_{n \rightarrow \infty} |1| \cdot |a_n|^{1/n} \\
+%     &= R
+%   \end{align*}
+%   So the two series have equal radii of convergence $(=R)$.
 
-  \item Next, we want to show that if 
-  \[ f(z) = \sum_{n \geq 0} a_n(z - z_0)^n \]
+%   \item Next, we want to show that if 
+%   \[ f(z) = \sum_{n \geq 0} a_n(z - z_0)^n \]
 
-  and 
-  \[ g(z) = \sum_{n \geq 0} n a_n(z - z_0)^{n-1} \]
-  Then, in fact, $f'(z) = g(z)$.
-\end{enumerate}
+%   and 
+%   \[ g(z) = \sum_{n \geq 0} n a_n(z - z_0)^{n-1} \]
+%   Then, in fact, $f'(z) = g(z)$.
+% \end{enumerate}
 
 \end{document}

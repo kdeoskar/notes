@@ -1,0 +1,261 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture },
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture (Not sure)}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{March 1 - }
+
+\vskip 1cm
+
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time we discussed two particle states:
+  \begin{align*}
+    \ket{a, b}_{B} &= \frac{1}{\sqrt{2}} \left( \ket{a} \otimes \ket{b}+ \ket{b} \otimes \ket{a} \right) \\
+    \ket{a, b}_{F} &= \frac{1}{\sqrt{2}} \left( \ket{a} \otimes \ket{b} - \ket{b} \otimes \ket{a} \right)
+  \end{align*}
+  \item Since the Fermionic wavefunction has to be antisysmmetric, it must be the case that 
+  \[  \ket{a,a}_{F} = 0 \]
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{Slatter Determinant}
+\vskip 0.5cm
+If, instead of 2, we have $N$ particles auseful tool for constructing antisymmetric states $\inner{\phi_i}{\phi_j} = S_{ij}$ is the \emph{\textbf{Slatter Determinant}}.
+
+\vskip 0.5cm
+\begin{align*}
+  \ket{\psi}_{A, N} = \frac{1}{\sqrt{N!}} \begin{bmatrix}
+    \ket{\phi_1(\vec{r}_1)} & \ket{\phi_2(\vec{r}_1)} & \cdots & \ket{\phi_N(\vec{r}_1)} \\
+    \ket{\phi_N(\vec{r}_1)} & \ket{\phi_N(\vec{r}_2)} \cdots \ket{\phi_N(\vec{r}_3)} \\
+    \vdots&  & \ddots \\
+    \ket{\phi_1(\vec{r}_N)} & \ket{\phi_2(\vec{r}_N)} & \cdots & \ket{\phi_N(\vec{r}_N)}
+  \end{bmatrix}
+\end{align*}
+
+\vskip 1cm
+\subsection{Non-interacting $N$ particles}
+
+[Fill in some stuff from recording]
+
+
+\vskip 0.5cm
+Let's consider : $\begin{matrix}
+  \text{distinguishable} \\ \text{spinless bosons} \\ \text{spin-1/2 fermions}
+\end{matrix}$
+
+\vskip 0.5cm
+\subsubsection{Distinguishable}
+
+[Write later]
+
+\vskip 0.5cm
+\subsubsection{Spinless Bosons}
+
+[Fill later]
+
+\emph{Note:} This is the starting point for Bose-Einstein condensates (at low temperatures, all of the bosons neter the same energy state.)
+
+\vskip 0.5cm
+\subsubsection{Spin-1/2 fermions}
+
+This time, it depends on the whether $N$ is odd or even.
+
+
+\vskip 0.5cm
+Next, let's take the large $N$ limit of a system with $N$ fermions. This gives us the \emph{Fermi Gas Model}.
+
+\vskip 1cm
+\subsection{Fermi Gas Model}
+\begin{itemize}
+  \item Large $N$ limit of $N$ non-interacting fermions
+  \item Metals
+  \item Heavy Nuclei
+  \item White Dwarfs and Neutron Stars
+\end{itemize}
+
+\vskip 0.5cm
+Let's assume our fermions live in a cube of side-length $L$ which is so large that our boundary conditions \emph{don't quite matter}. i.e. it doesn't matter much to the behavior in the interior whether we apply periodic boundary conditions or something else.
+
+\vskip 0.5cm
+Let's impose preiodic boundary conditions. Then,
+\begin{align*}
+  &\phi(x+ L, y, z) = \phi(x, y, z) \\
+  &\phi(x, y, z) \sim e^{i\left(k_x x + k_y y + k_z z\right)} \text{ where } k_xL = 2\pi n_x
+\end{align*}
+
+It's useful to define the vector
+\[ \vec{k} = \frac{2\pi}{L} \left(n_x, n_y, n_z\right) \]
+
+\vskip 0.5cm
+Let's try to count the number of modes which can fit in this box, with the goal of finding the total number of spin-1/2 particles inside the box.
+
+\vskip 0.5cm
+We have 
+\begin{align*}
+  dn &= 2 \times \mathrm{d}n_x \mathrm{d}n_y \mathrm{d}n_z \\
+  &= 2 \times \left(\frac{L}{2\pi}\right)^2 \mathrm{d}k_x \mathrm{d}k_y \mathrm{d}k_z
+\end{align*}
+
+\vskip 0.5cm
+We're going to engage in a slight \emph{oopsie} by assuming that even though our momenta are discrete, the steps between consecutive momenta are infinitessimally small. We're going to take the large $N$ limit, where this assumption does hurt, so it should work out.
+
+\vskip 0.5cm
+[Write motivation for Fermi Energy and Fermi Momentum]
+
+\vskip 0.5cm
+\subsubsection*{Fermi Energy and Fermi Momentum}
+
+\begin{mathdefinitionbox}{}
+  We define the \emph{\textbf{Fermi Energy}} to be the largest energy that any particle in the gas takes.
+\end{mathdefinitionbox}
+
+\vskip 1cm
+[Write the rest from recording]
+
+\end{document}

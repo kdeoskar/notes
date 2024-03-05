@@ -1,0 +1,202 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B Briceño Lecture },
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newtcolorbox{dottedbox}[1][]{%
+%     colback=white,    % Background color
+%     colframe=white,    % Border color (to be overridden by dashrule)
+%     sharp corners,     % Sharp corners for the box
+%     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+%     boxsep=5pt,        % Padding inside the box
+%     enhanced,          % Enable advanced features
+%     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+%     #1                 % Additional options
+% }
+
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Lecture (Not sure)}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm 
+These are notes taken from lectures on Quantum Mechanics delivered by Professor Raúl A. Briceño for UC Berekley's Physics 137B class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{March 4 - Applications of the Fermi Gas Model}
+
+\vskip 1cm 
+
+\subsection{Recap - Fermi Gas Model}
+
+\begin{itemize}
+  \item Last time, we began studying the Fermi Gas Model, which is the large $N$ limit of a system comprised of $N$ spin-1/2 fermions in a box.
+  \item We calculated the number of states corresponding to each momentum $k$ and then integrated over $k$ space:
+  \[ dn = 2 \left(\frac{L}{2\pi}\right)^3 d\Omega \; k^2 dk  \]
+  \item We found the \emph{\textbf{Fermi Energy, $E_F$}} and the \emph{\textbf{Total Energy, $F_T$}}
+  \[ E_T = N \cdot \frac{3}{2} E_F  \]
+  where $E_f = \left(\rho 3 \pi^2\right)^{2/3} \cdot \frac{\hbar^2}{2m} $
+  \item Notably, however, we only considered the system at $T = 0 K$.
+  \item The Fermi surface is the surface which bounds the sphere in $n$-space [Write better explanation later]
+\end{itemize}
+
+\vskip 1cm
+\subsection{Finite Temperature}
+\begin{itemize}
+  \item At $T = 0 K$, the system collapses to the ground state.
+  \item At $T > 0 K$, particles have enough energy to jump up to higher energy levels aka. jump the Fermo Surface. We find that 
+  \[ \mean{n(E)} = \frac{1}{\exp\left[ \frac{E- E_F}{T}\right] - 1}  \]
+  \item Finite Temperature stuff is beyond the scope of this course, however, so we'll stick to the $T = 0 K$ case.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Application - Stellar Evolution}
+\begin{itemize}
+  \item In the early stages, stars are mainly composed of Hydrogen. 
+  \item The thing that drives energy production in the stars is nuclear fusion, and the primary reaction that takes place is 
+  \begin{align*}
+    &p + p \rightarrow \underbrace{d}_{n,p} + e^+ + \overline{\nu}_e \\
+    &d + p \rightarrow He_3 + \gamma \\
+    &He_3 + He_3 \rightarrow p + p + He_4 \\
+    &\vdots
+  \end{align*}
+  \item What keeps the Star stable is the gravitational pull due to the immense mass of the star, which conflicts with the radiation pressure due to the nuclear reactions.
+  \item Eventually, however,  run out of nuclear fuel and gravity wins out. At that point, depending on the size of the star, various things can happen.
+  \item Stars with masses $M < M_{sun} \times 1.5$ can form \emph{white dwarfs} $[e^-]$ when gravity wins out.
+  \item For stars with masses much greater than the sun, it is more energetically neutral for the reaction $e^- + p \rightarrow n + \overline{\nu}_e$, hence they are called neutron stars.
+\end{itemize}
+
+\subsection{White Dwarfs}
+We can crudely model white dwarfs are seas of Fermi Elections. 
+
+\vskip 0.5cm
+Energy of the system: $E_T = E_{kin} + E_{grav}$ where $E_{kin} = N\frac{3}{5}E_F$
+
+Write rest of the notes from recording, just pay attention in class.
+
+\end{document}

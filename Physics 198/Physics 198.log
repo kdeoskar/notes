@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  22 FEB 2024 19:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  29 FEB 2024 17:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -302,6 +302,12 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip58
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/bbm\bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 156.
  (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
@@ -501,10 +507,10 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
-File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+(C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowinset=\dimen282
 \pgfarrowlength=\dimen283
@@ -1018,30 +1024,34 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1532.
 
-<Homology of RP2.png, id=553, 439.6425pt x 352.31625pt>
+<Homology of RP2.png, id=603, 439.6425pt x 352.31625pt>
 File: Homology of RP2.png Graphic file (type png)
 <use Homology of RP2.png>
 Package pdftex.def Info: Homology of RP2.png  used on input line 1538.
 (pdftex.def)             Requested size: 219.82071pt x 176.15768pt.
-[30 <./Homology of RP2.png (PNG copy)>] [31] [32] (Physics 198.aux)
+[30 <./Homology of RP2.png (PNG copy)>] [31] [32] [33] [34]
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 1787.
+ (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/bbm\ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+) [35] (Physics 198.aux)
 Package rerunfilecheck Info: File `"Physics 198".out' has not changed.
-(rerunfilecheck)             Checksum: 090886C28670FF1859960CCEA6118167;12213.
+(rerunfilecheck)             Checksum: 7A056597FD76B498E5C44567B4DF79D2;14003.
 Package logreq Info: Writing requests to '"Physics 198".run.xml'.
 \openout1 = `"Physics 198.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37733 strings out of 476361
- 773876 string characters out of 5788046
+ 37825 strings out of 476361
+ 775751 string characters out of 5788046
  1878993 words of memory out of 5000000
- 57449 multiletter control sequences out of 15000+600000
- 522430 words of font info for 70 fonts, out of 8000000 for 9000
+ 57511 multiletter control sequences out of 15000+600000
+ 522825 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,17n,103p,751b,2205s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "Physics 198.pdf" (32 pages, 468281 bytes).
+ 98i,18n,103p,751b,2205s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bbm/dpi600\bbm10.pk> <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on "Physics 198.pdf" (35 pages, 488447 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 138 named destinations out of 1000 (max. 500000)
- 704 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 778 PDF objects out of 1000 (max. 8388607)
+ 158 named destinations out of 1000 (max. 500000)
+ 784 words of extra memory for PDF output out of 10000 (max. 10000000)
 

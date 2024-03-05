@@ -144,7 +144,10 @@ These are notes taken from lectures on Differential Topology delivered by Eric C
 \subsection*{Recap}
 Some important results we've built in the last few lectures are:
 \begin{itemize}
-  \item Rank Theorem (enter the statement here later). Last time, we applied this to $k-$slices. We argued that if we have $\S^k \hookrightarrow M^m$ and if locally $S^k$ is a $k-$slice [finish later]
+  \item We built the incredibly handy \emph{Rank Theorem}, which essentially tells us that the coordinate representations of constant rank maps between manifolds are canonical in a neighborhood of each point i.e. a map $F : M^m \rightarrow N^n$ of constant rank $r$ can be expressed, in some small neighborhood of any $x = (x^1, \dots, x^m)$, as 
+  \[ F(x^1, \dots, x^r, \dots, x^m) = (x^1, \dots, x^r)  \]
+  
+  \item Last time, we applied this to $k-$slices. We argued that if we have $\mathbb{S}^k \hookrightarrow M^m$ and if locally $\mathbb{S}^k$ is a $k-$slice [finish later]
   \item Then, we spoke about Level Sets. Recall that if we have a smooth map $F : M^m \rightarrow N^n$, the inverse image of a point $q \in N$ i.e. $F^{-1}(q) \subseteq M$ is an embedded submanifold, given that it satisfies certain properties.
 \end{itemize}
 
@@ -160,11 +163,11 @@ Some important results we've built in the last few lectures are:
 
 \vskip 0.5cm
 Let $S = F^{-1}(q)$. Applying the rank theorem, we obtain charts $(U, \psi)$ on $M$ and $(V, \psi)$ on $N$ such that $\psi \circ F \circ \phi^{-1}$ has the coordinate representation 
-\[ (x^1, \dots, x^r, x^{r+1}, \dots, x^{m}) \mapsto (x^1, \dots, x^r, 0, dots, 0)  \]
+\[ (x^1, \dots, x^r, x^{r+1}, \dots, x^{m}) \mapsto (x^1, \dots, x^r, 0, \dots, 0)  \]
 
 So, if $\psi(q) = (c^1, \dots, c^r, 0, \dots 0)$, then the preimage in local coordinates on $M$ has the form $\{(c^1, \dots, c^r, x^{r+1}, x^{m}) :  x^{r+1}, x^{m} \in \R \} \cap \phi(U)$ such that 
 
-But this is just a $k-$slice. So, around each point, we have a local k-slice. And we saw last time that a l ocal $k$-slice is an embedded submanifold of $M$. Further, $F^{-1}(q)$ is closed in $M$ so it is a proper embedding.
+But this is just a $k-$slice. So, around each point, we have a local k-slice. And we saw last time that a local $k$-slice is an embedded submanifold of $M$. Further, $F^{-1}(q)$ is closed in $M$ so it is a proper embedding.
 
 \vskip 0.5cm
 \begin{dottedbox}
@@ -188,31 +191,37 @@ But this is just a $k-$slice. So, around each point, we have a local k-slice. An
 \underline{Example:} For a smooth function $F : R \rightarrow R$, $x \in \R$ is a critcal point if and only if $f'(x) = 0$.
 
 \vskip 0.5cm
-[Insert Image]
+\begin{center}
+  \includegraphics*[scale=0.05]{critical points example.png}
+\end{center}
 
 \vskip 0.5cm
 Just visually speaking, it looks like there are much fewer critical values than critical points. We'll say more about this in the next chapter when we deal with \emph{Sard's Theorem}.
 
 \vskip 0.5cm
 \begin{dottedbox}
-  \underline{Remark:} 
+  \underline{Remark (Proposition 4.1 in LeeSM):} 
+  
+  The set of regular points in $M$ is open, and the restriction \[ \restr{F}{\{\text{ {Reg. pts.} }\}} \{\text{Reg. pts.}\} \rightarrow N \] is a submersion.
+
+  \vskip 0.25cm
+  \emph{Why is this set open?}
+  See Example 1.28 in LeeSM.
+
+  \vskip 0.25cm
+  \emph{Why is it a submersion?} Because at a regular point $p$, $dF_p$ is surjective i.e. $\mathrm{rank}(dF_p )= n$. This means the $m \times n$ matrix representation of $dF_p$ has an $n \times n$ submatrix with non-zero determinant. The determinant of this submatrix remains non-zero in a small neighborhood of $p$ due to continuity. 
 \end{dottedbox}
 
 \vskip 0.5cm
 \begin{dottedbox}
-  \emph{\textbf{Theorem (Regular Level Set THeorem:)}} If $F : M^m \rightarrow N^n$ is a smooth map between manifolds and $q \in N$ is a regular value, then its inverse image $F^{-1}(q) \subseteq M$ is a smooth $(m-n)-$dimensional submanifold of $M$.
+  \emph{\textbf{Theorem (Regular Level Set Theorem:)}} If $F : M^m \rightarrow N^n$ is a smooth map between manifolds and $q \in N$ is a regular value, then its inverse image $F^{-1}(q) \subseteq M$ is a smooth $(m-n)-$dimensional submanifold of $M$.
 \end{dottedbox}
 
 \vskip 0.5cm
-\emph{\textbf{Proof:}} Let $U = \{p \in M \;:\; rank(dF_p) = dim N\} \subseteq M$. i.e. the set of points where $F$ has full rank. This is an open subset of $M$ because if $q \in N$ is a regular value then $F^{-1}(q) \subseteq U$.
+\emph{\textbf{Proof:}}  Let $U = \{p \in M \;:\; rank(dF_p) = dim N\} \subseteq M$. i.e. the set of points where $F$ has full rank. This is an open subset of $M$ by Proposition 4.1, and if $q \in N$ is a regular value then $F^{-1}(q) \subseteq U$.
 
-\vskip 0.5cm
-Then $\restr{F}{U}$ is a submersion and by the Constant Rank Theorem for Level Sets, $F^{-1}(q) \hookrightarrow U$ is a smooth embedding of an $(m-n)$ dimensional submanifold.
-
-\vskip 0.5cm
-Finally, $U \hookrightarrow M$ is also a smooth embeddnig, so the composition $\restr{F}{U} \hookrightarrow U \hookrightarrow M$ is also a smooth embedding.
-
-[Re-write the above].
+\vskip 0.25cm
+Then $\restr{F}{U}$ is a submersion and by the Constant Rank Theorem for Level Sets, $F^{-1}(q) \hookrightarrow U$ is a smooth embedding, and $F^{-1}(q)$ is an $(m-n)$ dimensional submanifold of $U$. Finally, $U \hookrightarrow M$ is also a smooth embedding, so the composition $\restr{F}{U} \hookrightarrow U \hookrightarrow M$ is also a smooth embedding. It follows that $F^{-1}(q)$ is an embedded submanifold of $M$.
 
 \vskip 0.5cm
 \underline{Examples:} 
@@ -228,6 +237,10 @@ Finally, $U \hookrightarrow M$ is also a smooth embeddnig, so the composition $\
   which has rank $1$ unless $x = y = 0$. i.e. the set of regular values if $\R^2 \setminus \{0\} \subseteq_{open} \R^2$.
   
   So, $F^{-1}(c)$ is an embedded $(2-1) = 1$ dimensional submanifold of $\R^2$.
+
+  \begin{center}
+    \includegraphics*[scale=0.10]{submfd example.png}
+  \end{center}
 
   \vskip 0.5cm
   \item $\mathbb{S}^n \subseteq \R^{n+1}$ can be thought of as a level set of 
@@ -255,10 +268,15 @@ Finally, $U \hookrightarrow M$ is also a smooth embeddnig, so the composition $\
     4x^1\left( (x^1)^2 + (x^2)^2 - 1 \right) & 4x^2\left( (x^1)^2 + (x^2)^2 - 1 \right)
   \end{bmatrix} \]
 
-  THen, all points of $\mathbb{S}^1$ are critical, but $\mathbb{S}^1$ is still an embedded submanifold of $\R^2$. So, the converse of RLST does not necessarily hold.
+  Then, all points of $\mathbb{S}^1$ are critical, but $\mathbb{S}^1$ is still an embedded submanifold of $\R^2$. So, the converse of RLST does not necessarily hold.
 
   \vskip 0.5cm
   \item Consider the "height function" on a torus $F : \mathbb{T}^2 \xrightarrow{\text{"height func."}} \R^2$
+  \begin{center}
+    \includegraphics*[scale=0.10]{torus_height.png}
+  \end{center}
+
+  The pre-images of the critical values of this function are the figure-eight shaped sets shown in the figure.
 \end{itemize}
 
 \vskip 0.5cm

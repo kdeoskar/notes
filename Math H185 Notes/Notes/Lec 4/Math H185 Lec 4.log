@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  24 JAN 2024 13:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  2 MAR 2024 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -944,7 +944,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5] [6] (Math H185 Lec 4.aux)
+{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5] (Math H185 Lec 4.aux)
 Package rerunfilecheck Info: File `"Math H185 Lec 4".out' has not changed.
 (rerunfilecheck)             Checksum: 2E3B31E9479B8D2B3753236761CE1B43;513.
 Package logreq Info: Writing requests to '"Math H185 Lec 4".run.xml'.
@@ -952,17 +952,17 @@ Package logreq Info: Writing requests to '"Math H185 Lec 4".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36717 strings out of 476361
- 755774 string characters out of 5788046
- 1867993 words of memory out of 5000000
- 56568 multiletter control sequences out of 15000+600000
+ 36715 strings out of 476361
+ 755771 string characters out of 5788046
+ 1869993 words of memory out of 5000000
+ 56569 multiletter control sequences out of 15000+600000
  520831 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,15n,103p,771b,1822s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Math H185 Lec 4.pdf" (6 pages, 185534 bytes).
+Output written on "Math H185 Lec 4.pdf" (5 pages, 186946 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 17 named destinations out of 1000 (max. 500000)
  181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

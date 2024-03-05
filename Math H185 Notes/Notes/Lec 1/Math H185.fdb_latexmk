@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber Math H185"] 1705391057 "Math H185.bcf" "Math H185.bbl" "Math H185" 1705588805 0
+["biber Math H185"] 1705391057 "Math H185.bcf" "Math H185.bbl" "Math H185" 1709410041 0
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Math H185.bcf" 1705588804 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Math H185.bcf" 1709410041 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Math H185.bbl"
   "Math H185.blg"
   (rewritten before read)
-["pdflatex"] 1705588803 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math H185 Notes/Math H185.tex" "Math H185.pdf" "Math H185" 1705588805 0
-  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1704874274 83523 c240498cc87ea350b68c7a1657f0afb7 ""
+["pdflatex"] 1709410040 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math H185 Notes/Notes/Lec 1/Math H185.tex" "Math H185.pdf" "Math H185" 1709410041 0
+  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708107828 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993058908 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -223,13 +223,13 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Math H185.aux" 1705588804 1385 8489dd489b737357632cc4837f584bd4 "pdflatex"
+  "Math H185.aux" 1709410041 1385 8489dd489b737357632cc4837f584bd4 "pdflatex"
   "Math H185.bbl" 1705391061 486 ee04f40f768daeed26442158e95aba61 "biber Math H185"
-  "Math H185.out" 1705588804 892 c9d9bb3cb390144c49f1490938e2736a "pdflatex"
-  "Math H185.run.xml" 1705588804 2350 11d9e55caa09bc8b7f8ec0dbd613c923 "pdflatex"
-  "Math H185.tex" 1705588799 6802 a9e51b31e1da00d9638f94a0a5cabaf8 ""
-  "Math H185.toc" 1705588804 467 07a35a2e5bf2627f931d13fd89082e4d "pdflatex"
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math H185 Notes/Math H185.tex" 1705588799 6802 a9e51b31e1da00d9638f94a0a5cabaf8 ""
+  "Math H185.out" 1709410041 892 c9d9bb3cb390144c49f1490938e2736a "pdflatex"
+  "Math H185.run.xml" 1709410041 2350 11d9e55caa09bc8b7f8ec0dbd613c923 "pdflatex"
+  "Math H185.tex" 1709410039 6988 24db63dcfeb4fcb969ee35b0fa9fc94c ""
+  "Math H185.toc" 1709410041 467 07a35a2e5bf2627f931d13fd89082e4d "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math H185 Notes/Notes/Lec 1/Math H185.tex" 1709410039 6988 24db63dcfeb4fcb969ee35b0fa9fc94c ""
   (generated)
   "Math H185.aux"
   "Math H185.bcf"

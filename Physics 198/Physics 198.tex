@@ -144,7 +144,7 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
-
+\usepackage{bbm}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -1498,7 +1498,7 @@ The first homotopy and homology groups are very simply related as above. The hig
 
 \pagebreak
 
-\section*{February 22 - Applications of Homology}
+\section{February 22 - Applications of Homology}
 
 \vskip 0.5cm
 \subsection*{Recap}
@@ -1653,5 +1653,144 @@ This measn that in 3-dimensions, we can only have two types of particles (bosons
   \emph{Note:} The correct way of talking about this situation is in terms of \emph{vector bundles} because the wavefunction is actually a vector bundle defined over the configuration space.
 \end{dottedbox}
 
-\end{document} 
+[Refine everything above later]
 
+\pagebreak
+
+\section{February 27 - Starting off with Differential Geometry!}
+
+\subsection{Differentiable Maninfolds}
+
+\begin{itemize}
+  \item Earlier in the course, we saw topological spaces and defined a particular class of topological manifolds called \emph{\textbf{Topological Manifolds}}.
+  \item Now, we will add more structure on topological manifolds to extend calculus onto these spaces. i.e. we will turn them into \emph{\textbf{Differentiable Manifolds.}}
+\end{itemize}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  $M$ is an \emph{\textbf{n-dimensional Differentiable Manifold}} if 
+  \begin{enumerate}
+    \item $M$ is a topological space
+    \item $M$ has an atlas $\{(U_i,\phi_i)\}$ where each $(U_i, \phi_i)$ is a chart.
+    \item The collection $\{U_i\}$ covers $M$ i.e. 
+    \[ \bigcup_{i} U_i = M \]
+    \item Each $\phi_i$ is a homeomorphism from $U_i$ onto a set $\tilde{U}_i \subseteq \R^n$
+    \item For each $U_i, U_j$ such that $U_i \cap U_j \neq \emptyset$, the map $\psi_{ij} = \psi_i \circ \psi_{j}^{-1}$ from $\psi_j(U_i \cap U_j)$ to $\psi_i(U_i \cap U_j)$ is \emph{\textbf{infinitely differentiable.}}
+  \end{enumerate}
+\end{mathdefinitionbox}
+
+\vskip 0.25cm
+It is property number (4) that differentiates differentiable (or smooth) manifolds from topological manifolds.
+
+\vskip 0.25cm
+[insert some pictures]
+
+\vskip 0.25cm
+A function that is $n$-differentiable is denoted as being a $C^{n}$ function, so we require the set of transition functions $\{\psi_{ij}\}$ to be $C^{\infty}$ i.e. infinitely differentiable (aka. smooth).
+
+[Mention theorem which allows us to generalize from n-differentiable to infinitely differentiable.]
+
+\vskip 1cm
+\subsection{Diffeomorphisms}
+
+\vskip 0.25cm
+At this point we've seen a bunch of \emph{morphisms} such as homeomorphism, isomorphism, endomorphism, automorphism etc. 
+
+\vskip 0.25cm
+So far, each of these have been maps that allow us to identify different spaces as being "the same". We will define \emph{diffeomorphisms} to be the morphisms for the class (or rather, category) of Smooth Manifolds. But before we get there, we need to define what it means for a map between two smooth manifolds to be smooth.
+
+\vskip 0.25cm
+\begin{mathdefinitionbox}{Smooth maps between manifolds}
+\vskip 0.25cm
+  \begin{itemize}
+    \item We say that a map $f : M \rightarrow N$ between smooth manifolds of dimensions $m,n$ is \emph{\textbf{smooth}} (i.e. $C^{\infty}$) if for all charts $(U, \phi_i)$ on $M$ and $(V, \psi)$ on $N$, the coordinate representation $\psi \circ F \circ \phi^{-1}$ is $C^{\infty}$.
+    \item Note that the coordinate representation is always a map between euclidean spaces, so it must be smooth in the normal sense.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.25cm
+[Insert Images]
+
+\vskip 1cm
+\subsection{Scalar Fields on Smooth Manifolds}
+
+\begin{itemize}
+  \item In Physics, often our system is a manifold, and we are interested in the behavior of some quantity at different points on the space, for eg. the spin distribution.
+  \item This is often achieved by using \emph{scalar fields}.
+\end{itemize}
+
+\begin{mathdefinitionbox}{}
+\begin{itemize}
+  \item A Scalar Field defined on a manifold $M$ is any function in the set of smooth maps 
+  \[  C^{\infty}(M) = \{f : M \rightarrow \R \} \]
+  \item In fact, this space forms a commutative ring when equipped with point-wise multiplication [Elaborate on this]
+\end{itemize}
+
+\end{mathdefinitionbox}
+
+\vskip 0.25cm
+\subsection*{Curves on Manifolds}
+
+\begin{mathdefinitionbox}{}
+  A Curve on a manifold is a smooth map $\gamma : J \rightarrow M$ where $J$ is a closed (or open) interval in $\R$.
+\end{mathdefinitionbox}
+
+[Write later and Insert Image]
+
+
+\vskip 1cm
+\subsection{Tangent and Cotangent Spaces}
+[Write later]
+
+\pagebreak
+
+\section{Feb 29 - }
+
+\vskip 0.5cm
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time, we left off while discussing the \emph{pullback}
+  \begin{align*}
+    M \xrightarrow{f} N \xrightarrow{\psi} R
+  \end{align*}
+  [Finish this]
+\end{itemize}
+
+\vskip 0.5cm
+Today, we start off by discussing the \emph{pushforward}, which tells us how tangent vectors change when we move between manifolds.
+
+\vskip 0.5cm
+\subsection*{Pushforward}
+
+\begin{mathdefinitionbox}{}
+  Given smooth manifolds $M$ and $N$ and a smooth map $F : M \rightarrow N$, we define the \emph{\textbf{pushforward}} at the point $p \in M$ as the map 
+  \[ f_* : T_p M \rightarrow T_{F(p)} N \]
+  as 
+  \[ f_* \left( \restr{\frac{d}{dt}}{t = 0}  \gamma(t) \right) = \restr{\frac{d}{dt}}{t = 0} \left(f \circ \psi \right)(t) \]
+\end{mathdefinitionbox}
+
+
+
+\vskip 1cm
+\subsection{Bundles}
+Often, it is useful to consider not just the tangent space at a particular point $p \in M$, but the collection the tangent spaces at \emph{all} points in $M$. This is called the \emph{tangent bundle} and it is actually a smooth manifold in itself.
+
+\vskip 0.5cm 
+It is also not the only bundle we can define on a manifold. More generally, we define a \emph{\textbf{Smooth Bundle}} on a manifold $M$ as the triple $(E, \pi, M)$ where $E$ is the total space, $M$ is the base space, and $\pi : E \rightarrow M$ is a projection map that allows us to from one to the other.
+
+\vskip 0.5cm
+Given a bundle $(E, \pi, M)$, we define the \emph{\textbf{fiber over the point $p \in M$}} to be the preimage of $p$ under $\pi$.
+
+\vskip 1cm
+\subsection{Sections}
+The projection map $\pi : E \rightarrow M$ takes us one way. To go in the opposite direction, we use the \emph{section} $\sigma : M \rightarrow E$, which is defined to be the right inverse of $\pi$ i.e.
+\[  \left(\pi \circ \sigma \right) = \mathbbm{1}_M  \]
+
+
+\vskip 1cm
+\subsection{Tangent Bundle}
+
+Let's now look more closely at the Tangent Bundle.
+
+
+\end{document} 
