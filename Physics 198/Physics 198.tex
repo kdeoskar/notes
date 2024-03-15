@@ -1793,4 +1793,220 @@ The projection map $\pi : E \rightarrow M$ takes us one way. To go in the opposi
 Let's now look more closely at the Tangent Bundle.
 
 
+\pagebreak
+
+\section{March 5 - Forms and Exterior Algebra}
+
+\vskip 0.5cm
+Recall from earlier in the course that we had defined an (r,s)-Tensor as a multilinear map which takes in r-copies of $V^*$, s copies of $V$ and spits out a real number.
+
+
+\vskip 0.5cm
+Now, we extend this idea to manifolds by defining \emph{tensor fields}.
+
+\begin{mathdefinitionbox}{Tensor Field}
+  A smooth (r,s)-Tensor field is a $C^{\infty}$ multilinear Map
+  \[ T :  \]
+  [Fill in from image bruh keyboard is tweaking rn]
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\subsection{p-forms}
+
+Given an $n-$dimensional (real) linear space $L$, consider $T_{p}^{0}(L)$ to be the space of $(0, p)-$tensors over $L$. 
+
+An element of this space is called a $p-$form if it satisfies certain properties.
+
+\begin{mathdefinitionbox}{p-forms}
+  Given a linear space $L$ and the space of $(0, p)-$tensors on that space, $T_p^0(L)$, a tensor $\alpha \in T_p^0(L)$ is called a \emph{\textbf{p-form}} if it satisfies 
+  \begin{itemize}
+    \item Antisymmetric proprety
+    \[ \alpha(\underbrace{\dots, p, \dots, w}_{}) = - \alpha(\dots, w, \dots, v)  \]
+  \end{itemize}
+\end{mathdefinitionbox}
+
+For example, 
+\[ sgn(\sigma) = \begin{cases}
+  +1, \text{ even permutation} \\
+  -1, \text{ odd permutation} \\
+\end{cases} \] 
+is a $p-form$.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  We denote the space of $p-$forms on $L$ as $\Lambda^p L^* $.
+\end{dottedbox}
+
+\vskip 0.25cm
+For example, given a linear space $L$, 
+\begin{align*}
+  &p = 0 \;\;\;\; \Lambda^0 L^* = T_0^0(L) = \R \\
+  &p = 1 \;\;\;\; \Lambda^1 L^* = T_0^1(L) = L^* \\
+\end{align*}
+
+
+\vskip 1cm
+We will later introduce \emph{differential forms} which show up a lot in physics. For instance, 
+\begin{itemize}
+  \item tThe Electromagnetic four potential $F = dA$ is a 1-(differential) form.
+  \item The Electromagnetic Tensor is 
+  \[ F = E_x dx \wedge dt + E_y dy \wedge dt + E_z dz \wedge dt + B_x dy \wedge dz + B_y dz \wedge dx + B_z dz \wedge dy\] is a differential 2-form. The wedge looking denotes the \emph{exterior product} which we will define some time soon.
+\end{itemize}
+
+\vskip 1cm
+[Insert some stuff from image]
+
+\vskip 1cm
+\subsection{Properties of $p-$forms}
+
+\begin{itemize}
+  \item \textbf{Antisymmetry:} A p-form $\alpha \in \Lambda^p L^*$ satisfies 
+  \[  \alpha(\dots, a, \dots, b, \dots) = -\alpha(\dots, b, \dots, a, \dots) \]
+  \item $\Lambda^p L^*$ is a subspace of $T_p^0(L)$
+  \item The dimension of the space of $p-$forms on an $n-$dimensional space is 
+  \[  \text{dim}\Lambda^p L^* = \binom{n}{p} = \frac{n!}{p!(n-p)!}  \]
+  \item $\text{dim} \Lambda^p L^* = \text{dim} \Lambda^{n-p} L^*$
+  \item Non-zer $p-$forms can only exist for $0 \leq p \leq n$.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Projection onto a form}
+  GIven a tensor $t \in T_p^0(L)$, we define the $p$-form $\pi^A t \in T_p^0(L)$ as 
+  \[ (\pi^A t)(v, \dots, w) = \frac{1}{p!} \sum_{\sigma} (\text{sgn}\;\sigma) t(\sigma(v,\dots, w))  \]
+\end{mathdefinitionbox}
+
+
+\begin{itemize}
+  \item This map projects onto the space of $p-$forms i.e.
+  \[ \pi^A : T_p^0(L) \rightarrow \Lambda^p L^* \subseteq _p^0(L)  \]
+  \item This map is idempotent as 
+  \[ \pi^A \circ \pi^A = \pi^A  \]
+  \item $\pi^A t$ is an antisymmetric tensor.
+  \item $(\pi^A t)(v) = t(v)$
+\end{itemize}
+
+
+\vskip 0.5cm
+\subsection{General Tensor Product}
+
+Given $p-$ and $q-$ forms $\alpha \in \Lambda^p L^*, \beta \in \Lambda^q L^*$, how do we combine these forms? We \emph{could }do so using the general tensor product
+
+\[ \otimes : \Lambda^p L^* \times \Lambda^q L^* \rightarrow T_{p+q}^0(L)   \]
+
+However, the product of forms is not guaranteed to be another form under the tensor product. So, we define the \emph{\textbf{Exterior Product}}
+
+\[  \wedge : \Lambda^p L^* \times \Lambda^q L^* \rightarrow \Lambda^{p + q} L^*   \]
+
+as the map 
+
+\[   \Lambda = \frac{(p+q)!}{p!q!} \pi^A \circ \otimes  \]
+
+i.e. we compose the the tensor product with the projection onto the space of $(p+q)-$forms.
+
+\[ \alpha \wedge \beta = \frac{(p+q)!}{p!q!} \pi^A(\alpha \otimes \beta) \]
+
+
+\vskip 0.5cm
+\subsection{Properties of the Exterior Product}
+
+The exterior product is 
+\begin{enumerate}
+  \item \textbf{Bilinear}
+  \[ \alpha \wedge (\beta + \lambda \tau) = \alpha \wedge \beta + \lambda \alpha \wedge \tau  \]
+
+  and 
+  \[ (\beta + \lambda \tau) \wedge \alpha = \beta  \wedge \alpha+ \lambda \tau \wedge \alpha  \]
+
+  \vskip 0.5cm
+
+  \item \textbf{Associative}
+  \[ (\alpha \wedge \beta) \wedge \tau = \alpha \wedge (\beta \wedge \tau)  \]
+
+  \vskip 0.5cm
+  \item \textbf{$\mathbb{Z}$-graded commutative}
+  \[ \alpha \wedge \beta = (-1)^{pq} \beta \times \alpha  \]
+\end{enumerate}
+
+\vskip 1cm
+\subsubsection*{Scalar Multiplication as a special case of the exterior product}
+
+[write later]
+
+\vskip 1cm
+\subsection{Tensor Basis}
+
+We know that the space $T_p^0(L)$ has a basis $\underbrace{e^a \otimes \cdots \otimes e^b}_{p}$. Now, it's enough to \emph{anti-symmetrize} this basis in order to obtain a basis for the space of $p-$forms.
+
+\[ e^{[a }\otimes \cdots \otimes e^{b]} = \pi^A \left(e^a \otimes \cdots \otimes e^b \right)  \]
+
+\vskip 0.5cm
+\underline{Eg.} 1-forms $\alpha, \beta$ [write from picture]
+
+\vskip 1cm
+Cool. Let's do some computation now.
+\vskip 0.5cm
+
+\begin{dottedbox}
+  \underline{Exercise:} Consider a linear space $L$ with dim$L = 3$ and whose dual space has basis $L^* = \{e^1, e^3, e^3\}$. Let $\alpha = ^1 + e^3$ and $\beta = -3e^1 \wedge e^3 + 4e^2 \wedge e^3$ be $2-$forms. Find $\alpha \wedge \beta$.
+\end{dottedbox}
+
+[Complete from picture].
+
+
+\vskip 1cm
+\subsection{Exterior Algebra}
+
+\begin{mathdefinitionbox}{Exterior Algebra}
+  \[ \Lambda L^* = \bigoplus_{p = 0}^{n} \Lambda^p L^* = \Lambda^0 L^* \oplus \Lambda^1 L^* \oplus \Lambda^2 L^* \oplus \Lambda^3 L^* \oplus \cdots \Lambda^n L^* \oplus \]
+\end{mathdefinitionbox}
+
+This is a $\mathbb{Z}-$graded algebra. 
+
+Recall that 
+\[ \text{dim}\Lambda^p L^* = \binom{n}{p} = \frac{n!}{p!(n-p)!}   \]
+
+Thus, the dimension of the exterior algebra is 
+
+\begin{align*}
+  \text{dim}\Lambda L^* &= \sum_{p = 0}^n \binom{n}{p} = 2^n
+\end{align*}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Aside:} In Supersymmetry, one often comes across $\mathbb{Z}_2 -$ graded algebras i.e. algebras of the form 
+  \begin{align*}
+    &\Lambda^1 L^* \oplus \Lambda^3 L^* \oplus \Lambda^5 L^* \oplus \cdots \\
+    &\Lambda^2 L^* \oplus \Lambda^4 L^* \oplus \Lambda^6 L^* \oplus \cdots \\
+  \end{align*}
+\end{dottedbox}
+
+\vskip 1cm
+For an exterior algebra $\Lambda L^*$, we can define a linear operators $\hat{\eta} : \Lambda L^* \rightarrow \Lambda L^*$ such that for $\alpha \in \Lambda^p L^*$ we have 
+\[  \hat{\eta} \alpha = (-1)^p \alpha = (-1)^{\text{deg($\alpha$)}} \alpha \in \Lambda^p L^* \]
+
+[Write more from picture]
+
+
+\vskip 1cm
+\subsection{Random Jump: Category Theory!}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Category}
+  \vskip 0.25cm
+  A category $\mathcal{C}$ is the following data:
+  \begin{enumerate}
+    \item A class of objects $\text{Ob}(\mathcal{C})$.
+    \item For every pair of objects $X, Y \in \text{Ob}(\mathcal{C})$ there is a class of morphisms $f : X \rightarrow Y$ from $X$ to $Y$ denoted by $\text{Hom}(X, Y)$.
+    \item Each any objects $X, Y, Z \in \text{Ob}(\mathcal{C})$ there exists a composition map 
+    \[ \text{Hom}(X, Y) \times \text{Hom}(Y, Z) \rightarrow \text{Hom}(X, Y)  \]
+    defined by 
+    \[ (f, g) \mapsto g \circ f \]
+    which satisfies 
+    \begin{itemize}
+      \item Associativity: $(f \circ g) \circ g = f \circ (g \circ h)$
+      \item Existence of Identity: 
+    \end{itemize}
+  \end{enumerate}  
+\end{mathdefinitionbox}
+
 \end{document} 

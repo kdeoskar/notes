@@ -139,13 +139,183 @@ These are notes taken from lectures on Differential Topology delivered by Eric C
 \pagebreak
 
 \section{March 5 - }
-There was no class on Feb 29 (midterm instead), so this is the first lecture after Sard's Theorem.
+There was no class on Feb 29 (midterm instead), so this is the first lecture after Sard's Theorem. Midterms will (hopefully) be graded by mid-to-late next week.
 
 \vskip 1cm
 \subsection*{Recap}
 \begin{itemize}
-  \item Last time we showed the $m = 0, n = 0$ cases.
+  \item Last week, we proved \textbf{\emph{Sard's Theorem}}, which told us that the set of critical values of a smooth map between manifolds has measure zero.
+  \item We applied Sard's Theorem to show the \emph{\textbf{Whitney Embedding Theorem}}, which tells us that any smooth manifold of dimension $n$ can be embedded in $\R^{n+1}$.
 \end{itemize}
 
+Today, we'll see some more applications of Sard's Theorem.
+
+\vskip 0.5cm
+\subsection{Whitney Approximation Theorem for functions}
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} Consider a sontinuous function $F : M \rightarrow \R^k$ such that $\restr{F}{A}$ is smooth fora closed subset $A \subseteq M$. Then, there is a continuous function $\delta : M \rightarrow \R_+$such that there exists smooth $\tilde{F} : M \rightarrow \R^k$ such that 
+  \[ \left| \tilde{F}(x) -F(x) \right| < \delta(x) \]
+  for all $x \in M$ and 
+  \[ \restr{\tilde{F}}{A} = \restr{F}{A} \]
+\end{dottedbox}
+
+\textbf{\emph{Proof:}} Consider smooth mfd $M$ and closed subset $A \subseteq M$ and function $F: M \rightarrow \R^k$ wihch is smoot hon $A$. Using the extension lemma, we can obtain a smooth map $F_0 : M \rightarrow \R^k$ such that $\restr{F_0}{A} = \restr{F}{A}$ (using partitions of unity.)
+
+\vskip 0.25cm
+This function $F_0$ agres with $F$ on $A$ but may differe on the rest of $M$, so we will rectify this. Let $U_0= \{ y \in M : \left| F_0(y) - F(y) \right| < \delta(y) \} \supset A$and for any $x \not\in A$ take a neighborhood of $x$, $U_x \subseteq M \setminus A$, such that $\left| F(x) - F(y) \right| < \delta(y)$ for all $y \in U_x$.
+
+\vskip 0.25cm
+So, $M = U_0 \cup U_{x \in M \setminus A} U_x$ (open cover). Then, take the partition of unity subordinate to the open cover $\{U_0, \text{all }U_x\}$ to be $\{\psi_0, \{\psi_x\}_{x \in M \setminus A}\}$.
+
+Set $\tilde{F}(y) = \psi_0(y)F_0(y) + \sum_{x \in M \setminus A} \psi_x(y) \cdot F(x) $. This is smooth [write why]. Compare this with $F(y) = \psi_0(y)F(y) + \sum_{x \in M \setminus A} \psi_x(y) \cdot F(x)$. We have 
+
+\vskip 0.25cm
+\begin{align*}
+  |\tilde{F}(y) - F(y) | &\leq \psi_0(y)|F_0(y)- F(y) | + \sum_{x \in M \setminus A} \psi_x(y) \cdot |F(x)-F(y)| \\
+  &\leq \delta(y)
+\end{align*}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Cor:}} For smooth mfd $M$ with continuous [Write from image]
+\end{dottedbox}
+
+\vskip 0.25cm
+Now that we've proved it for functions, let's prove a similar statement for maps between smooth manifolds.
+
+\vskip 1cm
+\subsection{Whiteney approximation theorem for maps between manifolds, $F : N^n \rightarrow M^m$}
+
+\vskip 0.25cm
+We have a bit of an issue, which is we can't generally take linear combinations of oints in $M^m$. To get around this, the plan is to 
+\begin{itemize}
+  \item View $M \subseteq \R^k$ as an embedded manifold (whitney embedding)
+  \item take linear combinations and smooth out the function in $\R^k$
+  \item project back to $M$
+\end{itemize}
+
+To understand how to project back to $M$, we need to understand the \emph{\textbf{Normal Bundle}}. For embedded manifold $M^m \subseteq \R^k$, take the normal space at $x \in M$ to be 
+\[ N_x M = \{ v \in \R^k : v \perp T_xM \} = \underbrace{(T_x M)^{\perp} }_{dim = k-m}\subseteq \R^k \]
+
+Then, the \emph{\textbf{Normal Bundle}} is 
+\[ NM = \{ (x, v) \in \R^k \times \R^k : x \in M, v \in N_x M \} \cong \coprod_{x \in M} N_x M \]
+
+Notice that there is a copy of $m$ contained in the normal bundle as 
+\[ M \cong M_0 = \{(x, 0):x \in M\} \]
+
+As with the Tangent bundle, the Normal bundle is also a smooth manifold.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Lemma:}} Consider $M_0 \subseteq_{submfd} NM \subseteq_{submfd} \R^{2k}$ and ma $E : NM \rightarrow \R^{k}$ defined by 
+  \[ (x, v) \mapsto x + v  \]
+  is smooth and satisfies $E(M_0) = M$.
+\end{dottedbox}
+
+\vskip 0.5cm
+With this in mind, we can construct tubular neighborhoods.
+
+\vskip 1cm
+\subsection{Tubular Neighborhoods}
+
+\begin{mathdefinitionbox}{}
+  \emph{\textbf{Def:}} A neighborhood $M \subseteq U \subseteq_{open} \R^k$ is a tubular neighborhodd of $M$ is there exists an open neighborhood $M_0 \subseteq V \subseteq NM$ such that $\restr{E}{V} : V \rightarrow U$ is a diffeomorphism.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+[Insert image]
+
+
+\vskip 0.5cm
+We will use this in the proof of the whitney approx theorem when trying to project back to $M$. The idea will be to map from $\R^k$ to a tubular neighborhood of $M$ using $E$ and then retract along the "white lines" in the image above to make the image exactly $M$.
+
+\vskip 0.5cm
+So, now, what we need to do is prove that every $M$ does indeed have a tubular neighbohood -- allowing the above procedure to work for arbitrary smooth manifold.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} Every $M \subseteq_{submfd} \R^k$ has a tubular neighborhood.
+\end{dottedbox}
+
+\emph{\textbf{Proof Sketch:}} 
+\begin{itemize}
+  \item Check that $E$ is a diffeomorphism near any $x \in M$. (Note Image$(dE_{(x,0)}) \supset T_xM + N_xM$ by inverse function thm - expand on this).
+  \item To do this, for any $x \in M$, choose $V_x$ such that $\restr{E}{V_x}$ is a local diff. Then, shrink $V_x$ so $\restr{E}{V_x}$ is injective.
+\end{itemize}
+
+\vskip 1cm
+We have all the tools we need now; let's begin.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Theorem: (Whitney extension for $F : M \rightarrow N$)}} 
+
+  If $F : N \rightarrow M$ is continuous and $\restr{F}{A}$ is smooht for $A \subseteq_{closed} N$ then $F$ is homotopic relative $A$ to a smooth map $\tilde{F} : N \rightarrow M$.
+
+  \vskip 0.5cm
+  Recall that $F$ being homotopic to $\tilde{F}$ relative to $A$ means there exists continuous map $H : N \times [0,1] \rightarrow M$ such that 
+  \begin{itemize}
+    \item $H(x, 0) = F$
+    \item $H(x, 1) = \tilde{F}$
+    \item For $x \in A$, $H(x, t) = F(x)$ regardless of $t$
+  \end{itemize}
+\end{dottedbox}
+
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} By the Whiteney embedding theorem, we assume $M \subseteq \R^k$. From the theorem we proved earlier, we know $M$ has a tubular neighbohood $U$ with $M \subseteq U \subseteq \R^k$ and smooth retraction $r : U \rightarrow M$
+
+\vskip 0.5cm
+For any $x \in M$, let $\delta(x) = \sup\{ z \leq 1 : B_z(x) \subseteq U \}$
+
+[write the rest from image; paying attention in calss]
+
+\vskip 0.5cm
+Now, we get to another application of Sard's Theorem, which is \emph{\textbf{Transversality}}. In a very vague sense, 
+
+\subsection{Transversality}
+
+\begin{mathdefinitionbox}{Ver 1.}
+  Given two submanifolds, $S^k, \tilde{S}^{\tilde{k}} \subseteq M^n$ we say that the submanifolds intersect \emph{trasnversely} if 
+  \[ T_{p} S + T_{p}\tilde{S} = T_p M \]
+  for all $p \in S \cap \tilde{S}$.
+\end{mathdefinitionbox}
+\vskip 0.5cm
+
+\begin{mathdefinitionbox}{Ver 2.}
+  Given a submanifold $S^k \subseteq N^n$, a smooth map $F : N \rightarrow M$ is said to be \emph{transverse to $S^k$} if, for all $x \in F^{-1}(S)$, we have 
+  \[   \] 
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Remark:}} In Ver 1, if we take $F : S \hookrightarrow M$ (the inclusion), then $F$ is transverse in the sense of Ver 2, so ver 1 is really just a special case.
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} 
+  \begin{enumerate}
+    \item In ver 1, if $S, \tilde{S}$ are transverse, then $S \cap \tilde{S} \subseteq M$ is a submanifold with 
+    \item \[ \text{codim}_M  \left(S \cap \tilde{S}\right) = \text{codim}_M S + \text{codim}_M \tilde{S} \]
+    
+    \item In ver 2, if $F$ is transverse to $S$ then $F^{-1}(S) \subseteq_{submfd} N$ is a submanifold with $\text{codim}_MN F^{-1}(S) = \text{codim}_M S$
+  \end{enumerate}
+
+  Compare this to Regular Level Set theorem; turns out that RLST is a special case of this version.
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Remark:} It suffices to prove (2) because we can translate from ver 2 to ver 1.
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{\emph{Proof:}}  For any point on the submanifold $S$, we have a local defining function $\phi$
+
+
+
 \end{document}
+
 

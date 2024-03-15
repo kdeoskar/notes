@@ -1,0 +1,349 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={214 Lecture 17},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{dashrule}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\qedsymbol}{\hfill\blacksquare}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Notes}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Differential Topology delivered by Eric C. Chen for UC Berekley's Math 214 class in the Sprng 2024 semester. Any errors that may have crept in are solely my fault.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+\section{March 12 - }
+\subsection*{Recap}
+\begin{itemize}
+  \item Last time, we defined Lie Groups (ossessing both group and smooth manifold structure) and Lie Group Homomorphisms.
+  \item This time we'll define Lie Subgroups.
+\end{itemize}
+
+
+\vskip 0.25cm
+\subsection{Lie Subgroups}
+
+\begin{mathdefinitionbox}{}
+  Given a Lie group $G$, $H \subseteq G$ is a \emph{\textbf{Lie subgroup}} if it is the image of an injective Lie Group Homomorphism. 
+\end{mathdefinitionbox}
+
+\begin{dottedbox}
+  \emph{Remark:} If $H \subseteq G$ is an embedded(immersed? check later) submanifold and subgroup, then $H$ is a Lie subgroup.
+\end{dottedbox}
+
+\vskip 0.25cm
+\underline{Examples:}
+\begin{itemize}
+  \item $GL(n, \R)$ has lie subgroups $SK(n, \R)$ and $O(n)$.
+  \item Taking $G = T^2 = \mathbb{S}^1 \times \mathbb{S}^1$ consider the map $F : \R \rightarrow T^2$ defined by 
+  \[ t \mapsto \left(e^{2\pi i t}, e^{2\pi i \alpha t}\right) \]
+  \begin{itemize}
+    \item If $\alpha \in \mathbb{Q}$, then $F$ is periodic and thus not injective, so $\ker F$ is nontrivial.
+    
+    \vskip 0.25cm
+    If we find the period $k$, we can define $\tilde{F} : \mathbb{S}^1 \rightarrow T^2$ by 
+    \[ e^{2\pi i t} \mapsto \left(e^{2\pi i t \cdot k}, e^{2\pi i t k\alpha}\right)  \]
+    With this map, we see that $\mathbb{S}^1 \subseteq \T^2$ is a Lie Subgroup.
+
+    \vskip 0.5cm
+    \item If $\alpha \in \mathbb{Q}$, then $F : \R \rightarrow \T^2$ s injective, so $F(\R) \subseteq T^2$ is a Lie Subgroup.
+    This is an example of a lie subgroup which is not embedded, but it immersed.
+  \end{itemize}
+\end{itemize}
+
+
+\begin{dottedbox}
+  \emph{\textbf{Lemma:}} If $H \subseteq G$ is an open subgroup, then $H$ is the union of connected components of $G$.
+\end{dottedbox}
+
+\emph{\textbf{Proof:}} 
+\[ G = \bigcup_{g \in G} gH = \bigcup_{g \in G} \underbrace{L_g(H)} _{\text{open}} \]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $G$ is connected, then any neighborhood of $e \in G$ generates $G$.
+\end{dottedbox}
+
+\emph{\textbf{Proof:}} Let $H \subseteq G$ be the subgroup generated by a neighborhood $U$ of the identity i.e. $e \in U$. Thus, $U \subseteq H$.
+
+\vskip 0.25cm
+Now, notice that for any $g \in H$, $L_g(U) \subseteq H$ and $L_g(U)$ is open so $H$ is open.
+
+\vskip 0.25cm
+Then, by the previous lemma, $H$ is the union of connected subgroups of $G$. This implies $H = G$. [Add more detail later]
+
+\vskip 0.5cm
+There are many examples of Lie Groups which are \emph{not} connected eg. $GL(n, \R)$ (Look at the determinant map).
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}
+  The \emph{\textbf{Identity component}} $G_0 \subseteq G$ is the connected component of $G$ containing $e \in G$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} $G_0$ is a Lie group.
+\end{dottedbox}
+
+\emph{\textbf{Proof:}} 
+
+\begin{align*}
+  e \in 
+\end{align*}
+[Finish later]
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} If $H \subseteq G$ is a Lie subgroup which is also an embedded submanifold, then $H$ is closed in $G$ i.e. it is a proper submanifold.
+\end{dottedbox}
+
+(Read in textbook; also in Chapter 20 we'll show that $H \subseteq G$ closed $\implies$ $H$ is a Lie Subgroup submanifold)
+
+\vskip 1cm
+\subsection{Group actions}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{}
+  If $G$ is a group and $M$ is a set, then \emph{\textbf{Left Group Action}} (denoted as [fill later]) is the map
+  \begin{align*}
+    \mathcal{O} : &G \times M \rightarrow M \\
+    &(g, p) \mapsto g \cdot p
+  \end{align*}
+  such that 
+  \[ e \cdot p = p \] and 
+  \[ \left(g_1 \star g_2\right) \cdot p = g _1 \cdot \left(g_2 \cdot p\right)  \]
+
+  \vskip 0.5cm
+  Similarly, a \emph{\textbf{Right group action}} (denoted as [fill later]) is te map  
+  \begin{align*}
+    \mathcal{O} : &G \times M \rightarrow M \\
+    &(p, g) \mapsto p \cdot g
+  \end{align*}
+  such that 
+  \[ p \cdot e = p \] and 
+  \[ p \cdot \left(g_1 \star g_2\right)  = \left(p \cdot g_1\right) \cdot g_2 \]
+
+  \vskip 0.5cm
+  If $G$ is a Lie Group and $M$ is a smooth manifold, then these actions are smooth if $\mathcal{O}$ is a smooth map.
+\end{mathdefinitionbox}
+
+\begin{dottedbox}
+  \emph{Remark:} [Fill from image]
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{Examples:} [fill from image]
+\begin{itemize}
+  \item 
+\end{itemize}
+
+Let's discuss some more notions related to group actions.
+
+\begin{mathdefinitionbox}{}
+  \begin{itemize}
+    \item Suppose Lie Group $G$ acts on $M$. The \emph{\textbf{Orbit}} of $p \in M$ is 
+    \[ G_p = \{gp \;:\; g \in G\} \] 
+  
+    \item Note that two orbits are eitherr equal or disjoint.
+    \item We denote the set of orbits as $G/M$.
+    \item the \emph{\textbf{Isotropy group}} is 
+    \[  \]
+    \item The action is \emph{\textbf{transitive}} if $G \cdot p = M$
+    \item The action is \emph{\textbf{free}} if $G_p = \{e\}$ for all $p \in M$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\emph{Examples:}
+\begin{itemize}
+  \item Fill later from image.
+\end{itemize}
+
+
+\vskip 1cm
+\subsection{Equivariant Maps}
+
+\begin{mathdefinitionbox}{}
+  Suppose Lie Group $G$ acts on manifolds $M$, $N$ and we have a map $F : M \rightarrow N$. We say that $F$ is \emph{\textbf{G-equivariant}} if 
+  \begin{align*}
+    F \left( g \cdot p \right) &= g \cdot F(p) \text{  (For left actions)} \\
+    F \left( p \cdot g \right) &= F(p) \cdot g \text{  (For right actions)}
+  \end{align*}
+\end{mathdefinitionbox}
+
+
+\vskip 0.5cm
+\emph{Examples:}
+\begin{itemize}
+  \item Let $V$ be a vector space and let $GL(V)$ act on it from the left. Define the left action of $GL(V)$ on the tensor product space $V \otimes V$ as 
+  \[ g \cdot \left( v_1 \otimes v_2 \right) = \left(g \cdot v_1\right) \otimes \left(g \cdot v_2\right) \]
+
+  Then, $F: V \rightarrow V \otimes V$ defined by $v \mapsto v \otimes v$ is $G-$equivariant.
+\end{itemize}
+
+\begin{dottedbox}
+  Begin addition properties, equiv. rank theorem, and orbits.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Representations}
+
+\begin{mathdefinitionbox}{}
+  A representation of a Lie group $G$ is a Lie Group homomorphism $\rho : G \rightarrow GL(V)$ where $V$ is a vector space over $\R$ or $\C$.  
+\end{mathdefinitionbox}
+
+The representations of $F$ correspond to smooth actions of [G acting on V] such that $v \mapsto g \cdot v$, which are linear for all $g \in G$.
+
+\vskip 0.25cm
+\emph{Examples:}
+\begin{itemize}
+  \item Fill later.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} Every compact Lie Group has a faihtful (injective) representation
+  \[ \rho : G \rightarrow GL(V) \]
+  for some $V$.
+
+  \vskip 0.5cm
+  As a result, every compact Lie Group is isomorphic to the Lie subgroup of some $GL(V)$.
+\end{dottedbox}
+
+\vskip 0.5cm
+Lie Groups are especially useful in physics. Let's take a look at some low dimensional examples which are useful in physics.
+
+\vskip 1cm
+\subsection{The groups $SO(3)$, $SU(2)$}
+
+
+
+\end{document}
+
+

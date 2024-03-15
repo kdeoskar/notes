@@ -136,10 +136,214 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \textbf{Question :} 
 \section*{Question 1: WKB Approximations in an infinite square well} 
+\begin{enumerate}[label=(\alph*)]
+  \item Find the WKB spectrum for $f(x) = \kappa x$ where $\kappa$ is a positive constant.
+  \item FInd the WKB spectrum for
+  \[ f(x) = \begin{cases}
+    0 , 0 < x < a/2 \\
+    V_0, a/2 < x < a
+  \end{cases} \]
+  where $V_0$ is a positive constant.
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \vskip 0.5cm
 \underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+We found in class that the approximate quantization condition for potentials of the form 
+\[ V(x) = \begin{cases}
+  f(x), 0 < x < a \\
+  \infty, \text{otherwise}
+\end{cases} \]
+can be written as 
+\[ \int_{0}^{a} p(x)dx = n \pi \hbar  \]
+
+where $p(x) = \sqrt{2m(E - V(x))}$ and $E > V(x)$. 
+
+\begin{enumerate}[label=(\alph*)]
+  \item For $f(x) = \kappa x$, $\kappa \in \R^+$ the quantization condition can be written as 
+  \begin{align*}
+    &\int_{0}^{a} \sqrt{2m(E - \kappa x)} dx = n \pi \hbar \\
+    \implies& \sqrt{2m}\int_{0}^{a} (E - \kappa x)^{1/2} dx = n \pi \hbar \\
+    \implies& \sqrt{2m} \restr{\left[ -\frac{2}{3\kappa}(E - \kappa x)^{3/2} \right]}{x=0}^{x=a} = pi \hbar \\
+    \implies& \sqrt{2m} \cdot \left(-\frac{2}{3\kappa}\right) \cdot \left[ (E-\kappa a)^{3/2} - E^{3/2} \right] = n\pi \hbar
+  \end{align*}
+  This quantization condition gives us the eigen-energy spectrum.
+
+  \vskip 0.5cm
+  \item For \[ f(x) = \begin{cases}
+    0 , 0 < x < a/2 \\
+    V_0, a/2 < x < a
+  \end{cases} \]
+  where $V_0$ is a positive constant, we have the condition
+  \begin{align*}
+    &\int_{0}^a p(x)dx = n \pi \hbar \\
+    \implies& \int_{0}^{a/2} p(x) dx + \int_{a/2}^a p(x) dx = n \pi\hbar \\
+    \implies& \int_0^{a/2} \sqrt{2m(E - 0)} dx + \int_{a/2}^a \sqrt{2m(E - V_0)} dx = n \pi \hbar \\
+    \implies& \sqrt{2mE} \cdot \frac{a}{2} + \sqrt{2m(E - V_0)} \cdot \frac{a}{2} = n \pi \hbar \\
+    \implies& \frac{\sqrt{2m} a}{2} \left[\sqrt{E_n} + \sqrt{E_n - V_0}\right] = n \pi \hbar
+  \end{align*}
+\end{enumerate}
+This is the quantization condition which gives us the eigen-energy spectrum in this case.
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 2: WKB with a finite barrier} 
+
+Consider the finite-barrier potential define by 
+\[ V(x) = \begin{cases}
+  V_0, \;0 < x < a \\
+  0, \text{ otherwise}
+\end{cases} \]
+
+Consider the scenario where $V_0 > E$.
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the transmission probability $T = |F/A|^2$ exactly.
+  \item Calculate the transmission probability using WKB and the approximations made in class, namely $T \sim e^{-2\gamma}$, where $\gamma = \frac{1}{h} \int_{x}^{a} p(x')dx'$
+  \item Compare these two results, and comment on which limit the scaling o these two solutions are expected to agree. We are just looking for exponential behavior.
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+\begin{center}
+  \includegraphics*[scale=0.50]{Q2 potential .png}
+\end{center}
+
+We want to think about the bound states of this system ($V_0 > E$).
+We have the following wavefunctions in the different regions:
+\begin{align*}
+  &\text{Region I: } \psi(x) = Ae^{ikx} + Be^{-ikx} \\
+  &\text{Region III: } \psi(x) = Fe^{ikx}
+\end{align*}
+where $k = \sqrt{2mE}/ \hbar$
+
+but we don't know what the function is in Region II. Let's find out what it is, and then use boundary conditions to find the relation between A and F to calculate the transmission coefficient.
+
+\vskip 0.25cm
+\begin{enumerate}[label=(\alph*)]
+  \item In region II, we have potential $V_0$, so the Schrödinger Equation reads as
+  \[ -\frac{\hbar^2}{2m} \frac{d^2 \psi}{dx^2} + V_0 \psi = E \psi \] 
+  Or equivalently,
+  \begin{align*}
+    \frac{d^2 \psi}{dx^2} = -\frac{2m}{\hbar^2}(E-V_0)\psi = \frac{2m}{\hbar^2}(V_0 - E)\psi
+  \end{align*}
+  If we write $l \equiv \sqrt{\frac{2m}{\hbar^2}(V_0 - E)}$, then the equation has the form
+  \begin{align*}
+    \frac{d^2 \psi}{dx^2} = l^2 \psi
+  \end{align*}
+  and thus has general solution of the form 
+  \begin{align*}
+    \boxed{\psi(x) = Ce^{lx} + De^{-lx}}
+  \end{align*}
+  
+  So, we have 
+  \begin{align*}
+    \psi(x) = \begin{cases}
+      \text{Region I: } Ae^{ikx} + Be^{-ikx} \\
+      \text{Region II: } Ce^{lx} + De^{-lx}\\
+      \text{Region III: } Fe^{ikx}
+    \end{cases}
+  \end{align*}
+  along with the boundary conditions
+  \begin{align*}
+    &\text{Continuity of $\psi$ at $0$: }\psi_I(0) = \psi_I(0) \\
+    &\text{Continuity of $d\psi/dx$ at $0$: } \frac{d\psi}{dx}(0^{-}) = \frac{d\psi}{dx}(0^{+}) \\
+    &\text{Continuity of $\psi$ at $a$: } \psi_{II}(a) = \psi_{III}(a) \\
+    &\text{Continuity of $d\psi/dx$ at $a$: } \frac{d\psi}{dx}(a^{-}) = \frac{d\psi}{dx}(a^{+}) 
+  \end{align*}
+
+  The first condition tells us 
+  \begin{align*}
+    &Ae^{ik(0)} + Be^{-ik(0)} = Ce^{l(0)} + De^{-l(0)} \\
+    \implies&A + B = C+ D 
+  \end{align*}
+
+  the second tells us 
+  \begin{align*}
+    &ik\left[Ae^{ik(0)} - Be^{-ika(0)}\right] = l\left[  Ce^{l(0)} - De^{-l(0)}\right] \\ 
+    \implies& ik(A - B) = l(C - D)
+  \end{align*}
+
+  the third tells us 
+  \begin{align*}
+    & Ce^{l(a)} + De^{-l(a)} = Fe^{ika} 
+  \end{align*}
+
+  the fourth tells us 
+  \begin{align*}
+    l\left[  Ce^{l(a)} - De^{-l(a)}\right] &=  ik Fe^{ika} 
+  \end{align*}
+
+  Now, via a whole bunch of algebra, we find that 
+  \[ \frac{F}{A} = \frac{e^{-ika}}{\cosh(la) + i(\gamma/2)\sinh(la)}  \]
+  where $\gamma \equiv l/k - k/l$.
+
+  Now, the transmission coefficient is given by 
+  \begin{align*}
+    T &= \left(\frac{F}{A}\right)^* \left(\frac{F}{A}\right) \\
+    &= \frac{e^{+ika}}{\cosh(la) - i(\gamma/2)\sinh(la)} \cdot \frac{e^{-ika}}{\cosh(la) + i((\gamma/2)\sinh(la))} \\
+    &= \frac{1}{\cosh^2(la) + (\gamma^2/4)\sinh^2(la)}
+  \end{align*}
+
+  \[\implies \boxed{T = \frac{1}{\cosh^2(la) + (\gamma^2/4)\sinh^2(la)} } \]
+
+  where 
+  \begin{align*}
+    \gamma &= \frac{l}{k} - \frac{k}{l} \\
+    &= \frac{\sqrt{V_0 - E}}{\sqrt{E}} - \frac{\sqrt{E}}{\sqrt{V_0 - E}} \\
+  \end{align*}
+
+  So, 
+  \begin{align*}
+    \frac{\gamma^2}{4} &= \frac{1}{4} \left( \frac{V_0 - E}{E} + \frac{E}{V_0 - E} - 2\right) \\
+    &= \frac{1}{4} \left( \frac{1-E/V_0}{E/V_0} + \frac{E/V_0}{1 - E/V_0} - 2\right)
+  \end{align*}
+
+  \vskip 0.5cm
+  \item In class, we found that under the WKB approximation, the transmission coefficient is roughly given by
+  \[ T \sim e^{-2\gamma},\;\;\; \gamma = \frac{1}{\hbar}\int_{0}^{a} | p(x') | dx' \]
+  where $p(x) = \sqrt{2m(E - V_0)}$
+
+  We find $\gamma$ to be 
+  \begin{align*}
+    \gamma &= \frac{1}{\hbar}\int_{0}^{a} \left| \sqrt{2m(E - V_0)} \right| dx \\
+    &= \frac{1}{\hbar}\int_{0}^{a}  \sqrt{2m(V_0 - E)}  dx \\
+    &=\frac{\sqrt{2m(V_0 - E)}a}{\hbar} \\
+    &= l \cdot a 
+  \end{align*}
+  where $l \equiv \sqrt{2m(V-0 - E)}/\hbar$
+
+  Thus, the transmission coefficient is given by 
+  \begin{align*}
+    T \sim e^{-2al} &= e^{-2\frac{\sqrt{2m(V_0 - E)}a}{\hbar}}
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Let's now compare our two results. We obtained the WKB approximation by making the assumption that the barrier was very high and very broad. This would mean that 
+  \begin{align*}
+    &\sqrt{2m(V_0 - E)} >> \sqrt{2mE} \\
+    \implies&l >> k \\
+    \implies& \gamma^2 = \left(\frac{l}{k} - \underbrace{\frac{k}{l}}_{\approx 0}\right)^2 \approx \left(\frac{l}{k}\right)^2
+  \end{align*}
+  Then, the transmission coefficient is approximately 
+  \begin{align*}
+    T &\approx \frac{1}{\cosh(la)^2 + \frac{(l/k)^2}{24}\sinh(la)} \\
+  \end{align*}
+
+  We find that this matches pretty well with $e^{-la}$ when $l >> k$.
+  \begin{center}
+    \includegraphics*[scale=.40]{Q2(c).png}
+  \end{center}
+  
+\end{enumerate}
 
 \vskip 0.5cm
 
@@ -150,40 +354,85 @@
 % \pagebreak
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % \textbf{Question :} 
-% \section*{Question : } 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \vskip 0.5cm
-% \underline{\textbf{Solution:}} 
-
-% \vskip 0.5cm
 
 
-% \vskip 0.5cm 
-% \hrule 
-% \vskip 0.5cm
-% % \pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 3: Half Harmonic Oscillator} 
+
+Consider the half-harmonic oscillator potential in 1D,
+\[ V(x) = \begin{cases}
+  \frac{1}{2}m\omega^2 x^2, x > 0\\
+  \infty, \text{ otherwise}
+\end{cases}  \]
+
+\begin{enumerate}[label=(\alph*)]
+  \item Find the exact eigenvalues to this problem.
+  \item Find the quantization condition that the half-harmonic oscillator satisfie according to the WKB approximation and compare the results to what we found in class.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item Since the potential is infinite for $x < 0$, the wavefunction must disappear in that region, which means only the normal QHO wavefunctions which vanish at the origin i.e. which are odd functions can survive. 
+  
+  \vskip 0.5cm
+  The $n$-th QHO eigenfunction has the same parity (odd or even) as the parity of $n$ itself. So, the odd $n$ eigenfunctions survive while the even $n$ eigenfunctions are killed off. 
+
+  \vskip 0.5cm
+  Thus, the eigenvalues of the half-harmonic oscillator have the form
+  \[ E_n = \left(2n - 1 + \frac{1}{2}\right)\hbar \omega = \left(2n - \frac{1}{2}\right)\hbar \omega \]
+  for $n = 1,2,3,\dots$
+
+  \item In the case that there are two turning points located at $x = 0$ and $x = x_2$, the wavefunction satisfies
+  
+  \[ \psi(x) = \begin{cases}
+    \frac{2D}{\sqrt{p(x)}} \sin\left[\frac{1}{h} \int_x^{x_2}p(x')dx' + \frac{\pi}{4}  \right], x < x_2 \\
+    \frac{D}{\sqrt{p(x)}} \exp\left[-\frac{1}{h} \int_{x_2}^{x}|p(x')|dx'  \right], x > x_2 \\
+  \end{cases}  \]
+  assuming that $E > V(x)$ for $x < x_2$ and $E < V(x)$ for $x > x_2$.
+
+  For any system whose potential has a vertical wall, we have 
+  \[ \frac{1}{\hbar} \int_{0}^{x} p(x)dx + \frac{\pi}{4} = n\pi  \]
+  
+  In the half-harmonic oscillator potential, we have 
+  \[ V(x) = \begin{cases}
+    \frac{1}{2}m\omega^2x^2, x > 0 \\
+    \infty, \text{ otherwise}
+  \end{cases}   \]
+
+  so
+  \[ p(x) = \sqrt{2m(E - V(x))} = \sqrt{2m(E - (1/2)m\omega^2x^2)} = m\omega \sqrt{x_2^2 - x^2} \]
+
+  The first turning point is $x_1 = 0$ and the second turning point $x_2$ is $x_2 = \frac{1}{\omega}\sqrt{\frac{2E}{m}}$. So, 
+
+  \begin{align*}
+    \int_{0}^{x_2} p(x)dx &= m\omega \int_{0}^{x_2} \sqrt{x_2^2 - x^2} dx \\
+    &= \frac{\pi}{4} m\omega x_2^2 \\
+    &= \frac{\pi E}{2 \omega}
+  \end{align*}
+  
+  Then, the quantization condition
+  \[ \frac{1}{\hbar} \int_{0}^{x} p(x)dx + \frac{\pi}{4} = n\pi \]
+
+  forces the eigen-energies to have the form 
+  \[ E_n = \left(2n - \frac{1}{2}\right)\hbar \omega  \]
+  for $n = 1,2,3\dots$
+
+  This matches with the exact eigenenergies found in part (a).
+
+\end{enumerate}
 
 
+\vskip 0.5cm
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % \textbf{Question :} 
-% \section*{Question : } 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \vskip 0.5cm
-% \underline{\textbf{Solution:}} 
-
-% \vskip 0.5cm
-
-
-% \vskip 0.5cm 
-% \hrule 
-% \vskip 0.5cm
-% % \pagebreak
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
 
 
 \end{document}

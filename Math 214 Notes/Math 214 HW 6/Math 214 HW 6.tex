@@ -1,0 +1,459 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 6},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 6}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q5-22.} Prove Theorem 5.48 (existence of defining functions for regular domains).
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem 5.48:}} If $M$ is a smooth manifold and $D \subseteq M$ is a regular domain, then there exists a defining function for $D$. If $D$ is compact, then $f$ can be taken to be a smooth exhaustion function for $M$.
+\end{dottedbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+We know $M = \text{Int}(D) + \partial D + (M \setminus D)$. By the boundary slice condition, at every point of $\partial D$/Int$D$/$(M \setminus D)$ (resp.) we can find a chart $(U, \phi)$ such that the $n^{\text{th}}$ coordinate of $\phi$ is zero/negative/positive (resp.).
+
+\vskip 0.25cm
+We can take our charts to be such that $\phi(c_1, \dots, c_{n-1}, x_n)$ is an increasing function of $x_n$ for each point $(c_1, \cdots, c_{n-1})$. Morevover, we can assume that $\frac{\partial}{\partial x_n} \phi > 0$ at every point, since if it is not then we can replace $\phi$ with $\phi + x_n$.
+
+\vskip 0.5cm
+Now, cover Int$M$ with charts whose n-th coordinate is negative and $(M \setminus D)$ with charts whose n-th coordinate is positive. Let $\{ (U_{\alpha}, \psi_{\alpha}) \}_{\alpha \in I}$ be the collection of all charts mentioned above, and let $\{\psi{\alpha}\}_{\alpha}$ be a partition of unity subordinate to the cover by charts.
+
+\vskip 0.25cm
+Define the function $f : M \rightarrow \R$ by 
+\[ f(x) = \sum_{\alpha} \left(x_n \circ \phi_{\alpha}\right) \cdot \psi_{\alpha}  \]
+
+Then $0$ is a regular value of $f$ by the derivative condition and $f^{-1}([-\infty, 0]) = D$. Thus, $f$ os a defining function for $D$.
+
+\vskip 0.5cm
+For the case where $D$ is compact, we take the same charts as above however we also assume that they are all precompact, that the cover is countable, and that there are only finitely many charts intersecting $D$. (Paracompact?) 
+
+\vskip 0.25cm
+Let $\{ (U_{-t}, \phi_{-t}), \dots, (U_0, \phi_0) \}$ be the charts intersecting $D$, and let $\{(U_j, \phi_j) \}_{j \in \mathbb{N}}$ be the charts in $(M \setminus D)$. Let $\{ \psi_{-t}, \dots, \psi_0 \} \cup \{\psi_j\}_{j \in \mathbb{N}}$ be a partition of unity subordinate to the cover. Define
+\[ g(x) = \sum_{j = -t}^{0} \left(x_n \circ \psi_j\right) \cdot \psi_j + \sum_{j = 1}^{\infty} j \psi_j \]
+
+Then, $g$ is a defining function for $D$, and $g^{-1}([-\infty, 0])$ is compact for any $c \in \R$ by precompactness of the charts $U_j$ and compactness of $D$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6-5.}  Let $M \subseteq \R^n$ be an embedded submanifold. Show that $M$ has a tubular neighborhood $U$ with the following property: for each $y \in U$, $r(y)$ is the
+unique point in $M$ closest to $y$, where $r : U \rightarrow M$ is the retraction defined in Proposition 6.25.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+We do so in two major steps:
+\begin{enumerate}
+  \item Show that if $y \in \R^n$ has a closest point $x \in M$, then $(y-x) \perp T_xM$.
+  \item Then, for each $x \in M$, show that it is possible to choose $\delta > 0$ such that every $y \in E \left(V_{\delta}(x)\right)$ has a closest point in $M$, and that point is equal to $r(y)$.
+\end{enumerate}
+
+\vskip 0.25cm
+Fix a point $y \in \R^n$. Let's begin with step 1. If we define the function $f : \R^n \rightarrow \R$ to be distance from $y$ i.e. \[ f(x) = |y - x| = \sqrt{\sum_{i = 1}^n \left(y^i - x^i\right)}  \] the directional derivative of $f$ in the direction $v$ is zero for any $v \in T_x M$. 
+
+\vskip 0.25cm
+The gradient of $f(x)$ of course points along the direction $(y-x)$ that's the direction of fastest change. Therefore, for $v \in T_x M$ we have 
+\begin{align*}
+  &\nabla f \cdot v = 0\\
+  \implies &c(y-x) \cdot v = 0 \text{   where $c$ is some constant}\\
+  \implies& (y-x) \cdot v = 0
+\end{align*}
+Thus, if there is a closest point $x \in M$ to $y \in \R^n$, the vector $(y-x) \perp T_x M$.
+
+\vskip 0.5cm
+For step 2, let $U$ be the tubular neighborhood of $M$ defined via $\rho : M \rightarrow \R$ in the proof of Theorem 6.24. Then, define $\tilde{\rho} = \frac{1}{2}\rho$ and let it define another tubular neighborhood $\tilde{U}$. 
+
+\vskip 0.25cm
+Suppose there is a point $x \in M$ and $y \in \tilde{U}$ such that  $|x - y| < |x - r(y)|$ and $x$ is the closest point in $M$ to $y$. Then,
+\begin{align*}
+  |x - y| &\leq |x - y| + |y -r(y)| < \frac{1}{2}\delta + \frac{1}{2}\delta = \delta 
+\end{align*}
+giving that $y \in V_{\delta}(x)$. But $r(y)$ is the unique point of $M \cap V_{\delta}(x)$ such that $(x-p)$ is orthogonal to $T_x M$. Thus, $r(y) = x$ is the unique closest point in $M$ to $y$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6-6.} Suppose $M \subseteq \R^n$ is a compact embedded submanifold. For any $\epsilon > 0$, let $M_{\epsilon}$ be the set of points in $\R^n$ whose distance from $M$ is less than $\epsilon$. SHow that for sufficiently small $\epsilon$, $\partial M_{\epsilon}$ is a compact embedded hypersurface in $\R^n$, and $\overline{M}_{\epsilon}$ is a compact regular domain in $\R^n$ whose interior contains $M$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+We know by the Tubular Neighborhood Theorem that $M$ is guaranteed to have a tubular neighborhood $U$. Suppose $\delta : M \rightarrow \R$ is the positive continuous function on $M$ defining $U$ by $U = E(V)$ where $V 
+\subseteq NM$ and $E : NM \rightarrow \R^n$ are defined by 
+\begin{align}
+  &V = \{ (x,v) \in NM \; : \; |v| < \delta(x) \} \\
+  &E(x, v) = x + v
+\end{align}
+
+Since $M$ is compact, $\delta$ achieves a maximum value  $\epsilon > 0$. Then, we can just take $\delta(x)$ to be the constant function $\epsilon$. Doing so gives us $V_{\epsilon} = \{ (x,v) \in NM \; : \; |v| < \epsilon \}$. Thus, $U = E(V) = \{x + v : x \in M, |v| < \epsilon\} = M_{\epsilon}$
+
+It follows that $\partial M_{\epsilon}$ is the image of the subset 
+\[\partial V_{\epsilon} = \{ (x, v) \in NM : |v| = \epsilon \}  \]
+under the map $E$.
+
+\vskip 0.25cm
+Now, $\partial V_{\epsilon}$ is clearly an embedded submanifold in $V_{\epsilon}$ and $E$ is a diffeomorphism from $V_{\epsilon}$ onto $U$. Thus, it follows that $\partial M_{\epsilon}$ is an embedded submanifold in $U$ (and hence in $\R^n$). $\partial M_{\epsilon}$ is a closed subset of $\R^n$ since it's a boundary, and it is bounded since $M_{\epsilon}$ is bounded. Therefore, $\partial M_{\epsilon}$ is a compact hypersurface in $\R^n$.
+
+% Additonally, since $\partial M_{\epsilon}$ has codimension 1 in $M$, so does $\partial M_{\epsilon}$ in $\R^n$.
+
+\vskip 0.25cm
+For the last part, note that the closure $\overline{M}_{\epsilon}$ is a proper submanifold since it is of codimension and is defined as a subset of $\R^n$. Its interior is $M_{\epsilon}$, which contains $M$. Therefore, $\overline{M}_{\epsilon}$ is a compact regular domain in $\R^n$ whose interior contains $M$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6-9.} Let $F : \R^2 \rightarrow \R^3$ be the map $F(x,y) = \left(e^y \cos(x), e^y \sin(x), e^{-y}\right)$. For which positive numbers $r$ is $F$ transverse to the sphere $S_r(0) \subseteq \R^3$? For which positive numbers $r$ is $F^{-1}\left( S_r(0) \right)$ an embedded submanifold of $\R^2$?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+A smooth map $F : N \rightarrow M$ between smooth manifolds is said to be transverse to an embedded submanifold $S \subseteq M$ if at every point $x \in F^{-1}(S)$ we have 
+\[ dF_x(T_xN) + T_{F(x)}S = T_{F(x)}M  \]
+
+\vskip 0.5cm
+
+The differential of $F$ at point $(x,y) \in \R^2$ is
+\begin{align*}
+  dF_{(x,y)} = \begin{pmatrix}
+  -e^y \sin(x) & e^y \cos(x) \\
+  e^y \cos(x) & e^y \sin(x) \\
+  0 & -e^{-y} \\
+  \end{pmatrix}
+\end{align*}
+
+At a point $x \in S_r(0)$, the preimage $F^{-1}(x)$ is a point $(x,y)$ satisfying 
+\begin{align*}
+  &\left(e^y \cos(x)\right)^2 + \left(e^y \sin(x)\right)^2 + \left(e^{-y}\right)^2 = r^2 \\
+  \implies & e^{2y} + e^{-2y} = r^2  \\
+  % \implies &\cosh(2y) = 2 \\
+  % \implies &2y = \cosh^{-1}(2) \\
+  % \implies &y = \frac{1}{2} \cosh^{-1}(2)
+\end{align*}
+
+\vskip 0.5cm
+So, the map will \emph{not} intersect transversely with $S_r(0)$ only at a point $(x,y)$ such that 
+\[ \sqrt{\left(e^{2y} + e^{-2y}\right)} = r \] 
+and the "vectors" 
+\[ \partial_x F = \left(-e^y \sin(x), e^y \cos(x), 0\right) \text{    and    } \partial_y F = \left(e^y \cos(x), e^y\sin(x), -e^{-y}\right)   \]
+are tangent to the sphere at the point $F(x,y)$ because then $dF_x(T_xN)$ and $T_{F(x)}S$ "coincide" and do not span the entire $T_{F(x)}M$ tangent space.
+
+\vskip 0.5cm
+The condition that $\partial_x F$ and $\partial_y F$ be tangent to the sphere at $F(x,y)$ is expressed as the following orthogonality conditions:
+
+\begin{align*}
+  &\partial_x F \cdot F(x,y) = 0 \\
+  &\partial_y F \cdot F(x,y) = 0 \\
+\end{align*}
+
+where $F(x,y)$ is viewed as the vector from the origin to the point $F(x,y)$.
+
+\vskip 0.5cm
+Substituting in the coordinates, the first condition is 
+\begin{align*}
+  &\left(-e^y \sin(x), e^y \cos(x), 0\right) \cdot \left(e^y \cos(x), e^y \sin(x), e^{-y}\right) = 0 \\
+  \implies & -e^{2y} \sin(x)\cos(x) + e^{2y}\cos(x)\sin(x) + 0= 0\\
+\end{align*}
+This is always true.
+
+\vskip 0.5cm
+
+and the second is equivalent to 
+\begin{align*}
+  &\left(e^y \cos(x), e^y\sin(x), -e^{-y}\right) \cdot \left(e^y \cos(x), e^y \sin(x), e^{-y}\right) = 0 \\
+  \implies &e^{2y}\cos^2(x) + e^{2y}\sin^2(x) - e^{-2y} = 0 \\
+  \implies &e^{2y} - e^{-2y} = 0 \\
+  \implies &e^{2y} = e^{-2y} \\
+  \implies &e^{4y} = 1 \\
+  \implies &y = 0
+\end{align*}
+
+\vskip 0.5cm
+So, we have $\sqrt{e^{2\cdot(0)} + e^{-2\cdot(0)}} = r \implies r = \sqrt{2}$. Therefore, $F$ is transverse to $S_r(0)$ for all positive $r$ other than $r = \sqrt{2}$.
+
+\vskip 0.5cm
+For which $r$ is $F^{-1}\left(S_r(0)\right)$ an embedded submanifold of $\R^2$? Theorem 6.30 tells us that as long as $F : N \rightarrow M$ is transverse to $S$, the pre-image $F^{-1}\left(S\right)$ is an embedded submanifold of $N$, so $F^{-1}\left(S_r(0)\right)$ is an embedded submanifold of $\R^2$ for all positive $r \neq \sqrt{2}$.
+
+\vskip 0.25cm
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6-10.} Suppose $F : N \rightarrow M$ is a smooth map that is transverse to an embedded submanifold $X \subseteq M$, and let $W = F^{-1}(X)$. For each $p \in W$, show that $T_p W = \left(dF_p\right)^{-1} \left( T_{F(p)} X\right)$. Conclude that if two embedded submanifolds $X, X' \subseteq M$ intersect transversely, then $T_p \left(X \cap X'\right) = T_pX \cap T_pX'$ for every $p \in X \cap X'$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+We have smooth map $F : N \rightarrow M$ transverse to embedded submanifold $X \subseteq M$ and $W = F^{-1}(X)$ such that the following diagram commutes:
+
+\[\begin{tikzcd}
+	N & M \\
+	W & X
+	\arrow["F", from=1-1, to=1-2]
+	\arrow["{F|_{W}}"', from=2-1, to=2-2]
+	\arrow["{i_W}", hook, from=2-1, to=1-1]
+	\arrow["{i_X}"', hook', from=2-2, to=1-2]
+\end{tikzcd}\]
+
+Then, by the functoriality of the differential, we also have the following commutative diagram for a given point $p \in W$:
+\[\begin{tikzcd}
+	{T_pN} & {T_{F(p)}M} \\
+	{T_pW} & {T_{F(p)}X}
+	\arrow["{dF_p}", from=1-1, to=1-2]
+	\arrow["{d(F|_{W})_p}"', from=2-1, to=2-2]
+	\arrow["{d(i_W)_p}", from=2-1, to=1-1]
+	\arrow["{d(i_X)_{F(p)}}"', from=2-2, to=1-2]
+\end{tikzcd}\]
+
+% Let $v \in T_pW$. Then, 
+% \[ \left(dF_p \circ d(i_W)_p\right) (v) = \left( d(i_X)_{F(p)} \circ d(\restr{F}{W})_p \right)(v) \]
+
+% This implies that $dF_p(v) \in T_{F(p)} M$. Thus, 
+% \[ T_p W \subseteq \left(dF_p\right)^{-1} \left( T_{F(p)} M \right)  \]
+
+% \vskip 0.5cm
+% To see the inclusion in the other direction, let's choose a basis $\{ \frac{\partial}{\partial v^1}, \cdots, \frac{\partial}{\partial v^k}, \frac{\partial}{\partial v^{k+1}}, \cdots, \frac{\partial}{\partial v^m} \}$ (where $k$ is the dimension of $X \subseteq M$) such that the first $k$ basis vectors form a basis for $T_{F(p)} X$.
+
+% \vskip 0.5cm
+% Theorem 6.30 tells us that since $F$ is transverse to $X$, the preimage $W = F^{-1}(X)$ is an embedded submanifold of $N$ with codimension equal to that of $X$ in $M$. Let's choose a basis $\{ \frac{\partial}{\partial u^1}, \cdots, \frac{\partial}{\partial u^j}, \frac{\partial}{\partial,  u^{j+1}}, \cdots, \frac{\partial}{\partial u^n} \}$ for $T_p N$ (where dim$X = j$) such that the first $j$ basis vectors form a basis for $T_p X$.
+
+Let dim$M = m$, dim$X = k$. Now, $X$ is an embedded submanifold of $M$, so each point $x \in X$ has a neighborhood $U$ such that $X \cap U$ is the regular level set of a defining function $\phi : U \rightarrow \R^{m - k}$. So, for each point $p \in F^{-1}(X \cap U)$, we have 
+\[ \ker d\Phi_{F(p)} = T_{F(p)} X \]
+
+\vskip 0.25cm
+Since $F$ is transverse to $X$, for any point $p \in F^{-1}(X)$ we have 
+\[ dF_p(T_pN) + T_{F(p)} X = T_{F(p)} M\]
+
+Similarly, since $W$ is an embedded submanifold of $N$ we know 
+$\Phi \circ F : F^{-1}(U) \rightarrow R^{m-k}$ is the local defining map for $W$. For each $p \\in F^{-1}(X \cap U)$, we have 
+\[ T_{p} W = \ker \left(d\Phi_{F(p)} \circ dF_p \right)  \]
+
+\vskip 0.25cm
+Then, consider a tangent vector $v \in T_{p}W$. We have $v \in T_p(W)$ if and only if $dF_{p} \in \ker d\Phi_{F(p)} = T_{p}(X)$ which means $v \in \left(dF_p\right)^{-1}\left(T_{F(p)}X\right)$. Hence,
+
+\[ T_p W = \left(dF_p\right)^{-1} \left( T_{F(p)} X\right) \]
+
+% [Come back to this]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q6-16.} Suppose $M$ and $N$ are smooth manifolds. A class $\mathcal{F}$ of smooth maps from $N$ to $M$ is said to be \emph{\textbf{stable}} if it has the following property: whenever $\{F_s : s \in S \}$ is a smooth family of maps from $N$ to $M$, and $F_{s_0} \in \mathcal{F}$ for some $s_0 \in S$, then there is a neighborhood $U$ of $s_0$ in $S$ such that $F_s \in \mathcal{F}$ for all $s \in U$. Prove that if $N$ is compact, then the following classes of smooth maps from $N$ to $M$ are stable:
+\begin{enumerate}[label=(\alph*)]
+  \item immersions
+  \item submersions
+  \item embeddings
+  \item diffeomorphisms
+  \item local diffeomorphisms
+  \item maps that are transverse to a given properly embedded submanifold $X \subseteq M$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+Cases (a), (b), (e) all depend on \emph{every} member of the smooth family $\mathcal{F}$ having full rank, given that one of the funcitons in the family has full rank. The family of functions is parametrized by $F : N \times S \rightarrow M$. Let's choose charts for $N$, $S$, and $M$. Now, if we we find the coordinate representation of $F_s \in \mathcal{F}$, we find that the jacobian of $F_s$ varies smoothly with $s$.
+
+\vskip 0.25cm
+Thus, if $F_{{s_0}}$ has full rank at point $p$, so does $F_s$ at $x$ for all $(x, s) \in O \times U$, where $O$ and $U$ are open neighborhoods of $p$ and $s_0$ respectively. Since $N$ is compact it can be covered by finitely many open sets $O_i$, where $F_s$ has full rank at $x$ for all $(x, s) \in O_i \times U_i$. Then, $F_s$ has full rank on all of $N$ for $s \in \bigcap_{i} U_i$. This proves cases (a), (b), (e).
+
+
+\vskip 1cm
+(c). Now we want to show that embeddings are stable. We already know that immersions are stable, and injective immersions on compact domains are embeddings, so all we need to show is that injectivity is stable.
+
+\vskip 0.25cm
+Suppose there is no such neighborhood $U$ of $s_0$ such that $F_s$ is injective for all $s \in U$. Then, there is a sequence $(t_i)$ converging to $s_0$ in $S$ such that $F_{t_i}$ is not injective. Thus, there are pairs $(x_i, y_i) \in N \times N \setminus \Delta_N$ such that $F_{{t_i}}(x_i) = F_{{t_i}}(y_i)$. By compactness of $N$, we can assume that the sequences $(x_i)$ and $(y_i)$ converge. 
+
+\vskip 0.25cm
+Since $F_{{s_0}}$ is injective, the sequences must converge to a common point $x$. Consider the map $G : N \times S \rightarrow M \times S$ defined as $(p,s) \mapsto (F_s(p), s)$. Its differential is of the form 
+\[ dG_{(x, s_0)} = \begin{pmatrix}
+  d\left(F_{s_0}\right)_x & * \\
+  0 & \mathrm{id}
+\end{pmatrix} \]
+
+so $dG_{(x, s_0)}$ is injective, since $d\left( F_{s_0} \right)_x$ is injective. But this implies that $G$ is injective in a neighbourhood of $(x, s_0)$, contradicting the work above. Thus it must be the case that such a neighborhood $U$ exists and the class of embeddings is stable.
+
+\vskip 1cm
+(d). Let $F_{s_0}$ be a diffeomorphism. Then, by part (c), $F_s$ is an embedding for all $s$ in some open neighborhood of $s_0$. Then $F_s(N)$ is a compact (and hence closed) submanifold of $M$. Since $F_{s_0}$ is a diffeomorphism, $N$ and $M$ have equal dimensions. Since $F_s$ is an embedding, $F_s(N)$ is of codimension $0$ in $M$, and is therefore open. The only nonempty open and closed subset of $M$ is $M$ itself, so the maps $F_s$ are bijective embeddings, and therefore they are diffeomorphisms.
+
+\vskip 1cm
+(f). Now, let $X$ be the properly embedded submanifold to which $F_{s_0}$ is transverse. Let $p \in F_{s_0}^{-1}(X)$ and let $U$ be a chart centered at $F_{s_0}(p)$ that is a slice chart for $X$. More specifically, give $U$ coordinates $(x_1, \dots, x_m)$ and let $X \cap U$ correspond to the subset of points of the form $(x_1, \dots, x_k, 0 \dots, 0)$. The transversality assumption guarantees that $d\left(F_{s_0}\right)_p \left(T_p N\right)$ projects onto the $n-k$ last coordinate of $T_{{F_{s_0}}} M$. This is an open condition. Since $d\left(F_{{s_0}}\right)_p$ depends smoothly on $s_0$ and $p$, we conclude that there are open neighbourhoods $U$ and $O$ of $s_0$ and $p$, respectively, such that this holds. This implies that $\restr{F_s}{O}$ is transverse to $X$. By compactness of $N$, we can cover it with finitely many such neighbourhoods $O$ and thus conclude that $F_s$ is transverse to $X$ for all $s$ in some open neighborhood $s_0$.
+
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q6-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1708621545 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Smooth Manifolds/smooth_manifolds.tex" "smooth_manifolds.pdf" "smooth_manifolds" 1708621547 0
-  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708107828 83523 c240498cc87ea350b68c7a1657f0afb7 ""
+["pdflatex"] 1709975698 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Smooth Manifolds/smooth_manifolds.tex" "smooth_manifolds.pdf" "smooth_manifolds" 1709975699 0
+  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1709455302 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993058908 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -210,11 +210,11 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Smooth Manifolds/smooth_manifolds.tex" 1708621545 9946 4d5412f74abbecb08ad2ab4040ad9c59 ""
-  "smooth_manifolds.aux" 1708621546 1425 67928247df90cf5610bafefc41ec6dfe "pdflatex"
-  "smooth_manifolds.out" 1708621546 1113 4fabc873b0471036240038edcd78245a "pdflatex"
-  "smooth_manifolds.tex" 1708621545 9946 4d5412f74abbecb08ad2ab4040ad9c59 ""
-  "smooth_manifolds.toc" 1708621546 574 8dc1d4ca07bcfeb5be34734422afe7da "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Smooth Manifolds/smooth_manifolds.tex" 1709975697 11232 073c0831c3464914c1fb76452f395fd5 ""
+  "smooth_manifolds.aux" 1709975699 1547 5af51c0e979e6f99596efc912fffcc61 "pdflatex"
+  "smooth_manifolds.out" 1709975699 1290 ad790bb03ddd408f93c28f31c2a2bb56 "pdflatex"
+  "smooth_manifolds.tex" 1709975697 11232 073c0831c3464914c1fb76452f395fd5 ""
+  "smooth_manifolds.toc" 1709975699 655 23fe15cf64f1d63cc3a1781f13247cc4 "pdflatex"
   (generated)
   "smooth_manifolds.aux"
   "smooth_manifolds.log"

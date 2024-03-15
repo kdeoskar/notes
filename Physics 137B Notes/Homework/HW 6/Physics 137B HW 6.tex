@@ -1,0 +1,509 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{tensor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B HW 6 - KDEOSKAR},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Homework 56}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 1: Fun with Tensor Products} 
+\begin{enumerate}[label=(\alph*)]
+  \item Write down the corresponding ($4$ dimensional) vectors for $\ket{\uparrow \downarrow}, \ket{\downarrow \uparrow}, \ket{\downarrow \downarrow}$.
+  \item Write down $\hat{S}_x, \hat{S}_y$ as matrices.
+  \item Using $\hat{S}^2 = \hat{S}_x^2 + \hat{S}_y^2 + \hat{S}_z^2$, write down the $4 \times 4$ matrix defining $\hat{S}^2$ for the two spin-1/2 particles.
+  \item Find the eigenvalues of $\hat{S}^2$.
+  \item Find the eigenvectors of $\hat{S}^2$.
+  \item Explain how the eigenvalues and eigenvectors you got are consistent with the ones we obtained in class.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item We have 
+  \begin{align*}
+    \ket{\uparrow \downarrow} &= \ket{\frac{1}{2} \frac{1}{2}} \otimes \ket{\frac{1}{2} \frac{-1}{2}} 
+    = \begin{pmatrix}
+      1 \\ 0
+    \end{pmatrix} \otimes \begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      1 \cdot \begin{pmatrix}
+        0 \\ 1
+      \end{pmatrix} \\
+      0 \cdot \begin{pmatrix}
+        0 \\ 1
+      \end{pmatrix} \\
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      0 \\ 1 \\ 0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+
+  \vskip 0.25cm
+  \begin{align*}
+    \ket{\downarrow \uparrow} &= \ket{\frac{1}{2} \frac{-1}{2}} \otimes \ket{\frac{1}{2} \frac{1}{2}} 
+    = \begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix} \otimes \begin{pmatrix}
+      1 \\ 0
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      0 \cdot \begin{pmatrix}
+         1\\ 0
+      \end{pmatrix} \\
+      1 \cdot \begin{pmatrix}
+        1 \\ 0
+      \end{pmatrix} \\
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      0 \\ 0 \\ 1 \\ 0
+    \end{pmatrix}
+  \end{align*}
+
+
+  \vskip 0.25cm
+  \begin{align*}
+    \ket{\downarrow \downarrow} &= \ket{\frac{1}{2} \frac{-1}{2}} \otimes \ket{\frac{1}{2} \frac{-1}{2}} 
+    = \begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix} \otimes \begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      0 \cdot \begin{pmatrix}
+        0 \\ 1
+      \end{pmatrix} \\
+      1 \cdot \begin{pmatrix}
+        0 \\ 1
+      \end{pmatrix} \\
+    \end{pmatrix} 
+    = \begin{pmatrix}
+      0 \\ 0 \\ 0 \\ 1
+    \end{pmatrix}
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Recall that the matrix representations of the spin operators are 
+  \[  \hat{S}_x = \frac{\hbar}{2} \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+  \end{pmatrix} \;\;\;\; 
+  \hat{S}_y = \frac{\hbar}{2} \begin{pmatrix}
+    0 & -i \\
+    i & 0
+  \end{pmatrix} \;\;\;\; 
+  \hat{S}_z = \frac{\hbar}{2} \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+  \end{pmatrix} \]
+  
+  \vskip 0.25cm
+  Now, let's tackle $\hat{S}_x = \hat{S}_x^{(1)} \otimes \mathbbm{1} + \mathbbm{1} \otimes \hat{S}_x^{(2)}$. We have 
+
+  \begin{align*}
+    \hat{S}_x &= \hat{S}_x^{(1)} \otimes \mathbbm{1} + \mathbbm{1} \otimes \hat{S}_x^{(2)} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix} \otimes \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} + \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} \otimes \frac{\hbar}{2} \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 \cdot \mathbbm{1} & 1 \cdot \mathbbm{1} \\
+      1 \cdot \mathbbm{1} & 0 \cdot \mathbbm{1}
+    \end{pmatrix} + \frac{\hbar}{2}
+    \begin{pmatrix}
+      1 \cdot \hat{S}_x^{(2)} & 0 \cdot \hat{S}_x^{(2)} \\
+      0 \cdot \hat{S}_x^{(2)} & 1 \cdot \hat{S}_x^{(2)} \\
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & 0 & 1 & 0 \\
+      0 & 0 & 0 & 1 \\
+      1 & 0 & 0 & 0 \\
+      0 & 1 & 0 & 0
+    \end{pmatrix} + \frac{\hbar}{2} \begin{pmatrix}
+      0 & 1 & 0 & 0 \\
+      1 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 1 \\
+      0 & 0 & 1 & 0
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & 1 & 1 & 0 \\
+      1 & 0 & 0 & 1 \\
+      1 & 0 & 0 & 1 \\
+      0 & 1 & 1 & 0 \\
+    \end{pmatrix}
+  \end{align*}
+
+  \vskip 0.5cm
+  \begin{align*}
+    \hat{S}_y &= \hat{S}_y^{(2)} \otimes \mathbbm{1} + \mathbbm{1} \otimes \hat{S}_y^{(2)} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & -i \\
+      i & 0
+    \end{pmatrix} \otimes \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} + \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} \otimes \frac{\hbar}{2} \begin{pmatrix}
+      0 & -i \\
+      i & 0
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 \cdot \mathbbm{1} & -i \cdot \mathbbm{1} \\
+      i \cdot \mathbbm{1} & 0 \cdot \mathbbm{1}
+    \end{pmatrix} + \frac{\hbar}{2}
+    \begin{pmatrix}
+      1 \cdot \hat{S}_y^{(2)} & 0 \cdot \hat{S}_y^{(2)} \\
+      0 \cdot \hat{S}_y^{(2)} & 1 \cdot \hat{S}_y^{(2)} \\
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & 0 & -i & 0 \\
+      0 & 0 & 0 & -i \\
+      i & 0 & 0 & 0 \\
+      0 & i & 0 & 0
+    \end{pmatrix} + \frac{\hbar}{2} \begin{pmatrix}
+      0 & -i & 0 & 0 \\
+      i & 0 & 0 & 0 \\
+      0 & 0 & 0 & -i \\
+      0 & 0 & i & 0
+    \end{pmatrix} \\
+    &= \frac{\hbar}{2} \begin{pmatrix}
+      0 & -i & -i & 0 \\
+      i & 0 & 0 & -i \\
+      i & 0 & 0 & -i \\
+      0 & i & i & 0 \\
+    \end{pmatrix}
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Now that we 
+  
+\end{enumerate}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 2: Isospin symmetry for nucleons} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item What are the allowed isospin states for two nucleons in terms of the proton/neutron basis?
+  \item At low energies, most two-nucleon observables are dominated by the $l = 0$ angular momentum. If we fix $l = 0$, what are the allowed spin and isospin two-nucleon states?
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose 
+  \[ \ket{N_1} = \ket{l_1 m_{l_1}} \otimes \ket{S_1 m_{S_1}} \otimes \ket{I_2 m_{I_1}} \]
+  describes the first nucleon and 
+  \[ \ket{N_2} = \ket{l_2 m_{l_2}} \otimes \ket{S_2 m_{S_2}} \otimes \ket{I_2 m_{I_2}} \] describes the second nucleon. Then the two-nucleon state can be written as \[  \ket{N_1 N_2;l m_l, S m_S, I m_I} = \ket{l m_l} \otimes \ket{S m_S} \otimes \ket{I m_I}  \] where $\vec{l} = \vec{l}_1 + \vec{l}_1$, $\vec{S} = \vec{S}_1 + \vec{S}_1$, and $\vec{I} = \vec{I}_1 + \vec{I}_1$
+
+  \vskip 0.25cm
+  $l$ is arbitrary, so to obtain the allowed isospin states in terms of the proton neutron basis, we want to write the coupled state $\ket{l m_l} \otimes \ket{S m_S} \otimes \ket{I m_I}$ as a tensor product of the uncoupled basis states.
+
+  \vskip 0.25cm
+  Although Angular momentum and Isospin are different symmetries and the transformations corresponding to them act on different spaces, they can be studied in nearly identical manner because the rotation group in 3 dimensions $R(3)$ is isomorphic to $SU(2)$ which is the group that describes Isospin Symmetry. (Source: Groups and Symmetries in Nuclear Physics, Jitendra C. Parikh).
+
+  \vskip 0.25cm
+  Thus, in terms of the proton/neutron basis 
+  \begin{align*}
+    &\ket{I = \frac{1}{2}, I_z = \frac{1}{2}} = \ket{p} = \begin{pmatrix}
+      1 \\ 0
+    \end{pmatrix} \\
+    &\ket{I = \frac{1}{2}, I_z = -\frac{1}{2}} = \ket{n} = \begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix}\\
+  \end{align*}
+
+  the allowed states are of the form
+  \[ \ket{p} \otimes \ket{p}, \ket{p} \otimes \ket{n}, \ket{n} \otimes \ket{p}, \ket{n} \otimes \ket{n} \]
+  which we can write as 
+
+  % \begin{align*}
+  %   \ket{p} \otimes \ket{p} &= \begin{pmatrix}
+  %    1 \\ 0
+  %   \end{pmatrix} \otimes \begin{pmatrix}
+  %      1 \\ 0 
+  %   \end{pmatrix} 
+  %   = \begin{pmatrix}
+  %     1 \\ 0 \\ 0 \\ 0
+  %   \end{pmatrix}
+  % \end{align*}
+
+  % \begin{align*}
+  %   \ket{p} \otimes \ket{n} &= \begin{pmatrix}
+  %    1 \\ 0
+  %   \end{pmatrix} \otimes \begin{pmatrix}
+  %      0 \\ 1 
+  %   \end{pmatrix} 
+  %   = \begin{pmatrix}
+  %     0 \\ 1 \\ 0 \\ 0
+  %   \end{pmatrix}
+  % \end{align*}
+
+  % \begin{align*}
+  %   \ket{n} \otimes \ket{p} &= \begin{pmatrix}
+  %    0 \\ 1
+  %   \end{pmatrix} \otimes \begin{pmatrix}
+  %      1 \\ 0 
+  %   \end{pmatrix} 
+  %   = \begin{pmatrix}
+  %     0 \\ 0 \\ 1 \\ 0
+  %   \end{pmatrix}
+  % \end{align*}
+
+  
+  % \begin{align*}
+  %   \ket{n} \otimes \ket{n} &= \begin{pmatrix}
+  %    0 \\ 1
+  %   \end{pmatrix} \otimes \begin{pmatrix}
+  %     0 \\ 1
+  %   \end{pmatrix} 
+  %   = \begin{pmatrix}
+  %     0 \\ 0 \\ 0 \\ 1
+  %   \end{pmatrix}
+  % \end{align*}
+
+
+
+  \vskip 0.5cm
+  \item If we fix $l = 0$,
+
+
+\end{enumerate}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 3: Isospin symmetry for two pion states:}
+\begin{enumerate}[label=(\alph*)]
+  \item Using the tools we have learned about adding spin and angular momentum, what are the allowed isospin states for two pion systems?
+  \item The pions are spinless Bosons, so the states of two pions must be symmetric. Given this fact, what are the allowed isospin states for two pion systems for \textbf{even} angular momentum $l$?
+  \item What are the allowed isospin states for two pion systems for \textbf{odd} angular momentum $l$?
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 4: States and degeneracy for $2$ particle states in a box} 
+Obtain the energy and degeneracy of for the \textbf{ground state} and \textbf{first excited state} with \textbf{zero total momentum}
+\begin{enumerate}[label=(\alph*)]
+  \item For two \textbf{distinguishable} spinless particles.
+  \item For two \textbf{identical spinless bosons}.
+  \item For two \textbf{identical spin-1/2 bosons}.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 5: Fermi gas model for nuclear matter} 
+
+Consider a simple model for heavy nuclei that have a large numbero f approximately equal protons and neutrons. If we assume that protons and neutrons are exactly degenerate, and we assume the same exact number of protons and neutrons, what is the Fermi energy of such nuclei? What is the average energy?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \textbf{Question :} 
+% \section*{Question : } 
+% \begin{enumerate}[label=(\alph*)]
+
+% \end{enumerate}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Solution:}} 
+
+
+% \vskip 0.5cm 
+% \hrule 
+% \vskip 0.5cm
+% % \pagebreak
+
+
+
+
+\end{document}

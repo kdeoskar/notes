@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  3 MAR 2024 23:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  5 MAR 2024 21:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -955,7 +955,19 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 134.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Physics 137B HW 5.aux)
+{C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<Q2 potential .png, id=63, 763.35187pt x 417.81094pt>
+File: Q2 potential .png Graphic file (type png)
+<use Q2 potential .png>
+Package pdftex.def Info: Q2 potential .png  used on input line 217.
+(pdftex.def)             Requested size: 381.675pt x 208.90495pt.
+ [2 <./Q2 potential .png>] [3] [4]
+<Q2(c).png, id=92, 464.4853pt x 422.32782pt>
+File: Q2(c).png Graphic file (type png)
+<use Q2(c).png>
+Package pdftex.def Info: Q2(c).png  used on input line 343.
+(pdftex.def)             Requested size: 185.79083pt x 168.92813pt.
+ [5 <./Q2(c).png>] [6] (Physics 137B HW 5.aux)
 Package rerunfilecheck Info: File `"Physics 137B HW 5".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to '"Physics 137B HW 5".run.xml'.
@@ -963,17 +975,17 @@ Package logreq Info: Writing requests to '"Physics 137B HW 5".run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36756 strings out of 476361
- 756454 string characters out of 5788046
- 1855993 words of memory out of 5000000
- 56617 multiletter control sequences out of 15000+600000
+ 36797 strings out of 476361
+ 756969 string characters out of 5788046
+ 1870993 words of memory out of 5000000
+ 56634 multiletter control sequences out of 15000+600000
  519843 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,6n,103p,778b,1761s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on "Physics 137B HW 5.pdf" (1 page, 70416 bytes).
+ 98i,18n,103p,778b,1761s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on "Physics 137B HW 5.pdf" (6 pages, 343241 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 3 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 185 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

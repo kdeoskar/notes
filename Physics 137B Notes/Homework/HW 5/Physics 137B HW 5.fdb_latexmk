@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber Physics 137B HW 5"] 1709528979 "Physics 137B HW 5.bcf" "Physics 137B HW 5.bbl" "Physics 137B HW 5" 1709536896 0
+["biber Physics 137B HW 5"] 0 "Physics 137B HW 5.bcf" "Physics 137B HW 5.bbl" "Physics 137B HW 5" 1709703327 -1
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Physics 137B HW 5.bcf" 1709536895 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Physics 137B HW 5.bcf" 1709703326 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Physics 137B HW 5.bbl"
   "Physics 137B HW 5.blg"
   (rewritten before read)
-["pdflatex"] 1709536893 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 137B Notes/Homework/HW 5/Physics 137B HW 5.tex" "Physics 137B HW 5.pdf" "Physics 137B HW 5" 1709536896 0
+["pdflatex"] 1709703325 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 137B Notes/Homework/HW 5/Physics 137B HW 5.tex" "Physics 137B HW 5.pdf" "Physics 137B HW 5" 1709703327 0
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1709455302 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -32,9 +32,21 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247593066 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247593066 32080 340ef9bf63678554ee606688e7b5339d ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247593067 30251 6afa5cb1d0204815a708a080681d4674 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247593067 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1247593067 37912 07513ec114ac737ab54cea0152f4424b ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247593067 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247593067 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247593067 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247593066 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247593067 31809 8670ca339bf94e56da1fc21c80635e2a ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247593067 32762 7fee39e011c23b3589931effd97b9702 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247593067 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1247593066 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247593066 32716 08e384dc442464e7285e891af9f45947 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247593073 34694 870c211f62cb72718a00e353f14f254d ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm5.pfb" 1247593073 35457 884c5a936fbb3fae6a4c18058662d654 ""
+  "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb" 1247593073 35309 940e81a5b9e04201a07e8b33a3ae6e64 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/generic/atbegshi/atbegshi.sty" 1575571100 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1683816730 146936 df7499eefac590ca39eafa78f2819a4b ""
@@ -216,12 +228,14 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Physics 137B HW 5.aux" 1709536895 743 880c3293947c226815e5478fd9fb18a5 "pdflatex"
+  "Physics 137B HW 5.aux" 1709703326 743 f343c65dd34e53460b975ddacc2f8880 "pdflatex"
   "Physics 137B HW 5.bbl" 1709528981 486 ee04f40f768daeed26442158e95aba61 "biber Physics 137B HW 5"
-  "Physics 137B HW 5.out" 1709536895 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "Physics 137B HW 5.run.xml" 1709536895 2406 902972adfdd31a50c867d77884edb4d2 "pdflatex"
-  "Physics 137B HW 5.tex" 1709536892 4879 437f4d54f3baee3be440fc0e677b33cc ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 137B Notes/Homework/HW 5/Physics 137B HW 5.tex" 1709536892 4879 437f4d54f3baee3be440fc0e677b33cc ""
+  "Physics 137B HW 5.out" 1709703326 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Physics 137B HW 5.run.xml" 1709703326 2406 902972adfdd31a50c867d77884edb4d2 "pdflatex"
+  "Physics 137B HW 5.tex" 1709703324 14981 ac3a6a944bbaf55a9f9a36c0e8bb534f ""
+  "Q2 potential .png" 1709678304 111427 bdd706054c5527fe3e5316c4c885c7ca ""
+  "Q2(c).png" 1709700560 31017 b17463fc33151a1dd75b9c02180df540 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 137B Notes/Homework/HW 5/Physics 137B HW 5.tex" 1709703324 14981 ac3a6a944bbaf55a9f9a36c0e8bb534f ""
   (generated)
   "Physics 137B HW 5.aux"
   "Physics 137B HW 5.bcf"

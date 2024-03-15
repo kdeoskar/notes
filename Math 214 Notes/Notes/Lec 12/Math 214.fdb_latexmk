@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber Math 214"] 1708634323 "Math 214.bcf" "Math 214.bbl" "Math 214" 1708645286 0
+["biber Math 214"] 1708634323 "Math 214.bcf" "Math 214.bbl" "Math 214" 1709714726 0
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777765600 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Math 214.bcf" 1708645285 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Math 214.bcf" 1709714725 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Math 214.bbl"
   "Math 214.blg"
   (rewritten before read)
-["pdflatex"] 1708645284 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex" "Math 214.pdf" "Math 214" 1708645286 0
-  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1708107828 83523 c240498cc87ea350b68c7a1657f0afb7 ""
+["pdflatex"] 1709714724 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex" "Math 214.pdf" "Math 214" 1709714726 0
+  "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1709455302 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1686855587 11548 e75a920bdb728c0ab98ad606187ff880 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684913015 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993058908 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -229,13 +229,13 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253165583 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Math 214.aux" 1708645285 1413 b48a936e92f03206f54a7c0d748fd0ae "pdflatex"
+  "Math 214.aux" 1709714725 1413 b48a936e92f03206f54a7c0d748fd0ae "pdflatex"
   "Math 214.bbl" 1708634326 486 ee04f40f768daeed26442158e95aba61 "biber Math 214"
-  "Math 214.out" 1708645285 1050 0c54f7a44c276f40f895f84ccdfc0b08 "pdflatex"
-  "Math 214.run.xml" 1708645285 2343 0b9e2ea366d0583b2fc359a747aa8a93 "pdflatex"
-  "Math 214.tex" 1708645283 11792 85f0b108fa53c981f21b4f519f6d1e11 ""
-  "Math 214.toc" 1708645285 495 43a3b876f953ee332cdbbe79d258ee5f "pdflatex"
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex" 1708645283 11792 85f0b108fa53c981f21b4f519f6d1e11 ""
+  "Math 214.out" 1709714725 1050 0c54f7a44c276f40f895f84ccdfc0b08 "pdflatex"
+  "Math 214.run.xml" 1709714725 2343 0b9e2ea366d0583b2fc359a747aa8a93 "pdflatex"
+  "Math 214.tex" 1709714723 11828 a4b5d9fb2c2f6e7e615ca26c1205d0be ""
+  "Math 214.toc" 1709714725 495 43a3b876f953ee332cdbbe79d258ee5f "pdflatex"
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Notes/Lec 12/Math 214.tex" 1709714723 11828 a4b5d9fb2c2f6e7e615ca26c1205d0be ""
   (generated)
   "Math 214.aux"
   "Math 214.bcf"

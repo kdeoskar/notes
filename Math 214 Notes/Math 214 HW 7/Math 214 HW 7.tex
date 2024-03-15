@@ -1,0 +1,257 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 7},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 7}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-2.} Let $G$ be a Lie Group.
+\begin{enumerate}[label=(\alph*)]
+  \item Let $m : G \times G \rightarrow G$ denote the multiplication map. Using proposition 3.14 to identify $T_{(e,e)} \left(G \times G\right)$ with $T_{e}G \oplus T_e G$, show that the differential $dM_{(e,e)} : T_e G \oplus T_e G \rightarrow T_e G$ is given by 
+  \[ dm_{(e,e)}\left(X, Y\right) = X + Y \]
+
+  \item Let $i : G \rightarrow G$ denote the invversion map. Show that $di_e : T_e G \rightarrow T_e G$ is given by $di_e(X) = -X $.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-4.} Let $\mathrm{det} : GL(n, \R) \rightarrow \R$ denote the determinant function. Use Corollary 3.25 to compute the differential of det, as follows.
+\begin{enumerate}[label=(\alph*)]
+  \item For any $A \in M(n, \R)$, show that 
+  \[ \restr{\frac{d}{dt}}{t = 0} \mathrm{det}(I_n + tA) = \mathrm{tr}A \], where $\mathrm{tr}\left(A^i_j\right) = \sum_{i} A^i_i$ is the trace of $A$.
+  
+  \item For $X \in GL(n, \R)$ and $B \in T_X GL(n, \R) \cong M(n,\R)$, show that 
+  \[ d\left(\mathrm{det}\right)_X (B) = \left( \mathrm{det} X \right) \mathrm{tr} \left(X^{-1} B\right) \].
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-6.} Suppose $G$ is a Lie Group and $U$ is any neighborhood of the identity. Show that there exists a neighobrhood $V$ of the identity such that $V \subseteq U$ and $g h^{-1} \in U$ whenever $g, h \in V$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-11.} Repeat Problem 7-9 for $GL(n+1, \C)$ and $\mathbb{CP}^n$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-22.} 
+% Let $\mathbb{H} = \C \times \C$ and define a bilinear product $\mathbb{H} \times \mathbb{H} \rightarrow \mathbb{H}$ by 
+% \[ (a,b)(c,d) = (ac - d\overline{b}, \overline{a}d + cb) \]
+% for $a,b,c,d \in \C$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that quaternionic multiplication is associative but not commutative.
+  \item Show that $(pq)^* = q^* p^*$ for all $p, \in \mathbb{H}$
+  \item Show that $\langle p, q \rangle = \frac{1}{2}\left(p^* q + q^* p\right)$ is an iner product on $\mathbb{H}$, whose associated norm satisfies $|pq| = |p||q|$.
+  \item Show that every nonzero quaternion has a two-sided multiplicative inverse given by $p^{-1} = |p|^{-2} p^*$.
+  \item Show that the se t$\mathbb{H}^*$ of nonzero quaternions is a Lie group under quaternionic multiplication.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q7-23.} Let $\mathbb{H}^*$ be the Lie Group of nonzero quaternions and let $\mathcal{S} \subseteq \mathbb{H}^*$ be the set of unit quaternions. Show that $\mathcal{S}$ is a properly embedded Lie subgroup of $\mathbb{H}^*$, isomorphic to $SU(2)$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q7-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}
