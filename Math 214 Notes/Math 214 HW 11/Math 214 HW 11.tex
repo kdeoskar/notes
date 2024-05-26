@@ -1,0 +1,447 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+% \usepackage{tensor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 11},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 11}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-14.} Consider the following two covector fields on $\R^3$:
+\begin{align*}
+  \omega &= -\frac{4z dx}{(x^2 + 1)^2} + \frac{2ydy}{y^2 + 1} + \frac{2xdz}{x^2 + 1} \\
+  \eta &= -\frac{4xz dx}{(x^2 + 1)^2} + \frac{2y dy}{y^2 + 1} + \frac{2dz}{x^2 + 1}
+\end{align*} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item Set up and evaluate the line integral of each covector field along the straight line segment from $(0,0,0)$ to $(1,1,1)$.
+  \item Determine whether either of these covector fields is exact.
+  \item For each one that is exact, find a potential function and use it to recompute the line integral.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Let $\gamma : \R \rightarrow \R^3$ be the following parametrization of the straight line from $(0,0,0)$ to $(1,1,1)$:
+  \[ \gamma(t) = (t,t,t), \;\;\; t \in [0, 1] \]
+  So, 
+  \begin{align*}
+    \int_{\gamma} \omega &= \int_{0}^{1} -\frac{4tdt}{(t^2+1)^2} + \frac{2tdt}{t^2 + 1} + \frac{2tdt}{t^2 + 1} \\
+    &= -\int_{0}^{1} \frac{4tdt}{(t^2+1)^2} + \int_{0}^{1} \frac{2tdt}{t^2 + 1} + \int_{0}^{1} \frac{2tdt}{t^2 + 1} 
+  \end{align*}
+  We can solve each of these as in ordinary calculus to get 
+  \begin{align*}
+    \int_{\gamma} \omega &= -\int_{1}^{2} \frac{2 du}{u^2} + 2 \times \int_{1}^{2} \frac{du}{u} \\
+    &= -2\left[\frac{-1}{u}\right]_1^2 + 2 \left[\ln(u)\right]_1^2 \\
+    &= 2 \left[\frac{1}{2} - \frac{1}{1}\right] + 2\left[ \ln(2) - \ln(1) \right] \\
+    \implies \int_{\gamma} \omega &= 2\ln(2) - 1
+  \end{align*}
+
+  We can similarly calculate the integral of $\eta$:
+  \vskip 0.5cm
+  \begin{align*}
+    \int_{\gamma} \eta &= \int_{0}^{1} \frac{-4t^2dt}{(t^2+1)^2} + \frac{2tdt}{t^2 + 1} + \frac{2dt}{t^2 + 1} \\
+    &= \int_{0}^{1} \left(\frac{-4t^2}{(t^2+1)^2} + \frac{2t}{t^2 + 1} + \frac{2}{t^2 + 1} \right) dt\\
+    &= \int_{0}^{1} \frac{2\left(t^3 - t^2 + t + 1\right)}{(t^2 + 1)^2} dt \\
+    &= \ln(2) + 1
+  \end{align*}
+
+  \vskip 0.5cm
+  \item We can check that $\omega$ is closed by verifying all of the mixed second derivatives are equal:
+  \begin{align*}
+    &\frac{\partial^2 \omega}{\partial y \partial x} = \frac{\partial \left( \frac{4z}{(x^2 + 1)^2} \right)}{\partial y} = 0 = \frac{\partial \left(\frac{2y}{y^2 + 1}\right)}{\partial x} = \frac{\partial^2 \omega}{\partial x \partial y} \\
+    &\frac{\partial^2 \omega}{\partial z \partial x} = \frac{\partial \left( \frac{4z}{(x^2 + 1)^2} \right)}{\partial z} = -\frac{4}{(x^2 + 1)^2} = \frac{\partial \left(\frac{2x}{x^2 + 1}\right)}{\partial x} = \frac{\partial^2 \omega}{\partial x \partial z} \\
+    &\frac{\partial^2 \omega}{\partial z \partial y} = \frac{\partial \left( \frac{2y}{y^2 + 1} \right)}{\partial z} = 0 = \frac{\partial \left(\frac{2x}{x^2 + 1}\right)}{\partial y} = \frac{\partial^2 \omega}{\partial y \partial z} 
+  \end{align*}
+  Then, since the line segment from $(0,0,0)$ to $(1,1,1)$ is a star-shaped subset of $\R^3$, the Poincare Lemma (Theorem 11.49) tells us that $\omega$ is closed $\implies$ $\omega$ is exact.
+
+  \vskip 0.25cm
+  On the other hand, for $\eta$ we see that 
+  \begin{align*}
+    &\frac{\partial^2 \eta}{\partial z \partial x} = \frac{\partial \left( \frac{4xz}{(x^2 + 1)^2} \right)}{\partial z} = \frac{4x}{(x^2 + 1)^2} \\
+    &\frac{\partial^2 \eta}{\partial x \partial z} = \frac{\partial \left( \frac{2}{x^2 + 1} \right)}{\partial x} = -\frac{4}{(x^2 + 1)^2} \\
+    \implies & \frac{\partial^2 \eta}{\partial z \partial x} \neq \frac{\partial^2 \eta}{\partial x \partial z}
+  \end{align*}
+  Thus $\eta$ is not closed, but every exact form must be closed so $\eta$ is not exact.
+
+
+  \vskip 0.5cm
+  \item 
+
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-17.} Let $\mathbb{T}^n = \mathbb{S}^1 \times \cdots \times \mathbb{S}^1 \subseteq \C^n$ denote the $n$-torus. For each $j = 1, \cdots, n$, let $\gamma_j : [0, 1] \rightarrow \mathbb{T}^n$ be the curve segment
+\[ \gamma_j(t) = \left(1, \cdots, e^{2\pi i t}, \cdots, 1\right) \;\;\;\;\text{(with $e^{2\pi i t}$ in the $j^{th}$ place)} \] Show that a closed covector field $\omega$ on $\mathbb{T}^n$ is exact if and only if $\int_{{\gamma_j}} \omega = 0$ for $j = 1, \cdots, n$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\underline{"$\implies$":} Suppose closed covector field $\omega \in \mathfrak{X}^* \left(\mathbb{T}^2\right) $ is exact. Then, there exists a potential function $f : M \rightarrow \R$ such that 
+\begin{align*}
+  \int_{{\gamma_j}} \omega &= \int_{{\gamma_j}} df  \\
+  &= f(\gamma_j(1)) - f(\gamma_j(1)) \text{    (By the fundamental theorem of line integrals)} \\
+  &= f\left(1, \cdots, e^{2\pi i \cdot 1}, \cdots, 1\right) - f\left(1, \cdots, e^{2\pi i \cdot 0}, \cdots, 1\right) \\
+  &= f\left(1, \cdots, 1, \cdots, 1\right) - f\left(1, \
+  \cdots, 1, \cdots, 1\right) \\
+  &= 0
+\end{align*}
+
+\vskip 0.5cm
+\underline{"$\impliedby$":} 
+
+For the reverse direction, suppose that for each $j = 1, 2, \cdots, n$ we have \[ \int_{{\gamma_j}} \omega = 0 \] i.e. the integral of $\omega$ along each circle in the decomposition $\mathbb{T}^n = \mathbb{S}^1 \times \cdots \times \mathbb{S}^1$ is zero. If we can somehow show that $\int_{\gamma} \omega$ for \emph{any} piece-wise smooth closed curve, then $\omega$ will be conservative and thus exact.
+
+\vskip 0.5cm
+We have the smooth covering map $\varepsilon^n : \R^n \rightarrow \mathbb{T}^n$ defined by \[ \left(x^1, \cdots, x^n \right) \mapsto \left(e^{2\pi i x^1}, \cdots, e^{2\pi i x^n}\right) \] Consider any piece-wise smooth closed curve segment $\gamma : [0, 1] \rightarrow \mathbb{T}^n$ and let $\tilde{\gamma} : [0, 1] \rightarrow \R^n$ be a lift of $\gamma$ such that \[  \gamma = \varepsilon^n \circ \tilde{\gamma}   \] Since $\varepsilon^n$ is smooth, surjective and $\gamma$ is also smooth, exercise 4.10 tells us that $\tilde{\gamma}$ must be smooth as well. WLOG, we can assume that $\tilde{\gamma}(0) = 0$ and $\tilde{\gamma}(1) = \left(m^1, \cdots, m^n\right)$ for integers $m^1, \cdots, m^n$ (if these are not integers, then $\gamma = \varepsilon^n \circ \tilde{\gamma}$ will not be closed).
+
+\vskip 0.5cm
+Going forward, the idea will be to decompose the integral over $\gamma$ into integrals over paths along the $\gamma_j$'s. Define $\alpha_i : [0, 1] \rightarrow \mathbb{T}^n$ as the line segment from $\left(m^1, \cdots, m^{i-1}, 0, \cdots, 0\right)$ to $\left(m^1, \cdots, m^{i}, 0, \cdots, 0\right)$ and let $\alpha : [0, 1] \rightarrow \mathbb{T}^n$ be the concatenation of the $\alpha_i$'s such that $\alpha(0) = 0$ and $\alpha(1) = \left(m^1, \cdots, m^n\right)$. Then, 
+
+\begin{align*}
+  \int_{\gamma} \omega &= \int_{{\varepsilon^n \circ \tilde{\gamma} }} \omega \\
+  &= \int_{ \tilde{\gamma} } \left(\varepsilon^n\right)^* \omega \\
+  &= \int_{\alpha} \left(\varepsilon^n\right)^* \omega \text{  (Prop 11.42; Since $ \tilde{\gamma}, \alpha$ start and end at the same points)} \\
+  &= \int_{{\alpha_1}} \left(\varepsilon^n\right)^* \omega + \cdots + \int_{{\alpha_n}} \left(\varepsilon^n\right)^* \omega \\
+  &= \int_{\varepsilon^n \circ {\alpha_1}} \omega + \cdots + \int_{\varepsilon^n \circ {\alpha_n}} \omega \\
+  &= \int_{\varepsilon^n \circ {\gamma_1}} \omega + \cdots + \int_{\varepsilon^n \circ {\gamma_n}} \omega \text{ (Again due to Prop 11.42)}\\
+  &= 0
+\end{align*}
+
+\vskip 0.5cm
+This shows that $\omega$ is a conservative covector field on a smooth manifold with or without boundary. Thus, by Proposition 11.42 it must be exact. 
+
+
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q12-6.} \begin{enumerate}[label=(\alph*)]
+  \item Let $\alpha$ be a covariant $k-$tensor on a finite dimensional real vector space $V$. Show that $\mathrm{Sym}\alpha$ is the unique symmetric $k-$tensor satisfying 
+  \[  \left(\mathrm{Sym}\alpha\right)\left(v, \cdots, v\right) = \alpha\left(v, \cdots, v\right) \] for all $v \in V$.
+
+  \item Show that the symmetric product is associative: for all symmetric tensors $\alpha, \beta, \gamma$,
+  \[ \left(\alpha \beta\right) \gamma = \alpha \left(\gamma \beta\right)  \]
+
+  \item Let $\omega^1, \cdots, \omega^k$ be covectors on a finite-dimensional vector space. Show that their symmetric product satisfies 
+  \[  \omega^1, \cdots, \omega^k = \frac{1}{k!}\sum_{\sigma \in S_k} \omega^{\sigma(1)} \otimes \cdots \otimes \omega^{\sigma(k)} \]
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose there exists some other covariant $k-$tensor $\left(\mathrm{Sym}\right)' \in \Sigma_{k}(V^*)$ such that 
+  \[ \left(\mathrm{Sym} \; \alpha\right)'(v, \cdots, v) = (v, \cdots, v) \] Define $\beta \equiv \left(\mathrm{Sym}\right) - \left(\mathrm{Sym}\right)' \in \Sigma_{k}(V^*)$. Now, fix $v, w_1 \in V$ and for $\epsilon > 0$ let $\gamma_v :(-\epsilon, \epsilon) \rightarrow V$ be the map
+  \[ t \mapsto v + tw \]
+
+  Then, for all $t_0 \in (-\epsilon, \epsilon)$ we have $\beta(\gamma_v(t_0), \cdots, \gamma_v(t_0)) = 0$ so 
+  \[ \restr{\frac{d}{dt}}{t_0} \beta(\gamma_v(t_0), \cdots, \gamma_v(t_0)) = 0  \]
+
+  So, in particular, at $t = 0$,
+
+\begin{align*}
+  \restr{\frac{d}{dt}}{t = 0} \beta(\gamma_v(t_0), \cdots, \gamma_v(t_0)) = \beta(w_1, v, \cdots, v) + \beta(v, w_1, \cdots, v) + \cdots + \beta(v, \cdots, v, w_1) = 0
+\end{align*}
+
+But since $\beta$ is symmetric, this means 
+\begin{align*}
+  &k\cdot\beta(w_1, v, \cdots, v) = 0 \\
+  \implies&\beta(w_1, v, \cdots, v) = 0 \\
+  \implies&(\mathrm{Sym} \alpha)(w_1, v, \cdots, v) = (\mathrm{Sym}' \alpha)(w_1, v, \cdots, v)
+\end{align*}
+
+We can bascially the same arguement for the remaining $k-1$ entries so we finally obtain 
+\[ (\mathrm{Sym} \alpha)(w_1, w_2, \cdots, w_k) = (\mathrm{Sym}' \alpha)(w_1, w_2, \cdots, w_k) \]
+
+Thus, $\mathrm{Sym}\;\alpha$ is unique.
+
+\vskip 0.5cm
+\item Suppose we have symmetric covariant tensors $\alpha, \beta, \gamma$ of rank $k, l, m$ on a vector space $V$. 
+
+Now, $\beta \gamma = \mathrm{Sym}(\beta \otimes \gamma)$ is an $(l+m)-$rank covector on $V$, so $\alpha (\beta \gamma) = \mathrm{Sym}\left(\alpha \otimes \mathrm{Sym}(\beta \otimes \gamma)\right)$ is a rank $(k+l+m)$ covariant tensor on $V$.
+
+For any $v \in V$, 
+
+\begin{align*}
+  \left(\alpha \beta\right) \gamma &= \left( \mathrm{Sym} \left(\mathrm{Sym}(\alpha \otimes \beta) \otimes \gamma \right) \right)(v, \cdots, v) \\ 
+  &= \left(\mathrm{Sym}(\alpha \otimes \beta)\right) (v, \cdots, v) \gamma \left(v, \cdots, v\right) \\
+  &= \alpha (v, \cdots, v) \beta(v \cdots, v) \gamma(v, \cdots, v) \\
+  &= \alpha(v, \cdots, v) \left(\mathrm{Sym}(\beta \otimes \gamma)\right) (v, \cdots, v) \\
+  &= \left( \mathrm{Sym} \alpha \otimes \left( \mathrm{Sym} (\beta \otimes \gamma)\right)  \right) (v, \cdots, v) \\
+  &= \alpha (\beta \gamma)
+\end{align*}
+
+Therefore, the symmeteric product is associative.
+\[ \alpha \left( \beta \gamma \right) = \left(\alpha \beta \right) \gamma = \alpha \beta \gamma \]
+
+\vsize 0.5cm
+\item Now let $\omega^1, \cdots, \omega^k$ be covectors on a finte-dimensional vector space.
+
+\vskip 0.25cm
+We know from proposition 12.15(b) that 
+\[ \omega^1 \omega^2 = \frac{1}{2}\left(\omega^1 \otimes \omega^2 + \omega^2 \otimes \omega^1\right) = \frac{1}{2!} \sum_{\sigma \in S_2} \omega^{\sigma(1)} \otimes \cdots \omega^{\sigma(k)} \]
+
+So the base case $k = 2$ is satisfied.
+
+Now, let's assume that the inductive hypothesis holds for $k-1$ i.e.
+
+\[ \omega^1 \cdots \omega^{k-1} = \frac{1}{(k-1)!} \sum_{\sigma \in S_{k-1}}  \omega^1 \otimes \cdots \otimes \omega^{k-1}   \]
+
+Then, 
+\begin{align*}
+  \left( \omega^1 \cdots \omega^{k-1} \right) \omega^k &= \frac{1}{2} \left[  \left( \omega^1 \cdots \omega^{k-1} \right) \otimes \omega^{k} + \omega^k \otimes  \left( \omega^1 \cdots \omega^{k-1} \right) \right] \\\
+  &= \frac{1}{2} \left[  \frac{1}{(k-1)!} \sum_{\sigma \in S_{k-1}}  \omega^1 \otimes \cdots \otimes \omega^{k-1}\otimes \omega^{k} + \omega^k \otimes  \frac{1}{(k-1)!} \sum_{\sigma \in S_{k-1}}  \omega^1 \otimes \cdots \otimes \omega^{k-1} \right] \\
+\end{align*}
+
+Now, by the associativity of the symmetric product shown in (b), we have 
+\[ (\omega^1, \cdots, \omega^{k-1}) \omega^k = \omega^1 (\omega^2 \cdots, \omega^{k-1} \omega^k) = \left(\omega^1, \cdots, \omega^{i-1}\right) \omega^i \left(\omega^{i+1}, \cdots, \omega^{k}\right)  \]
+
+There are $k$ ways to choose $i$, and all of these terms are equal. So, dividing by $k$, we find that the $\omega^i$'s can be permuted in $k!$ ways. Thus, 
+
+\begin{align*}
+  \omega^1, \cdots, \omega^k &= \frac{1}{k} \sum_{i = 1}^{k} \left(\omega^1, \cdots, \omega^{i-1}\right) \omega^i \left(\omega^{i+1}, \cdots, \omega^{k}\right) \\
+  &= \frac{1}{k!} \sum_{\sigma \in S_k} \omega^{\sigma(1)} \otimes \omega^{\sigma(k)}
+\end{align*}
+ 
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q12-11.} Suppose $M$ is a smooth manifold, $A$ is a smooth covariant tensor field on $M$, and $V, W \in \mathfrak{X}(M)$. Show that 
+\[ \mathcal{L}_V \mathcal{L}_W A - \mathcal{L}_W \mathcal{L}_V A = \mathcal{L}P_{[V, W]} A \]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q13-2.} 
+Suppose $F$ is a smooth vector bundle over a smooth manifold $M$ with or without boundary, and $V \subseteq E$ is an open subset with the property that for each $p \in M$, the intersection of $v$ with the fiber $E_p$ is convex and non-empty. By a "section of $V$", we mean a (local or global section of $E$ whose image lies in $V$.)
+\begin{enumerate}[label=(\alph*)]
+  \item Show that there exists a smooth global section of $V$.
+  \item Suppose $\sigma : A \rightarrow V$ is a smooth section of $V$ defined on a closed subset $A \subseteq M$. Show that there exists a smooth global section $\tilde{\sigma}$ of $V$ whose restriction to $A$ is equal to $\sigma$. Show that if $V$ contains the image of the zero section of $E$, then $\tilde{\sigma}$ can be chosen to be supported in any predetermined neighborhood of $A$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q13-13.} Let $(M, g)$ be a Riemannian manifold. A smooth vector field $V$ on $M$ is called a \textbf{Killing vector field for $g$} if the flow of $V$ acts by isometries of $g$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the set of all Killing vector fields on $M$ constitutes a Lie subalgebra of $\mathfrak{X}(M)$.
+  \item Show that a smooth vector field $V$ on $M$ is a Killing vector field if and only if it satisfies the follownig equation in each smooth local coordinate chart:
+  \[ V^k \frac{\partial g_{ij}}{\partial x^k} + g_{jk} \frac{\partial V^k}{\partial x^i} + g_{ik} \frac{\partial V^k}{\partial x^j} = 0 \]
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q13-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q13-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

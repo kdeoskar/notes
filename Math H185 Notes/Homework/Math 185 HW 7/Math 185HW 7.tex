@@ -1,0 +1,493 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 7},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 7}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.25cm
+Let $\{f_n\}$ be a sequence of holomorphic functions on an open subset $U \subseteq \C$ that converges uniformly to a function $f$ on every compact subset of $U$. Show that the sequence $\{f_n'\}$ converges uniformly to $f'$ on every compact subset of $U$. Then argue that the formula
+\[ \zeta(s) = \sum_{n = 1}^{\infty} \frac{1}{n^s}  \]
+defines a holomorphic function in $s$ for $\text{Re}(s) > 1$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+We say a sequence of functions $\{f_n\}$ converges to function $f$ on a subset $\Omega \subseteq \C$ if for every $\epsilon > 0$ there is some $N > 0$ so that whenever $z \in \Omega$ and $n > N$, we have 
+\[ \left| f(z) - f_n(z) \right| < \epsilon  \]
+
+\vskip 0.25cm
+Let's first show that if $\{f_n\}$ is a sequence of holomorphic functions converging to $f$ on every compact subset of $U$, then $f$ is also holomorphic.
+
+\begin{dottedbox}
+  Let $D$ be any disc whose closure is contained in $U$ and let $T$ be any triangle contained in $D$. Then, on $D$, $\{f_n\} \rightarrow f$. Since each $f_n$ is holomorphic, Goursat's Theorem tells us:
+  \[ \int_{T} f_n(z) dz = 0 \]
+  for all $n$. Now, since $\{f_n\} \rightarrow f$ in the closure of $D$, $f$ is continuous and we have 
+  \[ \int_{T} f_n(z) dz = \int_{T} f(z) dz \]
+
+  As a result,
+  \[ \int_{T} f(z) dz = 0 \]
+  Then, Morera's Theorem tells us that $f$ is holomorphic on $D$. Since this holds for any $D$ whose closure is contained in $U$, $f$ is holomorphic on all of $U$.
+\end{dottedbox}
+
+\vskip 0.5cm
+Now, since the sequence $\{f_n\} \rightarrow f$ uniformly on any disc whose closure is contained in $U$, we can assume WLOG that the sequence converges uniformly on all of $U$. Now, given $\delta > 0$ let 
+\[ \Omega_{\delta} = {z \in U\;:\; \overline{D_{\delta}(z)} \subseteq U}  \]
+
+be the set of points which are atleast a distance $\delta$ away from the boundary of $U$. To prove the theorem, it suffices to show that $\{f_n'\}$ converges uniformly to $f'$ on each $\Omega_{\delta}$. We do so using the following inequality (for holomorphic $F$):
+\[ \sup_{z \in \Omega_{\delta}} \left| F'(z_) \right| \leq \frac{1}{\delta} \sup_{w \in U} \left| F(w) \right| \]
+with $F = f_n - f$.
+
+\begin{dottedbox}
+  \emph{Proof of Inequality:}
+  \vskip 0.25cm
+  For every $z \in \Omega_{\delta}$, the closure of $D_{\delta}(z)$ is contained in $U$ and Cauchy's Integral Formula tells us 
+  \[ F'(z) = \frac{1}{2\pi i} \int_{\partial D_{\delta}(z)} \frac{F(w)}{(w-z)^2} dw \]
+
+  Hence,
+  \begin{align}
+    |F'(z)| &\leq \left| \frac{1}{2\pi i} \right| \int_{\partial D_{\delta}(z)} \frac{\left| F(w) \right|}{\left| w - z \right|^2} |dw| \\
+    &\leq \frac{1}{2\pi} \sup_{w \in U} \left| F(w) \right| \frac{1}{\delta^2} 2\pi \delta \\
+    &\leq \frac{1}{\delta} \sup_{w \in U} \left| F(w) \right|
+  \end{align}
+  and this holds for any $z \in \Omega_{\delta}$ so of course, 
+  \[ \boxed{\sup_{z \in \Omega_{\delta}} \left| F'(z) \right| \leq \frac{1}{\delta} \sup_{w \in U} \left| F(w) \right|} \]
+\end{dottedbox}
+
+\vskip 0.25cm
+Applying this with $F = f_n - f$, we have for any $z \in \Omega_{\delta}$ that 
+\begin{align*}
+  &\left| F'(z) \right| \leq \frac{1}{\delta} \sup_{w \in U} \left| F(w) \right| \\
+  \implies&\left| f_n'(z) - f(z) \right| \leq \frac{1}{\delta} \sup_{w \in U} \left| f_n(z) - f(z) \right| \\
+\end{align*}
+Since $\{f_n\} \rightarrow f$ uniformly on $\Omega_{\delta}$, for any $\epsilon > 0$ there exists $N > 0$ such that 
+\[ \left| f_n(z) - f(z) \right| < \epsilon \]
+for $z \in \Omega_{\delta}$ and $n > N$. Thus, for any $\epsilon$, the same $N$ guarantees that 
+\[ \left| f_n'(z) - f'(z) \right| < \frac{\epsilon}{\delta} = \epsilon' \]
+for $z \in \Omega_{\delta}$. Thus, the sequence $\{f_n'\} \rightarrow f'$ uniformly on each $\Omega_{\delta}$. Thus, the same holds on all of $U$.
+
+\vskip 1cm
+Now, moving onto the Riemann Zeta function. We define the zeta function by 
+\[ \zeta(s) = \sum_{n = 1}^{\infty} \frac{1}{n^s} \]
+
+For $s = x + iy$, we have 
+\begin{align*}
+  \left| n^{-s} \right| &= \left| n^{-(x+iy)} \right| \\
+  &= \left| n^{-x} \cdot n^{-iy} \right| \\
+  &= \left| n^{-x} \right| \cdot \left| e^{\ln(n^{-iy})} \right| \\
+  &= \left| n^{-x} \right| \cdot \underbrace{\left| e^{-iy\ln(n)} \right|}_{=1} \\ 
+  &= \left| n^{-\text{Re}(s)} \right|
+\end{align*}
+
+So, 
+\[ \sum_{n = 1}^{\infty} \left|\frac{1}{n^s}\right| = \sum_{n = 1}^{\infty} \frac{1}{\left| n^{\text{Re}(s)} \right|} \]
+
+Let's denote Re$(s) = \sigma$. Now, 
+\begin{align*}
+  &\sum_{n = 1}^{\infty} \frac{1}{\left| n^{\sigma} \right|} \leq \sum_{n = 1}^{\infty} \int_{n}^{n+1} \frac{1}{x^\sigma} dx \\
+  \implies &\sum_{n = 1}^{\infty} \frac{1}{\left| n^{\sigma} \right|} \leq \int_{1}^{\infty} \frac{1}{x^{\sigma}} dx
+\end{align*}
+
+For $\sigma > 1$, the integral converges:
+\begin{align*}
+  \int_{1}^{\infty} \frac{1}{x^{\sigma}} dx &= \left[\frac{1}{1-\sigma}x^{1-\sigma}\right]_{x = 1}^{x = \infty} \\
+  &= \frac{1}{1-\sigma} \left[ \frac{1}{x^{\sigma - 1}} \right]_{x = 1}^{x = \infty} \\
+  &= \frac{1}{1-\sigma} \left[0 - 1\right] \\
+  &= \frac{1}{\sigma - 1}
+\end{align*}
+
+Therefore, for $\sigma > 1$, the sum converges absolutely. Thus, 
+\[ \sum_{n = 1}^{\infty} \frac{1}{n^s} \] defines a holomorphic function on the half place Re$(s) > 1$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question }
+\vskip 0.5cm
+Prove that for Re$(s) > 1$,
+\[ \zeta(s) = \frac{s}{s-1} + s\int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx \]
+where $\{x\}$ denotes the fractional part of $x$. Prove that the right hand side defines a holomorphic function in $s$ for $\{s \in \C : \text{Re}(s) > 0 \} \setminus \{1\}$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Let's look at the integral on the right hand side:
+\begin{align*}
+  \int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx &= \sum_{n = 1}^{\infty} \int_{n}^{n+1} \frac{x-n}{x^{s+1}} dx \\
+  &= \sum_{n = 1}^{\infty} \int_{n}^{n+1} \frac{1}{x^{s}} - \frac{n}{x^{s+1}} dx \\
+  % &= \sum_{n = 1}^{\infty} \left[ \frac{-s}{x^{s+1}} + \frac{n(s+1)}{x^{s+2}} \right]_{n}^{n+1}\\
+\end{align*}
+
+If $|s| > 1$, this can be written as 
+\begin{align*}
+  \int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx &= \int_{1}^{\infty} \frac{1}{x^s} dx - \sum_{n = 1}^{\infty} \int_{n}^{n+1} \frac{n}{x^{s+1}} dx \\
+  &= \frac{1}{s-1} - \sum_{n = 1}^{\infty} n \cdot \left[ \frac{x^{-s}}{-s} \right]_{x = n}^{x = n+1} \\
+  &= \frac{1}{s-1} + \sum_{n = 1}^{\infty} \frac{n}{s} \left[(n+1)^{-s} - n^{-s}\right] \\
+  &= \frac{1}{s-1} - \frac{1}{s} \sum_{n = 1}^{\infty} n \left[n^{-s} - (n+1)^{-s}\right]
+\end{align*}
+Now, we can re-express the sum by combining terms cleverly:
+
+\begin{align*}
+  \sum_{n = 1}^{\infty} n \left[n^{-s} - (n+1)^{-s}\right] &= 1 \cdot \left(1^{-s} - 2^{-s}\right) + 2 \left(2^{-s} - 3^{-s}\right) + 3\cdot \left(3^{-s} + 4^{-s}\right) + \cdots \\
+  &= 1^{-s} + \left(2 - 1\right) \cdot 2^{-s} + \left(4-3\right) \cdot 3^{-s} \cdots \\
+  &= 1^{-s} + 2^{-s} + 3^{-s} + \cdots \\
+  &= \sum_{n = 1}^{\infty} \frac{1}{n^s} \\
+  &= \zeta(s)
+\end{align*}
+
+This rearranging of terms is only guaranteed to be valid when the sum converges absolutely, and that happens for Re$(s) > 1$.
+
+\vskip 0.5cm
+Thus, for Re$(s) > 1$, we have 
+\begin{align*}
+  &\int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx = \frac{1}{s-1} - \frac{1}{s} \zeta(s)  \\
+  \implies &\boxed{\zeta(s) = s\int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx + \frac{s}{s-1}} \;\;\;\;\;\;\;\;(1)
+\end{align*}
+
+\vskip 0.25cm
+Earlier, we proved that if we have a sequence of holomorphic functions $\{f_n\}$ which converge uniformly to a function $f$ on an open subset $U \subseteq_{\text{open}} \C$, then $f$ is holomorphic.
+
+\vskip 0.25cm
+Consider the sequence of functions $\{f_n\}_{n = 1}^{\infty}$ defined on $U = \{s \in \C \;:\; \text{Re}(s) > 0\} \setminus \{1\}$ where
+\[ f_n(z) = \frac{s}{s-1} + s\int_{1}^{n} \frac{\{x\}}{x^{s+1}} dx \]
+
+Each of these functions is holomorphic on $U$ because $s/(s-1)$ is a rational function whose denominator does not vanish in $U$ and the integral evaluates to 
+\begin{align*}
+  \sum_{k = 1}^{n} \int_{k}^{k+1} \frac{x - k}{x^{s+1}} dx &= \sum_{k = 1}^{n} \left[ \frac{x^{1-s}}{1-s} + \frac{k}{s} x^{-s} \right]_{k}^{k+1} \\
+  &= \sum_{k = 1}^{n} \left[ \left(\frac{(k+1)^{1-s}}{1-s} + \frac{k}{s} (k+1)^{-s}\right) - \left(\frac{k^{1-s}}{1-s} + \frac{k}{s} k^{-s}\right) \right] \\
+  &= \sum_{k = 1}^{n} \left[ \frac{1}{1-s} \left( (k+1)^{1-s} - k^{1-s} \right) + \frac{k}{s} \left( (k+1)^{-s} - k^{-s} \right) \right] \\
+  &= \frac{1}{1-s}\sum_{k = 1}^{n}\left[ \underbrace{(k+1)^{1-s} - k^{1-s} }_{\text{telescoping}} \right] + \frac{k}{s} \sum_{k = 1}^{n} \left[ (k+1)^{-s} - k^{-s} \right] \\
+  &= \frac{(n+1)^{1-s} - 1^{1-s}}{1-s} - \frac{1}{s} \left[1 \cdot \left(2^{-s} - 1^{-s}\right) + 2 \cdot \left(3^{-s} - 2^{-s}\right) + \cdots + n\left((n+1)^{-s} - n^{-s}\right)\right] \\
+  &= \frac{(n+1)^{1-s} - 1}{1-s} - \frac{1}{s} \left[-1^{-s} - 2^{-s} - 3^{-s} - \cdots -n^{-s} + n(n+1)^{-s}\right] \\
+  &= \frac{(n+1)^{1-s} - 1}{1-s} - \frac{1}{s}\sum_{k = 1}^{n} \frac{1}{n^s} + \frac{1}{s} n(n+1)^{-s}
+\end{align*}
+Each of these terms in holomorphic on $U$, so the entire integral term $s \int_1^n \frac{\{x\}}{x^{s+1}} dx$ is holomorphic on $U$.
+
+\vskip 0.25cm
+We also have uniform convergence of $\{f_n\}$ to $f(z)$ where 
+\[ f(z) = s\int_{1}^{\infty} \frac{\{x\}}{x^{s+1}} dx + \frac{s}{s-1}  \]
+
+on $U$. Therefore, the right hand side of equation (1) is holomorphic on $U = \{s \in \C \;:\; \text{Re}(s) > 0\} \setminus \{1\}$
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+For $x \in \R$, let $Q_0(x) \equiv \{x\} - 1/2$. Prove by induction that there exist for all $k \geq 0$, bounded functions $Q_k(x)$ satisying all of the following conditions:
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{0}^{1} Q_k(x) dx = 0$
+  \item $\frac{dQ_{k+1}(x)}{dx} = Q_k(x)$ for all $x \in \R \setminus \mathbb{Z}$
+  \item $Q_{k}(x+1) = Q_k(x)$ for all $x \in \R$. 
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\subsection*{Base Case:}
+
+For $k = 0$, we have $Q_0 = \{x\} - 1/2$. This function is bounded as $\sup |Q_0(x)| = 1/2$. Define $Q_1(x)$ as: 
+\begin{align*}
+  Q_1(x) \equiv \begin{cases}
+    F_1(x) + C_1, \;\;\;\; x\in [0, 1)\\
+    Q_1(\{x\}), \;\;\;\; x \not\in [0, 1)
+  \end{cases}
+\end{align*}
+where $F_1(x)$ is the anti-derivative of $Q_0(x)$ and $C_1$ is a constant chosen such that property (a) is satisfied i.e. $C_1 = - \int_{0}^{1} F_1(x) dx$.
+
+\vskip 0.5cm
+Let's verify that it satisfies the three properties:
+\begin{enumerate}[label=(\alph*)]
+  \item The integral over the unit interval is 
+  \begin{align*}
+    \int_{0}^{1} Q_0(x) dx = &\int_{0}^{1} \{x\} - \frac{1}{2} dx \\
+    &= \int_{0}^{1} x - \frac{1}{2} dx \\
+    &= \left[ \frac{x^2}{2} - \frac{x}{2} \right]_{0}^{\rightarrow 1} \\
+    &= \left(\frac{1}{2} - \frac{1}{2} \right) - \left( 0 - 0 \right) \\
+    &= 0 
+  \end{align*}
+
+  \vskip 0.5cm
+  \item For $x \in \R \setminus \mathbb{Z}$ such that $x \in [0, 1)$ we have $Q_1(x) = F_1(x) + C_1$ so 
+  \begin{align*}
+    \frac{dQ_1(x)}{dx} &= \frac{dF_1(x)}{dx} + 0 \\
+    &= Q_0(x)
+  \end{align*}
+
+  and for $x \in \R \setminus \mathbb{Z}$ such that $x \not\in [0, 1)$ we have $Q_1(x) = Q_1(\{x\})$, and so 
+  \begin{align*}
+    \frac{dQ_1(x)}{dx} &= \frac{dF_1(\{x\})}{dx} + 0 \\
+    &= Q_0(\{x\}) \\
+    &= \{x\} - \frac{1}{2} \\
+    &= Q_0(x)
+  \end{align*}
+
+  \vskip 0.5cm
+  \item For $x \in \R$, we have 
+  \begin{align*}
+    Q_1(x+1) = Q_1(\{x + 1\}) = Q_1(\{x\}) = Q_1(x)
+  \end{align*}
+\end{enumerate}
+
+\subsection*{Inductive Hypothesis and Step}
+Okay, now suppose functions $Q_i(x)$ where $0 \leq i \leq n$ are defined such that properties (a), (b), and (c) are satisfied. Let's define $Q_{n+1}(x)$ as 
+
+\[ Q_{n+1}(x) = \begin{cases}
+  F_{n+1} + C_{n+1}, \;\;\;\; x \in [0,1) \\
+  Q_{n+1}(\{x\}),\;\;\;\; x \not\in [0,1)
+\end{cases} \]
+
+where $F_{n+1}$ is the antiderivative of $Q_{n}$ and $C_{n+1}$ is a constant chosen so that property (a) is satisfied i.e. $C_{n+1} = -\int_{0}^{1} F_{n+1}(x) dx$.
+
+\vskip 0.5cm
+Let's verify that each of the properties hold.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Holds by contruction of $Q_{n+1}(x)$
+  
+  \vskip 0.5cm
+  \item Again, due to the construction,
+  For $x \in \R \setminus \mathbb{Z}$ such that $x \in [0, 1)$ we have $Q_1(x) = F_1(x) + C_1$ so 
+  \begin{align*}
+    \frac{dQ_{n+1}(x)}{dx} &= \frac{dF_{n+1}(x)}{dx} + 0 \\
+    &= Q_{n}(x)
+  \end{align*}
+
+  and for $x \in \R \setminus \mathbb{Z}$ such that $x \not\in [0, 1)$ we have $Q_1(x) = Q_1(\{x\})$, and so 
+  \begin{align*}
+    \frac{dQ_1={n+1}(x)}{dx} &= \frac{dF_{n+1}(\{x\})}{dx} + 0 \\
+    &= Q_{n}(\{x\}) \\
+    &= Q_n(x)
+  \end{align*}
+
+  \vskip 0.5cm
+  \item For $x \in \R$, we have 
+  \begin{align*}
+    Q_{n+1}(x+1) = Q_{n+1}(\{x + 1\}) = Q_{n}(\{x\}) = Q_{n}(x)
+  \end{align*}
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+With $Q_k(x)$ as in the previous problem, prove the formula 
+\[ \zeta(s) = \frac{s}{s-1} - \frac{1}{2} - s \int_{1}^{\infty} \left( \frac{d^k}{dx^k} Q_k(x) \right) x^{-s-1} dx \]
+for Re$(s) >> 1$, and deduce that there is an analytic continuation of $\zeta(s)$ to $\{s \in \C \;:\; \text{Re}(s) > -k \} \setminus {1}$
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+We found in Question 2 that for Re$(s) > 1$,
+\[ \zeta(s) = \frac{s}{s-1} - s\int_1^{\infty} \frac{\{x\}}{x^{s+1}} dx \]
+
+We can rewrite this in terms of $Q_0(x) = \{x\} - 1/2$ and then simplify to get 
+\begin{align*}
+  \zeta(s) &= \frac{s}{s-1} - s\int_{1}^{\infty} \frac{Q_0(x) + 1/2}{x^{s+1}} dx \\
+  &= \frac{s}{s-1} - s \int_1^{\infty} \frac{1/2}{x^{s+1}} dx - s\int_{1}^{\infty} \frac{Q_0}{x^{s+1}} dx \\
+  &= \frac{s}{s-1} - \frac{s}{2} \int_1^{\infty} x^{-s-1} dx - s\int_{1}^{\infty} Q_0(x) \cdot x^{-s-1} dx \\
+  &= \frac{s}{s-1} - \frac{s}{2} \left[ \frac{x^{-s}}{-s} \right]_{1}^{\infty} - s \int_{1}^{\infty} Q_0(x) \cdot x^{-s-1} dx \\
+  &= \frac{s}{s-1} - \frac{s}{2} \left[0 - \frac{-1}{s} \right] - s \int_{1}^{\infty} Q_0(x) \cdot x^{-s-1} dx \\
+  &= \frac{s}{s-1} - \frac{1}{2} - s \int_{1}^{\infty} Q_0(x) \cdot x^{-s-1} dx \\
+\end{align*}
+
+Also, recall that in Question 3, that we found for $x \in \R \setminus \mathbb{Z}$
+\[ \frac{dQ_{k+1}(x)}{dx} = Q_{k}(x) \]
+
+This relation only fails at the integers, which are a set of measure zero, so they don't contribute to the integral.
+
+\vskip 0.25cm
+Therefore, we can write 
+\[ \int_{1}^{\infty} Q_0(x) \cdot x^{-s-1} dx = \int_{1}^{\infty} \left( \frac{d^k Q_{k}(x)}{dx^k} \right)\cdot x^{-s-1} dx \]
+
+\vskip 0.5cm
+Therefore, 
+\[ \boxed{ \zeta(s) = \frac{s}{s-1} - \frac{1}{2} - s\int_{1}^{\infty} \left( \frac{d^k Q_{k}(x)}{dx^k} \right)\cdot x^{-s-1} dx} \]
+
+\vskip 0.5cm
+Now, the terms other than the integral are all holomorphic on $\C \setminus \{1\}$, so let's think about where the integral converges absolutely and is holomorphic.
+
+For now, instead of $Q_k$, let's think about $Q_0$. Using Integration by Parts, we have 
+\begin{align*}
+  \int_1^{\infty} \frac{Q_0(x)}{x^{s+1}} dx &= \left[ \frac{Q_1(x)}{x^{s+1}} \right]_{1}^{\infty} - \int_1^{\infty} \frac{Q_1(x)}{x^{s+2}} dx \\
+  &= Q_1(1) - \int_{1}^{\infty} \frac{Q_1(x)}{x^{s+2}} dx
+\end{align*}
+
+The first term is just a constant and is holomorphic everywhere. The integral on the other hand is absolutely convergent for Re$(s) + 2 > 1 \implies \text{Re}(s) > -1$.
+
+\vskip 0.5cm
+If further apply Integration by Parts on the integral with $Q_1$ in it, we will get another constant term and an integral which converges absolutely for Re$(s) > -2$.
+
+\vskip 0.5cm
+We can do this $k$ times until we get the integral with $\frac{Q_k(x)}{x^{s+k}}$, so the zeta function $\zeta(s)$ under this continuation is equal to a bunch of constants + an integral which is absolutely convergent on $\{s \in \C \;:\; \text{Re}(s) > -k \} \setminus {1}$. Therefore, we find that this continuation of $\zeta(s)$ is holomorphic on $\{s \in \C \;:\; \text{Re}(s) > -k \} \setminus {1}$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

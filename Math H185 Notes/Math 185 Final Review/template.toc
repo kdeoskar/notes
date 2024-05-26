@@ -1,0 +1,9 @@
+\babel@toc {american}{}\relax 
+\contentsline {section}{\numberline {1}January}{3}{section.1}%
+\contentsline {section}{\numberline {2}February}{3}{section.2}%
+\contentsline {section}{\numberline {3}March}{3}{section.3}%
+\contentsline {section}{\numberline {4}April}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}April 1: Riemann Sphere}{3}{subsection.4.1}%
+\contentsline {subsubsection}{One point compactification}{3}{section*.2}%
+\contentsline {subsubsection}{Meromorphic functions}{4}{section*.5}%
+\contentsline {subsection}{\numberline {4.2}April 3: }{5}{subsection.4.2}%

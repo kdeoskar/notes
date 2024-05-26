@@ -1,6 +1,6 @@
-PWD c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Lee Manifolds
+PWD c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Lee Topological Manifolds
 INPUT C:\Users\kesha\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Lee Manifolds\topological_manifolds.tex
+INPUT c:\Users\kesha\OneDrive\Desktop\Fall '23\LaTeX notes\Lee Topological Manifolds\topological_manifolds.tex
 OUTPUT topological_manifolds.log
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

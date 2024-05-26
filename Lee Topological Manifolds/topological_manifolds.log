@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  7 JAN 2024 03:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.24)  27 MAR 2024 20:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Manifolds/topological_manifolds.tex"
-(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Manifolds/topological_manifolds.tex
+**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Topological Manifolds/topological_manifolds.tex"
+(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Lee Topological Manifolds/topological_manifolds.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-05-11> (C:\Users\kesha\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -691,20 +691,20 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] (topological_manifolds.aux)
 Package rerunfilecheck Info: File `topological_manifolds.out' has not changed.
-(rerunfilecheck)             Checksum: 1BD958F476FB1EDBE92633489C1DB35A;3462.
+(rerunfilecheck)             Checksum: E5C8278C5BC84573E2B0065E2D8137E2;3621.
  ) 
 Here is how much of TeX's memory you used:
- 29676 strings out of 476361
- 614971 string characters out of 5788046
- 1871993 words of memory out of 5000000
- 49549 multiletter control sequences out of 15000+600000
+ 29678 strings out of 476361
+ 615121 string characters out of 5788046
+ 1870993 words of memory out of 5000000
+ 49550 multiletter control sequences out of 15000+600000
  521438 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,15n,99p,583b,985s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,15n,99p,595b,985s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\kesha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on topological_manifolds.pdf (16 pages, 328922 bytes).
+Output written on topological_manifolds.pdf (16 pages, 329691 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
- 317 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 351 PDF objects out of 1000 (max. 8388607)
+ 56 named destinations out of 1000 (max. 500000)
+ 325 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,86 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}January 23 - Classical Mechanics Review, Linear Algebra}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Linear Algebra}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Vector Spaces}{4}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Subspaces}{4}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Linear Map}{4}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}Injectivity, Surjectivity, etc.}{4}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}Linear Functionals, Inner Products}{4}{subsubsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.6}Spectral Theorem for Self-Adjoint Operators}{5}{subsubsection.1.1.6}%
+\contentsline {subsubsection}{\numberline {1.1.7}Tensors}{5}{subsubsection.1.1.7}%
+\contentsline {section}{\numberline {2}January 25 - Algebra, Group Theory}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Revisiting vector spaces, duals, and tensors}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Group Theory}{7}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Subgroup}{7}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Coset}{8}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Lagrange's Theorem}{8}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Normal subgroups}{8}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Quotient Groups}{9}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Group Homomorphisms}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Kernel, Image, and the First Isomorphism Theorem:}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Fundamental Group}{10}{subsection.2.5}%
+\contentsline {section}{\numberline {3}January 30 - Point set Topology}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}What is a Topological Space?}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Openness and Closedness}{11}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Building new topologies out of old ones}{12}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Subspace Topology}{12}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Quotient Topology}{12}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Product Topology}{12}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}Sequences and Convergence}{12}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Classification of Topological Spaces}{13}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Covers, Compactness, and more}{13}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Manifolds}{14}{subsection.3.7}%
+\contentsline {section}{\numberline {4}February 1 - Properties of Topological Spaces}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Path-Connectedness}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Boundary}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Quotient Topological Spaces}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Orientation}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Connected Sum}{16}{subsection.4.5}%
+\contentsline {section}{\numberline {5}February 6 - }{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Cell Complex}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Next Time}{17}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Feburary 8 - Starting off with Algebraic Toplogy!}{18}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Recap of the past}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Alg. Top. At. Last.}{18}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Topological Invariants}{18}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Fundamental Group}{19}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Fundamental Group of the Circle}{20}{subsubsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.5}Fundamental Group of a Torus}{21}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Fundamental Group of a Wedge Sum: $\mathbb {S}^1 \vee \mathbb {S}^1$}{21}{subsection.6.6}%
+\contentsline {section}{\numberline {7}February 13 - }{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Lens spaces}{22}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Induced Homomorphisms}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Covering Spaces and Maps}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}CW Complexes}{23}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Limitations of the Fundamental Group}{23}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Summary of Homotopy}{23}{subsection.7.6}%
+\contentsline {section}{\numberline {8}February 15 - Some Physics applications}{24}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Outline for today}{24}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Phases of Matter}{24}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Heisenberg Hamiltonian and Symmetry Breaking}{25}{subsection.8.3}%
+\contentsline {section}{\numberline {9}February 20 - Homology and other fun stuff!}{26}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Simplicial Homology}{26}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Some useful homology calculations}{28}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Some properties of Homology Groups}{28}{subsection.9.3}%
+\contentsline {section}{\numberline {10}February 22 - Applications of Homology}{30}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Homology of $\mathbb {S}^n$}{30}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Homology of $\mathbb {RP}^2$}{30}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Formal Properties of Homologies}{31}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Identical Particles}{32}{subsection.10.4}%
+\contentsline {section}{\numberline {11}February 27 - Starting off with Differential Geometry!}{33}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Differentiable Maninfolds}{33}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Diffeomorphisms}{33}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Scalar Fields on Smooth Manifolds}{34}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Tangent and Cotangent Spaces}{34}{subsection.11.4}%
+\contentsline {section}{\numberline {12}Feb 29 - }{35}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Bundles}{35}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Sections}{35}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Tangent Bundle}{35}{subsection.12.3}%
+\contentsline {section}{\numberline {13}March 5 - Forms and Exterior Algebra}{36}{section.13}%
+\contentsline {subsection}{\numberline {13.1}p-forms}{36}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Properties of $p-$forms}{37}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}General Tensor Product}{37}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Properties of the Exterior Product}{38}{subsection.13.4}%
+\contentsline {subsection}{\numberline {13.5}Tensor Basis}{38}{subsection.13.5}%
+\contentsline {subsection}{\numberline {13.6}Exterior Algebra}{39}{subsection.13.6}%
+\contentsline {subsection}{\numberline {13.7}Random Jump: Category Theory!}{40}{subsection.13.7}%

@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+% \newcommand{\ket}[1]{|#1 \rangle}
+% \newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Spring '24}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily Math 185 Final Review}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+\newpage
+\microtoc
+\newpage
+
+% main content
+\section{January}
+
+\section{February}
+
+\section{March}
+
+\section{April}
+
+\subsection{April 1: Riemann Sphere}
+\vskip 0.5cm
+\begin{itemize}
+    % \item Helps us study \emph{almost} holomorphic functions. Namely, meromorphic functions.
+    \item We want to talk about functions that are holomorphic/meromorphic/have a pole "at" $\infty$. We do this by extending the complex plane and functions on it.
+\end{itemize}
+
+\vskip 0.5cm
+\subsubsection{One point compactification}
+
+\subsubsection*{Real case}
+\begin{redbox}
+    Consider the map  $\R \setminus \{0\} \rightarrow \R$ defined as 
+    \[ f(x) = \frac{1}{x} \]
+    This function is \emph{almost} smooth. The only issue is that in some sense we have $f(0) = \infty \not\in \R$. But what if we just add an "$\infty$" point to $\R$?
+
+    \vskip 0.5cm
+    Denote this space $\hat{\R}$ as the one-point compactification of $\R$ is $\R \cup \{\infty\} \cong \mathbb{S}^1$. Now, $f$ can be continued to a map from $\R$ to $\hat{R}$ with the same formula.
+
+    \vskip 0.5cm
+    We can further define 
+    \[ \frac{1}{\infty} = 0 \] to continue the function to a smooth map from $\hat{\R} \rightarrow \hat{\R}$!
+
+    \vskip 0.5cm
+    $\hat{\R}$ is called the \emph{\textbf{extended complex plane}}.
+\end{redbox}
+
+\vskip 0.5cm
+\subsubsection*{Complex case}
+
+Similarly, we can define the \emph{\textbf{extended complex plane}} $\hat{\C}$ by adding a point at infinity. $\hat{C} = \C \cup \{\infty\}$. Instead of $\bS^1$, this space is topologically equivalent to $\bS^2$ i.e. a sphere.
+
+\vskip 0.5cm
+INSERT FIGURE.
+
+\vskip 0.5cm
+The function $z \mapsto \frac{1}{z}$, $\C \rightarrow \C$ gets extended continuously to a function with the same formula defined on $\hat{\C} \rightarrow \hat{\C}$ under the convention 
+\begin{align*}
+    &z \mapsto \frac{1}{z} \\
+    &0 \mapsto \infty \\
+    &\infty \mapsto 0\\
+\end{align*}
+
+\vskip 0.25cm
+Under this map, a neighborhood of the $0$ gets mapped into a neighborhood of $\infty$. More precisely, this map takes a chart $\C \subseteq U \ni 0$ and maps it to a chart $0 \in U \subseteq \C$ to a chart $\infty \in V \subseteq \hat{\C}$ and the two charts are equivalent in that we can go back and forth.
+
+\vskip 0.5cm
+\begin{bluebox}
+    \textbf{Def:} We call a function $f \text{ : } U \subseteq \C \rightarrow V \subseteq$ a \emph{\textbf{biholomorphism}} if 
+    \begin{itemize}
+        \item bijective
+        \item holomorphic
+        \item $f^{-1}$ is also holomorphic
+    \end{itemize}
+\end{bluebox}
+
+This is the natural notion of isomorphism in complex geometry. As such, a number of properties follow:
+
+\begin{redbox}
+    \begin{itemize}
+        \item Given a chain
+        \[ U \xrightarrow[]{f} V \xrightarrow[]{g} \C \] with $f$ holomorphic, we have $g$ holomorphic if and only if $g \circ f$ is holomorphic.
+        \item $g$ has a removable singularity/pole/etc. at $z_0 \in V$ if and only if $f$ has the same at $f^{-1}(z_0)$.
+        \item $\mathrm{Res}_{z_0}(g) = \mathrm{Res}_{f^{-1}(z_0)}(f)$
+    \end{itemize}
+\end{redbox}
+
+\vskip 0.5cm
+We want to force $\mathrm{inv}(z), z \mapsto 1/z$ to be a biholomorphism. [write more later]
+
+\vskip 0.5cm
+\subsubsection{Meromorphic functions}
+
+\vskip 0.5cm
+\begin{bluebox}
+    \textbf{Def:} If $f(z)$ is holomorphic on $U \setminus \{z_0\}$, then $f(z)$ is said to be \emph{\textbf{meromorphic}} if and only if it extends to holomorphic $\hat{f} \text{ : } U \rightarrow \hat{\C}$. 
+
+    \vskip 0.5cm
+    The above is equivalent to saying $f$ meromorphic if and only if 
+    \[ \lim_{z \rightarrow z_0} f(z) = \infty \]
+\end{bluebox}
+
+% \subsubsection*{Definin}
+
+
+\pagebreak
+\subsection{April 3: }
+
+
+\end{document}

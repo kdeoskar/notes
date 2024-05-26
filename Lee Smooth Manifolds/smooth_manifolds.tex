@@ -33,6 +33,8 @@
 
 %%%%%%%%%%% New Commands %%%%%%%%%%%%%%
 \newcommand*{\T}{\mathcal T}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
 \newcommand*{\cl}{\text cl}
 \newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
 \newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
@@ -301,12 +303,64 @@ This set has $n-$dimensional measure zero since it is a countable union of sets 
 \hrule
 \vskip 0.5cm
 
+\pagebreak
+
+\section{Chapter 7: Lie Groups}
+
+
+\section{Chapter 8: Vector Fields}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Exercise 8.9:} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof:}
+\begin{enumerate}[label=(\alph*)]
+  \item Since $f,g \in C^{\infty}(M)$, $fX, gY$ are defined by 
+  \[ \left(fX\right)_p = f(p)X_p,\;\;\;\;\;\left(gY\right)_p = g(p)Y_p \]
+  So $fX + gY$ is defined at each point $p \in M$ as 
+  \begin{align*}
+    \left(fX + gY \right)_p &= f(p)X_p + g(p)Y_p
+  \end{align*}
+  and this is again a smooth vector field since $f(p), g(p) \in \R$. [Come back to this].
+
+  \vskip 0.5cm
+  \item We've already shown that $\mathfrak{X}(M)$ is closed under addition with the ring $C^{\infty}(M)$. We also showed Multiplication  because if $X \in \mathfrak{X}(M)$ then for any $f \in C^{\infty}(M)$ then $\left(fX\right)$ is defined at each point $p \in M$ as 
+  \[ f(p)X_p \]
+  This is a smooth function because if we choose any chart $\left(U, (x^1, x^2, \cdots, x^n)\right)$ for $M$ and chart $\left(\pi^{-1}(U), \left(x^1, \cdots, x^n, v^1, \cdots, v^n \right)\right)$ for $T_p U$ then the function $f(p)X(p)$ can be written in coordinates as 
+  \[ \left(f(p)X^1_p, \cdots, f(p)X^n_p\right) \]
+  where each $X^i_p$ is a smooth function and so is $f(p)$. The product of two smooth functions is again smooth so every component function of $f(p)X_p$ is smooth.
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Problem 8-5:} Prove Proposition 8.11 (Completion of Local Frames).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+
+\textbf{Proof:}
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose $\left(X_1, \cdots, X_k\right)$ is a linearly independent $k-$tuple of smooth vector fields defined over an open subset $U \subseteq M$. At each $p \in U$, $\{\restr{X_1}{p},\cdots, \restr{X_k}{p}\}$ is a set of $k$ linearly independent vectors in $T_p M$. Choose $v_{k+1}, \cdots, v_n$ so that $\{\restr{X_1}{p},\cdots, \restr{X_k}{p}, v_{k+1}, \cdots, v_n \}$ form a basis for $T_p M$. 
+  \vskip 0.25cm Then, in a neighborhood $V$ of $p$, we can extend $v_{k+1}, \cdots, v_n$ to constant vector fields $\{X_{k+1},\cdots, X_n\}$ (which are then smooth). So, in the neighborhood $V$, $\{\restr{X_1}{p},\cdots, \restr{X_k}{p}, \restr{X_{k+1}}{p},\cdots, \restr{X_n}{p} \}$ forms a basis for $T_p M$. [Complete this]
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule
+\vskip 0.5cm
 
 
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \textbf{Exercise 6.:} 
+% \textbf{Exercise 8.:} 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \vskip 0.5cm
 
@@ -317,6 +371,9 @@ This set has $n-$dimensional measure zero since it is a countable union of sets 
 % \vskip 0.5cm
 % \hrule
 % \vskip 0.5cm
+
+
+
 
 
 

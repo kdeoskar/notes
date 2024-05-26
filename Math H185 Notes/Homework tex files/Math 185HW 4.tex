@@ -1,0 +1,535 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 4},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 4}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+Let $w_1, w_2 \in \C$ and $r \in \R$ such that $\left|w_1\right| < r < \left|w_2\right|$. Find (with proof) the value of 
+\[ \int_{\partial B_r(0)} \frac{1}{(z-w_1)(z-w_2)} dz \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+The function $1/(z-w_1)(z-w_2)$ has a singularity at $z = w_1 \in B_r(0)$ but is holomorphic at all other points in the set. i.e. it is holomorphic on $B_r(0) \setminus \{w_1\}$. 
+
+\vskip 0.5cm
+Writing the integral as 
+\[ \int_{\partial B_r(0)} \frac{f(z)}{(z-w_1)} dz, \;\;\; f(z) = \frac{1}{z-w_2} \]
+
+we realize we can apply Cauchy's Integral Formula, so 
+\begin{align}
+  \int_{\partial B_r(0)} \frac{f(z)}{(z-w_1)} dz &= 2\pi i f(w_1) \\
+  &= \frac{2\pi i }{w_1 - w_2}
+\end{align}
+
+\[ \implies \boxed{\int_{\partial B_r(0)} \frac{f(z)}{(z-w_1)} dz = \frac{2\pi i }{w_1 - w_2}}  \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 2}
+\vskip 0.5cm
+Use Cauchy's Integral Formula to calculate 
+\[ \int_{\partial B_{10}(0)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+This time, the function we are integrating has poles at $w = 1$ and $w = 2$ but is holomorphic everywhere else in $B_10(0)$. Now, 
+
+\[ \int_{\partial B_{10}(0)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw = \int_{\partial B_{\delta}(1)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw + \int_{\partial B_{\delta}(2)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw  \]
+
+where $\delta \in (0, 1)$ to ensure the two circles around our poles don't overlap.
+
+\vskip 0.5cm
+In the "island" around $w = 1$, we can view the integrand as being 
+\[ \frac{f(w)}{(w-1)}, \;\;\;\;\ f(w) = \frac{\sin \left( \frac{\pi}{2} w \right)}{w - 2} \]
+
+and similarly in the island around $w = 2$, we can view the integrand as 
+\[ \frac{g(w)}{(w-2)}, \;\;\;\;\ g(w) = \frac{\sin \left( \frac{\pi}{2} w \right)}{w - 1} \]
+
+\vskip 0.5cm
+Then, applying Cauchy's Integral Formula on each island, we have 
+\begin{align*}
+  \int_{\partial B_{10}(0)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw &= 2\pi i \cdot f(1) + 2\pi i \cdot g(2) \\
+  &= 2\pi i \left[ \frac{\sin\left(\frac{\pi}{2}\right)}{1-2} + \frac{\sin\left(\frac{\pi}{2} \cdot 2\right)}{2-1} \right] \\
+  &= 2\pi i \left[ -1 + 0\right] \\
+  &=-2\pi i 
+\end{align*}
+
+Thus,
+\[ \boxed{\int_{\partial B_{10}(0)}  \frac{\sin\left( \frac{\pi}{2} w \right)}{(w-1)(w-2)} dw = -2\pi i } \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Prove that if $f_n$ is a sequence of functions on a finite interval $[a,b]$ converging uniformly, then 
+\[ \int_{a}^{b} \lim_{n \rightarrow \infty}  f_n(z) dz = \lim_{n \rightarrow \infty} \int_{a}^{b} f_n(z) dz \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+A sequence of functions $\{f_n\}_{n = 1}^{\infty}$ is said to converge uniformly to a function $f$ if for any $\epsilon > 0$ there exists a natural number $N$ such that 
+\[ \left| f(z) - f_n(z) \right| < \epsilon \] 
+
+Suppose we have such a collection of functions converging to the limit $f$. Then,
+\begin{align*}
+  \left| \left(\int_{a}^{b} f(z) dz\right) - \left(\int_a^b f(z)_n dz\right) \right| &= \left| \int_{a}^{b} \left(f(z) - f_n(z)\right) dz \right| \\
+  &\leq \int_{a}^{b} \left| f(z) - f_n(z) \right| dz \\
+  &\leq \int_{a}^{b} \epsilon\; dz \\
+  &\leq \epsilon \cdot (b-a) 
+\end{align*}
+
+So, the inequality
+\[ \left| \left(\int_{a}^{b} f(z) dz\right) - \left(\int_a^b f(z)_n dz\right) \right| \leq \epsilon' \]
+
+is satisfied for any $n \geq N'$ where $N'$ is the natural number which gives us $\left|f(z) - f_n(z)\right| < \frac{\epsilon}{(b-a)}$, and $N'$ is guaranteed to exist by uniform convergence. 
+
+\vskip 0.5cm
+By definition, this means
+\[ \int_{a}^{b} \lim_{n \rightarrow \infty}  f_n(z) dz = \lim_{n \rightarrow \infty} \int_{a}^{b} f_n(z) dz  \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Prove that 
+\[ \int_{0}^{\infty} \sin\left( x^2 \right) dx = \int_{0}^{\infty} \cos\left( x^2 \right) dx = \frac{\sqrt{2\pi}}{4} \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Consider the integral of the function $f(z) = e^{-z^2}$ over the following contour $\gamma$. We will take the limit $R \rightarrow \infty$ to evaluate the integral.
+
+\vskip 0.5cm
+\begin{center}
+  \includegraphics*[scale=0.20]{Q4 HW 4.png}
+\end{center}
+
+Then, 
+\[ \int_{\gamma} e^{-z^2} dz = \int_{{\gamma_1}} e^{-z^2} dz + \int_{{\gamma_2}} e^{-z^2} dz + \int_{{\gamma_3}} e^{-z^2} dz \]
+
+But also, the function $e^{-z^2}$ is holomorphic on all of $\C$ and $\gamma$ is a closed curve. Then, by the Cauchy-Goursat theorem, 
+\[ \int_{\gamma} e^{-z^2} dz = 0 \]
+
+So, in particular, we have 
+\[ \lim_{R \rightarrow \infty} \int_{\gamma} e^{-z^2} dz = \lim_{R \rightarrow \infty}\left(\int_{{\gamma_1}} e^{-z^2} dz + \int_{{\gamma_2}} e^{-z^2} dz + \int_{{\gamma_3}} e^{-z^2} dz\right) = 0\]
+
+\vskip 0.5cm
+\underline{Along the circular part, $\gamma_2$:}
+
+\vskip 0.25cm
+We have that 
+\begin{align}
+  \left|\int_{{\gamma_2}} e^{-z^2} dz \right|&\leq \int_{{\gamma_2}} \left|e^{-z^2}\right| dz
+\end{align}
+where $x, y \geq 0$. 
+
+\vskip 0.5cm
+In this region, we have 
+
+\begin{align}
+  &e^{-z^2} = e^{-(x+iy)^2} = e^{-(x^2 - 2i(xy) + y^2)} \\
+  \implies&e^{-z^2} =e^{-(x^2 + y^2)} \cdot e^{-i(2xy)} \\
+  \implies& \left|e^{-z^2}\right| = \left|e^{-(x^2 + y^2)}\right| \cdot \underbrace{\left| e^{-i(2xy)} \right|}_{=1}
+\end{align}
+
+As $R \rightarrow \infty$, we have $\sqrt{x^2 + y^2} \rightarrow \infty$ so certainly $(x^2 + y^2) \rightarrow \infty$ and thus $e^{-(x^2 + y^2)} \rightarrow 0$.
+
+\vskip 0.5cm
+So,
+\[  \left|\int_{{\gamma_2}} e^{-z^2} dz \right| \xrightarrow{R \rightarrow \infty} 0 \]
+
+\vskip 0.25cm
+This allows us to conclude that in the limit as $R$ goes to infinity, the contribution due to $\gamma_2$ goes to zero.
+
+
+\vskip 0.5cm
+\underline{For $\gamma_3$}, the parametrization starting at $Re^{i \frac{\pi}{4}}$ and going to the origin is slightly annoying to integrate, so we work with the reverse orientation and just introduce a negative sign.
+
+\vskip 0.25cm
+We parametize the line going from the origin to the point $Re^{i \frac{\pi}{4}}$ as $\gamma_3^{(-)}(t) = e^{i \frac{\pi}{4}} t$ for $t \in [0, R]$. Thus,
+
+\begin{align}
+  \int_{{\gamma_3}} e^{-z^2} dz &= - \int_{{\gamma^{(-)}_3}} e^{-z^2} dz \\
+  &= -\int_0^{R} e^{-\left(e^{i\frac{\pi}{4}} t\right)^2} \cdot e^{i\frac{\pi}{4}} \; dt \\
+  &= -\int_{0}^{R} e^{-\overbrace{e^{i\pi/2}}^{=i} t^2} \cdot e^{i\pi/4} dt \\
+  &= -e^{i \pi/4} \int_{0}^{R} e^{-it^2} dt \\
+  &= -e^{i\pi / 4} \int_{0}^{R} \left[\cos(-t^2) + i\sin(-t^2)\right] dt \\
+  &= -e^{i\pi / 4} \int_{0}^{R} \left[\cos(t^2) - i\sin(t^2)\right] dt \\ 
+  &= - \left( \cos\left(\frac{\pi}{4}\right) + i\sin\left(\frac{\pi}{4}\right) \right)\int_{0}^{R} \left[\cos(t^2) - i\sin(t^2)\right] dt \\ 
+  &= - \left( \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)\int_{0}^{R} \left[\cos(t^2) - i\sin(t^2)\right] dt \\ 
+\end{align}
+
+So, in the limit as $R \rightarrow \infty$ we have 
+\[ \lim_{R \rightarrow \infty} \int_{{\gamma_3}} e^{-z^2} = - \left( \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)\int_{0}^{R} \left[\cos(t^2) - i\sin(t^2)\right] dt \]
+
+\vskip 0.5cm
+\underline{For $\gamma_1$,} the curve is superimposed with the real axis so $z = x + 0y$ and the integral is 
+
+\begin{align*}
+  \int_{{\gamma_1}} e^{-z^2} dz &= \int_{0}^R e^{-x^2} dx
+\end{align*}
+
+In the limit, this is 
+\begin{align*}
+  \lim_{R \rightarrow \infty} \int_{{\gamma_1}} e^{-z^2} dz &= \int_{0}^{\infty} e^{-x^2} dx \\
+  &= \frac{1}{2} \int_{-\infty}^{\infty} e^{-x^2} dx \text{   (Since this is an even function)} \\
+  &= \frac{1}{2} \sqrt{\pi}
+\end{align*}
+
+\vskip 0.5cm
+Putting everything together, we have 
+\begin{align*}
+  &\lim_{R \rightarrow \infty}\left(\int_{{\gamma_1}} e^{-z^2} dz + \int_{{\gamma_2}} e^{-z^2} dz + \int_{{\gamma_3}} e^{-z^2} dz\right) = 0 \\
+  \implies& \lim_{R \rightarrow \infty}\int_{{\gamma_1}} e^{-z^2} dz + \lim_{R \rightarrow \infty} \int_{{\gamma_2}} e^{-z^2} dz +  \lim_{R \rightarrow \infty}\int_{{\gamma_3}} e^{-z^2} dz = 0 \\
+  \implies& \frac{1}{2}\sqrt{\pi} + 0  - \left( \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)\int_{0}^{R} \left[\cos(t^2) - i\sin(t^2)\right] dt  = 0 \\
+  \implies & \int_{0}^{\infty} \left[\cos(t^2) - i\sin(t^2)\right] dt = \frac{\sqrt{\pi}}{2} \cdot \frac{1}{\left( \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)} \\
+  \implies & \int_{0}^{\infty} \left[\cos(t^2) - i\sin(t^2)\right] dt = \sqrt{\pi} \cdot \frac{1}{\left( \sqrt{2} + i \sqrt{2} \right)} \\
+  \implies & \int_{0}^{\infty} \left[\cos(t^2) - i\sin(t^2)\right] dt = \frac{\sqrt{\pi}}{\left( \sqrt{2} + i \sqrt{2} \right)} \cdot \frac{\left( \sqrt{2} - i \sqrt{2} \right)}{\left( \sqrt{2} - i \sqrt{2} \right)}  \\
+  \implies & \int_{0}^{\infty} \left[\cos(t^2) - i\sin(t^2)\right] dt = \frac{\sqrt{2\pi}}{4} - i\frac{\sqrt{2\pi}}{4}
+\end{align*}
+
+Thus, taking the Real and Imaginary parts of this last equation, we find that 
+
+\[ \boxed{ \int_{0}^{\infty} \cos\left(t^2\right)dt = \int_{0}^{\infty} \sin\left(t^2\right)dt = \frac{\sqrt{2\pi}}{4}} \]
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+Prove that 
+\[ \int_{-\infty}^{\infty} \frac{\sin(x)}{x} dx = \frac{\pi}{2} \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+Consider the function \[ f(z) = \frac{e^{iz}}{z} \] being integrated over the indented semicircle:
+
+\begin{center}
+  \includegraphics*[scale=0.30]{Q5 HW 4.png}
+\end{center}
+
+The function is holomorphic everywhere other than the origin, so over this contour, we have 
+\begin{align*}
+  &\int_{\gamma} f(z) dz = 0 \\
+  \implies & \int_{{\gamma}_1} f(z) dz + \int_{{\gamma}_{\epsilon}^{+}} f(z) dz + \int_{{\gamma}_2} f(z) dz + \int_{{\gamma}_{R}^{+}} f(z) dz = 0 \\
+  \implies & \lim_{R \rightarrow \infty, \epsilon \rightarrow 0} \left(\int_{{\gamma}_1} f(z) dz + \int_{{\gamma}_{\epsilon}^{+}} f(z) dz + \int_{{\gamma}_2} f(z) dz + \int_{{\gamma}_{R}^{+}} f(z) dz\right) = 0 \\
+\end{align*}
+
+where ${\gamma}_{\epsilon}^{+}, {\gamma}_{R}^{+}$ denote the semicircles of radii $\epsilon$ and $R$ being traversed clockwise and counter-clockwise respectively.
+
+\vskip 0.5cm
+Let's first consider the integral ${\gamma}_{R}^{+}$. Notice that 
+\begin{align*}
+  \left| \frac{e^{iz}}{z} \right| &= \frac{ \overbrace{\left| e^{iz} \right|}^{=1} }{\left| z \right|} = \frac{1}{\left|z\right|} \xrightarrow{R \rightarrow \infty} 0
+\end{align*}
+
+and 
+\begin{align*}
+  \left|\int_{{\gamma}_{R}^{+}} \frac{e^{iz}}{z} dz\right| &\leq \int_{{\gamma}_{R}^{+}} \left| \frac{e^{iz}}{z} \right| dz \xrightarrow{R \rightarrow \infty} 0
+\end{align*}
+
+
+\begin{align*}
+  \lim_{R \rightarrow \infty} \int_{{\gamma}_{R}^{+}} \frac{e^{iz}}{z} dz = 0 
+\end{align*}
+
+\vskip 0.5cm
+Next, let's consider the integral over ${\gamma}_{\epsilon}^{+}$. We have 
+\[ \int_{{\gamma}_{\epsilon}^{+}} \frac{e^{iz}}{z} dz = - \int_{{\gamma}_{\epsilon}^{-}} \frac{e^{iz}}{z} dz \]
+
+where ${\gamma}_{\epsilon}^{-}$ is the same semicircle, just traversed in the counter-clockwise direction. We can parametrize it as ${\gamma}_{\epsilon}^{-}(t) = \epsilon e^{it}$ where $t \in [0, \pi]$. Then,
+
+\begin{align*}
+  \int_{{\gamma}_{\epsilon}^{-}} \frac{e^{iz}}{z} dz &= \int_{0}^{\pi} \frac{e^{i \left(\epsilon e^{it}\right)}}{\epsilon e^{it}} \cdot \left( i \epsilon e^{\epsilon it} \right) dt \\
+  &= \int_{0}^{\pi} ie^{\left(i\epsilon e^{it}\right)} dt
+\end{align*}
+
+So, 
+\[ \int_{{\gamma}_{\epsilon}^{+}} \frac{e^{iz}}{z} dz = - \int_{0}^{\pi} ie^{\left(i\epsilon e^{it}\right)} dt \]
+
+In the limit $\epsilon \rightarrow 0$, this becomes 
+\begin{align*}
+  \lim_{\epsilon \rightarrow 0} \int_{{\gamma}_{\epsilon}^{+}} \frac{e^{iz}}{z} dz &= - \int_{0}^{\pi} ie^{\left(0\right)} dt \\
+  &= - \int_{0}^{\pi} i \cdot 1 dt \\
+  &= - \pi i
+\end{align*}
+
+\vskip 0.5cm
+Next, notice that in the limit $\left(R \rightarrow \infty, \epsilon \rightarrow 0\right)$, we have 
+\begin{align*}
+  \int_{{\gamma_{1}}} \frac{e^{iz}}{z} dz + \int_{{\gamma_{1}}} \frac{e^{iz}}{z} dz &\rightarrow \int_{-\infty}^{\infty} \frac{e^{iz}}{z} dz = \int_{-\infty}^{\infty} \frac{\cos(x) + i\sin(x)}{x} dx
+\end{align*}
+
+since the countours $\gamma_1, \gamma_2$ coincide with the real axis, making the imaginary part of $z$ equal to zero.
+
+\vskip 0.5cm
+Bringing everything together, we have 
+\begin{align*}
+  & \lim_{R \rightarrow \infty, \epsilon \rightarrow 0} \left(\int_{{\gamma}_1} f(z) dz + \int_{{\gamma}_{\epsilon}^{+}} f(z) dz + \int_{{\gamma}_2} f(z) dz + \int_{{\gamma}_{R}^{+}} f(z) dz\right) = 0 \\
+  \implies&  \lim_{R \rightarrow \infty, \epsilon \rightarrow 0} \left(\int_{{\gamma}_1} f(z) dz + \int_{{\gamma}_2} f(z) dz + \right) +  \lim_{R \rightarrow \infty, \epsilon \rightarrow 0} \left(\int_{{\gamma}_{\epsilon}^{+}} f(z) dz + \int_{{\gamma}_{R}^{+}} f(z) dz\right) = 0 \\
+  \implies &\int_{-\infty}^{\infty} \frac{\cos(x) + i\sin(x)}{x} dx + \left(-\pi i + 0 \right) = 0 \\
+  \implies & \underbrace{\int_{-\infty}^{\infty} \frac{\cos(x)}{x} dx }_{=0, \text{odd function}} + i\int_{-\infty}^{\infty} \underbrace{\frac{\sin(x)}{x}}_{\text{even function}} dx = i \pi \\
+  \implies &2i\int_{0}^{\infty} \frac{\sin(x)}{x} dx = i \pi \\
+  \implies & \boxed{ \int_{0}^{\infty} \frac{\sin(x)}{x} dx = \frac{\pi}{2} }
+\end{align*}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+\vskip 0.5cm
+Prove that 
+\[ \int_{-\infty}^{\infty} \frac{\cos\left(x\right)}{x^2 + 1} dx = \frac{\pi}{e} \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Consider the function \[ f(z) = \frac{e^{iz}}{z^2 + 1} \] being integrated over the following contour, denoted $\gamma$:
+
+\begin{center}
+  \includegraphics*[scale=0.30]{Q6 HW 4.png}
+\end{center}
+
+Of course, 
+\[ \int_{\gamma} f(z) dz = \int_{{\gamma_{r}}} f(z) dz + \int_{{\gamma_{R}}} f(z) dz \]
+
+The function 
+\[ f(z) = \frac{e^{iz}}{z^2 + 1} = \frac{e^{iz}}{(z+i)(z-i)} \]
+has poles at $z = i, z = -i$ but if holomorphic everywhere else. Only the pole at $z = i$ lies within the area enclosed by our contour. As a result, Cauchy's Integral formula tells us that 
+\begin{align*}
+  \int_{\gamma} f(z) dz &= \int_{\gamma} \frac{\left(e^{iz}/(z+i)\right)}{(z-i)} dz \\
+  &= 2\pi i \cdot \left( \restr{\frac{e^{iz}}{z+i}}{z = i} \right) \\
+  &= 2\pi i \cdot \left( \frac{e^{-1}}{2i} \right) \\
+  &= \frac{\pi}{e}
+\end{align*}
+
+\vskip 0.5cm
+In particular, this value is fixed even when we take the limit $R \rightarrow \infty$ 
+\begin{align*}
+  &\lim_{R \rightarrow \infty} \int_{\gamma} f(z) dz = \frac{\pi}{e} \\
+  \implies &\lim_{R \rightarrow \infty} \left(\int_{{\gamma}_{1}} f(z) dz + \int_{{\gamma}_{R}} f(z) dz \right) = \frac{\pi}{e} \\
+  \implies &\lim_{R \rightarrow \infty} \int_{{\gamma}_{1}} f(z) dz + \lim_{R \rightarrow \infty}  \int_{{\gamma}_{R}} f(z) dz  = \frac{\pi}{e} \\
+\end{align*}
+
+\vskip 0.5cm
+Let's consider the integral of $f(z)$ over the semi-circular arc $\gamma_{R}$. First off, 
+\begin{align*}
+ \left| \frac{e^{iz}}{z^2 + 1} \right| &= \frac{\left|e^{iz}\right|}{\left|z\right|} = \frac{1}{\left|z^2 + 1\right|} \xrightarrow{R \rightarrow \infty} 0 
+\end{align*}
+
+and 
+\begin{align*}
+  \left| \int_{{\gamma_{R}}} \frac{e^{iz}}{z} dz \right| \leq \int_{{\gamma}_{R}} \left| \frac{e^{iz}}{z} \right| dz \xrightarrow{R \rightarrow \infty} 0 
+\end{align*}
+
+Therefore, 
+\begin{align*}
+  \lim_{R \rightarrow \infty} \int_{{\gamma_{R}}} \frac{e^{iz}}{z} dz &= 0
+\end{align*}
+
+\vskip 0.5cm
+Also note that 
+\begin{align*}
+  \lim_{R \rightarrow \infty} \int_{{\gamma_{1}}} \frac{e^{iz}}{z} dz &= \int_{-\infty}^{\infty} \frac{\cos(x) + i \sin(x)}{x^2 + 1} dx \\
+  &= \int_{-\infty}^{\infty} \frac{\cos(x)}{x^2 + 1} dx  + i\int_{-\infty}^{\infty} \frac{\sin(x)}{x^2 + 1} dx \\
+  &= \int_{-\infty}^{\infty} \frac{\cos(x)}{x^2 + 1} dx  +  0
+\end{align*}
+
+where 
+\[ \int_{-\infty}^{\infty} \frac{\sin(x)}{x^2 + 1} dx = 0 \]
+because it is the integral of an odd function over a symmetric interval.
+
+\vskip 0.5cm
+Putting everything together, we have 
+\begin{align*}
+  &\lim_{R \rightarrow \infty} \int_{{\gamma}_{1}} f(z) dz + \lim_{R \rightarrow \infty}  \int_{{\gamma}_{R}} f(z) dz  = \frac{\pi}{e} \\
+  \implies &\int_{-\infty}^{\infty} \frac{\cos(x)}{x^2 + 1} dx + 0 + 0 = \frac{\pi}{e}
+\end{align*}
+
+So, we arrive at the desired result:
+\[ \boxed{ \int_{-\infty}^{\infty} \frac{\cos(x)}{x^2 + 1} dx = \frac{\pi}{e} } \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

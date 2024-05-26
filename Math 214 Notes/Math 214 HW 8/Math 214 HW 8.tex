@@ -1,0 +1,616 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 8},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 8}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-6.} Let $\mathbb{H}$ be the algebra of quaternions and let $\mathcal{S} \subseteq \mathbb{H}$ be the group of unit quaternions.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $p \in \mathbb{H}$ is imaginary, then $qp$ is tangent to $\mathcal{S}$ at each $q \in \mathcal{S}$.
+  \item Define vector fields $X_1, X_2, X_3$ on $\mathbb{H}$ by 
+  \[ \restr{X_1}{q} = q \mathbbm{i}, \;\;\;\;\restr{X_2}{q} = q \mathbbm{j}, \;\;\;\;\restr{X_3}{q} = q \mathbbm{k}, \;\;\;\; \]
+  Show that these vector fields restrict to a smooth left-invariant global frame on $\mathcal{S}$.
+  \item Under the isomorphism $\left( x^1, x^2, x^3, x^4 \right) \longleftrightarrow x^1 \mathbbm{1} + x^2 \mathbbm{i} + x^3 \mathbbm{j} + x^4 \mathbbm{k}$ between $\R^4$ and $\mathbb{H}$, show that these vector fields have the following coordinate representations:
+  \begin{align*}
+    X_1 &= -x^2 \frac{\partial}{\partial x^1} + x^1 \frac{\partial}{\partial x^2} + x^4 \frac{\partial}{\partial x^3} - x^3 \frac{\partial}{\partial x^4} \\
+    X_2 &= -x^3 \frac{\partial}{\partial x^1} - x^4 \frac{\partial}{\partial x^2} + x^1 \frac{\partial}{\partial x^3} + x^2 \frac{\partial}{\partial x^4} \\
+    X_3 &= -x^4 \frac{\partial}{\partial x^1} + x^3 \frac{\partial}{\partial x^2} - x^2 \frac{\partial}{\partial x^3} + x^1 \frac{\partial}{\partial x^4} 
+  \end{align*}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathcal{S}$ is a properly embedded Lie Subgroup (and thus, submanifold) of $\mathbb{H}$. Also, $\mathbb{H}$ is a vector space, so we can identify $T_p \mathbb{H}$ with $\mathbb{H}$. So, $qp \in \mathbb{H} \cong  T_p \mathbb{H}$ is tangent to $\mathcal{S}$ when $qp \in T_p \mathcal{S}$.
+  % By proposition 5.37, the tangent space $T_p S$ as a subspace of $T_p M$ is characterized by 
+  % \[ T_p  \]
+  
+
+  When $p \in \mathbb{H}$ is imaginary, we can express it as $p = x \mathbf{i} + y \mathbf{j} + z \mathbf{k}$ and we know $p = -p^*$. Since $q \in \mathbb{H}$, we know $q = a + b \mathbf{i} + c \mathbf{j} + d \mathbf{k}$ such that $|q| = 1$.
+
+  [Come back to this]
+
+  \vskip 1cm
+  \item We want to show that $\left(X_1, X_2, X_3\right)$ forms a left-invariant global frame for $\mathcal{S}$ i.e. they form a basis for $T_q \mathcal{S}$ at any $q \in \mathcal{S}$. 
+  
+  \vskip 0.5cm
+  By part(a), each of $X_1, X_2, X_3$ is indeed tangent to $\mathcal{S}$ at every $q \in \mathcal{S}$. So, all we need to do is show that the vector fields are all left-invariant. Consider $r, q \in \mathcal{S}$, we have 
+  \[ \left(L_r\right)_* X_q = r\left(q \mathbbm{i}\right) = \left(rq\right) \mathbbm{i} = X_{rq} \]
+  and similarly for $X_2, X_3$. Therefore, these vector fields form a smooth left-invariant global frame.
+
+  \vskip 1cm
+  \item Under the isomorphism between $\R^4$ and $\mathbb{H}$, we can represent a quaternion $q = x^1 \mathbbm{1} + x^2 \mathbbm{i} + x^3 \mathbbm{j} + x^4 \mathbbm{k}$ as simply $\left( x^1, x^2, x^3, x^4 \right).$ Then, we also have isomorphism betwee the tangent spaces. We can identify the standard basis vectors of $T\R^4$ and $T \mathbb{H}$
+  \[ \left(\mathbbm{j}, \mathbbm{i}, \mathbbm{j}, \mathbbm{k}\right) \longleftrightarrow \left( \frac{\partial}{\partial x^1}, \frac{\partial}{\partial x^1}, \frac{\partial}{\partial x^2}, \frac{\partial}{\partial x^3}, \frac{\partial}{\partial x^14} \right) \]
+  \begin{align*}
+    \restr{X_1}{q} &= q\mathbbm{i} \\
+    &= x^1 \left(\mathbbm{1} \cdot \mathbbm{i}\right) + x^2 \mathbbm{i} \cdot \mathbbm{i} + x^3 \left(\mathbbm{j} \cdot \mathbbm{i}\right) + x^4 \left(\mathbbm{k} \cdot \mathbbm{i}\right) \\
+    &= x^1 \mathbbm{i} + x^2 \left(-\mathbbm{1}\right) + x^3 \left(-\mathbbm{k}\right) + x^4 \left(\mathbbm{j}\right) \\
+    &= -x^2 \mathbbm{1} + x^1\mathbbm{i} + x^4\mathbbm{j} - x^3\mathbbm{k}
+  \end{align*}
+  Thus, $\restr{X_1}{q}$ has the coordinate representation 
+  \[ \boxed{X_1 = -x^2 \frac{\partial}{\partial x^1} + x^1 \frac{\partial}{\partial x^2} + x^4 \frac{\partial}{\partial x^3} - x^3 \frac{\partial}{\partial x^4}}  \] 
+
+  Exactly the same procedure works for $X_2$ and $X_3$:
+
+  \begin{align*}
+    \restr{X_1}{q} &= q\mathbbm{j} \\
+    &= x^1 \left(\mathbbm{1} \cdot \mathbbm{j}\right) + x^2 \left(\mathbbm{i} \cdot \mathbbm{j}\right) + x^3 \left(\mathbbm{j} \cdot \mathbbm{j}\right) + x^4 \left(\mathbbm{k} \cdot \mathbbm{j}\right) \\
+    &= x^1 \mathbbm{j} + x^2 \mathbbm{k} + x^3 \left(-\mathbbm{1}\right) + x^4 \left(-\mathbbm{i}\right) \\
+    &= -x^3 \mathbbm{1} - x^4 \mathbbm{i} + x^1 \mathbbm{j} + x^2 \mathbbm{k}
+  \end{align*}
+  giving it the coordinate representation
+  \[ X_2 = -x^3 \frac{\partial}{\partial x^1} - x^4 \frac{\partial}{\partial x^2} + x^1 \frac{\partial}{\partial x^3} + x^2 \frac{\partial}{\partial x^4}  \]
+  and 
+
+  \begin{align*}
+    \restr{X_1}{q} &= q\mathbbm{k} \\
+    &= x^1 \left(\mathbbm{1} \cdot \mathbbm{k}\right) + x^2 \left(\mathbbm{i} \cdot \mathbbm{k}\right) + x^3 \left(\mathbbm{j} \cdot \mathbbm{k}\right) + x^4 \left(\mathbbm{k} \cdot \mathbbm{k}\right) \\
+    &= x^4 \mathbbm{1} + x^3 \mathbbm{i} - x^2 \mathbbm{j} + x^4 \mathbbm{k}
+  \end{align*}
+
+  giving it the coordinate representation 
+  \[ X_3 = -x^4 \frac{\partial}{\partial x^1} + x^3 \frac{\partial}{\partial x^2} - x^2 \frac{\partial}{\partial x^3} + x^1 \frac{\partial}{\partial x^4}  \]
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-12.} Let $F : \R^2 \rightarrow \mathbb{RP}^2$ be the smooth map $F(x, y) = \left[x,y,1\right]$, and let $X \in \mathfrak{X}\left(\R^2\right)$ be defined by $X = x \partial / \partial y - y \partial / \partial x$. Prove that there is a vector field $Y \in \mathfrak{X} \left(\mathbb{RP}^2\right)$ that is $F-$related to $X$, and compute its coordinate representation in terms of each of the charts defined in Example 1.5. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+We can construct a local diffeomorphism $F$ between open subsets $U \subseteq \R^2$ and $V \subseteq \mathbb{RP}^2 \cong \S^2$. Now, the restriction of $X$ to an open set, $\restr{X}{U}$, is a smooth vector field and smooth vector fields are pushed forward to smooth vector fields under diffeomorphisms. Thus, $F_*(\restr{X}{U})$ describes a smooth vector field on $V \subseteq_{open}$. Doing so with an entire atlas of charts $(U, \phi)$ and $(V, \psi)$ for $\R^2$ and $\mathbb{RP}^2$, we obtain a collection of smooth vector fields $F_*\left(\restr{X}{U_{\alpha}}\right)$. Then, we can construct a vector field defined on all of $\mathbb{RP}^2$ by gluing together these local vector fields.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-16.} For each of the following pairs of vector fields $X, Y$ defined on $\R^3$, compute the Lie Bracket $\left[ X, Y\right]$.
+\begin{enumerate}[label=(\alph*)]
+  \item $X = y \frac{\partial}{\partial z} - 2xy^2 \frac{\partial}{\partial y};\;\;\;\; Y = \frac{\partial}{\partial y}$
+  
+  \item $X = x \frac{\partial}{\partial y} - y \frac{\partial}{\partial x};\;\;\;\; Y = y \frac{\partial}{\partial z} - z \frac{\partial }{\partial y}$
+  
+  \item $X = x \frac{\partial}{\partial y} - y \frac{\partial}{\partial x};\;\;\;\; Y = x \frac{\partial}{\partial y} + y \frac{\partial}{\partial x}$ 
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Solution:}
+
+Given two vector fields $X, Y$ their lie bracket can be computed as 
+\[ [X, Y] = \left( X^i \frac{\partial Y^j}{\partial x^i} - Y^i \frac{\partial X^j}{\partial x^i}  \right) \frac{\partial}{\partial x^j} = \left( XY^j - YX^j \right) \frac{\partial}{\partial x^j}  \] 
+
+Or, more explicitly, 
+\[ [X, Y] = \left( X Y^1 - YX^1 \right) \frac{\partial }{ \partial x^1} + \left( X Y^2 - YX^2 \right) \frac{\partial }{ \partial x^2} + \left( X Y^3 - YX^3 \right) \frac{\partial }{ \partial x^3} \]
+
+\begin{enumerate}[label=(\alph*)]
+  \item In this case, 
+  \begin{align*}
+    [X, Y] &= \left( X(0) - Y(0) \right) \frac{\partial }{ \partial x} + \left( X(1) - Y(2xy^2) \right) \frac{\partial }{ \partial y} + \left( X(0) - Y(y) \right) \frac{\partial }{ \partial z} \\
+    &= \left[0 - 0 \right] \frac{\partial }{ \partial x} + \left[0 - 4xy \right] \frac{\partial }{ \partial y} + \left[0 - 1 \right] \frac{\partial }{ \partial z} \\
+    &= -4xy \frac{\partial}{\partial y} - \frac{\partial}{\partial z} 
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Now, 
+  \begin{align*}
+    [X, Y] &= \left[X(0) - Y(-y) \right] \frac{\partial }{ \partial x} + \left[X (-z) - Y (x) \right] \frac{\partial }{ \partial y} + \left[X(y) - Y(0) \right] \frac{\partial }{ \partial z} \\
+    &= \left[0 - (-z) \right] \frac{\partial }{ \partial x} + \left[0 - 0 \right] \frac{\partial }{ \partial y} + \left[x - 0 \right] \frac{\partial }{ \partial z} \\
+    &= z \frac{\partial}{\partial x} + x \frac{\partial}{\partial z}
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Finally, 
+  \begin{align*}
+    [X, Y] &= \left[X (0) - Y (-y) \right] \frac{\partial }{ \partial x} + \left[X (x) - Y (x) \right] \frac{\partial }{ \partial y} + \left[X (0) - Y (0) \right] \frac{\partial }{ \partial z} \\
+    &= \left[0 - (-x) \right] \frac{\partial }{ \partial x} + \left[(-y) - y \right] \frac{\partial }{ \partial y} + \left[0 - 0 \right] \frac{\partial }{ \partial z} \\
+    &= x\frac{\partial}{\partial x} - 2y \frac{\partial}{\partial y}
+  \end{align*}
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-18.} Suppose $F : M \rightarrow N$ is a smooth submersion, where $M$ and $N$ are positive-dimensional smooth manifolds. Given $X \in \mathfrak{X}(M)$ and $Y \in \mathfrak{X}(N)$, we say that $X$ is a \emph{\textbf{lift of $Y$}} if $X$ and $Y$ are $F-$related. A vector field $V \in \mathfrak{X}(M)$ is said to be \emph{\textbf{vertical}} if $V$ is everywhere tangent to the fibers of $F$ (or, equivalently, if $V$ is $F-$ related to the zero vector field on $N$).
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if dim$M = $ dim$N$, then every smooth vector field on $N$ has a unique lift.
+  \item Show that if dim$M \neq $ dim$N$, then every smooth vector field on $N$ has lift, but that it is not unique.
+  \item Assume in addtion that $F$ is surjective. Given $X \in \mathfrak{X}(M)$, show that $X$ is a lift of a smooth vector field on $N$ if and only if $dF_p \left(X_p\right) = dF_q \left(X_q\right) $ whenever $F(p) = F(q)$. Show that if this is the case, then $X$ is a lift of a \emph{unique} smotoh vector field.
+  \item Assume in addition that $F$ is surjective with connected fibers. Show that a vector field $X \in \mathfrak{X}(M)$ is a list of a smooth vector field on $N$ if and only if $\left[V, X\right]$ is vertical whenever $V \in \mathfrak{X}(M)$ is vertical.   
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item $F$ is a smooth submersion, so $dF_p : T_p M \rightarrow T_{F(p)} N$ is surjective for all $p \in M$. If $dim \;M = dim \;N$, then the rank-nullity theorem tells us that $dim\left(ker(dF_p)\right) = 0$ i.e. the differential is also injective.
+  
+  \vskip 0.5cm
+  We know that in order for $Y$ and $X$ to be $F-$related, the equation 
+  \[ dF_p(X_p) = Y_{F(p)} \] must hold at every $p \in M$. So, snice $dF_p$ is one-to-one and onto at every $p \in M$, the vector field $Y \in \mathfrak{X}(N)$ is unique and its unique lift $X \in \mathfrak{X}(M)$ is given by $X_p = \left(dF_p\right)^{-1}\left(Y_p\right)$.  
+
+  \vskip 1cm
+  \item Again, since $F$ is a smooth submersion, $dF_p$ is surjective at every $p \in M$. So, vector fields $X \in \mathfrak{X}(M)$ get mapped surjectively onto vector fields $Y \in \mathfrak{X}(N)$ i.e. every $Y$ has a pre-image/lift. However, when $dim M \neq dim N$ it is impossible to have $dF_p$ be injective because the nullspace has dimension greater than zero (using Rank-Nullity). Thus, the lifts are not unique.
+  
+  \vskip 1cm
+  \item Let's show the if and only if statement first. 
+  \begin{itemize}
+    \item $\implies$: Consider $p, q \in M$ such that $F(p) = F(q) = s \in N$ and suppose $X$ is a lift of smooth VF $Y \in \mathfrak{X}(N)$. Since $X$ is a lift of $Y$, we know that $dF_p(X_p) = Y_{F(p)} = Y_{s} = Y_{F(q)} = dF_q(X_q)$.
+    \item $\impliedby$: Assume $dF_p(X_p) = dF_q(X_q)$ whenever $F(p) = F(q)$. We want to show that $X$ is a lift of some $Y \in \mathfrak{X}(N)$. For any $x \in N$, choose $p \in F^{-1}(x)$ and set $Y_x \defeq dF_{p}(X_p)$. This is well-defined because we can choose another point $q \in F^{-1}(x)$ and obtain the same $Y_q = Y_p$ as a result of the assumption. 
+    
+    Now consider $s \in N$ and a smooth local section $\sigma_s : V_s \subseteq_{open} N \rightarrow M$ of $F$ such $F \circ \sigma_s = id_{V_s}$. Then, $\restr{Y}{{V_s}} = d\left(F \circ \sigma\right) (X \circ \sigma)$ and since $\sigma_s, X, F$ are smooth, $\restr{Y}{{V_s}}$ is also locally smooth for all $s \in N$. Thus, $V$ forms a smooth vector field on $N$.
+    
+    
+    To show uniquenss, suppose there is some other $Y' \in \mathfrak{X}(N)$ such that $X$ is a lift of $Y'$ as well as $Y$. Then, $dF_p(X_p) = Y_{F(p)}$ and $dF_p(X_p) = Y_{F(p)}'$. Therefore, $dF_p(X_p) = Y_{F(p)} = dF_p(X_p) = Y_{F(p)}'$, so $Y'= Y$.
+    
+    \vskip 1cm
+    \item Now, $F$ is surjective with connected fibers. 
+    \begin{itemize}
+      \item Suppose $X$ is a lift of $Y$ i.e. $dF_p(X_p = Y_{F(p)})$ and there is some $V \in \mathfrak{X}(M)$ which is vertcial i.e. $dF_p(V_p) = 0$ for all $p \in M$.
+      
+      $X$ and $Y$ are $F-$related, and the lie bracket is respected by $F_*$. Thus, 
+      \begin{align*}
+        F_*\left[V, X\right] = \left[F_* V, F_* X\right] = \left[dF_PV_p, dF_p X_p\right] = \left[0, Y_p\right] = 0
+      \end{align*}
+      so $[V, X]$ is vertical.
+
+      \vskip 0.5cm
+      \item Suppose $[V, X]$ is vertical whenever $V$ is vertical and $X$ is a lift of $Y$. Then, since $F$ has connected fibers, we can select points $p, q \in M$ lying in the fiber over $s \in N$ and construct a path between them. We'll follow the same idea as part (c) and construct a vector field $Y$ such that $X$ is a lift of $Y$.
+      
+      
+      By assumption, $F_* V = 0$ so $F_*[V, X] = 0$. Do $F_*X$ is not affected by $F_* V$ i.e. there is no derivation of $X$ along the fiber due to $V$. Then, $dF_p(X_p) = dF_q(X_q)$. Now, we can do the construction mentioned in part (c), and ontain vector field $Y$ such that $X$ is a lift of $Y$.
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-19.} Show that $\R^3$ with the cross product is a Lie algebra.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+We already know that $\R^3$ is a vector space. To show that it is a Lie Algebra, we need to show that the cross product $\R^3 \times \R^3 \rightarrow \R^3$ is a \emph{\textbf{bracket}} i.e. it satisfies 
+\begin{itemize}
+  \item Bilinearity i.e. for any $x, y, z \in \R^3$ and $a,b \in \R$
+  \begin{align*}
+    \left(ax + by\right) \times z &= a\left(x \times z\right) + b \left(y \times z\right) \\
+    z \times \left(ax + by\right) &= a \left(z \times x\right) + b \left(z \times y\right)
+  \end{align*}
+  \item Antisymmetry i.e. for any $x, y \in \R^3$, 
+  \[ x \times y = - y \times x  \]
+  \item The Jacobi Identity i.e. for any $x, y, z \in \R^3$ we have 
+  \[ x \times \left(y \times z\right) + y \times \left(z \times x\right) + z \times \left(x \times y \right) = 0 \]
+\end{itemize}
+
+\vskip 0.5cm
+Writing the vectors out in terms of their components,
+\begin{align*}
+  x &= x^1 \hat{i} + x^2 \hat{j} + x^3 \hat{k} \\
+  y &= y^1 \hat{i} + y^2 \hat{j} + y^3 \hat{k} \\
+  z &= z^1 \hat{i} + z^2 \hat{j} + z^3 \hat{k} \\
+\end{align*}
+
+Then, 
+\section*{Bilinearity}
+
+\begin{align*}
+  \left(zx + by\right) \times z &= \left((ax_2 + by_2)z_3 - (az_3 + by_3)z_2, (ax_3 + by_3)z_1 - (ax_1 + by_1)z_3, (ax_1 + by_1)z_2 - (ax_2 + by_2)z_1 \right) \\
+  &= \left(ax_2z_3 - ax_3z_2 + by_2z_3 - by_3z_2, ax_3z_1 - ax_1z_3 + by_3z_1 - by_1z_3, ax_1z_2 + by_1z_2 - ax_2z_1 - by_2z_1\right) \\
+  &= a \left(x_2z_3 - x_3z_2, x_3z_1 - x_1z_3, x_1z_2 - x_2z_1 \right) + b\left(y_2z_3 - y_3z_2, y_3z_1 - y_1z_3, y_1z_2 - y_2z_1 \right) \\
+  &= a\left(x \times z\right) + b\left(y \times z\right)
+\end{align*}
+and exactly the same procedure for linearity in the other fashion.
+
+\vskip 1cm
+\section*{Antisymmetry}
+\begin{align*}
+  x \times y &= \left(x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1 \right) \\
+  &= -\left(x_3y_2 - x_2y_3, x_1y_3 - x_3y_1, x_2y_1 - x_1y_2 \right) \\
+  &= -\left(y_2x_3 - y_3x_2, y_3x_1 - y_1x_3, y_1x_2 - y_2x_1 \right) \\
+  &= -\left(y \times x\right)
+\end{align*}
+
+
+\vskip 1cm
+
+\section*{Jacobi Identity}
+\begin{align*}
+  x \times \left(y \times z\right) + y \times \underbrace{\left(z \times x\right)}_{=-(x \times z)} + z \times \left(x \times y \right) &= x \times \left(y_2z_3 - y_3z_2, y_3z_1 - y_1z_3, y_1z_2 - y_2z_1 \right) - \\
+  &y \times \left(x_2z_3 - x_3z_2, x_3z_1 - x_1z_3, x_1z_2 - x_2z_1 \right) + \\
+  &z \times \left(x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1 \right) \\
+  &= 0 \text{ All terms cancel on expanding}
+\end{align*}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-20.} Let $A \subseteq \mathfrak{X}\left(\R^3\right)$  be the subspace spanned by $\{X, Y, Z\}$, where 
+\[ X = y \frac{\partial}{\partial z} - z \frac{\partial}{\partial y}, \;\;\;\; Y = z \frac{\partial }{\partial x} - x \frac{\partial }{\partial z}, \;\;\;\; Z = x \frac{\partial }{\partial y} - y \frac{\partial }{\partial x}   \]
+Show that $A$ is a Lie subalgebra of $\mathfrak{X}\left(\R^3\right)$, which is isomorphic to $\R^3$ with the cross product.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+$A$ is a linear subspace, thus to show that $A$ is a Lie subalgebra of $\mathfrak{X}\left(\R^3\right)$, we just need to show that it is closed under the Lie Bracket.
+
+\vskip 0.5cm
+Given any $W, V \in A$ which can be written as 
+
+\begin{align*}
+  W &= w_1 X + w_2 Y + w_3 Z \\
+  V &= v_1 X + v_2 Y + v_3 Z \\
+\end{align*}
+
+we have 
+\begin{align*}
+  [W, V] &= \left[w_1 X + w_2 Y + w_3 Z, v_1 X + v_2 Y + v_3 Z\right] \\
+  \\
+  &= w_1 v_1[X, X] + w_1v_2[X, Y] + w_1 v_3 [X, Z] 
+  + w_2 v_1[Y, X] + w_2 v_2[Y, Y] + w_2 v_3 [Y, Z] \\
+  &+ w_3 v_1[Z, X] + w_3 v_2[Z, Y] + w_3 v_3 [Z, Z] \\
+  \\
+  &= \left(w_1v_2 - w_2v_1\right) [X, Y] + \left( w_1v_3 - w_3 v_1 \right)[X, Z] + \left(w_2v_3 - w_3v_2\right)[Y, Z] 
+\end{align*}
+
+Now, these commutators can be found using 
+\[ [X, Y] = \left(XY^j - YX^j\right) \frac{\partial}{\partial x^j} \] 
+
+We have 
+\begin{align*}
+  \left[X, Y\right] &= \left[ X(z) - Y(0) \right] \frac{\partial}{\partial x} + \left[ X(0) - Y(-z) \right] \frac{\partial}{\partial y} + \left[ X(-x) - Y(y) \right] \frac{\partial}{\partial z} \\
+  &= y \frac{\partial}{\partial x} -x \frac{\partial}{\partial y} \\
+  &=  -Z
+\end{align*}
+
+\begin{align*}
+  [X, Z] &= \left[ X(-y) - Z(0) \right] \frac{\partial}{\partial x} + \left[ X(x) - Z(-z) \right] \frac{\partial}{\partial y} + \left[ X(0) - Z(y) \right] \frac{\partial}{\partial z} \\
+  &= z \frac{\partial}{\partial x} - x \frac{\partial}{\partial z} \\
+  &= Y
+\end{align*}
+
+\begin{align*}
+  [Y, Z] &= \left[ Y(-y) - Z(z) \right] \frac{\partial}{\partial x} + \left[ Y(x) - Z(0) \right] \frac{\partial}{\partial y} + \left[ Y(0) - Z(-x) \right] \frac{\partial}{\partial z} \\
+  &= z \frac{\partial}{\partial y} - y\frac{\partial}{\partial z} \\
+  &= -X
+\end{align*}
+
+Therefore,
+\begin{align*}
+  [W, V] &= \left(w_2v_1 - w_1v_2\right)Z + \left(w_1v_3 - w_2v_1\right)Y + \left(w_3v_2 - w_2v_3\right)X \\
+  \implies [W, V] & \in A \text{ since it is a linear combination of }X, Y, Z
+\end{align*}
+
+\textbf{Thus, $A$ is a Lie Subalgebra of $\mathfrak{X}\left(\R^3\right)$}.
+
+\vskip 0.5cm
+To show that $A$ is isomorphic to $\R^3$ with the cross product, we want to define an invertible linear map $F : A \rightarrow \R^3$ such that $F[W, V] = \left(FW\right) \times \left(FV\right)$ i.e. a Lie Algebra Isomorphism.
+
+\vskip 0.5cm
+% Recall that, from Exercise 8.35, we know that a linear map $A : \mathfrak{g} \rightarrow \mathfrak{h}$ between finite dimensional lie algebras is a Lie Algebra Homomorphism if and only if 
+
+It suffices to show that the commutator is respected for the basis elements of the two algebras, as all other elements can be formed by linear combinations and the Lie Bracket is bilinear. Consider the map $F : A \rightarrow \R^3$ under which 
+\begin{align*}
+  &X \mapsto \hat{i} \\
+  &Y \mapsto -\hat{j}\\
+  &Z \mapsto \hat{k}
+\end{align*} where $\hat{i}, \hat{j}, \hat{k}$ are the standard basis vectors for $\R^3$.
+
+\vskip 0.5cm
+The inverse map $F^{-1} : \R^3 \rightarrow A$ is just 
+\begin{align*}
+  &\hat{i} \mapsto X \\
+  &\hat{j} \mapsto -Y \\
+  &\hat{k} \mapsto Z \\
+\end{align*}
+
+Let's see how the Lie Brackets of the images $F(X), F(Y), F(Z)$ with each other behave. 
+
+\begin{align*}
+  [F(X), F(Y)]_{\R^3} &= [\hat{i}, -\hat{j}]_{\R^3} \\
+  &= \hat{i} \times (-\hat{j}) \\
+  &= -\hat{k} \\
+  &= F(-Z) \\
+  &= F\left([X,Y]\right)
+\end{align*}
+
+\begin{align*}
+  [F(X), F(Z)]_{\R^3} &= [\hat{i}, \hat{k}]_{\R^3} \\
+  &= \hat{i} \times \hat{k} \\
+  &= -\hat{j} \\
+  &= F(Y) \\
+  &= F\left([X,Z]\right)
+\end{align*}
+
+
+\begin{align*}
+  [F(Y), F(Z)]_{\R^3} &= [-\hat{j}, \hat{k}]_{\R^3} \\
+  &= (-\hat{j}) \times \hat{k} \\
+  &= -\hat{i} \\
+  &= F(-X) \\
+  &= F\left([Y,Z]\right)
+\end{align*}
+
+Therefore, $F$ is a Lie Algebra Isomorphism, and $A$ with the Lie Bracket is isomorphic to $\R^3$ with the cross product.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-26.} Suppose $F : G \rightarrow H$ is a Lie group homomorphism. Show that the kernel of $F_* : \mathrm{Lie}(G) \rightarrow \mathrm{Lie}(H)$ is the Lie algebra of $\mathrm{Ker}F$ (under the identification of the Lie algebra of a subgroup with a Lie subalgebra as in Theorem 8.46). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:} We know, from exercise 8.34, that the $\mathrm{Ker}F$ is a Lie Subalgebra of $G$. Then, by proposition 8.46, there exists a Lie subalgebra $\mathfrak{h} \subseteq \mathrm{Lie}(H)$ such that 
+\begin{align*}
+  \mathrm{Lie}\left(\mathrm{Ker}(F)\right) &\cong_{\text{iso}} \mathfrak{h} \\
+  &= i_*\left(\mathrm{Lie}\left(\mathrm{Ker\;F}\right)\right) \\
+  &= \{ X \in \mathrm{Lie(H)} \;:\; X_e \in T_e\left(\mathrm{Ker}\; F\right) \}
+\end{align*}
+
+To prove the desired result, let's show that $\mathrm{Ker} F_* \subseteq \mathrm{Lie}(\mathrm{Ker} F)$ and $\mathrm{Lie}(\mathrm{Ker} F) \subseteq \mathrm{Ker} F_*$.
+
+\begin{itemize}
+  \item If $X \in \mathrm{Lie}(\mathrm{ker} F)$, that is equivalent to saying there exists $v \in T_e \left(\mathrm{ker} F\right)$ such that $X_e = d(i)_e (v)$ and 
+  \[ d(F)_e(X_e) = d(F)_e \left(d(i)_e(v)\right) = d\left(F \circ i\right)_e (v) = d\left(\restr{F}{\mathrm{ker F}}\right)_e (v)  \]
+  where $\restr{F}{\mathrm{ker F}} = e$ is the constant map. Hence, its differential vanishes.
+
+  
+  Also note that if $X \in \mathrm{Ker }F_*$, then in particular, $F_*(X_e) = 0$ or equivalently $d(F)_e(X_e) = 0$.
+  
+
+  Thus, \[ \mathrm{Lie}(\mathrm{Ker}F) \subseteq \mathrm{Ker}(F_*) \]
+
+  \item Now, consider $X \in \mathrm{Lie}(G)$ with $F_*(X) = 0$. We find that the one-parameter subgroup of $G$ generated by $X \in \mathrm{ker} F_*$ also lies  $\mathrm{ker} F$ as  
+  \[ F\left(\exp(tX)\right) = \exp\left(tF_*(X)\right) = \exp(0) = Id \] Thus, $X \in \mathrm{Lie}\left(\mathrm{ker} F\right)$
+\end{itemize}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q8-29.} Theorem 8.46 implies that the Lie algebra of any Lie subgroup of $\mathrm{GL}(n, \R)$ is canonically isomorphic to a subalgebra of $\mathfrak{gl}(n, \R)$, with a similar statement for Lie subgroups of $\mathrm{GL}(n, \C)$. Under this isomorphism, show that 
+\begin{align*}
+  \mathrm{Lie}\left(\mathrm{SL}(n, \R)\right) &\cong \mathfrak{sl}(n, \R) \\
+  \mathrm{Lie}\left(\mathrm{SO}(n)\right) &\cong \mathfrak{o}(n) \\
+  \mathrm{Lie}\left(\mathrm{SL}(n, \C)\right) &\cong \mathfrak{sl}(n, \C) \\
+  \mathrm{Lie}\left(\mathrm{U}(n)\right) &\cong \mathfrak{u}(n) \\
+  \mathrm{Lie}\left(\mathrm{SU}(n)\right) &\cong \mathfrak{su}(n) \\
+\end{align*}
+where
+\begin{align*}
+  \mathfrak{sl}(n, \R) &= \{ A \in \mathfrak{gl}(n, \R)\;:\; \mathrm{tr} A = 0 \} \\
+  \mathfrak{o}(n) &= \{ A \in \mathfrak{gl}(n, \R)\;:\; A^T + A = 0 \} \\
+  \mathfrak{sl}(n, \C) &= \{ A \in \mathfrak{gl}(n, \C)\;:\; \mathrm{tr} A = 0 \} \\
+  \mathfrak{u}(n) &= \{ A \in \mathfrak{gl}(n, \C)\;:\; A^* + A = 0 \} \\
+  \mathfrak{su}(n) &= \mathfrak{u}(n) \cap \mathfrak{sl}(n, \C) \\
+\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  % \item By example 8.47, 
+  \item $SL(n, \R)$ is the group of $n \times n$ matrices with determinant 1. Consider a smooth curve in $SL(n, \R)$, $\gamma(t)$, such that $\gamma(0) = I_n$ and $\gamma'(0) = A$. Since $det(A)$ is constant for all $A \in SL(n, \R)$, $det(\gamma(t)) = 1$ so $\left(det(\gamma(t))' = 0\right)$ and approximating the determinant we get 
+  \[ 1 = det(T + tA) = 1 + t\cdot tr(A) + O(t^2) \]
+  so $t \cdot tr(A) = 0 \implies tr(A) = 0$ for all $A \in SL(n, \R)$. Since $\mathfrak{sl}(n, \R) = \{A \in \mathfrak{gl}(n, \R)\;:\;tr(A) = 0\}$, we can construct an isomorphism $Lie(SL(n, \R)) \cong \mathfrak{sl}(n, \R)$.
+  
+
+  \item By Example 8.47, $\mathrm{Lie}(O(n)) \cong \mathfrak{o}(n)$. Now $SO(n) = \{A \in O(n)\;:\;det(A = 1)\} \subset O(n)$. Since $\mathfrak{o}(n) = \{A \in \mathfrak{gl}(n, \R)\;:\;A^T + A = 0\}$, if $SO(n \subset O(n))$ and $Lie(O(n)) \cong \mathfrak{o}(n)$ then $Lie(SO(n)) \cong \mathfrak{o}(n)$ because changing the value of the determinant only recales the matrix by a constant factor of $1/det(A)$, leaving the condition $A^T + A = 0$ unchanged.
+  
+  
+  \item By the same argument as (a), $Lie(SL(n, \C)) \cong Lie(SL(2n, \R)) \cong \mathfrak{sl}(2n, \R) \cong \mathfrak{sl}(n, \C)$
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q8-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

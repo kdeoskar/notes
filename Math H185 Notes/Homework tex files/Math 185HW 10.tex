@@ -1,0 +1,449 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 10},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 10}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+Show that if a Mobius transformation $g \in \mathrm{PSL}_2(\C)$ sends $\hat{\R}$ to $\hat{\R}$, then $g$ is an element of $\mathrm{PGL}_2(\R)$. Exhibit a Mobius transformation which sends $\hat{\R}$ to $\hat{\R}$ but is not given by an element of $\mathrm{PSL}_2(\R)$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Consider a  Mobius transformation $g \in \mathrm{PSL}_2(\C)$ which has corresponding matrices $M, -M \in \mathrm{SL}_2(\R)$ described by 
+
+\[ M = \begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix} \]
+
+Assume $M$ has determinant $1$ (so $-M$ has det = $-1$). This gives us the constraint $ad - bc = 1$. We also know that $g$ sends $\hat{\R}$ to itself, so a complex number $z = x + 0i$ for any $x \in \hat{\R}$ gets sent to another complex number $g \cdot z = y + 0i$, $y \in \hat{\R}$.
+
+\begin{align*}
+  &\begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix} \begin{pmatrix}
+    x \\ 0
+  \end{pmatrix} = \begin{pmatrix}
+    y \\ 0
+  \end{pmatrix} \\
+  \implies&\begin{cases}
+    ax = y \\
+    cx = 0
+  \end{cases}
+\end{align*}
+
+So, we have an additional constraint: $c = 0$. Which means $ad = 1 \implies a = 1/d$. We still have no constraints on 
+
+[Come back to this one]
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 2}
+\vskip 0.5cm
+Let $U, V$ be open subsets of $\C$. Suppose $f : U \rightarrow V$ is holomorphic and injective. Show that $f'(z) \neq 0$ for all $z \in U$. 
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Suppose for contradiction there exists $z_0 \in U$ such that $f'(z_0) = 0$. Then, WLOG, we can assume the power series expansion of $f$ about $z_0$ has the form 
+
+\begin{align*}
+  f(z) &= a_k(z-z_0)^k + a_{k+1}(z-z_0)^{k+1} \cdots \\
+  &= \left(z-z_0\right)^k \left( a_k + a_{k+1} (z - z_0) + \cdots \right)
+\end{align*}
+wth $a_k = f^{(k)}(z_0), k \geq 2$.
+
+Let $g(z) = a_k + a_{k+1}(z-z_0) + \cdots$. Note that $g(z_0) \neq 0$. Hence, there exists $\delta > 0$ so that in $D_{\delta}(z_0)$ we have a branch $g^{1/k}(z)$ of the $k-$th-root of $g(z)$. Therefore, $f(z) = \left(h(z)\right)^k$, where $h$ is a holomorphic function defined by 
+\[ h(z) = (z-z_0) g^{1/k}z \] and hence $h(z_0) = 0, h;(z_0) = g^{1/k}(z_0) \neq 0$. Since, on a small disk, $h$ is injective and $z^k$ is also one-to-one, $f$ is $k-$to-one in a neighborhood of $z_0$. This contradicts the assumption that $f(z)$ is injective.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Find a biholomorphism between the upper half-disk $\mathbb{D} \cap \mathbb{H}$ and the unit disk $\mathbb{D}$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+First, the map 
+\[f_1 :  z \mapsto \frac{1+z}{1-z} \] takes the upper half of the unit disk to the first quadrant. 
+
+Then, 
+\[ f_2 : z \mapsto z^2  \] takes the first quadrant to the upper half plane.
+
+Finally, 
+\[ f_3 : z \mapsto \frac{z-i}{z+i} \] maps the upper half-plane to the unit disk. 
+
+Altogether, the map we need is 
+\begin{align*}
+  f(z) &= (f_3 \circ f_2 \circ f_1) (z) = \frac{\left(\frac{1+z}{1-z}\right)^2 - i}{\left(\frac{1+z}{1-z}\right)^2 + i} \\
+  &= -i \cdot \frac{z^2 + 2iz + 1}{z^2 - 2iz + 1}
+\end{align*}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Find a biholomorphism between the half-strip \[ U = \{ z = x + iy \in \C \;:\; 0 < y < \pi, x > 0 \}   \] and the strip \[ V = \{ z  = x + iy \in \C \;:\; 0 < y < 2\pi \}  \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+The map 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+Find a biholomorphism between the half-strip \[ \{ z = x + iy \in \C \;:\; 0 < y < 2\pi \}   \] and the upper half-plane.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+% We can define a biholomorphism between $U = \{ z = x + iy \in \C \;:\; 0 < y < 2\pi \} $ and $\mathbb{H}$ as $\psi : U \rightarrow \mathbb{H}$
+
+% \begin{align*}
+%   (x + iy) \mapsto (x + i(xy))
+% \end{align*}
+
+% The map just scales the imaginary part of the complex numbers to be arbitrary rather than constrained between $0$ and $2\pi$.
+
+The map $z \mapsto 2\log(z)$ with the negative imaginary axis deleted takes the upper half-plane to the half-strip. The inverse map is $\omega \mapsto e^{2\omega}$.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+\vskip 0.5cm
+Does there exist a holomorphic surjection from the unit disk to $\C$? Either write down an explicit formula for one, or prove that none exists.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+Yes, we can construct a holomorphic surjection from the unit disk to $\C$ via a composition of multiple maps. 
+
+\vskip 0.5cm
+We have the following chain of maps:
+\[ \mathbb{D} \xrightarrow[]{F} \mathbb{H} \xrightarrow[]{g} \left(\mathbb{H} - i\right)  \xrightarrow[]{h} \C \]
+
+\vskip 0.5cm
+\begin{itemize}
+  \item First, we have the conformal map $F : \mathbb{D} \rightarrow \mathbb{H}$ given by \[ F(z) = \frac{i-z}{i+z} \] which was discussed in class (and proven to be a conformal map). 
+  \item Then, we can shift the entire half-plane down by one unit via the map $g : z \mapsto z - i$. Denote the image of this map as 
+  \[ \mathbb{H} - i = \{ z \in \C : \mathrm{Im}(z) > -1 \} \]
+  \item Finally we have the square-map $h : z \mapsto z^2$. This map doubles the argument of $z$ i.e. it sends $re^{i\theta} \mapsto r^2 e^{i(2\theta)}$ so the image is the entire complex plane. 
+\end{itemize}
+
+\vskip 0.5cm
+Explicitly, the formula for the map is 
+\[ z \mapsto \left(F(z) - 1\right)^2 \]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 7}
+\vskip 0.5cm
+Let $f : \mathbb{H} \rightarrow \C$ be a holomorphic function satisfying $|f(z)| \leq 1$ and $f(i) = 0$. Prove that \[ |f(z)| \leq \left| \frac{z-i}{z+i}  \right| \] for all $z \in \mathbb{H}$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Since $|f(z)| \leq 1$ we can essentially think of $f$ as a function between $\mathbb{H}$ and $\overline{\mathbb{D}}$. 
+
+\vsize 0.5cm
+Let $T : \mathbb{D} \rightarrow \mathbb{H}$ be the map defined by \[ T(z) = i \frac{1+z}{1-z} \] 
+
+
+
+Since $z \in \mathbb{D}$ this map is holomorphic. Then, we see that $f \circ T : \mathbb{D} \rightarrow \overline{\mathbb{D}}$ is holomorphic with $f(T(0)) = f(i) = 0$. By the Schwartz Lemma, we have $|f(T(z))| \leq |z|$. 
+
+
+Also, we have 
+\[ T^{-1}(z) = i\frac{z-1}{z+1} \]
+
+
+Using this fact, we see that 
+
+\begin{align*}
+  |f(z)| = |\left(f \circ T \circ T^{-1}\right) (z)| &= \left| \left(f \circ T\right) \left(i \frac{z-1}{z+1}\right) \right| \\
+  &\leq \left| \left(i  \frac{z-1}{z+1}\right) \right| \\
+  &=\left| \frac{z-1}{z+1}\right| \\
+\end{align*}
+
+Thus, 
+\[ \boxed{ |f(z)| \leq \left| \frac{z-1}{z+1} \right| } \]
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 8}
+\vskip 0.5cm
+A complex number $\omega \in \mathbb{D}$ is a \emph{fixed point} of a map $f : \mathbb{D} \rightarrow \mathbb{D}$ if $f(w) = w$.
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that if $f : \mathbb{D} \rightarrow \mathbb{D}$ is analytic and has two distinct fixed points, then $f$ is the identity map.
+  \item Must every holomorphic function $f : \mathbb{D} \rightarrow \mathbb{D}$ have a fixed point?
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item The function $f : \mathbb{D} \rightarrow \mathbb{D}$ is analytic (and thus also holomorphic) and there exist two fixed points $w_1, w_2 \in \mathbb{D}$ of $f$. 
+  
+  We know by the Schwartz Lemma that since $f(z)$ has a fixed point, it must be a rotation i.e. $f(z) = e^{i\theta} z$ for some $\theta \in \R$. But recall that there are \emph{two} distinct fixed points i.e. $w_1 \neq w_2$. i.e. at least one of these fixed points must be non-trival (both can't be the origin else we'd have $w_1 = w_2$). Let $w_1$ be the (guaranteed) non-trivial fixed point. Then, $f(z_1) = e^{i\theta} z_1$ for non-zero $z_1$ means we must have $\theta = 0$.
+
+  \vskip 0.5cm
+  \item No. For a counterexample, consider the function 
+  \[ f(z) = \frac{z+1}{2} \] 
+
+  This function essentially moves every point along the real axis a little bit, but the factor of $1/2$ ensures that $f(z) \in \mathbb{D}$ given $z \in \mathbb{D}$.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 9}
+\vskip 0.5cm
+Prove that all conformal mappings from the upper half-plane $\mathbb{H}$ to the unit disk $\mathbb{D}$ take the form \[ z \mapsto e^{i\theta} \frac{z - \beta}{z + \beta}, \;\;\;\; \theta \in \R, \beta \in \mathbb{H} \] 
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Let $f : \mathbb{H} \rightarrow \mathbb{D}$ be a generic conformal map from the upper half plane to the unit disk. Let $G : \mathbb{D} \rightarrow \mathbb{H}$ be the conformal map defined as \[ G(w) = i\frac{1-w}{1+w} \]
+
+This map has inverse \[ G^{-1}(z) = \frac{i-z}{i+z} \]
+
+
+Then, $\left(f \circ G\right) : \mathbb{D} \rightarrow \mathbb{D}$ is an automorphism on the unit disk. We know the automorphisms on the unit disk are of the form 
+\[ F(w) = e^{i\theta}  \frac{\alpha - z}{1 - \overline{\alpha} z} \] where $\alpha \in \mathbb{D}$, $\theta \in \R$. 
+
+
+
+Thus, for $w \in \mathbb{D}$ and some appropriate value $\alpha$, we have
+
+\begin{align*}
+  &\left(f \circ G\right)(w) = F(w) \\
+  \implies& f\left( i\frac{1-w}{1+w} \right) = e^{i\theta}  \frac{\alpha - w}{1 - \overline{\alpha} w}\\
+\end{align*}
+
+So, solving for $f(z)$ we get 
+
+\begin{align*}
+  &f(z) = e^{i\theta}\frac{\alpha - G^{-1}(z)}{1 - \overline{\alpha} G^{-1}(z)} \\
+  \implies&f(z) = e^{i\theta} \frac{\alpha - \left(\frac{i-z}{i+z} \right) }{1 - \overline{\alpha} \left(\frac{i-z}{i+z} \right)} \\
+  \implies&f(z) = e^{i\theta} \underbrace{\left( \frac{1-\alpha}{1+\overline{\alpha}} \right)}_{\text{modulus} = 1} \frac{z - \beta}{z + \beta}  \\
+  \implies&f(z) = e^{i\theta'} \frac{z - \beta}{z + \beta}  \\
+\end{align*}
+
+where $\beta = i \frac{1-\alpha}{1+\alpha} \in \mathbb{H}$. 
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

@@ -1,0 +1,483 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 9},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 9}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-2.} Suppose $M$ is a smooth manifold, $S \subseteq M$ is an immersed submanifold, and $V$ is a smooth vector field on $M$ that is tangent to $S$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that for any integral curve $\gamma$ of $V$ such that $\gamma(t_0) \in S$, there exists $\epsilon > 0$ such that $\gamma \left(\left(t_0 - \epsilon, t_0 + \epsilon\right)\right) \subseteq S$.
+  \item Now assume $S$ is properly embedded. Show that every integral curve that intersects $S$ is contained in $S$.
+  \item Give a counterexample to (b) if $S$ is not closed.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Let $\gamma : J \rightarrow M$ be an integral curve such that $q \defeq \gamma(t_0) \in S$. Since $S$ is a smooth (immersed) submanifold of $X$, the restriction $\restr{V}{S}$ is a smooth vector field on $S$ which is $\iota-$related to $V$ where $\iota : S \rightarrow M$ is the inclusion map. 
+  
+  By Proposition 9.2, there exists $\epsilon > 0$ and a smooth curve $\gamma_S : (-\epsilon, \epsilon) \rightarrow S$ such that $\gamma_S$ is an integral curve starting at $q$.
+
+  Then, by Proposition 9.6 (Naturality of Integral curves), $V$ and $\restr{V}{S}$ being $\iota-$related means $\iota\left(\gamma_S\right) = \gamma_S$ is an integral curve in $M$. But due to the uniqueness of integral curves, it must be the case that $\gamma_S(t) = \gamma(t)$ for $t \in (-\epsilon, \epsilon) \cap J$. Therefore, for $t \in (-\epsilon, \epsilon) \cap J$(?), we have $\gamma(t) \in S$ i.e. $\gamma \left((t_0 - \epsilon, t_0 + \epsilon)\right) \subseteq S$.
+
+  \vskip 1cm
+  \item Not sure yet.
+  
+  \vskip 1cm
+  \item A embedded submanifold is properly embedded if and only if it is closed. So, for my counterexample, I'm thinking of the embedding $\R^n \rightarrow \mathbb{S}^n$
+  whose image is $\mathbb{S} \setminus \{N\}$ where $N$ is the north pole. Then, any integral curve passing through the north pole intersects $\R^n$ but is not contained in $\R^n$.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-3.} Compute the flow of each of the following vector fields on $\R^2$:
+\begin{enumerate}[label=(\alph*)]
+  \item \[ V = y \frac{\partial}{\partial x} + \frac{\partial}{\partial y} \]
+  \item \[ W = x \frac{\partial}{\partial x} + 2y \frac{\partial}{\partial y}   \]
+  \item \[ X = x \frac{\partial}{\partial x} - y \frac{\partial}{\partial y}  \]
+  \item \[ Y = x \frac{\partial}{\partial y} - y \frac{\partial}{\partial x}  \]
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Solution:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item An integral curve $\gamma(t) = \left( x(t), y(t) \right)$ of this vector field satsifies the condition $\gamma'(t) = V_{\gamma(t)}$ which translates to 
+  \begin{align*}
+    x'(t) \restr{\partial_x}{\gamma(t)} + y'(t) \restr{\partial_y}{\gamma(t)} &= x(t) \restr{\partial_x}{\gamma(t)} + 1 \cdot \restr{\partial_y}{\gamma(t)} \\
+    \implies& \begin{cases}
+      x'(t) = x(t) \\
+      y'(t) = 1
+    \end{cases} \\
+    \implies &\begin{cases}
+      x(t) = ae^t \\
+      y(t) = bt
+    \end{cases}
+  \end{align*}
+  So, the flow of the vector field is \[ \boxed{\tau_t(x, y) = \left(xe^{t}, yt\right) }\]
+
+  \vskip 0.5cm
+  \item An integral curve $\gamma(t) = \left(x(t), y(t)\right)$ of this vector field is characterized by 
+  \begin{align*}
+    &\begin{cases}
+      x'(t) = x(t) \\
+      y'(t) = 2y(t)
+    \end{cases} \\
+    \implies &\begin{cases}
+      x(t) = ae^t \\
+      y(t) = b\left(e^{2t}\right)
+    \end{cases}
+  \end{align*} 
+  So, the flow of the vector field is \[ \boxed{\tau_t(x, y) = \left( xe^t, ye^{2t} \right)}  \]
+  
+  \vskip 0.5cm
+  \item Integral curves of this vector field are characterized by 
+  \begin{align*}
+    &\begin{cases}
+      x'(t) = x(t) \implies x(t) = ae^{t} \\
+      y'(t) = -y(t) \implies y(t) = be^{-t}
+    \end{cases}
+  \end{align*}
+  So, the flow of the vector field is \[ \boxed{ \tau_t(x, y) = \left( xe^{t}, ye^{-t} \right)}  \]
+
+  \vskip 0.5cm
+  \item An integral curve of this vector field satisfies 
+  \begin{align*}
+    &\begin{cases}
+      x'(t) = -y(t) \\
+      y'(t) = x(t)
+    \end{cases} \\
+    \implies& \begin{cases}
+      x''(t) = -x(t) \\
+      y''(t) = -y(t) 
+    \end{cases} \\
+    \implies& \begin{cases}
+      x(t) = a\cos(t) - b\sin(t) \\
+      y(t) = a\sin(t) + b\sin(t)
+    \end{cases}
+  \end{align*}
+  So the flow associated with this vector field is \[ \boxed{\tau_t(x, y) = \left(x\cos(t) - y\sin(t), x\cos(t) + y\sin(t)\right)}  \]
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-6.} Prove Lemma 9.19 (the escape lemma). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Lemma 9.19:}} Suppose $M$ is a smooth manifold and $V \in \mathfrak{X}(M)$. If $\gamma : J \rightarrow M$ is a maximal integral curve of $V$ whose domain $J$ has a finite least upper bound $b$, then for any $t_0 \in J$, $\gamma \left( [t_0, b) \right)$ is not contained in any compact subset of $M$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+We have the maximal integral curve $\gamma : J \rightarrow M$ where $J$ has the form $(a,b), a \in [-\infty, \infty), b < \infty$. Suppose, for contradiction, there exists some $t_0 \in J$ such that $\gamma \left([t_0, b)\right)$ is completely contained in some compact subset $K \subseteq M$. Then as $t_0 < t \rightarrow b$, the point $\gamma(t)$ must be approaching some limit point $\gamma(b)$. 
+
+\vskip 0.5cm
+But we know from Proposition 9.2 that given a smooth vector field $V$ on $M$, for any point $p \in M$ there exists some $\epsilon > 0$ and smooth curve $\gamma : (-\epsilon, \epsilon) \rightarrow M$ that is an integral curve of $V$ starting at $p$.
+
+\vskip 0.5cm
+Thus, for the point $\gamma(b)$, there exists some $\epsilon_{b} > 0$ such that $\Gamma : (-\epsilon_b, \epsilon_b) \rightarrow M$ is an integral curve starting at $\gamma(b)$ i.e. $\Gamma(0) = \gamma(b)$. 
+
+\vskip 0.5cm
+By the uniqueness of integral curves, $\Gamma$ must agree with $\gamma$ on the overlap of their domains. However, this means $\gamma$ can be extended beyond $t = b$ by defining $\gamma(t) = \Gamma(t - b)$ for $t \in [b, \epsilon_b)$. This contradicts the assumption that $\gamma$ is the maximal curve passing through $\gamma(b)$. Therefore, such a $t_0$ cannot exist.  
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-10.} For each vector field in Problem 9-3, find smooth coordinates in a neighborhood of $(1, 0)$ for which the given vector field is a coordinate vector field. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Solution:}
+
+For each vector field, we want to find coordinates $\left(s^i\right)$ around the point $(1,0)$ such that the vector field is a coordinate vector field.
+
+
+We can do this by finding a smooth curve passing through $(1, 0)$ which is not tangent to the vector field near the point. For each point on the curve, we can apply the flow of the vector field for time $t, t \in (-\epsilon, \epsilon)$. Doing this will generate a small neighborhood around $(1,0)$.
+
+
+\begin{enumerate}[label=(\alph*)]
+  \item Take, say, the line $x = 1$ which we can parametrize using the $y-$coordinate. Then, applying the flow $\tau_t(x, y) = (xe^{t}, yt)$ we get the coordinate transformation $(x, y) \leftrightarrow (t, v)$ as $(x, y) = (e^t, vt)$.
+
+  \item The smooth curve can be the vertical line $x = 1$ which we can parametrize using the $y$ coordinate. Then, the new coordinate system $(t, v)$ is obtained by starting at $(1,v)$ and flowing for time $t$ using $\tau_t(x, y) = (xe^t), ye^{2t}$. This gives the coordinate tranformation $(x, y) = (e^t, ve^{2t})$.
+  
+  \item In this case, we get $(x, y) = (e^t, ve^{-t})$
+  \item Here, we get $(x, y) = (\cos(t) - v\sin(t), \cos(t) + v\sin(t))$
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-19.} Let $M$ be $\R^3$ wth the $z-$axis removed. Define $V, W \in \mathfrak{X}(M)$ by 
+\[ V = \frac{\partial}{\partial x} - \frac{y}{x^2 + y^2} \frac{\partial}{\partial z},\;\;\;\;W = \frac{\partial}{\partial y} + \frac{x}{x^2 + y^2}\frac{\partial}{\partial z} \] and let $\theta$ and $\psi$ be the flows of $V$ and $W$, respectively. Prove that $V$ and $W$ commute, but there exist $p \in M$ and $s, t \in \R$ such that $\theta_t \circ \psi_s(p)$ and $\psi_s \circ \theta_t(p)$ are both defined but are not equal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+Two vector fields commute if and only if their Lie Bracket is zero. Recall that, by Proposition 8.26, the Lie Bracket of two vector fields can be calulated as 
+\[ [V, W] = \left(VW^j - WV^j\right) \frac{\partial}{\partial x^j}  \]
+In our case, 
+\begin{align*}
+  [V, W] &= \left[V(0) - W(1)\right]\frac{\partial}{\partial x} +  \left[V(1) - W(0)\right]\frac{\partial}{\partial y} +  \left[V\left(\frac{x}{x^2 + y^2}\right) - W \left(\frac{-y}{x^2 + y^2}\right) \right]\frac{\partial}{\partial z} \\
+  &= 0 + 0 + \left[ \frac{x^2 + y^2 - 2x^2}{(x^2 + y^2)^2} - \frac{-(x^2 + y^2) + 2y^2}{(x^2 + y^2)^2} \right] \frac{\partial}{\partial z} \\
+  &= 0
+\end{align*}
+So the fields certainly commute. However, if we let $p = (1, 0, 0)$ and $s = t = 1$ and compute $\theta_t \circ \psi_s(p)$, $\psi_s \circ \theta_t(p)$ we see that they are NOT equal.
+
+\vskip 0.5cm
+An integral curve $\gamma(t) = \left(x(t), y(t), z(t)\right)$ of $V$ through $p$ satisfies the system of differential equations
+
+\begin{align*}
+  x'(t) &= 1\\
+  y'(t) &= 0 \\
+  z'(t) &= -\frac{y}{x^2 + y^2}
+\end{align*}
+with the initial condition $(x(0), y(0), z(0)) = (1, 0, 0)$. The solution is given by 
+\begin{align*}
+  x(t) &= t + 1 \\
+  y(t) &= 0 \\
+  z(t) &= 0
+\end{align*}
+
+Thus, $\theta_1(1, 0, 0) = (2, 0, 0)$. Next, let's conmpute $\psi_1(p)$. An integral curve $\beta(t) = \left(u(t), v(t), w(t)\right)$ satisfies the system of differential equations
+\begin{align*}
+  u'(t) &= 0\\
+  v'(t) &= 1 \\
+  w'(t) &= \frac{x}{x^2 + y^2}
+\end{align*}
+
+giving us the solution 
+
+\begin{align*}
+  u(t) &= 1 \\
+  v(t) &= t \\
+  w(t) &= \arctan(t)
+\end{align*}
+
+Thus, $\psi_1(p) = (1, 1, \arctan(1)) = (1,1,\pi/4)$. Let's now find $\psi_1 \circ \theta_1(p)$ i.e. the same system of equations as above but instead with the initial condition $\left(u(0), v(0), w(0)\right) = (2, 0, 0)$. The solution is
+\begin{align*}
+  u(t) = 2 \\
+  v(t) = t+1 \\
+  w(t) = \arctan\left(\frac{t+1}{2}\right) - \arctan\left(\frac{1}{2}\right)
+\end{align*}
+
+Thus, $\psi_1 \circ \phi_1(p) = \left(2, 2, \arctan(1) - \arctan(1/2)\right)$. Lastly, we calculate $\theta_1 \circ \psi_1(p)$. To do this, we solve the first system of equations but with the initial condition $(x(0), y(0), z(0)) = (1, 1, \pi/4)$. Solving the system of equations gives us 
+\begin{align*}
+  x(t) &= t + 1 \\
+  y(t) &= 1 \\
+  z(t) &= -\arctan(t+1) + \frac{\pi}{2} 
+\end{align*}
+
+Thus, $\theta_1 \circ \psi_1(p) = \left(2, 1, -\arctan(1) + \pi/2 \right)$.
+
+So, we find that $\theta_1 \circ \psi_1(p) \neq \psi_1 \circ \theta_1(p)$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q9-21.} Let $M$ be a smooth manifold. A \emph{\textbf{smooth isotopy of $M$}} is a smooth map $H : M \times J \rightarrow M$, where $J \subseteq \R$ is an interval, such that for each $t \in J$, the map $H_t : M \rightarrow M$ defined by $H_t(p) = H(p, t)$ is a diffeomorphism.
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose $J \subseteq \R$ is an open interval and $H : M \times J \rightarrow M$ is a smooth isotopy. Show that the map $V : J \times M \rightarrow TM$ defined by 
+  \[ V(t, p) = \restr{\frac{\partial}{\partial s}}{s=t} H_s(H_{t}^{-1}(p))  \] is a smooth time-dependent vector field on $M$, whose time-dependent flow is given by $\psi(t, t_0, p) = H_t \circ H_{{t_0}}^{-1}(p)$ with domain $J \times J \times M$.
+
+  \item Conversely, suppose $J$ is an open interval and $V : J \times M \rightarrow M$ is a smooth time-dependent vector field on $M$ whose time-dependent flow is defined on $J \times J \times M$. For any $t_0 \in J$, show that the map $H : M \times J \rightarrow M$ defined by $H(t, p) = \psi(t, t_0, p)$ is a smooth isotopy of $M$.
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q10-1.} Let $E$ be the total space of the Möbius bundle constructed in Example 10.3.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $E$ has a unique smooth structure such that the quotient map $q : \R^2 \rightarrow E$ is a smooth covering map.
+  \item Show that $\pi : E \rightarrow \mathbb{S}^1$ is a smooth rank-1 vector bundle.
+  \item Show that it is not a trivial bundle.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item By Proposition 4.33, a topological covering map is a smooth covering map if and only if it is a local diffeomorphism.
+  
+  \vskip 0.5cm 
+  But Recall that if we have a smooth manifold $M$ and a covering map $p : M \rightarrow N$, then $N$ has a unique smooth structure such that $p$ is locally a diffeomorphism.
+  
+  \vskip 0.5cm 
+  So, in particular, given a topological covering map $p : \R^2 \rightarrow N$ there is a unique smooth structure on $N$ such that $p$ is a smooth covering map. 
+
+  \vskip 0.5cm 
+  These two facts combined imply that $E$ has a un ique smooth structure such that $q : \R^2 \rightarrow E$ is a smooth covering map.
+
+
+
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q10-10.} Suppose $M$ is a compact smooth manifold and $E \rightarrow M$ is a smooth vector bundle of rank $k$. Use transversality to prove that $E$ admits a smooth section $\sigma$ with the following property: if $k > \mathrm{dim } M$, then $\sigma$ is nowhere vanishing; while if $k \leq \mathrm{dim } M$, then the set of points where $\sigma$ vanishes is a smooth compact codimension-$k$ submanifold of $M$. Use this to show that $M$ admits a smooth vector field with only finitely many singular points.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+For each point $p \in M$, let $U$ be the coordinate ball centered around $p$ and $B$ an open set whose closure is contained in $U$. 
+
+
+Since $M$ is compact, we can choose finitely many points $p_1, \cdots, p_n$ such that $B_1, \cdots, B_n$ cover $M$. Let $\Phi_1, \cdots, \Phi_n$ be the local trivializations of the bundle over $U_1, \cdots, U_n$.
+
+Now, let $\phi_i : M \rightarrow \R$ be a smooth function that is $1$ on $B_i$ and supported in $U_i$. Then, if we instead replace $\phi_i$ with $\phi_i / \sum_{i = 1}^{n} \phi_i$ we can assume that $\sum_{i = 1}^{n} \phi_i = 1$.
+
+
+Define a map $F : M \times \left(\R^k\right)^n \rightarrow E$ as 
+
+\[  F\left(p, (a_1^1, \cdots, a_k^1), \cdots, (a_1^n, \cdots, a_k^n)\right) = \sum_{i = 1}^{n} \Phi_i^{-1} (pm a_1^i, \cdots, a_k^i) \phi_i  \]
+
+where $\Phi_i^{-1}(p, a_1^i, \cdots, a_k^i)$ is defined to be 0 if $p \not\in U_i$. This functions is smooth because it is smooth on each open set $U_i \times \left(\R^k\right)^n$.
+
+
+Let's show that $F$ is a submersion. Suppose $p \in B_j \subset U_j$ and $v \in T_pM$. Let $\gamma : (\epsilon, \epsilon) \rightarrow M$ be a smooth curve such that starting at $p$ with $\gamma'(0) = (v, 0, \cdots, 0)$. Then, $\left(\Phi_j \circ F \circ \gamma\right)'(0) = (v, 0, \cdots, 0)$ because $\sum_{i = 1}^{n} \phi_1 = 1$. Now, if for any $a \in \R$, the smooth curve $\tau : (-\epsilon, \epsilon) \rightarrow \left(\R^k\right)^n$ given by $\tau(\epsilon) = (p, a\epsilon, 0, \cdots, 0)$ then it satisfies $\tau(0) = p$ and $\tau'(0) = (0, a, 0, \cdots, 0)$ and $\left(\Phi_i \circ \tau\right)'(0) = (0, a, 0, \cdots, 0)$. This can be done for all $kn$ coordinates of $(\R^k)^n$ in $M \times (\R^k)^n$. Since the $B_i$'s cover $M$, this shows that $F$ is a submersion.
+
+
+$F$ intersects transversely with $M$ when viewed as an embedded submanifold of $E$. Hence, by the parametric transversality theorem, there exists $w \in (\R^k)^n$ such that the map from $M$ to $E$ given by $x \mapsto F(x, w)$ intersects transversely with $M$. This map is a smooth section by construction.
+
+
+If $k > dim(M)$, then 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q10-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

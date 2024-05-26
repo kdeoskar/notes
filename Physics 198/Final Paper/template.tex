@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Physics 198 Term Paper}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily Topological Order}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+\microtoc
+% \tableofcontents 
+\newpage
+
+% main content
+\section{Introduction}
+In every-day life, we often talk about the different "phases" of matter such as solids, liquids, and gases. In condensed matter physics, there is a more precise meaning to the phrase "phase of matter" where materials can be classified based on their atomic arrangements. In the '80s, there emerged a powerful system for classifying the different orders: the Landau-Ginzburg-Wilson theory of Symmetry Breaking. 
+
+\vskip 0.5cm
+
+For example, the atoms of a gas in a container are uniformly distributed so that if we choose a point and then translate continuously in any direction, the density of particles at the new point is the same. The gas displays \textbf{\emph{continuous symmetry}}. Now if we reduce the temperature and/or apply pressure, causing the gas to form a crystalline solid, we no longer have continuous symmetry; Instead we have repeating patterns at regular intervals i.e. Crystals display \emph{\textbf{discrete symmetry}}. In carrying out the phase transition from gas to solid, we broke the continuous symmetry and obtained discrete symmetry.
+
+\vskip 0.5cm
+In this regime, the hamiltonian has some symmetry group $G$ with subgroup $H \subset G$ which serves as the symmetry group of the system after phase change.
+
+\vskip 0.5cm
+\subsection{Fractional Quantum Hall States}
+\vskip 0.5cm 
+For a while it seemed as though this theory was robust enough to classify all orders of matter. But it turns out life is not that simple. With the advent of Semi-conductor technology, physicists were able to confine electrons to the interface of two semiconductors, thus creating 2DEG (2 Dimensional Electron Gas).
+
+\vskip 0.5cm 
+In 1982 Tsui, Stomer, and Gossard found that if a 2DEG is placed under strong magnetic field and cooled to very low temperatures, then the 2DEG forms a new kind of state, called a \emph{\textbf{Fractional Quantum Hall (FQH) State}}.
+
+\vskip 0.5cm Due to the low temperatures and strong interactions between electrons, these were expected to form strongly correlated states, like in a crystal. However, they turned out to form a unique kind of material called a \emph{\textbf{quantum spin liquid}} as the strong quantum fluctuation due to the low mass of the electrons prevented crystal formation.
+
+\vskip 0.5cm 
+These FQH States display many interesting properties, with the most unique being a quantization of the transverse conductance when a current passes through them, famously known as the \textbf{\emph{Quantum Hall Effect}}. Another quantized properly of hall states is their electron density. Quantum Hall Liquids are rigid materials in that they cannot be compressed - they have fixed densities. Bizarrely, it was found that if we measure the electron density in terms of a filling factor $\nu$ defined as 
+\[ \nu = \frac{nhc}{eB} = \frac{\text{density of electrons}}{\text{density of magnetic flux quanta}} \]
+then the densites of quantum hall states correspond to exactly rational filling factors $\nu = 1, 2/3, 1/3, \cdots$ with exact integer values of $\nu$ corresponding to the \emph{\textbf{Integer Quantum Hall (IQH) effect}} and others to the FQH effect.
+
+\vskip 0.5cm 
+Through many theoretical studies, it was found that FQH states have internal "patterns" which differentiate them, but are \emph{not} associated with the symmetries (or breaking of symmetries) of the FQH liquid. Thus, Landau-theory is not enough to describe them. We need a new kind of order called \emph{\textbf{Topological Order}} to describe them.
+
+\vskip 0.5cm
+\section{A hint of Topological Order: Lattice model}
+
+Consider a many-body quantum system composed of a lattice described by a pair $(\mathcal{V}_N, \mathcal{H}_N)$ where
+\[ \mathcal{V}_N = \bigotimes_{i = 1}^N \mathcal{V}_i \]
+for $\mathcal{V}_i$ denoting the hilbert space at the $i^{th}$ lattice point and $\mathcal{H}_N$ being a local hamiltonian acting as 
+\[  \mathcal{H}_n = \sum_{i} O_i + \sum_{i < j} O_{ij}  \]
+where $O_i$ acts on $\mathcal{V}_i$ and $O_{ij}$ acts on $\mathcal{V}_i \otimes \mathcal{V}_j$. Suppose our system is also \emph{\textbf{gapped}} i.e. there is a finite gap $(\Delta)$ in the energy spectrum between the ground-state subspace (of width $\varepsilon$) and the excited states. 
+
+\vskip 0.5cm
+Mathematically, this can be expressed in the following:
+\begin{redbox}
+    A \emph{\textbf{Gapped Quantum System}} consists of a sequence of pairs $\{ (\mathcal{V}_{N_i}, \mathcal{H}_{N_i}) \}$ describing the system with $N_i$ lattice points satisfying the property that each $H_{N_i}$ has a gapped energy spectrum i.e. In the limit $N_i \rightarrow \infty$ we have $\Delta_{N_i}\rightarrow \Delta_{N_{\infty}}$ (finite) and $\varepsilon_{N_i} \rightarrow \infty$.
+\end{redbox}
+
+\begin{bluebox}
+    An example of such a gapped system is a semi-conductor.
+\end{bluebox}
+
+\vskip 0.5cm
+Two gapped systems i.e. two sequences $\{H_N\}$ and $\{H'_N\}$ are equivalent if one can be deformed into the other without closing the gap $\Delta$. This is reminiscent of how spaces which can be continuously deformed into each other are topologically equivalent. In fact, this correspondence will allow us to differentiate between FQH liquids. 
+
+\vskip 0.5cm
+FQH states have different phases even if there is no symmetry $G = 1$ and no symmetry breaking $H = G$. However, these newly defined equivalence classes of $\{H_N\}$ give rise to new \emph{\textbf{topological invariants}}.
+
+\vskip 0.5cm
+So, how do we extract these invariants from a many-body state?  Put the gapped system on a space with various topologies and measure the ground state degeneracy!
+
+\subsection{Chracterization of Topological Order}
+
+The ground state degeneracy is an invariant up to the equivalence classes we've defined, because in the $N \rightarrow \infty$ limit, it is robust against small perturbations that can break symmetry. In order to change the ground state degeneracy, one would need to close the gap - which would require a large change to the hamiltonian. This degeneracy is called \emph{\textbf{Topological Degeneracy}}.
+
+
+\vskip 0.5cm
+But topological degeneracy only partially characterizes topological order. Studying the Ground state structure of FQH States on a Torus, Wen and Keski-Vakkuri conjectured that $n$d ($n+1$D) topological order is fully characterized by the vector bundle structure on the moduli space of Hamiltonians.
+
+
+
+\section*{References}
+\begin{enumerate}
+    \item Xiao-Gang Wen, \emph{"An Introduction to Topological Orders"}
+    \item Xiao-Gang Wen, \emph{Higher Structures and Field Theory (MIT)}
+    \item Wen IJMPB 4, 239 (90); Keski-Vakkuri Wen IJMPB 7, 4227 (93)
+    \item Ravi Karki, \emph{"Topological Order in Physics"}, The Himalayan Physics Vol 6 \& 7, April 2017 (108-111)
+\end{enumerate}
+
+\end{document}

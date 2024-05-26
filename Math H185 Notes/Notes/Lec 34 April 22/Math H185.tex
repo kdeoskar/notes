@@ -1,0 +1,197 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 34},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 34}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+\section{Normal Famlies}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Normal Families}
+\vskip 0.25cm
+  A family of functions $\mathcal{F}$ on $U \subseteq \C$ is said to be \emph{\textbf{normal}} if for all sequences $f_1, f_2, f_3, \cdots \in \mathcal{F}$, there exists a convergent subsequence.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+This definition expresses that a family of functions is compact in a sense.
+
+\vskip 0.5cm
+
+\begin{dottedbox}
+  \emph{\textbf{Theorem (Arzela-Ascoli):}} If $\mathcal{F}$ is Uniformly bounded and Equicontinuous on all compact subsets, then it is normal.
+\end{dottedbox}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item Here, \textbf{uniformly bounded} on a (compact) subset $K \subseteq U$ means there exists $B$ such that $|f(z)| < B$ for all $f \in \mathcal{F}$ and $z \in K$. i.e. the same bound $B$ applies to \emph{all} functions in the family.
+
+  \vskip 0.5cm
+  \underline{Ex:} Each function of the form $f_n(z) = n$ is bounded, but the family $\{f_n\}$ is not uniformly bounded.
+  
+  \vskip 0.5cm
+  \item A function being \textbf{Equicontinuous} on $K$ means that for all $\epsilon > 0$, there exists $\delta > 0$ such that if $|z_1  -z_2| < \delta$ then $|f(z_1) - f(z_2)| < \epsilon$ for all $z_1, z_2 \in K$.
+  
+  \vskip 0.5cm
+  \underline{Ex:} Suppose $\mathcal{F}$ is a family of functions on $[0, 1]$. If $\{f'(z)\}_{f \in \mathcal{F}}$ is uniformly bounded, then $\mathcal{F}$ is equicontinuous.
+  
+  \vskip 0.5cm
+  \underline{Ex:} $f_n(x) = x^n$ on $[0, 1]$ is \emph{not} equicontinuous. We can see this by lettnig $x_1 = 1, x_2 = 1-\delta$. Then, 
+  
+  \[ |f_n(x_1) - f_n(x_2)|  \]
+  
+  [Complete this example later]
+\end{itemize}
+
+\vskip 0.5cm
+To prove the Arzela-Ascoli Theorem, the key idea we'll use is \emph{diagonalization} (to arrange countably many conditions).
+
+\begin{dottedbox}
+  \emph{\textbf{Principle of Diagonalization:}} Given countably many conditions on a sequence $\mathrm{cond}_1, \mathrm{cond}_2, \mathrm{cond}_3, \cdots$ which are inherited on subsequences and sequence $f_1, f_2, f_3, \cdots$ such that for all $j$ any subsetequence has a further subsequence which condition $\mathrm{cond}_j$. Then, there exists a subsequence $f_1^{(\infty)}, f_2^{(\infty)}, \cdots$ satisfying all $\mathrm{cond}_j$.
+
+  \vskip 0.5cm
+  \emph{\textbf{Proof-ish:}} Suppose we have
+  \[ \begin{matrix}
+    f_1^{(1)} & f_2^{(1)} & f_3^{(1)} & \cdots & \text{satisfying } \mathrm{cond_1} \\
+    f_1^{(2)} & f_2^{(2)} & f_3^{(2)} & \cdots & \text{satisfying } \mathrm{cond_2} \\
+    f_1^{(3)} & f_2^{(3)} & f_3^{(3)} & \cdots & \text{satisfying } \mathrm{cond_3} \\
+    \vdots & \vdots & \vdots & \ddots
+  \end{matrix} \]
+  Then, taking the diagonal gives us a subsequence of $\mathcal{F}$ satisfying all conditions $\mathrm{cond}_j$.
+\end{dottedbox}
+
+[Write the rest from recording]
+
+
+
+\end{document}

@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}April 8 - The Agument Principle}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Some Consequences the Argument Principle}{2}{subsection.1.1}%

@@ -1,0 +1,380 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{tensor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={137B HW 8 - KDEOSKAR},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B Homework 8}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 1: Fermi's Golden Rule for Three Body Decays} 
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Calculating the total rate:} Using the set up laid out above, we can integrate to get an expression for the total decay.
+  \item \textbf{The lifetime of the neutron:} Assuming that $\mathcal{M} \sim 1$, calculate the lifetime of the neutron. Comment on the order of magnitude compared to the experimental value, which is $\tau \sim 887.7$s.
+  \item \textbf{The lifetime of the muon:} Do the same with the muon, whose experimentaly measured lifetime is $\tau \sim 2.197 \times 10^{-6}$s.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\begin{enumerate}[label=(\alph*)]
+  \item The inital particle (neutron) is at rest, so by concservation of momentum we have 
+  \[ 0 = \mathbf{P_f} + \mathbf{p_1} + \mathbf{p_2}  \]
+  where $P_f, p_1, p_2$ denote the momenta of the proton, electron, and anti-neutrino after decay.
+
+  \vskip 0.5cm
+  The protons is effectively static and we ignore its momentum, whereas we treat the proton and anti-neutrino relativistically. For simplicity, we asssume that $m_{\overline{\nu_{e}}} = 0$ since the mass of the anti-neutrino is much smaller than even that of the electron.
+
+  \vskip 0.5cm
+  Now, to get the Decay Rate, we can integrate over the momenta of the electron and anti-neutrino:
+  \[ W = \frac{2\pi}{\hbar} \left|\frac{G_F \mathcal{M}}{V}\right|^2 \int \frac{V d^3 \mathbf{p_1}}{(2\pi \hbar)^3} \frac{V d^3 \mathbf{p_2}}{(2\pi \hbar)^3} \delta\left(E_0 - E_1 - E_2\right)  \]
+
+  % The $\delta\left(E_0 - E_1 - E_2\right)$ selects the contribution from $\left(E_0 - E_1 - E_2\right) = 0$ i.e. $E_0 = E_1 + E_2 = c^2\left(m_n - m_p\right)$.
+
+  Note that $d^3 \mathbf{p_1} \rightarrow 4\pi p_1^2 \mathrm{d}p_1$ and similarly $d^3 \mathbf{p_2} \rightarrow 4\pi p_2^2 \mathrm{d} p_2$. And since we're assuming $m_{\overline{\nu}} = 0$, 
+  \begin{align*}
+    &E_2^2 = (p_2 c)^2 + (\underbrace{m}_{=0} c^2)^4 \\
+    \implies& E_2^2 = c^2p_2^2 \\
+    \implies& 2E_2 dE_2 = 2c^2p_2 dp_2 \\
+    \implies& E_2 dE_2 = c^2 p_2 dp_2 \\
+    \implies& p_2 dp_2 = \frac{E_2}{c^2} dE_2 \\
+    \implies& p_2^2 dp_2 = \frac{E_2 p_2}{c^2} dE_2 = \frac{E_2 \cdot \left( \frac{E_2}{c} \right)}{c^2} dE_2 \\
+    \implies& p_2^2 \mathrm{d}p_2 = \frac{(E_2)^2}{c^3} \mathrm{d} E_2
+  \end{align*}
+
+  Now, 
+  \begin{align*}
+    W &= \frac{2\pi}{\hbar} \left|\frac{G_F \mathcal{M}}{V}\right|^2 \iint \frac{V d^3 \mathbf{p_1}}{(2\pi \hbar)^3} \frac{V d^3 \mathbf{p_2}}{(2\pi \hbar)^3} \delta\left(E_0 - E_1 - E_2\right) \\
+    &= \frac{2\pi}{\hbar} \frac{\left|G_F \mathcal{M}\right|^2}{(2\pi \hbar)^6} \iint d^3 \mathbf{p_1}d^3 \mathbf{p_2}  \delta\left(E_0 - E_1 - E_2\right) \\
+    &= \frac{2\pi}{\hbar} \frac{\left|G_F \mathcal{M}\right|^2}{(2\pi \hbar)^6} \iint 4\pi p_1^2 \mathrm{d}p_1 \cdot  4\pi p_2^2 \mathrm{d}p_2   \delta\left(E_0 - E_1 - E_2\right) \\
+    &= \frac{2\pi \cdot (4\pi)^2}{\hbar} \frac{\left|G_F \mathcal{M}\right|^2}{(2\pi \hbar)^6} \iint p_1^2 \mathrm{d}p_1 \cdot p_2^2 \mathrm{d}p_2 \;\; \delta\left(E_0 - E_1 - E_2\right) \\
+    &= \frac{\left|G_F \mathcal{M}\right|^2}{2 \pi^3 \hbar^7} \iint p_1^2 \mathrm{d}p_1 \cdot \frac{(E_2)^2}{c^3} \mathrm{d} E_2 \;\; \delta\left(E_0 - E_1 - E_2\right) \\
+  \end{align*}
+
+  The $\delta(E_0 - E_1 - E_2)$ factor selects only the contribution in which $E_0 - E_1 - E_2 = 0 \iff E_0 = E_1 + E_2$ so we get 
+  \begin{align*}
+    W &= \frac{\left|G_F \mathcal{M}\right|^2}{2 \pi^3 \hbar^7} \int p_1^2 \frac{(E_2)^2}{c^3} \mathrm{d}p_1 \\
+    &= \frac{\left|G_F \mathcal{M}\right|^2}{2 \pi^3 \hbar^7 c^3} \int p_1^2 (E_0 - E_1)^2 \mathrm{d}p_1 \\
+  \end{align*}
+
+  In the relativistic limit ($E_1 \approx p_1c$), we have 
+  \begin{align*}
+    \int_0^{{p_1^{max}}} p_1^2 (E_0 - E_1)^2 \mathrm{d}p_1 &= \int_{0}^{p_1^{max}} p_1^2(E_0 - p_1c)^2 \mathrm{d}p_1 \\
+    &= \int_{0}^{p_1^{max}} p_1^2(E_0^2 + p_1^2c^2 - 2E_0p_1c)^2 \mathrm{d}p_1 \\
+    &= \int{0}^{p_1^{max}} E_0^2 p_1^2 + p_1^4 c^2 - 2E_0 p_1^3 c \mathrm{d}p_1 \\
+    &= \left[\frac{E_0^2 \left(p_1^{max}\right)^3}{3} + \frac{\left(p_1^{max}\right)^5 c^2}{5} - 2E_0 \frac{\left(p_1^{max}\right)^4 c}{4} \right] \\
+  \end{align*}
+
+  And recall that $p_1^{max} = \frac{E_0}{c}$. Thus,
+  \[ \int_0^{{p_1^{max}}} p_1^2 (E_0 - E_1)^2 \mathrm{d}p_1 = \frac{E_0^5}{30c^3} \]
+
+  so, 
+  \[ \boxed{W = \frac{\left|G_F \mathcal{M}\right|^2}{60 \pi^3 \hbar^7 c^6} \cdot E_0^5}  \]
+
+  or, in terms of the neutron and proton masses, 
+  \begin{align*}
+    &W = \frac{\left|G_F \mathcal{M}\right|^2}{60 \pi^3 \hbar^7 c^6} \cdot [c^2\cdot(m_n - n_p)]^5 \\
+    \implies& \boxed{W = \frac{\left|G_F \mathcal{M}\right|^2}{60 \pi^3 \hbar^7 c^4} \cdot(m_n - n_p)^5} \\
+  \end{align*}
+
+  \vskip 0.5cm
+  \item Assuming $\mathcal{M} \sim 1$, the lifetime of a neutron, $\tau$, is given by
+  \[ \tau = \frac{1}{W} = \frac{60 \pi^3 \hbar^7 c^6}{\left|G_F \mathcal{M}\right|^2} \cdot \frac{1}{(E_0)^5} = \frac{60 \pi^3 \hbar^7 c^4}{\left|G_F \mathcal{M}\right|^2} \cdot \frac{1}{(m_n - m_p)^5} \sim 2500s = 2.5 \times 10^3s \]
+
+  The experimentally measured value is $\tau \sim 887.7s$, so our estimate is nearly on the same order of magnitude. It's still a very crude approximation because we're off by a factor of about 3.
+
+  \vskip 0.5cm
+  \item One way in which the muon decays is
+  \[ \mu \rightarrow e + \overline{\nu}_e + \nu_{\mu}  \]
+  This decay follows mechanics similar to the beta decay we studied earlier, except in this case the light particles are $\overline{\nu}_{e}, \nu_{\mu}$ while the heavy particles are $\mu, e$. Thus in this case $E_0 = c^2\left(m_{\mu} - m_e\right)$. Then, using the formula found earlier, we calculate the lifetime of the muon to be 
+  \begin{align*}
+    \tau &= \frac{60 \pi^3 \hbar^7 c^4}{\left|G_F \mathcal{M}\right|^2} \cdot \frac{1}{(m_{\mu} - m_e)^5} \\
+    &\sim 6.5 \times 10^{-7}s
+  \end{align*}
+
+  This is one order of magnitude off from the experimental value of $\tau \approx 2.197 \times 10^{-6}s$.
+
+  \end{enumerate}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 2: Sudden Approximation} 
+A particle of mass $m$ is in the ground state of a harmonic oscillator with the standard Hamiltonian $\hat{H}_{HO} = \frac{\hat{p}^2}{2m} + \frac{k\hat{x}^2}{2}$. At time $t = 0$, the value of $k$ changes suddenly to $k' = 4k$. Find the probability that the oscillator remains in its ground state. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\begin{align*}
+  &\underline{\text{Before time $t = 0$}:} \;\hat{H} \ket{\psi_n} = \hbar\omega \left(n + \frac{1}{2}\right)\ket{\psi_n} \text{ with } \hat{H} = \frac{\hat{p}^2}{2m} + \frac{k\hat{x}^2}{2} \\
+  &\underline{\text{After time $t = 0$}:} \;\hat{H}' \ket{\phi_{n'}} = \hbar\omega' \left(n'+ \frac{1}{2}\right)\ket{\phi_{n'}} \text{ with } \hat{H} = \frac{\hat{p}^2}{2m} + \frac{4k\hat{x}^2}{2} \\
+\end{align*}
+
+where $\phi_n$ is the $n^{\text{th}}$ state of the new harmonic oscillator with spring constant $4k$.
+
+The particle starts off in the ground state, and the probability that we find it \emph{still} in the ground state after the sudden change is 
+
+\begin{align*}
+  P_{(n' = 0)} &= \left| \inner{\phi_n(t)}{\psi(t)} \right|^2 \\
+  &= \left|d_{(n' = 0)}\right|^2 \\
+\end{align*}
+
+In the position basis, 
+\begin{align*}
+  \psi_0(x) &= \inner{x}{\psi_0} \\
+  &= \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{-m\omega x^2 / 2\hbar} \\
+  &= \left(\frac{m}{\pi \hbar}\right)^{1/4} \left(\frac{k}{m}\right)^{1/8} e^{-x^2\sqrt{km}/2\hbar}
+\end{align*}
+
+and 
+
+\begin{align*}
+  \phi_{0}(x) &= \inner{x}{\phi_0} \\
+  &= \left(\frac{m\omega'}{\pi \hbar}\right)^{1/4} e^{-m\omega' x^2 / 2\hbar} \\
+  &= \left(\frac{m}{\pi \hbar}\right)^{1/4} \left(\frac{4k}{m}\right)^{1/8} e^{-x^2\sqrt{4km}/2\hbar}
+\end{align*}
+
+\begin{align*}
+  \inner{\phi_0}{\psi_0} &= \int_{-\infty}^{\infty} dx \inner{\phi_0}{x} \inner{x}{\psi_0} \\
+  &= \int_{-\infty}^{\infty} dx \phi_0^*(x) \psi_0(x) \\
+  &= \left(\frac{m}{\pi \hbar}\right)^{1/4} \left(\frac{m}{\pi \hbar}\right)^{1/4} \left(\frac{k}{m}\right)^{1/8} \left(\frac{4k}{m}\right)^{1/8} \int_{-\infty}^{\infty} dx \exp\left(-\frac{x^2 \sqrt{km}}{2\hbar}\right) \exp\left(-\frac{x^2 \sqrt{4km}}{2\hbar}\right) \\
+  &= \left(\frac{m}{\pi \hbar}\right)^{1/2} \cdot \underbrace{\left(\frac{k}{m}\right)^{1/4}}_{\sqrt{\omega}} \cdot (4)^{1/8} \int_{-\infty}^{\infty} dx \;e^{-\frac{3x^2 \sqrt{km}}{2\hbar}} \\
+  &= 2^{1/4} \left(\frac{m\omega}{\pi \hbar}\right)^{1/2} \sqrt[root]{\frac{2}{2} \frac{\pi \hbar}{m \omega}} \\
+  &= 2^{1/4} \left(\frac{2}{3}\right)^{1/2} \left(\frac{m\omega}{\pi \hbar}\right)^{1/2} \cdot \left(\frac{m\omega}{\pi \hbar}\right)^{-1/2} \\
+  &= \frac{2^{3/4}}{3^{1/2}} 
+\end{align*}
+
+So, 
+\begin{align*}
+  d_{(n'=0)} &= \left|\inner{\phi_0}{\psi_0}\right|^2 \\
+  &= \frac{2^{3/2}}{3} \\
+  &= 2 \frac{\sqrt{2}}{3}
+\end{align*}
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Question :} 
+\section*{Question 3: More Sudden Approximation} 
+If the atom is initially in the groun state, what is the probability that the $^3\text{He}^+$ ion remains in the ground state after the transition?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+\vskip 0.5cm
+The effect of the nuclear decay is to change the nuclear charge at $t = 0$ without affecting the orbital electrons. We're interested in the probability that the ion remains in the ground state after the transition.
+
+\begin{align*}
+  &\underline{\text{Before time $t = 0$}: } \hat{H}\ket{\psi_{nlm}} = -\frac{E_1}{n^2} \ket{\psi_{nlm}} \\
+  &\underline{\text{After time $t = 0$}: } \hat{H}' \ket{\phi_{nlm}} = -\frac{2^2E_1}{n^2} \ket{\phi_{nlm}} \\
+\end{align*}
+
+\vskip 0.5cm
+where $\hat{H}$ is the hydrogen atom hamiltonian wherein the nuclear charge is $Z = 1$ and $\hat{H}'$ is the same hamiltonian modified with $Z = 2$ in this case.
+
+\vskip 0.5cm
+The ground state solution for the a Hydrogenic Hamiltonian is 
+\[ \psi_{100}(r) = \left(\frac{2}{\sqrt{4\pi a_0^3}}\right) e^{-r/a_0}  \]
+with the Bohr radius being
+\[ a_0 = \frac{\hbar}{mZe^2} \]
+
+So, the Bohr radii for Tritium is 
+\[ a_0^t = \frac{\hbar}{me^2} \]
+
+and since the Helium ion has $Z = 2$, its bohr radius is
+\[ a_0^{+} = \frac{\hbar}{2me^2} = \frac{a_0^t}{2}  \]
+
+\vskip 0.5cm
+the probability that the ion remains in the ground state after the sudden change is given by $\left|\inner{\phi_{100}}{\psi_{100}}\right|^2$.
+
+\begin{align*}
+  \inner{\phi_{100}}{\psi_{100}} &= \iiint \mathrm{d}^3\vec{r}  \phi_{100}^*(r) \psi_{100}(r) \\
+  &= 4\pi \int_{0}^{\infty} r^2\mathrm{d}r \; \phi_{100}^*(r) \psi_{100}(r) \\
+  &= 4\pi \int_{0}^{\infty} r^2\mathrm{d}r \; \left(\frac{2}{\sqrt{4\pi (a_0^t/2)^3}} e^{-2r/a_0^t}\right)^* \left( \frac{2}{\sqrt{4\pi (a_0^t)^3}} e^{-r/a_0^t} \right) \\
+  &= 4\pi \int_{0}^{\infty} r^2\mathrm{d}r \left(\frac{4}{4\pi} \cdot \frac{2^{3/2}}{(a_0^t)^3}\right) e^{-3r/a_0^t} \\
+  &= 4\pi \frac{\sqrt{8}}{(a_0^t)^3 \pi} \int_{0}^{\infty} r^2\mathrm{d}r \; e^{-3r/a_0^t} \\
+\end{align*}
+
+Let $y = r/a_0^t$. Then,
+\begin{align*}
+  \inner{\phi_{100}}{\psi_{100}} &= \frac{4\sqrt{8}}{(a_0^t)^3} \int_0^{\infty} (a_0^t y)^2 (a_0^t \mathrm{d}y) e^{-3y} \\
+  &= 4 \sqrt{8} \int_{0}^{\infty} \mathrm{d}y \; y^2 e^{-3y} \\
+  &= 4\sqrt{8} \cdot \left(\frac{2}{27}\right) \text{ Using Integral calculator} \\
+  &= \frac{8 \sqrt{8}}{27} \\
+  &= \frac{16 \sqrt{2}}{27} \\
+  &= 0.838
+\end{align*}
+
+Thus the probability that we find the ion still in the ground state is $\left|\inner{\phi_{100}}{\psi_{100}}\right|^2 = (0.838)^2 \approx 0.703$ 
+
+\vskip 0.5cm 
+\hrule 
+\vskip 0.5cm
+% \pagebreak
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \textbf{Question :} 
+% \section*{Question : } 
+% \begin{enumerate}[label=(\alph*)]
+  % \item
+% \end{enumerate}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Solution:}} 
+
+
+% \vskip 0.5cm 
+% \hrule 
+% \vskip 0.5cm
+% % \pagebreak
+
+
+
+
+\end{document}

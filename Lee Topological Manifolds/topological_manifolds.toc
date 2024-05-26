@@ -17,5 +17,6 @@
 \contentsline {subsubsection}{\numberline {2.4.2}The Characteristic Property and Uniqueness}{14}{subsubsection.2.4.2}%
 \contentsline {subsubsection}{\numberline {2.4.3}Adjunction Spaces}{15}{subsubsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.5}Topological Groups and Group Actions}{16}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Connectedness and Compactness}{16}{section.3}%
+\contentsline {section}{\numberline {3}Chapter 4: Connectedness and Compactness}{16}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Connectedness}{16}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Problems}{16}{subsection.3.2}%

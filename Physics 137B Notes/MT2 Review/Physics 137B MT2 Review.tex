@@ -1,0 +1,334 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Physics 137B MT2 Review},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Physics 137B MT2 Review}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+\section{Time-independent Perturbation Theory}
+
+\subsection{Non-degenerate case}
+-Do later
+
+\subsection{Degenerate case}
+\begin{itemize}
+  \item Many important systems have degenerate states, meaning the corrections to the eigenstates $\ket{n^{(1)}}$ are ill-defined due to the $1/(E^{(0)}_n - E^{(0)}_k)$ factor diverging for degenerate states.
+  \item But there is still hope. The degenerate states $\{ \ket{k}_{1}^{(0)}, \cdots, \ket{k}_{N}^{(0)} \}$ span a degenerate subspace $\mathbb{V}_{\text{degen}}$ of the original hilbert space $\mathcal{H}$. So, the eigenvectors of $\hat{H}^{(0)}$ are ambiguous: \emph{Any} linear combination $a_1 \ket{k}_{1}^{(0)} + \cdots + a_N \ket{k}_{1}^{(0)}$ is an eigenvector of the hamiltonian $\hat{H}^{(0)}$.
+  \item If we can find a different basis of $\mathbb{V}_{\text{degen}}$ whose basis vectors are 
+\end{itemize}
+
+Come back to this.
+
+\pagebreak
+
+\section{Variational Principle}
+
+Often, we only need the energies of a state (especially the ground state). If we are fine with just an estimate (actually an upper bound), then we can get away with using the \emph{Variational Principle} rather than solving the full eigenvalue problem.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \textbf{\emph{Theorem:}} Consider a system described by Hamiltonian $\hat{H}$. For \emph{any} normalized wavefunction $\psi$, we have 
+  \[ \inner{\psi}{\hat{H}|\psi}  \geq E_{\text{g.s.}} \] 
+
+  \vskip 0.5cm
+  \emph{\textbf{Proof:}} Write later. It's not long.
+\end{dottedbox}
+
+\vskip 0.5cm
+The above theorem tells us that the expected value of the hamiltonian will always be greater than the ground state, for any normalized state $\psi$. So if guess a good \emph{trial wavefunction}, perhaps using known properties of the eigenstates like parity, we can pretty often get a good estimate for the ground state energy. 
+
+\vskip 0.5cm
+More specifically, what we can do is 
+\begin{mathdefinitionbox}{Procedure}
+  \begin{itemize}
+    \item Define a trial wavefunction that depends on a (number of) parameter(s) $\psi(\alpha)$, calculate the corresponding expected energy $E(\alpha) = \inner{\psi(\alpha)}{\hat{H}|\psi(\alpha)}$.
+    \item Find where the minimum occurs by solving for $\alpha^*$ in 
+    \[ \frac{\partial E(\alpha^*)}{\partial \alpha} = 0 \]
+    \item Then, $E(\alpha^*)$ is an estimate for $E_{\text{g.s.}}$
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{Example:} Quantum Harmonic Oscillator with a Guassian Trial Function.
+\end{dottedbox}
+
+
+\vskip 1cm
+\subsection{Excited States}
+We can guess the first excited state's energy if we are able to able to guess a trial wavefunction which is orthogonal to the ground state $\inner{\psi}{0} = 0$.
+
+\begin{itemize}
+  \item In general we don't know $\ket{0}$ so this is difficult, but sometimes we can guarantee $\inner{\psi}{0} = 0$ using parity or some quantum number (ex. angular momentum) i.e. using symmetry considerations.
+\end{itemize}
+
+This works becauese 
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} $\inner{\psi}{0} = 0 \implies \inner{\psi}{\hat{H}|\psi} \geq E_1$.
+
+  \vskip 0.5cm
+  \textbf{\emph{Proof:}} 
+  \begin{align*}
+    \inner{\psi}{\hat{H}|\psi} &= \sum_{n} \underbrace{\inner{\psi}{n}}_{=0 \text{ if } n=0}\inner{n}{\hat{H}|\psi} \\
+    &= \sum_{n \neq 0} \inner{\psi}{n} E_n \inner{n}{\psi} \\
+    &= E_n \sum_{n \neq 0} \inner{\psi}{n} \inner{n}{\psi} \\
+    &= E_n \inner{\psi}{\psi} \\
+    &= E_n \geq E_{E_1} \text{  (Since $n \neq 0$)}
+  \end{align*}
+\end{dottedbox}
+
+\vskip 0.1cm
+\subsection{Excited state using ground state guess}
+If this is not possible, we can construct a trial for the 1st excited state which is orthogonal to our trial function for the ground state
+
+\begin{align*}
+  \ket{\psi_1} = \frac{\ket{\phi} - \inner{\psi_0}{\phi}}{\sqrt{N}}
+\end{align*}
+where the $\psi$'s represent trial wavefunctions and $\phi$ represents the true ground state.
+
+And $\inner{\phi}{\phi} = \inner{\psi_0}{\psi_0} = 1$
+[Expand on this section after watching recording again.]
+
+\pagebreak
+
+\section{WKB Approximation}
+
+The WKB (a.k.a. Semiclassical) approximation is useful for potentials that change slowly in space. 
+
+\vskip 1cm
+\subsection{Basic Idea}
+If we straight up have a constant potential $V(x) = V_0$, then the solutions to the TISE can be of two types depending on the energy in the region.
+
+\vskip 0.5cm
+In regions where $E > V$, the wavefunction is of the form 
+\[ \psi(x) = Ae^{\pm ikx},\;\;\;\;\;\;k = \frac{\sqrt{2m(E-V_0)} \in \R }{\hbar}  \]
+
+These solutions are oscillatory, with wavelength $\lambda = 2\pi/k$. Now, if instead of being completely constant, suppose our potential $V(x)$ is \emph{almost constant} i.e. it changes very slowly in comparison $\lambda$. It would be reasonable to think the solutions are probably still \emph{alomst sinusoidal}, just with amplitude and phase that possibly change (slowly) along space.
+
+Similary, in regions where $E < V_0$, the wavefunction is of the form 
+\[ \psi(x) = Ae^{\pm \kappa x},\;\;\;\;\;\;\kappa = \frac{\sqrt{2m(V_0 - E)} \in \R }{\hbar}  \]
+
+These solutions are exponential. So, if our potential is \emph{almost constant}, it seems reasonable that our solution should be \emph{almost exponential}, just decaying/growing at a different rate. 
+
+\vskip 0.5cm
+The approximation, however, breaks down at the turning points $E \approx V_0$. In small neighborhoods around these turning points, we solve Schroedinger's Equations using other methods and use the obtained solutions to \emph{connect} the solutions in the other regions.
+
+\vskip 1cm
+\subsection{Classically Allowed and Forbidden Regions}
+
+If we have constant potential $V(x) = V$, then the solutions are of the form 
+\[ \psi(x) = A \exp\left[\pm i \frac{p_0 x}{\hbar}\right] \] where 
+\[ p_0 = \sqrt{2m(E-V)}\] Motivated by the constant potential case, we define the \emph{local momentum} in a slowly varying $V(x)$ by
+\[ p(x) = \sqrt{2m(E-V(x))} \] and the \emph{local de Broglie Wavelength}
+\[ \lambda(x) = \frac{h}{p(x)} = \frac{2\pi \hbar}{p(x)} \]
+
+\vskip 0.5cm
+Okay, now consider the 1-D Schroedinger Equation:
+\[ \left(-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x)\right) \psi(x) = E \psi(x)  \]
+
+\vskip 0.5cm
+Or, equivalently, 
+\[ \boxed{\frac{d^2}{dx^2} \psi(x) = -\frac{p(x)}{\hbar^2} \psi(x) } \]where $\psi(x)$ is the local momentum defined earlier.
+
+\vskip 0.5cm
+Now, in general, we can assume that our wavefunction is of the form \[ \psi(x) \sim \exp\left[-\frac{i}{\hbar} S(x) \right] \](I think this works in general because we can imagine $S(x)$ is of the form $F(x) - i\hbar\ln(A(x))$, which makes $\psi(x) = A(x)\exp\left[ -\frac{i}{\hbar} F(x) \right]$ so $\psi(x)$ has a phases $F(x)$ and amplitude $A(x)$). 
+
+\vskip 0.5cm
+Anyway, plugging this into the dfferential equation above and re-expressing, the differential equation becomes \[  \boxed{\left(S'(x)\right)^2 - i\hbar S''(x) = p^2(x) } \] Now the useful bit. We claim that when $V(x)$ varies slowly, $ihS''(x) \approx 0$. There are two ways to think about this 
+\begin{itemize}
+  \item When $V(x) = V_0$ is constant, $p(x) = p_0$ is constant and obtain a solution $S(x)$ linear in $x$, so $S''(x) = 0$. Thus, for slowly varying potentials, $S''(x) \approx 0$ so $i\hbar S''(x) \approx 0$.
+  \item In the $\hbar \rightarrow 0$ limit (as weird as this is), the term $i\hbar S''(x) \approx 0$. Physically, this is like tweaking the parameters of the universe to make the local de Broglie wavelenth smaller, making the potential look constant to the quantum particle.
+\end{itemize}
+
+This motivates us to take $\hbar$ as our small parameter for $S(x)$ \[ S(x) = \sum_{n = 0}^{\infty} \hbar^n S_n(x) \] Plugging this in, we have \[  \left(S_0' +  \hbar S_1' + \hbar^2 S_2' + \cdots\right)^2 - i\hbar\left(S_0'' + \hbar S_1'' + \hbar^2 S_2'' + \cdots \right) - p^2(x) = 0  \] In the $\hbar \approx 0$, all second order (and higher) terms are treated as negligible, so we have \[ \left(S_0'\right)^2 - p^2(x) + \hbar\left(2S_0'S_1' - iS_0''\right) + \mathcal{O}(\hbar^2) = 0  \]
+
+
+\vskip 0.5cm
+Separating out the $\hbar^0$ and $\hbar^1$ terms, we get two equations:\begin{align*}
+  &\left(S_0'\right)^2 - p^2(x) = 0 \\
+  &2S_0'S_1' - iS_0'' = 0
+\end{align*} Solving these, we obtain \begin{align*}
+  &S_0(x) = \pm\int_{x_0}^{x} p(x') dx'\\
+  &S_1(x) = -\frac{1}{2i} \ln\left[p(x)\right] + C
+\end{align*} So, reconstructing the wavefunction, \begin{align*}
+  \psi(x) &= \exp\left[-\frac{i}{\hbar}S(x)\right] \approx \exp\left[-\frac{i}{\hbar} \left(S_0(x) + \hbar S_1(x)\right) \right] \\
+  &= \exp\left[ \pm\int_{x_0}^{x} p(x') dx' \right] \exp\left[ -\frac{1}{2i} \ln\left[p(x)\right] + C \right] \\
+  &= \frac{A}{\sqrt{p(x)}} \exp\left[ \pm\int_{x_0}^{x} p(x') dx' \right]
+\end{align*}
+
+\vskip 1cm
+Thus, the general solution to the WKB Approximation Scheme is \[ \boxed{ \psi(x) = \frac{A}{\sqrt{p(x)}} \exp\left[ + \int_{x_0}^{x} p(x') dx' \right] + \frac{B}{\sqrt{p(x)}} \exp\left[ -\int_{x_0}^{x} p(x') dx' \right] }  \] in the classically allowed region ($E > V(x)$) and \[ \boxed{ \psi(x) = \frac{A}{\sqrt{|p(x)|}} \exp\left[ + \int_{x_0}^{x} |p(x')| dx' \right] + \frac{B}{\sqrt{|p(x)|}} \exp\left[ -\int_{x_0}^{x} |p(x')| dx' \right] }  \] in the classically forbidden ($E < V(x)$ ) region.
+
+
+
+\subsection{Connection Formulae}
+Write soon
+
+\vskip 0.5cm
+\subsection*{Why is it called 'Semiclassical Approximation'?}
+The \emph{de Broglie wavelength} of a particle tells us when classical mechanics is an accurate description. 
+\[ \lambda_{\text{de Broglie}} = \frac{h}{p} = \frac{2\pi \hbar}{p} \]
+
+When our problem is on length-scales much greater than $\lambda_{\text{de Broglie}}$, classical mechanics gives us physically insightful results. 
+
+\vskip 0.5cm
+Now, if we forcefully take the limit $\hbar \rightarrow 0$, then $\lambda_{\text{de Broglie}} \rightarrow 0$ so classical mechanics becomes a good description of reality (in a super handwavey way). In the WKB Approximation, we treat $\hbar$ as our tiny parameter for the eigenstates, and the region in which the approximation holds if roughly when the local de Broglie wavelength varies slowly.
+
+\vskip 0.5cm
+\subsection{Arbitrary Potential between Walls}
+
+\vskip 0.5cm
+\subsection{Tunneling}
+Write soon
+
+
+
+\pagebreak
+
+\section{Time-dependent Perturbation Theory}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

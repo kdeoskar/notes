@@ -1,0 +1,391 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 214 HW 10},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\sphere}{\mathbb{S}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defeq}{\vcentcolon=}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math 214 Homework 10}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q10-15.} Let $V$ be a finite(n)-dimensional real vector space, and let $G_k(V)$ be the Grassmannian of $k-$dimensional subspaces of $V$. Let $T$ be the subset $G_k(V) \times V$ defined by 
+\[ T = \{(S, v) \in G_k(V) \times V \;:\; v \in S \} \] Show that $T$ is a smooth rank-$k$ subbundle of the product bundle $G_k(V) \times V \rightarrow G_k(V)$, and is thus a smooth rank-$k$ vector bundle over $G_k(V)$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+We have a product bundle $G_k(V) \times V \rightarrow G_k(V)$ and want to show that $T = \{(S, v) \in G_k(V) \times V \;:\; v \in S \}$ is a subbundle.
+
+\vskip 0.5cm
+Notice that for each $k-$dimensional subspace of $x \in G_k(V)$, we have a linear subspace \[ T_x = \{(x, v) \;:\; x \in G_k(V), v \in x \} \subseteq G_k(V) \times V \]
+
+\vskip 0.5cm
+Lemma 10.32 tells us that $T = \bigcup_{x \in G_k(V)} T_x$ is a subbundle of $G_k(V) \times V$ if and only if each point of $G_k(V)$ has a neighborhood $U$ on which there exist smooth sections $\sigma_1, \cdots, \sigma_{\mathrm{dim}(G_k(V))} : U \rightarrow G_k(V) \times V$ with the property that $\sigma_1, \cdots, \sigma_{k(n-k)} $ form a basis for $T_x$ at each $x \in U$.
+
+\vskip 0.5cm
+Recall that we can cover $G_k(V)$ with charts that look like $\phi_I : \mathrm{GL}(V_I, V_J) \rightarrow \mathrm{Gr}_k(V)$ defined by 
+\[ \phi_I(L) = \mathrm{graph}(L) = \{ v + L(v) \;:\; v \in V_I \} \subseteq V \]
+where $I \subseteq \{1, \cdots, n\}$,  $J = \{1, \cdots, n\} \setminus I$, and $V_I = \mathrm{span}(e_i)_{i \in I}$. Also, note that $\mathrm{dim} \mathrm{GL}(V_I, V_J) = k(n-k)$.
+
+
+\vskip 0.5cm
+Each $x \in G_k(V)$ is a $k-$dimensional linear space whose elements are $n-$dimensional vectors. So, for an open set $U$ containing $x = \mathrm{span}\{ v_1, \cdots, v_k \} \in G_k(V)$ we can define the section $\sigma_i : U \rightarrow G_k(V) \times V$ by
+\[ x \mapsto (x, x^i) \] where $x^i$ is the $i^{\text{th}}$ coordinate function in the coordinate $\phi_I(L)$ for $1 \leq i \leq k(n-k)$. Then, certainly, the sections $\sigma_1, \cdots, \sigma_{k(n-k)}$ form a basis for $T_x$. So, Lemma 10.32 gives us the desired result.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q10-17.} Suppose $M \subseteq \R^n$ is an immersed submanifold. Prove that the ambient tangent bundle $\restr{T\R^n}{M}$ is isomorphic to the Whitney sum $TM \oplus NM$, where $NM \rightarrow M$ is the normal bundle.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+Given an immersed submanifold $M \subseteq \R^n$, we define the ambient tangent bundle $\restr{T\R^n}{M}$ to be the set \[ \restr{T\R^n}{M} = \bigcup_{p \in M} E_p = \bigcup_{p \in M} T_p\R^n  \] with the projection $\pi_M : \restr{T\R^n}{M} \rightarrow M $ obtained by restricting $\pi$.
+
+\vskip 0.5cm
+Recall that the normal space to a manifold $M$ at a point $x \in M$ is the $(n-m)$ dimensional subspace $N_x M \subseteq T_x \R^n$ consisting of all vectors orthogonal to $T_x M$ and the normal bundle to manifold $M$ is the subset of $T\R^n \approx \R^n \times \R^n$ defined as  
+\[ NM = \{ (x, v) \in \R^n \times \R^n \;:\; x \in M, v \in N_x M \} \]
+
+\vskip 0.5cm
+To show that $\restr{T\R^n}{M} \cong TM \oplus NM$, let's construct an isomorphism between the two. For any $p \in M$,since $N_p M$ and $T_p M$ are orthogonal compliments in $T_p \R^n$ we have a natural isomorphism $N_p M \oplus T_p M \cong T_p \R^n$. Then, we have 
+\[ \bigcup_{p \in M} N_p M \oplus T_pM \cong \bigcup_{p \in M} T_p \R^n \]
+
+We want to show that these local isomorphisms can be "combined" to get isomorphism between the whitney sum bundle and the ambient bundle.
+
+\vskip 0.5cm
+To do so, note that the map $\phi : TM \oplus NM \rightarrow \restr{T\R^n}{M}$ defined by $\phi(p, (v,w)) = (p, \phi_p(v,w))$ is smooth since the local isomorphisms $\phi_p$ are linear and bundle structures are smooth. Also, $\phi$ restricts to a linear isomorphism on each fiber, since $\phi_p$ is a linear isomorphism for each $p \in M$.
+
+\vskip 0.5cm
+To show that $\phi$ is an isomorphism, we need to construct the inverse. Define a map $\psi : \restr{T\R^n}{M} \rightarrow TM \oplus NM$ by $\psi(p, x) = (p, (x_p, y_p))$ where $x_p$ is the orthogonal projection of $x$ onto $T_p M $ and $y_p = x - x_p$ is the orthogonal projection of $x$ onto $N_x M$. Note that $\psi$ is smooth, since the orthogonal prjections are smooth linear maps. 
+
+\vskip 0.5cm
+Both maps are one-to-one and onto, thus we have that $\phi$ is an isomorphism. So,
+
+\[ \boxed{\restr{T\R^n}{M} \cong TM \oplus NM} \]
+ 
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-5.} For any smooth manifold $M$, show that $T^*M$ is a trivial vector bundle if and only if $TM$ is trivial. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+
+Suppose $TM$ is trivial. Then, $M$ is parallelizable and admits a global frame $\left(E_1, \cdots, E_n \right)$ which serves as a basis of $T_p M$, for all $p \in M$. Take some open cover $\{U_{\alpha}\}_{\alpha \in A}$ of $M$. Then, $\restr{\left(E_1, \cdots, E_n\right)}{U_{\alpha}}$ is a smooth local frame for all $\alpha \in A$. 
+
+\vskip 0.5cm
+Then, as in Example 11.13 in LeeSM, every smooth local frame has a dual smooth local coframe $\restr{\left(\epsilon^1, \cdots, \epsilon^n\right)}{U_{\alpha}}$ such that $\restr{\epsilon^j}{U_{\alpha}} \restr{E_i}{U_{\alpha}} = \delta^j_i$. THen, by the gluing lemma for smooth manifolds applied to $\epsilon^j : M \rightarrow T^*M$, we can extend to a global section of the tangent bundle to obtaina global coframe for $T^* M$. Thus $T^*M$ is also trivial. 
+
+\vskip 0.5cm
+The converse follows exactly the same procedure.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-6.} Suppose $M$ is a smooth $n-$manifold, $p \in M$, and $y^1, \cdots, y^k$ are smooth real-valued functions defined on a neighborhood of $p$ in $M$. Prove the following statements.
+\begin{enumerate}[label=(\alph*)]
+  \item If $k = n$ and $\left( \restr{dy^1}{p}, \cdots, \restr{dy^n}{p} \right)$ is a basis for $T_p^*M$, then $\left(y^1, \cdots, y^n\right)$ are smooth coordinates for $M$ in some neighborhood of $p$. 
+  \item If $\left(\restr{dy^1}{p}, \cdots, \restr{dy^k}{p}\right)$ is a linearly independent $k-$tuple of covectors and $k < n$, then there are smooth functions $y^{k+1}, \cdots, y^n$ such that $\left(y^1, \cdots, y^{n}\right)$ are smooth coordinates for $M$ in a neighborhood of $p$.
+  \item If $\left(\restr{dy^1}{p}, \cdots, \restr{dy^k}{p}\right)$ span $T_p^* M$, there are indices $i_1, \cdots, i_n$ such that $\left(y^{i_1}, \cdots, y^{i_n}\right)$ are smooth coordinates for $M$ in a neighborhood of $p$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Let $\phi = \left(y^1, \cdots, y^n\right) : U \rightarrow M$ for some open subset $p \in U \subseteq_{open} M$. To show that $y^1, \cdots, y^n$ form smooth coordinates for $M$ in some neighborhood of $p$ we need to show that $\phi$ is a local diffeomorphism.
+  
+  
+  This can be achieved by showing that $d\phi$ is invertible (since then the Inverse Function Theorem will imply that $\phi$ is a local diffeomorphism). 
+
+
+  We know that $d\phi_p : T_{p} U \cong T_{p} M \rightarrow T_{\phi(p)} \R^n$ is a map between tangent spaces of equal dimension. So, to show bijection, it suffices to show $d\phi$ is injective.
+
+
+  Since $\left(\restr{dy^1}{p}, \cdots, \restr{dy^n}{p}\right)$ forms a smooth coframe for the cotangent bundle, we know there must be a smooth frame $\left( \partial / \partial y^1, \cdots, \partial / \partial y^n \right)$ for the tangent bundle dual to the coframe. 
+
+  Now, if $\left(x^1, \cdots, x^n\right)$ are the coordinate functions on $\R^n$, the coordinate representation of $\phi$ has components $\hat{\phi}^j = x^j \circ \phi = y^j$. Then, consider any $v = v^i \frac{\partial}{\partial x^i} \in T_pM, v \neq 0$. Then, 
+  \begin{align*}
+    d\phi_p(v) &= d\phi_p \left(v^i(p) \frac{\partial}{\partial y^i} \right) \\
+    &= \frac{\partial \hat{\phi}^j}{\partial y^i}(\hat{p}) \frac{\partial}{\partial x^j} \\
+    &= \underbrace{\frac{\partial y^j}{\partial y^i}}_{\delta^j_i}(\hat{p}) \frac{\partial}{\partial x^j} \\
+    &=v^j \frac{\partial}{\partial x^j}
+  \end{align*}
+  which is non-zero since at least one of the components $v^j$ is non-zero. This shows that $d\phi$ is injective.
+
+  Therefore, $d\phi$ is a bijection i.e. it is invertible, so by the Inverse Function Theorem, $\phi$ is a local diffeomorphism meaning $\left(y^1, \cdots, y^n\right)$ form coordinate functions on some open neighborhood of $p$.
+
+  \vskip 0.5cm
+  \begin{dottedbox}
+    \emph{Lemma for (b):} Let $M$ be a smooth manifold and $p \in M$ with $\lambda \in T_p^*M$. Then, there exists a neighborhood $U$ of $p$ and smooth function $y^j : M \rightarrow \R$ such that $\restr{dy}{p} = \lambda_p$.
+
+    \vskip 0.5cm
+    \emph{Proof:} Let $\left(U, (x^i)\right)$ be a smooth chart with $p \in U$. Let $\restr{\frac{\partial}{\partial x^i}}{p}$ be the standard basis for $T_p M$, and $\restr{dx^i}{p}$ be the dual basis i.e. basis for $T_p^* M$. Then, we can write 
+    \[ \lambda = \lambda_i \restr{dx^i}{p} \] for scalars $\lambda_i$. Define $y = \lambda^i x_i$ where $\lambda^i = \lambda_i$. This is smooth since its just a linear combination of the coordinate functions. Then, indeed, we find 
+    \begin{align*}
+      \restr{dy}{p} &= d \left( \lambda^i x_i \right) \\
+      &= \lambda_i dx^i \\
+      &= \lambda
+    \end{align*}
+  \end{dottedbox}
+
+
+  \vskip 0.5cm
+  \item $T_p^* M$ is an $n-$dimensional vector space, so we can choose $\omega^{k+1}, \cdots, \omega^n \in T_p^*M$ such that $\left(dy^1, \cdots, dy^k, \omega^{k+1}, \cdots, \omega^{n}\right)$ form a basis for $T_p^*M$. Then, we know from the Lemma above that there exists an open neighborhood $U$ of $p$ and smooth coordinate maps $y_{k+1}, \cdots, y_n$ such that $d\left(y_{k+1}\right)|_{p} = \omega^{k+1}, \cdots, d\left(y_{n}\right)|_{p} = \omega^{n}$. Then, by part (a), $y_1, \cdots, y_n$ form smooth coordinates for $M$ in a neighborhood of $p$.
+  
+  \vskip 0.5cm
+  \item Assuming $k > n$, the fact that $\left(\restr{dy^1}{p}, \cdots, \restr{dy^k}{p}\right)$ span $T_p^* M$ means that there is some subset of $n$ of these vectors which also span $T_p^*M$ i.e. there exist indices $i_1, \cdots, i_n$ such that $\left(\restr{dy^{i_1}}{p}, \cdots, \restr{dy^{i_n}}{p}\right)$ form a basis for $T_p^* M$. Then, once again, by part (a) we get the desired result.
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-7.} In the following problems, $M$ and $N$ are smooth manifolds, $F : M \rightarrow N$ is a smooth map, and $\omega \in \mathfrak{X}^*(N)$. Compute $F^* \omega$ in each case.
+\begin{enumerate}[label=(\alph*)]
+  \item $M = N = \R^2$; \\ $F(s, t) = \left(st, e^t\right)$; \\$\omega = xdy - ydx$
+  \item $M = \R^2, N = \R^3$; \\$F(\theta, \phi) = \left( \left(\cos\phi + 2\right)\cos\theta, \left(\cos\phi + 2\right)\sin\theta, \sin\phi \right)$; \\$\omega =z^2 dx$
+  \item $M = \{(s, t) \in \R^2 \;:\;s^2 + t^2 < 1 \}, N = \R^3 \setminus \{0\}$; \\$F(s,t) = \left( s, t, \sqrt{1-s^2-t^2} \right)$; \\$\omega = \left(1-x^2-y^2\right)dz$
+\end{enumerate} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Solutions:}
+
+Using Proposition 11.26, we can compute the pullback of a covector field $\omega \in \mathfrak{X}^*(N)$ under the action of smooth map $F : M \rightarrow N$ using the formula
+\[ F^* \omega = \left(\omega_j \circ F\right) d \left(y^j \circ F\right) \]
+
+\begin{enumerate}[label=(\alph*)]
+  \item We have 
+  \begin{align*}
+    F^* \omega &= \left(x \circ F\right) d\left(y \circ F\right) + \left(y \circ F\right)d\left(x \circ F\right) \\
+    &= st \cdot d\left( e^t \right) + e^t d\left( st \right) \\
+    &= st \cdot te^t + st \cdot e^t \\
+  \implies F^*\omega &= st\cdot (e^{t} + 1)
+  \end{align*}
+
+  \vskip 0.5cm
+  \item \begin{align*}
+    F^*\omega &= \left( z^2 \circ F \right) d\left(x \circ F\right) \\
+    &= \left( \sin^2\phi \right) \cdot d \left( \left( \cos\phi  + 2\right) \cos\theta \right) \\
+    &= \sin^2\phi \cdot \left[ -\left(\cos\phi + 2\right)\sin\theta - \sin\phi \cos\theta \right] \\
+    &=-\sin^2\phi \cdot \left[ \left(\cos\phi + 2\right)\sin\theta + \sin\phi \cos\theta \right] \\
+  \end{align*}
+
+  \vskip 0.5cm
+  \item \begin{align*}
+    F^* \omega &= \left((1-x^2-y^2) \circ F\right) d\left( z \circ F \right) \\
+    &= \left(1-s^2-t^2\right) \cdot d\left(\sqrt{1-s^2-t^2}\right) \\
+    &= \left(1-s^2-t^2\right) \cdot \left[ \frac{-s -t}{\sqrt{1-s^2-t^2}} \right] \\
+    &= -(s+t)\sqrt{1-s^2-t^2}
+  \end{align*}
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Q11-11.} Let $M$ be a smooth manifold, and $C \subseteq M$ be an embedded submanifold. Let $f \in C^{\infty}(M)$, and suppose $p \in C$ is a point at which $f$ attains a local maximum or minmium value among points in $C$. Given a smooth local defining function $\Phi : U \rightarrow \R^k$ for $C$ on a neighborhood $U$ of $p$ in $M$, show that there are real numbers $\lambda_1, \cdots, \lambda_k$ (called \emph{\textbf{Lagrange Multipliers}}) such that 
+\[ df_p = \lambda_1 \restr{d\Phi^1}{p} + \cdots + \lambda_1 \restr{d\Phi^k}{p} \] 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\textbf{Proof:}
+
+% For each point $p \in C$, we have a neighborhood $U \subseteq M$ and a smooth local defining map $\Phi : U \rightarrow \R^k$.
+
+% \vskip 0.5cm
+% Since $\Phi$ is a map from $U$ to $\R^{\mathrm{dim}M - \mathrm{dim}C}$, $C$ has codimension $k$ and dimension $(n-k)$. Now, since $C$ is an embedded submanifold it satisfies the local $(n-k)$ slice condition i.e. there is a chart $(V, (x^i) )$ of $M$ such that any $p \in C \cap V$ has coordinates of the form 
+% \[ \left(x^1, \cdots, x^{n-k}, c^{n-k+1}, \cdots, c^{n}\right) \]
+
+% WLOG we can assume that the last $n-k+1$ coordinates vanish on $C \cap V$.
+
+\vskip 0.25cm
+The smooth function $f : M \rightarrow \R$ attains a local maximum or minmium on $C \subseteq_{\text{embed.}} M$. So, for $p \in C$ and $v \in T_p C$, we have $df_p(v) = 0$. Now, $\Phi$ is a local defining function for $C$, so its differential has full rank $k$ at every $p \in C$. So the component functions of the differential, $d\Phi^i$ for $i = 1,\cdots,k$, are linearly independent.
+
+\vskip 0.25cm
+The component functions $d\Phi^i$ form a basis for a $k-$dimensional subspace of the cotangent space $T_p^*M$. In fact, this subspace is exactly the annihilator of $T_p C$ i.e. the set of all covectors that vanish on $T_p C$. 
+
+\begin{dottedbox}
+  This can be seen as 
+  \begin{itemize}
+    \item For any $v \in T_p C$ we have $d\Phi^i(v) = 0$ because $f$ attains a local extremum on $C$. 
+  \end{itemize}
+\end{dottedbox}
+
+Now, any covector that vanishes on $T_p C$ must be a linear combination of the basis elements, so 
+\[ df_p = \lambda_1 \restr{d\Phi^1}{p} + \cdots + \lambda_k \restr{d\Phi^k}{p} \] for scalars $\lambda_1, \cdots, \lambda_k$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \textbf{Q11-.} 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \textbf{Proof:}
+
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+\end{document}

@@ -1,0 +1,468 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 5},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 5}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+Are the following subsets of $\C$ simply connected? Answer "yes" or "no".
+\begin{enumerate}[label=(\alph*)]
+  \item $\R$
+  \item $\C \setminus \R$
+  \item $\{ z \in \C : \text{Im}(z) \geq 0 \}$
+  \item $\C \setminus B_r(z_0)$ where $z_0 \in \C$ and $r \in \R_{\geq 0}$
+  \item $\C \setminus \{ z \in \C : \text{Re}(z) \leq 0 \}$
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+
+\begin{enumerate}[label=(\alph*)]
+  \item Yes  
+  \item No
+  \item Yes 
+  \item No 
+  \item Yes
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 2}
+\vskip 0.5cm
+Let $U = C \setminus i\R_{\leq 0}$. Let $\log_U$ be the logarithm function on $U$. Express the following complex numbers in the form $x + iy$ where $x, \in \R$.
+\begin{enumerate}[label=(\alph*)]
+  \item $\log_{U} (1 + \sqrt{3}i)$
+  \item $\log_{U} (-e)$
+  \item $\log_{U} (1 - i)$
+  \item $\log_{U} (1 - \sqrt{3}i)$
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+The logarithm with the branch cut along the negative imaginary axis is defined as \[ \log(z) = \log(r) + i\theta \] where $z = re^{i\theta}$ with $\theta \in \left(-\pi/2, +3\pi/2\right)$.
+
+\vskip 0.5cm
+\begin{enumerate}[label=(\alph*)]
+  \item Let's begin by expressing $z = 1 + \sqrt{3}i$ in polar form:
+  \begin{align*}
+    |1 + \sqrt{3}| &= \sqrt{1^2 + \left(\sqrt{3}\right)^2} \\
+    &= \sqrt{1 + 3} = \sqrt{4} = 2 \\
+    \implies& r = 2
+  \end{align*}
+  and 
+  \begin{align*}
+    \theta &= \arctan\left(\frac{\sqrt{3}}{1}\right) \\
+    \implies& \theta = \frac{\pi}{3}
+  \end{align*}
+  Thus,
+  \[ \boxed{ \log_U\left(1 + \sqrt{3}i\right) = \log(2) + i\frac{\pi}{3}} \]
+
+  \vskip 0.5cm
+  \item Now, $z = -e$ can be expressed in polar form as $z = e \cdot e^{i \pi}$, so 
+  \begin{align*}
+    \log_U \left(-e\right) &= \log(e) + i\pi
+  \end{align*}
+  \[ \boxed{ \log_U \left(-e\right) =  1 + i\pi} \]
+
+  \vskip 0.5cm
+  \item In polar form, $1 - i = \sqrt{2} e^{i \cdot \left(-\pi/4\right)}$ so 
+  \[ \boxed{ \log_U(1 - i) = \log\left(\sqrt{2}\right) - i \frac{\pi}{4} } \]
+
+  \vskip 0.5cm
+  \item In polar form, $1 - \sqrt{3}i = 2e^{i \cdot -pi/3}$, so 
+  \[ \boxed{\log_U\left(1 - \sqrt{3}i\right) = \log(2) - i\frac{\pi}{3}} \]
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Give an example of a simply connected open subset $U \subset \C$ and $z_1, z_2 \in U$ such that $z_1 z_2 \in U$ but 
+\[ \log_U\left(z_1 z_2\right) \neq \log_U \left(z_1\right) + \log_U \left(z_2\right) \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Consider the open subset $U \equiv \C \setminus \R_{\leq 0}$ and consider $z_1 = 2e^{i \pi/2}$, $z_2 = 2e^{i 3\pi/4}$. Then, 
+\[ z_1 z_2 = 4 e^{i \left(\pi/2 + 3\pi/4 \right)} = 4 e^{i \left(5\pi/4 \right)} = 4e^{-i3\pi/4} \]
+
+where we must re-express the argument $\theta$ because the logarithm on $U \C \setminus \R_{\leq 0}$ is defined as 
+\[ \log_U(z) = \log(r) + i\theta \]
+where $z = r + i\theta$ and $\left| \theta \right| < \pi$
+
+and 
+\begin{align*}
+  \log_U(z_1z_2) &= \log_U(4e^{i \cdot \left(-3\pi/4\right)}) \\
+  &= \log(2) - i\frac{3\pi}{4}
+\end{align*}
+
+whereas 
+\begin{align*}
+  \log_U\left(z_1\right) + \log_U\left(z_1\right) &= \log_U\left(2e^{0\pi/2}\right) + \log_U\left(2e^{i3\pi/4}\right) \\
+  &= \left( \log(2) + i\frac{\pi}{2} \right) + \left( \log(2) + i\frac{3\pi}{4}\right) \\
+  &= 2 \cdot \log(2) + i \left( \frac{\pi}{2} + \frac{3\pi}{4}\right) \\
+  &= \log(4) + i \frac{5\pi}{4}
+\end{align*}
+
+So we notice that when $z_1z_2$ crosses the branch cut, as in our case, we get 
+\[ \log_U\left(z_1 z_2\right) \neq \log_U \left(z_1\right) + \log_U \left(z_2\right) \]
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Let $f = \frac{1}{z^2 - z}$, viewed as a function on $U \equiv \C \setminus \{0, 1, -1\}$. For the following curves, evaluate the quantity 
+\[  \int_{{\gamma_1}} f(z) dz -  \int_{{\gamma_0}} f(z) dz  \]
+\begin{enumerate}[label=(\alph*)]
+  \item Draw image later
+  \item Draw image later
+  \item Draw image later
+\end{enumerate}
+
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item We want to evaluate 
+  \[  \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz = \int_{{\gamma_1}} f(z) dz + \int_{{-\gamma_0}} f(z) dz  \]
+  
+  Integrating over $\gamma_1$ and then integrating over $-\gamma_0$ amounts to integrating over a closed loop. So, 
+  \begin{align*}
+    \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz &= \int_{\gamma} f(z) dz \\
+    &= \int_{\gamma} \frac{1}{z(z-1)} dz \\
+    &= \int_{\gamma} \frac{g(z)}{z - 0} dz
+  \end{align*}
+  where $g(z) = 1/(z-1)$ and $\gamma$ is a closed loop centered at the origin. Then, applying the Cauchy Integral formula, 
+  \begin{align*}
+    \int_{\gamma} \frac{g(z)}{z - 0} dz &= 2\pi i \cdot g(0) \\
+    &= 2\pi i \cdot (-1) \\
+    &= -2\pi i
+  \end{align*}
+  So, 
+  \[ \boxed{ \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz = -2\pi i  } \]
+
+  \vskip 0.5cm
+  \item Carrying out the same procedure, we have 
+  \begin{align*}
+    \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz = \int_{\gamma} \frac{g(z)}{z-0} + \frac{h(z)}{z-1} dz 
+  \end{align*}
+  where $g(z) = \frac{1}{z-1}$, $h(z) = \frac{1}{z-0}$, and $\gamma$ is the closed curve enclosing $0$ and $1$ formed by traversing $\gamma_1$ and then $-\gamma_0$.
+  
+  \vskip 0.25cm
+  Applying Cauchy's Integral Formula, 
+  \begin{align*}
+    \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz &= 2\pi i g(0) + 2\pi i h(1) \\
+    &= 2\pi i \left[ -1 + 1 \right] \\
+    &= 0
+  \end{align*}
+
+  \vskip 0.5cm
+  \item This time, the contour $\gamma_1 + \left( - \gamma_0\right)$ is a closed contour enclosing $-1$, So
+  \begin{align*}
+    \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz &= \int_{\gamma} \frac{1}{z^2 - z} dz \\
+    &= \int_{\gamma} \frac{1}{z^2 - z} \cdot \frac{z^2 + z}{z^2 + z} dz \\
+    &= \int_{\gamma} \frac{z^2 + z}{z^4 - z^2} dz \\
+    &= \int_{\gamma} \frac{z^2 + z}{z^2 \left(z^2 - 1\right)} dz \\
+    &= \int_{\gamma} \frac{j(z)}{z^2 - 1} dz
+  \end{align*}
+  where $j(z) = \frac{z^2 + z}{z} = 1 + \frac{1}{z}$.
+
+  \vskip 0.5cm
+  Then, applying Cauchy's Integral Formula, 
+  \begin{align*}
+    \int_{{\gamma_1}} f(z) dz - \int_{{\gamma_0}} f(z) dz &= 2\pi i j(-1) \\
+    &= 2\pi i \cdot \left(1-1\right) \\
+    &= 0
+  \end{align*}
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+Assume the result that if $\gamma_0, \gamma_1$ are homotopic curves in a subset $U \subseteq \C$ and $f$ is a holomorphic function on $U$, then 
+\[  \int_{{\gamma_0}} f(z)dz =  \int_{{\gamma_1}} f(z)dz \]
+
+Using this, show that if $f$ is any holomorphic function on a simply connected open subset $U \subseteq \C$, then $f$ has a primitive on $U$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Choose any $z_0 \in U$, and define the function for any $z \in U$ as $F(z) = \int_{\gamma} f(w) dw$ where $\gamma$ is a path between $z$ and $z_0$. This map is well defined because on a simply connected open subset, any two curves $\gamma_0, \gamma_1$ between $z_0, z$ will be homotopic and so by our assumption we have 
+\[ \int_{{\gamma_0}} f(w) dw = \int_{{\gamma_1}} f(w)dw  \]
+
+\vskip 0.5cm
+We claim that $F(z)$ is the primitive of $f(z)$ on $U$. Let's now prove this.
+
+\vskip 0.5cm
+For small enough $h \in \C$, we will have $\overline{B_h(z_0)} \in U$ i.e. $z, z+h \in \C$. Then,
+\begin{align*}
+  F(z+h) - F(z) &= \int_{z_0}^{z} f(w) dw - \int_{z_0}^{z+h} f(w) dw \\
+  &= \int_{z}^{z+h} f(w) dw \\
+  \implies \frac{F(z+h) - F(z)}{h} &= \frac{1}{h}\int_{z}^{z+h} f(w) dw  \\
+  \implies \lim_{h \rightarrow \infty} \frac{F(z+h) - F(z)}{h} &= \lim_{h \rightarrow 0} \frac{1}{h} \int_{z}^{z+h} f(w) dw
+\end{align*}
+
+We can calculate the limit by integrating along the straight line connecting $z$ and $z+h$ which we can parametrize as 
+\[ \gamma(t) = z + th \] for $t \in [0, 1]$
+\begin{align*}
+  \lim_{h \rightarrow 0} \frac{1}{h} \int_{z}^{z+h} f(w) dw &=  \lim_{h \rightarrow 0} \frac{1}{h} \int_{0}^{1} f(z + th) \cdot \left(h\right) dt\\
+  &= \lim_{h \rightarrow 0} \int_{0}^{1} f(z + th) dt \\
+  &= f(z)
+\end{align*}
+
+Therefore, 
+\[  \boxed{ \lim_{h \rightarrow \infty} \frac{F(z+h) - F(z)}{h}  = f(z) }  \]
+
+\vskip 0.5cm
+So, $F(z)$ is indeed the primitive of $f(z)$!
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+\vskip 0.5cm
+Let $U \subseteq \C$ be an open subset and $f : U \rightarrow \C$ be a function such that $\int_T f(z) dz = 0$ for every (parametrized) triangle $T \subseteq U$. Prove that $f$ is holomorphic on all of $U$.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+
+Consder a point $a \in U$. Since $U$ is an open set, there is some $r > 0$ such that $B_r(a) \subseteq U$. The restriction of $f$ to this open ball, $\restr{f}{B_r(a)}$, is continuous and  satisfies the property that 
+\[ \int_{\gamma} f(z) dz = 0 \]
+for all triangular contours contained in $B_r(a)$.
+
+\vskip 0.5cm
+Let's define $F : B_r(a) \rightarrow \C$ as 
+\[ F(z) = \int_{[a,z]} f(z) dz \]
+
+where $[a, z]$ is the line segment from $a$ to $z$ in $\C$. This function is well defined because $B_r(a)$ is simply-connected.
+
+\vskip 0.5cm
+Now,
+\begin{align*}
+  F'(z) &=\lim_{h\to0}\frac{F(z+h)-F(z)}h\\
+  &=\lim_{h\to0}\frac{\int_{[a,z+h]}f(w)\,\mathrm{d}w-\int_{[a,z]}f(w)\,\mathrm{d}w}h\\
+  &=\lim_{h\to0}\frac{\overbrace{\int_{[a,z+h]}f(w)\,\mathrm{d}w+\int_{[z+h,z]}f(w)\,\mathrm{d}w+\int_{[z,a]}f(w)\,\mathrm{d}w}^{=\int_\gamma f(w)\,\mathrm{d}w=0}+\int_{[z,z+h]}f(w)\,\mathrm{d}w}h\\
+  &=\lim_{h\to0}\frac{\int_{[z,z+h]}f(w)\,\mathrm{d}w}h\\
+  &=\lim_{h\to0}\frac1h\int_0^1f(z+th)\cdot h\,\mathrm{d}t\\
+  &=\lim_{h\to0}\int_0^1f(z+th)\,\mathrm{d}t\\
+  &=\int_0^1\lim_{h\to0}f(z+th)\,\mathrm{d}t\\
+  &=\int_0^1f(z)\,\mathrm{d}t\qquad(f\text{ continuous})\\
+  &=f(z)
+\end{align*}
+
+\vskip 0.5cm
+So, $F(z)$ is holomorphic on $B_r(a)$ with derivative $f(z)$. But we know that holomorphic functions are infinitely differentiable -- meaning $f(z)$ is also holomorphic on $B_r(a)$.
+
+\vskip 0.5cm
+Since $a \in U$ was chosen arbtrarily, the above argument holds for all points in $U$ so we have arrived at the desired result.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

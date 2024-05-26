@@ -1,0 +1,260 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture (not sure)},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture (not sure)}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{April 8 - The Agument Principle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To start, let's recall a lemma from the homework.
+
+\begin{dottedbox}
+  \emph{\textbf{Lemma:}} Let $f$ be meromorphic at $z_0$ with zero of order $z \in \mathbb{Z}$. Then, $f'/f$ has a simple pole at $z_0$ if $n \neq 0$ or a removable pole at $z_0$ if $n = 0$ with residue $n$.
+\end{dottedbox}
+
+\emph{\textbf{Proof: (outline)}}
+By the structure theorem, 
+\[ f(z)  (z-z_0)^n h(z) \]  where $h(z)$ is holomorphic and non-vanishing at $z_0$. Then, 
+\begin{align*}
+  \frac{f'}{f} &= \frac{n(z-z_0)^{n-1}h(z) + h'(z)(z-z_0)^n}{(z-z_0)^n h(z)} \\
+  &= \frac{n}{z-z_0} + \underbrace{\frac{h'(z)}{h(z)}}_{\text{holomorphic}}
+\end{align*}
+
+\vskip 0.5cm
+The Argument Principle arises from combining this observation with the Residue theorem.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem: (The Arguement Principle)}} Let $f$ be meromorphic on a neighborhood $\overline{U}$. Then,
+  \[ \frac{1}{2\pi i} \int_{\partial U} \frac{f'(z)}{f(z)} dz = \begin{matrix}
+    &\text{\# of zeroes of $f$ in $U$} \\
+    &-\text{\# of poles of $f$ in $U$} \\
+  \end{matrix} \] 
+  where the zeroes and poles are counted \emph{with} multiplicity.
+\end{dottedbox}
+
+\emph{\textbf{Proof:}} Using the Residue Theorem, 
+\begin{align*}
+  \frac{1}{2\pi i} \int_{\partial U} \frac{f'(z)}{f(z)}dz &= \sum_{{z_j}} \mathrm{Res}_{{z_j}} \left(\frac{f'(z)}{f(z)}\right)
+\end{align*}
+
+where the $z_j$'s are zeros/poles of $f$. By the lemma above, $\mathrm{Res}_{{z_j}} \left(\frac{f'(z)}{f(z)}\right)$ is just the order of each zero (or "minus" the order if it is a pole). So, we have arrived at the desired result.
+
+\vskip 1cm
+\subsection{Some Consequences the Argument Principle}
+
+\begin{dottedbox}
+  \emph{\textbf{Rouche's Theorem:}} Suppose $f, g$ are holomorphic on a neighborhood of $\overline{U} \subseteq \C$. Assume that $|f(z)| > |g(z)|$ for all $z \in \partial U$. Then, the number of zeroes of $f$ in $U$ equals the number of zeroes of $f + g$ in $U$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}}
+
+Let $f_{\lambda} = f + \lambda g$ for $\lambda \in [0, 1]$.
+\begin{itemize}
+  \item $f_{\lambda}$ is holomorphic around $\overline{U}$.
+  \item $f_0 = f_1$, $f_1 = f + g$.
+\end{itemize}
+
+By the argument prnciple, 
+\begin{align*}
+  \text{\# of zeroes of } f_{\lambda} &= \frac{1}{2\pi i} \int_{\partial U} \frac{f'_{\lambda}(z)}{f_{\lambda}(z)} dz 
+\end{align*}
+
+The RHS is continuous in $\lambda$ (why?) and is never zero on the boundary because $|f| > |g|$ on $\partial U$. The RHS is a continuous function, whereas the LHS is just an integer. So, if the RHS to be a continuous function $[0, 1] \rightarrow \mathbb{Z}$ then it must be a constant function.
+
+\vskip 1cm
+\begin{dottedbox}
+  \emph{\textbf{Cor:}} A polynomial of the form 
+  \[ P(z) = z^n + a_{n-1} z^{n-1} + \cdots + a_0, \;\;\; n > 0 \] has $n$ roots (with multiplicity). 
+\end{dottedbox}
+
+\emph{\textbf{Proof:}}
+Let $f(z) = z^n$ and $g(z) = a_{n-1} z^{n-1} + \cdots + a_0$. Then, $P(z) = f(z) + g(z)$. Let's try to apply Rouche's Theorem. In order to do so let's choose $R > 0$ such that for all $r \geq R$, 
+\begin{align*}
+  & r^n > |a_{n-1}| r^{n-1} + \cdots + a_0 \\
+  \implies & |f| > |g| \text{ on } \partial B_r(0) \forall r \geq R
+\end{align*}
+
+Then, Rouche's Theorem tells us that $n = \text{\# of zeros(f) in } B_r(0) = \text{ \# of zeros(P) in } B_r(0)$.
+
+\vskip 0.5cm
+Another consequence of Rouche's Theorem is the Open Mapping Theorem.
+
+\begin{mathdefinitionbox}{Open maps}
+\vskip 0.25cm
+  \emph{\textbf{Definition:}} A map $f : U \rightarrow V$ between topological spaces $U, V$ is said to be \emph{\textbf{open}} if $f(\text{Open set in }U)$ is open in $V$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\underline{Ex:} $V = \C$ and $f = $ constant is an open map. 
+
+\underline{Ex:} [Insert image from lecture.] Idea is that any map that sends an open interval to a single point is \emph{not} open.
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \emph{\textbf{Theorem:}} Let $f : U \rightarrow \C$ be nonconstant and holomorphic. If $U$ is connected, then $f$ is open.
+\end{dottedbox}
+
+\emph{\textbf{Proof:}} Let $z_0 \in U$. It suffices to show that $\forall$ sufficiently small $\epsilon > 0$, $f\left(B_{\epsilon}(z_0)\right)$ is open. Moreover it suffices to show that $f\left(B_{\epsilon}(z_0)\right)$ contains $B_r(w_0)$ for some $r > 0$ where $w_0 = f(z_0)$.
+
+\vskip 0.5cm
+[Insert image from lecture]
+
+\vskip 0.5cm
+i.e. we want: $\forall w \in B_r(w_0), \;\;\exists z \in B_{\epsilon}(z_0)$ such that $f(z) = w$, i.e. $f(z) - w = 0$. 
+\[ \text{"Aha! A zero counting problem" - Tony.} \]
+
+Now, since $f(z_0) = w_0 \neq w$ we can pick $\epsilon$ small enough so that $f(z) \neq w_0$ on $\partial B_{\epsilon} (z_0)$.
+\begin{align*}
+  \implies& |f(z) - w_0| > \delta > 0\;\;\forall z \in \partial B_{\epsilon}(z_0) \\
+  \implies& |f(z) - w| > \frac{\delta}{2} > 0\;\;\forall w \in \partial B_{\delta/2}(w_0)
+\end{align*}
+
+Take $r = \delta/2$ Then, 
+\begin{align*}
+  \implies& \left|f_w(z_0)\right| > 0\;\;\forall z \in \partial B_{\epsilon}(z_0) \\
+  \implies& \frac{f_w'(z)}{f_w(z)} \text{ is continuous in } z \in \partial B_{\epsilon}(z_0) \text{ i.e. } B_r(w_0) \\
+  \text{\# zeroes of } f_w &= \frac{1}{2\pi i} \int_{\partial B_{\epsilon}(z_0)} \frac{f'_w(z)}{f_w(z)} dz \text{ is continuous in } w
+\end{align*}
+Then, by the same reasoning as Rouche's Theorem, both sides are constant $>$ 0.
+
+\end{document}

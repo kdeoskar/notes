@@ -1,0 +1,457 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 9},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 9}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+For the following functions, classify the singularity at $\infty$ and calculate the residue at $\infty$.
+\begin{enumerate}[label=(\alph*)]
+  \item $f(z) = z\sin(1/z)$
+  \item $f(z) = e^z$
+  \item $f(z) = 3z^4 + z^3 + 4z^2 + z + 5$
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item We have $f(z) = z\sin(1/z)$ so 
+  \begin{align*}
+    F(z) &= f(1/z) \\
+    &= \frac{\sin(z)}{z} \\
+    &= \frac{1}{z} \left[z - \frac{z^3}{3!} + \frac{z^5}{5!} + \cdots \right] \\
+  \end{align*}
+  $F(z)$ has a removable singularity at $0$ since it can be extended to the function 
+  \[ F(z) = 1 - \frac{z^2}{3!} + \frac{z^2}{5!} + \cdots \] Therefore, $f(z)$ has a removable singularity at $\infty$ and the residue is zero.
+
+  \vskip 0.5cm
+  \item We have $f(z) = e^z$ so 
+  \[ F(z) = f(1/z) = e^{1/z} \]
+  $F(z)$ has an essential singularity at $z = 0$ so $f(z)$ has an essential singularity at $\infty$. To find the residue let's expand $F(z)$ out:
+  \begin{align*}
+    F(z) &= e^{1/z} \\
+    &= 1 + \frac{1}{z} + \frac{1}{2!z^2} + \frac{1}{3!z^3} + \cdots 
+  \end{align*}
+  This has a residue of $1$ at zero, so $\mathrm{Res}_{z_0 = \infty}f(z) = 1$.
+
+  \vskip 0.5cm
+  \item We have $f(z) = 3z^4 + z^3 + 4z^2 + z + 5$ so 
+  \begin{align*}
+    F(z) &= f(1/z) \\
+    &= \frac{3}{z^4} + \frac{1}{z^3} + 4\frac{1}{z^2} + \frac{1}{z} + 5 
+  \end{align*}
+  which has a pole of order one and residue equal to one at $0$. Therefore, $f(z)$ has a pole of order $1$ at $\infty$ and $\mathrm{Res}_{z_0 = \infty} f(z) = 1$.
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 2}
+\vskip 0.5cm
+Let $f(z) = \frac{z(z-2)^3}{\sin(z^2)(z-4)^5}$. Use the argument principle to calculate 
+\[ \frac{1}{2\pi i} \int_{\partial B_r(0)} \frac{f'(z)}{f(z)} dz  \] for $r = 1, 3, 5$
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+The Argument Principle tells us that 
+\[ \frac{1}{2\pi i }\int_{\partial B_r(0)} \frac{f'(z)}{f(z)} dz = \text{\# of zeroes of $f$ in $B_r(0)$} - \text{\# of poles of $f$ in $B_r(0)$} \]
+
+We have 
+\[ f(z) = \frac{z(z-2)^3}{\sin\left(z^2\right)(z-4)^5}  \]
+
+which can be written as 
+
+\begin{align*}
+  \frac{z(z-2)^3}{\sin\left(z^2\right)(z-4)^5} &= \frac{z}{\sin(z^2)} \cdot \frac{(z-2)^3}{(z-4)^5} \\
+  &= \frac{z}{z^2 - \frac{(z^2)^3}{3!} + \frac{(z^2)^5}{5!} + \cdots} \cdot \frac{(z-2)^3}{(z-4)^5} \\
+  &= \frac{1}{z - \frac{z^5}{3!} + \frac{z^9}{5!} + \cdots} \cdot \frac{(z-2)^2}{(z-4)^5} \\
+\end{align*}
+
+The zeroes of this function occur at $z = 0$ (multiplicity $1$) $z = 2$ (with multiplicity $3$). The poles of this function occur at $z = 0$ (with multiplicity $2$) and at $z = 4$ (with multiplicity $5$).
+
+
+\begin{enumerate}[label=(\alph*)]
+  \item \underline{$r = 1$:} The only pole or zero lying in this ball are the ones at the origin, so in this region, 
+  \[ \frac{1}{2\pi i} \int_{\partial B_1(0)} \frac{f'(z)}{f(z)} dz = 1-2 = -1 \]
+
+  \item \underline{$r = 3$:} In this region we also have the zero at $z = 2$. So, 
+  \[ \frac{1}{2\pi i} \int_{\partial B_3(0)} \frac{f'(z)}{f(z)} dz = 4 - 6 = -2 \] 
+
+  \item \underline{$r = 5$:} In this region we have all of the zeroes and poles, so
+  \[ \frac{1}{2\pi i} \int_{\partial B_5(0)} \frac{f'(z)}{f(z)} dz = 4 - 21 = -17 \] 
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Do the following problem from Stein-Shakarchi. Recall that an entire function is a function $f : \C \rightarrow \C$ which is holomorphic at all $z \in C$:
+
+\begin{dottedbox}
+  Prove that all entire functions that are also injective take the form $f(z) = az + b$ with $a, b \in \C$ and $a \neq 0$.
+\end{dottedbox}
+
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+Consider an entire and injective function $f$. Then, $f$ is non-constant. Let's define $g(z) = f(1/z)$. 
+
+\vskip 0.5cm
+If the singularity of $g(z)$ at $0$ were an essential singularity, then the Casorati-Weierstass theorem would imply that the image $g\left(B_1(0) \setminus \{0\}\right)$ is dense in $\C$. However, $g\left(B_{1/2}(2)\right)$ is an open set by the open mapping theorem and these two maps intersect, which shows that $g(z)$ (and hence $f(z)$) is not injective.
+
+\vskip 0.5cm
+Thus, the singularity at $z = 0$ must be a pole, implying that $f(z)$ is a polynomial. Suppose $f(z)$ is a polynomial of degree $m$. Then $f$ has $m$ zeroes, accounting for multiplicity. But if $f$ were to have any number of distinct roots greater than $1$, then it would not be injective since the roots would both be mapped to zero. So, $f$ must have the form $f(z) = c(z-z_0)^m$ for $c, z_0 \in \C$. But for $m \geq 2$ this is \emph{also} not necessarily injective as $f(z_0 + 1) = f(z_0 + e^{2\pi i/m})$. Thus, we must have $m = 1$ meaning $f(z)$ is a linear polynomial i.e. it is of the form 
+\[ f(z) = az + b \] for $a, b \in \C, a \neq 0$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Use the Cauchy inequalities or the maximum modulus principle to solve the following problems:
+
+\begin{dottedbox}
+  Prove that if $f$ is an entire function that satisfies 
+  \[ \sup_{|z| = R} \left| f(z) \right| \leq AR^k + B \] for all $R > 0$,, and for some integer $k \geq 0$ and some constants $A, B > 0$, then $f$ is a polynomial of degree $\leq k$.
+\end{dottedbox}
+
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+We have an entire function $f(z)$ such that 
+\[ \sup_{|z| = R} \left| f(z) \right| \leq AR^k + B  \]
+
+\vskip 0.5cm
+Since $f$ is entire, it is holomorphic (thus analytic) on all of $\C$ and can be written in terms of a power series expansion about the origin:
+
+\[ f(z) = \sum_{n = 1}^{\infty} \frac{f^{(n)}(0)}{n!} \cdot z^n \]
+
+\vskip 0.5cm
+Now, since $f(z)$ is entire, so are each of its derivatives. Let $g(z) = f^{(k+1)}(z)$. Cauchy's inequality on the disc of radius $R$, $D_R$, tells us 
+
+\begin{align*}
+  g^{(l)}(0) &\leq \frac{(l + k + 1)!}{R^{l + k + 1}} \sup_{\partial D_R} |f(z)|, \;\;\;\;l = 0, 1, 2, \cdots
+\end{align*}
+
+Then, by the assumption,
+\begin{align*}
+  g^{(l)}(0) &\leq \frac{(l + k + 1)!}{R^{l + k + 1}} \sup_{\partial D_R} AR^k + B
+\end{align*}
+
+Now, in the limit as $R \rightarrow \infty$, $\frac{(l + k + 1)!}{R^{l + k + 1}} \sup_{\partial D_R} AR^k + B \rightarrow 0$ so $g^{(l)}(0) = f^{(l + k + 1)}(0)$ for $l = 0, 1, 2, \cdots$ must be equal to zero. i.e. all of the coefficients the power series expansion beyond the $z^k$ term are zero. Therefore, $f(z)$ is a polynomial of degree $\leq k$.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+Let $w_1, \cdots, w_n$ be the points on the unit circle in the complex plane. Prove that there exists a point $z$ on the unit circle such that the product of the distances from $z$ to the points $w_j$, $1 \leq j \leq n$, is at least $1$. Conclude that there exists a point $w$ on the unit circle such that the product of the distances from $w$ to the points $w_j$, $1 \leq j \leq n$, is exactly equal to 1.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Define a function $g(z) : B_1(0) \rightarrow \C$ as 
+\[ g(z) = \prod_{j = 1}^{n} (z - w_j) \]
+
+This function is holomorphic on the unit disc. Then, by the Maximum Modulus Principle, $g(z)$ can only attain its maximum (modulus) on the unit circle. But note that 
+\[ g(0) = \prod_{j = 1}^{n} w_j \implies \left| g(0) \right| = \prod_{j = 1}^{n} \underbrace{|w_j|}_{=1} = 1 \]
+
+So, the maximum modulus of $g(z)$ must at least be greater than $1$. So, there exists a point $z$ on the unit circle such that $g(z)$ is atleast 1.
+
+Now, if we define $f(z)$ to be 
+\[ f(z) = \prod_{j = 1}^{n} |z - w_j| \]
+
+Then, $f(z)$ can be zero (if $z = w_j$) and it is at least $1$ from the argument above. Therefore, by the Intermediate Value Theorem, there must exist some $w$ on the unit circle such that $f(w)$ is exactly $1$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+
+\vskip 0.5cm
+Suppose $f$ and $g$ are holomorphic in a region containing the disc $|z| \leq 1$. Suppose that $f$ has a simple zero at $z = 0$ and vanishes nowhere else in $|z| \leq 1$. Let 
+\[ f_{\epsilon}(z) = f(z) + \epsilon g(z) \] 
+
+Show that if $\epsilon$ is sufficiently small, then 
+\begin{enumerate}[label=(\alph*)]
+  \item We know that $f$ has a unique zero at $z = 0$. Now, $f_{\epsilon}(z)$ has a unique zero in $|z| \leq 1$, and 
+  \item if $z_{\epsilon}$ is this zero, the mapping $\epsilon \mapsto z_{\epsilon}$ is continuous.
+\end{enumerate}
+
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item The functions $f, g$ are holomorphic on a region $\Omega$ containing the unit disc. We can assume WLOG that $\Omega$ is an open set (otherwise we could simply replace it with a suitable open set.) 
+  
+  \vskip 0.5cm
+  We have $f_{\epsilon}(z) - f(z) = \epsilon g(z)$. For sufficiently small $\epsilon$, we have
+  \[ \left| f_{\epsilon}(z) - f(z) \right| = |\epsilon g(z)| < f(z) \] on $\partial \mathbb{D}$. $\epsilon g(z)$ is still holomorphic on $\Omega$, so Rouche's theorem applies. It tells us that $f(z)$ and $f(z) + \epsilon g(z)$ have the same number of zeros in the unit circle. Therefore, $f_{\epsilon}(z)$ has a unique zero in the unit disc.
+
+  \vskip 0.5cm
+  % \item The mapping $\epsilon \xrightarrow{h} z_{\epsilon}$ is said to be continuous if for any $\tau > 0$ there exists a $\delta > 0$ such that $|\epsilon_2 - \epsilon_1| < \delta$ implies $|z_{\epsilon_{2}} - z_{\epsilon_{2}} | < \tau$.
+  
+  \item We have $f_{\epsilon}(z) = f(z) + \epsilon g(z)$ as in part (a). Now, choose some $\epsilon_0 < \epsilon$ and the associated function $f_{{\epsilon_0}} = f(z) + \epsilon_0 g(z)$ whose root is denoted $z_{{\epsilon_0}}$. 
+  
+  \vskip 0.25cm
+  Since $f$ has a unique zero at $z = 0$, we can choose $r > 0$ such that $f$ such that $\overline{B}_r(z_{{\epsilon_0}}) \subseteq \mathbb{D}$ and $f$ is non-vanishing on $\partial \overline{B}_r(z_{{\epsilon_0}})$. Then, we can appropriately choose $\delta > 0$ so that 
+  \[  \min_{z \in \partial \overline{B}_r(z_{{\epsilon_0}})} |f(z)| > \delta \max_{z \in \partial \overline{B}_r(z_{{\epsilon_0}})} |g(z)|  \] 
+  
+  Then, applying Rouche's Theorem again, we see that $f_{\epsilon}$ has only $1$ one zero inside $B_r(z_{{\epsilon_0}})$. But we saw earlier that $f_{\epsilon}$ has a unique zero. Thus, it must be the case that $z_{\epsilon} \in {B}_r(z_{{\epsilon_0}})$. i.e. $|z_{\epsilon} - z_{{\epsilon_0}} | < r$. The above is exactly the statement that $\epsilon \mapsto z_{\epsilon}$ is continuous at $\epsilon_0$.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 7}
+\vskip 0.5cm
+Let $f$ be non-constant and holomorphic in an open set containing the closed unit disc.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $|f(z)| = 1$ whenever $|z| = 1$, then the image of $f$ contains the unit disc. 
+  \item If $|f(z)| \geq 1$ whenever $|z| = 1$ and there exists point $z_0 \in \mathbb{D}$ such that $|f(z_0)| < 1$, then the image of $f$ contains the unit disc.
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item The goal is to show that $f$ takes on every value in $\mathbb{D}$ i.e. $f(z) - w_0 = 0$ has a root for every $w_0 \in \mathbb{D}$. 
+  
+  \vskip 0.5cm
+  Since $f$ is holomorphic on an open set containing the unit circle with $|f(z)| = 1$ for $|z| = 1$ and $|w_0| < 1$, so is $f-w_0$. Thus, Rouche's Theorem applies, meaning $f$ and $f-w_0$ have the same number of zeros inside the unit circle for any $w_0 \in \mathbb{D}$.
+
+  \vskip 0.5cm
+  So, if we show that $f - 0 = f$ has a root on $\mathbb{D}$, the rest will follow. Suppose for contradiction  that $f$ has no roots on $\mathbb{D}$. Then $1/f : \mathbb{D} \rightarrow \C$ is holomorphic. So, by the Maximum Modulus principle, $\left| 1/f \right| \leq 1$ or equivalently $|f(z)| \geq 1$ on $\mathbb{D}$.
+
+  \vskip 0.5cm
+  However, we know that for any $z \in \partial \mathbb{D}$, $|f(z)| = 1$. If $U$ is a small neighborhood of $z \in \partial \mathbb{D}$ contained in the domain of $f$ (the open set $U$), then $f(U)$ is an open neighborhood of $f(z)$ whic contradicts $1 \leq |f(z)|$ for $z \in \mathbb{D}$ as there must be some values of $z$ for which $f(z) > 1$ in order for $f(U)$ to be open.
+
+  \vskip 0.5cm
+  This is a contradiction. Therefore, there must exist a root for $f(z)$ that lies in $\mathbb{D}$. The desired result follows from our discussion above.
+
+  \vskip 0.5cm
+  \item The exact same reasoning works for part (b).
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 8}
+\vskip 0.5cm
+Suppose $f$ is a non-vanishing continuous function on $\overline{B}(0)$ that is holomorphic in $B_1(0)$. Prove that if $|f(z)| = 1$ whenever $|z| = 1$ then $f$ is constant.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+We have $f$ holomorphic on $B_1(0)$ and $|f(z)| = 1$ on $\partial B_1(0)$. By the maximum modulus principle, $f(z)$ cannot attain a maximum modulus on $\mathrm{int}\left(B_1(0)\right) = B_1(0)$, so it must be the case that $|f(z)| \leq 1$.
+
+\vskip 0.5cm
+However, since $f(z)$ is non-vanishing on $\overline{B}_1(0) = \mathbb{D}$, the function $\frac{1}{f(z)}$ satisfies all of the above conditions too, meaning that $\left| \frac{1}{f(z)} \right| \leq 1$ or equivalently that $|f(z)| \geq 1$.
+
+\vskip 0.5cm
+Therefore, it must be the case that $|f(z)| = 1$ on all of $\mathbb{D}$ i.e. it is constant.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

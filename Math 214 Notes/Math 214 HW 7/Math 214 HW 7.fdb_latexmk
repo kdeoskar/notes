@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber Math 214 HW 7"] 1710315553 "Math 214 HW 7.bcf" "Math 214 HW 7.bbl" "Math 214 HW 7" 1710317007 0
+["biber Math 214 HW 7"] 1711043491 "Math 214 HW 7.bcf" "Math 214 HW 7.bbl" "Math 214 HW 7" 1711043498 0
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/bibtex/bib/aguplus/sample.bib" 777769200 1431 3d6a889f0e0d40988daf1dc04efafeac ""
-  "Math 214 HW 7.bcf" 1710317007 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
+  "Math 214 HW 7.bcf" 1711043498 107347 362b9c05c9ba23dd36e2525db27a9c08 "pdflatex"
   (generated)
   "Math 214 HW 7.bbl"
   "Math 214 HW 7.blg"
   (rewritten before read)
-["pdflatex"] 1710317006 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 7/Math 214 HW 7.tex" "Math 214 HW 7.pdf" "Math 214 HW 7" 1710317007 0
+["pdflatex"] 1711043496 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 7/Math 214 HW 7.tex" "Math 214 HW 7.pdf" "Math 214 HW 7" 1711043498 0
   "C:/Users/kesha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1709458902 83523 c240498cc87ea350b68c7a1657f0afb7 ""
   "C:/Users/kesha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1684916615 23188739 29b9f6e8b1707cc61a32e4843ab40311 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
@@ -221,12 +221,12 @@
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/kesha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "Math 214 HW 7.aux" 1710317007 743 33e46fec003118537ff9d380c72bb9e8 "pdflatex"
-  "Math 214 HW 7.bbl" 1710315555 486 ee04f40f768daeed26442158e95aba61 "biber Math 214 HW 7"
-  "Math 214 HW 7.out" 1710317007 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "Math 214 HW 7.run.xml" 1710317007 2378 7af2f3bd054aa0269217b95d6445f1cb "pdflatex"
-  "Math 214 HW 7.tex" 1710317005 7978 21c0c7ea548d2bbb0d97d0e756a4c0cf ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 7/Math 214 HW 7.tex" 1710317005 7978 21c0c7ea548d2bbb0d97d0e756a4c0cf ""
+  "Math 214 HW 7.aux" 1711043498 743 33e46fec003118537ff9d380c72bb9e8 "pdflatex"
+  "Math 214 HW 7.bbl" 1711043496 486 ee04f40f768daeed26442158e95aba61 "biber Math 214 HW 7"
+  "Math 214 HW 7.out" 1711043498 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Math 214 HW 7.run.xml" 1711043498 2378 7af2f3bd054aa0269217b95d6445f1cb "pdflatex"
+  "Math 214 HW 7.tex" 1711043486 8040 eb25b6fee37a4ddd7fbc7a71ae083939 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Math 214 Notes/Math 214 HW 7/Math 214 HW 7.tex" 1711043486 8040 eb25b6fee37a4ddd7fbc7a71ae083939 ""
   (generated)
   "Math 214 HW 7.aux"
   "Math 214 HW 7.bcf"

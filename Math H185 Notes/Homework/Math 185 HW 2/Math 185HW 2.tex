@@ -1,0 +1,616 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 2},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 2}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+% \pagebreak 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+State the subsets of $\C$ on which the following functions are holomorphic, and calculate their derivatives on their domains of holomorphicity:
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(z) = e^{z^2 + 3z + 4}$
+    \item $f(z) = \frac{1}{e^{z}}$
+    \item $f(z) = \frac{1}{z^2 - 3z + 2}$
+  \end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}} 
+
+A function $f(z)$ is holomorphic at $z_0$ if $f$ is $C^1$ and the Cauchy-Riemann equations hold at $z_0$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item The function $f(z) = e^{z^2 + 3z + 4}$ is a composition of holomorphic functions as $f(z) = (g \circ h)(z)$ where $h(z) = z^2 + 3z + 4$ and $g(z) = e^{z}$.
+
+  \vskip 0.5cm
+  Then, using the chain-rule, 
+  \begin{align*}
+    f'(z) &= g'(h(z)) \cdot h'(z) \\
+    &= e^{z^2 + 3z + 4} \cdot (2z + 3)
+  \end{align*}
+  \[ \implies \boxed{ f'(z) = (2z + 3)e^{z^2 + 3z + 4} } \]
+
+  This function is holomorphic on all of $\C$.
+
+  \vskip 0.5cm
+  \item We can write $f(z) = \frac{1}{e^z}$ as being $f(z) = (g \circ h)(z)$ where $g(z) = \frac{1}{z}$ and $h(z) = e^{z}$.
+  
+
+  \vskip 0.5cm
+  Using the chain-rule, the derivative in the region of holomorphicity is: 
+  \begin{align*}
+    f'(z) &= g'(h(z)) \cdot h'(z) \\
+    &= \left(\frac{-1}{(e^z)^2}\right) \cdot e^{z} \\
+    &= \frac{-1}{e^z}
+  \end{align*}
+  \[ \implies \boxed{ f'(z) = \frac{-1}{e^z} } \]
+  
+  This function is also holomorphic on all of $\C$.
+
+  \vskip 0.5cm
+  \item Once again, we can express
+  \[ f(z) = \frac{1}{z^2 - 3z + 2} \]
+  as a composition of holomorphic functions $f(z) = (g \circ h)(z)$ where $g(z) = \frac{1}{z}$ and $h(z) = z^2 - 3z + 2$.
+
+  % \vskip 0.25cm
+  % The polynomial $h$ is holomorphic over all of $\C$ while $g$ is holomorphic over $\C \setminus \{0\}$, so the function $h$ is also holomorphic over all of $\C \setminus \{0\}$.
+
+  \vskip 0.25cm
+  Its derivative in the region where it is holomorphic is 
+  \begin{align*}
+    f'(z) &= g'(h(z)) \cdot h'(z) \\
+    &= \frac{1}{(z^2 - 3z + 2)^2} \cdot (2z + 3) \\
+    &= \frac{2z + 3}{z^2 - 3z + 2}
+  \end{align*}
+  
+  The function is holomorphic as long as the denominator in $f'(z)$ is non-zero: 
+  \begin{align*}
+    z^2 - 3z + 2 &= (z-1)(z-2)
+  \end{align*}
+  Thus, the function is holomorphic for $\C \setminus \{1, 2\}$
+
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Using Euler's Theorem, prove the angle addition formulas
+\[ \sin(\theta_1 + \theta_2) = \sin(\theta_1)\cos(\theta_2)  +\cos(\theta_1)\sin(\theta_2) \]
+and 
+\[ \cos(\theta_1 + \theta_2) = \cos(\theta_1)\cos(\theta_2)  - \sin(\theta_1)\sin(\theta_2)   \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Euler's theorem tells us that, for $t \in \R$,
+\[ \boxed{ e^{it}= \cos(t) + i\sin(t) } \]
+
+
+\vskip 0.5cm
+Then, we have
+\[ \boxed{e^{i(\theta_1 + \theta_2)} = \cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2) } \;\;\;\; (1)\]
+
+\vskip 0.5cm
+But we can also write $e^{i(\theta_1 + \theta_2)}$ as 
+\begin{align*}
+  e^{i(\theta_1 + \theta_2)} &= e^{i\theta_1} \cdot e^{i\theta_2} \\
+  &= \left[ \cos(\theta_1) + i\sin(\theta_1) \right] \cdot \left[ \cos(\theta_2) + i\sin(\theta_2) \right] \\
+  &= \cos(\theta_1)\cos(\theta_2) + i\cos(\theta_1)\sin(\theta_2) + i\sin(\theta_1) \cos(\theta_2) + i^2 \sin(\theta_1)\sin(\theta_2) \\
+  &= \left[ \cos(\theta_1)\cos(\theta_2) - \sin(\theta_1)\sin(\theta_2) \right] + i \left[ \cos(theta_1)\sin(\theta_2) + \sin(\theta_1)\cos(\theta_2) \right]
+\end{align*}
+\[ \boxed{e^{i(\theta_1 + \theta_2)} = \left[ \cos(\theta_1)\cos(\theta_2) - \sin(\theta_1)\sin(\theta_2) \right] + i \left[ \cos(\theta_1)\sin(\theta_2) + \sin(\theta_1)\cos(\theta_2) \right]} \;\;\;\; (2) \]
+
+\vskip 0.5cm
+So, we must have 
+\[ \cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2) = \left[ \cos(\theta_1)\cos(\theta_2) - \sin(\theta_1)\sin(\theta_2) \right] + i \left[ \cos(\theta_1)\sin(\theta_2) + \sin(\theta_1)\cos(\theta_2) \right] \;\;\;\; (3) \]
+
+\vskip 0.5cm
+And, taking the real and imaginary parts of equation (3), we get 
+\begin{align*}
+  \cos(\theta_1 + \theta_2) &= \cos(\theta_1)\cos(\theta_2) - \sin(\theta_1)\sin(\theta_2)  \\
+  \sin(\theta_1 + \theta_2) &= \cos(\theta_1)\sin(\theta_2) + \sin(\theta_1)\cos(\theta_2) 
+\end{align*}
+
+which are exactly the angle addition formulas.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Show that there is an everywhere holomorphic function $f:\C \rightarrow \C$ such that $f(z) = \sin(z)/z $ for $z\neq0$. What is $f(0)$? Write down $f'(z)$ as a power series.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+% The function $\sin(z)/z$ is holomorphic on $\C \setminus \{0\}$ and fails at the origin because it is not defined there. We can continue function analytically to the entire complex plane by defining 
+% \[ f(z) = \begin{cases}
+%   \sin(z)/z, \;\;\;  z \neq 0 \\
+%   1, \;\;\;\;\;\;\;\;\;\;\;\;\;\; z = 0
+% \end{cases} \]
+
+% where we've set the functions value at the origin to be $1$ because 
+% \[ \lim_{z \rightarrow 0} \frac{\sin(z)}{z} = 1\]
+
+% This makes the function holomorphic at the origin since 
+% \begin{align*}
+%   \lim_{z \rightarrow 0} \frac{f(z) - f(0)}{z - 0} &= 
+% \end{align*}
+
+The function $\sin(z)/z$ is undefined, however we notice that $\sin(z)$ can be expressed as a power series:
+\[ \sin(z) = \sum_{k = 0}^{\infty} \frac{(-1)^k}{(2k+1)!}z^{2k+1} \]
+
+So, we can analytically continue $\sin(z)/z$ as 
+\[ \frac{\sin(z)}{z} =  \frac{1}{z} \sum_{k = 0}^{\infty} \frac{(-1)^k}{(2k+1)!}z^{2k+1} = \sum_{k = 0}^{\infty} \frac{(-1)^k}{(2k+1)!}z^{2k} \] 
+
+which has the value $f(0) = 1$ at the origin.
+
+\vskip 0.5cm
+This series expansion has infinite radius of convergence, and we proved in class that if $f(z)$ can be written as a power series of convergence radius $R$, then $f'(z)$ equals the $f(z)$ series differentiated term-by-term, and has the same radius of convergence. 
+
+\vskip 0.5cm
+Thus, $f(z) = \sum_{k = 0}^{\infty} \frac{(-1)^k}{(2k+1)!}z^{2k}$ is everywhere holomorphic.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Determine the radius of convergence of the power series 
+\[ \sum_{z \geq 0} a_n z^n  \]
+in the following cases:
+\begin{enumerate}[label=(\alph*)]
+  \item $a_n = n$
+  \item $a_n = \frac{1}{n^2}$
+  \item $a_n = \frac{n^2 - 5}{4^n + 3n}$
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+We showed in class that for a power series of the form
+\[ \sum_{z \geq 0} a_n z^n  \]
+the radius of convergence is given by 
+\[ \limsup_{n \rightarrow \infty} \lvert a_n \rvert^{1/n} \]
+
+\begin{enumerate}[label=(\alph*)]
+  \item For $a_n = n$, 
+  \begin{align*}
+    R &= \left(\limsup_{n \rightarrow \infty} \lvert a_n \rvert^{1/n}\right)^{-1} \\
+    &= \left(\limsup_{n \rightarrow \infty} \lvert n \rvert^{1/n}\right)^{-1} \\
+    &= 1
+  \end{align*}
+  as $\lim_{n \rightarrow \infty} \sqrt[n]{n} = 1$ is a well known limit from real analysis.
+
+  \vskip 0.5cm
+  \item For $a_n = 1/n^2$, 
+  \begin{align*}
+    R &= \left(\limsup_{n \rightarrow \infty} \lvert a_n \rvert^{1/n} \right)^{-1} \\
+    &= \left(\limsup_{n \rightarrow \infty} \big\lvert \frac{1}{n^2} \big\rvert^{1/n}\right)^{-1} \\
+    &= \frac{1}{\left(\frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{n}}\right)^2} \\
+    &= \frac{1}{1^2} \\
+    &= 1
+  \end{align*}
+  
+  \vskip 0.5cm
+  \item For $a_n = \frac{n^2 - 5}{4^n + 3n}$, the radius of convergence is given by:
+  \begin{align*}
+    R &= \left(\limsup_{n \rightarrow \infty} \lvert a_n \rvert^{1/n} \right)^{-1} \\
+    &= \left( \limsup_{n \rightarrow \infty} \big\lvert \frac{n^2 - 5}{4^n + 3n}\big\rvert^{1/n} \right)^{-1}
+  \end{align*}
+
+  We use the following theorem and its corollary from Real Analysis:
+  \begin{dottedbox}
+    \underline{Theorem 12.3 (Ross):} \\
+    Let $(s_n)$ be any sequence of non-zero real numbers. Then we have
+    \[ \liminf \big\lvert \frac{s_{n+1}}{s_n} \big\rvert \leq \liminf \lvert s_n \rvert^{1/n} \leq \limsup \lvert s_n \rvert^{1/n} \leq \limsup \big\lvert \frac{s_{n+1}}{s_n} \big\rvert \]
+
+    Note: If $\lim_{n \rightarrow \infty} \big\lvert \frac{s_{n+1}}{s_n } \big\rvert$ exists and equals $L$, then all four quantities in the expresson above are equal to $L$.
+
+    \vskip 0.5cm
+    \underline{Corollary:} \\
+    If $\lim_{n \rightarrow \infty} \big\lvert \frac{s_{n+1}}{s_n } \big\rvert$ exists and equals $L$, then  $\lim_{n \rightarrow \infty} \big\lvert s_n \big\rvert^{1/n}$ exists and equals $L$.
+  \end{dottedbox}
+   
+  Now, 
+  \begin{align*}
+    \lim_{n \rightarrow \infty} \left| \frac{a_{n+1}}{a_n} \right| &= \lim_{n \rightarrow \infty} \left| \left( \frac{(n+1)^2 - 5}{4^{n+1} + 3(n+1)} \right) \cdot \left( \frac{4^n + 3n}{n^2 - 5} \right) \right| \\
+    &= \lim_{n \rightarrow \infty} \left| \frac{4^n}{4^{n+1}} \right| \text{   (Since the exponential dominates)} \\
+    &= \frac{1}{4}
+  \end{align*}
+
+  Since the limit exists, we have that 
+  \[ \limsup_{n \rightarrow \infty} |a_n|^{1/n} =\frac{1}{4} \]
+
+  so the radius of convergence comes out to be $4$.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+Prove the following statements:
+\begin{enumerate}[label=(\alph*)]
+  \item The power series $\sum_n nz^n$ does not converge at any point of the unit circle.
+  \item The power series $\sum_n \frac{z^n}{n^2}$ converges at every point of the unit circle.
+  \item 
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+\begin{enumerate}[label=(\alph*)]
+  % \item The radius of covergence for the power series $\sum_n nz^n$ is given by 
+  % \begin{align*}
+  %   R &= \left( \limsup_{n \rightarrow \infty} \left| a_n \right|^{1/n} \right)^{-1} \\
+  %   &= \left( \limsup_{n \rightarrow \infty} \left| n \right|^{1/n} \right)^{-1}
+  % \end{align*}
+
+  \item If $\left| z \right| = 1$, we have $nz^n \rightarrow \infty$ so the series does not converge for any point on the unit circle.
+  \item If $\left| z \right| = 1$, we have $\left| \frac{z}{n^2} \right| = \frac{\left| z \right|^n}{\left| n^2 \right|} = \frac{1}{n^2}$, and we know from real analysis that $\sum_{n} \frac{1}{n^2}$ converges. So, the series $\sum_{n} \left|\frac{z^n}{n^2} \right|$ converges, which allows us to conclude that $\sum_n \frac{z^ n}{n^2}$ converges absolutely.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+\vskip 0.5cm
+Calculate the derivative matrix 
+\[ \begin{pmatrix}
+  \frac{\partial u }{\partial x} & \frac{\partial u }{\partial y} \\
+  \frac{\partial v }{\partial x} & \frac{\partial v }{\partial y}
+\end{pmatrix} \]
+for the function $f : \C \rightarrow \C, f(z) = |z|^2$, and using the Cauchy-Riemann equations, find all points $z_0 \in \C$ at which it is holomorphic.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\vskip 0.5cm
+For $z = x+ iy$ we can write the function $f(z) = |z|^2$ as 
+\begin{align*}
+  f(z) &= |z|^2 \\
+  &= z \cdot z^{*} \\
+  &= (x + iy) \cdot (x - iy) \\
+  &= x^2 + y^2
+\end{align*}
+
+\vskip 0.5cm
+So, $\text{Re}(f(z)) = u(x, y) = x^2 + y^2$ and $\text{Im}(f(z)) = v(x, y) = 0$.
+
+\vskip 0.5cm
+Thus, 
+\[ \frac{\partial u}{\partial x} = 2x, \;\;\;\; \frac{\partial u}{\partial y} = 2y \]
+and 
+\[ \frac{\partial v}{\partial x} = 0, \;\;\;\; \frac{\partial v}{\partial y} = 0 \]
+
+\vskip 0.5cm
+Thus, the derivative matrix is 
+\[  \begin{pmatrix}
+  2x & 2y \\
+  0 & 0
+\end{pmatrix}  \]
+
+\vskip 0.5cm
+Now, we know that if a function $f(z)$ is $C^1$ and the Cauchy-Riemann equations hold at $z_0$, then $f(z)$ is holomorphic at $z_0$. We're already found each of the first derivatives, and observed that they're continuous real functions. So, $f(z) = |z|^2$ is certainly $C^1$.
+
+\vskip 0.25cm
+Now at a point $z_0 = x_0 +i y_0 \in \C$, in order for the CR equations to hold, we need 
+
+\begin{align*}
+  \frac{\partial u}{\partial x}(z_0) &= \frac{\partial v}{\partial y}(z_0) \implies 2x_0 = 0 \\
+  &\text{and}  \\
+  \frac{\partial u}{\partial y}(z_0) &= -\frac{\partial v}{\partial x}(z_0)  \implies 2y_0 = 0
+\end{align*}
+
+So, the only point where $f(z) = |z|^2$ satisfies the Cauchy-Riemann equations is $z = \mathbf{0}$. However, $\{\mathbf{0}\} \subseteq \C$ is not an open subset. So, there are no open subsets $\Omega \subseteq_{open} \C$ where $f(z) = |z|^2$ is $C^1$ and satisfies the Cauchy-Riemann equations. 
+
+\vskip 0.5cm
+Therefore, the function $f(z) = |z|^2$ is \emph{\textbf{holomorphic nowhere}}.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 7}
+\vskip 0.5cm
+For a piece-wise smooth parametrized curve $\gamma : [a, b] \rightarrow \C$, let $\gamma^{-} : [a, b] \rightarrow \C$ be the curve with the reverse orientation, defined by $\gamma^{-}(t) = \gamma(a + b - t)$. Show that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{\gamma} f(z) dz =  - \int_{\gamma^{-}} f(z) dz$
+  \item Let $z_0 \in \C$ and $r$ be a real positive number with $r < |z_0|$. For every $n \in \mathbb{Z}$, find (with proof) the value of 
+  \[ \int_{\partial B_{r}(z_0)} z^n dz \]
+\end{enumerate} 
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item The integral of $f(z)$ along the curve $\gamma$ is defined to be
+  \[ \int_{\gamma} f(z)dz = \int_{a}^{b} f(\gamma(t)) \gamma'(t) dt \]
+  So, the integral over $\gamma^{-}$ is 
+  \begin{align*}
+    \int_{\gamma^{-}} f(z) dz &= \int_{a}^{b} f(\gamma^{-}(t))(\gamma^{-})'(t) dt \\
+    &= \int_{a}^{b} f(\gamma(a + b - t)) \gamma'(a + b - t) dt
+  \end{align*}
+  Introduce the substitution $u = a + b - t$. Then, $\gamma'(u)du = (-\gamma'(t))(-dt) = \gamma'(t) dt$,  and 
+  \[   \begin{cases}
+  t = a \implies u = b \\
+  t = b \implies u = a
+  \end{cases} \]
+
+  Then, 
+  \begin{align*}
+    \int_{\gamma^{-}} f(z)dz &= \int_{b}^{a} f(\gamma(u)) \gamma'(u) (du) \\
+    &= -\int_{a}^{b} f(\gamma(u)) \gamma'(u) (du) \\
+    &= -\int_{a}^{b} f(\gamma(t)) \gamma'(t) (dt) \;\;\;\text{ (Since $u$ and $t$ are just dummy variables)} \\
+    &= -\int_{\gamma} f(\gamma(t)) \gamma'(t) dt
+  \end{align*}
+
+  Thus, reversing the orientation of the path introduces a negative sign!
+  \[ \boxed{ \int_{\gamma} f(z)dz = -\int_{\gamma^{-}} f(z)dz} \]
+
+  \vskip 0.5cm
+  \item We can parametrize the circle of radius $r < |z_0|$ around the point $z_0$ i.e. $\partial B_{r}(z_0)$ as 
+  \[ \gamma : [0, 2\pi] \rightarrow \C,\;\;\; \gamma(t) = z_0 + re^{it} \]
+
+  Now, we want to integrate $f(z) = z^n$ over this curve.
+  \begin{align*}
+    \int_{\gamma} z^n dz &= \int_{0}^{2\pi} f(\gamma(t)) \; \gamma'(t) dt \\
+    &= \int_{0}^{2\pi} (z_0 + re^{it})^n \cdot (ire^{it}) dt \\
+  \end{align*}
+  % Using the Binomial Theorem 
+  % \[ (x + y)^n = \sum_{k = 0}^{n} \binom{n}{k} x^n y^{n-k} \]
+  % we can write
+
+  The easiest way to do so is to use the \emph{\textbf{Fundamental Theorem of Contour Integrals}}:
+  \begin{dottedbox}
+    \underline{Theorem:} If a continuous function $f$ has primitive $F$ on open set $\Omega$ and $\gamma : [a, b] \rightarrow \C$ is a piece-wise smooth continuous curve in $\Omega$ with $\gamma(a) = w_1, \gamma(b) = w_2$ then
+    \[ \int_{\gamma} f(z)dz = F(w_2) - F(w_1)  \]
+  \end{dottedbox}
+  
+  \vskip 0.5cm
+  \underline{Proof:} If $\gamma$ is smooth, the proof is a simple application of the Chain rule and Fundamental Theorem of Calculus (over the real numbers):
+  \begin{align*}
+    \int_{\gamma} f(z) dz &= \int_{w_1}^{w_2} f(\gamma(t)) \gamma'(t) dt \\
+    &= \int_{a}^{b} F'(\gamma(t)) \gamma'(t) dt \\
+    &= \int_{a}^{b} \left( \frac{d}{dt} F(\gamma(t)) \right) dt \\
+    &= F(\gamma(b)) - F(\gamma(a)) \\
+    &= F(w_2) - F(w_1)
+  \end{align*} 
+
+  \vskip 0.5cm
+  If $\gamma$ is only piece-wise smooth, with points $a = a_0 < a_1 < \dots < a_{n} = b$ such that it's smooth on each $[a_k, a_{k+1}]$ for $0 \leq k \leq n-1$, then we can argue exactly as before each interval and then obtain the entire integral from a telescoping series:
+
+  \begin{align*}
+    \int_{\gamma} f(z)dz &= \int_{a}^{b} f(\gamma(t)) \cdot \gamma'(t) dt \\
+    &= \sum_{k = 0}^{n - 1} \int_{a_k}^{a_{k+1}} f(\gamma(t)) \cdot \gamma'(t) dt \\
+    &= \sum_{k = 0}^{n - 1} F(\gamma(a_{k+1})) - F(\gamma(a_k)) \\
+    &= F(\gamma(a_{n})) - F(\gamma(a_0)) \\
+    &= F(\gamma(b)) - F(\gamma(a)) \\
+    &= F(w_2) - F(w_1)
+  \end{align*}
+  
+  \begin{dottedbox}
+    \underline{Corollary:} If $\gamma$ is a path such that $\gamma(b) = \gamma(a)$, then 
+    \[ \int_{\gamma} f(z)dz = F(\gamma(b)) - F(\gamma(a)) = 0 \]
+  \end{dottedbox}    
+
+  \vskip 0.5cm
+  Now returning to the integral
+  \begin{align*}
+    \int_{\gamma} z^n dz  
+  \end{align*}
+
+  \underline{If $n \neq -1$}, then $z^n$ has a primitive (namely $z^{n+1}/(n+1)$) and the path we're integrating is such that the stard and end points are the same. Thus, by the Corollary to the Fundamental Theorem of Contour Integrals, we have 
+  \[ \int_{\gamma} z^n dz = 0, \;\;\;\;n \neq -1  \]
+  
+  \vskip 0.5cm
+  \underline{If $n = -1$}, using the curve parametrization $\gamma(t) = z_0 + re^{it}$ where $t \in [0, 2\pi]$ we have 
+  
+  \begin{align*}
+    \int_{\gamma} \frac{1}{z} dz &= \int_{0}^{2\pi} \frac{1}{\gamma(t)} \cdot \gamma'(t) dt \\
+    &= \int_{0}^{2\pi} \frac{1}{z_0 + re^{it}} \cdot (ire^{it}) dt \\
+    &= \frac{i r}{z_0} \int_{0}^{2\pi} \frac{e^{it}}{1 + \frac{r}{z_0} e^{it}} dt
+  \end{align*}
+
+  Note that because our integral doesn't contain the origin, we have $r < |z_0| \implies |\frac{r}{z_0}e^{it}| < 1$. This allows us to expand the $1/(1 + \frac{r}{z_0}e^{it})$ in the integrand as a power series
+
+  \begin{align*}
+    \frac{ir}{z_0} \int _{0}^{2\pi} \frac{e^{it}}{1 + \frac{r}{z_0}e^{it}} dt &= \frac{ir}{z_0}\int _{0}^{2\pi} e^{it} \sum_{k = 0}^{\infty} \left( \frac{-r}{z_0} e^{it} \right)^k dt \\
+    &= -i \sum_{k = 0}^{\infty} \left( \frac{-r}{z_0} \right)^{k+1} \int_{0}^{2\pi} e^{i(k+1)t} dt \\
+    &= -i \sum_{k = 0}^{\infty} \left( \frac{-r}{z_0} \right)^{k+1} \cdot \frac{e^{i(k+1)t}}{i(k+1)} \Big\vert_{0}^{2\pi} \\
+    &= 0 \text{  Since $e^{i0} = e^{i2\pi}$}
+  \end{align*}
+  where we were able to switch the integral and sum in the second equality because the sum converges absolutely as the sum of abolute values
+  \begin{align*}
+    \sum_{k = 0}^{\infty} \big\lvert -\frac{r}{z_0} e{it} \big\rvert^k &= \sum_{k = 0}^{\infty} 1 \cdot \underbrace{\big\lvert \frac{r}{z_0} \big\rvert^k}_{<1} \\
+    &= \frac{1}{1 - |\frac{r}{z_0}|} \;\;\text{ (Geometric series of real numbers)}
+  \end{align*}
+
+  \begin{dottedbox}
+    In conclusion, we found that 
+    \[ \int_{\partial B_r(z_0)} z^n dz = 0 \]
+    for $r < |z_0|$ and all $n \in \mathbb{Z}$.
+  \end{dottedbox}
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+\end{document}

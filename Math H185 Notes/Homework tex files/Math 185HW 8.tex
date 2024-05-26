@@ -1,0 +1,543 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math 185 Homework 8},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{csquotes}
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Homework 8}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 1}
+\vskip 0.5cm
+Where are the isolated singularities of the following functions? Classify them as "removable" "pole", or "essential" singularities.
+\begin{enumerate}[label=(\alph*)]
+  \item $1/(z^2 + 4z + 3)$
+  \item $\sin(z) / (z^3 + z)$
+  \item $\cos(1/\sin(z))$
+  \item $e^{1/z} / \sin(z) $
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item We have 
+  \[  \frac{1}{z^2 + 4z + 3} = \frac{1}{(z+1)(z+3)}  \] So the function has singularities at $z = - 3$ and $z = -1$. At both singularities, the function blows up to infinity, so both of them are poles.
+
+  \item The function 
+  \[ f(z) = \frac{\sin(z)}{z^3 + z} = \frac{\sin(z)}{z (z^2 + 1)}  \] has singularities at $z = 0, i, -i$. 
+
+  However, if we analytically continue $f(z)$ by writing $\sin(z)$ in terms of its power series expansion, the $z$ in the denominator is cancelled. So, $z = 0$ is a removable singularity. The other singularities are poles since the function blows up to infinity.
+
+  \item Recall that \[ \cos(z) = \frac{e^{iz} + e^{-iz}}{2} \], so we have 
+  
+  \begin{align*}
+    \cos \left(\frac{1}{\sin(z)} \right) &= \frac{e^{\frac{i}{\sin(z)}} + e^{-\frac{i}{\sin(z)}}}{2}
+  \end{align*}
+
+  So, the function has singularities everywhere $\sin(z) = 0$ i.e. for $z = 2n \pi, n \in \mathbb{Z}$. These singularities are all poles as the function blows up to infinity.
+
+  \item For \[ f(z) = \frac{e^{1/z}}{\sin(z)} \], we have isolated singularities at $z = 2\pi n, n \in \mathbb{Z}$. These singularities are poles.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 2}
+\vskip 0.5cm
+For the following functions, find the order of the pole at $z_0 = 0$, and then the residue.
+\begin{enumerate}[label=(\alph*)]
+  \item $f(z) = \frac{1-e^{z}}{z^3}$
+  \item $f(z) = \frac{\sin(z^2)}{z^4}$ 
+  \item $f(z) = \frac{1}{\left(2\cos(z)-2+z^2\right)^2}$
+  \item $f(z) = \frac{z^2 + 1}{2z \cos(z) }$
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Solution:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item For this function, the pole at the origin has order zero because of the $1/z^3$ factor. We can rewrite the function as 
+  \begin{align*}
+    \frac{1 - e^{z}}{z^3} &= \frac{1}{z^3} \left[ 1 - \left(\sum_{k = 0}^{\infty} \frac{z^k}{k!} \right) \right] \\
+    &= \frac{1}{z^3} \left[ 1 - \left(1 + z + \frac{z^2}{2!} + \cdots \right) \right] \\
+    &= \frac{1}{z^3} \left[\left( - \sum_{k = 1}^{\infty} \frac{z^k}{k!} \right)\right] \\
+    &= \sum_{k = 1}^{\infty} -\frac{z^{k-3}}{k!} \\
+    &= -\frac{z^{-2}}{1!} -\frac{z^{-1}}{2!} -\frac{z^0}{3!} - \frac{z^{1}}{4!} - \cdots \\
+    &= \frac{-1}{(z-0)^2} + \frac{(-1/2)}{(z-0)} - \sum_{j = 0}^{\infty} \frac{z^{j}}{(j+3)!}
+  \end{align*}
+  and so we find the res$(f) = -1/2$.
+
+  \item Again, writing $f(z)$ in terms of the power series for $\sin(z^2)$, we have 
+  \[ f(z) = \frac{1}{z^2} - \frac{z^2}{3!} + \frac{z^5}{5!} \pm \cdots \] so the pole at $z_0 = 0$ has order 2 and residue 0.
+
+  \item The expansion for $\cos(z)$ is 
+  \[ \cos(z) = 1 - \frac{z^2}{2} + \frac{z^4}{4!} \pm \cdots  \]
+  So, 
+  \begin{align*}
+    f(z) &= \frac{1}{2 \left(1 - \frac{z^2}{2!} + \frac{z^4}{4!} \pm \cdots \right) - 2 + z^2}
+  \end{align*}
+  There is no term of $z$ to the first power that appears in the denominator anywhere so we must have residue equal to zero. The order of the pole at $z_0 = 0$ is four because that's the least degree of $z$ in the denominator.
+
+  \item We can find the residue of $f(z)$ at $z_0$ as 
+  \[  \lim_{z \rightarrow z_0} \left(z - z_0\right)f(z) \]
+
+  This gives us 
+  \begin{align*}
+    \lim_{z \rightarrow z_0} \left(z - z_0\right)f(z) &=  \lim_{z \rightarrow z_0} \left(z - 0\right) \cdot \left( \frac{z^2+1}{2z \cos(z)} \right) \\
+    &= \lim_{z \rightarrow 0} \frac{z^2 + 1}{2\cos(z)} \\
+    &= \lim_{z \rightarrow 0} \frac{z^2 }{2\cos(z)} +  \frac{1}{2\cos(z)} \\
+    &= 0 + \frac{1}{2} \\
+    &= \frac{1}{2}
+  \end{align*}
+  So the residue of the pole at the origin is $1/2$. The pole has order $1$ because when we expand $\cos(z)$ in $f(z)$ and simplify, there is a $1/z$ term.
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 3}
+\vskip 0.5cm
+Suppose that $f$ is holomorphic and has a pole of zero order $m$ at $z_0$. What is the order of the pole of the function $g(z) = f'(z) / f(z)$ at $z_0$, and what is the residue? 
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+Since $f$ is holomorphic on $\C \setminus \{z_0\}$, it is also analytic over $\C \setminus \{z_0\}$. As a result, we can express it as 
+\[ f(z) = (z-z_0)^m h(z) \] with some other analtyic function $h(z)$.
+
+Then, 
+\begin{align*}
+  g(z) &= \frac{f'(z)}{f(z)} \\
+  &= \frac{m\left(z - z_0\right)^{m-1}h(z) + (z-z_0)^m h'(z)}{(z-z_0)^m h(z)} \\
+  &= \frac{m}{(z-z_0)} + \frac{h'(z)}{h(z)}.
+\end{align*}
+
+So, the order of the pole of $g(z)$ at $z_0$ is 1 and the residue is $m$.
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 4}
+\vskip 0.5cm
+Use the Residue Theorem to calculate 
+\[  \int_{\partial B_3(0)} \frac{e^{iz}}{z^2 (z-2)(z+5i)} dz  \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+The Residue theorem tells us that if $f$ is holomorphic in a neighborhood of $\overline{U}$ except for a finite set of isolated singularities then
+\[  \int_{\partial U} f(z) dz = 2\pi i \sum_{j} \mathrm{Res}_{{z_j}} (f)  \]
+
+\vskip 0.5cm Thus, to calculate the integral \[  \int_{\partial B_3(0)} \frac{e^{iz}}{z^2 (z-2)(z+5i)} dz  \] we find the residues of at the poles $z = 0, 2, -5i$. 
+
+\vskip 0.5cm \underline{$z_0 = 0$:} 
+
+\begin{align*}
+  \frac{e^{iz}}{z^2 (z-2)(z+5i)} &= \frac{h(z)}{z^2}
+\end{align*}
+
+where $h(z) = (e^{iz}) / (z-2)(z+5i)$ is holomorphic at $z = 0$ so we can taylor expand it near $z = 0$ as 
+\[ h(z) = A_0 + A_1(z-0) + A_2(z-0)^2 + \cdots \]
+
+So, 
+\[ f(z) = \frac{A_0}{(z-0)^2} + \frac{A_1}{(z-0)^1} + \cdots \]
+
+where of course, $A_k = \restr{\frac{1}{k!} \cdot \left(\frac{d^k}{dz^k} h(z)\right)}{z = 0}$. 
+
+\vskip 0.5cm
+So, 
+\begin{align*}
+  A_1 &= \frac{1}{1!} \cdot \restr{\frac{d}{dx} \left[ \frac{e^{iz}}{(z-2)(z+5i)} \right] }{z = 0} \\
+  &= \restr{\frac{e^{iz} i(z-2)(z+5i) - (2x - 2 + 5i)e^{iz}}{\left( (z-2)(z+5i) \right)^2}}{z = 0} \\
+  &= \frac{1\cdot i\cdot(-2)(5i) - (-2 + 5i)\cdot1}{\left(-10i\right)^2} \\
+  &= -\frac{3}{25} + \frac{1}{20}i
+\end{align*}
+
+
+\vskip 1cm
+\underline{$z_0 = 2$:} Similarly, for $z_0 = 2$ we have 
+\[ \frac{e^{iz}}{z^2(z-2)(z+5i)} = \frac{g(z)}{(z-2)} \]
+
+where $g(z) = (e^{iz})/(z^2)(z+5i)$ is holomorphic at $z = 2$ and we taylor expand it around $z_0 = 2$ as 
+\[  g(z) = B_0 + B_1 (z-2) + B_2 (z-2)^2 + \cdots  \]
+
+So,
+\[ f(z) = \frac{B_0}{(z-2)} + B_1 + B_2 \cdot (z-2)^1 + \cdots  \]
+
+Then, the residue at $z = 2$ is
+\begin{align*}
+  B_0 &= g(2) \\
+  &= \frac{e^{2i}}{4 \cdot (2+5i)} \\
+  &= \frac{e^{2i}}{164} \cdot \left(8 - 10i\right)
+\end{align*}
+
+\vskip 0.5cm
+\underline{$z_0 = -5i$:}
+By the exact same reasoning, since the pole at $-5i$ is a first order pole, the residue of $f(z)$ at $z = -5i$ is given by $h(-5i)$ where 
+\[ h(z) = \frac{e^{iz}}{z^2 (z-2)} \] 
+
+This comes out to 
+\begin{align*}
+  h(-5i) &= \frac{e^{-5}}{(-5i)^2 \left(2 - 5i\right)} \\
+  &= \frac{e^{-5}}{-25 \cdot \left(2 - 5i\right)} \\
+\end{align*}
+
+Therefore, the integral is equal to 
+\begin{align*}
+  \int_{\partial B_3(0)} \frac{e^{iz}}{z^2 (z-2)(z+5i)} dz &= 2\pi i \left[ -\frac{3}{25} + \frac{1}{20}i + \frac{e^{2i}}{164} \cdot \left(8 - 10i\right) +  \frac{e^{-5}}{-25 \cdot \left(2 - 5i\right)}  \right] \\
+\end{align*}
+
+[Come back to this question for simplification.]
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 5}
+\vskip 0.5cm
+\begin{enumerate}[label=(\alph*)]
+  \item Find the residue of $f(z) = 1 / \sin(z)$ at $z_0 = 0$ and use this to calculate 
+  \[  \int_{B_1(0)} \frac{1}{\sin(z)} dz \]
+
+  \item Calculate 
+  \[  \int_{B_4(0)} \frac{1}{\sin(z)} dz   \]
+\end{enumerate}
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item To find the residue of $1/sin(z)$, we use the fact that the residue of $f$ at a simple pole $a \in \C$ is equal to
+  \[ \lim_{z \rightarrow a} (z-a) f(z) \]
+
+  So, we find the residue at $z_0 = 0$ to be 
+  \begin{align*}
+    \lim_{z \rightarrow 0} \left(z - 0\right) \frac{1}{\sin(z)} &= \lim_{z\rightarrow 0} \frac{z}{\sin(z)} \\
+    &= \frac{\lim_{z \rightarrow 0} 1}{\lim_{z \rightarrow 0} \frac{\sin(z)}{z}}
+  \end{align*}
+  the limit in the denominator is known to equal $1$, so 
+  \[ \lim_{z \rightarrow 0} \frac{z}{\sin(z)} = 1 \]
+
+  Then, using the Residue Theorem, 
+  \[ \boxed{\int_{B_1(0)} \frac{1}{\sin(z)} dz = 2\pi i} \]
+
+
+  \item We can be more general and find the residue at each pole of $\frac{1}{\sin(z)}$ i.e. at every $z = n\pi$, $n \in \mathbb{Z}$ as 
+  \begin{align*}
+    \lim_{z \rightarrow n\pi} \left(z - n\pi\right) \frac{1}{\sin(z)} &= \lim_{z \rightarrow n\pi} \frac{1}{\cos(z)} \\
+    &= (-1)^n
+  \end{align*}
+
+  The poles of $f(z)$ that lie within $B_4(0)$ are $z_0 = -3\pi, -2\pi, -1\pi, 0, \pi, 2\pi, 3\pi$ Then, using the Residue Theorem, 
+  \begin{align*}
+    &\int_{B_4(0)} \frac{1}{\sin(z)} dz = 2\pi i \left(-1 + 1 -1 + 1 -1 + 1 -1\right) \\
+    \implies& \boxed{\int_{B_4(0)} \frac{1}{\sin(z)} dz = 2\pi i}
+  \end{align*}
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 6}
+\vskip 0.5cm
+Calculate 
+\[ \int_{-\infty}^{\infty} \frac{\sin^3(x)}{x^3} dx  \]
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+
+Motivated by the identity $\sin^3(x) = \frac{1}{4}\left( 3\sin(x) - \sin(3x) \right)$ (which also holds for $x \in \C$), let's define the complex function
+\[ f(z) = \frac{1}{4} \left( 3e^{iz} - e^{3iz} \right) \]
+
+Expanding this out,
+\begin{align*}
+  &f(z) = \frac{1}{4} \left[ 3 \cdot \left( \cos(z) + i\sin(z) \right) - \left( \cos(3z) + i\sin(3z) \right) \right] \\
+  \implies&\text{Im}(f(z)) = \frac{1}{4} \left[ 3\sin(z) - \sin(3z) \right] \\
+  \implies&\text{Im}(f(z)) = \sin^3(z)
+\end{align*}
+
+Let's integrate this over the following contour $\Gamma$ which excludes the origin:
+\begin{center}
+  \includegraphics*[scale=0.40]{Q6 HW 8.png}
+\end{center}
+
+\vskip 0.5cm
+Since $f(z)$ has no singularities in the region bounded by the countour $\Gamma$, Cauchy's theorem gives us 
+\begin{align*}
+  &\int_{\Gamma} \frac{f(z)}{z^3} dz = 0 \\
+  \implies &\int_{-R}^{-\epsilon} \frac{f(z)}{z^3} dz + \int_{{\gamma_{\epsilon}}} \frac{f(z)}{z^3} dz + \int_{+\epsilon}^{+R} \frac{f(z)}{z^3} dz + \int_{{\gamma_R}} \frac{f(z)}{z^3} dz = 0 \\
+  \implies &\lim_{\epsilon \rightarrow 0, R \rightarrow \infty} \left(\int_{-R}^{-\epsilon} \frac{f(z)}{z^3} dz + \int_{{\gamma_{\epsilon}}} \frac{f(z)}{z^3} dz + \int_{+\epsilon}^{+R} \frac{f(z)}{z^3} dz + \int_{{\gamma_R}} \frac{f(z)}{z^3} dz\right) = 0
+\end{align*}
+
+% where 
+% \begin{align*}
+%   \lim_{\epsilon \rightarrow 0, R \rightarrow \infty} \left(\int_{-R}^{-\epsilon} f(z) dz + \int_{+\epsilon}^{+R} f(z) dz \right) &= \int_{-\infty}^{\infty} f(z) dz 
+% \end{align*}
+
+\vskip 1cm
+Over $\gamma_R$, we have $\left|\frac{1}{z^3}\right| = \frac{1}{R^3}$. Now, 
+\begin{align*}
+  \left| \int_{{\gamma_R}} \frac{f(z)}{z^3} \right| &\leq \int_{{\gamma_R}} \left| \frac{f(z)}{z^3} \right| = \int_{\gamma_R} \frac{\left|f(z)\right|}{R^3} dz
+\end{align*}
+
+\vskip 0.5cm
+In the $R \rightarrow \infty$, we have $\int_{\gamma_R} \frac{\left|f(z)\right|}{R^3} dz \rightarrow 0$. Thus, $\left| \int_{{\gamma_R}} \frac{f(z)}{z^3} \right| \rightarrow 0$ which means
+\[ \lim_{R \rightarrow \infty} \int_{{\gamma_R}} \frac{f(z)}{z^3} = 0 \]
+
+
+\vskip 1cm
+Now, the function 
+\[ \frac{f(z)}{z^3} = \frac{1}{z^3} \cdot \frac{1}{4} \left( 3e^{iz} - e^{3iz} \right) \] can be expanded using the taylor series expansion for the exponential.
+
+\begin{align*}
+  \frac{f(z)}{z^3} &= \frac{1}{4z^3} \left[ (3-1) + z(3i - 3i) + z^2 \left( 3\frac{i^2}{2} - \frac{(3i)^2}{2} \right) + \cdots \right] \\
+  &= \frac{1}{4z^3} \cdot \left[3z^2 + \cdots \right] \\
+  &= \frac{(3/4)}{z} + \cdots
+\end{align*}
+
+Therefore,  the function $f(z)/z^3$ has a first order pole at the origin and its residue there is $3/4$. Now, in the $\epsilon \rightarrow 0$ limit. we have 
+
+\begin{align*}
+  \lim_{\epsilon \rightarrow 0} \int_{{\gamma_{\epsilon}}} \frac{f(z)}{z^3} dz &= \lim_{\epsilon \rightarrow 0} \int_{{C_\epsilon}} \frac{f(z)}{z^3} dz \\
+  &= \frac{1}{2} \cdot \left( -2\pi i \text{Res}_{0}\left( \frac{f(z)}{z^3} \right) \right)\\
+  &= -\pi i \frac{3}{4} \\
+  &= -\frac{3}{4}\pi i 
+\end{align*}
+
+where $C_{\epsilon}$ is the circle (reverse orientation) around the origin with radius $\epsilon$, rather than just the half circle we've considered. This allows us the apply the Residue theorem.
+
+So,
+\begin{align*}
+  \lim_{\epsilon \rightarrow 0, R \rightarrow \infty}& \left(\int_{-R}^{\epsilon} \frac{f(z)}{z^3} dz + \int_{+\epsilon}^{+R} \frac{f(z)}{z^3} dz + \int_{{\gamma_{\epsilon}}} \frac{f(z)}{z^3} dz \right) = 0 \\
+  \implies & \int_{-\infty}^{\infty} \frac{f(x)}{x^3} dx - \frac{3}{2}\pi i = 0 \text{  (Where the first integral is just over the real line)} \\
+  \implies & \int_{-\infty}^{\infty} \underbrace{\frac{\left(3\cos(x)-\cos(3x)\right)}{4}}_{\text{Re}(f(z))} \cdot \frac{1}{x^3} dz + i\int_{-\infty}^{\infty} \frac{\sin^3(x)}{x^3}  dz = \frac{3}{4}\pi i \\
+\end{align*}
+The first integral vanishes because it's an odd function benig integrated over an interval symmetric about the origin.
+
+\vskip 0.5cm
+Therefore, 
+\begin{align*}
+  \boxed{\int_{-\infty}^{\infty} \frac{\sin^3(x)}{x^3} dx = \frac{3}{4} \pi }
+\end{align*}
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{mathdefinitionbox}{Question 7}
+\vskip 0.5cm
+Suppose $f(z)$ is holomorphic in a punctured disc $D_r(z_0) \setminus \{z_0\}$. Suppose also that 
+\[ \left| f(z) \right| \leq A \left| z - z_0 \right|^{-1+\epsilon} \] for some $\epsilon > 0$, and all $z$ near $z_0$. Show that the singularity of $f$ at $z_0$ is removable.
+\end{mathdefinitionbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\underline{\textbf{Proof:}}
+
+We have $f(z)$ such that 
+\[ \left|f(z)\right| \leq A \left|z-z_0\right|^{-1+\epsilon} \] near $z_0$.
+
+
+% This means that the function $g(z)$ defined as $g(z) = f(z) \left(z-z_0\right)$ satisfies (near $z_0$)
+% \[ \left|g(z)\right| \leq A \left|z-z_0\right|^{\epsilon}  \]
+
+
+% Then,
+% \[  \lim_{z \rightarrow z_0} g(z) = 0 \] and $z_0$ is a removable singularity of $g(z)$. This is done by defining $g(z_0) = 0$ and $g(z) = f(z) (z - z_0), z \neq z_0$. So, $g(z)$ becomes a holomorphic function over the disc $D_r(z_0)$ rather than just the punctured disc.
+
+\vskip 0.5cm
+Now if $z_0$ is a pole of $f$, then we can write $f(z) = \frac{h(z)}{(z-z_0)^k}$ for $z$ near $z_0$, $l \geq 1$, and $h(z) \neq 0$ near $z_0$. So, 
+
+\[ \left|\frac{h(z)}{(z-z_0)^k}\right| \leq A\left|z-z_0\right|^{-1+\epsilon} \]
+
+or equivalently,
+
+\[ \left|h(z)\right| \leq A\left|z-z_0\right|^{k-1+\epsilon} \]
+
+In order for this to be true for arbitrary $\epsilon$, we would require $h(z_0) = 0$, which is a contradiction. Thus, $z_0$ must be a removable singularity of $f$.
+
+\vskip 0.5cm
+\hrule 
+\vskip 0.5cm
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{mathdefinitionbox}{Question }
+% \vskip 0.5cm
+
+% \end{mathdefinitionbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \vskip 0.5cm
+% \underline{\textbf{Proof:}}
+
+% \vskip 0.5cm
+% \hrule 
+% \vskip 0.5cm
+
+
+
+\end{document}

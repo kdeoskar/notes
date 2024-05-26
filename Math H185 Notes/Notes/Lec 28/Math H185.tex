@@ -1,0 +1,187 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Math H185 Lecture 28},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{tikz-cd}
+
+%%%%%%%%%%% Box pacakges and definitions %%%%%%%%%%%%%%
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+
+
+%%%%%%%%%%% New Commands %%%%%%%%%%%%%%
+\newcommand*{\T}{\mathcal T}
+\newcommand*{\cl}{\text cl}
+
+
+\newcommand{\ket}[1]{|#1 \rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\inner}[2]{\langle #1 | #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\oper}{\hat{\Omega}}
+\newcommand{\lam}{\hat{\Lambda}}
+\newcommand{\defn}{\underline{\textbf{Def: }}}
+\newcommand{\defeq}{\vcentcolon=}
+
+
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\restr}[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tcbset{theostyle/.style={
+    enhanced,
+    sharp corners,
+    attach boxed title to top left={
+      xshift=-1mm,
+      yshift=-4mm,
+      yshifttext=-1mm
+    },
+    top=1.5ex,
+    colback=white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    boxed title style={
+      sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}}
+
+\newtcbtheorem[number within=section]{Theorem}{Theorem}{%
+  theostyle
+}{thm}
+
+\newtcbtheorem[number within=section]{Definition}{Definition}{%
+  theostyle
+}{def}
+
+
+
+\title{Math H185 Lecture 28}
+\author{Keshav Balwant Deoskar}
+
+\begin{document}
+\maketitle
+
+% \vskip 0.5cm
+These are notes taken from lectures on Complex Analysis delivered by Professor Tony Feng for UC Berekley's Math H185 class in the Sprng 2024 semester.
+% \pagebreak 
+
+\tableofcontents
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{April 10 - Geometric Interpretation of the Argument Principle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+  \item Recall that for a complex number $z = re^{i\theta}$, the \emph{argument} of $z$ is "$\mathrm{arg}(z) = \theta$".
+  \item Though it is not defined well when $r = 0$ and in general can be changed by a muliple of $2\pi$, in a small neighborhood we can make a choice and ensure the argument is locally well-defined.
+  \item Also recall "$\log(z) = \log(r) + i\theta$". The logarithm isn't well-defined because the argument isn't well defined.
+  \item However, the \emph{difference} between the arguments of two complex numbers is indeed well-defined.
+\end{itemize}
+
+\vskip 0.5cm
+Now, let's spell out the connection with the Argument Principle.
+
+\vskip 0.5cm
+\begin{align*}
+  \frac{1}{2\pi i} \int_{\partial U} \underbrace{\frac{f'}{f}}_{\frac{d}{dz} \log \left(f(z)\right)} dz &= \text{\# zeros in U} - \text{\# poles in U}
+\end{align*}
+
+So, the integral on the LHS is measuring the range of angles as $f$ goes around the boundary of $U$ because the change in logs is approximately the change in argument or angle.
+
+\vskip 0.5cm
+Listening in class. Write notes from recording.
+[Fill stuff in]
+
+\vskip 1cm
+\begin{dottedbox}
+  \emph{\textbf{Lemma:}} Let $F : U \rightarrow V$ ($U, V \subseteq \C$) be holomorphic and $z_0 \in U$ such that $f'(z_0) \neq 0$. Then $f$ is a biholomorphism to its image (locally) near $z_0$. 
+\end{dottedbox}
+
+\vskip 0.5cm
+\underline{Ex:} $f(z) = z^2$ [Write more later]
+
+\vskip 0.5cm
+\emph{\textbf{Proof:}} 
+
+
+$1^{st}$ step: $f$ injective on some $U' \ni z_0$. Let $w_0 = f(z_0)$. The zeros of $f(z) - w_0$ are isolated (why?) so on some $\overline{B_r(z_0)}$, 
+\[ \left| f(z) - w_0 \right| \geq \epsilon > 0 \]
+
+and for $w \in B_{\delta/2}(w_0)$, 
+\[ \left| w - w_0 \right| \leq \frac{\epsilon}{2} \]
+
+
+\end{document}
