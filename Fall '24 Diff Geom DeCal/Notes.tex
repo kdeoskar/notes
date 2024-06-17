@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % CUSTOM BOXES AND STUFF
+% \newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+% \newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+
+% \definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+% \definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% % Define the custom proof environment
+% \newtcolorbox{ex}[2][Example]{
+%   colback=red!5!white, % Light blue background
+%   colframe=red!75!black, % Darker blue border
+%   coltitle=white, % Title color
+%   fonttitle=\bfseries, % Title font style
+%   title={{#2}},
+%   arc=1mm, % Rounded corners with 4mm radius,
+%   boxrule=0.5mm,
+%   left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+%   breakable, % Allow box to be broken across pages
+% }
+
+% % % Define the custom proof environment
+% % \newtcolorbox{defn}[2][Definition]{
+% %   colback=blue!5!white, % Light blue background
+% %   colframe=blue!75!black, % Darker blue border
+% %   coltitle=white, % Title color
+% %   fonttitle=\bfseries, % Title font style
+% %   title={{#2}},
+% %   arc=1mm, % Rounded corners with 4mm radius,
+% %   boxrule=0.5mm,
+% %   left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+% %   breakable, % Allow box to be broken across pages
+% % }
+
+% % \definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+% % \definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+% % % Define the tcolorbox environment
+% % \newtcolorbox{mathdefinitionbox}[2][]{%
+% %     colback=boxfill,   % Background color
+% %     colframe=boxheader, % Border color
+% %     fonttitle=\bfseries, % Bold title
+% %     coltitle=white,     % Title text color
+% %     title={#2},         % Title text
+% %     enhanced,           % Enable advanced features
+% %     attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+% %     boxrule=0.5mm,      % Border width
+% %     sharp corners,      % Sharp corners for the box
+% %     #1                  % Additional options
+% % }
+% % %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Physics 198: Differential Geometry and Lie Groups}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily Notes}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+These are a compilation of notes based on which (some of the) lectures for 'Physics 198: Differential Geometry and Lie Groups for Physics Students' will be given. These notes are largely based on the primary reference to the class, namely "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and cover topics in roughly the same order as in the book.
+
+% \vskip 0.5cm
+% \begin{redbox}
+%     Remark: I am not an expert! Please point out and errors / suggestions if you'd like via email.
+% \end{redbox}
+
+% \microtoc
+\tableofcontents 
+
+% main 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Lie Groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+In physics, we can learn a great deal from studying the symmetries of \emph{continuous} systems. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Representations of Lie Groups and Lie Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection*{What is a Representation?}
+\begin{itemize}
+    \item To understand what a group really \emph{is}, it can be very enlightening to study what the group \emph{does} i.e. to study \emph{\textbf{group actions}}. This refers to how the elements of a group act on some other space of objects (could be another group, a vector space, a topological space, smooth manifold, etc.)
+    \item The case of vector spaces is and specifically the group actions which act \emph{linearly} on a \emph{linear space} is particularly important. Essentially, such maps which characterize the behavior of a group are called its \emph{\textbf{Representations}}.
+\end{itemize}
+
+
+% \begin{definition}
+%   Given a group $G$ and vector space $V$, a group homomorphism $\rho : G $ is called a \textbf{representation} of $G$ in $V$.
+% \end{definition}
+
+% \begin{definition}
+  
+% \end{definition}
+
+
+% \begin{ex}{Fecko, Exercise 12.1.5}
+    
+% \end{ex}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+\end{document}

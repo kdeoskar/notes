@@ -6,4 +6,4 @@
 \contentsline {subsection}{\numberline {4.1}April 1: Riemann Sphere}{3}{subsection.4.1}%
 \contentsline {subsubsection}{One point compactification}{3}{section*.2}%
 \contentsline {subsubsection}{Meromorphic functions}{4}{section*.5}%
-\contentsline {subsection}{\numberline {4.2}April 3: }{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}April 3: }{6}{subsection.4.2}%
