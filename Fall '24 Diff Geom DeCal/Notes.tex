@@ -34,57 +34,45 @@
 \setcounter{tocdepth}{2} % no subsubsections in ToC
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % CUSTOM BOXES AND STUFF
-% \newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
-% \newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
 
-% \definecolor{lightblue}{RGB}{173,216,230} % Light blue color
-% \definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
 
-% % Define the custom proof environment
-% \newtcolorbox{ex}[2][Example]{
-%   colback=red!5!white, % Light blue background
-%   colframe=red!75!black, % Darker blue border
-%   coltitle=white, % Title color
-%   fonttitle=\bfseries, % Title font style
-%   title={{#2}},
-%   arc=1mm, % Rounded corners with 4mm radius,
-%   boxrule=0.5mm,
-%   left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
-%   breakable, % Allow box to be broken across pages
-% }
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
 
-% % % Define the custom proof environment
-% % \newtcolorbox{defn}[2][Definition]{
-% %   colback=blue!5!white, % Light blue background
-% %   colframe=blue!75!black, % Darker blue border
-% %   coltitle=white, % Title color
-% %   fonttitle=\bfseries, % Title font style
-% %   title={{#2}},
-% %   arc=1mm, % Rounded corners with 4mm radius,
-% %   boxrule=0.5mm,
-% %   left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
-% %   breakable, % Allow box to be broken across pages
-% % }
-
-% % \definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
-% % \definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
-
-% % % Define the tcolorbox environment
-% % \newtcolorbox{mathdefinitionbox}[2][]{%
-% %     colback=boxfill,   % Background color
-% %     colframe=boxheader, % Border color
-% %     fonttitle=\bfseries, % Bold title
-% %     coltitle=white,     % Title text color
-% %     title={#2},         % Title text
-% %     enhanced,           % Enable advanced features
-% %     attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
-% %     boxrule=0.5mm,      % Border width
-% %     sharp corners,      % Sharp corners for the box
-% %     #1                  % Additional options
-% % }
-% % %%%%%%%%%%%%%%%%%%%%%%%%%
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,12 +101,10 @@
 % make table of contents
 % \newpage
 
-These are a compilation of notes based on which (some of the) lectures for 'Physics 198: Differential Geometry and Lie Groups for Physics Students' will be given. These notes are largely based on the primary reference to the class, namely "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and cover topics in roughly the same order as in the book.
+These are a compilation of notes for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. These notes are largely based on the primary reference to the class, namely "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and cover topics in roughly the same order as in the book.
 
-% \vskip 0.5cm
-% \begin{redbox}
-%     Remark: I am not an expert! Please point out and errors / suggestions if you'd like via email.
-% \end{redbox}
+\vskip 0.5cm
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
 
 % \microtoc
 \tableofcontents 
@@ -140,25 +126,100 @@ In physics, we can learn a great deal from studying the symmetries of \emph{cont
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection*{What is a Representation?}
+\subsection{What is a Representation?}
 \begin{itemize}
-    \item To understand what a group really \emph{is}, it can be very enlightening to study what the group \emph{does} i.e. to study \emph{\textbf{group actions}}. This refers to how the elements of a group act on some other space of objects (could be another group, a vector space, a topological space, smooth manifold, etc.)
-    \item The case of vector spaces is and specifically the group actions which act \emph{linearly} on a \emph{linear space} is particularly important. Essentially, such maps which characterize the behavior of a group are called its \emph{\textbf{Representations}}.
+    \item To understand what a group really \emph{is}, it can be very enlightening to study what the group \emph{does} i.e. to study \emph{\textbf{group actions}}. It's particularly easy to extract information about a group from its linear actions on linear spaces.
+    \item How exactly do we do this? We can use some sort of map to assign a \emph{linear operator} over that vector space to each group element to describe (or represent) the action of each group element on the vector space elements. The map that we use is a \textbf{representation} of the group.
+\end{itemize}
+
+\vskip 0.5cm
+\begin{redbox}
+  Recall that the space of all linear operators $\rho \text{ : } V \rightarrow V$ is denoted $\homend{V}$. The subset of these operators which are invertible (isomorphisms on $V$) is denoted $\aut{V}$. 
+  
+  \vskip 0.5cm
+  Notably, $\aut{V}$ has a group structure! \begin{thought}{Check this!} \end{thought} On the other hand, $\homend{V}$ becomes an (Associative, and later Lie) Algebra if we define the commutator for $A, B \in \homend{V}$ as
+  \[ [A, B] = AB - BA \] 
+  
+  % \begin{thought}{Check this!} \end{thought}
+\end{redbox}
+
+\vskip 0.5cm
+Now the formal definition.
+
+\vskip 0.5cm
+\begin{defn}{Group Representation}
+  Given a group $G$ and vector space $V$, a group homomorphism \[ \rho \text{ : } G \rightarrow \mathrm{Aut}(V) \] is called a \textbf{representation} of $G$ in $V$.
+\end{defn}
+
+\begin{example}
+  Complete this later
+\end{example}
+
+\vskip 0.5cm
+
+We can use the same idea to define the representation of an algebra, but this time with $\homend{V}$.
+
+\begin{defn}{Lie Algebra Representation}
+  Given a Lie algebra $\mathcal{G}$ and vector space $V$, an algebra homomorphism \[ \rho' \text{ : } \mathcal{G} \rightarrow \homend{V} \] is called a representation of the Lie algebra $\mathcal{G}$ over $V$.
+\end{defn}
+
+\begin{remark}{The representations $\rho$ and $\rho'$ of a lie group and its lie algebra are related! so $\rho'$ is called the \textbf{derived representation}.}
+\end{remark}
+
+\begin{ex}{Fecko, Exercise 12.1.4}
+    Consider a Lie algebra $\mathcal{G}$ whose basis elements $\{E_i\}$ satisfy the commutation relations 
+    \[ [E_i, E_j] = c^k_{ij} E_k  \]
+    and a representation $f \tcolon \mathcal{G} \rightarrow \homend{V}$. Then, define $\mathcal{E}_i \equiv f(E_i)$. Since $f$ is a homomorphisms between algebra, it is linear and respects the commutator i.e. for $A, B \in \mathcal{G}$
+    \[ f\left( [A, B] \right) = \left[f(A), f(B)\right] \] 
+
+    Thus, 
+    \begin{align*}
+      \left[ \mathcal{E}_i, \mathcal{E}_j \right] &= \left[f(E_i), f(E_j) \right] \\
+      &= f\left([E_i, E_j]\right) \\
+      &= f\left(c^k_{ij} E_k\right) \\
+      &= c^{k}_{ij} f(E_k) \\
+      &= c^{k}_{ij} \mathcal{E}_k 
+    \end{align*}
+
+    \begin{thought}{The basis elements of the representation satisfy the same commutation relation as those of the Lie Algebra!}
+    \end{thought}
+\end{ex}
+
+\begin{ex}{Fecko, Exercise 12.1.5}
+    Do this one later
+\end{ex}
+
+\vskip 0.5cm
+\begin{itemize}
+  \item The assignment from Lie Group to Lie Algebra $G \mapsto \mathcal{G}$ is nice and unique, but the other way around can get messy.
+  \item Similarly, given a Lie group representation $\rho$ there is a unique Lie algebra represenation $\rho'$, but not necessarily the other way around. 
 \end{itemize}
 
 
-% \begin{definition}
-%   Given a group $G$ and vector space $V$, a group homomorphism $\rho : G $ is called a \textbf{representation} of $G$ in $V$.
-% \end{definition}
+\begin{ex}{Fecko, Exercise 12.1.6}
+  \begin{enumerate}[label=(\roman*)]
+    \item Consider the Lie Group $H = \aut{V} \equiv \mathrm{GL}(V)$. 
+    Recall that the Lie Algebra of $H$ is 
+  \end{enumerate}
+\end{ex}
 
-% \begin{definition}
-  
-% \end{definition}
+\vskip 0.5cm
+Write about $\rho$-invariant inner products.
 
-
-% \begin{ex}{Fecko, Exercise 12.1.5}
+% \begin{ex}{Fecko, Exercise 12.2.2}
     
 % \end{ex}
+
+% \begin{note}{Note}
+% \end{note}
+
+% \begin{thought}{A thought}
+% \end{thought}
+
+% \begin{highlight}{A hightlight}
+% \end{highlight}
+
+
 
 \end{document}
 
