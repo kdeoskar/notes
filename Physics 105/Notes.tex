@@ -120,7 +120,225 @@ This template is based heavily off of the one produced by \href{https://knzhou.g
 text
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{July 3, 2024:}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Finishing up discussion from last lecture}
+- Finish this from lecture recording
+
+\vskip 0.5cm
+We can parametrize the position of a particle as $\vec{r} = \vec{r}(q_k, t)$
+
+We have 
+\[ \frac{\partial K}{\partial \dot{q_{k}}} = \frac{1}{2}m \left[ 2 \frac{\partial \vec{r}}{\partial q_k} \cdot \frac{\partial \vec{r}}{\partial q_{m}} \dot{q_{m}} + \cdots \right] \]
+
+Then, 
+\[ \begin{cases}
+  \frac{\partial K}{\partial \dot{q_{k}}} \dot{q_{k}} = m \left[ \left( \frac{\partial \vec{r}}{\partial q_k} \cdot \frac{\partial \vec{r}}{\partial q_{m}} \dot{q_{k}} \dot{q_{m}}\right) + \frac{\partial \vec{r}}{\partial q_{k}} \cdot \frac{\partial \vec{r}}{\partial t} \dot{q_{k}} \right] \\
+  2K = m \left[ \left( \frac{\partial \vec{r}}{\partial q_k} \cdot \frac{\partial \vec{r}}{\partial q_{m}} \dot{q_{k}} \dot{q_{m}}\right) + 2 \frac{\partial \vec{r}}{\partial q_{k}} \cdot \frac{\partial \vec{r}}{\partial t} \dot{q_{k}} + \frac{\partial \vec{r}}{\partial t} \cdot \frac{\partial \vec{r}}{\partial t}\right]
+\end{cases} \]
+
+\vskip 0.5cm
+\begin{thought}
+{
+  The expression for $2K$ is obtained by expandingo out 
+\[ K = \frac{1}{2}m \frac{d\vec{r}}{dt} \cdot \frac{d\vec{r}}{dt} \] 
+in terms of indices -- write this out explicitly later
+}
+\end{thought}
+
+
+\vskip 0.5cm
+Which gives us the relation
+
+\begin{align*}
+  \frac{\partial K}{\partial \dot{q}_k} \dot{q}_k &= 2K - m \frac{\partial \vec{r}}{\partial t} \cdot \underbrace{\left( \frac{\partial \vec{r}}{\partial q_k} \dot{q}_k + \frac{\partial \vec{r}}{\partial t} \right) }_{ = \frac{d \vec{r}}{dt}} \\
+  &= 2K - \vec{p} \frac{\partial \vec{r}}{\partial t}
+\end{align*}
+
+\vskip 0.5cm
+The question we were originally considering is 
+\color{blue} \textbf{When is $H = E$?} \color{black}
+
+\vskip 0.5cm
+Now,
+\begin{align*}
+  H &= \frac{\partial L}{\partial \dot{q}_k} \dot{q} - L \\
+  &= \frac{\partial K}{\partial \dot{q}_k} \dot{q}_k = \left( K - V\right) \\
+  &= 2K - \vec{p} \cdot \frac{\partial \vec{r}}{\partial t} - K + V \\
+  &= K + V - \vec{p} \cdot \frac{\partial \vec{r}}{\partial t}
+\end{align*}
+
+\begin{redbox} 
+So we see that $H = E = K + V$ only when \[ \frac{\partial \vec{r}}{\partial t} = 0 \] i.e. when $\vec{r} = \vec{r}(q_k, t)$ has no time dependence i.e. $\vec{r} = \vec{r}(q_k)$
+\end{redbox}
+
+\vskip 0.5cm
+Earlier, we considered the following setup:
+% \begin{center}
+%   \includegraphics*[scale=0.5]{July 3/pic 1.jpeg}
+% \end{center}
+
+\vskip 0.5cm
+and we showed that 
+\[ H = E - m\omega^2 \rho^2 \]
+
+So, let's check that 
+\[ m\omega^2 \rho^2 = \vec{p} \cdot \frac{\partial \vec{r}}{\partial t} \]
+
+\begin{bluebox}
+\begin{align*}
+  \vec{p} \cdot \frac{\partial \vec{r}}{\partial t} &= \vec{p} \cdot \left( -\rho \omega \sin(\omega t) \hat{x} + \rho \omega \sin(\omega t) \hat{y} \right) \\
+  &= \vec{p} \cdot \left[ \rho  \omega \hat{\phi} \right] \\
+  &= m v_{\phi} \rho \omega \\
+  &= m \rho^2 \omega^2 
+\end{align*}
+where $v_{\phi} = \rho \omega$
+\end{bluebox}
+
+Since the hamiltonian itself has no time dependence, \textbf{$H$ is conserved}. However, \textbf{$E$ is not}. We can check that 
+\[ dH = dE = d(m \omega^2 \rho^2) \] is indeed zero. 
+
+\vskip 0.5cm
+% \begin{center}
+%   \includegraphics*[scale=0.5]{July 3/pic 2.jpeg}
+% \end{center}
+[Include figure]
+
+\vskip 0.5cm
+\begin{bluebox}
+  If we break the force on the bead into a normal force (denoted $N$) and a centripetal(?) force, then
+
+\begin{align*}
+  dW &= \overbrace{N \rho}_{\text{torque about z-axis}} d\phi \\
+  &= \frac{d {l}_z}{dt} d\phi \\
+  &= d \left(\rho m \rho \omega\right) \omega \\
+  &= d\left(m \rho^2 \omega^2\right)
+\end{align*}
+
+This is the energy that goes into the system.
+
+\vskip 0.5cm
+By energy conservation, $dW = dE$.
+\begin{align*}
+  \implies 0 = dE - dW = dE - d(m\rho^2 \omega^2)
+\end{align*}
+
+i.e. $E - m\rho^2 \omega^2 = H$ is a conserved quantity.
+\end{bluebox}
+
+\vskip 0.25cm
+So, the \textbf{Hamiltonian being conserved} and the \textbf{Hamiltonian being equal to Energy} are two different scenarios with two different conditions.
+
+\begin{redbox}
+  \begin{itemize}
+    \item $\frac{\partial L}{\partial t} = 0 \implies H$ is conserved.
+    \item For $\vec{r} = \vec{r}(q_k, t)$, $\frac{\partial \vec{r}}{\partial t} = 0 \implies H = E$
+  \end{itemize}
+\end{redbox}
+
+\vskip 0.5cm
+Now we move on to a powerful technique.
+
+\vskip 1cm
+\subsection{The Method of Lagrange Multipliers}
+
+\vskip 0.5cm
+% \begin{center}
+%   \includegraphics*[scale=0.5]{July 3/pic 2.jpeg}
+% \end{center}
+
+\vskip 0.5cm
+We have a block constrained to move on the $xy$-plane, and we have gravity. Previously, we would say 
+\[ L = \frac{1}{2} m \left( \dot{x}^2 + \dot{y}^2 + \dot{z}^2\right) - mgz \] i.e we would start with an unconstrained lagrangian, and then plug in the constraints $z = 0, \dot{z} = 0$
+\begin{align*}
+  &L = \frac{1}{2}m(\dot{x}^2 + \dot{y}^2) \\
+  \implies & \begin{cases}
+    m \ddot{x} = 0 \\
+    m \ddot{y} = 0
+  \end{cases} 
+\end{align*}
+
+\vskip 0.5cm
+Alternatively, we can implement the constraint $\ddot{z} = 0$ in the following way: We have the original lagrangian
+\begin{align*}
+  L' = \frac{1}{2} m \left( \dot{x}^2 + \dot{y}^2 + \dot{z}^2\right) - mgz + \lambda z
+\end{align*}
+
+where $\lambda$ is the Lagrange multiplier and we can think of $z$ as being the constraint function $f(z)$ and our constraint is $f(z) = 0$.
+
+\vskip 0.5cm
+If we treat $\lambda$ as an independent degree of freedom, we can write the Euler-Lagrange equation for $\lambda$ as 
+\[ \frac{\partial L}{\partial \lambda} - \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{\lambda}}\right) = 0 \implies z = 0 \text{ (constraint)} \]
+
+On the other hand, if we look at the equation of motion for $z$, we get 
+\[  \frac{\partial L}{\partial z} - \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{z}}\right) = 0 \implies \lambda - mg - m\ddot{z} = 0 \implies m\ddot{z} = \lambda - mg \]
+
+and using the constraint $z = 0 \implies \ddot{z} = 0$ we get $-mg + \lambda = 0 \implies \lambda = mg$. Okay, but what physical meaning does $\lambda$ have? It has to do with the \textbf{Normal force}. i.e. $\lambda$ is encoding the \textbf{constraint} that the block can only move on the $xy$-plane due to the Normal force. 
+
+\begin{redbox}
+  So, in general, for $N$ constraints we have Lagrange Multipliers $\lambda_1, \cdots, \lambda_N$.
+\end{redbox}
+
+\begin{bluebox}
+  \textbf{Why do we call $\lambda$ a Lagrange Multiplier?}
+  \vskip 0.5cm
+  Recall from Calc 3 that if we have contours of a function $f(x,y)$ on the $xy$-plane and we are constrained to move along some other curve $g(x,y) = c$ on the plane, if we ask 
+  \color{blue}
+  "What is the extremum of $f(x,y)$ as we move along the curve $g(x,y) = c$?"
+  \color{black} then visually we can tell that the extremum corresponds to the point where $g(x,y)$ intersects the contour of $f(x,y)$ only once. This is because at such a point, the gradients of the two functions are parallel:
+
+  \[ \nabla g = \lambda \nabla f \]
+  This constant multiplier is the \textbf{Lagrange Multiplier}
+\end{bluebox}
+
+So, in general, if we have a Lagrangian 
+\[ L = \frac{1}{2}m \left(\dot{x}^2 + \dot{y}^2 + \dot{z}^2\right) - V(x,y,z) \]
+we know that $\delta L = 0$ gives the Equations of Motion. But if we want to do this variation $\delta L$ under some constraint $C(x,y,z) = 0$ then we need to consider 
+\[ \delta L = \lambda \delta C \implies L' = L - \lambda C \]
+
+
+\vskip 0.5cm
+\begin{redbox}
+  Generally, if we have $P$ constraints, $C_{l}(q_1, \cdots, t) = 0$, $l = 1, \cdots, P$ on the lagrangian $L$, we can write a new lagrangian 
+  \[ L' = L + \sum_{l = 1}^{P} \lambda_l C_l \]
+  The Euler-Lagrange equation for $\lambda_l$ leads to $C_l = 0$ and the Euler-Lagrange equation for the generalized coordinate $q_k$ is 
+  \[ \left( \frac{\partial L }{\partial q_{k}} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_{k}} \right) - \sum_{l = 1}^{P} \lambda_l \frac{C_l}{q_k} \right) = 0 \] 
+
+  \begin{align*}
+    \implies& \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_{k}} \right) = \frac{\partial L }{\partial q_{k}} + \underbrace{\sum_{l = 1}^{P} \lambda_l \frac{C_l}{q_k} }_{\text{generalized force}}
+  \end{align*}
+\end{redbox}
+
+On the physical point of view, consider the following system:
+
+\vskip 0.5cm
+[include picture of block and sledge which can both move]
+\vskip 0.5cm
+
+If we consider the system as a whole, the normal forces due to the block and the sledge are equal and opposite, so they cancel each other out - and so does the work that they do(?).
+
+\vskip 0.5cm
+Howeverm if we consider the block only - we do have a normal force. The block is constrained the only move on the surface of the slope, so we can write 
+
+\begin{align*}
+  L' = K - V + \int^{\vec{r}} \vec{F}_C(\vec{r}) \cdot d\vec{r}'
+\end{align*}
+
+\begin{thought}
+  {This is a bit handwavy - watch the lecture recording and think about this}
+\end{thought}
+
+Then, if we conpare this with 
+\[ L' = L - V + \sum_{l} \lambda_l C_l \]
+
+we have 
+\begin{align*}
+  &\sum_{l} \lambda_l C_l = \int^{\vec{r}} \vec{F}_C \cdot d\vec{r}' = \int^{\vec{r}} \vec{F} \cdot \left( \frac{\partial \vec{r}'}{\partial q_k} \cdot \mathrm{d}q_k \right) \\
+  \implies& \frac{\partial}{\partial q_k} \left( \sum_{l} \lambda_l c_l \right) = \vec{F} \cdot \left( \frac{\partial \vec{r}}{\partial q_{k}} \right) \equiv \mathcal{F}_k \text{  (generalized force)}
+\end{align*}
 
 % \begin{ex}{Fecko, Exercise 12.1.5}
     

@@ -1,8 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1719363368.90938 "c:/Users/kesha/OneDrive/Desktop/Fall '23/Latex notes/Fall '24 Diff Geom DeCal/Notes.tex" "Notes.pdf" "Notes" 1719363370.21776 0
-  "Notes.aux" 1719363370 808 78fb66e05e7d1a50edea05753c63e819 "pdflatex"
-  "Notes.out" 1719363370 849 24b922d9befb21129df46347cab1b204 "pdflatex"
-  "Notes.toc" 1719363370 397 9c4c865f5a50a57f37a88c06bbcea472 "pdflatex"
+["pdflatex"] 1719503072.53189 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Perimeter Institute QFT I/Notes.tex" "Notes.pdf" "Notes" 1719503074.08369 0
+  "Notes.aux" 1719503073 808 78fb66e05e7d1a50edea05753c63e819 "pdflatex"
+  "Notes.out" 1719503073 849 24b922d9befb21129df46347cab1b204 "pdflatex"
+  "Notes.tex" 1719363368 8417 ff8194e42e47cb3bfa874e81387a0b66 ""
+  "Notes.toc" 1719503073 397 9c4c865f5a50a57f37a88c06bbcea472 "pdflatex"
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1718579756 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1718579750 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -245,8 +246,7 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1718663021 12644 704ce0e0f0aca537d3725655ca3cf52d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex" 1719363368 8417 ff8194e42e47cb3bfa874e81387a0b66 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/Latex notes/Fall '24 Diff Geom DeCal/Notes.tex" 1719363368 8417 ff8194e42e47cb3bfa874e81387a0b66 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Perimeter Institute QFT I/Notes.tex" 1719363368 8417 ff8194e42e47cb3bfa874e81387a0b66 ""
   "custom.sty" 1718840397 10397 710dcfe27951f5d070278e3259766b16 ""
   (generated)
   "Notes.aux"
