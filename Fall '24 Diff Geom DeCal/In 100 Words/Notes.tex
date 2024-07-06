@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Physics 198: Differential Geometry and Lie Groups}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily In 100 Words}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+These is a small document to complement the lectures for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. I try to explain every concept we will encounter in less than 100 words. The order in which topics are discussed may be slightly different from the main text.
+
+
+\vskip 0.5cm
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\tableofcontents 
+
+% main 
+
+\newpage
+\section{Manifolds}
+
+\vskip 0.5cm
+\subsection{Topological Manifolds} - spaces that look like euclidean space.
+\begin{redbox}
+
+  Topological Spaces which satisfy three requirements. 
+  \begin{itemize}
+    \item \textbf{Locally Euclidean:} at each point, we can find a small neighborhood $U$ along with a bijection $\varphi$ between $U$ and an open subset of $\R^n$.
+    \item \textbf{Hausdorff:} All points are distinct in the sense that given a pair of points $p, q$ we can find open sets $O_p, O_q$ so that $p \in O_p, q \in O_q$ and $O_p, O_q$ are disjoint.
+    \item \textbf{Second Countable:} the topology has a basis, and the basis is countable.
+  \end{itemize}
+
+\end{redbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Chart} - an area + a mapping (same as in geography)
+\begin{redbox}
+  An open set $U$ centered around a point on the manifold along with a bijection $\phi \text{ : } U \rightarrow \phi(U) \subseteq_{\text{open}} \R^n$.
+\end{redbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Atlas} - a collection of charts (same as in geography)
+\begin{redbox}
+  Just... a set of charts.
+\end{redbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Smooth Structure} - 
+\begin{redbox}
+  
+\end{redbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{Chapter name}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{}
+% \begin{redbox}
+  
+%\end{redbox}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
+
+
+
+
+
+
+

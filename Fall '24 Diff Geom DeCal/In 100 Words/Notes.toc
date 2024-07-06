@@ -1,0 +1,6 @@
+\babel@toc {american}{}\relax 
+\contentsline {section}{\numberline {1}Manifolds}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Topological Manifolds}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Chart}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Atlas}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Smooth Structure}{2}{subsection.1.4}%
