@@ -355,6 +355,173 @@ we have
 % \begin{highlight}{A hightlight}
 % \end{highlight}
 
+\pagebreak
+\section{July 8, 2024:}
+
+\vskip 0.5cm
+\subsection{More about Lagrange Multipliers}
+Last time, we saw that if we have constraints $C_l \left(\underbrace{q_1, \cdots, q_k}_{N}, t\right) = 0$ then we can write a constrained Lagrangian
+\[ L' = K - V + \sum_{l} \lambda_l C_l \]
+
+These kinds of constraints, which are only constraints of the generalized coordinates are called \textbf{Holonomic constraints}. But these are not the most general constraints; we can have constaints which also depend on the derivatives $\dot{q_{k}}$. Those types of constraints are called \textbf{Non-holonomic constraints}.
+
+Then, the principle of stationary action gives us 
+\begin{align*}
+  0 &= \delta S \implies \begin{cases}
+    \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q_{k}}} \right) = \frac{\partial L}{\partial q_{k}} + \sum_{l} \underbrace{\lambda_l C_l}_{\vec{F}^C \frac{\partial \vec{r}}{\partial q_{k}} } \\
+    C_l = 0
+  \end{cases}
+\end{align*}
+
+\vskip 0.5cm
+Note that there are multiple ways to write the same constraint. And writing a constraint in a different manner changes the $C_l$, which further changes the $\lambda_l$. As such, the $\lambda_l$ is not always a generalized force; it can also be a torque etc.
+
+\vskip 0.5cm
+In total we have $N+P$ variables and $N+P$ equations, so we are able to solve the system if we know the initial conditions.
+
+\vskip 0.5cm
+We got the above equation by varying the action, and in particular, by varying $L$ with respect to $q_k$. But we can extend this a bit futher\dots
+
+\begin{align*}
+  \begin{cases}
+    \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q_{k}}}  \right)= \frac{\partial L}{\partial q_{k}} + \sum_{l} a_{lk} \lambda_{l} \\
+    a_{lk} \delta q_{k} + a_{lt} \delta t = 0
+  \end{cases}
+\end{align*}
+
+\begin{redbox}
+  In the case of Holonomic constraint,
+  \begin{align*}
+    a_{lk} &= \frac{\partial C_l}{\partial q_{l}} \\
+    a_{lt} &= \frac{\partial C_l}{\partial t} \\
+  \end{align*}
+\end{redbox}
+
+\vskip 0.5cm
+For Holonomic constraint, we will have 
+\[ \frac{\partial q_{lk}}{\partial t} = \frac{\partial q_{lt}}{\partial q_{k}} \]
+
+
+
+
+
+
+
+
+\subsection{Example: Tree log rolling down a ramp}
+
+Consider a tree log rolling down a (fixed) ramp without sliding.
+\vskip 0.5cm
+[Include Figure]
+
+\vskip 0.5cm
+To describe the motion of the log, generically, we need two degrees of freedom: $X$ and $\theta$.
+
+\vskip 0.5cm
+But we also know the log is rolling \textbf{without sliding}. So if the tree moves a distance $dx$ during rotation $d\phi$, then we know $Rd\phi = dx$
+where $R$ is the radius of the log. Or in other words,
+\[ R d\phi - dx = 0 \]
+
+\vskip 0.5cm
+This constraint is of the general form we saw above: 
+$ \boxed{a_{lk} \delta q_{k} + a_{lt} \delta t = 0 }$
+with $a_{1,\theta} = R, a_{1, x} = -1$ and all the time components $a_{lt} = 0$.
+
+\vskip 0.5cm
+Now, we can write the Lagrangian of this system: 
+\[ L = \frac{1}{2}M(\dot{X}^2) + \frac{1}{2}I \dot{\theta}^2 + mg X \sin(\alpha) \]
+
+Note that we're actually kind of mixing approaches here. Technically there should be \emph{three} degrees of freedom because the log can move in $(x,y)$ space and rotate, but we know that the log is constrained by the Normal force and we don't need both of $x,y$; just one will suffice.
+
+\begin{bluebox}
+  \textbf{Wait... so, why do we even bother using the Lagrange Multiplier stuff if we're gonna use the old method too?} 
+
+  \vskip 0.5cm
+  The Lagrange multiplier method allows us to retain info about the contact forces so if we, say, want to find the magnitude of the tension in a string, we can still do so using the Lagrange Multiplier method. Whereas in the old method, contact forces are used to enfore constraints but we lose all information about them.
+\end{bluebox}
+
+\vskip 0.5cm
+Anyway, after writing down the lagrangian, we can obtain the Equations of Motion (with the constraints):
+\begin{align*}
+  \begin{cases}
+    \frac{d}{dt} \left( m\dot{X}\right) = +mg \sin(\alpha) - \lambda_1 \\
+    \frac{d}{dt} \left( I \dot{\theta} \right) = \lambda_1 R
+  \end{cases}
+\end{align*}
+
+\begin{redbox}
+  \textbf{So, what exactly is $\lambda_1$? }
+  \vskip 0.5cm
+  In the $X$ equation of motion, we have $+mg\sin(\alpha)$ which is the component of gravity along the ramp. So, $\lambda_1$ has the same units as force. We can interpret $\lambda_1$ as the \textbf{frictional force}! 
+
+  \vskip 0.5cm
+  Then, in the $\theta$ equation of motion, we can interpret $\lambda_1 R$ as the \textbf{torque due to friction}!
+\end{redbox}
+
+Solving these further we have 
+\begin{align*}
+  \begin{cases}
+    m \ddot{X} = mg\sim(\alpha) - \lambda_1 \text{ (1)}\\
+    I \ddot{\theta} = \lambda_1 R \text{ (2)}\\
+    R \dot{\theta} = \dot{X} \text{ (from the no-sliding condition)} \implies R \ddot{\theta} = \ddot{X} \text{ (3)}
+  \end{cases}
+\end{align*}
+
+Substituting (3) into (1) gives
+
+\begin{align*}
+  &\begin{cases}
+    mR \ddot{\theta} = mg \sin(\alpha) - \lambda_1 \\
+    \frac{I}{R} \ddot{\theta} = \lambda_1
+  \end{cases} \\ &\implies mR \left( \lambda_1 \frac{R}{I} \right) = mg\sin(\alpha) - \lambda_1 \\
+  &\implies \left( 1 + \frac{mR^2}{I} \right) \lambda_1 = mg \sin(\alpha) \\
+  &\implies \boxed{\lambda = \frac{mg \sin(\alpha)}{\left(1 + \frac{mR^2}{I}\right)}} \text{ This is the magnitude of friction!}
+\end{align*}
+
+\vskip 1cm
+\subsection{Example: A bead on a wire}
+
+\vskip 0.5cm
+We've seen this example before, but this time we want to calculate the normal force on the bead.
+
+\vskip 0.5cm
+[Include Figure]
+
+\vskip 0.5cm
+Using the Lagrange Multiplier method, we can write down the constrained Lagrangian as 
+\[ L' = \frac{1}{2}m \left[ \dot{\rho}^2 + \rho^2 \dot{\phi}^2 + \dot{z}^2 \right] -mgz - \lambda_1 \left(\phi - \omega t\right) - \lambda_2 \left(z - \alpha \rho^2\right) \]
+
+So, the EL Equations look like 
+
+\begin{align*}
+  \begin{cases}
+    m \ddot{\rho} = n\rho \dot{\phi}^2 - 2 \lambda_2 \alpha \rho \\
+    \frac{d}{dt} \left( m \rho^2 \dot{\phi} \right) = \lambda_1 \\
+    m \ddot{z} = -mg + \lambda_2 
+  \end{cases}
+\end{align*}
+
+\vskip 0.5cm
+\begin{redbox}
+  From the $z$ EoM, we can tell that $\lambda_1$ is a force since it's being added with $-mg$. We can interpret it as the \textbf{$z-$component} of the \textbf{Normal Force}.
+
+  \vskip 0.5cm
+  Similarly, in the $\phi$ EoM we see that $\lambda_1$ is the derivative of the Angular Momentum, so $\lambda_1$ is the \textbf{torque}.
+\end{redbox}
+
+[Include figure]
+
+\begin{redbox}
+  Now, in the $\rho$ equation, we know that $m\ddot{\rho}$ is also a force since $\rho$ has units of length. So, $-2\lambda_2 \alpha \rho$ must also be a force. Exactly which force is it? It's the \textbf{radial component} of the \textbf{Normal Force} (See the figure above.)
+\end{redbox}
+
+\vskip 0.5cm
+\begin{bluebox}
+  When it comes to actually solving for $\lambda_1$ and $\lambda_2$, we can solve for them after we solve for $\rho(t)$ using $z = \alpha \rho^2$ and other constraints.
+\end{bluebox}
+
+\vskip 0.5cm
+[Add last bit from lecture recording - lots of figures]
 
 
 
@@ -368,5 +535,3 @@ we have
 
 
 
-
-\end{document}

@@ -3,3 +3,7 @@
 \contentsline {section}{\numberline {2}July 3, 2024:}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Finishing up discussion from last lecture}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}The Method of Lagrange Multipliers}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}July 8, 2024:}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}More about Lagrange Multipliers}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Example: Tree log rolling down a ramp}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Example: A bead on a wire}{10}{subsection.3.3}%

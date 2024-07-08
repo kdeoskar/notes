@@ -413,12 +413,14 @@ INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT Notes.aux
 INPUT ./Notes.out
 INPUT ./Notes.out
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
@@ -426,9 +428,11 @@ INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfo
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb
