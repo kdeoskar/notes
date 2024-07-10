@@ -388,6 +388,7 @@ We got the above equation by varying the action, and in particular, by varying $
     a_{lk} \delta q_{k} + a_{lt} \delta t = 0
   \end{cases}
 \end{align*}
+(Here, the $l$ index labels the \textbf{constraint} and the $k$ labels the coordinate.)
 
 \begin{redbox}
   In the case of Holonomic constraint,
@@ -461,7 +462,7 @@ Anyway, after writing down the lagrangian, we can obtain the Equations of Motion
 Solving these further we have 
 \begin{align*}
   \begin{cases}
-    m \ddot{X} = mg\sim(\alpha) - \lambda_1 \text{ (1)}\\
+    m \ddot{X} = mg\sin(\alpha) - \lambda_1 \text{ (1)}\\
     I \ddot{\theta} = \lambda_1 R \text{ (2)}\\
     R \dot{\theta} = \dot{X} \text{ (from the no-sliding condition)} \implies R \ddot{\theta} = \ddot{X} \text{ (3)}
   \end{cases}
@@ -523,7 +524,244 @@ So, the EL Equations look like
 \vskip 0.5cm
 [Add last bit from lecture recording - lots of figures]
 
+\pagebreak
+\section{July 9, 2024: Symmetries and Lagrangians}
 
+\subsection{Note about the discussion from last time}
+[Write about clever method to find rolling constraint that Chien-I spoke about at the beginning of lecture]
+
+\vskip 0.5cm
+\subsection{Symmetries}
+Previously we discussed \textbf{Cyclic Coordinates}: 
+\begin{redbox}
+  A coordinate $q_{k}$ is cyclic if 
+  \[ \frac{\partial L}{\partial q_{k}} = 0\]
+  As a result, the EL equation gives us the result that 
+  \[ p_{k} \equiv \frac{\partial L}{\partial \dot{q_{k}}} \text{ is conserved} \]
+\end{redbox}
+
+\begin{bluebox}
+  This is a \textbf{symmetry} in the sense that when we change $q_{k}$, the Lagrangian does not change.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{What exactly is a Symmetry?}
+We define a symmetry of a system to be a \textbf{transformation} of the system such that the system behaves the same after transformation. For example, rotating a triangle by $120$ degrees is a symmetry transformation of the triangle.
+
+\vskip 0.5cm
+The study of symmetries falls under \textbf{Group Theory}, but in physics we're usually concerned specifically \textbf{continuous transformations}. Continuous symmetries often give rise to \textbf{conserved quantities}.
+
+\begin{redbox}
+  \textbf{Example:} $\theta$ independent lagrangian
+\end{redbox}
+
+We'll see this in more detail when we study Noether's Theorem.
+
+\vskip 0.5cm
+\subsection{Continuous Transformations}
+Usually, we have $L = L\left(q_{k}, \dot{q}_{k}, t\right)$. We can apply transformations on the $q_{k}$ and $t$ variables
+\begin{align*}
+  q_{k} &\rightarrow q'_{k}(q_{k}, t) \\
+  t &\rightarrow t'(t) \\
+\end{align*}
+which in turn transform the lagrangian $L$
+
+\vskip 0.5cm
+When we say a transformation is continuous, we mean that we can make a transformation parametrized by some small parameter $\epsilon$ such that when $\epsilon \rightarrow 0$, the transformation is just the identity transformation.
+
+\vskip 0.5cm
+Since the mapping is continuous, we can expand the transformation as 
+\begin{align*}
+  q_{k}(t) &\rightarrow q'_k(t') = q_{k}(t) + \delta q_{k} \\
+  t &\rightarrow t(t) = t + \delta t \\
+\end{align*}
+
+\begin{redbox}
+  \textbf{Example: Continuous Rotation}
+  In the plane $\mathbb{R}^2$, we can rotate a vector $V = V_x \hat{x} + V_y \hat{y}$ using a standard rotation matrix:
+  \[ \vec{V} \rightarrow \vec{V}' = \begin{pmatrix}
+    \cos(\theta) & -\sin(\theta) \\
+    \sin(\theta) & \cos(\theta) 
+  \end{pmatrix} \begin{pmatrix}
+    V_x \\
+    V_y
+  \end{pmatrix} \]
+  where $\theta$ is a continuous parameter that represents the angle of rotation.
+\end{redbox}
+
+\begin{redbox}
+  \textbf{Examples: Non-continuous transformation}
+  \begin{enumerate}
+    \item Dicrete rotation: Rotations where $\theta$ is only allowed to have specific values, for example $\theta =  n \frac{\pi}{6}$
+    \item Parity: $(x,y,z) \rightarrow (-x,-y,-z)$
+  \end{enumerate}
+\end{redbox}
+
+\vskip 0.5cm
+There are two ways to generate transformations in $q_{k}$. 
+\begin{enumerate}
+  \item With a fixed time, we can "mix" the coordinates:
+  \[ q_{k}(t) \rightarrow q_{k}'(t) = q_{k}(t) + \underbrace{\Delta q_{k}(t) }_{\text{small transformation}} \]
+
+  For example, we can rotate a vector without messing with the time coordinate:
+  \begin{align*}
+    \begin{pmatrix}
+      x'(t) \\
+      y'(t)
+    \end{pmatrix} = \begin{pmatrix}
+      1 & -\theta \\
+      \theta & 1
+    \end{pmatrix} = \begin{pmatrix}
+      x(t) - \theta y(t) \\
+      y(t) + \theta x(t) 
+    \end{pmatrix}
+  \end{align*}
+
+  We can represent this transformation concisely using the \textbf{levi-civita symbol, $\epsilon_{ij}$}
+  \[ \boxed{x_i' = x_i - \theta \epsilon_{ij}x_j } \]
+
+  \vskip 0.5cm
+  \item We can generate a change in $q_{k}$ by shifting the time: $t \rightarrow t + \delta t(t)$
+  \[ q_{k}(t) \rightarrow q_{k}(t') = q_{k}(t + \delta t) = q_{k}(t) + \dot{q}_{k} \delta t \]
+\end{enumerate}
+
+\vskip 0.5cm
+We can define the total (infinitessimal) transformation of $q_{k}$ as 
+\begin{align*}
+  \delta q_{k} &\equiv q_{k}'(t') - q_{k}(t) = q_{k}'(t + \delta t) - q_{k}(t) \\
+  &\approx q_{k}'(t) + \dot{q}_{k}' \delta t = q_{k}(t) \\
+  \text{to first order $\rightarrow$  } &\approx q_{k}(t) + \Delta q_{k}(t)\dot{q}_{k}(t) \delta - q_{k}(t)
+\end{align*}
+where we used 
+\[ \dot{q}_{k}'(t) = \frac{d}{dt} \left( q_{k} + \Delta q_{k} \right) = \dot{q}_{k}(t) + \frac{d}{dt} \left(\Delta q_{k}\right) \]
+
+\vskip 0.5cm
+Thus, to first order, we have 
+\[ \boxed{\delta q_{k}(t) = \Delta q_{k}(t) + \dot{q}_{k} \delta t} \]
+
+\vskip 0.5cm
+\begin{bluebox}
+We say such a transformation by $\delta q_{k}$ and/or $\delta t$ is a symmetry if we have the same dynamics i.e. under the transformation, the \textbf{action, $\delta S = 0$} does not change.  ($\delta S$ is the change in $S$ when we perform a particular transformation in terms of $\Delta q_{k}$ and/or $\delta t$)
+\end{bluebox}
+
+\vskip 0.5cm
+\begin{align*}
+  0 &= \delta \left( \int dt L(q_{k}, \dot{q}_k, t)\right) \\
+  &= \int \delta(dt) L + \int dt \delta L \\
+  &= \int dt \color{blue}\frac{d(\delta t)}{dt} L \color{black} + \int dt \left( \color{red} \frac{\partial L}{\partial q_{k}} \delta q_{k} + \frac{\partial L}{\partial \dot{q}_{k}} \frac{d}{dt}( \Delta q_{k} ) \color{black} + \color{blue} \frac{dL}{dt} \delta t \color{black} \right)
+\end{align*}
+\vskip 0.5cm
+where we should note that $dL/dt$ is the \textbf{total} derivative
+\[ \frac{dL}{dt} = \frac{\partial L}{\partial q_{k}} \dot{q}_k  + \frac{\partial L}{\partial \dot{q}_{k}} \ddot{q}_k + \frac{\partial L}{\partial t} \]
+
+\vskip 0.5cm
+Continuing on and applying "Integration by Parts",
+\begin{align*}
+  0 &= \int dt \left[ \color{red} \left( \frac{\partial L}{\partial q_{k}} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_k} \right) \right) \Delta q_{k} + \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_{k}} \Delta q_{k} \right) \color{black} + \color{blue}\frac{d}{dt} \left( L \delta t \right) \color{black} \right]
+\end{align*}
+
+\vskip 0.5cm
+If $q_k$ satisfies the EoM,
+\begin{align*}
+  0 &= \int_{t_i}^{t_f} dt \left[ \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_{k}} \Delta q_{k} + L \delta t\right) \right] = \left[ \frac{\partial L}{\partial \dot{q}_k} \Delta q_{k} + L \delta t \right]_{t_i}^{t_f}
+\end{align*}
+
+Therefore the quantity
+\[ Q \equiv \frac{\partial L}{\partial \dot{q}_k} \Delta q_{k} + L \delta t  \]
+is conserved! What we've shown is Noether's Theorem.
+
+\vskip 0.5cm
+\begin{bluebox}
+  \underline{\textbf{Noether's Theorem:}}
+  If we have a continuous symmetry and the evolution of the system satisfies the EoM, then there is an associated conserved quantity given by 
+  \[ Q \equiv \frac{\partial L}{\partial \dot{q}_k} \Delta q_{k} + L \delta t  \]
+  which is called the \textbf{Noether Charge}.
+\end{bluebox}
+
+\vskip 0.5cm 
+In fact, we can extend this a little bit. The action can change, as long as it's of the form:
+\[ \delta S = \int dt \left( \frac{dK}{dt} \right) \]
+because such a change just adds constant boundary terms $K(t_f) - K(t_i)$ which do not change the dynamics. So,
+\[ \frac{d}{dt} \left( Q - K \right) = 0 \]
+
+\vskip 0.5cm
+This $Q - K$ is a more general conserved charge.
+
+\vskip 0.5cm
+\subsection{Example: Spacial Translation}
+\[ L = \frac{1}{2} m\dot{x}^i \dot{x}_i \]
+This Lagrangian is invariant under the shift $\begin{cases}
+  x_i \rightarrow x_i + \epsilon_i \text{  spatial translation} \\
+  t \rightarrow t \text{ no time translation}
+\end{cases}$. 
+
+So, $\delta x_i = \Delta x_i + \dot{x} \underbrace{\delta t}_{=0}$. As a result,
+
+\[ Q \equiv \frac{\partial L}{\partial \dot{x}_i} \Delta x_i = m\dot{x}_i \epsilon_i \implies m\dot{x}_i \text{ is conserved.}\]
+
+\vskip 0.5cm
+\subsection{Example: Time Translation}
+Consider the time translation 
+\[ \begin{cases}
+  x_i \rightarrow x_i \\
+  t \rightarrow t + \delta t
+\end{cases}  \]
+i.e. $\delta x_i = 0 = \Delta x_i + \dot{x}_i \delta t$ which implies 
+\[ \Delta x_i = -\dot{x}_i \delta t \]
+
+\vskip 0.5cm
+Consider the following Lagrangian under time translation
+\[ L = \frac{1}{2}m\dot{x}^i \dot{x}_i - V(x) \]
+
+Since $L = L(x_i, \dot{x}_i, t)$, if the $x_i$'s don't change then the change in $L$ is just 
+\begin{align*}
+  \delta L &= \frac{\partial L}{\partial x_i} \underbrace{\delta x_i}_{=0} + \frac{\partial L}{\partial \dot{x}_i} \underbrace{\delta dot{x}_i}_{=0} + \frac{\partial L}{\partial t} \delta t \\
+  &= \frac{\partial L}{\partial t} \delta t  
+\end{align*} 
+
+\vskip 0.5cm
+And, when $ \frac{\partial L}{\partial t} \delta t  = 0$, we have time translation symmetry, giving us the conserved current
+
+\begin{align*}
+  Q &\equiv  \frac{\partial L}{\partial \dot{x}_i} \delta x_i + L \delta t \\
+  &= -  \frac{\partial L}{\partial \dot{x}_i} \dot{x}_i \delta t  +  L \delta t \\
+  &= \left(  \frac{\partial L}{\partial \dot{x}_i} \dot{x}_i - L \right) \left(- \delta t\right)
+\end{align*}
+
+\vskip 0.5cm
+\begin{bluebox}
+So when we have time translation symmetry, the \textbf{Hamiltonian}
+\[ H =  \frac{\partial L}{\partial \dot{x}_i} \dot{x}_i - L  \]
+is conserved.
+\end{bluebox}
+
+\vskip 0.5cm
+\section{Example: Isotropic Harmonic Oscillator under rotation}
+Consider 
+\[ L = \frac{1}{2}m \dot{x}^i \dot{x}_i - \frac{1}{2}k x^i x_i \]
+under rotation
+\begin{align*}
+  x_i &\rightarrow x_i - \theta \epsilon_{ij} x_j \\
+  t \rightarrow t
+\end{align*}
+
+Then, the Lagrangian transforms into 
+\begin{align*}
+  L &\rightarrow \frac{1}{2}m \dot{x}^i \dot{x}_i - \frac{1}{2}k x^i x_i + m\dot{x}_i \left(-\theta \epsilon_{ij} \dot{x}_j\right) - kx_i \left(-\theta \epsilon_{ij} x_j\right) + \mathcal{O}(\epsilon^2) \\
+  &= L - \theta m \epsilon_{ij} \dot{x}_i \dot{x}_j + k \epsilon_{ij} x_{i} x_{j} \\
+  &= L
+\end{align*}
+
+where we used [write later]
+
+\vskip 0.5cm
+Here, the conserved current is 
+\begin{align*}
+  Q &\equiv \frac{\partial L}{\partial \dot{x}_i} \Delta x_i \\
+  &= m \dot{x}_i \left(-\theta \epsilon_{ij} x_{j}\right) \\
+  &= -\theta \epsilon_{ij} x_j m\dot{x_i} \\
+  &= -\theta \left(\right)
+\end{align*}
 
 \end{document}
 
