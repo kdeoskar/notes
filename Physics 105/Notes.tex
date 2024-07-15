@@ -338,22 +338,7 @@ we have
   \implies& \frac{\partial}{\partial q_k} \left( \sum_{l} \lambda_l c_l \right) = \vec{F} \cdot \left( \frac{\partial \vec{r}}{\partial q_{k}} \right) \equiv \mathcal{F}_k \text{  (generalized force)}
 \end{align*}
 
-% \begin{ex}{Fecko, Exercise 12.1.5}
-    
-% \end{ex}
-
-% \begin{ex}{Fecko, Exercise 12.2.2}
-    
-% \end{ex}
-
-% \begin{note}{Note}
-% \end{note}
-
-% \begin{thought}{A thought}
-% \end{thought}
-
-% \begin{highlight}{A hightlight}
-% \end{highlight}
+\hrule
 
 \pagebreak
 \section{July 8, 2024:}
@@ -523,6 +508,7 @@ So, the EL Equations look like
 
 \vskip 0.5cm
 [Add last bit from lecture recording - lots of figures]
+\hrule
 
 \pagebreak
 \section{July 9, 2024: Symmetries and Lagrangians}
@@ -736,7 +722,7 @@ is conserved.
 \end{bluebox}
 
 \vskip 0.5cm
-\section{Example: Isotropic Harmonic Oscillator under rotation}
+\subsection{Example: Isotropic Harmonic Oscillator under rotation}
 Consider 
 \[ L = \frac{1}{2}m \dot{x}^i \dot{x}_i - \frac{1}{2}k x^i x_i \]
 under rotation
@@ -752,7 +738,18 @@ Then, the Lagrangian transforms into
   &= L
 \end{align*}
 
-where we used [write later]
+where we used the fact that $\epsilon_{ij}$ is antisymmetric while $\dot{x}_i \dot{x}_j$, $x_i, x_j$ are antisymmetric. Thus, 
+the two terms other than $L$ vanish.
+
+\begin{redbox}
+  In general if we have 2-d tensors $S_{ij} = S_{ji}$ (symmetric) and $A_{ij} = -A_{ji}$ (antisymmetric) then 
+  \begin{align*}
+    S_{ij} A_{ij} &= -S_{ij} A_{ji} \\
+    &= -S_{ji} A_{ji} \\
+    &= -S_{ij} A_{ij} \text{ Since $S_{ij} A_{ij}$ is itself symmetric as a whole} \\
+    \implies S_{ij} A_{ij} &= 0
+  \end{align*}
+\end{redbox}
 
 \vskip 0.5cm
 Here, the conserved current is 
@@ -760,8 +757,180 @@ Here, the conserved current is
   Q &\equiv \frac{\partial L}{\partial \dot{x}_i} \Delta x_i \\
   &= m \dot{x}_i \left(-\theta \epsilon_{ij} x_{j}\right) \\
   &= -\theta \epsilon_{ij} x_j m\dot{x_i} \\
-  &= -\theta \left(\right)
+  &= -\theta \epsilon_{12} x_2 m\dot{x}_1 - \theta \epsilon_{21} x_1 m \dot{x}_2 \text{  (The terms with $i=j$ vanish because $e_{ii} = 0$)} \\
+  &= -\theta(ym\dot{x} - xm\dot{y}) 
 \end{align*}
+which implies that \textbf{Angular momentum is conserved.} This marks the end of today's lecture.
+\hrule
+
+\vskip 1cm.
+\begin{note}
+{No lectures on July 10, 11 because of the midterm.}
+\end{note}
+
+
+\pagebreak
+\section{July 15: Obtaining Lagrangians from Symmetries}
+
+Today, we wrap up our discussion of Lagrangians. The goal today is to find the most general Lagrangian $L(x, \dot{x}, t)$ describing a 1D system which is \textbf{time-translation invariant} and \textbf{Galilean invariant}.
+
+
+% \vskip 0.5cm
+The framework we'll develop is what's done a lot in research (eg. in Effective Field Theory research), where we consider the symmetries we must enforce and then find the most general possible Lagrangian.
+
+\vskip 0.5cm
+Also recall that a Lagrangian is called time-translation invariance if it has no eplicit time dependence. 
+
+\vskip 0.5cm
+\textbf{\underline{Step 1:}} Consider the action
+\[ S = \int \mathrm{d}t L(x, \dot{x}, t) \]
+and the Galilean transformation $x \rightarrow x + \Delta x = x - Vt$ ($V$ is a constant) which causes the variation
+\vskip 0.5cm
+\begin{align*}
+  \delta S &= \int \mathrm{d}t \left[ \frac{\partial L}{\partial x}(-Vt) + \frac{\partial L}{\partial \dot{x}}(-V) \right] \\
+  &= \int \mathrm{d}t \left[ (-V)\frac{d \Tilde{K}}{dt} \right]  \text{ (for some function $\Tilde{K}$)} \\
+\end{align*}
+
+(as long as the change in action is of the form above, there is no change in dynamics.)
+
+\[ \implies \frac{\partial L}{\partial x} t + \frac{\partial L}{\partial \dot{x}} = \frac{d \Tilde{K}}{dt} = \frac{\partial \Tilde{K}}{\partial x} \dot{x} +  \frac{\partial \Tilde{K}}{\partial \dot{x}} \ddot{x} + \frac{\partial \Tilde{K}}{\partial \ddot{x}} \dddot{x} + \cdots +  \frac{\partial \Tilde{K}}{\partial t}  \\ \]
+
+\vskip 0.5cm
+But the LHS has derivatives up to $\dot{x}$ at most since we restrict our lagrangians. So, we must have $\Tilde{K} = \Tilde{K}(x, t)$ and 
+\[ \frac{\partial L}{\partial x} t + \frac{\partial L}{\partial \dot{x}} = \frac{\partial \Tilde{K}}{\partial x} \dot{x} + \frac{\partial \Tilde{K}}{\partial t} \;\;\;\;\;\;\;\;\; (\star)\]
+
+\vskip 0.5cm
+\textbf{\underline{Step 2:}} Notice is that $\Tilde{K} = \Tilde{K}(x, t)$ means that the only place in equation $(\star)$ that we have $\dot{x}$-dependence is $ \frac{\partial \Tilde{K}}{\partial x} \dot{x} + \frac{\partial \Tilde{K}}{\partial t}$ i.e. it is linear in $\dot{x}$.
+\vskip 0.5cm
+$\implies$ at most, $L$ can only be second order in $\dot{x}$, namely
+\[ L = f_2(x,t) \dot{x}^2 + f_1(x,t) \dot{x} + f_0(x, t) \]
+
+\textbf{\underline{Step 3:}} Finally, if we enfore time-translation symmetry then we have 
+\[ \frac{\partial L}{\partial t} = 0  \]
+which tells us $f_i(x, t) = f_i(x)$ and so,
+\[ \implies L = f_2(x) \dot{x}^2 + f_1(x) \dot{x} + f_0(x) \;\;\;\;\;\;\;\; (\Delta) \]
+
+\textbf{\underline{Step 4:}} Let's look at equation $(\star)$ again, which we obtained from enforcing Galilean invariance. With $(\Delta)$ we know 
+\[ \frac{\partial L}{\partial x} \supseteq \frac{\partial f_2}{\partial x} \dot{x}^2 \]
+
+(sidenote: this is an abuse of notation that I love; it literally just means that $\frac{\partial L}{\partial x}$ includes a term $\frac{\partial f_2}{\partial x} \dot{x}^2$ it's so goofy fr)
+
+But the RHS of equations $(\star)$ has no $\dot{x}^2$ terms. Thus,
+\[ \frac{\partial f_2}{\partial x} = 0 \] i.e. $f_2$ is a constant.
+
+\vskip 0.5cm
+\textbf{\underline{Step 5:}} For the $f_1(x) \dot{x}$ term in the Lagrangian, we can say 
+
+\[ S \supseteq \int_{i}^{f} f_1(x) \dot{x} dt = \int_{i}^{f} f_1(x) dx = F(x_f) - F(x_i) \text{ (constant)}\] so this does not affect the dynamics and so we can safely throw it out of the Lagrangian and shove it to the curb.
+
+\vskip 0.5cm
+\textbf{\underline{Step 6:}} The only thing left is 
+\[ L = f_2 \dot{x}^2 + f_0(x) \]
+
+Plugging this back into equation $(\star)$, we get 
+
+\begin{align*}
+  \frac{\partial L}{\partial x} t + \frac{\partial L}{\partial \dot{x}} &= \frac{\partial \Tilde{K}}{\partial t} + \frac{\partial \Tilde{K}}{\partial x} \dot{x} \\
+  \implies \frac{\partial f_0}{\partial x} t + 2 \dot{x} f_2 &= \frac{\partial \Tilde{K}}{\partial t} + \frac{\partial \Tilde{K}}{\partial x} \dot{x} \;\;\;\;\;\;\;\;\;\;\; (\square)
+\end{align*}
+
+Matching the terms with and without $\dot{x}$ dependence, we get
+\begin{align*}
+   \frac{\partial \Tilde{K}}{\partial x} = 2f_2 = \text{ constant} \implies \Tilde{K} = 2f_2 x + g(t)
+\end{align*}
+
+\vskip 0.5cm
+\textbf{\underline{Step 7:}} 
+Plugging the expression for $\Tilde{K}$ into equation $(\square)$ we get 
+
+\begin{align*}
+  \frac{\partial f_0}{\partial x} t + 2\dot{x}f_2 = \frac{\partial g}{\partial t} + 2f_2 x &= \frac{\partial g}{\partial t} + 2f_2 \dot{x} 
+\end{align*}
+
+but $g(t)$ has no $x$-dependence $\implies \frac{\partial f_0}{\partial x}$ cannot have $x$-dependence 
+\[ \implies f_0 = c_1x + c_0 \]
+
+\begin{bluebox}
+  In summary, the most general Lagrangian for a 1D particle that is time-translation invariant and Galilean invariant is of the form 
+  \[ L = c_2 \dot{x} + c_1 x + c_0 \]
+  (where instead of writing $f_2$ we just wrote $c_2$). But also, constants don't affect the dynamics. Therefore, the most general Lagrangian we need is 
+  \[ L = c_2 \dot{x}^2 + c_1 x \]
+\end{bluebox}
+
+\begin{redbox}
+  \textbf{What kind of physics does this lagrangian describe?} 
+  \vskip 0.25cm
+  That of a non-relativistic particle subject to a constant force field. For example, if the field is that of uniform gravity, then 
+  \[ L = \frac{1}{2}m\dot{x}^2 - mgx \]
+\end{redbox}
+
+\vskip 0.5cm
+\begin{thought}
+  {When people do this in Effective Field Theory, there are much more complicated symmetries to enfore such as $U(1), SU(2)$ etc. but the procedure is follows the same basic idea we've studied here.}
+\end{thought}
+
+\vskip 0.5cm
+We were able to get a very specific form for our Lagrangian, but often symmetries are not strong enough to constrain our Lagrangian. In that case, we have to use other methods to determine the form of the Lagrangian for our system such as by experimental considerations.
+
+\vskip 0.5cm
+Okay, now we go back to some more tradition stuff from classical mechanics. 
+
+\vskip 1cm
+\subsection{Central Force Problem}
+
+A \textbf{Central Force} is one whose potential energy function has \textbf{Spherical symmetry} eg. Isotropic Harmonic Osciallators or a particle under uniform gravitational force.
+
+\vskip 0.5cm
+Usually, we have a two-body problem with a Lagrangian of the form 
+
+\[ L = \frac{1}{2} m_1 \dot{\vec{r}}_1^2 + \frac{1}{2} m_2 \dot{\vec{r}}_2^2 - U(r)\]
+where $r = |\vec{r}_2 - \vec{r}_1|$. But, we can effectively change this into a one-body problem by using the \textbf{Center-of-Mass} coordinates.
+
+\[ \vec{r} \equiv \vec{r}_2 - \vec{r}_1,\;\;\;\; \vec{R} \equiv \frac{m_1\vec{r}_1 + m_2 \vec{r}_2}{m_1 + m_2}  \]
+
+Using these coordinates and $M \equiv m_1 + m_2$, $\mu = \frac{m_1m_2}{m_1 + m_2}$ we can write the Lagrangian as 
+
+\[ L = \underbrace{\frac{1}{2} M \dot{\vec{R}}^2}_{\text{free motion of C.M.}} + \underbrace{\frac{1}{2}\mu \dot{\vec{r}}^2 - U(\vec{r})}_{\text{non-trivial dynamics}} \]
+
+We've essentially decoupled the two bodies. Now, if $U(\vec{r})$ has spherical symmetry i.e. $U(\vec{r}) = U(r)$ then it is natural to work in spherical coordinates.
+
+So, the non-trivial part of the Lagrangian will be 
+
+\[ L = \frac{1}{2} \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \sin^2(\theta) \dot{\phi}^2 \right) - U(r) \]
+
+and $\phi$ is a cyclic coordinate of it. Thus,
+\[ p_{\phi} = \frac{\partial L}{\partial \dot{\phi}} = \mu r^2 \sin^2(\theta) \equiv l_z \] is conserved. Then,
+\begin{align*}
+  L &= \frac{1}{2} \left(\dot{r}^2 + r^2 \dot{\theta}^2 + \frac{l_z}{\mu^2 r^2 \sin^2(\theta)}\right) - U(r)
+\end{align*}
+
+\vskip 0.5cm
+The fact that the angular momentum $l_z$ (and in fact, the \emph{total} angular momentum $l$) is conserved means that the particle is moving on a fixed plane.
+
+\begin{redbox}
+  \textbf{Why is total angular momentum conserved?}
+  A central force cannot cause torque, therefore angular momentum is conserved.
+\end{redbox}
+
+WLOG, we set the $z-axis$ to be perpendicular to the motion of the plane i.e. we set $\theta = \frac{\pi}{2} \implies \dot{\theta} = 0$ due to which $\sin(\theta) = 1$. So, our non-trivial Lagrangian is 
+
+\[ L = \frac{1}{2}\mu \dot{r}^2 + \frac{l_z}{2\mu r^2} - U(r) \]
+
+Before we put the constraint on $\phi$, the Lagrangian is 
+\[ L = \frac{1}{2}\mu \dot{r}^2 + \frac{1}{2} \mu r^2 \dot{\phi}^2 - U(r) \] and the corresponding Hamiltonian is
+\begin{align*}
+  H &= \frac{\partial L}{\partial \dot{q}_k} \dot{q}_k - L \\
+  &= \frac{1}{2}\mu\dot{r}^2 + \frac{1}{2}\mu r^2\dot{\phi}^2 + U(r) \\
+  &= \frac{1}{2} \mu \dot{r}^2 + \underbrace{\frac{l_z^2}{2\mu r^2} + U(r)}_{\text{effective potential}}
+\end{align*}
+
+Also, when we switch from Spherical Coordinates to Cartesian Coordinates we use 
+\[ \begin{cases}
+  x = r\sin\theta\cos\phi \\
+  y = r\sin\theta\sin\phi \\
+  z = r\cos\phi \\
+\end{cases} \]
+which have no time dependence, and so $H = E$. Aaaaaand... we're out of time so w'll continue tomorrow.
 
 \end{document}
 
