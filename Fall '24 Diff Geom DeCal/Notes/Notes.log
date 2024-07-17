@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  4 JUL 2024 23:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  16 JUL 2024 12:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex"
-(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex
+**"c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex"
+(c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
 (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -961,27 +961,29 @@ Package microtype Warning: I cannot find a spacing list for font
 
 [4]
 
-[5] (./Notes.aux)
+[5]
+
+[6] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: 0D7668870C35B5570C826969C805D441;1150.
+(rerunfilecheck)             Checksum: 6EF521974910A54B883240B1F17736A9;1521.
  ) 
 Here is how much of TeX's memory you used:
- 33274 strings out of 475517
- 667372 string characters out of 5775029
+ 33281 strings out of 475517
+ 667476 string characters out of 5775029
  1941908 words of memory out of 5000000
- 55204 multiletter control sequences out of 15000+600000
+ 55206 multiletter control sequences out of 15000+600000
  575155 words of font info for 137 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 90i,13n,96p,1082b,1004s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,13n,96p,1088b,1004s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Notes.pdf (5 pages, 169099 bytes).
+Output written on Notes.pdf (6 pages, 171215 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 113 compressed objects within 2 object streams
- 15 named destinations out of 1000 (max. 500000)
- 51909 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 190 PDF objects out of 1000 (max. 8388607)
+ 129 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 51925 words of extra memory for PDF output out of 61914 (max. 10000000)
 

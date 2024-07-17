@@ -1,8 +1,8 @@
-PWD c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal
+PWD c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/web2c/texmf.cnf
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex
+INPUT c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex
 OUTPUT Notes.log
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls

@@ -4,3 +4,5 @@
 \contentsline {subsection}{\numberline {2.1}What is a Representation?}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Reducible and Irreducible Representations}{4}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Connections and Parallel Transport on a Manifold}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Inverse Function Theorem}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Implicit Function Theorem}{6}{subsection.3.2}%

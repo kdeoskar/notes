@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1720159821.58074 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex" "Notes.pdf" "Notes" 1720159824.22435 0
-  "Notes.aux" 1720159823 953 51d8bbd54385ce91c36064ba405bcd8c "pdflatex"
-  "Notes.out" 1720159823 1150 0d7668870c35b5570c826969c805d441 "pdflatex"
-  "Notes.tex" 1720159820 8823 2bd8c9965637d8008315632ebcfbd8d5 ""
-  "Notes.toc" 1720159823 501 43f75073e50a94e7a8ffb1f814b1e982 "pdflatex"
+["pdflatex"] 1721158905.54824 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" "Notes.pdf" "Notes" 1721158908.20445 0
+  "Notes.aux" 1721158907 1216 2c15072243abe755c72534b22558794e "pdflatex"
+  "Notes.out" 1721158907 1521 6ef521974910a54b883240b1f17736a9 "pdflatex"
+  "Notes.tex" 1721158899 9164 4b7b03525862d2a9fe40c7835afa4fc7 ""
+  "Notes.toc" 1721158907 682 07a284773cf6ef0655d9fe1f9099a432 "pdflatex"
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1718579756 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1718579750 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -246,7 +246,7 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1718663021 12644 704ce0e0f0aca537d3725655ca3cf52d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes.tex" 1720159820 8823 2bd8c9965637d8008315632ebcfbd8d5 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" 1721158899 9164 4b7b03525862d2a9fe40c7835afa4fc7 ""
   "custom.sty" 1718840397 10397 710dcfe27951f5d070278e3259766b16 ""
   (generated)
   "Notes.aux"

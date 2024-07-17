@@ -101,7 +101,7 @@
 % make table of contents
 % \newpage
 
-These are some very terse notes taken from UC Berkeley's Physics 105 during the Summer '24 session, taught by Chien-I Chiang.
+These are some notes taken from UC Berkeley's Physics 105 during the Summer '24 session, taught by Chien-I Chiang.
 
 \vskip 0.5cm
 This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
@@ -931,6 +931,400 @@ Also, when we switch from Spherical Coordinates to Cartesian Coordinates we use
   z = r\cos\phi \\
 \end{cases} \]
 which have no time dependence, and so $H = E$. Aaaaaand... we're out of time so w'll continue tomorrow.
+
+
+\pagebreak
+\section{July 16: }
+
+\subsection{Continuing our discussion of Central Forces}
+
+As we saw last time, when dealing with a 2-body central force, we can do a \textbf{change of coordinates} to make things simpler.
+
+\vskip 0.5cm
+The dynamics of two bodies moving in a central force can be decoupled into the dynamics of a free body (moving with constant mass) and another mass subject to an effective potential.
+
+\vskip 0.5cm
+[Include figure of 1-body and 2-body central forces] 
+
+[Write about the 2-body lagrangian being split into free and non-trivial parts.]
+
+\vskip 0.5cm
+\subsection{Aside: Ineratial Mass and Gravitational Mass}
+
+In Newton's Law of Gravitation,
+\[ |\vec{F}| = \frac{G \mu_1 \mu_2}{r^2} \]
+the quantities $\mu_1, \mu_2$ are called gravitational mass (though a better name would be gravitational charge since the force is of the same form as coulomb's law). They tell us how strong thee interaction is.
+
+\vskip 0.5cm
+And, in Newton's First Law,
+\[ |\vec{F}| = m|\vec{a}| \]
+the term $m$ is the inertial mass. It tells us how hard it is to change the particles velocity.
+
+\vskip 0.5cm
+Now, a priori, there is no reason for these quantities to be the same. However, if we conduct an experiment where a base-ball and a feather free-fall towards the earth, we know
+
+\begin{align*}
+  a_{\text{baseball}} &= \frac{|\vec{F}|}{m_{\text{baseball}}} = \frac{G \mu_{\oplus} \mu}{R_{\oplus}^2 m_{\oplus}} \\
+  a_{\text{feather}} &= \frac{|\vec{F}|}{m_{\text{feather}}} = \frac{G \mu_{\oplus} \mu}{R_{\oplus}^2 m_{\oplus}} \\
+\end{align*}
+
+and we find via the experiment that $a_{\text{baseball}} = a_{\text{feather}} = g$
+
+Then, 
+\begin{align*}
+  \left( \frac{G \mu_{\oplus}}{R_{\oplus}^2} \right) \left(\frac{\mu_{\text{baseball}}}{m_{\text{baseball}}}\right) &= \left( \frac{G \mu_{\oplus}}{R_{\oplus}^2} \right) \left(\frac{\mu_{\text{feather}}}{m_{\text{feather}}}\right)
+\end{align*}
+
+So the gravitational mass to the inertial mass ratio is the same across objects! Note that $\mu/m$ is analogous to $e/m$ in electrostatics and, for example, the proton $p^+$ and electron $e^-$ has \emph{very different $e/m$ ratio}. But miraculously, when it comes to gravity, $\mu / m$ is the same for all objects. Numerically, we can just set $\mu$ and $m$ equal to each other. 
+
+
+\begin{bluebox}
+  The statement that $\mu / m$ is the same for all objects is called the \textbf{Equivalence Principle}. This has important implications in General Relativity.
+\end{bluebox}
+
+\begin{redbox}
+  Include discussion about curved space and hockey pucks on the earth.
+\end{redbox}
+
+\subsection{Continuing on with the 2-body problem}
+
+Focusing on the dynamics of $\vec{r}$, the Lagrangian for that part is 
+
+\begin{align*}
+  L &= \frac{1}{2}\mu \dot{\vec{r}}^2 - U(r) \\
+  &= \frac{1}{2} \left( \dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \sin^2(\theta) \dot{\phi}^2 \right) - U(r)
+\end{align*}
+
+But notice that these dynamics are the same as those of the 1-body central force scenario as $\vec{L}$ is conserved and motion is on a plance. i.e. $\theta$ is fxed which we can WLOG set to $\pi/2$.
+
+\begin{align*}
+  L &= \frac{1}{2} \mu \left( \dot{r}^2 + r^2 \dot{\phi}^2 \right) - U(r) \\
+  \implies H &= \frac{1}{2} \mu \left(\dot{r}^2 + r^2 \dot{\phi}^2\right) + U(r) \\
+  &= \frac{1}{2} \mu \dot{r}^2 + \underbrace{\frac{l_z^2}{2\mu r^2} + U(r)}_{\text{effective potential for a 1D d.o.f. } r, U_{\text{eff}}}
+\end{align*}
+
+This is where we stopped last lecture. The position $r$ is then subject to a force 
+\begin{align*}
+  F &= - \frac{\partial U_{\text{eff}}}{\partial r} \\
+  &= +\frac{l_{z}^{2}}{\mu r^2} - \frac{\partial U(r)}{\partial r}
+\end{align*}
+
+where 
+\[ \frac{l_{z}^{2}}{\mu r^2} =\frac{\mu^2r^2\dot{\phi}^2}{\mu r^2} = \frac{\mu v^2}{r} = \mu a_{c} \]
+
+\vskip 0.25cm
+This looks like a "centrifugal force".
+
+\begin{redbox}
+  Let's think about centrifugal forces for a sec. Consider the following setup where Bob is at a distance $r$ from the z-axis and is rotating about the axis a constant rate.
+
+  \vskip 0.5cm
+  [Include figure]
+  \vskip 0.5cm
+
+  In Bob's Frame, these three forces [complete this later]
+\end{redbox}
+
+\vskip 0.5cm
+[Include figure of spring extending from fixed point]
+
+
+\vskip 0.5cm
+The angular momentum conservation keeps to $r$ to be non-zero because when $r = 0$, we have $l_z = 0$. This is why we have a positive sign in front of the $(l_z)^2 / \mu r^2$ term - the force is pushing outwards.
+
+
+\vskip 0.5cm
+This $U_{\text{eff}}$ also allows us to understand whether $r$ is a fixed value or changes between some $r_{\text{min}}$ and $t_{\text{max}}$. For example, if we consider a spring with $U(r) = \frac{1}{2} kr^2$ we get 
+
+\[ U_{\text{eff}} = \frac{(l_z)^2}{2\mu r^2} + \frac{1}{2} kr^2 \]
+
+Plotting this, we have
+[Include figure]
+
+
+[Write the discussion about the plot based on lecture recording and textbook.]
+
+\vskip 0.5cm
+If we instead consider a gravitational system with $U(r) = -\frac{G m_1 m_2}{r^2}$ we have 
+\[ U_{\text{eff}} = \frac{(l_z)^2}{2\mu r^2} - \frac{Gm_1m_2}{r^2} \] which gives us the plot 
+
+\vskip 0.5cm
+[Include figure]
+
+\vskip 0.5cm
+You've probably seen a very similar plot when studying Chemistry/Quantum Mechanics. The reason for that is because the effective potential for an atom with $l \neq 0$ has a very similar form.
+
+\vskip 0.5cm
+[Include discussion of the plot based on lecture recording and textbook.]
+
+\vskip 0.5cm
+If we want to find $r(t)$ we can use 
+\begin{align*}
+  E &= \frac{1}{2} \mu \left(\frac{dr}{dt}\right)^2 + \frac{(l_z)^2}{2\mu r^2} + U(r) \\
+  \implies \left(\frac{dr}{dt}\right)^2 &= \frac{2}{\mu} \left[ E - \frac{(l_z)^2}{2\mu r^2} - U(r) \right] \\
+  \implies \int_{t_{0}}^{t} dt' &= \pm \sqrt{\frac{\mu}{2}} \int_{r_{0}}^{r} \frac{dr}{ \sqrt{E - \frac{(l_z)^2}{2\mu r^2} - U(r) }}
+\end{align*}
+
+and then after integrating, the inverse relation gives us $r(t)$.
+
+\vskip 1cm
+\subsection{Orbital Shape}
+We will just to pure 1-body problems here, but the procedure remains the same (just more tedious) in the 2-body case.
+
+\vskip 0.5cm
+Now, what does it mean to find \textbf{Orbital Shape}? It refers to finding $r(\phi)$ i.e. we don't care about the time dependence here; just the dependence on $\phi$.
+
+\vskip 0.5cm
+Consider 
+\begin{align*}
+  E &= \frac{1}{2} m\vec{r}^2 + \frac{(l_z)^2}{2 m r^2} + U(r)
+\end{align*}
+
+If we divide the entire equation by $l_z = mr^2 \dot{\phi}$ we get 
+
+\begin{align*}
+  \frac{E}{l_{z}} &= \frac{1}{2} m \frac{1}{m^2 r^4} \frac{\dot{r}^2}{\dot{\phi}^2} + \frac{1}{2m r^2} + U(r)
+\end{align*}
+
+Why is this useful? Well, notice that 
+
+\[ \frac{\dot{r}}{\dot{\phi}} = \frac{dr/dt}{d\phi / dt}  = \frac{dr}{d\phi} \]
+
+So, we have 
+\begin{align*}
+  \frac{E}{l_{z}} &= \frac{1}{2} m \frac{1}{m^2 r^2} \frac{\dot{r}^2}{\dot{\phi}^2} + \frac{1}{2m r^2} + U(r) \\
+  &= \frac{1}{2 mr^4} \left( \frac{dr}{d\phi} \right)^2 + \frac{1}{2m r^2} + U(r)
+\end{align*}
+
+and now there is no time-dependence in the equation. Continuing on,
+
+\begin{align*}
+  &\left(\frac{dr}{d\phi}\right)^2 = 2mr^4 \left[ \frac{E}{(l_z)^2} - \frac{1}{2mr^2} - \frac{U(r)}{(l_z)^2} \right] \\
+  \implies& d\phi = \pm \sqrt{\frac{1}{2m}} \frac{dr}{\sqrt{ \frac{E}{l_z^2} r^4 - \frac{r^2}{2m} - \frac{U(r)}{l_z^2} r^4 }}  \\
+  \implies& \boxed{d\phi = \pm \frac{l_z}{\sqrt{2m}} \frac{1}{r^2} \frac{dr}{\sqrt{E - \frac{l_z^2}{2mr^2} - U(r)}}  }
+\end{align*}
+
+\vskip 0.5cm
+Let's do a concrete calculation. For $U(r) = \frac{1}{2} kr^2$, 
+\begin{align*}
+  \int_{\phi_{0}}^{\phi} d\phi' &= \pm \frac{l_z}{\sqrt{2m}} \int_{r_{0}}^{r} \frac{1}{r^2} \frac{dr}{\sqrt{E - \frac{l_z^2}{2mr^2} - \frac{1}{2}kr^2}}
+\end{align*}
+
+Now, with the substitution $z = r^2, dz = 2r dr$ 
+\begin{align*}
+  \int_{\phi_{0}}^{\phi} d\phi' &= \pm \frac{l_z}{\sqrt{2m}} \int_{z_0}^{z} \frac{1}{z} \frac{1}{2z} \frac{dz}{\sqrt{-\frac{l_z^2}{2mz} + E - \frac{1}{2}kz }} \\
+  &= \pm \frac{l_z}{\sqrt{2m}} \int_{z_0}^{z} \frac{1}{2z} \frac{dz}{\sqrt{-\frac{l_z^2}{2m} + Ez - \frac{1}{2}kz^2 }} \\
+\end{align*}
+
+and using the \underline{Integral Formula}
+
+\[ \int \frac{dz/z}{\sqrt{a + bz + cz^2}} = \frac{1}{\sqrt{-a}} \sin^{-1} \left( \frac{bz + 2a}{z \sqrt{b^2 - 4ac}} \right) \]
+
+we get
+\begin{align*}
+  \phi - \phi_0 &= \pm \frac{1}{2} \sin^{-1} \left( \frac{Er^2 - (l_z)^2 / m}{r^2 \sqrt{E^2 - k(l_z)^2 / m}} \right) \\
+  \implies \pm \sin\left[ 2(\phi - \phi_0) \right] &= \frac{Er^2 - (l_z)^2/m}{r^2 \sqrt{E^2 - k(l_z)^2/m}} \\
+  \implies r^2 &= \frac{(l_z)^2 / m}{\left\{ E - \mp \sqrt{E^2 - k(l_z)^2/m} \sin \left[2(\phi - \phi_0)\right] \right\} }
+\end{align*}
+
+We're out of time now, but next  time we'll see how this gives us an orbital shape which is an ellipse.
+
+
+\pagebreak
+\section{July 17: Orbital Shape continued}
+
+\subsection{Orbital Shape for a spring with $\vec{F} = -k\vec{r}$}
+
+Yesterday, we found that 
+\begin{align*}
+  &\phi - \phi_0 = \pm \frac{1}{2} \sin^{-1}\left(\frac{Er^2 - (l_z)^2/m}{r^2 \sqrt{E^2 - k(l_z)^2/m}}\right) \\
+  \implies& \sin(2[\phi - \phi_0]) = \pm  \frac{Er^2 - (l_z)^2/m}{r^2 \sqrt{E^2 - k(l_z)^2/m}} \\
+  \implies&\boxed{ r^2 = \frac{(l_z)^2/m}{E \mp \sqrt{E^2 - k(l_z)^2/m \sin\left[2(\phi - \phi_0)\right] }}} \;\;\;\;\;\;\;\;(\star)
+\end{align*}
+
+Okay. Time for some high school maths. The equation for an ellipse is 
+\[ \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \]
+
+If we work in polar coordinates, the equation becomes
+\begin{align*}
+  &\frac{r^2 \cos^2(\phi)}{a^2} + \frac{r^2 \sin^2(\phi)}{b^2} = 1  \\
+  \implies& r^2 = \frac{a^2 b^2}{a^2 \sin^2(\phi) + b^2 \cos^2(\phi)} \\
+  \implies& r^2 = \frac{a^2 b^2}{ a^2 \left(\frac{1-\cos(2\phi)}{2}\right) + b^2 \left(\frac{1+\cos(2\phi)}{2}\right)} \\
+  \implies& r^2 = \frac{2a^2 b^2}{(a^2 + b^2) + (b^2-a^2) \cos(2\phi) }
+\end{align*}
+
+and using the identity $-\cos(\alpha) = \sin(\alpha - \frac{\pi}{2})$, we get 
+
+\begin{align*}
+  &\boxed{r^2 = \frac{2a^2 b^2}{(a^2 + b^2) + (a^2 - b^2) \sin(2\phi - \frac{\pi}{2}) }} \;\;\;\;\;\;\;\; (\square)
+\end{align*}
+
+\vsize 0.25cm
+Now, in equation $(\star)$, if we set $\phi_0 = \frac{\pi}{4}$ and choose the $+$ sign (doing this isn't cherry picking the result, but instead just choosing the coordinates we start off with), we get 
+
+\begin{align*}
+  &r^2 = \frac{(l_z)^2/m}{E + \sqrt{E^2 - k(l_z)^2/m} \sin(2\pi - \frac{\pi}{2}) }
+\end{align*}
+
+So, comparing this with equation $(\square)$, we see that the Orbital Shape for the Spring is an ellipse with 
+
+\begin{align*}
+  &a^2 = \frac{1}{2k} \left[ E + \sqrt{E^2 + k(l_z)^2/m} \right] \\
+  &b^2 = \frac{1}{2k} \left[ E + \sqrt{E^2 - k(l_z)^2/m} \right] 
+\end{align*}
+
+The geometric properties of the Orbital Shape are determined by $E$ and $l$.
+
+\vskip 1cm
+\subsection{Orbtial Shape corresponding to Gravitation}
+
+We found in a previous lecture that 
+
+\[  \phi(r) = \pm \frac{l_z}{\sqrt{2m}} \int \frac{dr}{r^2 \sqrt{E - \frac{(l_z)^2}{2m r^2}} + \frac{GMm}{r}}  \]
+
+\begin{align*}
+  &\phi(r) = \pm \frac{l_z}{\sqrt{2m}} \int \frac{dr/r}{\sqrt{Er^2 - \frac{(l_z)^2}{2m}} + GMmr}
+\end{align*}
+
+This has the same form as the Spring case, where
+
+\[ \phi(r) = \pm \frac{l_z}{\sqrt{2m}} \int \frac{1}{2E} \frac{dr}{r^2 \sqrt{Ez - \frac{(l_z)^2}{2m}} + \frac{1}{2}kz^2}  \]
+
+except we need to make the substitutions $z \rightarrow r,\; -\frac{1}{2}k \rightarrow E,\; E \leftrightarrow GMm$
+
+So, using the solution found earlier with the appropriate substitutions, we get 
+
+\begin{align*}
+  \implies& \phi - \phi_0 = \pm \sin^{-1} \left( \frac{GMMr - (l_z)^2/m}{r \sqrt{(GMm)^2 + 2E(l_z)^2/m}} \right)  \\
+  \implies& \sin(\phi - \phi_0) = \pm \frac{GM m^2 r - l^2}{GM m^2 r e}
+\end{align*}
+
+where 
+\[ e = \sqrt{1 + \frac{2E(l_z)^2}{G^2 M^2 m^2}}  \]
+(we'll see that the Orbital shape is once again an ellipse and this quantity $e$ is the \textit{eccentricity}.)
+
+\begin{align*}
+  \implies& r = \frac{(l_z)^2/(GMm^2)}{1 \mp e \sin(\phi - \phi_0)}
+\end{align*}
+
+
+\vskip 0.5cm
+Now, another way to define an Ellipse is in terms of its two foci. 
+
+\vskip 0.5cm
+[Include figure from lecture].
+
+\vskip 0.5cm
+An ellipse has the relations $c = ae$ and a point on the ellipse has polar coordinates $(r, \phi)$ related by 
+\[ r = \frac{a(1-e^2)}{1+e\cos(\phi)} \]
+
+\begin{itemize}
+  \item When $e = 0$, $r = \frac{l_z^2}{GMm^2} \implies $ constant $r$ i.e. circular orbit.
+  \item When $0 < e < 1$, we have an elliplse, Namely, we can set $\phi_0 = \frac{\pi}{2}$ and choose the positive sign, giving us 
+  \[ r = \frac{l_z^2 / GMm^2}{1 + e\cos(\phi)} \]
+  which is of the form of $\frac{a(1-e^2)}{1+e\cos(\phi)}$ with 
+  \[ e = \sqrt{1+ \frac{2E(l_z)^2}{G^2M^2m^3}} \] 
+
+  \item We can also find $a$ by 
+  \begin{align*}
+    &a = \frac{l_z^2 / GMm^2}{(1-e^2)} = \frac{l_z^2}{- \frac{2E(l_z)^2}{G^2M^2m^2} } \\
+    \implies& a = - \frac{GMm}{2E}
+  \end{align*}
+  The minus sign is fine because $E$ is negative for a bound state, so $a$ will be positive.
+
+  \item When $e = 1$, physically we have 
+  \[ r = \frac{l_z^2 / GMm^2}{1 + \cos(\phi)} \]
+  This matches the geometric parametrization 
+  \[ r = \frac{2a}{1+\cos(\phi)} \]
+  which describes a parabola.
+
+  \item Also, note that since 
+  \[ e \equiv \sqrt{1 + \frac{2El_z^2}{G^2 M^2 m^3}} \]
+  we have $e = 0 \Leftrightarrow E = 0$. This matches up with our discussion yesterday. [Flesh this out more]
+
+  \item When $e > 1$, physically we still have $r = \frac{l_z^2 / GMm^2}{1 + e \cos(\phi)}$. But this will match with the geometric parametrization of a hyperbola.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Coulomb Scattering}
+(discussed in Ch. 8 of H\&S)
+In the case where we have two charges of the same sign, 
+\[ U = \frac{kq_1 q_2}{r} > 0 \]
+
+
+\begin{align*}
+  \implies& U_{\text{eff}} = \frac{l_z^2}{2m r^2} + \frac{k q_1 q_2}{r}
+\end{align*}
+
+\vskip 0.5cm
+If we plot $U_{\text{eff}}$ we see there is no potential well and thus no bound states.
+[Include figure]
+
+\vskip 0.5cm
+If we imagine charge $q_2$ of mass $m$ moving towards charge $q_1$ (which we fix in place) with initial velocity $\vec{v}_0$ and impact parameter $b$, we note that the impact parameter gives us the angular momentum of $q_2$:
+
+\[ l = bmv_0 \]
+
+\vskip 0.5cm
+\textbf{\underline{Goal:}} We want to find the relation between $b$ and how much the particle $q_2$ is deflected.
+
+\vskip 0.5cm
+[include picture of two charges with same mass same charge moving towards fixed target, but with different impact parameters]
+
+\vskip 0.5cm
+Intuitively it makes sense that the smaller the impact parameter, the greater the deflection. We will make this more precise.
+
+\vskip 0.5cm
+Compare \[H = \frac{1}{2} m \dot{r}^2 + \frac{l_z^2}{2mr^2} + \frac{k q_1 q_2}{r}\] for the Coulomb case with \[ H = \frac{1}{2} m \dot{r}^2 + \frac{l_z^2}{2m r^2} - \frac{GMm}{r} \] for the gravitational case. All we need to do is substitute 
+\[ - GMm \rightarrow + kq_1 q_2 \] and we'll get the result.
+
+\vskip 0.5cm
+In the gravitational case we had 
+\begin{align*}
+  \pm \sin(\phi - \phi_0) &= \frac{GMm^2 r - l_z^2}{GMm^2 r \sqrt{1 + \frac{2E l_z^2}{G^2 M^2 m^2}}} 
+\end{align*}
+
+and doing the substitution gives us 
+
+\begin{align*}
+  \pm \sin(\phi - \phi_0) &= \frac{-kq_1 q_2 m r - l^2}{-kq_1 q_2 mr \sqrt{1 + \frac{2El^2}{k^2 q_1^2 q_2^2 m}}}
+\end{align*}
+
+(here $l$ is the angular momentum with reference to the fixed point charge)
+
+\begin{align*}
+  \implies& r = \frac{l^2}{kq_1 q_2 m \left[ \pm \sqrt{1 + \frac{2El^2}{k^2 q_1^2 q_2^2 m}} \sin(\phi - \phi_0) - 1 \right]}
+\end{align*}
+
+Comparing this with the geometric parametrization of a parabola, if we choose $phi_0 = \frac{\pi}{2}$ and take the $+$ sign (so that the bottom overall has a negative sign) we get 
+
+\begin{align*}
+  r = \frac{l^2}{-k q_1 q_2 m \left[ \sqrt{1 + \frac{2E l^2}{k^2 q_1^2 q_2^2 m}} \cos(\phi) + 1 \right]}
+\end{align*}
+
+Recall that in the gravity case we defined 
+\[ e \equiv \sqrt{1 + \frac{2E l^2}{G^2 M^2 m^3}} \]
+
+
+In the coulomb case this turns into 
+
+\[ e \equiv \sqrt{1 + \frac{2El}{k^2 q_1^2 q_2^2 m}} \]
+and 
+\[ 1 - e^2 = -\frac{2E l^2}{k^2 q_1^2 q_2^2 m} \]
+
+With these, for the coulomb case, we get 
+
+\[ \boxed{r = \frac{(1-e^2) \left(\frac{kq_1 q_2}{2E}\right) }{1+e\cos(\phi)} } \]
+
+\begin{note}
+  {There might be a sign error here - go through derivation}
+\end{note}
+
+This describes a hyperbola, and $r \rightarrow \infty$ at $\phi_1, \phi_2$ such that 
+
+\[ \cos(\phi_{1,2}) = -\frac{1}{e}  \]
+
+We can use $\phi_1, \phi_2$ to find the deflection angle and write it in terms of $b$ (which is our goal).
 
 \end{document}
 
