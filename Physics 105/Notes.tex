@@ -1326,6 +1326,214 @@ This describes a hyperbola, and $r \rightarrow \infty$ at $\phi_1, \phi_2$ such 
 
 We can use $\phi_1, \phi_2$ to find the deflection angle and write it in terms of $b$ (which is our goal).
 
+\pagebreak
+\section{July 18: }
+
+\vskip 1cm
+% \subsection{}
+Yesterday... we found that 
+\[ r = \frac{-(e^2 - 1) a}{1 + e\cos\phi},\;\;\; a \equiv \left(\frac{kq_1 q_2}{2E}\right) \]
+
+wher $e$ is the eccentricity
+\[ e = \sqrt{1 + \frac{2El^2}{k^2 q_1^2 q_2^2 m}} > 1 \text{ (for $E > 0$ which corresponds to the repulsive case)}\]
+
+\textbf{What is this parametrization $(r, \phi)$ telling us?
+}
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+\begin{itemize}
+  \item For $\phi = 0$, 
+  \[ r = - \frac{(e^1 - 1)a}{1 + 2} = -(e-1)a < 0 \]
+  So, we start off at a point to the left of the origin on the $x$-axis. 
+
+  \item The numerator of $r$ is a constant so the time evolution is completely determined by the denominator of $r$. Now, the denominator reaches zero when $\cos(\phi) = -\frac{1}{e}$ and so that point the $r$ goes to $-\infty$.
+  
+  \item Once we cross this point, $\cos(\phi)$ becomes even more negative than $-1/e$ so $r$ just to being positive.
+  
+  \item (Write about each of the arcs)
+\end{itemize}
+
+
+\begin{redbox}
+  We made an incorrect comment earlier where we claimed that the $\pm$ in 
+  \[ r = \frac{(e^2 - 1)a}{1 + \cos\phi} \] 
+  correspond to the two arcs of the hyperbola respectively, but this is not the case.
+
+  \vskip 0.5cm
+  In fact, we can choose either one (plus or minus) and it will describe the whole parabola, but with a reversed orientation (if we think about parametrization).
+  \begin{note}
+    {verify that this is true.}
+  \end{note}
+\end{redbox}
+
+\vskip 0.5cm
+
+\textbf{Does this make sense?}
+There's an issue: Physically, this trajectory doesn't make sense. The (red+blue part doesn't make sense as we have a repulsive force instead of attractive). Physically, only the left branch (green+yellow) of the Hyperbola 
+
+\vskip 0.5cm
+\textbf{Back to finding the deflection}
+\vskip 0.5cm
+Let's return to our main goal: to relate $b$ with the deflection angle $\Theta$.
+
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+Finally,
+\begin{align*}
+  \Theta &= \pi - \left(\phi_2 - \phi_1\right) \\
+  &= \pi - \left( 2\pi - \cos^{-1}\left(-\frac{1}{e}\right) - \cos^{-1}\left(-\frac{1}{e}\right) \right) \\
+  &= 2\cos^{-1}\left(-\frac{1}{e}\right) - \pi
+\end{align*}
+
+Let's try to find a nicer expression for $\Theta$.
+
+\begin{align*}
+  \cos(\Theta) &= \cos \left[ 2 \cos^{-1}\left(-\frac{1}{e}\right) - \pi \right] \\
+  &= \cos\left[ 2 \cos^{-1}\left(-\frac{1}{e}\right)   \right] \cos(\pi) - \sin \left[\cos^{-1}\left(-\frac{1}{e}\right) \right]\underbrace{\sin(\pi)}_{=0} \\
+  &= -\cos\left[2\phi_1\right] \\
+  &= -\left(\cos^2\phi_1 - \sin^2\phi_1\right) \\
+  &= -\left(2\cos^2\phi - 1\right) \\
+  &= 1 - \frac{2}{e^2} \\
+  &= \frac{\frac{2E l^2}{k^2 q_1^2 q_2^2 - 1}}{\frac{2E l^2}{k^2 q_1^2 q_2^2 + 1}}
+\end{align*}
+
+
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+and we can express it in terms of the impact factor using
+\begin{align*}
+  l &= b(mv_0) \\
+  &= b P \\
+  &= b \sqrt{2mE} 
+\end{align*}
+where we used $E = \frac{P^2}{2m}$ to get the last equality.
+
+\vskip 0.5cm
+Doing so, we get 
+
+\begin{align*}
+  \cos\Theta &= \frac{4b^2 E^2 - k^2 q_1^2 q_2^2}{4b^2 E^2 + k^2 q_1^2 q_2^2}
+\end{align*}
+
+\vskip 0.5cm
+For later convenience, let's make a further simplification by noting that 
+\begin{align*}
+  \cot^2\left(\Theta/2\right) &= \frac{\cos^2\left(\Theta/2\right)}{\sin^2\left(\Theta/2\right)} \\
+  &= \frac{1 + \cos\theta}{1 - \cos\theta}
+\end{align*}
+
+and we know 
+\begin{align*}
+  1 + \cos\Theta &= 1 + \frac{4b^2 E^2 - k^2 q_1^2 q_2^2}{4b^2 E^2 + k^2 q_1^2 q_2^2} = \frac{8b^2 E^2}{4b^2 E^2 + k^2 q_1^2 q_2^2}
+\end{align*}
+
+\begin{align*}
+  1 - \cos\Theta &= 1 - \frac{4b^2 E^2 - k^2 q_1^2 q_2^2}{4b^2 E^2 + k^2 q_1^2 q_2^2} = \frac{2k^2 q_1^2 q_2^2}{4b^2 E^2 + k^2 q_1^2 q_2^2}
+\end{align*}
+
+giving us a very neat expression
+
+\begin{align*}
+  &\cot^2(\Theta/2) = \frac{4b^2 E^2}{k^2 q_1^2 q_2^2} \\
+  \implies& \boxed{ \cot(\Theta/2) = \frac{2b E}{k q_1 q_2} }
+\end{align*}
+
+
+\vskip 0.5cm
+In some ways, we've achieved our goal here. Namely, given $(b, E)$ we can calculate the deflection angle $\Theta$. But we can do more.
+
+\vskip 0.5cm
+For instance, think about Ruthorford's experiment in which gold atoms were bombarded by $\alpha$ particles. In such an experiment, it's practically impossible to measure $b$ for each alpha particle. So, we must find another way. We do this using \textbf{Scattering Amplitudes} and \textbf{Cross Sections}.
+
+\vskip 1cm
+\subsection{Cross Sections}
+In practice, we can't know the exact value for $b$, and probably only have a range for its possible values.
+
+\vskip 0.5cm
+[include figure - from recording; I forgot to take a picture in lecture]
+\vskip 0.5cm
+
+The particles passing through the yellow cross section will pass through the corresponding blue solid angle which is given by $d\Omega = 2\pi \sin\Theta d\Theta$ for scattering angle $\Theta$.
+
+\vskip 0.5cm
+We define the \textbf{(differential) scattering cross-section} 
+$\sigma\left(\Theta\right)$ such that 
+\[ \sigma\left(\Theta\right) d\Omega = \frac{\text{\# of particles passing through the blue solid angle per time}}{\text{Incident Intensity, }I} \]
+
+where 
+\[ I \equiv \frac{\text{\# of incident particles}}{\text{area} \cdot \text{time}} \]
+
+Often in experiments, the thing we control is $I$. The scattering cross section $\sigma(\Theta)$ carries the information of \emph{probability}. Namely, 
+\[ \sigma(\Theta) d\Omega \propto \text{The probability for an inclident particle to get scattered with deflection angle } \Theta  \]
+
+In experiments like that of the Large Hadron Collider, these scattering cross sections are the quantities that we measure experimentally. Though, when we're dealing with quantum effects, the theory agrees with classical scattering only to first order and we need some corrections.
+
+\vskip 0.5cm
+\begin{align*}
+  \sigma(\Theta) d\Omega &= \frac{\text{\# of particles passing through yellow}}{I} \\
+  &= \frac{I \cdot 2\pi n \cdot db}{I} \\
+  \implies \sigma(\Theta) &= \frac{2\pi b db}{d\Omega} \\
+  &= \frac{2\pi b db}{2\pi \sin\Theta d\Theta} \\
+  &= \frac{b}{\sin\Theta} \left| \frac{db}{d\Theta} \right|
+\end{align*}
+
+\begin{note}
+  {We put absolute values around the derivative because $\frac{db}{d\Theta} < 0$ as increasing $b$ decreases $\Theta$, but in our formula we're really dealing with positive valued geometric quantities.}
+\end{note}
+
+\vskip 0.5cm
+\begin{thought}
+  {Note that the dimension of $\sigma\left(\Theta\right)$ is $[length]^2$.} (Explain why.)
+\end{thought}
+
+\vskip 0.5cm
+So, to find $\sigma\left(\Theta\right)$ we need to solve for $\left| \frac{db}{d\Theta} \right|$
+
+\begin{align*}
+  &\cot\left(\Theta/2\right) = \frac{2bE}{k q_1 q_2} \\
+  \implies& \frac{d}{d\Theta} \left[ \cot \left(\frac{\Theta}{2}\right) \right] = \frac{2E}{k q_1 q_2} \frac{db}{d\Theta} \\
+  \implies& -\frac{1}{2}\csc^2\left(\frac{\Theta}{2}\right) = \frac{2E}{k q_1 q_2} \frac{db}{d\Theta} \\
+  \implies& \left| \frac{db}{d\Theta} \right| = \frac{k q_1 q_2}{4E} \csc^2 \left(\frac{\Theta}{2}\right)
+\end{align*}
+
+Thus,
+\begin{align*}
+  \sigma\left(\Theta\right) &= \frac{b}{\sin\left(\Theta\right)} \left| \frac{db}{d\Theta} \right| \\
+  &= \frac{b}{2\sin\left(\frac{\Theta}{2}\right)\cos\left(\frac{\Theta}{2}\right)} \cdot \frac{k q_1 q_2}{4E} \csc^2 \left(\frac{\Theta}{2}\right) 
+\end{align*}
+
+and to eliminate $b$ from the expression, recall that 
+\begin{align*}
+  &\cot(\Theta/2) = \frac{2b E}{k q_1 q_2} \\
+  \implies& b = \frac{k q_1 q_2 \cot\left(\frac{\Theta}{2}\right)}{2E}
+\end{align*}
+
+Plugging this into the equation above gives us 
+
+\begin{align*}
+  &\sigma\left(\Theta\right) =  \frac{\frac{k q_1 q_2 \cot\left(\frac{\Theta}{2}\right)}{2E} }{2\sin\left(\frac{\Theta}{2}\right)\cos\left(\frac{\Theta}{2}\right)} \cdot \frac{k q_1 q_2}{4E} \csc^2 \left(\frac{\Theta}{2}\right) \\
+  \implies& \boxed{\sigma \left(\Theta\right) = \left(\frac{k q_1 q_2}{4E}\right)^2 \csc^4 \left( \frac{\Theta}{2} \right) }
+\end{align*}
+
+\begin{bluebox}
+  This expression 
+  \[ \sigma \left(\Theta\right) = \left(\frac{k q_1 q_2}{4E}\right)^2 \csc^4 \left( \frac{\Theta}{2} \right)  \]
+  is called the \textbf{Rutherford Scattering Cross-Section}
+\end{bluebox}
+
+\begin{redbox}
+  Note that there is a type in the book when it comes to the charges $q_1, q_2$ in the expression (find the type and mention it explicitly.)
+\end{redbox}
+
+\vskip 0.5cm
+Looking at the behavior of $\csc^4 \left(\frac{\Theta}{2}\right)$ vs $\frac{\Theta}{2}$, we see that \emph{most} particles just travel straight.
+
 \end{document}
 
 

@@ -25,3 +25,5 @@
 \contentsline {subsection}{\numberline {7.1}Orbital Shape for a spring with $\vec {F} = -k\vec {r}$}{28}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Orbtial Shape corresponding to Gravitation}{29}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}Coulomb Scattering}{30}{subsection.7.3}%
+\contentsline {section}{\numberline {8}July 18: }{33}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Cross Sections}{35}{subsection.8.1}%
