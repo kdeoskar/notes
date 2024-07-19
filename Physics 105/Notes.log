@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  18 JUL 2024 13:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  19 JUL 2024 01:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -954,22 +954,45 @@ Package microtype Info: Loading generic protrusion settings for font family
 [3]
 
 [4]
+<July 3/july 3 pic 1.png, id=217, 681.29532pt x 339.51843pt>
+File: July 3/july 3 pic 1.png Graphic file (type png)
+<use July 3/july 3 pic 1.png>
+Package pdftex.def Info: July 3/july 3 pic 1.png  used on input line 204.
+(pdftex.def)             Requested size: 408.78035pt x 203.71262pt.
 
-[5]
+
+[5 <./July 3/july 3 pic 1.png>]
 
 Package microtype Warning: I cannot find a spacing list for font
 (microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
-(microtype)                spacing for this font on input line 235.
+(microtype)                spacing for this font on input line 234.
+
+<July 3/july 3 pic 2 method of lagrange multipliers.png, id=224, 743.77875pt x 439.6425pt>
+File: July 3/july 3 pic 2 method of lagrange multipliers.png Graphic file (type png)
+<use July 3/july 3 pic 2 method of lagrange multipliers.png>
+Package pdftex.def Info: July 3/july 3 pic 2 method of lagrange multipliers.png  used on input line 247.
+(pdftex.def)             Requested size: 223.13535pt x 131.89375pt.
 
 
+[6 <./July 3/july 3 pic 2 method of lagrange multipliers.png>]
+<July 3/july 3 pic 3 why do we call them lagrange multipliers.png, id=231, 708.39656pt x 353.82187pt>
+File: July 3/july 3 pic 3 why do we call them lagrange multipliers.png Graphic file (type png)
+<use July 3/july 3 pic 3 why do we call them lagrange multipliers.png>
+Package pdftex.def Info: July 3/july 3 pic 3 why do we call them lagrange multipliers.png  used on input line 295.
+(pdftex.def)             Requested size: 354.1974pt x 176.91049pt.
 
-[6]
 
 [7]
+<July 3/july 3 pic 4 generalized force.png, id=238, 438.13687pt x 225.09094pt>
+File: July 3/july 3 pic 4 generalized force.png Graphic file (type png)
+<use July 3/july 3 pic 4 generalized force.png>
+Package pdftex.def Info: July 3/july 3 pic 4 generalized force.png  used on input line 321.
+(pdftex.def)             Requested size: 262.88414pt x 135.05559pt.
 
-[8]
 
-[9]
+[8 <./July 3/july 3 pic 3 why do we call them lagrange multipliers.png>]
+
+[9 <./July 3/july 3 pic 4 generalized force.png>]
 
 [10]
 
@@ -1007,16 +1030,16 @@ Package microtype Warning: I cannot find a spacing list for font
 
 [27]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1136.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1136.
-
-
-
 [28]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1142.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1142.
+
+
 
 [29]
 
@@ -1034,7 +1057,9 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [36]
 
-[37] (./Notes.aux)
+[37]
+
+[38] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
@@ -1043,18 +1068,18 @@ Package rerunfilecheck Info: File `Notes.out' has not changed.
 (rerunfilecheck)             Checksum: 2D40CBEF9DD0FDDEF1691B28FD82C826;5745.
  ) 
 Here is how much of TeX's memory you used:
- 33396 strings out of 475517
- 668360 string characters out of 5775029
+ 33425 strings out of 475517
+ 669833 string characters out of 5775029
  1950908 words of memory out of 5000000
- 55232 multiletter control sequences out of 15000+600000
+ 55260 multiletter control sequences out of 15000+600000
  577469 words of font info for 163 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  90i,21n,96p,1069b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Notes.pdf (37 pages, 378312 bytes).
+Output written on Notes.pdf (38 pages, 3171347 bytes).
 PDF statistics:
- 484 PDF objects out of 1000 (max. 8388607)
- 372 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
- 50045 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 497 PDF objects out of 1000 (max. 8388607)
+ 376 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 50065 words of extra memory for PDF output out of 51595 (max. 10000000)
 

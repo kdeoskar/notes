@@ -64,13 +64,12 @@
 
 These are some notes from the Phyiscs Directed Reading Program (PDRP) group headed by graduate student Vi Hong. Our group was interested in learning about topology and geometry with applications (primarily) to condensed matter physics.   
 
+\vskip 0.5cm
+I'm writing these notes primarily to flesh out my own understanding, and so there's some content I've added which may not have actually been covered in the reading group. The order of topics may also be slightly different.
 
 \vskip 0.5cm
 \begin{redbox}
-    Note: These notes are very terse and not recommended as a primary source for learning. 
-    \vskip 0.5cm
-    
-    Further, please feel free to point out and errors / suggestions if you spot any via email! There's likely to be at least a few. 
+    Please feel free to point out and errors / suggestions if you spot any via email! There's likely to be at least a few. 
 \end{redbox}
 
 % \microtoc
@@ -87,9 +86,46 @@ These are some notes from the Phyiscs Directed Reading Program (PDRP) group head
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Path Integrals and Fractional Quantization}
+\section{Path Integrals and Functional Quantization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vskip 0.5cm
+
+\subsection{The two main approaches to QFT}
+Quantum Field Theory (QFT) is often said to be the merger of quantum mechanics and special relativity, but it can be thought of more generally as the "Calculus of infinitely many degrees of freedom" \cite{232AdiscussionNotes}. 
+
+\vskip 0.5cm
+In it we deal with fields over spacetime i.e. smooth functions $\phi \text{ : } M \rightarrow N$ where $M$ is our space-time manifold and $N$ some target space, but which are quantized.
+
+\vskip 0.5cm
+There are two main approaches one can take to QFT:
+
+\begin{itemize}
+    \item \textbf{"Canonical" or "Second" Quantization:} In Quantum Mechanics, our dynamical variables and observables are promoted operators whose measured valued are quantized. 
+    
+    % In Second Quantization, our dynamical variables are instead treated as \emph{labels} and for each measurable quantity we have a corresponding \emph{field} which gets quantized.
+
+    In Canonical Quantization, we instead think of Fields as being the fundamental constituents of the universe, and of particles as just being bundles of energy or momenta of the corresponding field \cite{Weinberg97}.
+    
+    In this formulation, a central object of study is the \emph{exponential of the Interaction Hamiltonian}. The exponential of an operator is defined in terms of an expansion, and so this formulation of QFT lends itself to perturbative situations. 
+    
+    \item For non-perturbative settings like QCD, the \textbf{Path Integral Formulation} serves us better. It also more easily lets us view the relations between QFT, Statistical Physics, and critical phenomena \cite{Maggiore05}.
+\end{itemize}
+
+\vskip 0.5cm
+\subsection{Heauristic view of Path Integrals}
+
+\vskip 0.5cm
+\begin{center}
+    \includegraphics[scale=0.5]{multiple_slits.png}
+\end{center}
+
+
+\vskip 0.5cm
+\subsection{Functional Derivatives}
+
+\vskip 0.5cm
+\subsection{A... Slightly Less Heauristic View of Path Integrals}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,10 +172,11 @@ These are some notes from the Phyiscs Directed Reading Program (PDRP) group head
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{References}
+% \section{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vskip 0.5cm
-
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{refs} % Entries are in the refs.bib file
 
 
 \end{document}
