@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  19 JUL 2024 01:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  19 JUL 2024 11:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -832,36 +832,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./Notes.toc)
+ (./Notes.toc
+
+[1
+
+{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write5
 \openout5 = `Notes.toc'.
 
 
 
-[1
-
-{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
 [2]
 
-Package microtype Warning: I cannot find a spacing list for font
-(microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
-(microtype)                spacing for this font on input line 103.
-
-<multiple_slits.png, id=122, 624.08156pt x 401.24907pt>
-File: multiple_slits.png Graphic file (type png)
-<use multiple_slits.png>
-Package pdftex.def Info: multiple_slits.png  used on input line 119.
-(pdftex.def)             Requested size: 312.04001pt x 200.62404pt.
-
-
-[3 <./multiple_slits.png>]
+[3]
 
 [4]
 
-[5]
+Package microtype Warning: I cannot find a spacing list for font
+(microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
+(microtype)                spacing for this font on input line 169.
 
-[6]
+
+
+[5]
+<multiple_slits.png, id=158, 624.08156pt x 401.24907pt>
+File: multiple_slits.png Graphic file (type png)
+<use multiple_slits.png>
+Package pdftex.def Info: multiple_slits.png  used on input line 192.
+(pdftex.def)             Requested size: 312.04001pt x 200.62404pt.
+
+
+[6 <./multiple_slits.png>]
 
 [7]
 
@@ -869,29 +870,33 @@ Package pdftex.def Info: multiple_slits.png  used on input line 119.
 
 [9]
 
-[10] (./Notes.bbl)
+[10]
 
-[11] (./Notes.aux)
+[11]
+
+[12] (./Notes.bbl)
+
+[13] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: B2A116EF2D7F82357FE9055A23E7129A;2204.
+(rerunfilecheck)             Checksum: 65DC073519BC9B0F95C6E4616FEB1765;2742.
  ) 
 Here is how much of TeX's memory you used:
- 32354 strings out of 475517
- 647913 string characters out of 5775029
- 1938908 words of memory out of 5000000
- 54307 multiletter control sequences out of 15000+600000
- 573461 words of font info for 129 fonts, out of 8000000 for 9000
+ 32383 strings out of 475517
+ 648328 string characters out of 5775029
+ 1939908 words of memory out of 5000000
+ 54318 multiletter control sequences out of 15000+600000
+ 573776 words of font info for 135 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 90i,13n,96p,1074b,485s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Notes.pdf (11 pages, 170254 bytes).
+ 90i,14n,96p,1074b,624s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Notes.pdf (13 pages, 236478 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 162 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 45826 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 277 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 35 named destinations out of 1000 (max. 500000)
+ 45842 words of extra memory for PDF output out of 51595 (max. 10000000)
 

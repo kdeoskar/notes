@@ -347,7 +347,7 @@ we have
 \hrule
 
 \pagebreak
-\section{July 8, 2024:}
+\section{July 8, 2024: Lagrange Multipliers}
 
 \vskip 0.5cm
 \subsection{More about Lagrange Multipliers}
@@ -776,7 +776,7 @@ which implies that \textbf{Angular momentum is conserved.} This marks the end of
 
 
 \pagebreak
-\section{July 15: Obtaining Lagrangians from Symmetries}
+\section{July 15, 2024: Obtaining Lagrangians from Symmetries}
 
 Today, we wrap up our discussion of Lagrangians. The goal today is to find the most general Lagrangian $L(x, \dot{x}, t)$ describing a 1D system which is \textbf{time-translation invariant} and \textbf{Galilean invariant}.
 
@@ -940,7 +940,7 @@ which have no time dependence, and so $H = E$. Aaaaaand... we're out of time so 
 
 
 \pagebreak
-\section{July 16: }
+\section{July 16, 2024: Central Forces and Orbital Shapes}
 
 \subsection{Continuing our discussion of Central Forces}
 
@@ -1137,7 +1137,7 @@ We're out of time now, but next  time we'll see how this gives us an orbital sha
 
 
 \pagebreak
-\section{July 17: Orbital Shape continued}
+\section{July 17, 2024: Orbital Shape continued}
 
 \subsection{Orbital Shape for a spring with $\vec{F} = -k\vec{r}$}
 
@@ -1333,7 +1333,7 @@ This describes a hyperbola, and $r \rightarrow \infty$ at $\phi_1, \phi_2$ such 
 We can use $\phi_1, \phi_2$ to find the deflection angle and write it in terms of $b$ (which is our goal).
 
 \pagebreak
-\section{July 18: }
+\section{July 18, 2024: Scattering Theory}
 
 \vskip 1cm
 % \subsection{}
@@ -1539,6 +1539,426 @@ Plugging this into the equation above gives us
 
 \vskip 0.5cm
 Looking at the behavior of $\csc^4 \left(\frac{\Theta}{2}\right)$ vs $\frac{\Theta}{2}$, we see that \emph{most} particles just travel straight.
+
+
+\pagebreak
+\section{July 22, 2024: Virial Theorem}
+
+This is a theorem about average kinetic energy $\langle K \rangle$ and average potential energy $\langle U \rangle$ of a system. Consider the quantity,
+
+\[ G \equiv \sum_{i} \vec{P}_i \cdot \vec{r}_i \]
+with respect to some reference point $\mathcal{O}$. Then,
+
+\begin{align*}
+  \frac{dG}{dt} &= \sum_i \left( \vec{F}_i \cdot \vec{r}_i + \vec{P}_i \cdot \vec{v}_i \right) \\
+  &= \sum_i \left( \vec{F}_i \cdot \vec{r}_i + 2 K_i \right)
+\end{align*}
+
+If we take the time average over a period of time $\tau$, 
+
+\begin{align*}
+  \frac{1}{\tau} \int_{0}^{\tau} \frac{dG}{dt} dt &= \mean{ \sum_i \left( \vec{F}_i \cdot \vec{r} + 2 K_i \right) }
+\end{align*}
+
+\begin{itemize}
+  \item If the motion of the system is periodic and we choose $\tau$ such that it's equal to the period, then 
+  \begin{align*}
+    \frac{1}{\tau} \int_{0}^{\tau} \frac{dG}{dt} dt &= \frac{1}{\tau} \left[ G(\tau) - G(0) \right] = 0
+  \end{align*}
+
+  \vskip 0.5cm
+  \item If the system is not periodic, then the LHS is equal to 
+  $\frac{1}{\tau} \left[G(\tau) - G(0)\right]$. Since both $G(\tau)$ and $G(0)$ should be finite, the LHS goes to zero if we take the limit $\tau \rightarrow \infty$.
+\end{itemize}
+
+\begin{bluebox} 
+  In either case, we have 
+  \begin{align*}
+    \mean{\sum_i \vec{F}_i \cdot \vec{r}_i} + 2 \mean{\sum_i K_i} = 0
+  \end{align*}
+  This is called the \textbf{Virial Theorem}.
+\end{bluebox}
+
+\vskip 0.5cm
+In the case of a single particle subject to $\vec{F} = - \frac{GMm}{r^2}\hat{r}$, moving in the radial direction, we have 
+
+\begin{align*}
+  &\mean{-\frac{GMm}{r^2} \hat{r} \cdot r \hat{r}} + 2 \mean{K} = 0 \\
+  \implies& \mean{-\frac{GMm}{r^2}} + 2\mean{K} = 0\\
+  \implies& \mean{U} + 2\mean{K} = 0
+\end{align*}
+
+We can check that for circular orbit, 
+
+\vskip 0.5cm
+[include picture]
+\vskip 0.5cm
+
+
+\begin{align*}
+  &\frac{GMm}{R^2} = ma_c = m\frac{v^2}{R} \\
+  \implies& \frac{GMm}{R} = mv^2 \\
+  \implies& K = \frac{1}{2} mv^2 = -\frac{1}{2} U
+\end{align*}
+which lines up with the result from the Virial Theorem.
+
+\vskip 0.5cm
+Let's consider $N$ particles interacting gravitationally. For $N = 3$,
+
+\begin{align*}
+  \sum_i \mean{ \vec{F}_i \cdot \vec{r}_i } &= \mean{ \vec{F}_{2 \rightarrow 1} \cdot \vec{r}_1 + \vec{F}_{3 \rightarrow 1} \cdot \vec{r}_1 + \vec{F}_{1 \rightarrow 2} \cdot \vec{r}_2 + \vec{F}_{3 \rightarrow 2} \cdot \vec{r}_2 + \vec{F}_{1 \rightarrow 3} \cdot \vec{r}_3 + \vec{F}_{2 \rightarrow 3} \cdot \vec{r}_3 } \\
+  &= \mean{ \vec{F}_{1 \rightarrow 2} \cdot \left( \vec{r}_2 - \vec{r}_1 \right) + \vec{F}_{1 \rightarrow 3} \cdot \left( \vec{r}_3 - \vec{r}_1 \right) + \vec{F}_{2 \rightarrow 3} \cdot \left( \vec{r}_3 - \vec{r}_2 \right) } \text{ (By Newton's third law)} \\
+  &= \text{ two equations missing here; fill later }\\
+  &= \mean{ U_{12} + U_{13} + U_{23} } \\
+  &= \mean{ U_{\text{tot}}}
+\end{align*} 
+
+Though we've done this for $N = 3$ in particular, the procedure is exactly the same for any value of $N$. 
+
+\begin{bluebox}
+  Thus, the Virial Theorem implies that 
+  \begin{align*}
+    &\mean{U_{\text{tot}}} + 2\mean{K} = 0 \\
+    \implies& \mean{K} = - \frac{1}{2} \mean{U_\text{tot}}
+  \end{align*}
+\end{bluebox}
+
+\begin{redbox}
+  This is useful is astronomy where we can experimentally approximate the mass (how? fill in) and velocity (using Doppler Shift) of a galaxy, giving us $\mean{K}$, and then calculate $\mean{U_{\text{tot}}}$.
+  \vskip 0.5cm
+  In some cases, there is a mismatch. These mismatches led to the conception of ideas like \textbf{Dark Energy} and \textbf{Dark Mass}.
+\end{redbox}
+
+\begin{redbox}
+  Note this the Virial Theorem only holds in the non-relativistic case since the derivation depends on relations like 
+
+  \begin{align*}
+    \vec{p} &= m\vec{v} \\
+    K &= \frac{1}{2} m\left|\vec{v}\right|^2
+  \end{align*}
+\end{redbox}
+
+With this, we've completed chapter 7. We only cover Coulomb Scattering from Chapter 8 (which we've done already), so now we'll move onto Chapter 9.
+
+\subsection{Fictitious Force and Linear Accelerating Frames}
+Suppose Bob is standing in a bus with acceleration $\vec{a}$, and there's a pendant hanging from the ceiling. If we draw the Force Diagram in \emph{Bob's reference frame}, there will be three forces on the pendant:
+
+\vskip 0.5cm
+[Include force diagram]
+\vskip 0.5cm
+
+However, if we look at it from the perspective of Alice (who is standing at rest on the ground outside the Bus), the pendant appears to be moving and have only two forces acting on it.
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+[Include equations]
+
+We end up with the result,
+\begin{align*}
+  \vec{F}_{fic} = m\vec{a}
+\end{align*}
+
+\vskip 0.5cm
+In some sense, the fictition force is just a result of relative motion. For example, to a driver sitting in a car with acceleration $\vec{a}$, objects on the ground outside of his window have a relative acceleration $-\vec{a}$, so if the second law holds, they should experience (in the drivers reference frame), 
+\[ \vec{F}_{fix} = m\vec{a} \]
+
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+
+Though we call it a \emph{fictitious} force, if you sit in a car you certainly do feel the force. This is a manifestation of the Equivalence pricniple.
+
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+\subsection{Fictitious Forces in the Lagrangian Formalism}
+Now, how do we arrive at the Equations of Motion with fictitious forces in the Lagrangian Formulation?
+
+\vskip 0.5cm
+Consider an inertial frame $S$ and a frame $S'$ moving with constant acceleration $\vec{a}$ such that the two origins coincide at $t = t' = 0$ and the $S'$-frame starts from rest.
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+Then at time $t$, the distance between their origins measured in the $S$-frame will be $\frac{1}{2}at^2$. So, the point described by position $x$ in $S$-frame has coordinate 
+\[ x' - \frac{1}{2}at^2 \implies x(x') = x' + \frac{1}{2}at^2 \]
+in the $S'$-frame.
+
+\vskip 0.5cm
+Now, $S$-frame is an inertial frame so for a particle subject to potential $V(x)$, we have 
+\begin{align*}
+  L &= \frac{1}{2} m \dot{x}^2 - V(x) \\
+  &= \frac{1}{2} m \left( \dot{x}' + at \right)^2 - V(x(x', t))
+\end{align*}
+
+\begin{redbox}
+  Sidenote: There is explicit time dependence so the Hamiltonian is not conserved.
+\end{redbox}
+
+So, the Equations of Motion are found as 
+\begin{align*}
+  &\frac{\partial L}{\partial x} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} = 0 \right) \\
+  \implies& -\frac{\partial x}{\partial x'} \frac{\partial V}{\partial x} - \frac{d}{dt} \left(m\left(x' + at\right)\right) = 0\\
+  \implies& -\frac{\partial V}{\partial x} - m\ddot{x} - ma = 0 \\
+  \implies& m\ddot{x} = \underbrace{- \frac{\partial V}{\partial x} }_{\text{real force}} \underbrace{- ma}_{\text{fic. force}}
+\end{align*}
+
+\vskip 0.5cm
+\subsection{Rotating Forces}
+
+For simplicity, let's first consider the following system in outer space and subject to no gravity:
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+Let's say there's an observer "Bob" in the spaceship and another observer "Alice" outside the space station. Suppose Bob throws a ball straight up with respect to himself. For Bob, the ball appears to go straight up, but for Alice, it has a horizontal component as well due to the rotation $\omega$.
+
+\vskip 0.5cm
+For Alice, the ball has an initial velocity 
+\[ \vec{v}_0 = \omega R \hat{x} + \omega R \hat{y} \]
+
+For Alice, the ball travels with a trajectory of constant velocity.
+\vskip 0.5cm
+[Include figure]
+\vskip 0.5cm
+
+The time it takes to reach the ground again is 
+\[ \Delta t = \frac{\sqrt{2} R }{\sqrt{2} \omega R } \text{ (dist./velocity) }= \frac{1}{\omega} \]
+
+\vskip 0.5cm
+\textbf{How much does Bob rotate in this time? }
+\begin{align*}
+  \Delta \theta &= \omega \cdot \delta t \\
+  &= \omega \cdot \frac{1}{\omega} \\
+  &= 1 \text{ (radians)}
+\end{align*}
+
+So, what Bob will see is that he tosses the ball up but it lands to his right at a distance 
+\[ d - R \cdot \frac{\pi}{4} - R \cdot 1 = R\left(\frac{\pi}{4} - 1\right) \]
+
+\vskip 0.5cm
+\textbf{We don't have gravitational forces, so why the turn?}
+This is due to Coriolis force.
+
+\vskip 0.5cm
+\subsection{Rotations}
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+\begin{align*}
+  \vec{V}' = \begin{pmatrix}
+    V_x' \\
+    V_y' \\
+    V_z' \\
+  \end{pmatrix} &= \begin{pmatrix}
+    \cos\theta & -\sin\theta & 0 \\
+    \sin\theta &  \cos\theta & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix} \begin{pmatrix}
+    V_x \\
+    V_y \\
+    V_z \\
+  \end{pmatrix} \\
+  \text{ (when $\theta$ is small) }  &\approx \begin{pmatrix}
+    1 & -\theta & 0 \\
+    \theta & 1 & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix} 
+  \begin{pmatrix}
+      V_x \\
+      V_y \\
+      V_z \\
+  \end{pmatrix}
+\end{align*}
+
+\pagebreak
+\section{July 23, 2024: }
+
+Last time we ended off by discussing what an infinitessimal rotation about the $z$-axis look like:
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+\begin{align*}
+  \vec{V}' &\approx \begin{pmatrix}
+    1 & -\theta_z & 0 \\
+    \theta_z & 1 & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix} 
+  \begin{pmatrix}
+      V_x \\
+      V_y \\
+      V_z \\
+  \end{pmatrix} = \left[ 1 - \theta_z \begin{pmatrix}
+    0 & 1 & 0 \\
+    -1 & 0 & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix}  \right]   \begin{pmatrix}
+    V_x \\
+    V_y \\
+    V_z \\
+\end{pmatrix}
+\end{align*}
+
+
+Similarly, if we rotate about the $y$-axis in the "positive direction" (given by the right hand rule)
+
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+\begin{align*}
+  \vec{V}' &\approx \begin{pmatrix}
+    1 & 0 & +\theta_y \\
+    0 & 1 & 0 \\
+    -\theta_y & 0 & 0 \\
+  \end{pmatrix} 
+  \begin{pmatrix}
+      V_x \\
+      V_y \\
+      V_z \\
+  \end{pmatrix} = \left[ 1 - \theta_y \begin{pmatrix}
+    0 & 0 & -1 \\
+    0 & 0 & 0 \\
+    1 & 0 & 0 \\
+  \end{pmatrix}  \right]   \begin{pmatrix}
+    V_x \\
+    V_y \\
+    V_z \\
+\end{pmatrix}
+\end{align*}
+
+and an infinitessimal rotation about the $x$-axis looks like 
+
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+\begin{align*}
+  \vec{V}' &\approx \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & -\theta_x \\
+    0 & \theta_x & 1\\
+  \end{pmatrix} 
+  \begin{pmatrix}
+      V_x \\
+      V_y \\
+      V_z \\
+  \end{pmatrix} = \left[ 1 - \theta_x \begin{pmatrix}
+    0 & 0 & 0 \\
+    0 & 0 & +1 \\
+    0 & -1 & 0 \\
+  \end{pmatrix}  \right]   \begin{pmatrix}
+    V_x \\
+    V_y \\
+    V_z \\
+\end{pmatrix}
+\end{align*}
+
+\vskip 0.5cm
+\begin{bluebox}
+  We can compactly write these relations as 
+  \[ V_i ' =  \delta_{ij} - \theta_k \epsilon_{kij} V_j \]
+  where $\epsilon_{ijk}$ is the Levi-Civita symbol,
+
+  \[ 
+  \epsilon_{ijk} = \begin{cases}
+    +1, \text{ for cyclic permutations of (123)} \\
+    +1, \text{ for cyclic permutations of (132)} \\
+    0, \text{ otherwise}
+  \end{cases}
+  \]
+\end{bluebox}
+
+\begin{redbox}
+  Note that the Levi-Civita symbol is totally antisymmetric in its indices i.e.
+
+  \[ \epsilon_{ijk} = -\epsilon{jik} = -\epsilon_{kij} = -\epsilon_{ikj} \]
+\end{redbox}
+
+\begin{redbox}
+  Also note that 
+  \[ (\vec{A} \times \vec{B})_{i} = \epsilon_{ijk} A_{j} B_{k} \]
+\end{redbox}
+
+\vskip 1cm
+\subsection{Rotating Frame}
+
+Consider an intertial frame $S'$, and a rotating frame $S$. Given a vector $\vec{r}$ in the $S'$ frame, we want to find its expression in the $S$ frame.
+
+\vskip 0.5cm
+[Include picture]
+\vskip 0.5cm
+
+Since $\vec{r}$ is a vector - a physical quantity - it is always $\vec{r}$ regardless of which frame (coordinate basis) we choose. So, really, the question we want to ask is "What do the \emph{\textbf{components}} of the $\vec{r}$ vector in the $S'$ frame look like?".
+
+\[  \vec{r} = r'^i \hat{e}_i' = r^i \hat{e}_i  \]
+
+We can think that the $S'$ frame is obtained by actively rotating the inertial frame. When we think of the \textbf{basis vectors rotating}, we have
+
+\vskip 0.5cm
+[include picture]
+\vskip 0.5cm
+
+For a rotation by angle $\theta$,
+\begin{align*}
+  \hat{e}_{x} &= \cos\theta \hat{e'}_x - \sin\theta \hat{e'}_y \\
+  \hat{e}_{y} &= \sin\theta \hat{e'}_x + \cos\theta \hat{e'}_y \\
+\end{align*}
+
+More generally, for a small rotation,
+
+\[ \hat{e}_i = \left(\delta_{ij} + \theta_k \epsilon_{kij} \right) \hat{e'}_j \]
+
+That is, we can think of the rotation of a frame over time being defined by the relations
+
+\begin{align*}
+  \hat{e}_i(t) = R_{ij}(t) \hat{e'}_j \\
+  \hat{e}_i(t + dt) = \left(\delta_{ij} + d\theta_k \epsilon_{kij} \right) \hat{e'}_j (t)
+\end{align*}
+
+So,
+\begin{align*}
+  \dot{\hat{e}}_i &= \frac{\hat{e}_i (t + dt) - \hat{e}_i(t)}{dt} \\
+  &= \frac{\hat{e}_i(t) + d\theta_k \epsilon_{kij} \hat{e_j}(t) }{dt} \\
+  &= \dot{\theta}_k \epsilon_{kij} \hat{e}_j(t)
+\end{align*}
+
+\vskip 0.5cm
+Now, also, 
+\begin{align*}
+  \dot{\vec{r}} &= \dot{r'}^i \dot{\hat{e'}}_i \\
+  &= \dot{(r')}^i \hat{e}_i + (r')^i \underbrace{\dot{\hat{e}}'_i}_{=0} \\
+  &= \dot{r}^i  \text{ Rename $j$ as $i$ and $i$ as $j$}\\ 
+  &\text{a couple of equations} \\
+  &= \left( \dot{r}_i + \epsilon_{ikj} \dot{\theta}_k r_j\right)
+ \hat{e}_i\end{align*}
+
+Fill this in later.
+\vskip 0.5cm
+In the textbook, they used a more visual approach and wrote that for any vector $\vec{A}$,
+
+\[ \left(\frac{d\vec{A}}{dt}\right)_{\text{iner.}} = \left(\frac{d\vec{A}}{dt}\right)_{\text{rot.}} + \vec{\omega} \times \vec{A}  \]
+
+\vskip 0.5cm
+This form can be a little bit confusing because the vector components in the $S$ and $S'$ frames are really being written in different bases, so we CANNOT say 
+\[ \dot{r'}_i = \dot{r}_i + \epsilon_{ijk} \dot{\theta}_k r_j \]
+
+\vskip 0.5cm
+The expression obtained by the textbook includes not just the components but also the basis vectors themselves.
+
+\vskip 0.5cm
+Fill in the rest of this crap later. 
 
 \end{document}
 

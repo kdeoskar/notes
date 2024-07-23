@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {2}July 3, 2024:}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Finishing up discussion from last lecture}{4}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}The Method of Lagrange Multipliers}{6}{subsection.2.2}%
-\contentsline {section}{\numberline {3}July 8, 2024:}{10}{section.3}%
+\contentsline {section}{\numberline {3}July 8, 2024: Lagrange Multipliers}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}More about Lagrange Multipliers}{10}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Example: Tree log rolling down a ramp}{11}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Example: A bead on a wire}{12}{subsection.3.3}%
@@ -14,16 +14,23 @@
 \contentsline {subsection}{\numberline {4.4}Example: Spacial Translation}{17}{subsection.4.4}%
 \contentsline {subsection}{\numberline {4.5}Example: Time Translation}{17}{subsection.4.5}%
 \contentsline {subsection}{\numberline {4.6}Example: Isotropic Harmonic Oscillator under rotation}{18}{subsection.4.6}%
-\contentsline {section}{\numberline {5}July 15: Obtaining Lagrangians from Symmetries}{20}{section.5}%
+\contentsline {section}{\numberline {5}July 15, 2024: Obtaining Lagrangians from Symmetries}{20}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Central Force Problem}{22}{subsection.5.1}%
-\contentsline {section}{\numberline {6}July 16: }{24}{section.6}%
+\contentsline {section}{\numberline {6}July 16, 2024: Central Forces and Orbital Shapes}{24}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Continuing our discussion of Central Forces}{24}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Aside: Ineratial Mass and Gravitational Mass}{24}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Continuing on with the 2-body problem}{25}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}Orbital Shape}{26}{subsection.6.4}%
-\contentsline {section}{\numberline {7}July 17: Orbital Shape continued}{29}{section.7}%
+\contentsline {section}{\numberline {7}July 17, 2024: Orbital Shape continued}{29}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Orbital Shape for a spring with $\vec {F} = -k\vec {r}$}{29}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Orbtial Shape corresponding to Gravitation}{30}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}Coulomb Scattering}{31}{subsection.7.3}%
-\contentsline {section}{\numberline {8}July 18: }{34}{section.8}%
+\contentsline {section}{\numberline {8}July 18, 2024: Scattering Theory}{34}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Cross Sections}{36}{subsection.8.1}%
+\contentsline {section}{\numberline {9}July 22, 2024: Virial Theorem}{39}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Fictitious Force and Linear Accelerating Frames}{41}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Fictitious Forces in the Lagrangian Formalism}{41}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Rotating Forces}{42}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Rotations}{43}{subsection.9.4}%
+\contentsline {section}{\numberline {10}July 23, 2024: }{44}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Rotating Frame}{45}{subsection.10.1}%

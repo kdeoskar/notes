@@ -88,8 +88,74 @@ I'm writing these notes primarily to flesh out my own understanding, and so ther
 \newpage
 \section{Path Integrals and Functional Quantization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vskip 0.5cm
 
+\vskip 0.5cm
+\subsection{Quick Recap of Lagrangians and Hamiltonians}
+
+The Newtonian Formulation of classical mechanics is amazing but sometimes inconvenient to use because to study the time-evolution of a system, one needs to solve $\mathbf{F} = m\mathbf{a}$ at each time-step. Two equivalent but more convenient formulations are the \textbf{Lagrangian} and \textbf{Hamiltonian} formulations.
+
+\vskip 0.5cm
+Both of these rely on the \textbf{Principle of Stationary Action}, which is the idea that each classical system has a quantity associated with it called its action $S$ and, of all the possible ways the system can evole, the path ($x_{cl}(t)$) it actually follows is the one in which the action is extremized i.e. for small devitations $\delta x_i$ from $x_{cl}(t)$, the resulting change in the action is $\delta S = 0$.
+
+\vskip 0.5cm
+We define the \textbf{Lagrangian} of the system to be the function $L(q_k, \dot{q}_k, t)$ such that 
+\[ S = \int_{r_i}^{r_f} L(q, \dot{q}_k, t) \]
+where $q_k$ represents the (generalized) coordinates of the system.
+
+% [Write more in this section later; for now redirect readers to \href{https://github.com/kdeoskar/notes/blob/main/Physics%20105/Notes.pdf}{Physics 105 Notes}.]
+
+\vskip 0.5cm
+As you likely know, in settings with no non-conservative forces, the Lagrangian of a system has the form 
+\[ L = K - V \]
+where $K, V$ are the Kinetic and Potential energies of the system. [If you're not familiar with this, see \href{https://github.com/kdeoskar/notes/blob/main/Physics%20105/Notes.pdf}{these notes on Analytical Mechanics.} ]
+
+
+\vskip 0.5cm
+The principle of least action is essentially saying that for small variations $\delta x(t)$, the classical path is the one corresponding to 
+
+\[ \frac{\partial}{\partial x(t)} \left[ K(x) - V(x) \right] \]
+
+Lagrangians and the Action will be central to the Path Integral formulation, so let's discuss what exactly this sort of derivative means.
+
+\vskip 0.5cm
+\subsection{Functional Derivatives}
+
+We're used to functions like $f(x)$ that take in a number and spit out a number, or even functions like $f(\mathbf{x})$ which take in a vector and output some sort of scalar, vector, or other object type. Now, let's consider functionals, like $F[f]$, which take in functions as inputs and spit out some sort of quantity (usually just a scalar).
+
+\vskip 0.5cm
+For instance if we have two points $a, b$ in $\mathbb{R}^2$ and we consider the set of paths $\gamma \text{ : } [0, 1] \rightarrow \mathbb{R}^2$ with $\gamma(0) = a, \gamma(1) = b$, then a functional we're all familiar with is 
+\begin{align*}
+    F[\gamma] = \int_{0}^{1} \sqrt{\left(\frac{\partial \gamma_x}{\partial t}\right)^2 + \left(\frac{\partial \gamma_y}{\partial t}\right)^2  } dt
+\end{align*}
+
+This functional takes in a path and spits out the path's length! And if we tweak the path a litle bit $\gamma(t) \rightarrow \gamma'(t) = \gamma(t) + \delta \gamma(t)$ there is a corresponding change in its length, given by 
+\[ \frac{\delta F[\gamma]}{\delta \gamma(t)} \]
+
+\vskip 0.5cm
+This sort of fractional derivative is important. In the Lagrangian formulation, we want to find the path $x(t)$ through parameter space which minimizes the action $K[x] - V[x]$. i.e. in order to find the classical path, we want to solve the differential equation
+
+\[  \frac{\delta \left(K[x] - V[x]\right)}{\delta x(t)} = 0 \]
+
+\subsection*{Calculating Functional Derivatives}
+For a normal function, the derivative is defined as 
+
+\[v \frac{df}{dx} = \lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h} \]
+
+Similarly, for a functional, the \emph{functional derivative} is defined as 
+
+\[ \frac{\delta F}{\delta f(x)} = \lim_{h \rightarrow 0} \frac{F[f(x') + h \delta(x - x')] - F[f(x')]}{h} \]
+
+\begin{bluebox}
+    \textbf{What does this formula mean?}
+    \vskip 0.5cm
+    Find good explanation
+\end{bluebox}
+
+% \vskip 0.5cm
+% \subsection{(A little bit of) Scalar Field Theory}
+% A scalar field is a function $\phi : M \rightarrow \mathbb{R}, \mathbb{C}$ from our base-space to (usually) either the real or complex numbers (more generally, it can be to any \textbf{field}). 
+
+\vskip 0.5cm
 \subsection{The two main approaches to QFT}
 Quantum Field Theory (QFT) is often said to be the merger of quantum mechanics and special relativity, but it can be thought of more generally as the "Calculus of infinitely many degrees of freedom" \cite{232AdiscussionNotes}. 
 
@@ -111,17 +177,29 @@ There are two main approaches one can take to QFT:
     \item For non-perturbative settings like QCD, the \textbf{Path Integral Formulation} serves us better. It also more easily lets us view the relations between QFT, Statistical Physics, and critical phenomena \cite{Maggiore05}.
 \end{itemize}
 
+
+
 \vskip 0.5cm
-\subsection{Heauristic view of Path Integrals}
+\subsection{Heauristic view of Path Integrals in Quantum Mechanics}
+
+Consider a double slit experiment in which we have source $S$ at some distance from a screen, and plane between them. Suppose the plane has two slits $A_1$ and $A_2$. Then, the probability that an electron emitted by $S$ reaches a specific point $O$ on the screen is given by (the probability it passes through $A_1$ and reaches $O$) + (the probability it passes through $A_2$ and reaches $O$). 
+
+\vskip 0.5cm
+If we have 3 slits $A_1, A_2, A_3$ then the same idea holds but with a term for the probability through $A_3$. Similarly, if we have a \textit{second plane} placed after the first with another set of 3 slits, then we need to consider the probability that the electron passes through $A_{1,i}$ followed by $A_{2,j}$ and then hits $O$.
 
 \vskip 0.5cm
 \begin{center}
-    \includegraphics[scale=0.5]{multiple_slits.png}
+    \includegraphics[scale=0.5]{multiple_slits.png} \\
+    \textit{Figure 1.2.2 from} \cite[Zee, QFT in a Nutshell]{ZeeQFTNutshell}
 \end{center}
 
-
 \vskip 0.5cm
-\subsection{Functional Derivatives}
+If we now imagine that the number of holes and the number of planes placed one after another both go to $\infty$ (i.e. we have empty space between $S$ and $O$), then it seems reasonable to say 
+
+\[ \mathcal{A}(S \rightarrow O) =  \sum_{\text{path } \gamma} \mathcal{A}\left(S \rightarrow O \text{ via } \gamma\right) \]
+
+and as we take the limits, this sum over paths made of straight segments approaches an integral over all smooth paths between $S$ and $O$. This is the general idea.
+
 
 \vskip 0.5cm
 \subsection{A... Slightly Less Heauristic View of Path Integrals}
@@ -168,6 +246,13 @@ There are two main approaches one can take to QFT:
 \section{BRST Quantization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vskip 0.5cm
+Explain stuff.
+
+
+\vskip 0.5cm
+\subsection{BRST Cohomology}
+
+In a theory with gauge-symmetry, we have redundancy. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

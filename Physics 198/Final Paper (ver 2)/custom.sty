@@ -1,6 +1,5 @@
 \ProvidesPackage{custom}
 
-
 % general quality improvement
 \usepackage{mathtools}                % improves amsmath
 \usepackage[american]{babel}          % ensure correct hyphenation
@@ -164,9 +163,6 @@
   \mathclose{\copy\@brx\mkern2mu\kern-0.9\wd\@brx\usebox{\@brx}}}
 \newcommand{\grad}{\nabla}
 \newcommand{\curl}{\nabla \times}
-\newcommand{\homend}[1]{\mathrm{End}\left(#1\right)}
-\newcommand{\aut}[1]{\mathrm{Aut}\left(#1\right)}
-\newcommand{\mean}[1]{\langle #1 \rangle}
 
 % improvements on existing commands
 \let\oldemptyset\emptyset         % save bad looking empty set
@@ -280,7 +276,7 @@
 \DeclareMathOperator*{\argmin}{argmin}
 
 % theorem commands
-% \theoremstyle{definition}
+\theoremstyle{definition}
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{example}{Example}
 \newtheorem*{corollary}{Corollary}
