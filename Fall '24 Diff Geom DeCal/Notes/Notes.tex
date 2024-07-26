@@ -39,6 +39,38 @@
 \newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
 \newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
 
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \definecolor{lightblue}{RGB}{173,216,230} % Light blue color
 \definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
 
@@ -101,34 +133,21 @@
 % make table of contents
 % \newpage
 
-These are some short notes that will be used to complement the lectures for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. The primary reference for the class is "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and so this document will cover topics in roughly the same order - though with some additional and alternative explanations.
-
-% \vskip 0.5cm
-% I try to explain every concept we will come across in less than 100 words.
-
-\vskip 0.5cm
-These notes assume the reader is familiar with results from Linear Algebra and Multivariable Calculus, at the level of Math 54 and Math 53 at UC Berkeley.
-
-\vskip 0.5cm
+These are some short \begin{note} {really informal!} \end{note} notes that will be used to complement the lectures for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. The primary reference for the class is "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and so this document will cover topics in roughly the same order - though with some additional and alternative explanations. These notes assume the reader is familiar with results from Linear Algebra and Multivariable Calculus, at the level of Math 54 and Math 53 at UC Berkeley.
+\\
+\\
+Of course, not all of the content in this document will be covered in class. Further, this is a class for \emph{physicists}, so to any mathematicians lurking around - please forgive my sloppiness in some parts of the text. This is very much a work in progress. Last updated July 26, 2024.
+\\
+\\
+Many thanks to Ori J. Ganor for being our faculty sponsor, to Michelle Jing Dong and Finn Fraser Grathwol for allowing me to join them as a facilitator. as well as to David LaPorte who guided me through my first experience with Differential Topology - and to whom I still owe a Math DRP Term Paper (I hope this will suffice).
+\\
+\\
 This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
 
 % \microtoc
 \tableofcontents 
 
 % main 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Some preliminaries: Linear Algebra}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Some preliminaries: Group Theory}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -156,19 +175,128 @@ This template is based heavily off of the one produced by \href{https://knzhou.g
 \newpage
 \section{Tangent, Cotangent, and Tensor Spaces (+Bundles)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\vskip 1cm
-\subsection{Tangent Space}
-
+When considering the motion of a particle along some curve $\gamma(t)$ in $\R^3$, we have a very natural idea of what the tangent to the curve at each position (its velocity vector) looks like, and even what its acceleration vector might be. We might even have an intuitive understanding of these notions for a particle moving along the surface of a sphere $\mathbb{S}^2$. But what about a particle moving in $\mathbb{RP}^n$? How do we generalize these notions to all smooth manifolds? 
+\\
+\\
+To generalize velocity vectors, we introduce tangent space, which is the "linear approximation" of the manifold at a given point. We'll see how to generalize acceleration later when we discuss connections and covariant derivatives.
+\\
+\\
+(The approach I'll present here roughly follows Chapter 3 of Lee's Introduction to Smooth Manifolds \cite{LeeSM}.)
+\\
+\subsection{Tangent Vectors}
+To get started, let's define the set of \textbf{Geometric Tangent Vectors} at a point $a \in \R^n$ to be the set $\{a\} \times \R^n$, denoted as $\R^{n}_{a}$ i.e. we literally just attach a copy of $\R^n$ to that point  \begin{thought}
+  {Of course, this means $R^{n}_{a}$ is isomorphic to $\R^n$ as a vector space}
+\end{thought}. The reason we do this is so that the spaces of geometric tangent vectors at distinct points $a$ and $b$ are disjoint. 
+\\
+\\
+This might seem like a goofy thing to do, but suppose $a$ is a point on the surface of $\mathbb{S}^{n-1}$ embedded within $\R^n$. Then, we can think of the set of vectors \emph{tangent to $\mathbb{S}^{n-1}$} which we might denote as $T_a \mathbb{S}^{n-1}$ as some subset of $\R^{n}_{a}$ (for $\mathbb{S}^{n-1}$ it would be the 2-dimensional plane tangent to the surface at point $a$).
+\\
+\\
+There are two issues with this:
+\begin{itemize}
+  \item This depends on the manifold we're interested in being embedded in some $\R^n$.
+  \item We haven't figured out a way to explicitly find $T_a \mathbb{S}^{n-1}$.
+\end{itemize}
+Notice however, that given some $v \in R^{n}_a$, we have an operator $\restr{D_v}{a} \text{ : } C^{\infty}(\R^n) \rightarrow \R$ which takes a function $f \text{ : } \R^n \rightarrow \R$ and returns the \textbf{directional derivative} of $f$ in the direction $v$ \textbf{at the point $a$} as 
+\[ \restr{\frac{d}{dt}}{t = 0} f(a + tv) \]
+\\
+In general, we can have all sorts of operators that act on functions $f \in C^{\infty}$, but differential operators in $\R^n$ satisfy a very specific rule:
+\[ \text{Leibniz Rule: } d(fg) = (df)g + f(dg)  \]
+\\
+Let's call any operator $w$ that satisfies the Leibniz Rule a \textbf{Derivation}, and let's denote the set of all derivations \textbf{at a point $a$} as $T_{a} \R^{n}$ i.e.
+\begin{redbox}
+  \[ T_{a} \R^{n} = \left\{\text{Linear maps, } w \text{ : } \text{for any } f, g \in C^{\infty}(\R^n), \; w(f \cdot g) = w(f) \cdot g + f \cdot w(g) \right\} \]
+\end{redbox}
+Here's where things get interesting.
+\begin{bluebox}
+  \textbf{Theorem:} We have vector space isomorphism between $R^{n}_{a}$ and $T_a \R^n$ given by the map $v_a \in R^n_{a} \mapsto \restr{D_{v}}{a} \in T_{a} \R^n$ where 
+  \[ \restr{D_{v}}{a} \text{ : } C^{\infty}(\R^n) \rightarrow \R  \]
+  is the differential operator defined (as earlier) as 
+  \[ \restr{D_{v}}{a} (f) = \restr{\frac{d}{dt}}{t = 0} f(a + tv) \]
+  for $f \in C^{\infty}(\R^n)$.
+\end{bluebox}
+This might look complicated, but what essentially what we're saying is that the collection of geometrical tangent vectors available is identical to the collection of direcitonal derivatives we can take on any function $f \in C^{\infty}(\R^n)$.
+\\
+\\
+\begin{proof}
+  \begin{note}
+    {Complete this soon; Follow \cite[proposition 3.2]{LeeSM}}
+  \end{note}
+\end{proof}
+\\
+\\
+So, we've proven that thinking geometrically about tangent vectors is equivalent to thinking about derivations of functions in $C^{\infty}(\R^n)$. We use this intuition to \textbf{define} the set of tangent vectors at a point $a \in M$ (where $M$ is some smooth manifold) to be $T_a M$ i.e. 
+\begin{redbox}
+  \[ T_a M = \left\{ \text{Derivations, } w \;\vert\; \text{for any } f,g \in C^{\infty}(M), \;\; w(fg) = w(f) \cdot g + f \cdot w(g) \right\}  \]
+\end{redbox}
+\vskip 0.5cm
 \subsubsection{Isomorphisms between Geometric Tangent Vectors, Derivations, and Velocity Vectors on a Curve}
+\begin{note}
+  {Decide whether to include this here or later; and whether or not to talk about differentials just yet}
+\end{note}
 
-\vskip 1cm
 \subsection{Cotangent Space}
+Now that we've introduced the Tangent space $T_{x} M$, we can also talk about the \textbf{Cotangent space, $T_x^{*}M$} which is defined to be the \textbf{vector space dual} to $T_{x} M$ i.e.
+\begin{redbox}
+  For a point $x \in M$ in the smooth manifold $M$, the Cotangent space is defined as 
+  \[ T_{x}^{*}M \equiv \left(T_x M\right)^{*} = \left\{ \omega \;\vert\; \omega \text{ : } T_{x} M \rightarrow \R \text{ is a linear map} \right\} \]
+\end{redbox}
+The elements of $T_x^*M$ are called \textbf{cotangent vectors} or \textbf{covectors}.
+\\
+\\
+You may be wondering why we bother defining this space, and that's a valid question! \begin{note}
+  {Try to come up with a concise explanation here instead of just relegating to the example at the end.}
+\end{note} We'll discuss some physical examples of vectors and covectors towards the end of the chapter once we've discussed bundles.
+\\
+\subsection{Tangent Bundles and Vector Fields}
+So far, we've specified definitions for tangent and cotangent spaces \textbf{at a particular point} of a smooth manifold $M$. But what if we're interested in, say, a \textit{vector field} on $M$ (for instance, the electric field)? Then, intuitively, it feels like we'd need a space which
+\begin{enumerate}
+  \item Specifies one vector for each point $p \in M$.
+  \item Has the same level of structure as $M$.
+\end{enumerate}
+Enter, \textbf{The Tangent Bundle}. We define a new space denoted by $TM$ as the disjoint union of the tangent bundles at each of the points in $M$.
+\begin{redbox}
+  For smooth manifold $M$, we define the Tangent Bundle $TM$ as 
+  \[ TM \equiv \coprod_{p \in M} T_p M \]
+  i.e. the elements of $TM$ are pairs of tangent vectors and the point they're associated with, $(v, p)$. Additionally, by default, we equip it with a \textbf{projection map} down to $M$ defined by
+  \begin{align*}
+    \pi \text{ : } TM &\rightarrow M \\
+          (v, p) &\rightarrow p
+  \end{align*}
+\end{redbox}
+\vskip 0.5cm
+Some features of $TM$ to note are:
+\begin{bluebox}
+  \textbf{Theorem:} For a smooth manifold $M$ of dimension $n$, there is a natural topology we can endow $TM$ with in order to make it a smooth manifold of dimension $2n$. With respect to this topology, $\pi \text{ : } TM \rightarrow M$ is a smooth map.
+\end{bluebox}
 
-\vskip 1cm
-\subsection{Tangent and Cotangent Bundles}
+\begin{proof}
+  \begin{note}
+    {Complete this soon.}
+  \end{note}
+\end{proof}
+\\
+\\
+Okay. So, we have a collection of the tangent spaces at each point and a map that, given a tangent vector, tells us which point we're dealing with. How do we go the other way? i.e. How do we take a point and assign to it a vector? 
+\\
+\begin{dottedbox}
+  \begin{note}
+    {If it hasn't been done already, write sections about submersions immersions and embeddings of topological + smooth manifolds}
+  \end{note}
+  \\
+  Recall that given a continous map between topological spaces $\pi \text{ : } M \rightarrow N$, any \textbf{continuous right inverse} to $\pi$ i.e. a map $\sigma$ such that 
+  \[ \pi \circ \sigma = \mathrm{Id}_{N} \]
+  is called a \textbf{section} of $\pi$.
+\end{dottedbox}
 
-\vskip 1cm
+\begin{redbox}
+  Given a smooth manifold $M$, a \textbf{Vector Field} $X$ on $M$ is a \textbf{smooth section} of the tangent-space projection map $\pi \text{ : } TM \rightarrow M$. i.e. it is a smooth map $X \text{ : } M \rightarrow TM$ such that 
+  \[ \pi \circ X = \mathrm{Id}_{M} \]  
+\end{redbox}
+
+\subsection{Cotangent Bundle and Covector Fields}
+
+
 \subsection{Tensor Spaces and Tensor Bundles}
 
 
@@ -194,11 +322,33 @@ This template is based heavily off of the one produced by \href{https://knzhou.g
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Lie Groups}
+\section{Lie Groups and Lie Algebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vskip 0.5cm
-In physics, we can learn a great deal from studying the symmetries of \emph{continuous} systems. 
+In physics, we can learn a great deal from studying the symmetries of \emph{continuous and smooth} systems. For instance, knowing that a system is invariant under smooth rotation tells us that its angular momentum is conserved (by Noether's Theorem). Group Theory is the study of symmetries, whereas (continuity + smoothness) falls in the domain of smooth manifolds. \textbf{Lie Groups} lie in the intersection.
+\\
+\\
+They are ubiquitious in Physics. Regardless of which branch of physics you study, you will likely benefit from studying Lie Group \textbf{Actions} and \textbf{Representations}.
+\\
+\subsection{Lie Groups}
+\begin{redbox}
+  A \textbf{Lie Group} is a smooth manifold $G$ equipped with smooth maps
+  \begin{align*}
+    \text{Multiplication, } m \text{ : } G \times G &\rightarrow G \\ 
+    (g, h) &\mapsto gh 
+  \end{align*} and 
+  \begin{align*}
+    \text{Inversion, } i \text{ : } G &\rightarrow G \\ 
+    a &\mapsto  b \equiv a^{-1}
+  \end{align*}
+  which endow it with group structure.
+\end{redbox}
+
+\subsection{Lie Algebras}
+
+\subsection{Classification and Dynkin Diagrams}
+
+\subsection{Reconstruction of Lie Groups from Lie Algebras}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -298,10 +448,192 @@ Write about $\rho$-invariant inner products.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Connections and Parallel Transport on a Manifold}
+\section{Covariant Derivatives, Connections, and Parallel Transport}
+
+So far we've : 
+% \begin{enumerate}
+%   \item studied Topological Spaces and Manifolds
+%   \[ \downarrow \]
+%   \item endowed them with Smooth Structures to turn them into Smooth Manifolds
+%   \[ \downarrow \]
+%   \item studied natural structures on them such as Tangent, Cotangent, Vector Spaces and Bundles.
+% \end{enumerate}
+Studied Topological Spaces and Manifolds $\rightarrow$ endowed them with Smooth Structures to turn them into Smooth Manifolds $\rightarrow$ studied natural structures on them such as Tangent, Cotangent, Vector Spaces and Bundles.
+% \\
+% \\
+% The smooth structure allowed us to define "differentiation" in the form of the Lie Derivative. We noted however that, for example, the Lie Derivative of a vector field $W$ with respect to another vector field $V$, $\mathcal{L}_V W$, necessarily \textbf{requires} us to know about the behavior of $V$ in a \textbf{neighborhood}. We can't simply take the Lie Derivative of $W$ along some path, without having information about $V$ in some neighborhood containing the entire path. 
+% \\
+% \\
+% Thinking back to multivariable calculus, we were able to find derivatives along a certain direction using only the partial derivative operators (i.e. only using the coordinates we imposed). We'd like to have this same property extended to manifolds. To do so, we introduce a new kind of derivative: The \textbf{Covariant Derivative}.
 
 \vskip 1cm
-\subsection*{References for the chapter}
+\subsection{Motivation for the Covariant Derivative and Connection}
+
+\begin{note}
+  {Revise this section by replacing $x$ and $dx$ with $\gamma(t)$ and $\gamma(t+dt)$}
+\end{note}
+\\
+To define a derivative, for eg. the derivative of a vector field $W$, we need a way to compare the value of $W$ at different points: $W(x)$ and $W(x + dx)$. 
+\\
+\\
+The issue is that $W(x) \in T_x M$ whereas $W(x + dx) \in  T_{(x + dx)} M$ - they lie in different tangent spaces which, a priori, have nothing to do with each other, and so taking the difference 
+\[ W(x + dx) - W(x) \]
+really makes no sense for general manifolds. This wasn't an issue in $\R^n$ because $T_p \R^n \cong \R^n$ for any $p \in \R^n$. This allows us to compare tangent vectors at different points. Equivalently this is why, in $\R^n$, we can pick up a vector $v$ with its tail fixed at point $p$ and move it to any other point $q$ keeping it facing the same direction, without changing the vector. This procedure of moving a tangent vector (or more generally any element of a tensor space) from one point to another while keeping it "parallel" to itself is called \textbf{Parallel Transport}.
+\\
+\\
+When defining the Lie Derivative along some other field $V$, we solved this problem using a \textbf{trick}. We found the flow $\theta$ generated by $V$ connected the points and then taking the pullback of $W(x + dx)$ under $\theta$. 
+\begin{note}
+  {Why don't we just set the first tensor field equal to the coordinate field $x^{\mu}$ or somn like that? Give a proper explanation for why this is insufficient.}
+\end{note}
+\\
+\\
+\textbf{Connections} provide us with an alternative method to compare objects in tensor spaces based at different points.
+
+
+\begin{bluebox}
+  \textbf{Why do we need a new derivative?}
+  (This motivation has been borrowed from \cite{Carroll97} and \cite{Wald84}).
+  \\
+  \\
+  In Cartesian Coordinates, the partial derivative operator is a map $\partial_{\mu}$ from $(k,l)$ to $(k, l+1)$ tensor fields on $\R^n$ \cite{Carroll97} which also satisfies 
+  \begin{enumerate}
+    \item Linearity in all arguments
+    \item Leibniz Rule on Tensor Products.
+    \item Commutativity with Contraction
+    \item Acts as the normal partial derivative operator on scalar functions: 
+    $\nabla_{\mu} \phi = \partial_{\mu} \phi$ for $f \in C^{\infty}(M)$
+  \end{enumerate}
+  If we want to generalize $\partial_{\mu}$ as a map between collections of tensor spaces on a general (smooth) manifold $M$, our notion of a derivative should at least satisfy these properties. Let's call such a generalization a \textbf{Covariant Derivative} and denote it as $\nabla$.
+\end{bluebox}
+
+It turns out that any covariant derivative can be written in the form of a partial derivative $\partial_{\mu}$ + a correction matrix, $(\Gamma_{\mu})_{\sigma}^{\rho}$ \begin{thought}{We'll see why in the next section}\end{thought}. So, for example, the action of $\nabla_{\mu}$ on a vector $V^{\nu}$ would be given by
+\[  \nabla_{\mu} V^{\nu} = \partial_{\mu} V^{\nu} + (\Gamma_{\mu})_{\sigma}^{\lambda} V^{\lambda} \]
+
+The entries of the $n \times n$ matrix $\Gamma_{\mu}$ are called the \textbf{connection coefficients}. We often drop the parentheses and just denote them as $\Gamma_{\mu \sigma}^{\rho}$.
+
+\begin{redbox}
+  \textbf{\emph{Note:}} The object that we get on covariant differentiation is a tensor, $\nabla_{\mu} V$. The notation $\nabla_{\mu} V^{\nu}$ is \emph{really} referring to the $\nu^{\text{th}}$ component of this tensor $(\nabla_{\mu} V)^{\nu}$, but we often drop the parentheses.
+\end{redbox}
+
+\subsection{Why do Covariant Derivatives take this form? Are they unique? (Optional)}
+
+\begin{note}
+  {Type this section up}
+\end{note}
+
+\subsection{Covariant Derivatives of Vector Fields}
+We already saw above that for a vector field $V \in \mathfrak{X}(M)$, the covariant derivative can be written as 
+\[  \nabla_{\mu} V^{\nu} = \partial_{\mu} V^{\nu} + (\Gamma_{\mu})_{\lambda}^{\nu} V^{\lambda} \]
+
+We wanted $\nabla_{\mu}$ to be a map from the space of $(k,l)$ tensors to the space of $(k, l+1)$ tensors. So, the $(1, 0)$ tensor $V$ should get mapped to a $(1,1)$ tensor by $\nabla_{\mu}$. If it is indeed a $(1,1)$ tensor, it should transform like
+\[ \nabla_{\mu'} V^{\nu'} = \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \nabla_{\mu} V^{\nu} \]
+\\
+\\
+In the new coordinates, the LHS transforms as 
+\begin{align*}
+  \nabla_{\mu'} V^{\nu'} &= \partial_{\mu'} V^{\nu'} + \Gamma_{\mu' \lambda'}^{\nu'} V^{\lambda'} \\
+  &= \left(\frac{\partial x^{\mu}}{\partial x^{\mu'}} \partial_{\mu}\right) \left( \frac{\partial x^{\nu'}}{\partial x^{\nu}} V^{\nu} \right) + \Gamma_{\mu' \lambda'}^{\nu'} \left(\frac{\partial x^{\lambda'}}{\partial x^{\lambda}} V^{\lambda} \right)\\
+  &= \frac{\partial x^{\mu}}{\partial x^{\mu'}} V^{\nu} \frac{\partial}{\partial x^{\mu}} \frac{\partial x^{\nu'}}{\partial x^{\nu}}  +  \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \partial_{\mu} V^{\nu} +  \Gamma_{\mu' \lambda'}^{\nu'} \frac{\partial x^{\lambda'}}{\partial x^{\lambda}} V^{\lambda} \text{ (product rule)}
+\end{align*}
+\\
+\\
+The RHS can be expanded out as 
+\begin{align*}
+  \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \nabla_{\mu} V^{\nu} &= \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \left( \partial_{\mu} V^{\nu} + \Gamma_{\mu \lambda}^{\nu} V^{\lambda} \right) \\
+  &= \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \frac{\partial}{\partial x^{\mu}} V^{\nu} + \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \Gamma_{\mu \lambda}^{\nu} V^{\lambda}
+\end{align*}
+\\
+Setting the two expressions equal to each other (and cancelling out terms in common), we have 
+\begin{align*}
+  \frac{\partial x^{\mu}}{\partial x^{\mu'}} V^{\nu} \frac{\partial}{\partial x^{\mu}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} + \Gamma_{\mu' \lambda'}^{\nu'} \frac{\partial x^{\lambda'}}{\partial x^{\lambda}} V^{\lambda} &=  \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu}}{\partial x^{\nu'}} \Gamma_{\mu \lambda}^{\nu} V^{\lambda}
+\end{align*}
+So, 
+\[ \boxed{  \Gamma_{\mu' \lambda'}^{\nu'} = \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \Gamma_{\mu \lambda}^{\nu} - \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial^2 x^{\nu'}}{\partial x^{\mu} \partial x^{\lambda}} } \]
+\\
+If it were just the first term on the RHS then the connection coefficients would also transform like a $(1,1)$ tensor, but they do not because of the presence of the second term.
+\\
+\\
+The second term makes $\Gamma_{\mu}$ non-tensorial in such a way that it cancels the non-tensoriality of $\partial_{\mu}$, making $\nabla_{\mu} V^{\nu}$ a $(1,1)$ tensor as desired. 
+\\
+\subsection{Extending the Covariant Derivative to Covector Fields}
+We've found an expression for the covariant derivative of a 1-vector field $V \in \mathfrak{X}(M)$. How about a 1-form, $\omega \in \mathfrak{X}^*(M)$? Well, we argued earlier that \emph{\textbf{any}} covariant derivative should have the form $\nabla_{\mu} = \partial_{\mu} + \Gamma_{\mu}$, so for $\omega$ as well we can write that the components of 
+
+\[ \nabla_{\mu} \omega_{\nu} = \partial_{\mu} \omega_{\nu} + \tilde{\Gamma}_{\mu \nu}^{\lambda} \omega_{\lambda} \] \\
+where $\tilde{\Gamma}_{\mu}$ is some other set of connection coefficients. 
+\begin{dottedbox}
+  Also, notice the slight change in the placement of the indices on $\Tilde{\Gamma}$ because we're dealing with the components of a covector rather than a vector this time. 
+  \begin{note}
+    {Explain this more explicitly}
+  \end{note}
+\end{dottedbox}
+
+\vskip 0.5cm
+\textbf{Can we find a relationship between the components of $\Gamma$ and $\tilde{\Gamma}$?}
+Yes we can! 
+\\
+\\
+Given the one-form $\omega$ and vector field $V$, $\omega_{\lambda} V^{\lambda}$ is a scalar. So, by the Leibniz property, we have 
+\begin{align*}
+  \nabla_{\mu} (\omega_{\lambda} V^{\lambda}) &= \nabla_{\mu}(\omega_{\lambda}) V^{\lambda} + \omega_{\lambda} (\nabla_{\mu} V^{\lambda}) \\
+  &= \left[ \partial_{\mu} \omega_{\lambda} + \Tilde{\Gamma}_{\mu \lambda}^{\sigma} \omega_{\sigma} \right] V^{\lambda} + \omega_{\lambda} \left[ \partial_{\mu} V^{\lambda} + \Gamma_{\mu \rho}^{\lambda} V^{\rho} \right] \\
+  &= \left(\partial_{\mu} \omega_{\lambda}\right) V^{\lambda} + \Tilde{\Gamma}_{\mu \lambda}^{\sigma} \omega_{\sigma} V^{\lambda} + \omega_{\lambda} (\partial_{\mu} V^{\lambda} ) + \Gamma_{\mu \rho}^{\lambda}  \omega_{\lambda} V^{\rho} 
+\end{align*}
+\\
+But since $\omega_{\lambda} V^{\lambda}$ is just a scalar function, the covariant derivative should basically just act as a partial derivative:
+\begin{align*}
+  \nabla_{\mu} (\omega_{\lambda} V^{\lambda}) &= \partial_{\mu} \left(\omega_{\lambda} V^{\lambda}\right) \\
+  &= (\partial_{\mu} \omega_{\lambda}) V^{\lambda} + \omega_{\lambda} (\partial_{\mu} V^{\lambda}) \text{  (Leibniz rule in $\R^n$)} \\
+\end{align*}
+
+So equating the two expressions above and cancelling common terms, only the $\Gamma$ and $\Tilde{\Gamma}$ terms survive. In fact,
+\begin{align*}
+  &\tilde{\Gamma}_{\mu \lambda}^{\sigma} \omega_{\sigma} V^{\lambda} + \Gamma_{\mu \rho}^{\lambda}  \omega_{\lambda} V^{\rho} = 0 
+\end{align*}
+
+But $\lambda, \sigma, \rho$ are all dummy variables (we're summing over all possible values for these variables) - the only one that is fixed is $\mu$. So, we can rename all the dummy variables to get 
+
+\begin{align*}
+  &\Tilde{\Gamma}_{\mu \lambda}^{\sigma} \omega_{\sigma} V^{\lambda} + \Gamma_{\mu \lambda}^{\sigma} \omega_{\sigma} V^{\lambda} = 0\\ 
+  \implies& \boxed{\Tilde{\Gamma}_{\mu \lambda}^{\sigma} = - \Gamma_{\mu \lambda}^{\sigma}}
+\end{align*}
+\\
+Thus, once we know have a connection for vector fields, we automatically have the connection for one-forms.
+\\
+\\
+\subsection{Covariant derivatives of General Tensors}
+The result from above is splendid! Arbitrary $(r,s)-$type tensors are formed using $r$ one-forms and $s$ vector fields. Therefore, we have the connection for any tensor space i.e. we can take the covariant derivative of any tensor!
+\\
+\\
+\underline{To recap:}
+\begin{enumerate}[label=(\alph*)]
+  \item Given the connection coefficients $\Gamma_{\mu \lambda}^{\sigma}$ we can find the covariant derivative of $V \in \mathfrak{X}(M)$ \textit{with respect to the connection} by 
+  \[ (\nabla_{\mu} V)^{\lambda} = \partial_{\mu} V^{\lambda} + \Gamma_{\mu \sigma}^{\lambda} V^{\sigma}  \]
+  \\
+  \item The covariant derivative of any \textit{one-form} with respect to the connection is 
+  \[ (\nabla_{\mu} \omega)_{\lambda} = \partial_{\mu} \omega_{\lambda} - \Gamma_{\mu \lambda}^{\sigma} \omega_{\sigma} \]
+  \\
+  \item For a a general $(r,s)$ tensor $T \in \underbrace{\mathfrak{X}(M) \otimes \cdots \otimes \mathfrak{X}(M)}_{r} \otimes \underbrace{\mathfrak{X}^*(M) \otimes \cdots \otimes \mathfrak{X}^*(M)}_{s}$ 
+  whose components are denoted as $T^{\mu_1 \cdots \mu_r}_{\nu_1 \cdots \nu_s}$, the covariant derivative can be found as 
+  \begin{align*}
+    \left(\nabla_{\sigma} T\right)^{\mu_1 \cdots \mu_r}_{\nu_1 \cdots \nu_s} = & \partial_{\sigma} T^{\mu_1 \cdots \mu_r}_{\nu_1 \cdots \nu_s} \\ + &\Gamma_{\sigma \lambda}^{\mu_1}T^{\lambda \mu_2 \cdots \mu_r}_{\nu_1 \cdots \nu_s} + \cdots + \Gamma_{\sigma \lambda}^{\mu_r}T^{\mu_1 \mu_2 \cdots \mu_{r-1} \lambda}_{\nu_1 \cdots \nu_s} \\ - &\Gamma_{\sigma \nu_1}^{\lambda}T^{\mu_1 \mu_2 \cdots \mu_r}_{\lambda \cdots \nu_s} - \cdots - \Gamma_{\sigma \nu_s}^{\lambda}T^{\mu_1 \mu_2 \cdots \mu_r}_{\nu_1 \cdots \nu_{s-1} \lambda} 
+  \end{align*}
+  i.e. for each $\mu_i$ index for $\mathfrak{X}(M)$, we add a $+\Gamma$ term, and for each $\nu_j$ index for $\mathfrak{X}(M)$ we add a $-\Gamma$ term. 
+
+
+
+\end{enumerate}
+
+% \subsection{More about the Connection Coefficients}
+
+% We saw this earlier too, but the connection $\Gamma_{\mu}$ is \emph{not} a tensor because its components $\Gamma_{\mu \sigma}^{\rho}$ do not transform tensorially. To see this explicitly, consider let's calculate the components in a new basis 
+
+
+\subsection{Parallel Transport}
+
+
+
+% \vskip 1cm
+% \subsection*{References for the chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -322,6 +654,223 @@ Write about $\rho$-invariant inner products.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\section{Appendix: Linear Algebra}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Appendix: Group Theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 0.5cm
+This branch of math is essentially the study of \textbf{symmetries} i.e. transformations that leave a system unchanged or \textbf{invariant}.
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Formal definition of a Group}
+  \vskip 0.5cm
+  A group is a pair $(G, \star)$, where $G$ is a set and $\star \text{ : } G \rightarrow G$ is a \emph{bilinear operation}, satifying three properties. Namely, 
+  \begin{enumerate}[label=(\alph*)]
+    \item Associativity: $a \star ( b \star c) = (a \star b) \star c$ 
+    
+    \item Identity: There exsits an element $e \in G$ such that, for all $g \in G$,
+    \[ g \star e = e \star g = g \]
+
+    \item Inverses: For each $a \in G$, there must exist an \emph{inverse} element denoted $a^{-1}$ such that 
+    \[ a \star a^{-1} = a^{-1} \star a \]
+  \end{enumerate}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+For example,
+\begin{itemize}
+  \item Any vector space $V$ with vector addition being the bilinear product $\star$ is a group.
+  \item The set of permutations of three objects, called the \textbf{Symmetric group of order 3}, denoted $S_3$ is a group.
+\end{itemize}
+
+\vskip 0.5cm
+Note that in a vector space, $v \star w = w \star v$. This is a very special property called \textbf{commutativity} i.e. the order in which we operate group elements does not matter. Such a group is said to be \textbf{commutative} or \textbf{abelian}. In constrast to this, the symmetric group of order 3, $S_3$ is \textbf{non-abelian} (in fact, it's the smallest such group!)
+
+\vskip 0.5cm
+\underline{\textbf{Note:}} The number of elements in a group $G$ is called its \emph{order} and is denoted by $\lvert G \rvert$.
+
+\vskip 1cm
+\subsection{Subgroup}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Subgroup}
+  \vskip 0.5cm
+  \begin{itemize}
+    \item   For a group $G$, a subset $H \subset G$ is called a subgroup if 
+    \begin{enumerate}[label=(\alph*)]
+      \item $e \in H$
+      \item $a, b \in H \implies ab \in H$ (this is called \emph{closure})
+      \item $a \in H \implies a^{-1} \in H$ 
+    \end{enumerate}
+
+    \item If $H$ is a subgroup of $G$, we write $H \leq G$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+
+
+\vskip 1cm
+\subsection{Coset}
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Coset}
+\vskip 0.5cm
+  \begin{itemize}
+    \item For a group $G$ and subgroup $H \subset G$, we can consider an element $g \in G, g \not\in H$ and define the \emph{left coset of $H$} to be
+    \[ gH \equiv \{ gh \text{ : } h \in H \} \]
+
+    \item There is a one to one correspondence between a subgroup $H$ and any coset of $H$.
+  \end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 1cm
+\subsection{Lagrange's Theorem}
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{Theorem:}} If $G$ is a finite group and $H \subset G$ is a subgroup, then $H$ divides $G$.
+
+  \vskip 0.5cm
+  \underline{\textbf{Proof Sketch:}} Let's define the equvalence relation $g_1 \sim g_2$ iff $g_1^{-1} g_2 \in H$. Suppose 
+  \[ g_2 H = g_1 H \]
+  Then 
+  \[ g_1^{-1}g_2 H = H \]
+  
+  Any two distinct cosets are disjoint, thus all cosets are of equal order since they are disjoint equivalence classes. So, 
+  \begin{align}
+    \lvert G \rvert &= |g_1 H| + |g_2 H| + c\dots \\
+    &= \underbrace{k}_{\# of cosets} \cdot \lvert H \rvert
+  \end{align}
+
+  Thus, $\lvert H \rvert$ divides $\lvert G \rvert$.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Normal subgroups}
+
+\vskip 0.5cm
+Some subgroups have the very special propert that their \emph{left and right cosets are equal}. This is unusual since group element multiplication is not generally guaranteed to be commutative.
+
+\begin{mathdefinitionbox}{Normal Subgroup}
+\vskip 0.5cm
+  A subset of a group $G$ is said to be a \textbf{normal subgroup} if 
+  \begin{itemize}
+    \item It is a subgroup
+    \item $gN = Ng$ 
+  \end{itemize}
+  A subgroup is denoted as $N \trianglelefteq G$.
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+Normal subgroups allow us to produce a very important class of groups called \emph{Quotient Groups}.
+
+\vskip 1cm
+\subsection{Quotient Groups}
+
+\vskip 0.5cm
+
+\begin{mathdefinitionbox}{Quotient Group}
+\vskip 0.5cm
+  Given a group $G$ and normal subgroup $N \trianglelefteq G$, we can define the \textbf{quotient group} as 
+  \[ G/N \equiv \{ [a] = aN \text{ : } a \in G \} \]
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+
+\begin{dottedbox}
+\underline{\textbf{Exercise:}} Verify that the bilinear product on the quotient group
+\[ [a] \star [b] = [a b] \]
+is \textbf{well defined} i.e. does not depend on the specific elements $a, b$ chosen to represent the equivalence classes $[a], [b]$.
+\end{dottedbox}
+
+\vskip 1cm
+\subsection{Group Homomorphisms}
+\vskip 0.5cm
+So far we've spoken about a group and its subgroups, all stuff that was relatively self-contained. However, in math, we often want to study \emph{maps between objects}. The "natural" map between groups is called a \emph{homomorphism}.
+
+\vskip 0.5cm
+Now, the numbers $1$ to $10$ in english are "One", "Two", ...,"Ten" whereas in say Spanish they are "Unos", "Dos", ..., "Diez". Furthermore, to convey the idea of adding numbers in English, we can say "One \textbf{plus} Two" whereas the same idea in Spanish would be "Uno más Dos".
+
+\vskip 0.5cm
+Clearly the numbers 1 to 10 are the same regardless of the names we use to describe them in different languages, and similarly for the process of adding them (which is a \emph{really} just a bilinear product). So, there is a sort of mapping between the two.
+
+\vskip 0.5cm
+Drawing from this (imperfect) analogy, a homomorphism between two groups is a like a dictionary, which maps the words between the two languages and allows us to translate. 
+
+\vskip 0.5cm
+\begin{mathdefinitionbox}{Group Homomorphisms and Isomorphisms}
+\vskip 0.5cm
+\begin{itemize}
+  \item For groups $(G, \cdot)$ and $(H, \star)$, a map $\phi \text{ : } G \rightarrow H$ is a homeomorphism if 
+  \[ \phi(a \cdot b) = \phi(a) \star \phi(b) \]
+
+  \item Further, if the map if \emph{bijective} then it is called an \textbf{Isomorphism.} We then say $G$ and $H$ are isomorphic, denoted as $G \cong H$.
+\end{itemize}
+\end{mathdefinitionbox}
+
+\vskip 0.5cm
+\begin{dottedbox}
+\begin{itemize}
+  \item   For example, a group $G$ is isomorphic to \emph{itself}. The map $G \rightarrow G$ is then called an \textbf{ automorphism} 
+  
+  \item An \textbf{inner automorphism} is of the form 
+  \[ \phi_h(g) = h^{-1}gh \]
+  i.e. it conjugates each element $g \in G$ with respect to some particular $h \in G$.
+\end{itemize}
+\end{dottedbox}
+
+\vskip 0.5cm
+Group Homomorphisms are \emph{structure preserving}.
+
+
+\vskip 1cm
+\subsection{Kernel, Image, and the First Isomorphism Theorem:}
+
+Similar to vector spaces, we define the \emph{Kernel} and \emph{image} of a map $\phi \text{ : } G \rightarrow H$ to be 
+\begin{align*}
+  &\text{Ker}(\phi) \equiv \{ g \in G \text{ : } \phi(g) = e \} \\
+  &\text{Im}(\phi) \equiv \{ h \in H \text{ : } h = \phi(g), g \in G \} 
+\end{align*}
+
+Then, the first isomorphism theorem is as follows:
+
+\vskip 0.5cm
+\begin{dottedbox}
+  \underline{\textbf{First Isomorphism Theorem:}} For groups $G, H$ and map $\phi \text{ : } G \rightarrow H$
+  \begin{enumerate}[label=(\alph*)]
+    \item Ker$(\phi)$ is a normal subgroup of $G$ i.e. Ker$(\phi) \trianglelefteq G$.
+    \item Im$(\phi)$ is a subgroup of $H$ i.e. Im$(\phi) \leq H$.
+    \item The quotient of $G$ by ker$(\phi)$ is isomorphic to Im$(\phi)$ i.e.
+    \[ G / \text{Ker}(\phi) \cong \text{Im}(\phi) \]
+  \end{enumerate}
+\end{dottedbox}
+
+
+% \subsection{Fundamental Group}
+
+% Consider a donut shaped surface called a \emph{Torus}, denoted $T$, and some point $p \in T$ [Complete this later].
+
+
+\subsection{Group Presentations (TO DO)}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Extra: Measure Theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Extra: Category Theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -338,9 +887,6 @@ Write about $\rho$-invariant inner products.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \newpage
 % \section{Chapter name}
@@ -350,7 +896,19 @@ Write about $\rho$-invariant inner products.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
 \end{document}
+
 
 
 

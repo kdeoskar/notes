@@ -1960,6 +1960,202 @@ The expression obtained by the textbook includes not just the components but als
 \vskip 0.5cm
 Fill in the rest of this crap later. 
 
+\pagebreak
+\section{July 24, 2024: More involved examples}
+
+Last time we discussed the intuition behind the Euler Term and Centrifugal force. Let's talk about the Coriolis force now, and then move on to some examples.
+\\
+\subsection{Coriolis Force}
+We found, last time, that for a scenario as pictured below, the coriolis force is given by
+\[F_{\text{coriolis}} = -2m\left(\vec{\omega} \times \vec{v}\right) \]
+\\
+\\
+Include picture
+\\
+\\
+Suppose the observer throws a ball towards the center such that it has a straight trajectory seen by Alice. 
+\\
+\\
+Include picture
+\\
+\\
+In Bob's frame, the ball has an initial velocity with a leftward component (so that the net velocity seen by \emph{Alice} is straight upwards).
+
+\[ \vec{v}_o' = \vec{v}_{\text{left}}  +\vec{v}_y \]
+such that 
+\[ \vec{v}_{\text{left}} + \omega R \hat{x} = 0 \]
+\\
+\textbf{What does the trajectory of the ball look like in Bob's reference frame?}
+\\
+\\
+Include picture
+\\
+\\
+Both Bob and Alice will observe that the ball reaches the center. In Alice's frame the trajectory was a straight line, but in Bob's frame, the balls initial velocity was \emph{towards the left}. 
+\\
+\\
+So, Bob sees the ball go left but then \emph{curve} so that the ball is dragged back to the center. The explanation for this in Bob's frame is that there is a \textbf{force} dragging the ball back. This is the Coriolis force.
+\\
+\subsection{Fictitious Force on Earth}
+Consider the earth, rotating about its axis with angular velocity $\Omega$, and a coordinate system on it as described by the picture below.
+\\
+\\
+In the Rotating Frame, 
+\[ \vec{\Omega} = \left(0, \Omega\cos\lambda, \Omega\sin\lambda  \right)  \]
+\\
+If we have an object moving on Earths surface with velocity
+\[ \vec{v} = \left(v_x, v_y, v_z\right) \approx \left(v_x, v_y, 0\right) \]
+then, the Coriolis force experienced by the object is 
+\begin{align*}
+  \vec{F}_{\text{coriolis}} &= -2m\vec{\Omega} \times \vec{v} \\
+  &= -2m \det \begin{bmatrix}
+    \hat{x} & \hat{y} & \hat{z} \\\
+    0 & \Omega \cos\lambda & \Omega \sin\lambda \\
+    v_x & v_y & 0
+  \end{bmatrix} \\
+  &= -2m\Omega \left(-v_y \sin\lambda \hat{x} + v_x \sin\lambda \hat{y} - v_x \cos\lambda \hat{z}\right)
+\end{align*}
+We can ignore the $z$-component since it's much smaller than $\vec{F}_{g} = -mg\vec{z}$ and so won't impact the dynamics of the object in the $z$-direction much. So,
+\[ F_{\text{coriolis}} = -2m\Omega\sin\lambda \left( -v_y \hat{x} + v_y \hat{y} \right) \]
+
+\begin{itemize}
+  \item Note that $\sin\lambda = 0$ when $\lambda = 0$ i.e. $\vec{F}_{\text{coriolis}} = 0$ at the \textbf{equator}. In contrast, $\left| \vec{F}_{\text{coriolis}} \right|$ is the greatest at the \textbf{poles}.
+  \item Apparently, $\vec{F}_{\text{coriolis}} \cdot \vec{v}_{\text{surface}} = 0$ because 
+  \begin{align*}
+    \left(-v_y \hat{x} + v_x \hat{y}\right) \cdot \left(v_x \hat{x} + v_y \hat{y}\right) = 0
+  \end{align*}
+  \item Also, let's think: What should be the \textbf{direction} of the Coriolis force? 
+  \\
+  \\
+  Include picture
+  \\
+  \\
+  The way we chose $\lambda$, it takes positive and negative values in the northern and southern hemispheres respectively. Thus, the $\sin\lambda$ prefactor has positive/negative value in the northern/souther hemisphere. 
+  \\
+  \\
+  Thus in the \textbf{Northern} Hemisphere Coriolis Force acts to the \textbf{right} whereas in the \textbf{South} it acts to the \textbf{left}!
+  \\
+  \\
+  We can observe this in the \textbf{direction of rotation of hurricanes}. 
+  \\
+  \\
+  Include picture
+  \\
+  \\
+  Beware however. If you've ever seen the demonstration of water swirling in different directions in the northern and southern hemispheres, that has \textbf{nothing to do with Coriolis Forces}! At those small scales, the direction of swirling just depends on the initial conditions. We don't see the effects on the Coriolis force on such small scales.
+\end{itemize}
+
+Okay. Let's do some more quantitative work now.
+
+\subsection{Foucalt's Pendulum}
+Consider a pendulum at some point of the earth which is swinging as usual. Due to the rotation of the Earth, the \emph{plane of oscillation} is also rotating. This effect can be observed anywhere other than the poles or the equator.
+\\
+\\
+Our goal is to find the rotational period/frequency of the oscicllating plane. Further, we'd like to find the motion $\left(x(t), y(t), 0\right)$ of the pendulum on the surface of the earth.
+\\
+\\
+Include picture
+\\
+\\
+In the Inertial Reference Frame (Universe), the Lagrangian of the system is 
+\[ L = \frac{1}{2}m \underbrace{\left(\dot{x}^2 + \dot{y}^2 + \dot{z}^2\right)}_{\dot{\vec{r}} \cdot \dot{\vec{r}} }|_{\text{in}} - U(\vec{r})|_{\text{in}}  \]
+and we discussed yesterday that we can write $\dot{\vec{r}}$ in the rotating frame as 
+
+\begin{align*}
+  \dot{\vec{r}} &= \dot{r}_i^{(in)} \hat{e}_i^{(in)} \\
+  &= \underbrace{\dot{r}_i^{(rot.)} \hat{e}_i^{(rot.)}}_{\vec{v}^{(rot.)}} + \underbrace{\epsilon_{ijl} \dot{\theta}_{j} r_{k} \hat{e}_i^{(rot.)}}_{ \vec{\omega}^{(rot.)} \times \vec{r}^{(rot.)} }
+\end{align*}
+\\
+So,
+\begin{align*}
+  \dot{\vec{r}} \cdot \dot{\vec{r}} &= \left( \dot{r}_i^{(rot.)} \hat{e}_i^{(rot.)} + \epsilon_{ijk} \dot{\theta}_{j} r_{k} \hat{e}_i^{(rot.)} \right) \cdot \left( \dot{r}_m^{(rot.)} \hat{e}_m^{(rot.)} + \epsilon_{mjk} \dot{\theta}_{j} r_{k} \hat{e}_m^{(rot.)} \right)
+\end{align*}
+\\
+Now, both $\hat{e}_i^{(in.)}$ and $\hat{e}_i^{(rot.)}$ form orthonormal bases. So, $\hat{e}_i^{(rot.)} \cdot \hat{e}_j^{(rot.)} = \delta_{ij}$
+\\
+\\
+So, in the rotating frame, the Lagrangian is basically (dropping the superscripts $(rot.)$ because all quantities are now in the rotating frame)
+\begin{align*}
+  L &= \frac{1}{2}m \left(\vec{v} + \vec{\Omega} \times \vec{r}\right) \cdot  \left(\vec{v} + \vec{\Omega} \times \vec{r}\right) - U(\vec{r}).
+\end{align*}
+where $\vec{\Omega}$ is the angular velocity of the earth.
+\\
+\\
+Since the rotation of the earth is slow, the Coriolis force is weak and we only need to keep things to first order in $\Omega$. Then,
+\begin{align*}
+  L &\approx \frac{1}{2}m \vec{v} \cdot \vec{v} + m \vec{v} \cdot \left(\vec{\Omega} \times \vec{r}\right) - U(\vec{r})
+\end{align*}
+\\
+and as we discussed earlier $\vec{\Omega} = \left(0, \Omega, \cos\lambda, \Omega\sin\lambda\right)$ so
+\\
+\begin{align*}
+  \vec{v} \cdot \left(\vec{\Omega} \times \vec{r} \right) &= \left| \begin{matrix}
+    v_x & v_y & v_z \\
+    0 & \Omega\cos\lambda & \Omega\sin\lambda \\
+    x & y & z
+  \end{matrix} \right| \\
+  &= \Omega\cos\lambda\left(zv_x - xv_z\right) - \Omega\sin\lambda \left(yv_x - xv_y\right)
+\end{align*}
+\\
+making the Lagrangian
+\begin{align*}
+  L &\approx \frac{1}{2}m \left[ \dot{x}^2 + \dot{y}^2 + \dot{z}^2 + 2\dot{x} \Omega \left( z \cos\lambda - y\sin\lambda\right) + 2\dot{y}x\Omega\sin\lambda - 2\dot{z}x\Omega\cos\lambda\right] - mgz
+\end{align*}
+
+So far we've written the Lagrangian in our generalized coordinates of the rotating frame, but we still need to enfore the \textbf{constraint} provided by the fixed length of the pendulum.
+\\
+\\
+Include picture
+\\
+\\
+Our constraint is that 
+\begin{align*}
+  &x^2 + y^2 + z^2 = R^2 \\
+  \implies& z = \underbrace{-}_{\text{sign conv.}} R \sqrt{1 - \frac{x^2}{R^2} - \frac{y^2}{R^2}}
+\end{align*}
+\\
+\\
+\begin{note}
+  {The signs are a lil sketch; check with Chien-I}\\
+\end{note}
+We make an approximation (effectively a small angle approximation):
+\[ \frac{x^2}{R^2} \sim \frac{y^2}{R^2} << 1 \] 
+\\
+\\
+Then,
+\begin{align*}
+  z &\approx -R \left(1 - \frac{x^2}{2R^2} - \frac{y^2}{2R^2 }\right) \text{  (using Binomial Theorem)} \\
+  \implies \dot{z} &\approx \frac{x \dot{x}}{R^2} + \frac{y\dot{y}}{R^2}
+\end{align*}
+\\
+Putting these into the Lagrangian and only keeping terms to first order in $x^2/R^2$ and $y^2/R^2$ we have 
+\\
+\begin{align*}
+  L &= \frac{1}{2}m\left(\dot{x}^2 + \dot{y}^2\right) - mg \left(-\frac{x^2}{R^2}-\frac{y^2}{R^2}\right) - m\Omega\sin\lambda \left(\dot{x}y - \dot{y}x\right)
+\end{align*}
+(dropping constant terms and terms that are 2nd order in small parameters)
+\\
+\\
+Then, the E-L Equations look like:
+\begin{align*}
+  \underline{x}\;\;\;\;m\ddot{x} -m\Omega\sin\lambda\dot{y} + mg \frac{X}{R} - m\Omega\sin\lambda\dot{y} &= 0 \\
+  \underline{y}\;\;\;\;m\ddot{y} + m\Omega\sin\lambda \dot{x} + mg \frac{y}{R} + m\Omega\sin\lambda \dot{x} &= 0
+\end{align*}
+We have a set of coupled second order differential equations. This is annoying! To guess the answer (ansatz) let's think physically. At the north pole i.e. $\lambda = \frac{\pi}{2}$ we expect that we should have a simple solution for $(x', y')$ measured in the inertial frame and $(x', y')$ is related to $(x,y)$ in the rotating frame by 
+\[
+\begin{pmatrix}
+  x \\ y 
+\end{pmatrix} = \begin{pmatrix}
+  \cos(\Omega t) & -\sin(\Omega t) \\
+  \sin(\Omega t) & \cos(\Omega t) \\
+\end{pmatrix} \begin{pmatrix}
+  x' \\ y'
+\end{pmatrix}
+\]
+\\
+We'll continue this tomorrow, but the approach will be to solve for the system's evolution in terms of $(x', y')$ and then use a rotation to get $(x,y)$.
+
+
 \end{document}
 
 

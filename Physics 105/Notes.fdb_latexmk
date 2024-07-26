@@ -1,13 +1,13 @@
 # Fdb version 4
-["pdflatex"] 1721766669.79414 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 105/Notes.tex" "Notes.pdf" "Notes" 1721766672.21453 0
+["pdflatex"] 1721878031.85784 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 105/Notes.tex" "Notes.pdf" "Notes" 1721878034.32488 0
   "July 3/july 3 pic 1.png" 1721379074 743836 1fc7cf4e0ff3f6df870d56e72c029e77 ""
   "July 3/july 3 pic 2 method of lagrange multipliers.png" 1721379175 950723 c717b4dc72632f4dff9460b7fd1861ef ""
   "July 3/july 3 pic 3 why do we call them lagrange multipliers.png" 1721379200 757778 1a043ddc2b3f4ee04c928c85bfec0fcf ""
   "July 3/july 3 pic 4 generalized force.png" 1721379219 302627 377fed09b54d03e812527d20ff455151 ""
-  "Notes.aux" 1721766671 5040 6bba6d6be53e9064771295de7cb4f167 "pdflatex"
-  "Notes.out" 1721766671 7561 9caea1f7dadac60570027e8f98a13958 "pdflatex"
-  "Notes.tex" 1721766669 80421 97fd5278fce1144b7845a95718705dd7 ""
-  "Notes.toc" 1721766671 3355 f43f9eaf2add53c9e26f1e4c8cad83ff "pdflatex"
+  "Notes.aux" 1721878034 5564 c58e1d82ade4457ae4395987e5d2c94c "pdflatex"
+  "Notes.out" 1721878034 8286 4ad014711ffaa626cf5ab971dac50187 "pdflatex"
+  "Notes.tex" 1721878031 89646 b48b1904c2819b7482bdcb049f15546a ""
+  "Notes.toc" 1721878034 3715 c25c58503a9dce5f9c9295172ff6f0d2 "pdflatex"
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1718579756 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1718579750 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -263,7 +263,7 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1718663021 12644 704ce0e0f0aca537d3725655ca3cf52d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 105/Notes.tex" 1721766669 80421 97fd5278fce1144b7845a95718705dd7 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 105/Notes.tex" 1721878031 89646 b48b1904c2819b7482bdcb049f15546a ""
   "custom.sty" 1721677952 10406 e1b22e9e547b2c3b02ae215d8b927d58 ""
   (generated)
   "Notes.aux"

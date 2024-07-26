@@ -34,3 +34,7 @@
 \contentsline {subsection}{\numberline {9.4}Rotations}{43}{subsection.9.4}%
 \contentsline {section}{\numberline {10}July 23, 2024: }{44}{section.10}%
 \contentsline {subsection}{\numberline {10.1}Rotating Frame}{45}{subsection.10.1}%
+\contentsline {section}{\numberline {11}July 24, 2024: More involved examples}{47}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Coriolis Force}{47}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Fictitious Force on Earth}{47}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Foucalt's Pendulum}{49}{subsection.11.3}%

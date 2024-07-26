@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  23 JUL 2024 13:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  24 JUL 2024 20:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -954,7 +954,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 [3]
 
 [4]
-<July 3/july 3 pic 1.png, id=252, 681.29532pt x 339.51843pt>
+<July 3/july 3 pic 1.png, id=272, 681.29532pt x 339.51843pt>
 File: July 3/july 3 pic 1.png Graphic file (type png)
 <use July 3/july 3 pic 1.png>
 Package pdftex.def Info: July 3/july 3 pic 1.png  used on input line 204.
@@ -967,7 +967,7 @@ Package microtype Warning: I cannot find a spacing list for font
 (microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
 (microtype)                spacing for this font on input line 234.
 
-<July 3/july 3 pic 2 method of lagrange multipliers.png, id=259, 743.77875pt x 439.6425pt>
+<July 3/july 3 pic 2 method of lagrange multipliers.png, id=279, 743.77875pt x 439.6425pt>
 File: July 3/july 3 pic 2 method of lagrange multipliers.png Graphic file (type png)
 <use July 3/july 3 pic 2 method of lagrange multipliers.png>
 Package pdftex.def Info: July 3/july 3 pic 2 method of lagrange multipliers.png  used on input line 247.
@@ -975,7 +975,7 @@ Package pdftex.def Info: July 3/july 3 pic 2 method of lagrange multipliers.png 
 
 
 [6 <./July 3/july 3 pic 2 method of lagrange multipliers.png>]
-<July 3/july 3 pic 3 why do we call them lagrange multipliers.png, id=266, 708.39656pt x 353.82187pt>
+<July 3/july 3 pic 3 why do we call them lagrange multipliers.png, id=286, 708.39656pt x 353.82187pt>
 File: July 3/july 3 pic 3 why do we call them lagrange multipliers.png Graphic file (type png)
 <use July 3/july 3 pic 3 why do we call them lagrange multipliers.png>
 Package pdftex.def Info: July 3/july 3 pic 3 why do we call them lagrange multipliers.png  used on input line 295.
@@ -983,7 +983,7 @@ Package pdftex.def Info: July 3/july 3 pic 3 why do we call them lagrange multip
 
 
 [7]
-<July 3/july 3 pic 4 generalized force.png, id=273, 438.13687pt x 225.09094pt>
+<July 3/july 3 pic 4 generalized force.png, id=293, 438.13687pt x 225.09094pt>
 File: July 3/july 3 pic 4 generalized force.png Graphic file (type png)
 <use July 3/july 3 pic 4 generalized force.png>
 Package pdftex.def Info: July 3/july 3 pic 4 generalized force.png  used on input line 321.
@@ -1075,27 +1075,177 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [45]
 
-[46] (./Notes.aux)
+[46]
+Underfull \hbox (badness 10000) in paragraph at lines 1966--1968
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1970--1983
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1970--1983
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1970--1983
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1970--1983
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1986--1999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1986--1999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1986--1999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1986--1999
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2000--2004
+
+ []
+
+
+
+[47]
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2046
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2051--2061
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2051--2061
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2051--2061
+
+ []
+
+
+
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 2072--2078
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2080--2085
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2091
+
+ []
+
+
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 2105--2112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2105--2112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2115--2122
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2122--2126
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2129--2133
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2135--2140
+
+ []
+
+
+
+[50]
+
+[51] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: 9CAEA1F7DADAC60570027E8F98A13958;7561.
+(rerunfilecheck)             Checksum: 4AD014711FFAA626CF5AB971DAC50187;8286.
  ) 
 Here is how much of TeX's memory you used:
- 33465 strings out of 475517
- 670328 string characters out of 5775029
+ 33486 strings out of 475517
+ 670627 string characters out of 5775029
  1950908 words of memory out of 5000000
- 55278 multiletter control sequences out of 15000+600000
- 578121 words of font info for 167 fonts, out of 8000000 for 9000
+ 55286 multiletter control sequences out of 15000+600000
+ 578289 words of font info for 169 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  90i,21n,96p,1069b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Notes.pdf (46 pages, 3205282 bytes).
+Output written on Notes.pdf (51 pages, 3221492 bytes).
 PDF statistics:
- 575 PDF objects out of 1000 (max. 8388607)
- 443 compressed objects within 5 object streams
- 87 named destinations out of 1000 (max. 500000)
- 52169 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 617 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 96 named destinations out of 1000 (max. 500000)
+ 52201 words of extra memory for PDF output out of 61914 (max. 10000000)
 

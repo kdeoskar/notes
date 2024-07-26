@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Notes.aux
+The style file: plain.bst
+Database file #1: citation.bib
+Warning--to sort, need author, editor, or key in LeeSM
+Warning--empty author and editor in LeeSM
+Warning--empty publisher in Carroll97
+You've used 3 entries,
+            2118 wiz_defined-function locations,
+            512 strings with 4188 characters,
+and the built_in function-call counts, 627 in all, are:
+= -- 52
+> -- 15
+< -- 0
++ -- 7
+- -- 4
+* -- 31
+:= -- 106
+add.period$ -- 8
+call.type$ -- 3
+change.case$ -- 8
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 37
+empty$ -- 69
+format.name$ -- 4
+if$ -- 133
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 5
+newline$ -- 17
+num.names$ -- 4
+pop$ -- 24
+preamble$ -- 1
+purify$ -- 8
+quote$ -- 0
+skip$ -- 18
+stack$ -- 0
+substring$ -- 15
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 6
+warning$ -- 3
+while$ -- 4
+width$ -- 4
+write$ -- 29
+(There were 3 warnings)
