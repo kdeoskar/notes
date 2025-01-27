@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{14}{14} \selectfont Instructors: Birgit K Whaley, Alp Sipahigil, Geoffrey Pennington}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics c191: Introduction to Quantum Computing}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 1} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\subsection*{Question 1:}
+We want to show that a single cubit pure state can be described by only two real parameters. 
+\\
+\\
+An arbitrary single cubit pure state is an element of $\mathcal{H} = \C^2$. We can write it as a linear combination of the basis states $\ket{0}, \ket{1}$:
+$$ \ket{\psi} = \alpha \ket{0} + \beta \ket{1} $$ Writing the complex coefficients in polar form, $ \alpha = r_1 e^{i\phi_1}, ~\beta = r_2 e^{i\phi_2} $ we can write 
+\begin{align*}
+  \ket{\psi} &= r_1 e^{i\phi} \ket{0} + r_2 e^{i\phi} \ket{1} \\
+  &= e^{i\phi_1} \left[ r_1 \ket{0} + r_2 e^{i(\phi_2 - \theta_1)} \ket{1} \right]
+\end{align*} Physically, any two states related by a global phase are equivalent, because only the amplitude squared matter when it comes to measurements and $|e^{i\phi}|^2 = 1$ for any angle $\phi$. Thus, we can ignore the global phase $\phi_1$ in our expression for $\ket{\psi}$.
+\\
+\\
+We also have the normalization condition 
+\begin{align*}
+  &|r_1|^2 + |r_2 e^{i(\phi_2 - \phi_1)} |^2 \\
+  \implies& r_1^2 + r_2^2 = 1
+\end{align*} Thus, an arbitrary single cubit pure state (up to global phase) is completely described by the parameters $r_1, r_2$ such that $r_1^2 + r_2^2 = 1$ i.e. $(r_1, r_2) \in \sph^1$ $\phi \text{:}= (\phi_2 - \phi_1) \in [0, 2\pi]$. 
+\\
+\\
+But since $(r_1, r_2)$ must be a point on the unit circle, we can instead just use the angle corresponding to the point $(r_1, r_2)$ given by $\phi = \arctan(r_2/r_1) \in [-\pi/2, \pi/2]$.
+\\
+\\
+So, our single cubit pure state is completely described by two angles, $\phi \in [0, 2\pi]$ and $\theta \in [-\pi/2, \pi/2]$ i.e. states correspond to points on the unit sphere $\sph^2$.
+\\
+\\
+Equivalently, working with $\theta \in [0, \pi]$ (same interval as earlier), we can imagine using the usual spherical coordinates to describe points on $\sph^2$. Taking $\ket{0}$ and $\ket{1}$ to be the North and South poles respectively i.e. \begin{align*}
+  \ket{0} &= \begin{pmatrix}
+    x = 0 \\ y = 0 \\ z = 1
+  \end{pmatrix} \\
+  \ket{1} &= \begin{pmatrix}
+    x = 0 \\ y = 0 \\ z = -1
+  \end{pmatrix}
+\end{align*} we can write an arbitrary state $\ket{\psi}$ as a linear point on the sphere.
+\\
+\begin{note}
+  {Finish this.}
+\end{note}
+\\
+Thus a general single cubit pure state can be written as $$ \ket{\psi} = e^{i\gamma} \left[ \cos(\theta/2) \ket{0} + e^{i\phi} \sin(\theta/2) \ket{1} \right] $$
+
+
+\vskip 1cm
+\hrule
+\pagebreak
+
+
+\subsection*{Question 1}
+
+\begin{enumerate}
+  \item We want to find the eigenvectors, eigenvalues, and diagonal representations of the Pauli matrices $I, X, Y, Z$ and show that $X^2 = Y^2 = Z^2 = I$
+\end{enumerate}
+
+
+\vskip 1cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \subsection*{Question 1}
+
+
+% \vskip 1cm
+% \hrule
+% \pagebreak
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,663 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Lecturer: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Notes taken by Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+These are some lecture notes taken from the Fall 2024 semester offering of Math 215A: Algebraic Topology taught by Alexander Givental at UC Berkeley. The primary reference is \cite{FomenkoFuchs16}. I've also added more content, not from the lectures, if I found it helpful in understanding a concept. These notes are certainly not an accurate reproduction of Professor Givental's lectures - any errors introduced are due to my ignorance (please point them out to me if you find any!). This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\setcounter{tocdepth}{3}
+\tableofcontents 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{August 29, 2024: Classical Spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We won't spend too much time on Point-Set Topology in this course but, for today, we will discuss classical spaces and the basic operations we can do on them to form topological spaces.
+
+% \subsection{Classical Spaces}
+When we talk about Classical Spaces, we're usually referring to spaces like $\R^n, \C^n, \mathbb{H}^n$, and interesting subsets of them such as \textbf{disk} $\mathbb{D}^{n}$.
+\\
+\\
+We can also study \textit{infinite dimensional spaces} such as $\bigcup \R^n = R^{\infty} = \{ (x_1, \cdots, x_n, \cdots)\; | \; \text{almost all $x_k = 0$} \}$ with the topology described by the rule
+\[ \text{open (closed)} \iff F \cap \R^n \text{ open (closed) for all } n \] 
+
+\subsection{Compact Classical Groups}
+Some examples are:
+\begin{itemize}
+  \item The \textbf{Special Orthogonal Group} $SO(n) = \{v\;|\;v^{-1}v = 1, \mathrm{det}(v) = 1\}$ which acts on/is a symmetry group of $\R^n$ with the usual inner product.
+  \item Another one is the \textbf{Special Unitary Group} $SU(n) = \{U \;|\; U^{\dagger}U = I, \mathrm{det}(U) = 1\}$ which acts on $\C^n$ with the usual hermitian inner product.
+  \item $\mathbb{H}^n$ with $\langle q, q' \rangle= \sum_{i} q_i^* q_i'$ has associated with it the \textbf{(compact) Symplectic Group} $Sp_n$
+\end{itemize} \underline{Ex.} $Sp_1$, $\mathbb{H} = \{ a + bi + cj + dk \}$ with the algebra $i^2 = j^2 = k^2 = ijk = -1$. 
+\\
+\\
+\begin{note}
+  {Fill in missing stuff for this example.}
+\end{note}
+\\
+\\
+$Sp_1$ is the group of unit quaternions $\{q \in \mathbb{H}\;|\; ||u|| = 1 \} = SU(2) \cong \mathbb{S}^3$
+\\
+Under a map 
+\begin{align*}
+  H &\rightarrow H \\
+  X &\mapsto U X U^{-1}
+\end{align*}
+where $U \in Sp_1$, lengths are preserved and so  inner products are also preserved. In fact, the subspace of real quaternions as well as the subspace of imaginary quaternions are also conserved, and so this gives us a map $SU(2) \rightarrow SO(3)$. \begin{note}
+  {Think about this and understand full example properly}
+\end{note} Scalar multiplication of Quaternions should be a right-action so that it commutes with matrix multiplication as a left-action. \begin{note}
+  {Look this up.}
+\end{note}
+
+\begin{remark}
+  Note that there is no notion of quaternionic determinant. \begin{note}
+    {Give explanation why this is the case.}
+  \end{note}
+\end{remark}
+
+\subsection{Stiefel Manifolds}
+We can think of $O(n)$ as teh space of orthonormal bases in $\R^n$ and $U(n)$ as the space of orthonormal bases in $\C^n$. More generally, we can consider \textbf{oorthonormal $k-$frames} in $\R^n$ $(\C^n)$ $(\mathbb{H}^n)$. Such spaces are called \textbf{Stiefel Manifolds} and are denoted as $V(n, k)$ or $CV(n, k)$ or $\mathbb{H}V(n, k)$.
+\\
+\\
+These can be considered as orbit spaces of the action due to orthogonal groups 
+\[ V(n, k) = O(n) / O(n - k) \]
+
+Recall that the quotient of a space $X$ with respect to some equivalence relation $\sim$ is described by $X \xrightarrow{\pi} X/\sim$ and we define the topology on $X/\sim$ by the rule:
+$\pi^{-1}(U) \in X \text{ open } \iff U \in X / \sim \text{ open }$. This is the \textit{weakest topology possible} in which the projection map $\pi$ is continuous. \begin{note}
+{Explain how this topology gives maximal supply of open sets.}
+\end{note} This terminology is used a lot in relation to CW Complexes (the W stands for "weak Topology").
+\\
+\\
+Similarly, $\mathbb{H}V(n, k) = Sp(n)/Sp(n-k)$.
+\\
+\\
+So, $V(n, 1) = \mathbb{S}^{n-1}$, $CV(n, 1) = \mathbb{S}^{2n-1}$, and $\mathbb{H}V(n, 1) = \mathbb{S}^{4n-1}$ because they are just the set of unit vectors in each of these spaces. \begin{note}
+  {Write nore in detail}.
+\end{note}
+
+\subsection{Grassmann Manifolds}
+The Grassmann Manifold of type $n,k$ is the set of $k-$dimensional subspaces in an $n-$dimensional space.
+
+\begin{redbox}
+  What motivatives us to study Grassmannians? Here's one reason\text{:}
+  \\
+  \\
+  If we have a $k-$dimensional manifold $M$ emdedded in some ambient euclidean space $\R^n$, then the tangent space $T_x M$ at some $x \in M$ is really a $k-$dimensional vector subspace of $\R^n$ i.e. it is an element of $G(n, k)$ and so there is a natural mapping $M \rightarrow G(n, k)$ which describes the Tangent Bundle structure on $M$.
+  \\
+  \\
+  It turns out that not only the tangent bundle, but pretty much all vector bundles can be thought of as maps from the manifold to appropriate grassmannians \cite{GrassmannianWikipedia}. 
+\end{redbox}
+
+Now,
+\begin{align*}
+  G(n, k) &= O(n) / (O(k) \times O(n-k)) \\
+  &\cong G(n, n-k)
+\end{align*}
+\\
+Similarly, $G_+(n, k) = \{ k-\text{dimensional \emph{oriented} subspaces in an n-dim space} \}$
+\\
+\\
+Let's inspect some special cases. 
+\begin{itemize}
+  \item $G(n, 1) = \{1-\text{dim subspaces in }\R^n\} = \mathbb{RP}^{n-1} = \mathbb{S}^{n-1}/\pm$ 
+  \item $CG(n, 1) = \mathbb{CP}^{n-1} = \mathbb{S}^{2n-1} / U(1)$ 
+  \item $\mathbb{HP}^{n-1} = \mathbb{S}^{4n-1} / Sp(1)$
+\end{itemize}
+So, for example, when $n = 1$
+\begin{itemize}
+  \item $\mathbb{RP}^1 = \mathbb{S}^1$
+  \item $\mathbb{CP}^1 = \mathbb{S}^2 = \C \cup \{\infty\}$
+  \item $\mathbb{HP}^1 = \mathbb{S}^4 = \mathbb{H} \cup \{\infty\}$
+\end{itemize}
+
+\begin{dottedbox}
+  \underline{Ex.} Let's show that $G_+(4, 2) \cong \mathbb{S}^2 \times \mathbb{S}^2$. We do this via the \textbf{Pl$\ddot{u}$cker embedding of the grassmannian}.
+  \\
+  \\
+  \begin{note}
+    {Fill this in later.}
+  \end{note}
+\end{dottedbox}
+
+\begin{bluebox}
+  In general the dimensional of $G(n,k)$ is $k \times (n-k)$. \begin{note}
+    {Draw picture to explain why.}
+  \end{note}
+\end{bluebox}
+
+\begin{dottedbox}
+  There is a generalization of the cofactor expansion for determinant, called the \textbf{Laplace expansion}. Fill this in later.
+\end{dottedbox}
+
+
+\subsection{Flag Manifolds}
+A Flag Manifold in $\R^n$ is a nested subsequence $\{\R^n \supset \R^{k_s} \supset \cdots \supset \R^{k_2} \supset \R^{k_1}\} = F(n; k_1, \cdots, k_s)$ - it can be given a natural topology \begin{note}
+{explain how} \end{note}. These are generalizations of Grassmann Manifolds. \begin{note}
+  {Explain why they're called Flag manifolds.}
+\end{note}
+Write how a flag manifold is the quotient of $GL(n, \R)$ by the set of block diagonal matrices.
+\\
+Flag Manifolds are compact because the orthogonal group is compact.
+\\
+\\
+The most interesting of these is the \textbf{Manifold of Complete Flags}, denoted by $F_n = \{\R^1 \subset \R^2 \subset \R^3 \subset \cdots \subset \R^{n-1} \subset \R^n \} = F(n, 1, 2, \cdots, n-2, n-1)$.
+\\
+What dimension is the $F_n$ manifold?
+Since it's a quotient of all invertible matrices by block-diagonal matrices, the parameters needed are the ones below the diagonal. Thus it is $\binom{n}{2}$ dimensional.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 3:}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 5: Homotopy Equiv. Continued, CW Complexes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Recall that 
+\begin{definition}
+  We say topological space $X, Y$ are \emph{homotopy equivalent} if there exist continuous maps $f \text{ : } X \rightarrow Y$ and $g \text{ : } Y \rightarrow X$ such that $g \circ f \sim \mathrm{id}_X$ and $f \circ g \sim \mathrm{id}_Y$
+\end{definition}
+
+
+
+\subsection*{Why is homotopy equivalence a useful equivalence relation between topological spaces?}
+
+\begin{thought}
+  {Write in more detail, see this \href{https://math.stackexchange.com/questions/3357335/homotopy-equivalence-between-spaces-intuition}{reference}}
+\end{thought} Essentially, Homotopy equivalence lets us classify spaces with, for example, different genus via Homotopy and Homology groups i.e. it is a strong enough relation to classify between important classes of spaces - furter, it's much easier than homeomorphism in that a lot of our computations are simpler.
+
+\subsection*{Equivalent Characterizations of Homotopy Equivalence}
+
+\begin{bluebox}
+  \begin{theorem}
+    The following are equivalent: 
+    \begin{enumerate}[label=(\alph*)]
+      \item $X \sim Y$ 
+      \item For every topological space $Z$, there exists a map $\alpha^Z \text{ : } \pi(Y, Z) \rightarrow \pi(X, Z)$ which is \textbf{natural} with respect to $Z$ i.e. such that for any $\psi \text{ : } Z \rightarrow W$ the following diagram commutes: 
+      \[\begin{tikzcd}
+        {\pi(X, Z)} & {\pi(Y, Z)} \\
+        {\pi(X, W)} & {\pi(Y, W)}
+        \arrow["{\alpha^Z}"', from=1-2, to=1-1]
+        \arrow["{\alpha^W}", from=2-2, to=2-1]
+        \arrow["{\psi_*}"', from=1-1, to=2-1]
+        \arrow["{\psi_*}", from=1-2, to=2-2]
+      \end{tikzcd}\]
+      \item For every topological space $Z$, there exists a bijective map $\beta_Z \text{ : } \pi(Z, X) \rightarrow \pi(Z, Y)$ which is \textbf{natural} with respect to $Z$.
+      i.e. for any $\varphi \text{ : } Z \rightarrow W$, the following diagram commutes
+      \[\begin{tikzcd}
+      {\pi(Z, X)} & {\pi(Z, Y)} \\
+      {\pi(W, X)} & {\pi(W, Y)}
+      \arrow["{\beta_Z}", from=1-1, to=1-2]
+      \arrow["{\beta_W}"', from=2-1, to=2-2]
+      \arrow["{\varphi^*}", from=2-1, to=1-1]
+      \arrow["{\varphi^*}"', from=2-2, to=1-2]
+      \end{tikzcd}\]
+    \end{enumerate}
+  \end{theorem}
+\end{bluebox}
+
+Before the proof, let's recall some helpful facts.
+
+\begin{dottedbox}
+  Let $X, X', Y, Y'$ be topological spaces, and let $\varphi \text{ : } X \rightarrow X$, $\psi \text{ : } Y' \rightarrow Y$ be continuous maps. Then, for continuous maps $f, g \text{ : } X \rightarrow Y$ which are homotopic to each other $f \sim g$, we have $f \circ \varphi \sim g \circ \varphi$ and $\psi \circ f \sim \psi \circ g$ so we have operations $\circ \phi$ and $\psi \circ$ well-defined that we can apply to homotopy classes of maps $X \rightarrow Y$. These give us maps $$\varphi^* \text{ : } \pi(X, Y) \rightarrow \pi(X', Y)$$ and $$\psi_* \text{ : } \pi(X, Y) \rightarrow \pi(X, Y')$$
+  A slightly silly way to remember what-is-what is that when the $*$ is a super-script, the first factor in $\pi(\_, \_)$ changes, and when it's a sub-script, the second factor changes.
+\end{dottedbox}
+
+
+\begin{proof}
+  The book (\cite{FomenkoFuchs16}) contains the proof of $(a) \iff (b)$. Let's prove $(a) \iff (c)$.
+  \\
+  \\
+  Assume (c) holds. Then in the case $Z = X$ there exists a bijection $\beta_X \text{ : } \pi(X, X) \rightarrow \pi(X, Y)$. Type this out later. Pretty much got the idea - written in green book.
+\end{proof} \textbf{Note:} There's a version of this theorem that holds for the mapping spaces between base-point spaces too i.e. spaces like $\pi_b(X, Y)$ for base-point spaces $(X, x_0)$, $(Y, y_0)$. 
+\begin{redbox}
+  Just like there was a theorem relating stating $C(\Sigma X, Y) = C(X, \Omega Y)$, we also have the result $$ \pi(\Sigma X, Y) = \pi(X, \Omega Y) $$ (holds for based spaces too). It is for this reason that we say $\Sigma X$ and $\Omega Y$ are \textbf{adjoint} to each other.
+\end{redbox}
+
+\begin{remark}
+  {Also, not super relevant to our current discussion, but $\Omega Y$ has an algebraic structure because loops can be composed together, giving us a map $\Omega Y \times \Omega Y \rightarrow \Omega Y$. Read more in Chapter 4 of \cite{FomenkoFuchs16}.}
+\end{remark}
+\vskip 0.5cm
+
+\subsection{CW Complexes}
+This is the most important class of spaces for our purposes, and most of the tools we'll build will relate to them/be used to study them.
+\\
+\\
+There are two types of definitions for what a CW Complex is: \textbf{Constructive} and \textbf{Additional Structure}.
+
+\subsection*{Constructive Definition}
+
+\begin{bluebox}
+  \begin{definition}
+    A CW Complex $X$ is a space built from $0-$cells, $1-$cells,... and so on, where an $n-$cell is a space homeomorphic to the disk $D^n$. We call the collection of $k-$cells for $0 \leq k \leq n$ as the $n-$skeleton $\mathrm{Sk}_n X$.
+  \begin{enumerate}
+    \item $\mathrm{Sk}_0 X$ is a set of discrete points.
+    \item If we have the $(n-1)-$dimensional skeleton $\mathrm{Sk}_0 X \subset \mathrm{Sk}_1 X \subset \cdots \subset \mathrm{Sk}_{n-1} X$ then we define the $n-$skeleton by $$ \mathrm{Sk}_{n} X \text{:}= \mathrm{Sk}_{n-1} X \bigcup_{\alpha \text{ : } \varphi_{\alpha}} D_{\alpha}^n $$ where $\varphi_{\alpha} \text{ : } \partial D_{\alpha}^{n} \rightarrow \mathrm{Sk}_{n-1} X$ is a continuous map called the \textbf{Attaching map}.
+  \end{enumerate}
+  \end{definition}
+\end{bluebox}
+
+\begin{bluebox}
+  \textbf{Wait a sec...}\\
+  We said $\varphi_{\alpha}$ should be continuous, but for that to be the case we have to define the topolgy on $\mathrm{Sk}_{n-1} X$. We define a subset $F \subseteq \mathrm{Sk}_{k}X$ to be an open subset if and only if its intersection with every $k-$cell is an open set. 
+\end{bluebox}
+
+\subsection*{Additional Structure Definition}
+Another (pretty much equivalent) way to define a CW Complex is in terms of additional structure endowed onto a topological space. 
+
+\begin{bluebox}
+  
+\begin{definition}
+  We say a \textit{hausdorff} space $X$ is a CW Complex if we can partition $$ X = \bigcup_{q = 0}^{\infty} \bigcup_{i \in {I_q}} e_i^q $$ it into a sum of pairwise disjoint sets (cells) $e_i^q$ such that for every cell $e_i^q$ there exists a continuous map $f_i^q \text{ : } D^q \rightarrow X$ called the \textbf{Characteristic Map} for that cell, whose 
+  \begin{itemize}
+    \item restriction to $\mathrm{Int} D^q$ is a homeomorphism $\mathrm{Int} D^q \cong e_i^q$
+    \item restriction to $\sph^{q-1} = \bar{D}^q - \mathrm{Int} D^q$ sends $\sph^{q-1}$ into a union of cells with dimension $< q$ 
+  \end{itemize}
+  and for which the following two axioms are satisfied: 
+  \begin{itemize}
+    \item The boundary $\dot{e}_i^q = \bar{e}_i^q - e_i^q$ is contained in a finite union of cells. This is called the \textbf{\underline{C}losure Finite} property.
+    \item A set $F \subset X$ is said to be closed if and only if for any cell $e_i^q$ the intersection $F \cap \bar{e}_i^q$ is closed i.e. $\left(f_i^q\right)^{-1}(F)$ is closed in $D^q$. This is called the \textbf{\underline{W}eak Topology} property.
+  \end{itemize}
+\end{definition}
+\end{bluebox}
+
+\begin{dottedbox}
+  These two properties are what gives them the name "\underline{C} \underline{W} complex".
+\end{dottedbox}
+
+\begin{note}
+  {Include some examples to illustrate what these axioms enforce.}
+\end{note}
+
+
+\vskip 0.5cm
+\subsection{Operations on spaces and CW Structure}
+
+We can interpret $CX$, $\Sigma X$, and most other operations that we saw earlier on a (based) topological space $X$ as CW Structures \textbf{other than operations involving mapping spaces like $\Omega X$, $EX$} (why? roughly speaking it's because these spaces are far too large to be decomposed into cells).
+\\
+\\
+We have some trouble when trying to take the product of two CW complexes $X$ and $Y$. It turns out that, in general, the Weak Topology axiom (W) does not hold for $X \times Y$ with the usual product topology.
+\\
+\\
+However, we can carry out a \emph{cellular weakening} of the topology i.e. just replace the product topolgy with the one defined by the (W) axiom.
+\\
+\\
+It turns out that this doesn't spoil anything important, and in most cases we can forget about the difference between $X \times Y$ and $X \times_{w} Y$ (the product emdowed with the Weak Topology).
+
+\begin{dottedbox}
+  \cite[Section 5.3, Exercise 9]{FomenkoFuchs16}: Show an example when $X \times_w Y \neq X \times Y$.
+\end{dottedbox}
+
+
+\begin{dottedbox}
+  \cite[Section 5.3, Exercise 10]{FomenkoFuchs16}: Prove that if one of the complexes is finite, $X \times_w Y = X \times Y$.
+\end{dottedbox}
+
+
+
+\begin{dottedbox}
+  \cite[Section 5.3, Exercise 11]{FomenkoFuchs16}: Prove that if both the complexes are locally countable then $X \times_w Y = X \times Y$.
+\end{dottedbox}
+
+\vskip 0.5cm
+\subsection{Examples of CW Complexes}
+
+\subsubsection{Spheres}
+
+\subsubsection{Projective Spaces}
+
+\subsubsection{Grassmann Manifolds}
+
+\subsubsection*{Schubert Cells}
+
+\subsubsection*{Young Tableaux}
+
+
+\subsubsection{Flag Manifolds}
+
+\subsection{Borsuk's Theorem}
+
+\subsection{Corollaries of Borsuk's Theorem}
+
+\subsection{The Cellular Approximation Theorem}
+Recall that a map between CW Complexes $f \text{ : } X \rightarrow Y$ is cellular if $f(\mathrm{Sk}_n X) \subseteq \mathrm{Sk}_{n} Y$.
+\\
+\\
+The Cellular Approximation Theorem states that any continuous map between CW Complexes is homotopic to a cellular map, and if $f$ is already cellular on a subcomplex $A$ of $X$ then it's homotopic to another cellular map which is fixed on $A$.
+
+\subsection{Applications of the Cellular Approximation Theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 10: Homology Theory of Cell Spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 12: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{note}
+  {Missed this lecture; but writing with reference from the textbook. Some of the notation here differs from \cite{FomenkoFuchs16}} 
+\end{note}
+
+\subsection{Fundamental Group}
+
+\begin{redbox}
+  \begin{definition}
+    The \textbf{fundamental group} of a base-point space $(X, x_0)$ is the set of equivalence classes of loops up to homotopy in $X$ starting (and ending) at $x_0$. Another way to think about it is as the set of maps from the circle to $X$: $\pi(X, x_0) = \pi_b(\sph^1,  X)$
+  \end{definition}
+\end{redbox} It's called the fundamental \textit{group}, so what's the group operation? \\
+$\rightarrow$: Composition of paths.
+\\
+\\
+In general, the composition of two paths $\alpha, \beta \text{ : } [0, 1] \rightarrow X$ is defined as $\alpha * \beta \text{ : } [0, 1] \rightarrow X$,
+$$ \begin{cases}
+  \alpha(2t),\;\;0 \leq t \leq \frac{1}{2} \\
+  \beta(2t - 1),\;\; \frac{1}{2} \leq t \leq 1
+\end{cases} $$ 
+Visually speaking this means we first move along path $\alpha$ (at twice the speed than usual) and then move along $\beta$ (also at twice the speed than usual). 
+\\
+\\
+However, What about the composition of three paths? Is the product associative?
+\\
+\\
+\begin{note}
+  {Write about this.}
+\end{note}
+\\
+\\
+Elements of $\pi(X, x_0)$ are equivalence classes of paths, but it's easy enough to see that the group multiplication on $\pi(X, x_0)$ defined as $$ [\alpha] * [\beta] = [\alpha * \beta] $$ is well defined.
+\\
+\\
+\begin{note}
+  {Maybe write this out explicitly.}
+\end{note}
+\\
+\\
+Each element of $\pi(X, x_0)$ is an equivalence class $[\alpha]$ for some path $\alpha \text{ : } [0, 1] \rightarrow X$ (such that $\alpha(0) = \alpha(1)$). The inverse element would be the equivalence class $[\alpha^{-1}]$ where $\alpha^{-1} \text{ : }  [0, 1] \rightarrow X$ defined by $\alpha^{-1}(t) = \alpha(1-t)$. The identity element is the equivalence class of the constant map $[c],\;\; c(t) = x_0\;\; \forall t \in [0, 1]$.
+
+\subsection*{Induced Homomorphisms}
+\begin{bluebox}
+  A continuous function $f \text{ : } (X, x_0) \rightarrow (Y, y_0)$ induces a map $f_{*} \text{ : } \pi(X, x_0) \rightarrow (Y, y_0)$. Recall that a loop in $(X, x_0)$ is a map $\gamma \text{ : } [0, 1] \rightarrow X$ with $\gamma(0) = \gamma(1) = x_0$. Then, consider $$ [0, 1] \xrightarrow{\gamma} (X, x_0) \xrightarrow{f} (Y, y_0) $$ Since $f$ is continuous, this composition gives us a loop in $Y$.
+\end{bluebox}
+
+\begin{theorem}
+  For spaces $(X, x_0), (Y, y_0)$ we have $$ \pi(X \times Y, (x_0, y_0)) \cong \pi(X, x_0) \times \pi(Y, y_0) $$
+\end{theorem}
+
+\begin{proof}
+  \begin{note}
+    {Fill this in.}
+  \end{note}
+\end{proof}
+
+\subsection{Dependence on Base-point}
+
+\begin{bluebox}
+  \begin{theorem}
+    For any two points $x_0, x_1 \in X$ for path-connected space $X$, $$ \pi(X, x_0) \cong \pi(X, x_1) $$
+  \end{theorem}
+\end{bluebox} The idea of the proof is that since $X$ is path connected there exists a path $u \text{ : } I \rightarrow X$ with $u(0) = x_0, u(1) = x_1$ and also a path going the other way defined as $\bar{u}(t) = u(1-t)$. So, any path in $\pi(X, x_0)$ can be conjugated with $u$ and $\bar{u}$ inverse to give us a path in $\pi(X, x_1)$.
+\\
+\\
+\begin{proof}
+  \begin{note}
+    {Fill this out.}
+  \end{note}
+\end{proof}
+
+\begin{dottedbox}
+  \underline{Exercise 1, Section 6.3 \cite{FomenkoFuchs16}:} \\
+  Prove that if $f \text{ : } X \rightarrow Y$ is a homotopy equivalence, then $f_* \text{ : } \pi_1(X, x_0) \rightarrow \pi(Y, f(x_0))$ is an isomorphism.
+\end{dottedbox}
+
+\begin{dottedbox}
+  Exercise Proof:
+  \\
+  \\
+  Recall that $f \text{ : } X \rightarrow Y$ is called a homotopy equivalence if there exists $g \text{ : } Y \rightarrow X$ such that $f \circ g \sim \mathrm{id}_Y$ and $g \circ f \sim \mathrm{Id}_X$. 
+\end{dottedbox}
+
+\subsection{Fundamental Group of the Circle}
+
+\begin{bluebox}
+  \begin{theorem}
+    The fundamental group of the sphere is the set of integers $$ \pi_1(\sph^1) \cong \mathbb{Z} $$
+  \end{theorem}  
+\end{bluebox} Intuitively, this means that we're classifying the different loops on the sphere by how many times they wind around the sphere.
+\\
+\\
+\begin{proof}
+  \begin{note}
+    {Fill this.}
+  \end{note}
+\end{proof} 
+\\
+\\
+This computation is an example of using \textbf{covering spaces and maps} to compute fundamental groups. This is one major technique, with another being the use of \textbf{Van-Kempen's Theorem}.
+\\
+\\
+There are also other methods like using Cayley complexes.
+
+\subsection{Coverings}
+
+The example of $\R$ "covering" $\sph^1$ in the sense that it consists of many copies of $\sph^1$ and can be projected down to $\sph^1$ inspires us to make the following definition:  
+
+\begin{redbox}
+  \begin{definition}
+    We say path-connected space $T$ covers a path-connected space $X$ if there is a continuous map $p \text{ : } T  \rightarrow X$ such that for every $x \in X$ has a neighborhood $U$ such that $p^{-1}(U)$ lies in a collection of disjoint open sets $U_{\alpha} \subset T$ and such that $p$ maps each $U_{\alpha}$ homeomorphically onto $U$. Then the map $p \text{ : } T \rightarrow X $ is called a \textbf{covering map}.
+  \end{definition}
+\end{redbox}
+
+\begin{example}
+  \textbf{give some examples.}
+\end{example}
+
+\subsection{Lifting properties}
+
+
+
+
+\subsection{Deck transformations}
+
+\subsection{Regular and Universal Coverings}
+
+\subsection{Lifting maps}
+
+\subsection{Notions of Equivalence and Classifications of Coverings}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 17: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{note}
+  {Missed this lecture; but writing with reference from the textbook.}
+\end{note}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{September 19: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{note}
+  {Missed this lecture; but writing with reference from the textbook.}
+\end{note}
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

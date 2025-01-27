@@ -36,8 +36,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CUSTOM BOXES AND STUFF
-\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
-\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
 
 \newtcolorbox{dottedbox}[1][]{%
     colback=white,    % Background color
@@ -46,6 +46,7 @@
     boxrule=0pt,       % No actual border, as it will be drawn with dashrule
     boxsep=5pt,        % Padding inside the box
     enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
     overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
     #1                 % Additional options
 }
@@ -63,6 +64,7 @@
     coltitle=white,     % Title text color
     title={#2},         % Title text
     enhanced,           % Enable advanced features
+    breakable,
     attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
     boxrule=0.5mm,      % Border width
     sharp corners,      % Sharp corners for the box
@@ -133,18 +135,26 @@
 % make table of contents
 % \newpage
 
-These are some short \begin{note} {really informal!} \end{note} notes that will be used to complement the lectures for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. The primary reference for the class is "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, and so this document will cover topics in roughly the same order - though with some additional and alternative explanations. These notes assume the reader is familiar with results from Linear Algebra and Multivariable Calculus, at the level of Math 54 and Math 53 at UC Berkeley.
+These are some short \begin{note} {and really informal!} \end{note} notes that will be used to complement the lectures for the UC Berkeley DeCal 'Physics 198: Differential Geometry and Lie Groups for Physics Students'. 
 \\
 \\
-Of course, not all of the content in this document will be covered in class. Further, this is a class for \emph{physicists}, so to any mathematicians lurking around - please forgive my sloppiness in some parts of the text. This is very much a work in progress. Last updated July 26, 2024.
+The primary reference for the class is "\textit{Differential Geometry and Lie Groups for Physicists}" by Marián Fecko, but there are number of recommended texts as well.
 \\
 \\
-Many thanks to Ori J. Ganor for being our faculty sponsor, to Michelle Jing Dong and Finn Fraser Grathwol for allowing me to join them as a facilitator. as well as to David LaPorte who guided me through my first experience with Differential Topology - and to whom I still owe a Math DRP Term Paper (I hope this will suffice).
+I'm writing this document to flesh out my own understanding of the topics we'll be covering - borrowing explanations and intuitions from all of these books.
+\\
+\\
+Of course, not all of the content in this document will be covered in class. Sections that are likely not going to be covered are indicated with a $*$ in the index. Further, this is a class for \emph{physicists}, so to any mathematicians lurking around - please forgive my sloppiness in some parts of the text. This is very much a work in progress. 
+% Last updated July 26, 2024.
+\\
+\\
+Many thanks to Ori J. Ganor for being our faculty sponsor, to Michelle Jing Dong and Finn Fraser Grathwol for allowing me to join them as a facilitator, as well as to Philip LaPorte who guided me through my first experience with Differential Topology - and to whom I still owe a Math DRP Term Paper (I hope this will suffice).
 \\
 \\
 This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
 
 % \microtoc
+\setcounter{tocdepth}{3}
 \tableofcontents 
 
 % main 
@@ -153,22 +163,39 @@ This template is based heavily off of the one produced by \href{https://knzhou.g
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Topological Spaces and Manifolds}
+\section{Topological Spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vskip 1cm
-\subsection{Open sets in $\mathbb{R}^n$}
+% \vskip 1cm
+% \subsection{Open sets in $\mathbb{R}^n$}
 
-\vskip 1cm
-\subsection{Continuity of functions between $\mathbb{R}^n$ and $\mathbb{R}^m$}
-
-
-\vskip 1cm
-\subsection{Topological Manifolds}
+% \vskip 1cm
+% \subsection{Continuity of functions between $\mathbb{R}^n$ and $\mathbb{R}^m$}
 
 
-\vskip 1cm
-\subsection{Differentiable Structure: Topological Manifolds $\rightarrow$ Smooth Manifolds}
+% \vskip 1cm
+% \subsection{Topological Manifolds}
+
+
+% \vskip 1cm
+% \subsection{Differentiable Structure: Topological Manifolds $\rightarrow$ Smooth Manifolds}
+
+\subsection{Motivation: Continuous functions in $\R^n$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Manifolds and Differential structure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{*Some Algebra: Tensors, Rings, Fields, Modules}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,11 +236,13 @@ Let's call any operator $w$ that satisfies the Leibniz Rule a \textbf{Derivation
 \end{redbox}
 Here's where things get interesting.
 \begin{bluebox}
-  \textbf{Theorem:} We have vector space isomorphism between $R^{n}_{a}$ and $T_a \R^n$ given by the map $v_a \in R^n_{a} \mapsto \restr{D_{v}}{a} \in T_{a} \R^n$ where 
-  \[ \restr{D_{v}}{a} \text{ : } C^{\infty}(\R^n) \rightarrow \R  \]
-  is the differential operator defined (as earlier) as 
-  \[ \restr{D_{v}}{a} (f) = \restr{\frac{d}{dt}}{t = 0} f(a + tv) \]
-  for $f \in C^{\infty}(\R^n)$.
+  \begin{theorem}
+    We have vector space isomorphism between $R^{n}_{a}$ and $T_a \R^n$ given by the map $v_a \in R^n_{a} \mapsto \restr{D_{v}}{a} \in T_{a} \R^n$ where 
+    \[ \restr{D_{v}}{a} \text{ : } C^{\infty}(\R^n) \rightarrow \R  \]
+    is the differential operator defined (as earlier) as 
+    \[ \restr{D_{v}}{a} (f) = \restr{\frac{d}{dt}}{t = 0} f(a + tv) \]
+    for $f \in C^{\infty}(\R^n)$.
+  \end{theorem}
 \end{bluebox}
 This might look complicated, but what essentially what we're saying is that the collection of geometrical tangent vectors available is identical to the collection of direcitonal derivatives we can take on any function $f \in C^{\infty}(\R^n)$.
 \\
@@ -229,8 +258,14 @@ So, we've proven that thinking geometrically about tangent vectors is equivalent
 \begin{redbox}
   \[ T_a M = \left\{ \text{Derivations, } w \;\vert\; \text{for any } f,g \in C^{\infty}(M), \;\; w(fg) = w(f) \cdot g + f \cdot w(g) \right\}  \]
 \end{redbox}
-\vskip 0.5cm
-\subsubsection{Isomorphisms between Geometric Tangent Vectors, Derivations, and Velocity Vectors on a Curve}
+Since the two vector spaces are isomorphic, we immediately get the following
+\begin{bluebox}
+  \textbf{Corollary:} Let $\{x_1, \cdots, x_n\}$ denote the standard coordinate basis of $\R^n$. Then for any point $a \in \R^n$, the collection
+  \[ \{ \restr{D_{x_1}}{a}, \cdots, \restr{D_{x_n}}{a} \} = \left\{ \restr{\frac{\partial}{\partial x^1}}{a}, \cdots, \restr{\frac{\partial}{\partial x^n}}{a} \right\} \]
+  forms a basis for $T_a \R^n$.
+\end{bluebox}
+
+\subsubsection*{Isomorphisms between Geometric Tangent Vectors, Derivations, and Velocity Vectors on a Curve}
 \begin{note}
   {Decide whether to include this here or later; and whether or not to talk about differentials just yet}
 \end{note}
@@ -267,7 +302,9 @@ Enter, \textbf{The Tangent Bundle}. We define a new space denoted by $TM$ as the
 \vskip 0.5cm
 Some features of $TM$ to note are:
 \begin{bluebox}
-  \textbf{Theorem:} For a smooth manifold $M$ of dimension $n$, there is a natural topology we can endow $TM$ with in order to make it a smooth manifold of dimension $2n$. With respect to this topology, $\pi \text{ : } TM \rightarrow M$ is a smooth map.
+  \begin{theorem}
+  For a smooth manifold $M$ of dimension $n$, there is a natural topology we can endow $TM$ with in order to make it a smooth manifold of dimension $2n$. With respect to this topology, $\pi \text{ : } TM \rightarrow M$ is a smooth map.
+  \end{theorem}
 \end{bluebox}
 
 \begin{proof}
@@ -296,28 +333,13 @@ Okay. So, we have a collection of the tangent spaces at each point and a map tha
 
 \subsection{Cotangent Bundle and Covector Fields}
 
+\subsection{Pullbacks and Pushforwards}
 
-\subsection{Tensor Spaces and Tensor Bundles}
+\subsection{Tensor Spaces, Tensor Fields, and Tensor Bundles}
 
+\subsection{Example: Vectors and Covectors Electrodynamics}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Vector Fields, Flows, Lie Derivatives.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\vskip 1cm
-\subsection{Vector and Covector Fields}
-
-\vskip 1cm
-\subsection{Flow of a field}
-
-\vskip 1cm
-\subsection{Lie Derivative}
-
-
-
-
+\subsection{Example: Vectors and Covectors in Quantum Mechanics}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,25 +352,283 @@ In physics, we can learn a great deal from studying the symmetries of \emph{cont
 \\
 They are ubiquitious in Physics. Regardless of which branch of physics you study, you will likely benefit from studying Lie Group \textbf{Actions} and \textbf{Representations}.
 \\
+\\
+The exposition here is mostly a combination of the approaches and content covered in \cite{LeeSM} and \cite{SchullerGeomAnatomy}.
+\\
 \subsection{Lie Groups}
+\begin{bluebox}
+  \begin{definition}
+    A \textbf{Lie Group} is a smooth manifold $G$ equipped with smooth maps
+    \begin{align*}
+      \text{Multiplication, } m \text{ : } G \times G &\rightarrow G \\ 
+      (g, h) &\mapsto gh 
+    \end{align*} and 
+    \begin{align*}
+      \text{Inversion, } i \text{ : } G &\rightarrow G \\ 
+      a &\mapsto  b \equiv a^{-1}
+    \end{align*}
+    which endow it with group structure.
+  \end{definition}
+\end{bluebox}
+\vskip 0.5cm
+\textbf{Example:} The group $O(n)$ is the \textit{three dimensional orthogonal group}. One way to think about this group (or to \emph{\textbf{represent}} it *wink wink*) is as the set of $n \times n$ matrices, $A$, which satisfy the equation \[A A^{T} = \mathrm{Id}_n\]Here, the "multiplication" and "inversion" maps are just matrix multiplication and inversion.
+\\
+\\
+But this is just one way to represent the group. In truth, we define it by the way it \emph{\textbf{acts}} (*wink wink*) on $\R^n$. Namely, it's the group of transformations such that any two vectors $v_1, v_2$ that \emph{started off orthogonal} to each other will \emph{remain orthogonal} after transformation.
+\\
+\begin{note}
+  {Write about the other prominent matrix Lie Groups + highlighting the Lorentz and Poincare Groups}
+\end{note}
+\\
+\subsubsection{The Left Translation map}
+\begin{bluebox}
+  \begin{definition}
+    Every element $g \in G$ of the Lie Group induces a map 
+\begin{align*}
+  L_g \text{ : } G &\rightarrow G \\
+                 h &\mapsto gh
+\end{align*}
+called \textbf{left translation by $g$}.
+  \end{definition}
+\end{bluebox}
+
 \begin{redbox}
-  A \textbf{Lie Group} is a smooth manifold $G$ equipped with smooth maps
-  \begin{align*}
-    \text{Multiplication, } m \text{ : } G \times G &\rightarrow G \\ 
-    (g, h) &\mapsto gh 
-  \end{align*} and 
-  \begin{align*}
-    \text{Inversion, } i \text{ : } G &\rightarrow G \\ 
-    a &\mapsto  b \equiv a^{-1}
-  \end{align*}
-  which endow it with group structure.
+  \begin{theorem} For each $g \in G$, the left translation $L_g$ is a \textbf{\emph{diffeomorphism}}.
+  \end{theorem}
 \end{redbox}
 
-\subsection{Lie Algebras}
+\vskip 0.5cm
+\begin{dottedbox}
+  \begin{proof}
+    \begin{itemize}
+      \item The map $L_g$ is bijective on $G$:
+      \\
+      \textit{Injectivity:} If $g = g' \in G$ then $L_{g}(h) = gh = g'h = L_{g'}(h)$ for any $h \in G$.
+      \\
+      \textit{Surjectivity:} For any $h \in G$, $L_{g}(g^{-1}h) = g\left(g^{-1}h\right) = \left(g g^{-1}\right)h = h$
+      \\
+      \\
+      \item The map $L_g$ is a composition of smooth maps (inclusion and multiplication)
+      \begin{align*}
+        G \xrightarrow{\iota} G \times G \xrightarrow{m} G
+      \end{align*}
+      and so it's a smooth map. The inverse map is $\left(L_g\right)^{-1} = L_{g^{-1}}$ and so the same reasoning holds.
+    \end{itemize}
+  \end{proof}
+\end{dottedbox}
 
-\subsection{Classification and Dynkin Diagrams}
+\begin{redbox}
+  Similarly, we have the \textbf{Right Translation map}, $R_g \text{ : } G \rightarrow$ defined as $R_g(h) = hg$, which has pretty much the same properties as left-translations. However, conventionally, we use left-translation more often.
+\end{redbox}
+
+% \vskip 0.5cm
+% Since $L_g$ is a diffeomorphism, we have well defined push-forward map $\left(L_g\right)_{*}$ defined as 
+% \begin{align*}
+%   (L_g)_{*} \text{ : } \Gamma(TG) &\rightarrow \Gamma(TG) \\
+%   X &\mapsto \left(L_g\right)_{*}(X)
+% \end{align*}
+% where 
+% \begin{align*}
+%   \left(L_g\right)_*(X) &= 
+% \end{align*}
+
+\vskip 0.5cm
+Now, since $L_g$ is a diffeomorphism (and thus a smooth map), we also have the push-forward $(L_g)_* \text{ : } TG \rightarrow TG$. Just to be explicit, let's spell things out clearly. 
+\begin{dottedbox}
+  \begin{enumerate}[label=(\alph*)]
+    \item $L_g \text{ : } G \rightarrow G$ is a diffeomorphism.
+    \item So, the differential of $L_g$ at some point $h \in G$ is the map between tangent spaces at the points $h$ and $L_g(h)$ \[d\left(L_g\right)_h \text{ : } T_h G \rightarrow T_{L_g(h)} G = T_{(gh)} G\]
+    \item So, $d\left(L_g\right)$, also denoted as $\left(L_g\right)_*$ is a map from $TG \rightarrow TG$. \\
+    It takes in a pair \[(v, p), \;\; v \in T_p G, \;\; p \in G \] as the input and sends the pair to \[ \left( d(L_g)_p(v), L_g(p)\right), \;\; d(L_g)_p(v) \in T_{{L_g}(p)} G, \;\; L_g(p) = gp \in G \]
+  \end{enumerate}
+\end{dottedbox}
+
+This gives us a means to "transport" ourselves back from any element $g \in G$ to the identity element $e \in G$ via $(L_{g^{-1}})_* = \left(L_g^{-1}\right)_*$. 
+\\
+\\
+Intuitively, this gives us the impression that a lot of information about the group as a whole is contained in the Identity element. Turns out this is more true than one might expect, as we can actually reconstruct the entire Lie Group given a neighborhood around the identity!
+\begin{note}
+  {Write about Proposition 7.14 from \cite{LeeSM}}
+\end{note}
+We'll explore this idea more after defining the Lie Algebra of a Lie Group.
+\\
+\subsection{Lie Algebras}
+In general, a $\mathbb{K}-$\textbf{Algebra} $(V, +, \cdot, \times)$ in math refers to a vector space $(V, +, \cdot)$ over the field $\mathbb{K}$ (where $\cdot$ denotes scalar multiplication) with a multiplication operation $\times \text{ : } V \times V \rightarrow V$.
+\\
+\\
+Usually if the $\mathbb{K}$ isn't mentioned it's assumed to be $\mathbb{R}$.
+\begin{dottedbox}
+  \textbf{Example:} The collection of $n \times n$ matrices $\mathrm{Mat}_n(\mathbb{K})$ is a $\mathbb{K}$-algebra where the $\times$ operation is the usual matrix multiplication operation.
+  \\
+  \\
+  \textbf{Example:} The set $\mathrm{Hom}_{\mathbb{K}}(V, W)$ of $\mathbb{K}$-linear maps between the $\mathbb{K}$-vector spaces $V$ and $W$ form a $\mathbb{K}-$algera where the $\times$ operation is \emph{composition} of maps.
+  \\
+  \begin{note}
+    {Add more examples.}
+  \end{note}
+\end{dottedbox}
+
+\vskip 0.5cm
+A general \textbf{\emph{Lie Algebra}} is an Algebra whose $\times$ operation satisfies specific properties. In this case, the $\times$ operation is referred to as the \textbf{Lie Bracket} and denoted as $[\cdot, \cdot]$. In order to be a lie bracket, the mulitplication operation must be:
+\begin{itemize}
+  \item \textit{Antisymmetric:} Switching inputs introduces a negative sign i.e. $[v, w] = - [w, v]$
+  \item \textit{Bilinear:} Linear in both arguments i.e. 
+  \begin{align*}
+    [aX + bY, Z] &= a[X, Z] + b[Y, Z] \\
+    [X, aZ + bW] &= a[X, Z] + b[X, W] \\
+  \end{align*}
+  \item\textit{ Satisfy the \textbf{Jacobi Identity}} i.e.
+  \[ [X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0  \]
+\end{itemize}
+The Jacobi Identity is a sort-of substitute for associativity.
+\begin{note}
+  {Provide more motivation for these properties}
+\end{note}
+\\
+\\
+Let's develop some more results related to the Bracket.
+\\
+\subsubsection{Some properties of the Bracket}
+\begin{note}
+  {Include results about coordinate expression and such}
+\end{note}
+\\
+
+\begin{bluebox}
+  \begin{definition}
+    Given smooth manifolds $M, N$, a smooth map $F \text{ : } M \rightarrow N$ between them, and vector fields $X \in \mathfrak{X}(M), Y \in \mathfrak{X}(N)$ we say $X$ and $Y$ are \textbf{$F-$related} if for every $p \in M$,
+    \[ dF_{p}(X_p) = Y_{F(p)} \]
+  \end{definition}
+\end{bluebox}
+
+\begin{note}
+  {Include proposition 8.16 from \cite{LeeSM}}
+\end{note}
+
+\begin{redbox}
+  \begin{theorem}
+    \textbf{(Naturality of the Bracket):} Consider smooth manifolds $M, N$ with or without boundary, and a smooth map $F \text{ : } M \rightarrow N$. If $X_1, X_2 \in \mathfrak{X}(M)$ are $F-$related, respectively, to $Y_1, Y_2 \in \mathfrak{X}(N)$ then their Lie Bracket $[X_1, X_2]$ is $F-$related to $[Y_1, Y_2]$
+  \end{theorem}
+\end{redbox}
+\begin{proof}
+  By \color{red} Proposition 8.16 from \cite{LeeSM} \color{black} We have 
+  \[ X_1 X_2 \left( f \circ F\right) = X_1 \left( Y_2f \circ F \right) = (Y_1 Y_2 f) \circ F \] and similarly,
+  \[ X_2 X_1 \left(f \circ F\right) = (Y_2 Y_1 f) \circ F \]
+  Then for $f \in C^{\infty}(N)$, which gives us $(f \circ F) \in C^{\infty}(M)$,  we have 
+  \begin{align*}
+    [X_1, X_2](f \circ F) &= X_1 X_2 (f \circ F) - X_2 X_1 (f \circ F) \\
+    &= (Y_1 Y_2 f) \circ F - (Y_2 Y_1 f) \circ F \\
+    &= \left((Y_1 Y_2 f) - (Y_2 Y_1 f) \right) \circ F \\
+    &= \left(Y_1 Y_2 - Y_2 Y_1\right)(f) \circ F \\
+    &= \left(Y_1 Y_2 - Y_2 Y_1 \right)f \circ F \\
+    &= (\left[Y_1, Y_2\right]f) \circ F
+  \end{align*}
+\end{proof}
+\\
+\begin{note}
+  {Explain explcitly how this means they're F-related.}
+\end{note}
+
+\begin{dottedbox}
+  Note, the word "Naturality" here has a specific categorical meaning. Check the category theory appendix to learn more. \begin{note}
+    {give me a chop on the neck if it's not there yet by the time you're reading this.}
+  \end{note}
+\end{dottedbox}
+
+\begin{dottedbox}
+  \begin{corollary}
+    \textbf{(Pushforwards of the Bracket):} Suppose $F \text{ : } M \rightarrow N$ is a diffeomorphism and $X_1, X_2 \in \mathfrak{X}(M)$. Then, $F_{*}[X_1, X_2] = [F_* X_1, F_* X_2]$
+  \end{corollary}
+\end{dottedbox}
+
+
+\subsubsection{Lie Algebra of a Lie Group}
+Earlier, we defined the pushforward $(L_g)_*(X)$ for a vector field $X$ defined on a lie group $G$. It turns out that the set of \textbf{Left Invariant Vector Fields} on $G$ forms a Lie Algebra. i.e.
+
+\begin{redbox}
+  \begin{theorem}
+  Given a Lie Group $G$, the set of vector fields invariant under left-translation by \emph{all} $g \in G$,
+  \[ \mathcal{L}(G) = \lie{g} \equiv \left\{ X \in \Gamma(TG) \;\vert\; (L_g)_*(X) = X \text{ for all } g \in G \right\}  \]
+  with the Lie Bracket of two vector fields defined as 
+  \[ [X, Y]f = XYf - YXf \]
+  for $f \in C^{\infty}(G)$ is a Lie Algebra.
+  \end{theorem}
+\end{redbox}
+\vskip 0.5cm
+This object $\mathcal{L}(G)$ is called the \textbf{Lie Algebra \emph{of} the Lie Group $G$}. The proof that this set is indeed a Lie Algebra is sketched below, but see $\cite{LeeSM}$ for more detail.
+\vskip 0.5cm
+
+\begin{dottedbox}
+  \textbf{Proof:} We already know that $\Gamma(TG)$ is a vector space. The reason the subspace $\mathcal{L}(G) \subset \Gamma(TG)$ is also a vector space is... left as an exercise for the reader (sorry).\\
+  \begin{thought}
+    {Hint: First show that given vector fields $X, Y$ that $[X, Y]$ is also a vector field. Then show that $X+Y$ is invariant under left-translation, given $X, Y \in \mathcal{L}(G)$ i.e it is closed under vector addition.}
+  \end{thought}
+  \\
+  \\
+  To show that $\mathcal{L}(G)$ is a Lie Algebra, we need to demonstrate that it is closed under the Bracket, and that the bracket satisfies the Jacobi Identity.
+  \\
+  \\
+  The second task is just a straightfoward calculation, so it's left as an exercise (sorry again). \begin{note}
+    {Maybe just include it instead of leaving it to the reader}
+  \end{note}
+  \\
+  \\
+  For the first task, note that for $X, Y \in \mathcal{L}(G)$ we have 
+  \begin{align*}
+    \left(L_g\right)_* [X, Y] &= [(L_g)_* X, (L_g)_* Y] \text{ (Since $L_g$ is a diffeomorphism)} \\
+    &= [X, Y] \text{ (Since $X, Y$) are Left-Invariant}
+  \end{align*}
+  So $\mathcal{L}(G)$ is closed under the bracket. This proves the claim.
+\end{dottedbox}
+
+\vskip 0.5cm
+Okay, so that's cool, but why do we care about left-invariant vector fields? How exactly do they help us study Lie Groups? It turns out that $\mathcal{L}(G)$ is isomorphic as a vector space to $T_e G$ i.e. the tangent space at the identity. 
+\\
+\\
+This is a big deal! $T_e G$ is a "linear approximation" of the manifold at the identity, and we proved earlier that we can reconstruct the entire Lie Group (assuming it's connected) given a neighborhood of the identity. 
+\\
+\\
+This begs the question, is there a method to reconstruct the Lie Group given the Lie Algebra? \textbf{Yes!} Or at least, sort of. We'll study this method (using something called the exponential map) after learning about Integral Curves and Flows of Vector Fields.
+
+
+
+
+% \subsubsection{Coordinate expression for the Lie Bracket}
+% \begin{note}
+%   {Do this section soon}
+% \end{note}
+
+\subsection{*Classification of Lie Groups}
+
+\subsection{*Dynkin Diagrams}
 
 \subsection{Reconstruction of Lie Groups from Lie Algebras}
+\begin{note}
+  {Cover this section after introducing Integral Curves and Flows}
+\end{note}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Flows and the Lie Derivative}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Flow of a field}
+
+\subsection{Lie Derivative}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Exterior Derivative and Exterior Algebra}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -442,7 +722,7 @@ Write about $\rho$-invariant inner products.
 
 
 \vskip 1cm
-\subsection*{References for the chapter}
+% \subsection*{References for the chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -469,29 +749,39 @@ Studied Topological Spaces and Manifolds $\rightarrow$ endowed them with Smooth 
 \vskip 1cm
 \subsection{Motivation for the Covariant Derivative and Connection}
 
-\begin{note}
-  {Revise this section by replacing $x$ and $dx$ with $\gamma(t)$ and $\gamma(t+dt)$}
-\end{note}
-\\
-To define a derivative, for eg. the derivative of a vector field $W$, we need a way to compare the value of $W$ at different points: $W(x)$ and $W(x + dx)$. 
-\\
-\\
-The issue is that $W(x) \in T_x M$ whereas $W(x + dx) \in  T_{(x + dx)} M$ - they lie in different tangent spaces which, a priori, have nothing to do with each other, and so taking the difference 
-\[ W(x + dx) - W(x) \]
-really makes no sense for general manifolds. This wasn't an issue in $\R^n$ because $T_p \R^n \cong \R^n$ for any $p \in \R^n$. This allows us to compare tangent vectors at different points. Equivalently this is why, in $\R^n$, we can pick up a vector $v$ with its tail fixed at point $p$ and move it to any other point $q$ keeping it facing the same direction, without changing the vector. This procedure of moving a tangent vector (or more generally any element of a tensor space) from one point to another while keeping it "parallel" to itself is called \textbf{Parallel Transport}.
+% \begin{note}
+%   {Revise this section by replacing $x$ and $dx$ with $\gamma(t)$ and $\gamma(t+dt)$}
+% \end{note}
+
+Suppose a particle is moving along some path $\gamma \text{ : } (0, 1) \rightarrow M$ on a manifold $M$. Its \textbf{velocity} at a point $\gamma(t)$ would be some vector in the tangent space at that point $V_{\gamma(t)} \in T_{\gamma(t)} M$. What if we wanted to find the particles \textbf{acceleration}?
 \\
 \\
-When defining the Lie Derivative along some other field $V$, we solved this problem using a \textbf{trick}. We found the flow $\theta$ generated by $V$ connected the points and then taking the pullback of $W(x + dx)$ under $\theta$. 
-\begin{note}
-  {Why don't we just set the first tensor field equal to the coordinate field $x^{\mu}$ or somn like that? Give a proper explanation for why this is insufficient.}
-\end{note}
+Well, for that, we'd want to study how $V_{\gamma(t)}$ changes over the path $\gamma(t)$ i.e. we'd need to find the difference quotient 
+\[ \lim_{dt \rightarrow 0} \frac{V(\gamma(t + dt)) - V(\gamma(t))}{dt} \]
+\\
+\\
+The issue is that $V(\gamma(t + dt)) \in T_{\gamma(t + dt)} M$ whereas $V(\gamma(t)) \in  T_{\gamma(t)} M$ i.e. they lie in different tangent spaces which, a priori, have nothing to do with each other, and so taking the difference 
+\[ V(\gamma(t + dt)) - V(\gamma(t)) \]
+really makes no sense for general manifolds.
+\\
+\\ 
+This wasn't an issue in $\R^n$ because $T_p \R^n \cong \R^n$ for any $p \in \R^n$, which allowed us to compare tangent vectors at different points. Equivalently this is why, in $\R^n$, we can pick up a vector $v$ with its tail fixed at point $p$ and move it to any other point $q$ keeping it facing the same direction, without changing the vector. This procedure of moving a tangent vector (or more generally any element of a tensor space) from one point to another while keeping it "parallel" to itself is called \textbf{Parallel Transport}.
+\\
+\\
+When defining the Lie Derivative along some other field $W$, we solved this problem using a \textbf{trick}. We found the flow $\theta$ generated by $w$ connected the points and then took the pullback of $V(\gamma(t + dt))$ under $\theta$. 
+% \begin{note}
+%   {Why don't we just set the first tensor field equal to the coordinate field $x^{\mu}$ or somn like that? Give a proper explanation for why this is insufficient.}
+% \end{note}
+\\
+\\
+However, that makes the Lie Derivative dependent on the behavior of the other vector field $W$. Whereas, we want a derivative of $V$ that only depends on the path taken.
 \\
 \\
 \textbf{Connections} provide us with an alternative method to compare objects in tensor spaces based at different points.
 
 
 \begin{bluebox}
-  \textbf{Why do we need a new derivative?}
+  \textbf{What properties should this new derivative have?}
   (This motivation has been borrowed from \cite{Carroll97} and \cite{Wald84}).
   \\
   \\
@@ -515,13 +805,51 @@ The entries of the $n \times n$ matrix $\Gamma_{\mu}$ are called the \textbf{con
   \textbf{\emph{Note:}} The object that we get on covariant differentiation is a tensor, $\nabla_{\mu} V$. The notation $\nabla_{\mu} V^{\nu}$ is \emph{really} referring to the $\nu^{\text{th}}$ component of this tensor $(\nabla_{\mu} V)^{\nu}$, but we often drop the parentheses.
 \end{redbox}
 
-\subsection{Why do Covariant Derivatives take this form? Are they unique? (Optional)}
+% \subsection{Why do Covariant Derivatives take this form? Are they unique? (Optional)}
 
-\begin{note}
-  {Type this section up}
-\end{note}
+\vskip 1cm
+\subsection{Looking at the connection more closely}
+So far I've primarily used the notation $\Gamma_{\mu \lambda}^{\nu}$ to refer to the connection coefficients, but another common notation is to simply use $\nabla$ without any subscript. This is because we can view the connection as a map $\nabla \text{ : } \mathfrak{X}(M) \times \mathfrak{X}(M) \rightarrow \mathfrak{X}(M)$.
+\\
+\\
+Suppose we are working in a basis $\{e_{\mu}\}$ of $\mathfrak{X}(M)$. Then, the connection coefficients are \emph{defined} as 
+\[ \nabla_{e_{\mu}} e_{\lambda} = \Gamma_{\mu \lambda}^{\nu} e_{\nu} \]
+and the notation $\nabla_{\mu}$ is really shorthand for $\nabla_{e_{\mu}}$.
+\\
+\\
+Given vector fields $X = X^{\mu} e_{\mu}$ and $Y = Y^{\nu} e_{\nu}$ then the connection maps $(X, Y)$ to $\nabla_{X} Y$ and the operator $\nabla_X$ is the covariant derivative in the direction $X$ with respect to the connection.
+\\
+\\
+Using the properties of the connection that we've declared it to possess, we have 
+\begin{align*}
+  \nabla_X Y &= \nabla_X \left(Y^{\mu} e_{\mu}\right) \\
+  &= X(Y^{\mu})e_{\mu} + Y^{\mu} \nabla_X (e_{\mu}) \\
+  &= X^{\nu} e_{\nu}(Y^{\mu})e_{\mu} + Y^{\mu} X^{\nu} \nabla_{\nu}(e_{\mu}) \\
+  &= X^{\nu} e_{\nu}(Y^{\mu})e_{\mu} + X^{\nu} Y^{\mu} \Gamma_{\nu \mu}^{\lambda}e_{\lambda}
+\end{align*}
+But note that 
+\begin{align*}
+  Y^{\mu} \Gamma_{\nu \mu}^{\lambda} e_{\lambda} &= Y^{\lambda} \Gamma_{\nu \lambda}^{\mu} e_{\mu}
+\end{align*}
+since we're just swapping dummy variables which take on the same values. So,
+\begin{align*}
+  \nabla_X Y &= X^{\nu} e_{\nu}(Y^{\mu})e_{\mu} + X^{\nu} Y^{\lambda} \Gamma_{\nu \lambda}^{\mu} e_{\mu} \\
+  &= X^{\nu} \left( e_{\nu}(Y^{\mu}) + Y^{\lambda} \Gamma_{\nu \lambda}^{\mu} \right) e_{\mu}
+\end{align*}
+\\
+Since, in the last step, we were able to pull out $X^{\nu}$ and $e_{\mu}$, it makes sense to define the $\mu^{\text{th}}$ component of $\nabla_{\nu} Y$ as 
+\begin{align*}
+  (\nabla_{\nu} Y)^{\mu} &= e_{\nu}(Y^{\mu}) + \Gamma_{\nu \lambda}^{\mu} Y^{\lambda}
+\end{align*}
 
-\subsection{Covariant Derivatives of Vector Fields}
+This might look a bit different from our claim earlier that a connection is a partial derivative + a correction, but $\{\partial_{\mu}\}$ is a particularly nice basis for $\mathfrak{X}(M)$ and if we choose to use it, then,
+\[ \boxed{(\nabla_{\nu} Y)^{\mu} = \partial_{\nu} Y^{\mu} + \Gamma_{\nu \lambda}^{\mu} Y^{\lambda}} \]
+
+
+
+
+\vskip 1cm
+\subsubsection{Covariant Derivatives of Vector Fields}
 We already saw above that for a vector field $V \in \mathfrak{X}(M)$, the covariant derivative can be written as 
 \[  \nabla_{\mu} V^{\nu} = \partial_{\mu} V^{\nu} + (\Gamma_{\mu})_{\lambda}^{\nu} V^{\lambda} \]
 
@@ -550,12 +878,16 @@ Setting the two expressions equal to each other (and cancelling out terms in com
 So, 
 \[ \boxed{  \Gamma_{\mu' \lambda'}^{\nu'} = \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \Gamma_{\mu \lambda}^{\nu} - \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial^2 x^{\nu'}}{\partial x^{\mu} \partial x^{\lambda}} } \]
 \\
+\\
+Thus in order for $\nabla_{\mu}$ to be a valid covariant derivative, the connection coefficients need to trasnform as in the box above. Note that they transform \textbf{non-tensorially}.
+\\
+\\
 If it were just the first term on the RHS then the connection coefficients would also transform like a $(1,1)$ tensor, but they do not because of the presence of the second term.
 \\
 \\
 The second term makes $\Gamma_{\mu}$ non-tensorial in such a way that it cancels the non-tensoriality of $\partial_{\mu}$, making $\nabla_{\mu} V^{\nu}$ a $(1,1)$ tensor as desired. 
 \\
-\subsection{Extending the Covariant Derivative to Covector Fields}
+\subsubsection{Covariant Derivatives of Covector Field}
 We've found an expression for the covariant derivative of a 1-vector field $V \in \mathfrak{X}(M)$. How about a 1-form, $\omega \in \mathfrak{X}^*(M)$? Well, we argued earlier that \emph{\textbf{any}} covariant derivative should have the form $\nabla_{\mu} = \partial_{\mu} + \Gamma_{\mu}$, so for $\omega$ as well we can write that the components of 
 
 \[ \nabla_{\mu} \omega_{\nu} = \partial_{\mu} \omega_{\nu} + \tilde{\Gamma}_{\mu \nu}^{\lambda} \omega_{\lambda} \] \\
@@ -568,7 +900,7 @@ where $\tilde{\Gamma}_{\mu}$ is some other set of connection coefficients.
 \end{dottedbox}
 
 \vskip 0.5cm
-\textbf{Can we find a relationship between the components of $\Gamma$ and $\tilde{\Gamma}$?}
+\textbf{Can we find a relationship between the components of $\Gamma$ (for vector fields) and $\tilde{\Gamma}$ (for covector fields)?}
 Yes we can! 
 \\
 \\
@@ -600,7 +932,7 @@ But $\lambda, \sigma, \rho$ are all dummy variables (we're summing over all poss
 Thus, once we know have a connection for vector fields, we automatically have the connection for one-forms.
 \\
 \\
-\subsection{Covariant derivatives of General Tensors}
+\subsubsection{Covariant derivatives of General Tensors}
 The result from above is splendid! Arbitrary $(r,s)-$type tensors are formed using $r$ one-forms and $s$ vector fields. Therefore, we have the connection for any tensor space i.e. we can take the covariant derivative of any tensor!
 \\
 \\
@@ -618,17 +950,120 @@ The result from above is splendid! Arbitrary $(r,s)-$type tensors are formed usi
     \left(\nabla_{\sigma} T\right)^{\mu_1 \cdots \mu_r}_{\nu_1 \cdots \nu_s} = & \partial_{\sigma} T^{\mu_1 \cdots \mu_r}_{\nu_1 \cdots \nu_s} \\ + &\Gamma_{\sigma \lambda}^{\mu_1}T^{\lambda \mu_2 \cdots \mu_r}_{\nu_1 \cdots \nu_s} + \cdots + \Gamma_{\sigma \lambda}^{\mu_r}T^{\mu_1 \mu_2 \cdots \mu_{r-1} \lambda}_{\nu_1 \cdots \nu_s} \\ - &\Gamma_{\sigma \nu_1}^{\lambda}T^{\mu_1 \mu_2 \cdots \mu_r}_{\lambda \cdots \nu_s} - \cdots - \Gamma_{\sigma \nu_s}^{\lambda}T^{\mu_1 \mu_2 \cdots \mu_r}_{\nu_1 \cdots \nu_{s-1} \lambda} 
   \end{align*}
   i.e. for each $\mu_i$ index for $\mathfrak{X}(M)$, we add a $+\Gamma$ term, and for each $\nu_j$ index for $\mathfrak{X}(M)$ we add a $-\Gamma$ term. 
-
-
-
 \end{enumerate}
+
+\begin{bluebox}
+  So, to specify a covariant derivative is equivalent to specifying the \textbf{Connection} i.e. $n^3$ coefficients $\Gamma_{\mu \lambda}^{\nu}$ for a manifold of dimension $n$. Different Connections will give rise to different Covariant Derivatives. 
+\end{bluebox}
 
 % \subsection{More about the Connection Coefficients}
 
 % We saw this earlier too, but the connection $\Gamma_{\mu}$ is \emph{not} a tensor because its components $\Gamma_{\mu \sigma}^{\rho}$ do not transform tensorially. To see this explicitly, consider let's calculate the components in a new basis 
 
 
-\subsection{Parallel Transport}
+\vskip 1cm
+\subsection{Torsion}
+We noticed earlier that the connection coefficients don't transform tensorially due to the second term in their transformation equation.  
+
+\[  \Gamma_{\mu' \lambda'}^{\nu'} = \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \Gamma_{\mu \lambda}^{\nu} - \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial^2 x^{\nu'}}{\partial x^{\mu} \partial x^{\lambda}}  \]
+\\
+But since mixed partial derivatives commute (Clairaut's theorem) for the kinds of functions we're dealing with, we have
+\[ \frac{\partial^2 x^{\nu'}}{\partial x^{\mu} \partial x^{\lambda}} = \frac{\partial^2 x^{\nu'}}{\partial x^{\lambda} \partial x^{\mu}} \]
+\\
+Notice that the transformation of $\Gamma_{\lambda \mu}^{\nu}$ (instead of $\Gamma_{\mu \lambda}^{\nu}$) is given by 
+\begin{align*}
+  \Gamma_{\lambda' \mu'}^{\nu'} &= \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \Gamma_{\lambda \mu}^{\nu} - \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\lambda}}{\partial x^{\lambda'}}  \frac{\partial^2 x^{\nu'}}{\partial x^{\lambda} \partial x^{\mu}} \\
+  &= \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \Gamma_{\lambda \mu}^{\nu} - \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial^2 x^{\nu'}}{\partial x^{\mu} \partial x^{\lambda}}
+\end{align*}
+i.e. the non-tensorial term is identical in both of them.
+\\
+\\
+Thus, the object  
+\[ T_{\mu \lambda}^{\nu} \equiv \Gamma_{\mu \lambda}^{\nu} - \Gamma_{\lambda \mu}^{\nu} \]
+transforms tensorially as 
+\begin{align*}
+  \left( \Gamma_{\mu' \lambda'}^{\nu'} - \Gamma_{\lambda' \mu'}^{\nu'} \right) &= \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \left( \Gamma_{\mu \lambda}^{\nu} - \Gamma_{\lambda \mu}^{\nu} \right) \\
+  \implies T_{\mu' \lambda'}^{\nu'} &=  \frac{\partial x^{\lambda}}{\partial x^{\lambda'}} \frac{\partial x^{\mu}}{\partial x^{\mu'}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} \left( T_{\mu' \lambda'}^{\nu'} \right)
+\end{align*}
+
+This object $T_{\mu \lambda}^{\nu}$ is called the \textbf{Torsion Tensor} associated with the connection $\Gamma_{\mu \lambda}^{\nu}$.
+\\
+If a connection is symmetric in its lower indices i.e. $\Gamma_{\mu \lambda}^{\nu} = \Gamma_{\lambda \mu}^[\nu]$ then the torsion tensor vanishes and the connection is said to be \textbf{torsion-free}.
+\\
+\begin{note}
+  {Add more intuition about the Torsion Tensor; explain the name}
+\end{note}
+
+\subsection{Levi-Civita Connection}
+
+\begin{itemize}
+  \item We noted earlier that different connections give rise to different covariant derivatives. 
+  \item This raises the question, "Is there a specific connection associated to each manifold that can be considered as a 'standard' or 'canonical' one?".
+  \item It turns out that for \textbf{manifolds endowed with a metric}, there is indeed a unique \textit{torsion-free} and \textit{metric-compatible} connection called the \textbf{Levi-Civita Connection}.
+\end{itemize}  
+
+\begin{redbox}
+  A Connection is said to be \textbf{compatible with a metric $g$} if the covariant derivative of the metric with respect to the connection is zero everywhere i.e.
+  \[ \nabla_{\rho} g_{\mu \nu} = 0 \]
+  or, equivalently,
+  \[ \nabla_{X} g = 0 \]
+  for any vector field $X$.
+\end{redbox}
+
+\begin{bluebox}
+  \begin{theorem}
+    \textbf{(Fundamental Theorem of Riemannian Geometry):} There is exactly one torsion-free, metric compatible connection for a given metric $g_{\mu \nu}$ on a Riemannian manifold $M$. 
+  \end{theorem}
+\end{bluebox}
+
+\begin{proof}
+  If we are able to get a unique expression for the connection coefficients in terms of the metric, that will show both existence and uniqueness.
+  \\
+  \\
+  Recall that $g_{\mu \nu}$ is a $(0, 2)$ tensor (because it acts on two vectors $x^{\mu}, y^{\nu}$ as $g_{\mu \nu}x^{\mu}y^{\nu}$), so we have two $-\Gamma$ terms in the covariant derivative (one for each lower index).
+  \\
+  \\
+  Let's find the covariant derivatives for three cyclic indices:
+  \begin{align}
+    \nabla_{\sigma} g_{\mu \nu} = \partial_{\sigma} g_{\mu \nu} - \Gamma_{\sigma \mu}^{\lambda} g_{\lambda \nu} - \Gamma_{\sigma \nu}^{\lambda} g_{\mu \lambda} = 0\\
+    \nabla_{\mu} g_{\nu \sigma} = \partial_{\mu} g_{\nu \sigma} - \Gamma_{\mu \nu}^{\lambda} g_{\lambda \sigma} - \Gamma_{\mu \sigma}^{\lambda} g_{\nu \lambda} = 0 \\
+    \nabla_{\nu} g_{\sigma \mu} = \partial_{\nu} g_{\sigma \mu} - \Gamma_{\nu \sigma}^{\lambda} g_{\lambda \mu} - \Gamma_{\nu \mu}^{\lambda} g_{\sigma \lambda} = 0
+  \end{align}
+  where all of the covariant derivatives are zero because of metric-compatibility. Now, subtracting equation (2) and (3) from equation (1) gives us 
+  \begin{align*}
+    0 &= \partial_{\sigma} g_{\mu \nu} -  \partial_{\mu} g_{\sigma \nu} - \partial_{\nu} g_{\sigma \mu}  \color{blue}  - \Gamma_{\sigma \mu}^{\lambda} g_{\lambda \nu}  \color{red}  - \Gamma_{\sigma \nu}^{\lambda} g_{\mu \lambda}  \color{blue}  + \Gamma_{\mu \sigma}^{\lambda} g_{\nu \lambda}  \color{black} +  \Gamma_{\mu \nu}^{\lambda} g_{\lambda \sigma}  \color{red}  + \Gamma_{\nu \sigma}^{\lambda} g_{\lambda \mu}  \color{black}  + \Gamma_{\nu \mu}^{\lambda} g_{\sigma \lambda} \\
+    &= \partial_{\sigma} g_{\mu \nu} -  \partial_{\mu} g_{\sigma \nu} - \partial_{\nu} g_{\sigma \mu} + 2\Gamma_{\mu \nu}^{\lambda} g_{\lambda \sigma} 
+  \end{align*}
+  where in the first equation, because the connection is assumed to be torsion-free ($\Gamma_{\sigma \mu}^{\lambda} = \Gamma_{\mu \sigma}^{\lambda}$ and so on) and the metric is assumed to be symmetric i.e. $g_{\mu \nu} = g_{\nu \mu}$, the red/blue terms connection terms cancel while the black terms add.
+  \\
+  \\
+  So we have 
+  \begin{align*}
+    \Gamma_{\mu \nu}^{\lambda} g_{\lambda \sigma} = -\frac{1}{2}\left( \partial_{\sigma} g_{\mu \nu} -  \partial_{\mu} g_{\sigma \nu} - \partial_{\nu} g_{\sigma \mu} \right) 
+  \end{align*}
+  and then multiplying by $g^{\rho \sigma}$ turns the LHS into
+  \begin{align*}
+    \Gamma_{\mu \nu}^{\lambda} g_{\lambda \sigma} g^{\rho \sigma} &= \Gamma_{\mu \nu}^{\rho} \underbrace{g_{\rho \sigma} g^{\rho \sigma}}_{=1} \text{ (Since $\lambda$ is just a dummy variable)} \\
+    &= \Gamma_{\mu \nu}^{\rho}
+  \end{align*}
+  Therefore, we have a manifestly unique expression for the Connection Coefficients in terms of the metric, given by 
+  \[ \boxed{ \Gamma_{\mu \nu}^{\rho} = \frac{1}{2} g^{\rho \sigma}\left(\partial_{\mu} g_{\sigma \nu} + \partial_{\nu} g_{\sigma \mu} -  \partial_{\sigma} g_{\mu \nu} \right)  } \]
+  This defines the Levi-Civita Connection Coefficients.
+\end{proof}
+
+\begin{dottedbox}
+  In General Relativity, we pretty much always work with the Levi-Civita connection, and the \textbf{Christoffel Symbols} that you've come across if you've studied GR before are precisely the \textbf{Connection Coefficients of the Levi-Civita connection}.
+\end{dottedbox}
+
+\begin{note}
+  {Maybe talk about the Contorsion tensor}
+\end{note}
+
+
+
+\subsection{Curvature}
+
+\subsection{Parallel Transport and Geodesics}
 
 
 
@@ -647,7 +1082,7 @@ The result from above is splendid! Arbitrary $(r,s)-$type tensors are formed usi
 \subsection{Implicit Function Theorem}
 
 \vskip 1cm
-\subsection*{References for the chapter}
+% \subsection*{References for the chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -735,8 +1170,10 @@ Note that in a vector space, $v \star w = w \star v$. This is a very special pro
 
 \vskip 0.5cm
 \begin{dottedbox}
-  \underline{\textbf{Theorem:}} If $G$ is a finite group and $H \subset G$ is a subgroup, then $H$ divides $G$.
-
+  \begin{theorem}
+    If $G$ is a finite group and $H \subset G$ is a subgroup, then $H$ divides $G$.
+  \end{theorem}
+  
   \vskip 0.5cm
   \underline{\textbf{Proof Sketch:}} Let's define the equvalence relation $g_1 \sim g_2$ iff $g_1^{-1} g_2 \in H$. Suppose 
   \[ g_2 H = g_1 H \]
@@ -756,7 +1193,7 @@ Note that in a vector space, $v \star w = w \star v$. This is a very special pro
 \subsection{Normal subgroups}
 
 \vskip 0.5cm
-Some subgroups have the very special propert that their \emph{left and right cosets are equal}. This is unusual since group element multiplication is not generally guaranteed to be commutative.
+Some subgroups have the very special property that their \emph{left and right cosets are equal}. This is unusual since group element multiplication is not generally guaranteed to be commutative.
 
 \begin{mathdefinitionbox}{Normal Subgroup}
 \vskip 0.5cm
@@ -843,13 +1280,23 @@ Then, the first isomorphism theorem is as follows:
 
 \vskip 0.5cm
 \begin{dottedbox}
-  \underline{\textbf{First Isomorphism Theorem:}} For groups $G, H$ and map $\phi \text{ : } G \rightarrow H$
-  \begin{enumerate}[label=(\alph*)]
-    \item Ker$(\phi)$ is a normal subgroup of $G$ i.e. Ker$(\phi) \trianglelefteq G$.
-    \item Im$(\phi)$ is a subgroup of $H$ i.e. Im$(\phi) \leq H$.
-    \item The quotient of $G$ by ker$(\phi)$ is isomorphic to Im$(\phi)$ i.e.
-    \[ G / \text{Ker}(\phi) \cong \text{Im}(\phi) \]
-  \end{enumerate}
+  \begin{theorem}
+      \underline{\textbf{First Isomorphism Theorem:}} For groups $G, H$ and map $\phi \text{ : } G \rightarrow H$
+      \begin{enumerate}[label=(\alph*)]
+        \item Ker$(\phi)$ is a normal subgroup of $G$ i.e. Ker$(\phi) \trianglelefteq G$.
+        \item Im$(\phi)$ is a subgroup of $H$ i.e. Im$(\phi) \leq H$.
+        \item The quotient of $G$ by ker$(\phi)$ is isomorphic to Im$(\phi)$ i.e.
+        \[ G / \text{Ker}(\phi) \cong \text{Im}(\phi) \]
+      \end{enumerate}
+  \end{theorem}
+\end{dottedbox}
+
+\begin{dottedbox}
+  \begin{proof}
+    \begin{note}
+      {Write this up}
+    \end{note}
+  \end{proof}
 \end{dottedbox}
 
 

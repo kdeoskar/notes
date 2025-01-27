@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  26 JUL 2024 03:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  16 AUG 2024 09:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -412,13 +412,17 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 \@brx=\box59
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-)) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+)
+\c@theorem=\count308
+\c@lemma=\count309
+\c@definition=\count310
+) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2024-05-08 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count308
-\l__lipsum_a_int=\count309
-\l__lipsum_b_int=\count310
+\g__lipsum_par_int=\count311
+\l__lipsum_a_int=\count312
+\l__lipsum_b_int=\count313
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks38
 \pgfutil@tempdima=\dimen178
@@ -449,14 +453,14 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen189
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count311
-\c@pgf@countb=\count312
-\c@pgf@countc=\count313
-\c@pgf@countd=\count314
+\c@pgf@counta=\count314
+\c@pgf@countb=\count315
+\c@pgf@countc=\count316
+\c@pgf@countd=\count317
 \t@pgf@toka=\toks42
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
-\pgf@sys@id@count=\count315
+\pgf@sys@id@count=\count318
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -467,21 +471,21 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count316
-\pgfsyssoftpath@bigbuffer@items=\count317
+\pgfsyssoftpath@smallbuffer@items=\count319
+\pgfsyssoftpath@bigbuffer@items=\count320
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen190
-\pgfmath@count=\count318
+\pgfmath@count=\count321
 \pgfmath@box=\box61
 \pgfmath@toks=\toks45
 \pgfmath@stack@operand=\toks46
 \pgfmath@stack@operation=\toks47
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count319
+\c@pgfmathroundto@lastzeros=\count322
 )) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen191
@@ -511,7 +515,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box62
 \pgf@hbox=\box63
 \pgf@layerbox@main=\box64
-\pgf@picture@serial@count=\count320
+\pgf@picture@serial@count=\count323
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen265
@@ -532,8 +536,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen270
-\pgf@sys@shading@range@num=\count321
-\pgf@shadingcount=\count322
+\pgf@sys@shading@range@num=\count324
+\pgf@shadingcount=\count325
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
@@ -568,7 +572,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count323
+\pgf@plot@mark@count=\count326
 \pgfplotmarksize=\dimen275
 )
 \tikz@lastx=\dimen276
@@ -583,17 +587,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box68
 \tikz@tempbox=\box69
 \tikz@tempbox@bg=\box70
-\tikztreelevel=\count324
-\tikznumberofchildren=\count325
-\tikznumberofcurrentchild=\count326
-\tikz@fig@count=\count327
+\tikztreelevel=\count327
+\tikznumberofchildren=\count328
+\tikznumberofcurrentchild=\count329
+\tikz@fig@count=\count330
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count328
-\pgfmatrixcurrentcolumn=\count329
-\pgf@matrix@numberofcolumns=\count330
+\pgfmatrixcurrentrow=\count331
+\pgfmatrixcurrentcolumn=\count332
+\pgf@matrix@numberofcolumns=\count333
 )
-\tikz@expandcount=\count331
+\tikz@expandcount=\count334
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
@@ -612,9 +616,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box72
 \tcb@lowerbox=\box73
 \tcb@phantombox=\box74
-\c@tcbbreakpart=\count332
-\c@tcblayer=\count333
-\c@tcolorbox@number=\count334
+\c@tcbbreakpart=\count335
+\c@tcblayer=\count336
+\c@tcolorbox@number=\count337
 \l__tcobox_tmpa_box=\box75
 \l__tcobox_tmpa_dim=\dimen284
 \tcb@temp=\box76
@@ -623,10 +627,10 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box79
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.2.0'
-\c@tcbrastercolumn=\count335
-\c@tcbrasterrow=\count336
-\c@tcbrasternum=\count337
-\c@tcbraster=\count338
+\c@tcbrastercolumn=\count338
+\c@tcbrasterrow=\count339
+\c@tcbrasternum=\count340
+\c@tcbraster=\count341
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
 (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -656,30 +660,30 @@ Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
 \tcbfitdim=\dimen285
 \tcb@lowerfitdim=\dimen286
 \tcb@upperfitdim=\dimen287
-\tcb@cur@hbadness=\count339
+\tcb@cur@hbadness=\count342
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
 (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
 (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count340
+\lst@mode=\count343
 \lst@gtempboxa=\box84
 \lst@token=\toks52
-\lst@length=\count341
+\lst@length=\count344
 \lst@currlwidth=\dimen288
-\lst@column=\count342
-\lst@pos=\count343
+\lst@column=\count345
+\lst@pos=\count346
 \lst@lostspace=\dimen289
 \lst@width=\dimen290
-\lst@newlines=\count344
-\lst@lineno=\count345
+\lst@newlines=\count347
+\lst@lineno=\count348
 \lst@maxwidth=\dimen291
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count346
-\lst@skipnumbers=\count347
+\c@lstnumber=\count349
+\lst@skipnumbers=\count350
 \lst@framebox=\box85
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/05/25 1.10b listings configuration
@@ -690,7 +694,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.2.0'
 (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.2.0'
 )
-\c@tcblisting=\count348
+\c@tcblisting=\count351
 )) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 )) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
@@ -720,13 +724,13 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count349
+\c@abspage=\count352
 Package zref Info: New property: abspage on input line 67.
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
 \mdf@templength=\skip67
-\c@mdf@globalstyle@cnt=\count350
+\c@mdf@globalstyle@cnt=\count353
 \mdf@skipabove@length=\skip68
 \mdf@skipbelow@length=\skip69
 \mdf@leftmargin@length=\skip70
@@ -801,16 +805,16 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@horizontalspaceofbox=\skip131
 \mdfsubtitleheight=\skip132
 \mdfsubsubtitleheight=\skip133
-\c@mdfcountframes=\count351
+\c@mdfcountframes=\count354
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count352
-\c@mdf@env@i=\count353
-\c@mdf@env@ii=\count354
-\c@mdf@zref@counter=\count355
+\mdf@envdepth=\count355
+\c@mdf@env@i=\count356
+\c@mdf@env@ii=\count357
+\c@mdf@zref@counter=\count358
 Package zref Info: New property: mdf@pagevalue on input line 895.
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
@@ -826,24 +830,24 @@ Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
 ) (./Notes.aux)
 \openout1 = `Notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -885,12 +889,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 113.
-Package microtype Info: Applying patch `item' on input line 113.
-Package microtype Info: Applying patch `toc' on input line 113.
-Package microtype Info: Applying patch `eqnum' on input line 113.
-Package microtype Info: Applying patch `footnote' on input line 113.
-Package microtype Info: Applying patch `verbatim' on input line 113.
+LaTeX Info: Redefining \microtypecontext on input line 115.
+Package microtype Info: Applying patch `item' on input line 115.
+Package microtype Info: Applying patch `toc' on input line 115.
+Package microtype Info: Applying patch `eqnum' on input line 115.
+Package microtype Info: Applying patch `footnote' on input line 115.
+Package microtype Info: Applying patch `verbatim' on input line 115.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2),
 (microtype)             factor: 1100.
@@ -898,7 +902,7 @@ Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 10, shrink: 10, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 113.
+LaTeX Info: Redefining \showhyphens on input line 115.
 Package microtype Info: Tracking enabled.
 Package microtype Info: Using default tracking set `smallcaps'.
 Package microtype Info: Adjustment of interword spacing enabled.
@@ -908,12 +912,12 @@ Package microtype Info: Using default kerning set `alltext'.
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 113.
+Package hyperref Info: Link coloring ON on input line 115.
  (./Notes.out) (./Notes.out)
 \@outlinefile=\write4
 \openout4 = `Notes.out'.
 
-\c@lstlisting=\count356
+\c@lstlisting=\count359
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks53
@@ -923,13 +927,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 123.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 123.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -940,17 +944,27 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--146
+Underfull \hbox (badness 10000) in paragraph at lines 138--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--146
+Underfull \hbox (badness 10000) in paragraph at lines 138--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--146
+Underfull \hbox (badness 10000) in paragraph at lines 138--155
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--155
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--155
 
  []
 
@@ -958,234 +972,217 @@ Underfull \hbox (badness 10000) in paragraph at lines 136--146
 
 [1
 
-{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+[2])
 \tf@toc=\write5
 \openout5 = `Notes.toc'.
 
 
 
-[2]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 160.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 160.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 160.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 163.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 171.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 171.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 171.
-
-
-
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 178--186
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 183.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 183.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 183.
+
+
+
+[4]
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 205--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--186
+Underfull \hbox (badness 10000) in paragraph at lines 205--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--186
+Underfull \hbox (badness 10000) in paragraph at lines 205--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--197
+Underfull \hbox (badness 10000) in paragraph at lines 214--224
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--197
+Underfull \hbox (badness 10000) in paragraph at lines 214--224
 
  []
 
 
 Package microtype Warning: I cannot find a spacing list for font
 (microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
-(microtype)                spacing for this font on input line 197.
-
-
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 218--231
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--231
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 244--251
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 244--251
-
- []
-
-
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 273--290
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--290
-
- []
+(microtype)                spacing for this font on input line 224.
 
 
 
 [6]
+Underfull \hbox (badness 10000) in paragraph at lines 247--260
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--260
+
+ []
+
+
 
 [7]
+Underfull \hbox (badness 10000) in paragraph at lines 279--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--327
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--327
+
+ []
+
+
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 328--333
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--333
-
- []
-
-
 
 [9]
+Underfull \hbox (badness 10000) in paragraph at lines 350--358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 350--358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 350--358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--383
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--383
+
+ []
+
+
 
 [10]
+Underfull \hbox (badness 10000) in paragraph at lines 404--411
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 404--411
+
+ []
+
+
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 473--480
+Underfull \hbox (badness 10000) in paragraph at lines 446--455
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--491
+Underfull \hbox (badness 10000) in paragraph at lines 446--455
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--491
+Underfull \hbox (badness 10000) in paragraph at lines 461--469
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--500
+Underfull \hbox (badness 1194) in paragraph at lines 461--469
+\OT1/cmr/bx/n/10.95 (+10) Example: \OT1/cmr/m/n/10.95 (+10) The set $[][](\OML/cmm/m/it/10.95 V; W\OT1/cmr/m/n/10.95 (+10) )$ of $\U/msb/m/n/10.95 K$\OT1/cmr/m/n/10.95 (+10) -linear maps be-tween the $\U/msb/m/n/10.95 K$\OT1/cmr/m/n/10.95 (+10) -vector spaces $\OML/cmm/m/it/10.95 V$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 456--469
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--491
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--491
 
  []
 
 
 
 [12]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 525.
- (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/ueuf.fd
+Underfull \hbox (badness 10000) in paragraph at lines 493--496
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+euf on input line 499.
+(c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-euf.cfg
 File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 529--533
-
- []
-
-
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 537--541
+Underfull \hbox (badness 10000) in paragraph at lines 562--577
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 551--558
+Underfull \hbox (badness 10000) in paragraph at lines 562--577
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 551--558
+Underfull \hbox (badness 10000) in paragraph at lines 562--577
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--576
+Underfull \hbox (badness 10000) in paragraph at lines 585--592
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 585--592
 
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 598--603
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 598--603
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 604--608
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 610--612
-
- []
-
-
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 613--615
-
- []
-
-
 
 [16]
 
@@ -1194,44 +1191,196 @@ Underfull \hbox (badness 10000) in paragraph at lines 613--615
 [18]
 
 [19]
+Underfull \hbox (badness 10000) in paragraph at lines 756--760
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 760--764
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 784--790
+
+ []
+
+
 
 [20]
+Underfull \hbox (badness 10000) in paragraph at lines 812--816
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 816--824
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 816--824
+
+ []
+
+
 
 [21]
+Underfull \hbox (badness 10000) in paragraph at lines 857--861
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 865--869
+
+ []
+
+
 
 [22]
+Underfull \hbox (badness 10000) in paragraph at lines 879--890
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 879--890
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 879--890
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 879--890
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 903--908
+
+ []
+
+
 
 [23]
+Underfull \hbox (badness 10000) in paragraph at lines 930--935
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 930--935
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 936--940
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 942--944
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 945--947
+
+ []
+
+
 
 [24]
+Underfull \hbox (badness 10000) in paragraph at lines 977--982
+
+ []
+
+
 
 [25]
+Underfull \hbox (badness 10000) in paragraph at lines 1019--1027
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1019--1027
+
+ []
+
+
 
 [26]
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1041
 
-[27] (./Notes.bbl)
+ []
 
-[28] (./Notes.aux)
+
+
+[27]
+
+[28]
+
+[29]
+
+[30]
+
+[31]
+
+[32]
+
+[33]
+
+[34]
+
+[35]
+
+[36]
+
+[37]
+
+[38] (./Notes.bbl)
+
+[39] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: 4B2A7946CF7E773E11014AFDA4EC1D85;10222.
+(rerunfilecheck)             Checksum: 123E290761A28855BCB48A1DEF9FF959;11545.
  ) 
 Here is how much of TeX's memory you used:
- 33601 strings out of 475517
- 672098 string characters out of 5775029
- 1948908 words of memory out of 5000000
- 55372 multiletter control sequences out of 15000+600000
- 580758 words of font info for 179 fonts, out of 8000000 for 9000
+ 33724 strings out of 475517
+ 673844 string characters out of 5775029
+ 1947908 words of memory out of 5000000
+ 55431 multiletter control sequences out of 15000+600000
+ 581983 words of font info for 192 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 90i,17n,96p,1088b,1284s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,19n,96p,1088b,1304s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Notes.pdf (28 pages, 342295 bytes).
+Output written on Notes.pdf (39 pages, 389369 bytes).
 PDF statistics:
- 586 PDF objects out of 1000 (max. 8388607)
- 478 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
- 58389 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 711 PDF objects out of 1000 (max. 8388607)
+ 591 compressed objects within 6 object streams
+ 143 named destinations out of 1000 (max. 500000)
+ 58461 words of extra memory for PDF output out of 61914 (max. 10000000)
 

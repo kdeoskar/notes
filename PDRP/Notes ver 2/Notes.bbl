@@ -1,9 +1,23 @@
 \begin{thebibliography}{1}
 
+\bibitem{LeeSM}
+John~M. Lee.
+\newblock {\em Introduction to Smooth Manifolds, 2nd edition}.
+\newblock Springer, 2013.
+
 \bibitem{Maggiore05}
 Michelle Maggiore.
 \newblock {\em A Modern Introduction to Quantum Field Theory}.
 \newblock Oxford University Press, 2005.
+
+\bibitem{SchullerGeomAnatomy}
+Frederic P.~Schuller Simon~Rea.
+\newblock Lectures on the geometric anatomy of theoretical physics.
+\newblock https://mathswithphysics.blogspot.com/2016/07/lectures-on-geometric-anatomy-of.html, 2014.
+
+\bibitem{SkinnerAQFT}
+David Skinner.
+\newblock {\em Quantum Field Theory II, University of Cambridge Part III Mathematical Tripos}.
 
 \bibitem{232AdiscussionNotes}
 Andrés~Franco Valiente.
@@ -14,10 +28,5 @@ Andrés~Franco Valiente.
 Steven Weinberg.
 \newblock What is quantum field theory, and what did we think it is?
 \newblock 1997.
-
-\bibitem{ZeeQFTNutshell}
-Anthony Zee.
-\newblock {\em Quantum Field Theory in a Nutshell, Second Edition}.
-\newblock Princeton University Press, 2010.
 
 \end{thebibliography}

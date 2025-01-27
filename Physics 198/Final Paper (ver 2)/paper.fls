@@ -394,6 +394,17 @@ OUTPUT paper.toc
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT ./paper.bbl
 INPUT ./paper.bbl
@@ -402,6 +413,7 @@ INPUT paper.aux
 INPUT ./paper.out
 INPUT ./paper.out
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb

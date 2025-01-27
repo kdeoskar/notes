@@ -1,0 +1,309 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 3} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1:} Prove that the fundamental group of a loop space $\Omega X$ of any base point space $(X, x_0)$ is abelian. The same for any topological group. 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Let's consider the case for a topological group $G$ first. 
+
+\begin{redbox}
+  Recall that a hausdorff topological space $G$ is called a \textbf{topological group} if it is equipped with \textbf{continuous maps} 
+  \begin{align*}
+    * \text{ : } G \times G \hookrightarrow G, \;\;\;&(x, y) \mapsto xy \\
+    i \text{ : } G \rightarrow G, \;\;\;&x \mapsto x^{-1}
+  \end{align*}
+\end{redbox}
+
+\begin{dottedbox}
+  First, observe that for a topological group $G$, the base-point doesn't mapper for the fundamental group.
+  \\
+  \\
+  Consider any two points $a, b \in G$. Then, we have a multiplication map $m_{a^{-1}b} \text{ : } G \rightarrow G$,  $x \mapsto x(a^{-1}b)$  obtained from $* \text{ : } G \times G \rightarrow G$ by fixing the argument from the second $G$ factor to be $ a^{-1}b$. This map $m_{a^{-1} b}$ sends $a \mapsto b$ and is a homeomorphism on $G$, so it can be viewed as a homeomorphism between the base-pointed spaces $(G, a)$ and $(G, b)$.
+  \\
+  \\
+  Since it's a homeomorphism, it induces an isomorphism $$\pi_1(G, a) \overset{\left(m_{a^{-1} b}\right)_*}{\cong} \pi_1(G, b)$$
+  So, for convenience, we can study $\pi_1(G, e)$ where $e$ is the identity element.
+\end{dottedbox}
+
+\vskip 0.5cm
+Let's show that for a topological group $G$, the fundamental group $\pi_1(G, e)$ is abelian. Consider two paths $c\text{ : } [0, 1] \rightarrow G, \; s \mapsto c(s) \in G$ and $d\text{ : } [0, 1] \rightarrow G, \; t \mapsto d(t) \in G$ starting and ending at $e \in G$. The goal is to show that $cd$ is homotopic to $dc$ (where $cd$ refers to the concatenation where we do $c$, then $d$). 
+\\
+\\
+Draw out the 2D plane spanned by perpendicular $s$, $t$ axes and consider the square $[0, 1] \times [0, 1]$ with $(s,t) = (0,0)$ being the bottom-left corner of the square and $(s,t)= (0, 1)$ being the top-left corner. Then we can interpret a point $(s, t) \in [0, 1] \times [0, 1]$ as $c(s) * d(t)$ where $*$ denotes group multiplication.
+\\
+\\
+Then, the path $cd$ corresponds to traversing horizontally along the bottom-edge of the square, following by traversing vertically up the right-edge. The path $dc$ corresponds to traversing vertically the left-edge and then horizontally the top-edge of the square.
+\\
+\\
+Then, to find a homotopy between the two paths is the same as deforming one of these curves into the other while making sure we start at the bottom-left and end at the top-right, which we can certainly do thanks to the presence of the group multiplication map.
+\\
+\\
+\begin{redbox}
+  Now, recall that an \textbf{H-space} is a topological space $X$ with an element $e \in X$ and continuous map $\mu \text{ : } X \times X \rightarrow X$ such that $\mu(e,e) = e$ and the maps $x \mapsto \mu(e, x)$ and $x \mapsto \mu(x, e)$ are both homotopic to the identity map $\mathrm{Id}_X$.
+  %  through maps sending $e$ to $e$. 
+\end{redbox} 
+The exact same argument as the one provided for Topological Groups works for $H$-spaces except with the group multiplication replaced with the map $\mu$.
+\\
+\\
+Now, note that for a base-pointed space $(X, x_0)$, the loop space $\Omega X$ is an H-space. Thus, the fundamental group of $\Omega X$ is abelian.
+\\
+\begin{dottedbox}
+  \underline{\textbf{Proof that $\Omega X$ is an H-space:}}
+  \\
+  The loop space $\Omega X$ of base-pointed space $(X, x_0)$ consists of loops starting and ending at $x_0$ i.e. $$ \Omega X = \left\{ \gamma \; | \; \gamma \text{ : } [0, 1] \rightarrow X \text{ is continuous and } \gamma(0) = \gamma(1) = x_0 \right\} $$
+  \\
+  \\
+  This space has a "multiplication" map $\mu \text{ : } \Omega X \times \Omega X \rightarrow \Omega X$ defined by concatenation of loops i.e. for two loops $\alpha, \beta \in \Omega X$ we have $$ \mu(\alpha, \beta) = \begin{cases}
+    \alpha(2t), \; 0 \leq t \leq \frac{1}{2} \\
+    \beta(2t - 1), \; \frac{1}{2} < t \leq 1
+  \end{cases}  $$
+  \\
+  Certainly, we have $\mu(e, e) = e$. The maps $\alpha \mapsto \mu(\alpha, e)$ and $\alpha \mapsto \mu(e, \alpha)$ are homotopic to the identity
+  \\
+  \\
+  \begin{note}
+    {Complete this soon using the pasting lemma and stuff; see https://math.stackexchange.com/questions/1755653/every-loop-space-omega-y-w-0-has-the-structure-of-an-h-group for inspiration.}
+  \end{note}
+\end{dottedbox}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Every non-orientable connected manifold has the \textit{oriented} double-cover, whose fiber over a given point consists of the two orientations of (of the tangent space) at that point. Find out which of the double covers $G_{+}(n, k)$ over $G(n, k)$ (k other than 0, n) are orienting.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by these Math.StackExchange posts: \href{https://math.stackexchange.com/questions/69533/fundamental-groups-of-grassmann-and-stiefel-manifolds}{Fundamental groups of Grassmann and Stiefel Manifolds}, \href{https://math.stackexchange.com/questions/3791207/oriented-grassmann-is-a-2-sheeted-covering-space-of-grassmann}{Oriented Grassmannian is a 2-sheeted covering space of Grassmannian}, \href{https://math.stackexchange.com/questions/1610645/the-oriented-grassmannian-widetilde-textgrk-mathbbrn-is-simply-conn}{The Oriented Grassmannian is simply connected for $n > 2$})
+\\
+\\
+We know that there is a 2-to-1 projection from $G_+(n, k)$ to $G(n,k)$ for each $n, k$. So, the problem of figuring out which double covers $G_+(n,k)$ over $G(n,k)$ are orienting boils down to figuring out which of the $G(n,k)$ are non-oriented.
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} 
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that if $X$ is locally path-connected, then the projection from $E(X, x_0)$ to $X$ is \textit{open} (i.e. the image of every open set is open)
+    \item If, in addition, $X$ is semi-locally simply connected, then $E(X, x_0)$ is locally path-connected. 
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\begin{enumerate}[label=(\alph*)]
+  \item Consider a locally path-connected base-pointed space $(X, x_0)$. Recall that "locally path-connected" means that for every point $x \in X$ and every open neighborhood $U \ni x$ there exists an open neighborhood $V \ni x$ such that 
+  \begin{enumerate}
+    \item $\bar{V} \subset U$ and
+    \item Any two points in $V$ can be connected via a path in $U$.
+  \end{enumerate}
+
+  The space $(X, x_0)$ has path-space $E(X, x_0)$ and projection 
+  \begin{align*}
+    p \text{ : } E(X, x_0) \rightarrow &X \\
+                    \gamma \mapsto &\gamma(1)
+  \end{align*}
+
+  Recall that the topology on $E(X, x_0)$ has the basis consisting of sets of the form $U(K, O)$ where
+  $$ U(K, O) = \left\{ \gamma \;|\; \gamma \text{ : } K \subseteq_{cpt} I \rightarrow O \subseteq_{open} X \text{ is continuous} \right\} $$
+  \\
+  Consider any such basis open-set $U(K, O)$  
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

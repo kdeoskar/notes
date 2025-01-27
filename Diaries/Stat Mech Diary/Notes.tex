@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+% {\fontsize{22}{22} \selectfont Lecturer: Alexander Givental}
+% \vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Miscellaneous Notes on Statistical Mechanics}
+% \vskip 24pt
+% {\fontsize{14}{14} \selectfont \rmfamily Random tidbits} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+This is a collection of random facts, theorems, exercises, and illustrations I've come across/thought up while learning Statistical Mechanics. Topics may be organized in a slightly nonsensical manner (sorry). Any errors are due to my own ignorance - please feel free to reach out and correct me!
+\\
+\\
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\setcounter{tocdepth}{3}
+\tableofcontents 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{What is Entropy?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Coloquially, Entropy is often described as the disorder associated with a system, but perhaps a slightly more specific description would be that:
+\begin{dottedbox}
+  Entropy tells us how the energy of a system can be distributed amongst the various states the system can take. 
+\end{dottedbox}
+
+\subsection{Thermodynamics Motivation}
+A statement \cite{BlundellThermal10}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{What the hell is a Thermodynamic Potential?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{In 100 words}
+
+\begin{bluebox}
+  Internal Energy $U$ is cool, and $$ dU = T \cdot dS -P \cdot dV + \mu \cdot dN $$ i.e. changes in $S, P, N$ cause change in $U$ with proportionality constant given by $T, -P, \mu$. So, $S, P, N$ are called the \textbf{Natural Variables of $U$}.
+  \\
+  \\
+  Thermodynamic Potentials like Enthalpy, Gibbs Energy, Free Energy are analogous to $U$ but have some other set of  natural variables other than $S, P, N$. They capture the essence of the "Energy" we're intereste in keeping track of in different situations. 
+  \\
+  \\
+  For example, $U$ is constant for constant $S, P, N$. But entropy is difficult to experimentally measure and so to study chemical reactions we'd like to have a version of $U$ which has natural variables $P, V, N$ instead. We build this new version of $U$ by carrying out a \textbf{Legendre Transform}, and it is called \textbf{Enthalpy}. We obtain the Gibbs Energy and Free energy via other Legendre transforms.
+\end{bluebox}
+
+\subsection{In more detail...}
+Internal energy is defined via an equation/function of state i.e. $U = U(\textrm{state variables})$. In particular, this means that if we move from one equilibrium state to another, the change in internal energy is the same irrespective of \emph{how} we moved between the two equilibrium states in parameter space \begin{note} {Fact check this.} \end{note} 
+\\
+\\
+But it's not unique. Taking $U$ and adding to it some other combination of functions of state like $p, V, T$ etc. gives us back another function of state. Eg. $U + pV, ~U-TS,$ etc. (Of course, whatever we add has to also have units of energy)
+\\
+\\
+Most of these functions of state aren't super useful, but there are a few which are of interest. These are called \textbf{Thermodynamic potentials}. The reason for this name is because they play a similar role to potentials in classical mechanics, wherein there is an associated (generalized) force "induced" by the potential.
+\\
+\\
+The different Thermodynamic Potentials have different \textbf{natural variables} i.e. variables which cause changes in the potential (and thus to which there are associated forces), and we go between different Thermodynamic Potentials by a procedure which changes the natural variables - namely, we apply \textbf{Legendre Transformations}.
+
+
+\subsection{Conjugate Variables}
+As discussed earlier \begin{note} {Add discussion, if not already there} \end{note}, the first law of thermodynamics states that for internal energy $U$, $dU$ is of the form $$dU = \sum_{i} p_i dq^i$$ where $(q^i, p_i)$ are \textbf{conjugate variables}, with $p_i$ being intensive and $q^i$ being extensive. A pair $(q^i, p_i)$ of this type which contributes to the internal energy are called \textbf{conjugate variables}. For example, $\{-p, V\}$ for an Ideal Gas, or $\{\mathbf{B}, \mathbf{M}\}$ for a Magnet \cite{Gros17}. This is slightly different from the notion of conjugate variables in Classical Mechanics because the underlying mathematical structure for Thermodynamics is \textbf{contact geometry} whereas it is \textbf{symplectic geometry} for Classical Mechanics \cite{QMechanic17} \cite{Nejati18} \cite{Rajeev07}. \begin{note}
+  {Add more content to this section}
+\end{note}
+
+\subsection{Legendre Transformations}
+
+
+\subsection{Intuition for Gibbs Free Energy}
+
+\cite{Bryan18}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{The Definition of Temperature}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Temperature outside of equilibrium?}
+
+\cite{PhysStackVeronika2017}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

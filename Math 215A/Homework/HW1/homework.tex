@@ -1,0 +1,346 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 1} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1:} Which of the following spaces are pairwise homeomorphic and which are not? 
+  \begin{enumerate}[(a)]
+    \item The Orthogonal Group $SO_3$
+    \item The space $T_1 S^2$ of unit tangent vectors to $S^2$
+    \item The Stiefel Manifold $V(3, 2)$
+    \item In the complex $3-$space $\C^3$ with coordinates $z_1, z_2, z_3$, the set of unit vectors i.e. $\{ (z_1, z_2, z_3) \text{ : } |z_1|^2 + |z_2|^2 + |z_3|^2 = 1 \}$ satisfying $z_1^2 + z_2^2 + z_3^2 = 0$. Let's denote this set as $X$.
+    \item The real projective space $\mathbb{RP}^3$
+    \item $\mathbb{S}^2 \times \mathbb{S}^1$
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+We have 
+\[ SO_3 \cong \mathbb{RP}^3 \cong SO_3 \cong T_1 \mathbb{S}^2 \cong X \] i.e. all of them except $\mathbb{S}^2 \times \mathbb{S}^1$ are homeomorphic.
+\\
+\begin{itemize}
+  \item $SO_3$ is the set of rotations in three dimensions. We can describe any 3D rotation by specifying the axis of rotation and angle of rotation about that axis (in radians). With this perspective, a solid ball of radius $\pi$ in $\R^3$, $\mathbb{B}^3$, is homeomorphic to $SO_3$ with some modifications. If we let the line between the origin and a point $x$ describe the axis of rotation and the length of the line be the angle of rotation about that point. However, note that $\pi \cdots \mathbf{x}$ and $\pi \cdot (-\mathbf{x})$ both correspond to rotating by $\pi$ radians around the axis defined by $\mathbf{x}$. So, to make o ur map from $\mathbb{B}^3$ to $SO_3$ injective we need to identify antipodal points on the boundary. Thus, $SO_3 \cong \mathbb{RP}^3$.
+  
+  \item Again, we can think of $T_1 \sph^2$ as $SO_3$ using the rotation axis and angle perspective. The space of unit tangent vectors at each point $x \in \sph^2$ is just $\sph^1$. So $T_1 \sph^2$ is a \textbf{circle bundle} over $\sph^2$. So, again, a point on $\sph^2$ can be thought to define an axis of rotation and the value of the circle bundle at that point gives us the amount of rotation.  
+  
+  % \begin{bluebox}
+  %   $T_1 \sph^2$ is a non-trivial bundle because it has "twists", and not isomorphic to the trivial bundle $\sph^2 \times \sph^1$.
+
+  %   \begin{note}
+  %     {Elaborate.}
+  %   \end{note}
+  % \end{bluebox}
+
+  \item Thinking of the Stiefel Manifold as a homogeneous space of actions of classical groups we know that (since $3 > 2$) 
+  \begin{align*}
+    V(3,2) &= O(3)/O(3-2) = SO(3)/SO(1) = SO(3)
+  \end{align*}
+
+  Alternatively, we can think of $SO_3, T_1 \sph^2, V(3,2)$ as collections of pairs $(\vec{x}, \vec{y})$ which are orthogonal and have fixed length. (In the case of $SO_3$,) 
+  
+  \item Writing each complex number as $z_i = x_i + y_i$, the condition $|z_1|^2 + |z_2|^2 + |z_2|^2 = 1$ gives us 
+  \begin{equation}
+    % x_1^2 + y_1^2 + x_2^2 + y_2^2 + x_3^2 + y_2^2 + = 1
+    \sum_{i} x_i^2 + \sum_{i} y_i^2 = 1
+  \end{equation}
+  and the condition $z_1^2 + z_2^2 + z_3^2 = 0$ gives us 
+  \begin{align*}
+    &(x_1^2 - y_1^2 + i\cdot 2x_1y_1) + (x_2^2 - y_2^2 + i\cdot 2x_2y_2) + (x_3^2 - y_3^2 + i\cdot 2x_3y_3) = 0 \\
+  \end{align*}
+  and the requirement that the real and imaginary parts are separately zero gives us 
+  \begin{align}
+    &\sum_{i} x_i^2 - \sum_{i} y_i^2 = 0 \\
+    &\sum_{i} x_i y_i = 0
+  \end{align}
+  
+  Equations (1) and (2) give tell us that 
+  \[ x_1^2 + x_1^2 + x_1^2 = y_1^2 + y_1^2 + y_1^2 = \frac{1}{2} \] and Equation (3) tells us that \[ \left(x_1, x_2, x_2\right) \cdot \left(y_1, y_2, y_2\right) = 0 \] i.e. we have two fixed length vectors $\vec{a} =  \left(x_1, x_2, x_2\right)$, $\vec{b} =  \left(y_1, y_2, y_2\right)$ which are ortogonal to each other. So, $X$ is homeomorphic to $SO_3$.
+\end{itemize} 
+
+\vskip 0.5cm
+\begin{bluebox}
+  \textbf{Why is $SO(3) \neq \sph^2 \times \sph^1$?}
+  \\
+  \\
+  % We might naively think that since a rotation in $SO(3)$ can be represented as $\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}^{T}$ where $\{\vec{v}_i\}$ forms an oriented orthonormal basis (ONB), that should correspond to $\sph^2 \times \sph^1$ since  
+  We might naively think that since a rotation in $SO(3)$ can be specified by an axis of rotation + an angle of rotation, which would correspond to an element of $\sph^2$ for the rotation and an element of $\sph^1$ for the amount of rotation.
+  \\
+  \\
+  However, trying to do this would effectively by to take every point in $\sph^2$ and assign to it an element of the tangent space at that point which just happens to have unit length (and is thus an element of $\sph^1$ since $T_x \sph^2 \cong \R^2$ for any $x \in \sph^2$).
+  \\
+  \\
+  But that means we're trying to assign a non-vanishing smooth vector field to $\sph^2$, which is impossible due to the \textbf{Hairy Ball Theorem}.
+  \\
+  \\
+  If we wanted to describe $SO(3)$ rotations by assigning values of $\sph^1$ to points on $\sph^2$, we would have to do it via a \textbf{circle bundle} which is a fiber bundle over $\sph^2$.
+\end{bluebox}
+
+
+\begin{bluebox}
+  % Other than the fact that $\sph^1 \times \sph^1 \not\cong T_1 \sph^2$, 
+  We can also tell that $\sph^2 \times \sph^1 \not\cong SO_3$ by looking at their fundamental groups: 
+\[ \pi\left(\sph^2 \times \sph^1\right) = \mathbb{Z}^3 \neq \pi(SO_3) = \mathbb{Z}/2\mathbb{Z} \]
+\end{bluebox}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Prove that a compact subset in $\R^{\infty} \text{:}= \lim \R^n$ (the union of a nested sequence of Euclidean Spaces) must lie in a finite dimensional subspace $\R^n$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+$\R^{\infty}$ is the space of sequence $(x_1, x_2, x_3, \cdots)$ and the topology on it is described as :
+\begin{dottedbox}
+  A subset $F \subseteq \R^{\infty}$ is said to be open/closed if and only if $F \cap \R^{n}$ is open/closed in $\R^n$ for all $n \in N$.
+\end{dottedbox} We'll show the claim by contrapositive. Consider a subset $A \subseteq \R^{\infty}$ which doesn't lie in a finite dimensional subspace, and denote $A_i = A \cap \R^{i}$. Let's define $B \subseteq \R^{\infty}$ such that 
+\begin{align*}
+  \pi_j(B_i) \begin{cases}
+    = \emptyset, \;j \neq i \\
+    \supseteq A_i \text{ and open} \;j = i
+  \end{cases}
+\end{align*} where $\pi_j$ is the projection $\R^{\infty} \rightarrow \R^{j}$.
+\\
+\\
+Then, $B$ is open in $\R^{\infty}$ since each $B \cap \R^{n}$ is open in $\R^n$ since it's either an empty set or an open set (by definition). Since each $B_i$ covers each $A_i$, we can say $B$ is an open cover of $A$. 
+\\
+\\
+But no finite subcover of $B$ we take can possibly cover $A$ since it will miss out on some intersections $A_i = A \cup \R^{i}$. Thus, $A$ cannot be compact.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 3:} For a base-point space $X$, construct a natural (with respect to $X$) homeomorphism between the suspension and the smash-product of $X$ with $\mathbb{S}^1$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \cite{Provost17} )
+\\
+\\
+For a base point space $(X, x_0)$ we define the \textbf{(Reduced) Suspension} as 
+\[ \Sigma X = \bigslant{(X \times I)}{((X \times \partial I) \cup (\{x_0\} \times I))} \]
+where $I$ is the unit interval $I = [0, 1]$. The \textbf{Smash Product} of $X$ with $\sph^1$ is 
+\[ X \# \sph^1 = \bigslant{(X \times \sph^1)}{(X \vee \sph^1)} \]
+where $\vee$ denotes the Wedge sum
+\[ X \vee \sph^1 = \bigslant{\left(X \coprod \sph^1\right)}{\sim} \] Also, it doesn't matter which point of $\sph^1$ we choose as the base-point, but let's choose the point associated with $[0] = [1]$ in the equivalence relation $I/\partial I$.
+\\
+\\
+We can also think of the Smash Product of $(X, x_0)$ and $(\sph^1, [0])$ as 
+\begin{align*}
+  X \# \sph^1 &= \bigslant{X \times \sph^1}{\left( \{x_0\} \times X \cup \sph^1 \times \{[0]\}  \right)}
+\end{align*} To show that $\Sigma X \cong_{h} X \# \sph^1$, let's show the existence of maps $f \text{ : } X \times \sph^1  \rightarrow \Sigma X$ and $g \text{ : } \Sigma X \rightarrow X \times \sph^1$, then show that these maps descend to the appropriate quotients and serve as each others' inverses.
+\\
+\\
+Define the function 
+\begin{align*}
+  f \text{ : } X \times \sph^1 &\rightarrow \Sigma X \\
+                  (x, [t]) &\mapsto [(x, t)] 
+\end{align*}
+where we can think of $\sph^1 \cong I/\partial I$ as a base-point. It doesn't matter which point on $\sph^1$ we choose, but let's choose $[0] = [1] \in I/\partial I$ as our base-point.
+\\
+\\
+We need to 
+\begin{enumerate}
+  \item Verify that $f$ is well-defined as a map $X \times \sph^1 \rightarrow \Sigma X$
+  \item Verify that $f$ passes to the quotient i.e. if $\sim$ denotes the equivalence relation that sends $X \times \sph^1 \rightarrow X \# \sph^1$ then for $x,y \in X \times \sph^1$ we have $x \sim y$ if and only if $f(x) = f(y)$.
+\end{enumerate} \textbf{To check that $f$ is well-defined 
+}\\
+we just need to verify that it's independent of the representative used for the equivalence class $[0] = [1]$ i.e. $(x, [0])$ and $(x, [1])$ get mapped to the same point in $\Sigma X$.
+\\
+\\
+Indeed, under this map we have $f(x, [0]) = [x, 0] = [x, 1] = f(x, [1])$ since we quotient out by $X \times \partial I$ so both $(x, [0])$ and $(x, [1])$ get sent to the new base point.
+\\
+\\
+\textbf{To check that $f$ passes to the quotient} \\
+Consider $(x_1, [t_1]) \sim (x_2, [t_2]) \in X \times \sph^1$ which get sent to the base point in $X \# \sph^1$ when we quotient out by $ \{x_0\} \times X \cup \sph^1 \times \{[0]\} $. So under the map $f$ they both get mapped to the base point in $\Sigma X$ beause the equivalence relation on $X \times I$ used to define $\Sigma X$ identifies such points together.
+\\
+\\
+So, $f$ induces a continuous map $\tilde{f} \text{ : } X \# \sph^1 \rightarrow \Sigma X$ such that $\tilde{f}([w]) = f(w)$ for $w \in X \times \sph^1$.
+\\
+\\
+The inverse is induced by 
+\begin{align*}
+  g \text{ : } X \times I &\rightarrow X \# \sph^1 \\
+                   (x, t) &\mapsto [(x, [t])] 
+\end{align*}
+\\
+We don't need to check that $g$ is well-defined since the domain doesn't involve an equivalence relation.
+\\
+\\
+\textbf{To check that $g$ passes to the quotient} \\
+Consider any $(x, t) \in X \times \sph^1$ that gets sent to the base point of $\Sigma X$ under the quotient map $q \text{ : } X \times I \rightarrow \Sigma X$ i.e. $(x, t) \in ((X \times \partial I) \cup (\{x_0\} \times I))$. Any such $(x, t)$ gets mapped to the base point of $X \# \sph^1$ under the map $g$ because $[(x, [t])]$ is the equivalence class obtained by identifying all elements of $X \times \partial I \cup \{x_0\} \times I$ together as the base point.
+\\
+\\
+So, $g$ induces a continuous map $\tilde{g} \text{ : } \Sigma X \rightarrow X \# \sph^1$ such that $\tilde{g}([z]) = g(z)$ for $g \in X \times I$. Almost by definition, $\tilde{f}$ and $\tilde{g}$ are inverses. Thus, $\Sigma X \cong X \# \sph^1$.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

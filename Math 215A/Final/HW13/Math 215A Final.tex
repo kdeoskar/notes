@@ -1,0 +1,563 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{16}{16} \selectfont \rmfamily Final Exam} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+\tableofcontents
+\newpage
+
+
+
+
+\section{Question 1}
+\begin{bluebox}
+  % \textbf{Question 1:} 
+  Compute the self-intersection index of the real unit sphere inside the hypersurface $z_1^2 + \cdots + z_n^2 = 1$ in $\C^n$. (Use complex orientations of $\C^n$ and the hypersurface i.e. take $(e_1, ie_1, \cdots, e_k, ie_k)$ as a right handed basis of $\R V^k$ if $(e_1, \cdots, e_k)$ is a complex basis for $V^k$.)
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Recall that the Self-Intersection Index is the Intersection Index of a Homology class with itself. So, the self-intersection number of $\sph^{n-1}$ considered as an embedded submanifold in the hypersurface $X = \{ z_1^2 + \cdots + z_n^2 = 1 ~|~ z_i \in \C^n \}$ is given by $$ I( [\sph^{n-1}], [\sph^{n-1}] ) = \langle D^{-1}[\sph^{n-1}] \frown [\sph^{n-1}], [X] \rangle $$ where $D \text{ : } H^{n-1}(X) \rightarrow H_{n-1}(X)$ is the Poincar\'e Duality Isomorphism.
+\\
+\\
+The Hypersurface has $2(n-1)$-complex dimension, and the real unit sphere inside the hypersurface is $\sph^{n-1}$, with $(n-1)$ real dimension so it is possible to take the intersection form of $[\sph^{n-1}]$ with itself.
+\\
+\\
+An easier formulation is in terms of the Euler Class and Normal bundle.
+\\
+\\
+Let's find the normal bundle to $\sph^{n-1}$ embedded in X i.e. $N(\sph^{n-1}, X)$. The hypersurface is defined by $F(z_1,\cdots,z_n) = z_1^2 + \cdots + z_n^2 - 1 = 0$ i.e. $$ \sum_{i = 1}^{n} x_i^2 - y_i^2 + \sum_{i=1}^n 2x_1y_1 \cdot i = 1 $$ Dealing with real space instead, as $\C^n \cong \R^{2n}$ with the convention that we send a point $(x_1 + iy_1, \cdots, x_n + iy_n) \mapsto , (x_1, \cdots, x_n, y_1, \cdots, y_n)$ the defining equation for the surface is $$ f(x,y) = \left( \sum_{i=1}^n x_i^2 - y_i^2, ~\sum_{i = 1}^{n} 2x_iy_i \right) $$  
+\\
+\\
+The Jacobian of this map is $$ \begin{pmatrix}
+  2x_1 \cdots 2x_n \\
+  -2y_1 \cdots -2y_n
+\end{pmatrix} $$
+For a point on the real unit sphere however, the Jacobian is just The Jacobian of this map is $$ \begin{pmatrix}
+  2x_1 \cdots 2x_n \\
+  0 \cdots 0 
+\end{pmatrix} $$ because the complex part of each $z_i$ vanishes for that point. 
+\\
+\\
+We know from Differential Topology that the Tangent Space at a point on an submanifold defined via a defining function is the kernel of the defining function's Jacobian. So, for a point $p = (x,0)$, the tangent space to the Hypersurface is the set of vectors $v = (u,w) \in T_p R^{2n} \cong \R^{2n}$ such that $x \cdot u = 0, x \cdot w = 0$ i.e. $x$ is orthogonal to both $u, w$.
+\\
+\\
+Now, we already know what the tangent space to $\sph^{n-1}$: namely, the set of vectors in the surrounding $\R^N$ which are orthogonal to the point on $\sph^{n-1}$. The tangent space to the real sphere is the space of pairs $((x, 0), (v, 0))$ where $v $is orthogonal to $x$.
+\\
+\\
+That means the normal bundle is the space of pairs $((x, 0), (v, w))$ where both are orthogonal to $x$ and at each fiber we mod out by the pairs $(v, 0)$ in other words, we're left with the space of pairs $((x, 0), (0, w))$ where w is purely imaginary and orthogonal to $x$, that is the space of pairs $(v, iw)$ where $w$ is orthogonal to $x$. 
+\\
+\\
+The bundle isomorphism now is just by ignoring/forgetting the $i$, that is a bundle isomorphism of the normal bundle of the real sphere inside this bigger "sphere" to the standard tangent bundle of the sphere.
+\\
+\\
+We know the euler number of the tangent bundle of the sphere, and euler number is preserved by bundle isomorphisms because bundle isomorphisms take nonvanishing sections to nonvanishing sections and vanishing sections to vanishing sections but as we said earlier, intersection number = euler number of the normal bundle = euler number of the tangent bundle of the sphere.
+\\
+\\
+So, the self-intersection number if $2$ for $n$ odd and $0$ for $n$ even. 
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+\section{Question 2}
+\begin{bluebox}
+  % \textbf{Question 2:} 
+  Show that the quaternionic Hopf line bundle over $\mathbb{H}P^1$ can be considered as a $2$-dimensional complex vector bundle, but it is not equivalent to the complexification of any real $2$-dimensional bundle.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+We are considering the Quaternionic line bundle over $\mathbb{H}P^{1}$ i.e. the bundle $(E, \mathbb{H}P^1, p)$ with total space $$ E = \left\{ (l, v) \in \mathbb{H}P^1 \times \mathbb{H}^2 ~|~ v \in l \right\} $$ so that the fiber over each line $l \in \mathbb{H}P^1$ is a quaternionic line itself.
+\\
+\\
+We can "ignore" the quaternionic structure and solely utilize the in-built complex structure to treat this as a complex bundle over $\mathbb{H}P^1$.
+\\
+\\
+Let's denote this complex bundle as $\restr{\xi}{\C}$.
+The fiber over line $l \in \mathbb{H}P^1$ is $\{ v \in \mathbb{H}^2 ~|~ v \in l \} \cong  \mathbb{H}^1 \cong \C^2 \cong \R^4$. So, we can think of it as a $2$-dimensional complex vector bundle.
+\\
+\\
+% For use later, let's note that the top chern class $c_2(\restr{\xi}{\C})$ generates the cohomology $H^4(\sph^4; \zee) = H^{4}(\mathbb{H}P^1; \zee) \cong \zee$ (F\&F Homotopical Topology, Page 524) \begin{note}
+%   {Find alternate proof/reason}
+% \end{note}. 
+Recall that any vector bundle can be thought of as a pullback. Namely, any $2-$dimensional complex vector bundle over $\mathbb{H}P^1$ can be thought of as the pullback of some $f \text{ : } X \rightarrow \C G(\infty, 2)$, and the isomorphism classes of these vector bundles over $\mathbb{H}P^1$ are classified by homotopy classes $[\mathbb{H}P^1, \C G(\infty, 2)]$.
+\\
+\\
+Consider a map $f \text{ : } \mathbb{H}P^1 \rightarrow \C G(\infty, 2) $ corresponding to $\restr{\xi}{2}$. This map then induces a homomorphism $f^* \text{ : } H^{\bullet}(\C G(\infty, 2)) \rightarrow H^{\bullet}(\mathbb{H}P^1)$. Recall that $H^{\bullet}(\C G(\infty,2)) = \zee[c_1, c_2]$ where $c_1, c_2$ are the chern classes (and have degree 2,4 respectively) of the bundle $c_1(\restr{\xi}{\C}), c_2(\restr{\xi}{\C})$ and $H^{\bullet}(\mathbb{H}P^1) = \zee[x]/(x^{n+1})$, $\mathrm{dim}(x) = 4$. 
+\\
+\\
+Under this map, $c_1(\restr{\xi}{\C}) \mapsto 0, ~c_2(\restr{\xi}{\C}) \mapsto x$ and so $c_2$ shouldn't vanish.
+\\
+\\
+Now, we want to show that there does not exist any real $2-$dimensional vector bundle $\eta$ such that $\restr{\xi}{\C}$ is the complexification of $\eta$ i.e. such that $ \restr{\xi}{\C} = \C \eta  = \eta \otimes \C$.
+\\
+\\
+Suppose, for contradiction, that such an $\eta$ over $\mathbb{H}P^1$ exists. Then, the euler class must vanish $e(\eta) = 0$ because the euler class in an element of $H^2(\mathbb{H}P^1; Z) = H^2(\sph^4; \zee) = \{0\}$ which is trivial. Then, we should have $c_2(\restr{\xi}{\C}) = e(\eta \oplus \eta) = e(\eta) \cup e(\eta) = 0$.\\
+\\
+Hence we have a contradiction. So there must not exist any real $2-$dimensional vector bundle $\eta$ over $\mathbb{H}P^1$ of which the quaternionic line bundle is a realification.
+
+
+% \begin{dottedbox}
+%   \begin{redbox}
+%     \begin{lemma}
+%       \textbf{(F\&F, Homotopical Topology 19.1D Exercise 15):} \\ 
+%       Prove that $c_i(\bar{\xi}) = (-1)^{i} c_i(\xi)$. We can deduce from this that for any real vector bundle $\eta$ and any odd integer $i$, $$2c_i(\C \eta) = 0$$
+%     \end{lemma}
+%   \end{redbox}
+
+  
+%   \begin{proof}
+%     \begin{note}
+%       {Fill this in}
+%     \end{note}
+%   \end{proof}
+% \end{dottedbox}
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\section{Question 3}
+\begin{bluebox}
+  % \textbf{Question 2:} 
+  Prove that each skeleton $\mathrm{sk}_n X$ of a contractible CW Complex is homotopy equivalent to a bouquet of $n-$spheres.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+To prove this, we'll use the following lemma: 
+
+\begin{dottedbox}
+  \begin{redbox}
+    \begin{lemma}
+      Let $X$ be a CW Complex and let $i \text{ : } \mathrm{sk}_n(X) \rightarrow X$ denote the inclusion of the $n$-th skeleton. Then, $$ i_* \text{ : } \pi_k( \mathrm{sk}_n(X), x_0) \rightarrow \pi_k(X, i(x_0) \approx x_0)$$ is an isomorphism for $k \leq n-1$ and a surjection for $k = n$.
+    \end{lemma}
+  \end{redbox}
+  \vskip 0.5cm
+
+  \begin{proof}
+    \\
+    \\
+    \underline{Surjectivity:} Consider an $\alpha \in \pi_n(X, *)$ for $1\leq k \leq n$. Since $\sph^k$ and $X$ are both CW complexes $\alpha$ is homotopic to some cellular map $\sph^k \rightarrow X$. Thus, we can find a representative which factors over $i \text{ : } \mathrm{sk}_n(X) \rightarrow \pi_k(X) $ as $f = i \circ f_1$ which means $\alpha$ lies in the image of $i_* \text{ : } \pi_k(\mathrm{sk}_n(X)) \rightarrow \pi_k(X)$. \\
+    \\
+    \underline{Injectivity:} Consider $\alpha, \beta \in \pi_k(\mathrm{sk}_n(X), *)$ and representatives $f, g \text{ : } \sph^k \rightarrow \mathrm{sk}_n(X)$ of $\alpha, \beta$ respectively. We want to show that $i_*(\alpha) = i_*(\beta) \implies \alpha = \beta$.
+    \\
+    \\
+    Assume $i_*(\alpha) = i_*(\beta)$. Then there is a homotopy $$ H \text{ : } \sph^k \times I \rightarrow X $$ which homotopes between $i_*(f)$ and $i_*(g)$. Because $\sph^k$ is a CW complex and $I$ is compact, $\sph^k \times I$ is also a CW complex - with $\sph^k \times \partial I$ being a subcomplex (it forms the $k$-skeleton). 
+    \\
+    \\
+    By repeated applications of cellular approximation (first to a cellular map, then to a cellular map which is fixed on subcomplex $\sph^k \times \partial I$  of $\sph^k \times I$ ) we get that $H$ is homotopic to a map $H' \text{ : } \sph^k \times I \rightarrow X$ which sends the $k$-skeleton of $\sph^k \times I$ to $\mathrm{sk}_n X$ and is stationary of $\sph^k \times \partial I$. The restriction of this map to $\sph^k \times \partial I$ gives us a homotopy between $f, g \text{ : } \sph^k \rightarrow \mathrm{sk}_n X$. Thus, the map is injective. 
+    \\
+    \\
+    The reason this breaks down for $k=n$ is because $\sph^k \times I$ is a $(k+1)$-dimensional CW Complex.
+    % Then, by cellular approximation, we know that $H$ is homotopic to a map cellular map $H'$ which maps $H'(\sph^k \times \partial I) \subseteq \mathrm{sk}_n(X)$ which restricts to $f$ and $g$ on the boundary. So, this map factors over the inclusion $i_n$, meaning $f \sim g$ and so $\alpha = \beta$.
+    % \begin{note}
+    %   {Check this.}
+    % \end{note}
+  \end{proof}
+\end{dottedbox}
+
+\vskip 0.5cm
+Now, in our case $X$ is contractible so $\pi_k(X) = 0$ for all $k$. Thus, by the lemma above, $$ \pi_k(\mathrm{sk}_n(X)) = 0,~~ 1 \leq k \leq n-1 $$ i.e. $\mathrm{sk}_n(X)$ is $(n-1)$-connected. That means, for homotopic purposes, we can treat $\mathrm{sk}_n(X)$ as though it has only one $0$-cell and no cells of dimension $1, \cdots, n-1$. Then, by the Theorem in F\&F Homotopical Topology Section 11.3 (which we also discussed in class), we know that $\pi_n(\mathrm{sk}_n(X))$ has generators corresponding to its $n$-cells and relations generated by its $(n+1)$-cells.
+\\
+\\
+Let $\{e_{\alpha}^n\}_{\alpha \in A}$ be the collection of $n$-cells in $\mathrm{sk}_n(X)$. Since $\mathrm{sk}_n(X)$ has no $(n+1)$-cells, $\pi_n(\mathrm{sk}_n(X))$ is just the freely generated abelian group $\underbrace{\zee \oplus \cdots \oplus \zee}_{|A|}$, which is exactly the same as the homotopy group $\pi_n(\bigvee_{\alpha \in A} \sph_{\alpha}^n)$.
+\\
+\\
+Then, consider the map
+\begin{align}
+  f \text{ : } \mathrm{sk}_n(X) &\rightarrow \bigvee_{\alpha \in A} \sph_{\alpha}^n \\
+  e_{\alpha}^n &\mapsto \sph_{\alpha}^n
+\end{align}
+This map sends the generators of $\pi_n(\mathrm{sk}_n(X))$ to the generators of $\pi_n(\bigvee_{\alpha \in A} \sph_{\alpha}^n )$. In fact, it induces isomorphisms in all the homotopy groups (since the rest are trivial).
+\\
+\\
+Thus, by Whitehead's theorem, $\mathrm{sk}_n(X)$ is homotopy equivalent to the bouquet of $|A|$ many $n-$spheres.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\section{Question 4}
+\begin{bluebox}
+  % \textbf{Question 2:} 
+  Turn the standard embedding $\mathbb{C}P^1 \subset \mathbb{C}P^{\infty}$ into a homotopy equivalent hurewicz' fibration and prove that its fiber is weakly homotopy equivalent to $\sph^3$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+We know from F\&F Homotopical Topology Section 9.7 that any continuous map between topological spaces is homotopy equivalent to a Hurewicz' Fibration. Namely, we have the following theorem:
+
+\begin{dottedbox}
+
+  \begin{redbox}
+    \begin{theorem}
+      For every continuous map, there exists a Strong Serre Fibration homotopy equivalent to this map.
+    \end{theorem}
+    \end{redbox}
+    
+    \begin{proof}
+      For a continuous map $f \text{ : } X \rightarrow Y$ we construct the Hurewicz' Fibration $(\tilde{X}, Y, p(f))$ with $$\tilde{X} = \{ (x,s) ~|~ x \in X, s \text{ is a path in Y starting at } f(x) \}$$ The projection $p(f) \text{ : } \tilde{X} \rightarrow Y$ and the homotopy equivalence $\varphi(f) \text{ : } \tilde{X} \rightarrow X$ are defined by formulas
+      $$ [p(f)](x, s) = s(1) $$ and $$ [\varphi(f)](x, s) = x$$ (the map $Y \rightarrow Y$ in the homotopy equivalence is just the identity $\mathrm{id}_Y$)
+    \end{proof}
+\end{dottedbox}
+
+\vskip 0.25cm
+So, the standard embedding $f \text{ : }\mathbb{C}P^1 \hookrightarrow \C P^{\infty}$ is homotopy equivalent to a Hurewicz' Fibration $$ (E, \C P^{\infty}, p(f)) $$ with the formulae above (where $E$ is $\tilde{X}$). Denote the fibers of this fibration as $F$. We want to show $F$ is weakly homotopy equivalent to $\sph^3$.
+\\
+\\
+We know that, for a Serre Fibration $(E, B, p)$ with fiber $F$ and $b_0 \in B, e_0 \in E, p(e_0) = b_0$, we have the long exact sequence $$ \cdots \rightarrow \pi_n(F, e_0) \rightarrow \pi_n(E, e_0) \rightarrow \pi_n(B, b_0) \rightarrow \pi_{n-1}(F, e_0) \rightarrow \cdots \rightarrow \pi_1(F, e_0) \rightarrow \pi_1(E, e_0) \rightarrow \pi_1(B, _0) $$
+
+We also know that $\C P^{\infty} = K(\zee, 2)$ (F\&F Homotopical Topology, Page 139) so $$ \pi_i(\C P^{\infty}) = \begin{cases}
+  \zee, ~i = 2 \\
+  0, \text{ otherwise}
+\end{cases} $$ In the long exact sequence associated with $(E, \C P^{\infty}, p(f))$ we can replace the homotopy groups of $E$ with those of $\C P^1 \cong \sph^2$ because they are homotopy equivalent. Thus, we get a homotopy sequence that looks like $$ \cdots {\pi_{n+1}(\C P^{\infty})}\rightarrow \pi_n(F) \rightarrow \pi_n(\sph^2) \rightarrow {\pi_n(\C P^{\infty})} \rightarrow \cdots $$  We now have an idea as to how to show $\pi_n(F) \cong \pi_n(\sph^3)$ for all $n$. We'll work case by case, and also write $\pi_n(F)$ (for large $n$) in terms of $\pi_n(\sph^2)$, which is related to $\pi_n(\sph^3)$ by the Hopf Fibration. 
+\\
+\\
+\underline{$n = 1$:} \\
+The part of the long exact sequence we're interested in is 
+$$ \cdots \rightarrow \underbrace{\pi_2(\sph^2)}_{=\zee} \xrightarrow{\cong} \underbrace{\pi_2(\C P^{\infty})}_{=\zee} \rightarrow \pi_1(F) \rightarrow \underbrace{\pi_1(\sph^2)}_{=0} \rightarrow \underbrace{\pi_1(\C P^{\infty})}_{=0} $$
+which tells us $\boxed{\pi_1(F) = 0 = \pi_1(\sph^3)}$.
+\\
+\\
+\underline{$n = 2$:} \\
+The part of the long exact sequence we're interested in is 
+$$ \cdots \rightarrow \underbrace{\pi_3(\sph^2)}_{=\zee} \rightarrow \underbrace{\pi_3(\C P^{\infty})}_{=0} \rightarrow \pi_1(F) \rightarrow \underbrace{\pi_2(\sph^2)}_{=\zee} \rightarrow \rightarrow \underbrace{\pi_2(\C P^{\infty})}_{=\zee} $$
+which tells us $\boxed{\pi_2(F) = 0 = \pi_2(\sph^3)}$.
+\\
+\\
+\underline{$n \geq 3$:}\\
+The part of the long exact sequence we're interested in is 
+$$ \cdots 
+% \rightarrow {\pi_{n+1}(\sph^2)} 
+\rightarrow \underbrace{\pi_{n+1}(\C P^{\infty})}_{=0} \rightarrow \pi_n(F) \rightarrow {\pi_n(\sph^2)} \rightarrow \rightarrow \underbrace{\pi_1(\C P^{\infty})}_{=0} $$
+which tells us $$\boxed{\pi_n(F) \cong \pi_n(\sph^2) \xrightarrow[H]{\cong} \pi_n(\sph^3)}$$ where the $H$ stands for Hopf Isomorhism (the fact that higher homotopy groups of $\sph^2, \sph^3$ are the same was derived in class and is in F\&F Homotopical Topology section 9.9).
+\\
+\\
+So, we've shown that that all homotopy groups of $F$ and $\sph^3$ are the same, but we're not quite there yet - we need to find a map $f \text{ : } \sph^3 \rightarrow F$ which induces the homotopy group isomorphisms.
+\\
+\\
+To motivate this maps, let's think about the fact that $\pi_3(F) \cong \pi_3(\sph^2)$ which we obtained the the $n \geq 3$ case.
+\\
+\\
+The fact that these homotopy groups are isomorphic tells us that homotopy classes $[\sph^3 \rightarrow F]$ are in one-to-one correspondence with homotopy classes $[\sph^3 \rightarrow \sph^2]$.
+\\
+\\
+Central to our argument earlier was the fact that $n \geq 3$, $\pi_n(\sph^2) \cong \pi_n(\sph^3)$ which follows from studying the \textbf{Hopf Fibration} $$ \sph^1 \hookrightarrow \sph^3 \xrightarrow{p} \sph^2 $$ where $p$ is the \textbf{Hopf map}. 
+\\
+\\
+So, let's take $f \text{ : } \sph^3 \rightarrow F$ to be any representative of the homotopy class corresponding to the homotopy class of the Hopf map i.e. $$[f \text{ : } \sph^3 \rightarrow F ] \sim [p \text{ : } \sph^3 \rightarrow \sph^2]$$ This map then induces all the isomorphisms between the homotopy groups (for $\pi_n~,n \geq 3$, using the Hopf map; and trivially for $i=1,2$ because $\pi_i$ is trivial for both $F$ and $\sph^3$)
+\\
+\\
+Thus, the fiber $F$ is weakly homotopy equivalent to $\sph^3$.
+
+% \begin{note}
+%   {But this isn't enough, we need to show that all of the group isomorphisms are induced by some map $f \text{ : } F \rightarrow \sph^3$. FIGURE OUT WHAT THIS MAP IS.}
+% \end{note}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+\section{Question 5}
+\begin{bluebox}
+  % \textbf{Question 2:}
+  Prove that $H^{\bullet}(\C G(2,4))$ can be described as the ring generated by classes $c_1$ and $c_2$ of degrees $2$ and $4$ respectively, which satisfy the relation $$(1 + c_1 + c_2) (1 + c_1' + c_2') = 1$$ More precisely, this identity allows one to express $c_1', c_2'$ in terms of $c_1, c_2$ respectively, in addition to providing a complete set of relations between $c_1$ and $c_2$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Just to be clear, I'm using the notation $\C G(n, k)$ being the set of $k$-dimensional subspaces of $\C^n$.
+\\
+\\
+It was shown in lecture that 
+
+\begin{dottedbox}
+  \begin{redbox}
+    \begin{lemma}
+      $$ H^{\bullet}(\C G(\infty, k)) = \zee[c_1, \cdots, c_k]$$
+    \end{lemma}
+  \end{redbox}
+
+  % \begin{proof}
+  %   \begin{note}
+  %     {Fill this in.}
+  %   \end{note}
+  % \end{proof}
+\end{dottedbox} i.e. the chern classes are the generators of the Cohomology ring for the Infinite Complex Grassmannian. Thus $$ H^{\bullet}(\C G(\infty, k)) = \zee[c_1, c_2] $$
+\\
+The inclusion $\C G(4,2) \hookrightarrow \C G(\infty, 2)$ induces a map $$ H^{\bullet} (\C G(\infty, 2)) \rightarrow H^{\bullet}(\C G(4, 2)) $$
+\\
+Now, let $\gamma$ denote the tautological bundle over $\C G(4,2)$. We showed in HW8 that for a vector bundle $\xi$ over any finite CW complex there exists another vector bundle $\eta$ such that $\xi \oplus \eta$ is trivial. Let $\gamma^{\perp}$ denote this complement vector bundle for $\gamma$.
+\\
+\\
+There are only even dimensional cells $e^0, e^2, e^4, \cdots$ in the Schuber Decomposition for Complex grassmannians, so the $2i^{th}$ (co)homology groups of $\C G(4,2)$ are not different from the groups of cellular $2i$-cycles and cocycles. The odd numbered homology and cohomology groups are trivial. 
+\\
+\\
+Let $c_1, c_2$ denote the Chern classes of $\gamma$ of degrees $2,4$ respectively and $c_1', c_2'$ denote the Chern Classes of $\gamma^{\perp}$ of degrees $2,4$ respectively. 
+We know that $c_1, c_1' \in H^2(\C G(4,2))$ and $c_2, c_2' \in H^4(\C G(4,2))$. The higher chern classes vanish because the higher cohomology groups are trivial. By the Whitney-Sum Formula:
+\begin{align*}
+  c(\gamma \oplus \gamma^{\perp}) &= c(\gamma) \smile c(\gamma^{\perp})
+\end{align*}
+where $c$ is the formal sum $1 + c_1 + c_2 + \cdots$. Now, $\gamma \oplus \gamma^{\perp}$ is trivial so all of its chern classes $c_i$ vanish. Thus, $c(\gamma \oplus \gamma^{\perp}) = 1$. This tells us 
+\begin{align*}
+  &c(\gamma) \smile c(\gamma^{\perp}) = 1 \\
+  \implies &(1 + c_1 + c_2)(1 + c_1' + c_2') = 1
+\end{align*} So we've obtained a relation between the chern classes of $\C G(4,2)$. So, the Cohomology ring $H^{\bullet}(\C G(4,2))$ is $\zee[c_1, c_2, c_1', c_2]/ \sim $ where $\sim$ denotes the relation $(1+c_1+c_2)(1+c_1'+c_2') = 1$.
+\\
+\\
+Now we want to show that the cohomology ring is actually generated by just $c_1, c_2$ under this relation i.e. $$ H^{\bullet}(\C G(4,2)) \cong \zee[c_1, c_2] /  \sim$$
+\\
+\\
+To see this, let's expand out the relation obtained earlier:
+\begin{align*}
+  &(1 + c_1 + c_2)(1 + c_1' + c_2') = 1\\
+  \implies &1 + (c_1 + c_1') + (c_2 + c_2' + c_1 c_2') + (c_1 c_2' + c_2 c_1') + (c_2 c_2') = 1
+\end{align*} which gives us relations on the generators $c_1, c_2, c_1', c_2'$. Namely, 
+\begin{align*}
+  \text{Elements of degree 1: } & 1 = 1 \\
+  \text{Elements of degree 2: } &c_1 + c_1' = 0 \\
+  \text{Elements of degree 4: } &c_2 + c_2' + c_1c_1' = 0 \\
+  \text{Elements of degree 6: } &c_1 c_2' + c_2 c_1' = 0 \\
+  \text{Elements of degree 8: } &c_2 c_2' = 0 \\
+\end{align*} So, for example, when it comes to the elements of degree $2$, we have one constraint on two variables which means that we really only have one unconstrained variable. In other words, because $c_1 = -c_1'$, the degree $2$ cohomology group in the cohomology ring is generated by one generator so $\mathrm{dim}_Z H^2 = 1$. Similarly, we can solve for $c_2'$ in terms of $c_2$ and analyzing the other equations, we have 
+\begin{align*}
+  &\mathrm{dim}_Z H^0 = 1, \mathrm{dim}_Z H^2 = 1, \mathrm{dim}_Z H^4 = 2 \\
+  &\mathrm{dim}_Z H^6 = 1, \mathrm{dim}_Z H^8 = 1
+\end{align*} where $H^i$ denotes the $i^{th}$ degree group within the ring.
+\\
+\\
+As discussed in class and in F\&F Homotopical Topology (page 46), the Schubert CW Decomposition for $\C G(4,2)$ consists of six cells $$ e(\emptyset), e(1), e(1,1), e(2), e(2,1), e(2,2) $$ of (real) dimensions $0, 2, 4, 4, 6, 8$.
+\\
+\\
+Again, since there are no odd dimension cells in the CW decomposition, the cohomology groups are finitely generated free abelian groups generated by the cellular cochains, i.e. effectively by the cells in each dimension so that their ranks are:
+\begin{align*}
+  &dim_{\zee} H^0(\C G(4,2)) = 1, dim_{\zee} H^2(\C G(4,2)) = 1, dim_{\zee} H^4(\C G(4,2)) = 2, \\
+  &dim_{\zee} H^0(\C G(4,2)) = 1, dim_{\zee} H^8(\C G(4,2)) = 1 
+\end{align*}  These match up, and so we conclude that the cohomology ring $H^{\bullet}(\C G(4,2))$ is the ring generated by $c_1, c_2$ of degrees $2$ and $4$ respectively which satisfy the relation $$ (1+c_1+c_2)(1+c_1'+c_2') = 1 $$
+
+
+
+
+
+
+
+
+
+
+
+% The inclusion map $\C G(4,2) \hookrightarrow \C G(\infty, 2)$ induces a surjection $H^{\bullet}(\C G(\infty, 2)) = \zee[c_1, c_2] \rightarrow H^{\bullet}(\C G(4,2))$, due to which there is also a surjection. Since $\bar{c}_3, \bar{c}_4$ are zero in $H^{\bullet}(\C G(\infty, 2)) / \langle \bar{c}_3, \bar{c}_4 \rangle$, the surjection above induced a surjection $H^{\bullet}(\C G(\infty, 2)) / \langle \bar{c}_3, \bar{c}_4 \rangle \rightarrow H^{\bullet}(\C G(4,2))$. 
+% \\
+% \\
+% Both $H^{i}(\C G(\infty, 2)) / \langle \bar{c}_3, \bar{c}_4 \rangle$ and the $i^{th}$ degree of $H^{\bullet}(\C G(4,2)) / \langle \bar{c}_3, \bar{c}_4 \rangle$ are freely generated so if we can show they have the same rank then the surjective map between them is also injective and we have an isomorphism.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+\section{Question 6}
+\begin{bluebox}
+  % \textbf{Question 2:} 
+  For the complex manifold $F_3$ of complete flags in $\C^3$, compute the Chern characteristic numbers i.e. the values on the fundamental class $[F_3]$ of $c_1^3, c_1 c_2, c_3$ where $c_1, c_2, c_3$ are the Chern classes of the tangent bundle of $F_3$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+As a homogeneous space, we can write $F_3$ as $$ F_3 = U(3)/ (U(1))^3 = U(3) / T^3 $$ where $T$ is the Torus. 
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

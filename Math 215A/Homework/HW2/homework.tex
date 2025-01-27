@@ -1,0 +1,302 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 2} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1:} For the manifold of \textit{complete} flags $V^1 \subset V^2 \subset \C^3$ in (say, complex) $3-$space describe explicitly which flags belong to which Bruhat cell.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+The set $\C F(n; 1,2,\cdots,n-1)$ is the set of complete flags i.e. $$ \C F(n;1,2,\cdots,n-1) = \left\{ \text{chains } \left(V_1 \subset V_2 \cdots \subset V_n\right) \;|\; \mathrm{dim}_{\C}\left(V_i\right) = i \right\} $$
+\\
+In the Bruhat Cell Decomposition of a flag manifold, the Bruhat cells are characterized by the dimensions of intersections $d_{ij} = \mathrm{dim}\left( V_i \cup \C^j \right)$.
+\\
+\\
+In our case, we're considering the manifold of complete flags $\C F(3;1,2)$ so we have a total of $6$ Bruhat cells, corresponding to the six permutations of the sequence $(1,2,3)$:
+\begin{align*}
+  &(1,2,3), \;\;\; (3,1,2), \;\;\; (2,3,1) \\
+  &(1,3,2), \;\;\; (2,1,3), \;\;\; (3,2,1) \\
+\end{align*} The dimension of the cell $e[m_1, \cdots, m_n]$ is equal to the number of pairs $(i,j)$ for which $i < j, m_i > m_j$
+\\
+So, 
+\begin{align*}
+  &e[1,2,3] \text{ has dimension } 0 \\
+  &e[1,3,2] \text{ and } e[2,1,3] \text{ have dimension } 1 \\
+  &e[3,1,2] \text{ and } e[2,3,1] \text{ have dimension } 2 \\
+  &e[3,2,1] \text{ has dimension } 3 \\
+\end{align*} The flags in the cells are specified as below ($V_3 = \C^3$ in all cases below) :
+\\
+\\
+\begin{enumerate}[label=(\alph*)]
+  \item The flag contained in the 0-dimensional cell $e[1,2,3]$ is $V_1 = \C^1, V_2 = \C^2, V_3 = \C^3$. 
+  \\
+  \item The two flags in the 1-dimensional cells are 
+  \begin{itemize}
+    \item $V_1 = \C^1$ and $V_2 = $ any 2-d complex plane containing $\C^1$ other than the standard copy of $\C^2$, $V_3 = \C^3$
+    \item $V_2 = \C^2$ and $V_1 = $ any 1-d complex line contained in $\C^2$ other than the standard copy of $\C^1$ 
+  \end{itemize}
+  \vskip 0.5cm
+  \item The two flags in the 2-dimensional cells are:
+  \begin{itemize}
+    \item $V_1$ being any line in $\C^2$ and $V_2$ being any 2d plane containing $V_1$ other than $\C^2$
+    \item $V^2 \neq \C^2$ and $V_1$ being any line contained in $V^2$ which is not $\C^1$
+  \end{itemize}
+  \vskip 0.5cm
+  \item The one 3-dimensional flag is $V_1 = $ any 1-d complex line other than $\C^1$, $V_2 = $ any 2-d complex plane other than $\C^2$
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} 
+  Let $c_k$ be the number of $k-$dimensional (in complex units) Bruhat cells in the manifold of complete flags in an $n-$dimensional complex space. Show that the generating function $c_0 + c_1 q + c_2 q^2 + \cdots$ of this sequence is equal to the "$q-$factorial" : the product of $\frac{(1-q^k)}{(1-q)}$ over $k=1,\cdots, n$ and check this for your answer in $(a)$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+(Collaborated with Finn Fraser Grathwol for this question)
+\\
+\\
+Let's consider a finite field. The complete $n-$th flag manifold over finite field $\mathbb{F}_q = \{1, \cdots, q\}$ is $\mathbb{F} F(n; 1,\cdots,n-1) = \bigslant{\mathrm{GL}_n(\mathbb{F})}{B}$ where $B$ is the subgroup of $\mathrm{GL}_n(\mathbb{F})$ formed by upper triangular matrices.
+\\
+\\
+$\mathbb{F}_q^n$ contains $q^n$ vectors, with $q^n - 1$ of them being non-zero. Now, consider some 1-d subspace $V_1 \subseteq \mathbb{F}_q^n$. The $q-1$ non-zero scalar multiples of the $q^n - 1$ nonzero vectors span the same subspaces, so there are $$ \frac{q^n-1}{q-1} $$ vectors that could intersect $V_1$. Similarly for a 2d subspace $V_2$, since one dimension is already fixed, there are $\frac{q^{n-1} - 1}{q-1}$ choices we can make, and so on for $V_i$ until we hit $V_n$ for which the number of choices is $\frac{q-1}{q-1} = 1$.
+\\
+\\
+Thus, we find that the number of complete flags is 
+\begin{align*}
+  \Pi_{k = 1}^{n} \frac{q^k - 1}{q - 1} 
+\end{align*}
+On the other hand, each Bruhat cell of dimension $k$ is parametrized by $k-$points (from a $k-$dimensional affine space). Thus, if we denote the number of cells as $c_k$ then we have the result.
+\\
+\\
+This matches up with (a) wherein we have $f_3 = \left(q^3 - 1\right)\left(q^2 - 1\right)\left(q^2 - 1\right) / \left(q - 1\right)^3 = 1 + 2q + 2q^2 + 2q^3$.
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Prove that $\sph^{\infty}$ is contractible.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+% Let's do this in two steps. Let's show
+% \begin{enumerate}
+%   \item For every $n \in \mathbb{N}$, $\sph^n$ is contractible in $\sph^{n+1}$.
+%   \item A CW Cell $$ X = \bigcup_{i} X_i $$ with $X_0 \subset X_1 \subset \cdots X_i \subset \cdots$ is contractible if and only if $X_i$ is contractible in $X_{i+1}$.
+% \end{enumerate} 
+Let's denote the natural "equitorial" inclusion $x \mapsto (x, 0)$ as $\iota \text{ : } \sph^n \xhookrightarrow{} \sph^{n+1}$. Consider the following map: 
+\begin{align*}
+  F \text{ : } \sph^n \times I &\rightarrow \sph^{n+1} \\
+  (x, t) &\mapsto \left( \sqrt{1-t^2}x, t \right)
+\end{align*} This is a continuous map since its components are continuous, and we notice that $F(x, 0) = (x, 0) = \iota(x)$ and $F(x, 1) = (0, 1)$. Thus, $F(x, t)$ is a homotopy between $\iota$ and the contant map $ \sph^n \ni x \mapsto (0, 1) \in \mathbb{S}^{n+1}$. Thus, for every $n \in \mathbb{N}$, $\sph^n$ is contractible in $\sph^{n+1}$.
+\\
+\\
+This particular homotopy can be visualized as dragging $\sph^{n}$ from the equator to the north pole of $\sph^{n+1}$, but an equivalent homotopy would be to imagine one point $x_0$ on the inclusion of $\sph^n$ to be fixed and to drag the rest of $\sph^n$ over the surface of $\sph^{n+1}$, passing the nole pole, and collecting into the fixed point $x_0$.
+\\
+\\
+Now, to make $\sph^{\infty}$ contractible we can extend homotopies between the finite-dimensional spheres to $\sph^{\infty}$ using Borsuk's theorem.
+\\
+\\
+For time-interval $[0, 1/2)$ contract $\sph^{1}$ to a point $x_0 \in \sph^2$, and then extend the homotopy $F_1 \text{ : } \sph^1 \times I \rightarrow \sph^2$ to a homotopy from $S^{\infty} \times I$ to $\sph^2$, for time-interval $[1/2, 3/4)$ contract $\sph^2$ to a point $x_0 \in \sph^3$ (imagining this to be the same fixed point mentioned earlier) and similarly extend it to a homotopy on $\sph^{\infty}$ using Borsuk's Theorem.
+\\
+\\
+Doing this for all $\sph^{n}$, and taking the composition of all the homotopies we get a  map $\sph^{\infty} \times [0, 1) \rightarrow \sph^{\infty}$ (we never actually hit $t = 1$ in the description above since we keep going for infinitely many $n$), which we can extend to a map $\sph^{\infty} \times [0, 1] \rightarrow \sph^{\infty}$ such that the map $\sph^{\infty} \times 0 \rightarrow \sph^{\infty}$ is just the identity and the map $\sph^{1} \times 1 \rightarrow \sph^{\infty}$ is the constant map to $x_0$.
+\\
+\\
+Thus, we have $\sph^{\infty}$ is contractible to a point.
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

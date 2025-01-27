@@ -1,0 +1,11 @@
+\babel@toc {american}{}\relax 
+\contentsline {section}{\numberline {1}What is Entropy?}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Thermodynamics Motivation}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}What the hell is a Thermodynamic Potential?}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}In 100 words}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}In more detail...}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Conjugate Variables}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Legendre Transformations}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Intuition for Gibbs Free Energy}{4}{subsection.2.5}%
+\contentsline {section}{\numberline {3}The Definition of Temperature}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Temperature outside of equilibrium?}{5}{subsection.3.1}%

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex paper"] 1721807861.54078 "paper.aux" "paper.bbl" "paper" 1721962334.49306 0
-  "./ref.bib" 1721807806 581 68fd2cf56028cbe610d779dad33fe042 ""
+["bibtex paper"] 1724796010.46223 "paper.aux" "paper.bbl" "paper" 1724796030.05495 0
+  "./ref.bib" 1722002156 586 b3cf808681859a246d4bd00f419b1453 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/bibtex/bst/base/plain.bst" 1718579752 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "paper.aux" 1721962334 957 d8ff4f15f625b6565325eef988c00634 "pdflatex"
+  "paper.aux" 1724796029 1368 c4bfeabb0a886a1b0a61f5b06b912adf "pdflatex"
   (generated)
   "paper.bbl"
   "paper.blg"
   (rewritten before read)
-["pdflatex"] 1721962333.15731 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Final Paper (ver 2)/paper.tex" "paper.pdf" "paper" 1721962334.4938 0
+["pdflatex"] 1724796028.74736 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Final Paper (ver 2)/paper.tex" "paper.pdf" "paper" 1724796030.05567 0
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1718579750 1120 200be8b775682cdf80acad4be5ef57e4 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1718579750 1004 54797486969f23fa377b128694d548df ""
@@ -43,6 +43,7 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1718579722 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm" 1718579722 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1718579750 34811 78b52f49e893bcba91bd7581cdc144c0 ""
+  "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1718579750 32080 340ef9bf63678554ee606688e7b5339d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1718579750 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1718579750 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1718579750 35752 024fb6c41858982481f6968b5fc26508 ""
@@ -237,13 +238,13 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1718579800 94259 aec9939469efac8f0cf917369f632359 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Final Paper (ver 2)/paper.tex" 1721962332 4410 4d461b09d315f499859341eb283658de ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 198/Final Paper (ver 2)/paper.tex" 1724796028 6197 e102ed9a9b02b98092afa7ab2b5861e3 ""
   "custom.sty" 1709450714 10254 39d43e672560524af51f0ad7b7ceeff7 ""
-  "paper.aux" 1721962334 957 d8ff4f15f625b6565325eef988c00634 "pdflatex"
-  "paper.bbl" 1721807861 49 0eba253fc001332e731e8aba3f23127b "bibtex paper"
-  "paper.out" 1721962334 1256 14336862873e7df9d84a49d94480774c "pdflatex"
-  "paper.tex" 1721962332 4410 4d461b09d315f499859341eb283658de ""
-  "paper.toc" 1721962334 509 fa5b669f7339ca0b274470327ab0e5a4 "pdflatex"
+  "paper.aux" 1724796029 1368 c4bfeabb0a886a1b0a61f5b06b912adf "pdflatex"
+  "paper.bbl" 1724796010 208 ab3c44ddaae0df91e30a3063f9880569 "bibtex paper"
+  "paper.out" 1724796029 1548 409d9018ed4a71cf7a9e772e345db7a2 "pdflatex"
+  "paper.tex" 1724796028 6197 e102ed9a9b02b98092afa7ab2b5861e3 ""
+  "paper.toc" 1724796029 740 e35898809b44856dda69e6b2830c81b1 "pdflatex"
   (generated)
   "paper.aux"
   "paper.log"

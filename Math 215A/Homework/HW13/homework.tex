@@ -1,0 +1,309 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 13} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Prove that the restriction to the zero section of the Thom class of an oriented bundle over a CW-complex coincides with the Euler class of the bundle. Derive from this that the degree-raising map from the cohomology of the base to itself, defined by composing the Thom isomorphism with the restriction to the zero section, coincides with the multiplication by the Euler class of the bundle.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Referenced Chapter 12 of \textit{Characteristic Classes} by Milnor and Stasheff for this question)
+\\
+\\
+There are two things we want to show.
+\begin{dottedbox}
+  \underline{Claim \#1:} The restriction to the zero section of the Thom class of an oriented bundle over a CW-comples coincides with the Euler Class of the bundle.
+  \\
+  \\
+  \underline{Claim \#2:} The degree-raising map coincides with the multiplication by the Euler class of the bundle.
+\end{dottedbox}
+
+In class, we defined the Euler Class of an oriented (real) $n$-dimensional vector bundle $\xi$ with base $B$ as the obstruction to extending a section of the associated spherical fibration $\xi_1^0$ to $\xi$. More specifically,
+
+
+\begin{definition}
+  Let $\xi$ be an n-dimensional (real) oriented vector bundle with CW Base $B$. The \textbf{Euler Class} $\mathfrak{o}_n(\xi) \in H^n(B; \zee)$ is first obstruction to extending a section of the spherical fibration $\xi_1^0$ to $\xi$.
+\end{definition} (I'm using the notation $\mathfrak{o}_n(\xi)$ here because it is the top obstruction class) 
+
+
+\begin{definition}
+  Given a vector bundle $\xi = (E, B, \mathbb{F}, p)$ we can create the associated (locally trivial) fibration $\xi_k = (E_k, B, R_k, p_k)$ where $$ E_k = \left\{ (x_1, \cdots, x_k) \in E \times \cdots \times E ~|~ p(x_1) = \cdots = p(x_k);~ x_1, \cdots, x_k \text{ are lin. ind.}  \right\} $$ for $1 \leq k \leq n$ and $R_k$ is the set of $k-$orthonormal frames in $R^n$.
+  \\
+  \\
+  The \textbf{spherical fibrbation} $\xi_1^0$ is the fibration with base $B$ and total space being the collection of orthonormal frames in the fibers of $\xi$.
+\end{definition}
+
+
+We defined the Thom class using Thom Spaces and Thom Isomorphisms. Specifically,
+
+\begin{definition}
+  Given a real $n-$dimensional oriented vector bundle $\xi$ with base $B$, let $T(\xi) = D(\xi) / S(\xi)$ be the \textbf{Thom Space} where $D(\xi), S(\xi)$ are the Disk and Sphere bundles associated with the bundle $\xi$.
+\end{definition}
+
+\begin{definition}
+  For $n-$dimensional real oriented vector bundle $\xi$ with base $B$, an arbitrary $\alpha \in H^q(B; G)$, we have $$ \textbf{t}(\alpha) = \textbf{t}(1) \smile \alpha $$ where the cohomology class $\textbf{t}(1) \in H^n(T(\xi); G)$  is called the \textbf{Thom class} of $\xi$, and $t$ is the \textbf{Thom Isomorphism}, $$\mathbf{t} \text{ : } H^q(B; G) \xrightarrow{\cong} \tilde{H}^{q+n}(T(\xi); G) $$ (Note: if $G = \zee_2$ then the orientability of $\xi$ is not necessary)
+\end{definition} \textbf{\underline{Proof of Claim \#1:}} \\ 
+\\
+We want to show that $\mathfrak{o}_n(\xi)$ coincides with the pullback of $\mathbf{t}(1)$ under the zero section of $\xi$.
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Use the unoriented version of the previous exercise in order to show that $\mathbb{RP}^n$ cannot be embedded into $\R^{2n-1}$ when $n$ is a power of $2$.
+
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+% \underline{Method \#1:}
+% When working with $\zee_2$ coefficients we can use the Stiefel-Whitney class rather than the euler class. The crux of our argument will be the \textbf{following theorem and it's corollary}:
+
+% \begin{theorem}
+%   If $M$ is embedded as a closed subset of $A$, then the composition of the two restriction homeomorphisms $$ H^k(A, A - M; \zee_2) \rightarrow H^k(A; \zee_2) \rightarrow H^k(M; \zee_2) $$ maps the fundamental class $u'$ to the top Stiefel-whitney class $w_k(\nu^k)$ of the normal bundle. (Similarly if $\nu^k$ is oriented then the same composition but with coeffieints in $\zee$ sends the fundamental class to the euler class $e(\nu)^k$). 
+% \end{theorem}
+
+% This theorem is essentially what we had in Q1.
+
+% \begin{corollary}
+%   If $M = M^n$ is smoothly embedded as a closed subset of the euclidean space $\R^{n+k}$, then $w_k(\nu^k) = 0$ (In the oriented case, $e(\nu^k) = 0$) where $\nu$ is the normal bundle
+% \end{corollary}
+
+% in conjunction with the \textbf{Whitney Duality Theorem}
+
+% \begin{lemma}
+%   If $\tau_M$ is the tangent bundle of a manifold in Euclidean space and $\nu$ is the normal bundle then $$ w_i(\nu) = \bar{w}_i(\tau_M) $$ (the overbar denotes the inverse of $w$ within the cohomology ring)
+% \end{lemma}
+
+% Using Whitney Duality, we can restate the corollary as: 
+% \begin{dottedbox}
+%   If $\bar{w}_k(\tau_M) \neq 0$, then $M$ cannot be smoothly embedded as a closed subset of $\R^{n+k}$.
+% \end{dottedbox}
+
+\underline{Method \#2:}
+
+(Not quite what the question asks, but hopefully this is acceptable)
+\\
+\\
+We'll use the following proposition:
+
+\begin{dottedbox}
+  Let $E$ be a real bundle. If $w_{top}(E) \neq 0$ then $E$ does not have a nowhere vanishing section.
+\end{dottedbox}
+
+\begin{proof}
+  Suppose we have a nowhere vanishing section of $E$ denoted $s$. Then, $s$ would span a line-subbundle of $E$ which splits off i.e. we can write $$E = \ell \oplus F$$ for $F = \ell^{\perp}$ being some subbundle of rank one less than $E$. Thus, we would have $w_i(E) = w_i(\ell \oplus F) = w_i(\ell) w_i(F) = 1 \cdot w_i(F)$ but $w_i(F)$ should vanish at the top rank. Thus, if there exists a nowhere vanishing section of $E$, $w_{top}(E) = 0$.
+\end{proof}
+
+It turns out that $T\mathbb{RP}^n \oplus \varepsilon \cong \tau^* \otimes \varepsilon^{n+1}$ where $\epsilon$ is the trivial bundle. Then, because $w(\varepsilon) = 1$, we have that $w(T\mathbb{RP}^n) = (1+h)^{n+1} \in H^2(\mathbb{RP}^n; \zee_2)$
+\\
+\\
+Now, let $n = 2^k$ for some $k$ and suppose there exists some embedding of $\mathbb{RP}^n$ into $\R^{2n-1}$. That would mean that $T \mathbb{RP}^n$ can be embedded into $\varepsilon^{2n-2}$ and its complement, say $Q$, would have rank $n-2$. Then $$w(T\mathbb{RP}^n)w(Q) = 1$$
+
+But, 
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Diagonal quaternionic matrices define an inclusion of $(Sp_1)^n$ into $Sp_n$, which induces the homomorphism from $H^*(BSp_n)$ to $H^*((\mathbb{H} P^{\infty})^n)$ between the cohomology of the classifying spaces. Yet, each $Sp_1=SU_2$ contains the circle $T^1$ of diagonal $SU_2$-matrices. Compute the image of $H^*(BSp_n)$ in $H^*(BT^n)=\mathbb{Z}[x_1,\dots,x_n]$ under map induced by the inclusion $T^n\subset (Sp_1)^n\subset Sp_n$, and find the images of the 1st obstruction classes to sections of the universal $\mathbb{H} V(n,n-m+1)$-bundles over $BSp_n = \mathbb{H} G(\infty, n)$.
+
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+text
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\section{Appendix}
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+'

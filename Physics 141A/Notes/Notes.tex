@@ -1,0 +1,868 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{calligra}
+
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black, breakable}
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=blue!5!white, % Light blue background
+  colframe=blue!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont (Instructor: James Analytis)}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily Physics 141A: Solid State Physics notes}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+These are some notes taken from UC Berkeley's Physics 141A during the Fall '24 session, taught by James Analytis.
+
+\vskip 0.5cm
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\tableofcontents 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{August 28: Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{What is condensed Matter / Soild State Physics?}
+\begin{note}
+  {Write afterwards}
+\end{note}
+
+\subsection{Heat Capacity}
+What is the Heat Capacity of a solid?
+\\
+Essentially, it quantifies how the average energy of a solid changes with increases in temperature.
+\[ C_{P(V)} = \restr{\frac{dQ}{dT}}{P(V)} \] But then, one might ask, what exactly \emph{is} Temperature? We all know what it is intuitively, but can we give it a more rigorous definition?
+\\
+\subsection*{Kinetic Theory of Gases}
+In statistical mechanics, we define the temperature by connecting it to the number of possible microstates a system can occupy. From here, we state that the probability of occupying a specific state $r$ is given by the \textbf{Boltzmann Factor}
+\[ P(\epsilon_r) \propto e^{\epsilon_r / k_B T} \] where $\epsilon_r$ is the energy of state $r$ and $T$ is the temperature.
+\\
+\begin{note}
+  {Give analogy with number of flips of dice thrown slow vs fast}
+\end{note}
+\\
+\\
+To get the probability itself, we normalize by the sum of \emph{all} the boltzmann factors corresponding to the different energy states.
+\[ P(\epsilon_r) = \frac{e^{\epsilon_r / k_B T}}{\sum_{i} e^{\epsilon_i / k_B T} } \] Consider a two-state system
+\[\begin{tikzcd}
+	\epsilon && {P(\epsilon) = \frac{e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}}} \\
+	0 && {P(0) = \frac{e^{-\beta \cdot 0}}{1 + e^{-\beta \cdot \epsilon}} = \frac{1}{1 + P(\epsilon)} = \frac{e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}}}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}\]
+Then, the expected value of the energy of the system is 
+\begin{align*}
+  \mean{\epsilon} &= 0 \cdot P(0) + \epsilon \cdot P(\epsilon) \\
+  &= 0 + \frac{\epsilon e^{-\beta \epsilon}}{1 + e^{-\beta \epsilon}} \\
+  &= \frac{\epsilon}{e^{\beta \epsilon} + 1}
+\end{align*}
+
+Notice that if $T \rightarrow 0$ then $\mean{\epsilon} \rightarrow 0$ and if $T \rightarrow \infty$ then $\mean{\epsilon} \rightarrow \epsilon / 2$
+
+\begin{note}
+  {Include graph of $\mean{\epsilon}$ vs T}
+\end{note}
+\begin{center}
+  \includegraphics*[scale=0.05]{pictures/aug 28/IMG_3493-min.png}
+\end{center}
+
+
+% \begin{note}
+%   {Include graph of $\mean{\epsilon}$ vs T}
+% \end{note}
+
+\begin{center}
+  \includegraphics*[scale=0.05]{pictures/aug 28/IMG_3494-min.png}
+\end{center}
+
+The normalization factor in $P(\epsilon_r)$ is called the \textbf{Partition Function}
+\[ Z = \sum_{i} e^{-\epsilon_i / k_B T} \] In our two-state system the energy spectrum is discrete. However, in general, we can have continuous spectra.
+\\
+\\
+A very useful distribution to be familiar with is the following, where we have a continuous spectrum of states:
+\[ P(x) = \frac{e^{-\beta \alpha x^2}}{\int_{-\infty}^{\infty} dx\; e^{-\beta \alpha x^2} } \]
+and  the energy spectra is depdenent on $x$ i.e. we have $E(x)$. Then,
+\begin{align*}
+  \mean{E(x)} &= \int_{-\infty}^{\infty} dx\; E(x) P(x)
+\end{align*}
+\begin{note}
+  {Include intermediate steps}
+\end{note}
+\begin{center}
+  \includegraphics*[scale=0.05]{pictures/aug 28/IMG_3495-min.png}
+\end{center}
+
+which gives us 
+\[ \mean{E} = \frac{1}{2\beta} = \frac{1}{2} k_B T \]
+
+\begin{bluebox}
+  Notice that $\mean{E}$ is \textbf{independent of $\alpha$!} i.e. it only depends on temperature. 
+  \\
+  \\
+  In general, if we have quadratic degree of freedom in the boltzmann factor, it does not impact the average energy.
+\end{bluebox}
+
+Suppose we have $n$ such quadratic degrees of freedom in our expression for energy: 
+\[ \epsilon = \sum_{i = 1}^{n} \alpha_i x_i^2 \] 
+For example,
+\[ \frac{1}{2} mv^2 + \frac{1}{2} kx^2 \]
+then, the average energy is 
+\begin{align*}
+  \mean{\epsilon} &=  \sum_{i = 1}^{n} \alpha_i \mean{x_i^2} \\
+  &= \sum_{i = 1}^{n} \frac{1}{2} k_B T \\
+  &= \frac{n}{2} k_B T
+\end{align*}
+
+\begin{redbox}
+  \textbf{Example, Mass on a spring:} $\mean{\epsilon} = 2 \cdot \frac{1}{2} k_B T = k_B T $ 
+\end{redbox}
+
+Now, solids are 3D objects comprised of a bunch of atoms, which we can imagine as being joined together with \textbf{springs}. Suppose we have such a solid with $N$ atoms. Then, the mean energy is 
+\begin{align*}
+  \mean{\epsilon} &= \underbrace{3}_{\text{dimension}} \cdot \underbrace{2}_{2 \; d.o.f's} \times \frac{1}{2} k_B T \times N \\
+  &= 3N k_B T
+\end{align*}
+Then, the Heat Capacity of the solid is 
+\begin{align*}
+  C = \frac{d\mean{\epsilon}}{dt} = 3Nk_B
+\end{align*}
+or, for a mole of the solid, 
+\[ C_{\text{mole}} = 3 N_A k_B = 3 R \]
+
+\begin{bluebox}
+  Nothing in this derivation depended on the material being considered. So, we've shown that \textbf{every solid has the same heat capacity!}
+  \\
+  \\
+  Well, this is wrong. But at high enough temperatures, it does hold pretty well. 
+\end{bluebox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{August 30: Missed lecture. Ask in Office Hours.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 2: Labor Day! No class}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 4: Debye Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Today we'll begin studying the Debye Model (Ch. 2 in the textbook). 
+\\
+\\
+From studying the Einstein Model, we realized that in order to better understand solids we must treat them \textit{Quantum Mechanically}.
+\\
+\\
+Debye asked "Wat if sound in solids was like light, and was quantized \& dispersed like light?". When we say "dispersed" we mean, written as a function of momentum
+\[ \underbrace{\omega}_{\text{freq.}} = \underbrace{v}_{\text{vel. of sound}} \underbrace{|\vec{k}|}_{\text{wavevector}} \] 
+
+
+\subsection{1D case}
+Let's analyze this in one-dimension. Consider sound traveling along a $1-$D solid (a string) of length $L$. In order to analyze our string, we'll use \textbf{Born-von Karman} boundary conditions to turn out string of length $L$ into a \emph{circle} of circumference $L$.
+\\
+\\
+Include picture
+\\
+
+\begin{bluebox}
+  \textbf{Why is it fine to assume periodicity?}
+  \\
+  \\
+  Simple waves generally tend to be periodic in nature, and even if we do have to deal with aperiodic waves, we can almost always decompose them into sums of periodic waves using \textbf{Fourier Analysis}, so we just assume periodicity to save effort.
+\end{bluebox}
+
+With these boundary conditions, a sound wave at $x$ has the same value at $x + L$. So, suppose 
+\begin{align*}
+  &e^{ikx} = e^{ik(x+L)}, \text{ so } e^{ikL} = 1  \\
+  \implies& kL = n(2\pi) \\
+  \implies& k = n \cdot \frac{2\pi}{L} \text{ for } n=...,-1, 0,1,2,3,\cdots
+\end{align*}
+
+Often (eg. when calculating average energies) we'll need to sum over the $k-$states. If we have a continuum solid, we can convert our sums to integrals as
+\[ \sum_{k} \rightarrow  \frac{1}{\Delta k} \int_{-\infty}^{\infty} \mathrm{d}k \]
+
+\subsection{3D case}
+Assuming we now have a cuboid of \emph{sidelength} $L$, our wavevectors have the form
+\begin{align*}
+  \vec{k} &= \left(k_1, k_2, k_3 \right) \\
+  &= \frac{2\pi}{L} \left(n_1, n_2, n_3\right)
+\end{align*}
+for $n_1, n_2, n_3 \in \mathbb{N}$
+
+So, we convert our sums into integrals as 
+\begin{align*}
+  \sum_{i} \rightarrow \frac{1}{(2\pi/L)^3} \int \mathrm{d}^3\vec{k} = \left(\frac{L}{2\pi}\right)^3 \int \mathrm{d}^3\vec{k} 
+\end{align*}
+
+\subsection{Debye's Calculation following Planck}
+We have the dispersion relation
+\[ \omega(\vec{k}) = v_{s} \left| \vec{k} \right| \]
+
+and so, with the Einstein model,
+\begin{align*}
+  \mean{E} &= 3 \times \sum_{k} \hbar \omega(\vec{k}) \left( n(\vec{k}) + \frac{1}{2} \right)
+\end{align*}
+(we have th factor of $3$ becayse that's how many \textit{modes} we have for sound waves: 2 transverse modes and 1 longitudinal mode)
+\\
+and the Bose Occupation Factor is
+\[ n_s(\vec{k}) = \frac{1}{e^{\beta n \omega(\vec{k})} - 1} \]
+
+So,
+\begin{align*}
+  \mean{E} &= 3 \left(\frac{L}{2\pi}\right)^3 \int_{-\infty}^{\infty} \mathrm{d}^3\vec{k} \;\hbar \;\omega(\vec{k}) \left( n_s(\vec{k}) + \frac{1}{2} \right)
+\end{align*}
+
+Each excitation made is a \textbf{Boson} of frequency $\omega(\vec{k})$ and occupied $n_s(\vec{k})$ times.
+
+Using spherical coordinates in $k^3$ space, 
+\[ \int \mathrm{d}^3 \vec{k} \rightarrow \int_{0}^{\infty} 4\pi k^2 \mathrm{d}k \]
+where now $k$ just refers to the magnitude of $\vec{k}$.
+\\
+\\
+Then, using the dispersion relation $\omega = v_sk \implies k = \frac{\omega}{v_s}$, we can change the variable of integration from $k$ to $\omega$ and get
+
+\begin{align*}
+  \mean{E} &= 3 \cdot 4\pi \left(\frac{L}{2\pi}\right)^4 \int_{0}^{\infty} \frac{\omega^2}{v_s^2} \cdot \hbar \omega \cdot \left( n_s + \frac{1}{2} \right) \mathrm{d} \omega
+\end{align*}
+
+We can re-write this a little as:
+\begin{align*}
+  \mean{E} &= \int_{0}^{\infty} g(\omega) \hbar \omega \cdot \left( n_s + \frac{1}{2} \right) \mathrm{d}\omega
+\end{align*}
+the function $g(\omega)$ is the \textbf{density of states} in terms of frequency. In this case,
+\[ g(\omega) = L^3 \frac{12 \pi}{(2\pi)^3} \frac{\omega^2}{v_s^3} \]
+
+Defining, \[ \boxed{\omega_d^3 = 6\pi^2 n v_s^3 } \] to be the \textbf{Debye Frequency}, the density of states is 
+\[ g(\omega) = N \cdot 9 \frac{\omega^2}{\omega_d^3} \]
+
+\subsection*{Unpacking this a litte:}
+We have an equation of the form 
+\[ \mean{E} = \int \mathrm{d}\vec{k}\; g(\vec{k}) \cdot \hbar \omega(\vec{k}) \cdot \left(n_s(\vec{k}) + \frac{1}{2}\right) \] In this equation 
+\begin{itemize}
+  \item $g(\vec{k})$ is the number of states in the with $\mathrm{d}\vec{k}$ in $\vec{k}-$space.
+  \item $\hbar \omega(\vec{k})$ is the energy of each mode
+  \item $n_s(\vec{k})$ is the probability of occupation.
+\end{itemize}
+
+\subsection*{Density of States (D.O.S.)}
+Consider a sphere of constant radius $k$ in the $\vec{k}-$space (include picture) which are all occupied.
+\\
+\\
+Then, the volume of occupied $k-$states is  \[ \frac{4}{3} \pi k^3 \] and then Number of states in this voluem is 
+\[ N = \frac{(4/3)\pi k^3}{\left(2\pi/L\right)^3} \cdot \underbrace{3}_{2 \times \text{ Trans.}, 2 \times { Long.}} \] 
+
+Let's \textit{define} (generally), $g(k) = \frac{dN}{dk}$. So, 
+
+\begin{align*}
+  g(k) &= \frac{3 \cdot 4 \pi k^3}{(2\pi / L)^3} \\
+  &= L^3 \frac{12 \pi k^3}{(2\pi)^3} \\
+  &= (\text{ fill later})
+\end{align*}
+
+So, $g(\omega) d\omega$ is the number of states between $\omega$ and $\omega + d\omega$.
+
+\subsection*{The Debye Frequency}
+We defined the Debye Frequency as 
+\[ \omega_d^3 = 6 \pi^2 n v_s^3 \]
+where $n$ is the number density of the solid and $v_s$ is the speed of sound. This is a \textbf{Material Dependent quantity}.
+\\
+\\
+For example, the larger the speed of sound $v_s$ the larger the debye frequency. The speed of sound in a dense, rigid, hard solid like diamond would be bigger than the speed of sound in, say, a polymer. Hence, the value of the debye frequency for a specific material tells us about some of its properties.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 6: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Review of Last Lecture's Results}
+
+With SHO Dispersion Relation $\omega = v_s |\vec{k}|$
+\begin{itemize}
+  \item \textbf{Debye Frequency:}
+  \[ \omega_d^3 = 6\pi^2 n v^3 \]
+  \item \textbf{Density of States:}
+  \[ g(\omega) = 9N \frac{\omega^2}{\omega_d^3} \]
+  \item \textbf{Average Energy:}
+  \[ \mean{E} = \frac{9N\hbar}{\omega_d^3} \int_0^{\infty} \mathrm{d}\omega \frac{\omega^3}{e^{\beta \hbar \omega} - 1} + \text{T-independent terms} \]
+\end{itemize}
+
+Ignoring the $T-$independent terms (which includes the zero-point energy) \begin{note}
+  {Write about this more.}
+\end{note} we can make the substitution $x = \beta \bar \omega$ and solve the integral for 
+\begin{align*}
+  \mean{E} &= \frac{9N\hbar}{\omega_d^3 (\beta \hbar)^4} \underbrace{\int_{0}^{\infty} \mathrm{d}x \frac{x^3}{e^x - 1}}_{=\pi^4/15} \\
+  &= \frac{9N\hbar}{\omega_d^3 (\beta \hbar)^4} \frac{\pi^4}{15} \\
+  &= \frac{\pi^4}{15} \cdot \frac{9N (k_bT)^4}{(\bar \omega_d)^3}
+\end{align*}
+
+which gives us 
+\begin{align*}
+  C &= \frac{d\mean{E}}{dt} \\
+  &= \frac{12 \pi^4}{5} N k_b \left(\frac{k_bT}{\hbar \omega_d}\right)^3
+\end{align*}
+
+and this is lovely because, we find experimentally taht $C \sim T^3$. Define the \textbf{Debye Temperature} (denoted $\Theta$) as \[ \hbar \omega_d = k_B \Theta  \] Then, \[ C = \frac{12\pi^4}{5} Nk_B \left( \frac{T}{\Theta} \right)^3 \]
+
+
+\begin{bluebox}
+  $\Theta$ plays the role of the Einstein temperature. \begin{note}
+    {Explain why.}
+  \end{note}
+\end{bluebox}
+
+% \begin{bluebox}
+%   The Einstein Model and the Equipartition Theorem tell us that Enery is pro
+% \end{bluebox}
+
+\begin{redbox}
+  \textbf{But we still have a problem.} \\
+  $C$, according to this calculation, growns indefinitely as $T$ increases. But we know experimentally that at high $T$, the heat capacity $C \rightarrow 3 \cdot Nk_B$ ($3k_B$ per atom, Dulong-Petit Limit).
+\end{redbox}
+
+The problem with the above calculation is the assumption tat there are an infinite number of possible $k-$states and sound waves can go to an arbitrarily large $k$.
+\\
+\\
+Debye guessed taht there shouldn't be more $k-$states than there are degrees of freedom in the system, which is set by the number of atoms, "springs", etc.
+\\
+\\
+Debye's trick was to, instead of integrating $k-$states from $0$ to $\infty$, to choose a \textbf{cutoff} $\omega_{\text{cutoff}}$ such that
+\begin{align*}
+  &3N = \int_0^{\omega_{\text{cutoff}}} g(\omega) \mathrm{d}\omega \text{ and } \\
+  &\mean{E} = \int_0^{\omega_{\text{cutoff}}} g(\omega) \hbar \omega \left(n_b + \frac{1}{2} \right) \mathrm{d}\omega
+\end{align*}
+
+\begin{redbox}
+  \textbf{Why is this justified?} \\
+  The main concern was to preserve low-temperature behavior while capturing the desired hi-temperature behavior.
+  \\
+  \\
+  Now, $n_B(\omega)$ for low $T$ naturally plateaus after a certain $\omega$, whereas the high $T$ curves don't. And so, choosing a cutoff doesn't impact the low temperature results but does for high temperature.
+\end{redbox}
+
+\vskip 0.5cm
+Let's investigate the high-temperature case: i.e. temperatures $T$ for which $k_B T >> \hbar \omega_{\text{cutoff}}$
+\\
+\\
+In this case, 
+\[ n_B(\beta \hbar \omega) = \frac{1}{e^{\beta \hbar \omega} - 1} \sim \frac{k_B T}{\hbar \omega} \] which gives us 
+\begin{align*}
+  \mean{E} &= \int_0^{\omega_{\text{cutoff}}}  \hbar \omega \frac{k_B T}{\hbar \omega} g(\omega) \mathrm{d}\omega + \text{ T - independent terms}\\
+  &= k_B T \int_0^{\omega_{\text{cutoff}}} g(\omega) \mathrm{d}\omega \\
+  &= k_B T \cdot 3N 
+\end{align*} That gives us \[\boxed{ C = \frac{d\mean{E}}{dt} = 3Nk_B} \] (Dulong-Petit Limit!)
+\\
+\\
+\textbf{So, what is the cutoff frequency?}
+
+\begin{align*}
+  3N &= \int_{0}^{\omega_{\text{cutoff}}} g(\omega) \mathrm{d}\omega \\
+  &= 9N \int_{0}^{\omega_{\text{cutoff}}} \frac{\omega^2}{\omega_d^3} \mathrm{d}\omega \\
+  \implies 3N &= 3N \frac{\omega_{\text{cutoff}}^3}{\omega_d^3}
+\end{align*}
+
+Thus, \[ \boxed{\omega_{\text{cutoff}} = \omega_d} \]
+
+\begin{itemize}
+  \item So, this worked, but Debye and others were still kind of unhappy because introducing an artificial cutoff didn't seem right. 
+  \item Another problem with the Debye model was that it was known that some compounds (specifically metals) had a linear specific heat.
+\end{itemize}
+
+\subsection*{Now we begin CH3 of Simons: Drude, Sommerfeld models}
+
+Drude asked, "what is electrons in a metal behaved like a free electron gas?". This wasn't an obvious thing to assume, especially because the Coulomb Interaction between electrons in a metal is \textit{huge}.
+\begin{bluebox}
+  \underline{Back of the hand calculation}:
+  \\
+  The coulomb interaction is 
+  \[ U \sim \frac{1}{4\pi \epsilon_0} \frac{q^2}{r} \] and let's guess that $r$ is around one Angstrom or so. Then the interaction is on the scale$\cdots$ complete this
+\end{bluebox}
+Regardless, Drude made the assumption, and it turned out to give results that are incredibly accurate. However, it took about 50 years to understand why this unreasonable assumption gives reasonable results for so many metals.
+\\
+The assumption is that electrons are independent i.e. they don't interact with each other, and they only interact with ions via collisions.
+\begin{enumerate}[label=(\alph*)]
+  \item Electrons have a "scattering time" $\tau$ determined by these collisions. This roughly characterizes the probability of a collision between an electron and an ion.
+  \item In a time interval $\delta t$, the probability of colliding $\sim \frac{\delta t}{\tau}$.
+  \item Once a scatterin event occurs, an electron with momentum $\vec{p}$ relaxes \underline{on average} to $\vec{p} = 0$ (the momentum after a collision is randomized).
+  \item Between the Collisions, electrons can be accelerated by an electric or magnetic field.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 9: Drude Model Continued, Hall Effect}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Last time, we left off with the main assumptions of the Drude model. Namely taht electrons do not interact with eac other but do scatter off of the ions of the metal. How does this impact how we think of the motion of the electrons in a metal?
+\\
+\\
+\textbf{Question: What average momentum will the electrons have?}
+\\
+Recall that the probability of an electron scattering off an ion in time-interval $\delta t$ is $\delta t / \tau$. Now, since \[ \vec{F} = \frac{d\vec{p}}{dt}  \] we can say
+\begin{align*}
+  \mean{\vec{p}(t + \delta t)} &= \left(\vec{p}(t) + \vec{F} \delta t\right) \times \left( 1 - \frac{\delta t}{\tau} \right) + 0 \times \frac{\delta t}{\tau}
+\end{align*}
+where $\left(\vec{p}(t) + \vec{F} \delta t\right)$ is the momentum for an electron accelerated by a force $\vec{F}$ and we multiplied it with $\left(1 - \frac{\delta t}{\tau}\right)$ which is roughly the fraction of electrons \underline{not} scattered, $0$ is the (average) momentum after scattering and we multiply it with $\frac{\delta t}{\tau}$ which is the fraction of electrons scattered. 
+\\
+\\
+So, dropping the bars which denote avg. momentum since all our quantities are averages,
+\begin{align*}
+  \vec{p}(t + \delta t) &= \vec{p}t = \frac{\delta t}{\tau} \vec{p}(t) + \vec{F}\delta t - \vec{F} \underbrace{\frac{(\delta t)^2}{\tau}}_{\approx 0} \\
+  &= \vec{p}(t) + \vec{F} \delta t - \frac{\delta t}{\tau} \vec{p}(t) \\
+  \implies \frac{\vec{p}(t + \delta t)}{\delta t} &= \vec{F} - \frac{\vec{p}(t)}{\tau} 
+\end{align*}
+
+So, scattering "reduces" the overall force in a manner just like drag. If we remove $\vec{F}$ so $\vec{F} = 0$ and then take the limit $\delta t \rightarrow 0$ we have \[  \frac{d\vec{p}}{dt} = -\frac{\vec{p}}{\tau}  \] This looks like exponential decay, so we have the solution \[ \boxed{\vec{p}(t) = \vec{p}(0) e^{-t / \tau} } \] We have \textbf{exponential loss of momentum due to scattering}.
+\\
+\\
+Let's use these results to study the movement of electrons in a conducting wire.
+
+\subsection{Conducting Wire, Drude Conductivity}
+Consider a conducting wire of cross sectional area $A$ as shown in the figure below:
+
+\begin{center}
+  Include figure.
+\end{center}
+
+Let us add a force $\vec{F} = -e\vec{E}$, so \[ \frac{d\vec{p}}{dt} = -e\vec{E} - \frac{\vec{p}}{\tau} \] and denote the current density $\vec{j}$. We have $\vec{j} = e\vec{v}n$ where $n$ is the number density of electrons in the wire and $\vec{p} = m\vec{v}$ where $m$ is the mass of electron.
+\\
+\\
+Consider the Steady State: $\frac{d\vec{p}}{dt} = 0$ 
+
+\begin{bluebox}
+  \textbf{Note:} There is a difference between Steady State and Equilibrium State.
+  \\
+  \\
+  A steady state is one in which the rate of change is zero, whereas an equilibrium state is one in which the potential is minimized.
+  \\
+  \\
+  Usually equilibrium states correspond to "global" minima of the potential function, but it's possible to have "meta-stable" equilibrium states which are local minima. For example, diamond is a meta-stable state of carbon, whereas graphene is not.
+\end{bluebox}
+
+Then, we have 
+\begin{align*}
+  e\vec{E} &= - \frac{p}{\tau} \\
+  \implies \delta q &= |\vec{v}| \cdot \underbrace{\delta t A}_{\text{vol. of $e^-$s flowing in time $\delta t$ across $A$}}\cdot (-en) \\
+  \implies \vec{j} &= \frac{1}{A} \frac{dq}{dt} \underbrace{\vec{v}}_{\text{unit vec. in dir. of vel.}} - -ne \vec{v}
+\end{align*} 
+and
+\begin{align*}
+  e\vec{E} &= -\frac{\vec{p}}{\tau} = -\frac{m\vec{v}}{\tau} \\
+  \implies \vec{v} &= \frac{e \tau}{m} \vec{E}
+\end{align*}
+
+Thus,
+\begin{align*}
+  &\vec{j} = +ne\vec{v} \\
+  \implies& \vec{j} = +\frac{ne^2 \tau}{m} \vec{E}
+\end{align*}
+
+We call $\sigma = \frac{ne^2 \tau}{m}$ the \textbf{Drude Conductivity}. Physically, this formula for conductivity makes a lot of sense 
+\begin{itemize}
+  \item The greater the density of electrons $(n)$, the greater the conductivity.
+  \item The more time between scattering events $(\tau)$, teh greater the conductivity.
+  \item The heavier our charged particles are $(m)$, the weaker the conductivity.
+\end{itemize}
+The last point is more interesting than it may seem. For instance, in heavy-metal systems, we observe spin-orbit effects in which the speeds of electrons approach relativistic speed which can impact the mass $m$.
+\\
+\\
+Now,
+\begin{align*}
+  \frac{d\vec{p}}{dt} &= -e\vec{E} - e\vec{v} \times \vec{B} - \frac{\vec{p}}{\tau} \\
+  &= -e \underbrace{\left(\vec{E} + \vec{v} \times \vec{B}\right)}_{\vec{F}} - \frac{\vec{p}}{\tau} 
+\end{align*}
+In steady state,
+\begin{align*}
+  0 &= -e \left( \vec{E} + \vec{v} \times \vec{B} \right) - \frac{m\vec{v}}{\tau} \\
+  \implies 0 &= -e\vec{E} + \frac{1}{n} \vec{j} \times \vec{B} + \frac{m}{ne\tau} \vec{j} \\
+  \implies \vec{E} &= \frac{1}{ne} \vec{j} \times \vec{B} + \frac{m}{ne^2 \tau} \vec{j} = \frac{1}{ne} \vec{j} \times \vec{B}
+  + \frac{1}{\sigma} \vec{j} 
+\end{align*}
+Let's analyze what this means. Our electric field is the sum of two vectors which are perpendicular to each other. So, the effective electric field is directed in a skewed angle.
+\begin{center}
+  Include picture
+\end{center}
+The angle between $\frac{1}{\sigma} \vec{j}$ and $\vec{E}$ is called the \textbf{Hall Angle, $\theta_H$} and the coefficient of $\vec{j} \times \vec{B}$ is called the \textbf{Hall Coefficient, $R_H$} \[ R_H = -\frac{1}{ne} \] If $\vec{B} = 0$ then for \[ \vec{E} = \begin{pmatrix}
+  E_x \\ 0 \\ 0
+\end{pmatrix} \] we have \[ \vec{j} = \begin{pmatrix}
+  j_x \\ 0 \\ 0
+\end{pmatrix} \]. However, introducing the magnetic field causes the current (density) to become skewed and gain $j_y, j_z$ components.
+\\
+\\
+A slightly nicer way ti view this is by defining the \textbf{resistivity tensor} as $\rho$: $\vec{E} = \rho \vec{j}$ where 
+($\rho$ is antisymmetric - explain why)
+\begin{align*}
+  \rho = \begin{pmatrix}
+    \frac{1}{\sigma} & B_z/ne & B_y/ne \\
+    B_z/ne  & \frac{1}{\sigma} & B_x/ne \\
+    B_y/ne & B_x/ne & \frac{1}{\sigma} \\
+  \end{pmatrix}
+\end{align*} and denoting \[ \vec{B} = \begin{pmatrix}
+  B_x \\ B_y \\ B_z
+\end{pmatrix} \] we find 
+\begin{align*}
+  E = \left[  \frac{1}{ne} \begin{pmatrix}
+    0 & B_z & B_y \\
+    -B_z & 0 & B_x \\
+    B_y & -B_x & 0 \\
+  \end{pmatrix} + \frac{1}{\sigma} \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix} \right]
+\end{align*}
+
+\underline{Example:} If we have a magnetic field pointing purely in the $z-$direction, 
+
+\begin{center}
+  fill in later.
+\end{center}
+
+The components that are off-diagonal i.e. $\rho_{ij},\; i \neq j$ connect the electric field seen in the "$i$" direction when a current is applied in the "$j$" direction. This will be measured as a voltage (a potential drop in the "$i$" direction).
+\begin{center}
+  Include picture.
+\end{center}
+
+Write the rest from picture.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 11: }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Plan for today}
+
+\begin{itemize}
+  \item Brief recap of Hall Physics
+  \item Thermal Conductivity
+  \item Wiedeman-Franz Law
+\end{itemize}
+
+\subsection*{Hall Voltage}
+Fill from image
+\\
+\\
+When studying the Alkali-metals for example, people found that some of the metals with $2+$ valence (Be, Mg) gave values of $n/n_{\text{atoms}}$ which were anomalous in two ways: they were too small, and they were \emph{negative} - which would indicate that they have \emph{positive} Hall current carriers rather than negative ones - which doesn't make sense in the Drude Model.
+\\
+\\
+To really understand what's going on here, we'll have to use \textbf{Band Theory}. We'll come back to this.
+
+\begin{redbox}
+  \textbf{Ball-park estimates:}
+  \\
+  \\
+  Let's try to get a feel for the average free path, $l$, travelled by an electron. We know $$ \sigma = \frac{ne^2 \tau }{m} \implies \frac{m\sigma}{ne^2} = \tau $$  
+  and we can obtain a value for $\sigma$ experimentally. Usually, this is done by measuring $\rho \approx 10^{-5} \Omega m$
+  \\
+  \\
+  Fill this out.
+  \\
+  \\
+  Thus we find that $l = v\tau \approx 10^5 m/s \cdot 10^{-15} s = 10^{-10} m $ i.e. one Angstrom, which is roughly the spacing between atoms in a crystal. And this matches up with the assumption made in the Drude model!
+\end{redbox}
+
+\subsection{Thermal Conductivity}
+The Thermal conductivity of a material is related to how well it conducts heat, so often it's denoted with a $Q$ subscript. Intuitively, we know that heat flows "hot to cold" i.e. in direction opposite to that of increasing temperature. So, we expect that $$ \vec{j}_{Q} = - \kappa \nabla T $$ where $\kappa$ is a constant of proportionality called the \textbf{Thermal Conductivity}.
+\\
+\\
+Let's do a loose derivation of a formula for $\kappa$ (following the one in Simons).
+\\
+\\
+We know electrical current is described as $$ \vec{j} = e n \vec{v} $$ where $n$ is the number of charge carriers per unit volume, and $\vec{v}$ is the (avg) velocity of the charve carriers. 
+\\
+\\
+How do we express the \textit{thermal current}? Let's say it's of the form $$ \vec{j}_{Q} = (\delta E) n \vec{v} $$ where $n$ is the number of \textit{carriers of energy} per unit volume, and $\delta E$ is the \textbf{average energy carried} in the direction of $\vec{v}$.
+\\
+\\
+Suppose we have a slab of material as in the picture below:
+\begin{center}
+  Include picture of material
+\end{center}
+
+\textbf{"Fast \& Loose" derivation}\\
+Suppose we have particles from two collision sites, each a distance $v\tau$ away from our point of interest $x$. 
+\begin{center}
+  Include picture of particles and points $x$
+\end{center}
+
+Let's denote the energy of particles coming from the point $x - v\tau$ as $E(x - v\tau)$ and the energy of particles coming from $x + v\tau$ as $E(x + v \tau)$. Then, if we think about the "energy landscape", we can imagine the following picture:
+\begin{center}
+  Include pic of energy landscape
+\end{center}
+
+Then, we can estimate $\delta E$ as the difference between them, so
+\[ \vec{j}_{Q} = n\vec{v} \left( \frac{1}{2} E(x - v\tau) - \frac{1}{2} E(x + v\tau) \right) \]  \begin{note}
+  {We subtract them because they're travelling in opposite directions}
+\end{note}
+
+Taylor expanding the Temperature and Energy at the points $x - v\tau$ and $x + v\tau$ we get 
+\begin{align*}
+  T(x - v\tau) &\approx T(x) + \frac{dT}{dx}(-v\tau)
+  T(x + v\tau) &\approx T(x) + \frac{dT}{dx}(+v\tau) \\
+\end{align*}
+and 
+\begin{align*}
+  E(x - v\tau) &\approx E(x) - v\tau \frac{dE}{dx} = E(x) - v\tau \frac{dE}{dT} \frac{dT}{dx} \\
+  E(x - v\tau) &\approx E(x) + v\tau \frac{dE}{dT} \frac{dT}{dx}
+\end{align*}
+
+So, 
+\begin{align*}
+  \vec{j}_{Q} &= \frac{1}{2} n\vec{v} \left( - 2 \cdot \frac{dE}{dT} \frac{dT}{dx} \right) \vec{v}\tau \\
+  &= -n\vec{v}^2 \tau \frac{dE}{dT} \frac{dT}{dx}
+\end{align*}
+and notice that $\frac{dE}{dT}$ is the Heat Capacity, $\frac{dT}{dx}$ is the direction of the temperature gradient.
+\\
+\\
+Now, we're going to do a slightly sus substitution: $\vec{v}^2 \Leftrightarrow \mean{\vec{v}^2}$. We're dealing with the 1D case, but in 3D we can verify that 
+\[ \mean{v_x^2} = \mean{v_x^2} = \mean{v_x^2} = \frac{1}{3}\mean{v^2} \] So, we see that 
+\begin{align*}
+  \vec{j}_{Q} &= -\frac{1}{3} n\mean{v^2} C_v \nabla T \tau 
+\end{align*} Thus, 
+\[ \vec{j}_{Q} = -\kappa \nabla T  \] where \[ \kappa = \frac{1}{3} n\mean{v^2} C_v \tau \] \textbf{Why does this make sense?}
+Let's compare this expression for thermal conductivity with the familiar expression for electrical conductivity.
+\begin{align*}
+  \kappa &= \frac{1}{3} n\mean{v^2} C_v \tau  \\
+  \sigma &= \frac{e^2 n \tau}{m}
+\end{align*}
+\begin{itemize}
+  \item Write from picture
+  \item Heat capacity essentially measures the number of degrees of freedom that carry energy, so $n C_v$ measures the "number of ways we can carry heat".
+\end{itemize} Sometimes thermal conductivity is written in terms of free path as $$ \kappa = \frac{1}{3} n \mean{v} \tau = \frac{1}{3} nC_v l $$ since $l = \mean{v} \tau$.
+
+
+\subsection{Wiedemann-Franz Law}
+Note that
+\begin{align*}
+  L &= \frac{\kappa}{\sigma T} = \\
+  &= \cdots \\
+  &= \frac{3}{2} \frac{k_B^2}{e^2}
+\end{align*} The quantity $L$ is known as the \textbf{Lorenz Ratio}. It was known experimentally that this ratio was essentially the same for every metal, and the Drude model (though off by a factor of $2$) showed that indeed $L$ is a number relating two fundamental constants.
+
+\begin{redbox}
+  \textbf{How could this derivation possibly be valid when $C_v$ is actually temperature dependent?}
+  \\
+  \\
+  The reason turns out to be a happy accident - due to the cancellation of two big numbers. However, there are in fact other thermal quantities we can measure to show that the Drude Model is not complete.
+  \\
+  \\
+  Still, the point holds. The Drude model still gave us a lot of godo information about metals:
+  \begin{itemize}
+    \item It showed that, for most purposes, electrons really do behave like a gas.
+    \item It also indicated that, for materials that satisfy the WF-law, the $n$ in $\kappa$ and the $n$ in $\sigma$ were the same - i.e. the \textit{number} of carriers of charge and the carries of thermal energy were the same! This strongly indicated that the carriers were in fact the same.
+  \end{itemize}
+\end{redbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{September 13: Sommerfeld Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In Drude's time, it was reasonable to assume electrons were just gasses and obeyed the Maxwell-Boltzmann statistics. In the 1920s and 30s however, it became well known that electrons are in fact \textbf{fermions} - taking this into consideration was the contribution of Sommerfeld.
+\\
+\\
+Instead of a gas, let's suppose electrons behave like a \textbf{Fermi Gas} i.e. no more than two electrons (spim up or spin down) can ossupy a single energy state.
+\\
+\\
+From Statistical Mechanics, we know that the \textbf{Fermi-Dirac} distribution (which gives the distribution of Fermions) looks like $$ n_{FD}(T) = \frac{1}{e^{\beta(E-\mu)} + 1} $$ where $\mu$ is the \textbf{chemical potential} and the \textbf{Bose-Einstein} distribution (which gives the distribution of bosons) looks like $$ n_{BE}(T) = \frac{1}{e^{\beta(E)} - 1} $$
+
+\begin{bluebox}
+  \textbf{What is the Chemical Potential, $\mu$?}
+  \\
+  The chemical potential determines the maximum energy occupied by electrons at $T = 0$.
+  \begin{note}
+    {Write different perspective here later.}
+  \end{note} 
+\end{bluebox}
+
+\subsection*{How do we determine $\mu$?}
+We figure it out self-consistently. Suppose we have $N$ electrons in our system. $$ N = 2 \sum_i n_{FD}(E - \mu) $$
+\\
+The chemical potential is often defined as the energy that is added to the system when add an electron, so $$\mu = \restr{\frac{dE}{dN} }{S, V} $$ This is the Thermodynamic Definition.
+
+The key observation is that \textbf{the Chemical Potential and the number of electrons are tied together}.
+
+\begin{itemize}
+  \item Suppose electrons form a free Fermi Gas. Then, each electron has energy described as $$ E = \frac{\hbar^2 |\vec{k}|^2}{2m} = \frac{\hbar^2}{2m} \left( k_x^2 + k_y^2 + k_z^2  \right) $$
+  \item Now, for a system with a continuous energy-momentum spectrum (like that of a free electron), the chemical potential $\mu$ really does happen to be the highest occupied state.
+  \begin{center}
+    include pic
+  \end{center}
+  \item For a discrete system, however, we define the chemical potential to be the midpoint between the highest-occupied and lowest-unoccupied states. \textbf{Why?} The reason is that for $T \neq 0$, some states with $E > \mu$ have a probability of being occupied - and this has to be equal to the probability of \underline{un}occupied states with $E < \mu$ (in order to conserve $N$).
+  \begin{center}
+    include picture
+  \end{center}
+  So, $\mu$ is between the HOMO and LUMO (-MO stands for "Molecular Orbital").
+\end{itemize} This discrete behavior will be relevant when we study Band structures later on in the course. 
+\\
+\\
+Now, consider a solid as a box of length $L$ i.e. the boundaries of the solid form infinite potential barriers. We know from QM that an electron in the box has energies $$ E = \frac{\hbar^2 k^2}{2m},\;\;k = \frac{2\pi n}{L},\;\;n = 1,2,3 \cdots$$ i.e. 
+\begin{align*}
+  k_x = n_x \frac{2\pi}{L}, \;\;\;\; k_y = n_y \frac{2\pi}{L}, \;\;\;\; k_z = n_z \frac{2\pi}{L}, \;\;\;\;
+\end{align*} 
+
+If we think about our momenta in $\vec{k}$ space, the energy levels are described the points on a lattice, with each lattice point separated by distance $\left(\frac{2\pi}{L}\right)$ i.e. each $\vec{k}$ state occupies a "volume" of $\left(\frac{2\pi}{L}\right)^3$.
+\\
+\\
+The Fermi-Surface is the boundary of occupied and unoccupied states. The Fermi-sphere is the volume of occupied states.
+\\
+\\
+Now, if our box is really large then the spacing between each lattice point is really small since it's $\sim 1/L$ and we can treat $\vec{k}$-space like a continuous space. Then,
+$$ N = 2 \sum_{i} n_{FD}(E - \mu) \rightarrow N = 2 \left(\frac{L}{2\pi}\right)^2 \int \mathrm{d}\vec{k} \; n_{FD}\left(\vec{k} \right)$$
+\\
+\\
+Recall that the Fermi-energy is the maximum occupied-state energy. We denote it as $E_F$ and define the corresponding Fermi-wavevector as 
+$$ E_F = \frac{\hbar^2 k_F^2}{2m} $$
+\\
+\\
+Then, we can calculate
+\begin{align*}
+  N = \left( \int_{0}^{k_F}  \mathrm{d}\vec{k}\right) 2 \left(\frac{L}{2\pi}\right)^2 
+\end{align*}
+
+Now,
+\begin{align*}
+  N &= 2 \cdot \frac{\text{Volume of Fermi-Sphere}}{Volume of each individual k-state} \\
+  &= 2 \cdot  \left( \int_{0}^{k_F}  \mathrm{d}\vec{k}\right)  \left(\frac{L}{2\pi}\right)^2 \\
+  &= 2 \cdot \frac{4/3 \pi k_F^3}{\left(2\pi/L\right)} \\
+\end{align*}
+
+which gives us 
+\begin{align*}
+  &k_F^3 = \frac{N}{V} 3 \pi^2 \\
+  \implies& k_F = \left(n 3\pi^2\right)^{1/3}
+\end{align*}
+
+\begin{note}
+  {Write about back of the book calcs for $v_F$ amd $E_F$}
+\end{note}
+
+\begin{bluebox}
+  General rule: If you can't change energy, you can't see anything. Pretty much all observables are results of changes in the energy.
+\end{bluebox}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \pagebreak
+% \section{September : }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
+
+
+
+
+
+
+

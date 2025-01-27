@@ -1,0 +1,371 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: James Analitis}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics 141A: Solid State Physics}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 1} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1:} Show that the Bose occupation factor for the number $\mean{N}$ of excited vibrational "particles" (modes) is 
+  $$ \frac{1}{e^{\hbar \omega \beta} - 1} $$
+  where $\beta = 1/k_B T$ and $\hbar \omega$ is the energy of this vibrational mode.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}\\
+In the Einstein model of a solid, an excited vibrational "particle" or mode can have energies quantized as $$ E_n = \left( n + \frac{1}{2} \right) \hbar \omega $$ so the probability that a mode $N$ is occupied is proportional to 
+$$ e^{-\beta E_n } = e^{-\beta \left(N + 1/2\right)\hbar \omega}$$
+The normalization factor would be the partition function 
+$$ Z = \sum_{n = 0}^{\infty} e^{-\beta E_n} = \sum_{n = 0}^{\infty} e^{-\beta \hbar \omega \left(n + 1/2\right)} = e^{-\beta \hbar / 2} \sum_{n = 0}^{\infty} e^{- n \beta \hbar \omega}$$
+i.e. 
+$$ P\left(\text{Mode } N \text{ is occupied} \right) = \frac{e^{-\beta E_n}}{Z} = \frac{e^{- N \beta \hbar \omega} \cdot  e^{-\beta \hbar / 2}}{ e^{-\beta \hbar / 2} \cdot \sum_{n = 0}^{\infty} e^{- n \beta \hbar \omega} } = \frac{e^{-N\beta\hbar\omega}}{\sum_{n = 0}^{\infty} e^{- n \beta \hbar \omega}}$$
+\\
+\\
+and the sum in the denominator is a geometric series so we have 
+\begin{align*}
+  P\left(\text{Mode } N \text{ is occupied}\right) &= e^{-N\beta\hbar\omega} \cdot \left(1 - e^{-\beta \hbar \omega}\right)
+\end{align*} Now, the expected number of occupied vibrational modes can be expressed as 
+\begin{align*}
+  \mean{N} &= \sum_{N = 0}^{\infty} N \cdot P(\text{Mode } N \text{ is occupied}) \\
+  \implies \mean{N} &= \sum_{N = 0}^{\infty} N \cdot \frac{e^{-\beta E_N}}{Z} \\
+  &= \frac{1}{Z_1} \sum_{N = 0}^{\infty} Ne^{-\beta \hbar \omega \left(N \right)} \\
+  &= \frac{1}{Z_1} \cdot \left( - \frac{1}{\hbar \omega} \frac{\partial Z_1}{\partial \beta} \right) \\
+\end{align*} where $$Z_1 = \sum_{N = 0}^{\infty} e^{-N\beta \hbar \omega} = \frac{1}{1-e^{-\beta\hbar\omega}} $$ and we can use this since the $-\beta \hbar \omega (1/2)$ factor is in both the boltzmann factor and the partition function $Z$ so it can be cancelled.
+\\
+\\
+Then,
+\begin{align*}
+  \frac{\partial Z_1}{\partial \beta} &= \left(-\frac{1}{(1-e^{-\beta\hbar\omega})^2} \right) \cdot \left(\hbar \omega e^{-\beta \hbar \omega}\right) \\
+  &=-\hbar \omega \left( \frac{e^{-\beta \hbar \omega}}{\left(1-e^{-\beta \hbar \omega}\right)^2} \right)
+\end{align*}
+\\
+\\
+Thus, 
+\begin{align*}
+  \mean{N} &= -\frac{1}{\hbar \omega} \cdot \frac{1}{Z_1} \cdot \frac{\partial Z_1}{\partial \beta} \\
+  &= -\frac{1}{\hbar \omega} \cdot \left(1-e^{-\beta\hbar\omega}\right) \cdot \left(-\hbar \omega\right) \left( \frac{e^{-\beta \hbar \omega}}{\left(1-e^{-\beta \hbar \omega}\right)^2} \right) \\
+  &= \frac{e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}} 
+\end{align*}
+So, multiplying the numberator and denominator by $e^{+\beta \hbar \omega}$ we get $$ \boxed{\mean{N} = \frac{1}{e^{\beta \hbar \omega - 1}} } $$
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Use the Debye approximation to determine the heat capacity of a two dimensional solid as a function of temperature.
+  \begin{itemize}
+    \item State your assumptions.
+    \\
+    You will need to leave your answer in terms of an integral that one cannot do analytically.
+
+    \item At high $T$, show that the heat capacity goes to a constant and find that constant.
+
+    \item At low $T$, show that $C_v = KT^n$ and find $n$. Find $K$ in terms of a definite integral. 
+    \\
+    If you are brace, you can try to evaluate the integral, but you will need to leave your result in terms of the Riemann Zeta function.
+  \end{itemize}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+\textbf{Assumptions:}
+\begin{enumerate}
+  \item Energy is carried in waves and the energy of a given mode is described as $$E_n = \hbar \omega(\mathbf{k}) \left(n + \frac{1}{2}\right) $$
+  \item We have the dispersion relation $\omega = v|\mathbf{k}|$ where $\mathbf{k} = k_x \mathbf{x} + k_y \mathbf{y}$
+  \item We use periodic boundary-conditions with box length $L$, which restricts our $k_x, k_y$ values so that 
+  $$ \vec{k} = \frac{2\pi}{L} (n_x, n_y) $$ where $n_x, n_y$ are integers.
+  \item We can take the continuum limit and convert the sum into an integral
+  $$ \sum_{k} \rightarrow \left(\frac{L}{2\pi}\right)^2 \int \mathrm{d}\mathbf{k} $$
+\end{enumerate}
+So, since we have two modes for the sound wave now, we have 
+\begin{align*}
+  \mean{E} &= 2 \cdot \left(\frac{L}{2\pi}\right)^2 \int \mathrm{d}\mathbf{k} \; \hbar \omega(\mathbf{k}) \left( n_B(\omega(\mathbf{k})) + \frac{1}{2} \right)
+\end{align*} We can convert to polar coordinates are get 
+\begin{align*}
+  \mean{E} &= 2 \cdot \left(\frac{L}{2\pi}\right)^2 \int_{0}^{2\pi} \int_{0}^{\infty} k \mathrm{d} k \mathrm{d} \theta \; \hbar \omega(k) \left( n_B(\omega(k)) + \frac{1}{2}  \right) \\
+  &= 2 \cdot \left(\frac{L}{2\pi}\right)^2 \int_{0}^{2\pi} \mathrm{d} \theta \int_{0}^{\infty} k \mathrm{d} k  \; \hbar \omega(k) \left( n_B(\omega(k)) + \frac{1}{2}  \right) \\
+  &= 4\pi \cdot \left(\frac{L}{2\pi}\right)^2 \int_{0}^{\infty} k \mathrm{d} k  \; \hbar \omega(k) \left( n_B(\omega(k)) + \frac{1}{2}  \right) \\
+\end{align*}
+
+We can use the dispersion relation $\omega = vk$ to write everything in terms of $\omega$:
+
+\begin{align*}
+  \mean{E} &= \frac{L^2}{\pi} \int_{0}^{\infty} \left(\frac{\omega}{v}\right) \left(\frac{\mathrm{d}\omega}{v}\right) \hbar \omega \left( n_B(\omega) + \frac{1}{2} \right) \\
+\end{align*}
+
+and since we're actually interested in the heat capacity, we can drop the temperature independent term we get from the $+\frac{1}{2}$ i.e. we'll abuse notation and write 
+
+\begin{align*}
+  \mean{E} &= \frac{L^2}{\pi} \int_{0}^{\infty} \left(\frac{\omega}{v}\right) \left(\frac{\mathrm{d}\omega}{v}\right) \hbar \omega \left( n_B(\omega)\right) \\
+\end{align*} or, in other words, we have 
+
+\begin{align*}
+  \mean{E} &= \frac{L^2}{\pi} \int_{0}^{\infty}\mathrm{d}\omega \;g(\omega)\; \hbar \omega \left( n_B(\beta \hbar \omega)\right) \\
+\end{align*} where $$ g(\omega) = \frac{L^2 \omega}{\pi v^2} $$ is the density of states.
+\\
+\\
+Now, physically, it doesn't make sense for infinitely many modes to be occupied, so we introduce a cutoff-frequency $\omega_c$ defined as $$ 2N = \int_{0}^{\omega_c} g(\omega) \mathrm{d}\omega $$ (there should be $2N$ modes of oscillation)
+\\
+\\
+In any case, using the cut-off frequency and substituting in the Bose-Einstein distribution, we have
+$$ \mean{E} = \frac{L^2 \hbar}{\pi v^2} \int_{0}^{\omega_c} \mathrm{d}\omega\; \frac{\omega^2}{e^{\beta \hbar \omega} - 1}$$
+\underline{High-Temperature limit:}\\
+In the limit $T \rightarrow 0$, we have $\beta \rightarrow 0$ so 
+\begin{align*}
+  \frac{1}{e^{\beta \hbar \omega} - 1} &\approx \frac{1}{\left(1 + \beta \hbar \omega \right) - 1 } \\
+  &= \frac{1}{\beta \hbar \omega} \\
+  &= \frac{k_B T}{\hbar \omega}
+\end{align*}
+
+So, 
+\begin{align*}
+  \mean{E} &= \frac{L^2 \hbar}{\pi v^2} \int_{0}^{\omega_c} \omega^2 \cdot \frac{k_B T}{\hbar \omega} \mathrm{d}\omega \\
+  &= \int_{0}^{\omega_c} \frac{L^2 \omega}{\pi v^2} \hbar \omega \frac{k_B T}{\hbar \omega} \mathrm{d}\omega \\
+  &= k_B T \int_{0}^{\omega_c} g(\omega) \mathrm{d} \omega \\
+  &= k_B T \cdot 2N
+\end{align*}
+
+Therefore, the Heat Capacity in the high-temperature limit is $$ \boxed{C_v = 2N k_B} $$
+\\
+\\
+\underline{Low-Temperature limit:}
+In the low-temperature limit, introducing the cut-off frequency $\omega_c$ doesn't impact the integral much because the bose-factor will cause the integrand to vanish before we even reach $\omega_c$. Thus, we can integrate all the way to infinity instead.
+\\
+\\
+So,
+\begin{align*}
+  \mean{E} &= \frac{L^2 \hbar}{\pi v^2} \int_{0}^{\infty} \frac{\omega^2}{e^{\beta \hbar \omega} - 1} \mathrm{d}\omega
+\end{align*}
+
+Using the substitution $x = \beta \hbar \omega$ we have 
+\begin{align*}
+  \mean{E} &= \frac{L^2 \hbar}{\pi v^2} \int_{0}^{\infty}  \left( \frac{\mathrm{d}x}{\beta \hbar} \right) \left( \frac{x}{\beta \hbar} \right)^2 \frac{1}{x^x - 1} \\
+  \mean{E} &= \frac{L^2 \hbar}{\pi v^2} \left(\frac{1}{\beta \hbar}\right)^3 \int_{0}^{\infty}  \mathrm{d}x \frac{x^2}{x^x - 1} \\
+  \mean{E} &= \frac{L^2 \hbar}{\pi v^2} \left(\frac{k_B T}{\hbar}\right)^3 \int_{0}^{\infty}  \mathrm{d}x \frac{x^2}{x^x - 1} \\
+\end{align*}
+
+Thus, the heat capacity is given by 
+\begin{align*}
+  C &= \frac{d\mean{E}}{dT} \\
+  &= \frac{L^2 \hbar}{\pi v^2} \left(\frac{k_B}{\hbar}\right)^3 \cdot (3T^2) \cdot \int_{0}^{\infty}  \mathrm{d}x \frac{x^2}{x^x - 1} \\
+  &= KT^n
+\end{align*} where $$ \boxed{ K = \frac{3 L^2 \hbar}{\pi v^2} \left(\frac{k_B}{\hbar}\right)^3 \cdot \int_{0}^{\infty}  \mathrm{d}x \frac{x^2}{x^x - 1} } $$ and $$ \boxed{n = 3} $$
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} 
+  \begin{itemize}
+    \item What is the mean kinetic energy in eV at room temperature of a gaseous (a) He atom (b) Xe atom (c) Ar atom and (d) Kr atom? The gas is classical.
+    \item Explain the following values of the molar heat capacity $JK^{-1} mol^{-1}$ all measured at constant pressuer at $298 K$: $$ \mathrm{Al} = 24.35, \mathrm{Pb} = 26.44,  \mathrm{N}_2 = 29.13, \mathrm{Ar} = 20.79, \mathrm{O}_2 = 29.36 $$
+  \end{itemize}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+\begin{itemize}
+  \item The mean kinetic energy is given by the Equipartition Theorem: $$ \mathrm{KE} = \frac{f}{2} k_B T $$\\
+  Since He, Xe, Ar, Ke are all mono-atomic and have $3$ degrees of freedom they all have the same mean kinetic energy at $T = 298 K$
+  $$ \mathrm{KE} = \frac{3}{2} k_B T = 0.03852 eV $$
+  
+  \item Since Kinetic Energy (of one atom) is $\frac{f}{2} k_B T$, the heat capacity of an ideal gas atom is $C = \frac{f}{2} k_B$. For an entire mole, we have $C = \frac{f}{2} N k_B = \frac{f}{2} R$ where $R$ is the universal gas constant. 
+  \\
+  \\
+  Since $\mathrm{N}_2, \mathrm{O}_2$ are diatomic they have more degrees of freedom ( it has quadratic degrees of freedom) than $\mathrm{Ar}$ and thus have higher molar heat capacity.
+  \\
+  \\
+  $\mathrm{Al}$ and $\mathrm{Pb}$ are metals so they cannot be treated accurately by the Ideal Gas model because many-particle interactions are important in metals.
+\end{itemize}
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

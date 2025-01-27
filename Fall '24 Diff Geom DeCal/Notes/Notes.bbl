@@ -1,13 +1,19 @@
 \begin{thebibliography}{1}
 
-\bibitem{LeeSM}
-{\em Introduction to Smooth Manifolds, 2nd edition}.
-\newblock Springer, 2013.
-
 \bibitem{Carroll97}
 Sean Carroll.
 \newblock {\em Lecture Notes on General Relativity}.
 \newblock 1997.
+
+\bibitem{LeeSM}
+John~M. Lee.
+\newblock {\em Introduction to Smooth Manifolds, 2nd edition}.
+\newblock Springer, 2013.
+
+\bibitem{SchullerGeomAnatomy}
+Frederic P.~Schuller Simon~Rea.
+\newblock Lectures on the geometric anatomy of theoretical physics.
+\newblock https://mathswithphysics.blogspot.com/2016/07/lectures-on-geometric-anatomy-of.html, 2014.
 
 \bibitem{Wald84}
 Robert~M. Wald.

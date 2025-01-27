@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: James Analitis}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics 141A: Solid State Physics}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 2} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Consider heat capacity data below for the compound $\mathrm{Ba}\mathrm{Fe}_2\mathrm{As}_2$. THis is measured per mole of the formula unit, $\mathrm{Ba}\mathrm{Fe}_2\mathrm{As}_2$. Note there is a phase transition at about 140$K$, that you can ignore for now.
+  \begin{enumerate}
+    \item From the heat capacity, estimate how many degrees of freedom each formula unit contributes.
+    \item Fit the data using the low-temperature Debye model. Estimate the Debye Temperature.
+    \item Argue why the phase transition at 140$K$ must affect the density of the atoms only weakly.
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+text
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2: Physical Properties of the Free Electron Gas}
+  \begin{enumerate}[label=(\alph*)]
+    \item Give a sumple but approximate derivaiton of the Fermi gas prediction for heat capacity of the conduction electron in metals.
+    \item Give a simple (not approximate) derivations of the Fermi gas prediction for magnetic susceptibility of the conduction electron in metals. Here susceptibility is $\chi = dM/dH = \mu_0 dM/dB$ at small $H$ and is meant to consider the magnetization of the electron spins only.
+    \item How are the results of (a) and (b) different from that of a classical gas of electrons? \\
+    What other properties of metals may be different from the classical prediction?
+    \item The experimental specific heat of potassium metal at low temperatures has the form $$ C = \gamma T + \alpha T^3 $$ where $\gamma = 2.08 \mathrm{mJ mol}^{-1}\mathrm{K}^{-2}$ and $\alpha = 2.6 \mathrm{mJ mol}^{-1}\mathrm{K}^{-4}$. \\
+    Explain the origin of each of the two terms in this expression. \\
+    Make an estimate of the Fermi energy for potassium metal.
+  \end{enumerate} 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+text
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} 
+  \begin{enumerate}[label=(\alph*)]
+    \item What is the relationship between the carrier density $n$ and the Fermi momentum $k_F$ in two dimensions? 
+    \item Show that in two dimensions the free electron density of states $g(E)$ is a constant independent of energy $E$ for $E > 0$ and 0 for $E < 0$. What is the constant? 
+    \item Using the fact that the total number of particles $\mean{N}$ is given by $$ \mean{N} = \int_{0}^{\infty} g(E) f(E) dE  $$ where $f(E)$ is the Fermi distribution function, show that in two-dimensions that $$ E_F = \mu + k_B T \ln\left( 1 + e^{-\mu / k_B T} \right) $$ In order to solve this, you can loop up the integral describing $n$ in a table, then note the relationship of $n$ to $E_F$ to get to the final expression.
+    \item Estimate the amount that $\mu$ differeny from $E_F$. Explain how this shows that the chemical potential $\mu$ is essentially independent of temperature so long as $k_B T << \mu$. This is an important fundamental point about two-dimensional systems - over a wide range of temperature, the chemical potential can be essentially regarded as the Fermi energy. Indeed, even in higher dimensions, the difference is small.
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+
+\begin{enumerate}
+  \item We know that, in the Sommerfeld model, the heat capacity of a metal is $$ C = \tilde{\gamma} \left( \frac{f N k_B}{2} \right) \left( \frac{T}{T_F} \right) $$ where $f$ is the number of degrees of freedom and $\tilde{\gamma} = \pi^2/3$
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

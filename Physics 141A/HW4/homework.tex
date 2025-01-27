@@ -1,0 +1,386 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: James Analitis}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics 141A: Solid State Physics}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 4} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\begin{bluebox}
+  \textbf{Question 1:} \\
+  \begin{center}
+    Include figure
+  \end{center}
+  The low temperrature specific heat of a metal can be described by the equation $$c_v = \frac{\pi^2}{3} g(E_F) k_B^2 T + \frac{12\pi^4}{5} nk_B \left(\frac{T}{\Theta}\right)^3 $$
+  \begin{enumerate}
+    \item Explain the physical origin of the two terms.
+    \item Using the free electron model, show that the density of states in three dimensions $g(E_F)$ is given by $$ g(E_F) = \frac{3}{2} \frac{n_e}{E_F} $$ where $n_e$ is the carrier density.
+    \item In the Drude model we assumed that $n_e$ electrons were solely responsible for the conductivity in a metal. If we follow this model and assume that the carrier density at high temperature (145 K) is denoted $n_{HT}$ and the carrier density at low temperature is denoted $n_{LT}$ (say at 125 K). Extimate the ration $n_{LT} / n_{HT}$ from figure 1. Note that $10^4\text{ Oe} = 1T$ 
+    \item The scattering time at high temperature is denoted $\tau_{HT}$ and the scattering rate at low temperature is denoted $\tau_{LT}$. Estimate $\tau_{LT} / \tau_{HT}$. 
+    \item Calculate the Fermi energy above and below the phase transition. 
+    \item $\mathrm{BaFe}_2 \mathrm{As}_2$ is a metal. Using your knowledge of patterns of properties in the periodic table, argue that most of the mobile electrons likely come from the Fe atoms.
+    \item If we want to add more electrons to $\mathrm{BaFe}_2 \mathrm{As}_2$ we can replace its atoms with sp-called "dopants". What transition metal(s) would you choose to replace the Fe site to add electrons?
+    \item As more electrons $\delta n$ are added, we expect the Sommerfeld coefficient $\frac{\pi^2}{3} g(E_F) k_B^2$ to increase. Define $c_v^0 = \frac{\pi^2}{3} g(E_{F0}) k_B^2$ where $E_{F0}$ is the Fermi energy when there are no dopants added. Show that $c_v$ will approximately increase as $$ c_v \approx c_v^0 + \frac{\pi^2}{3} \frac{\delta n}{2} \frac{k_B^2 T}{E_{F0}}  $$
+    \item Show that if $\mathrm{BaFe}_2 \mathrm{As}_2$ was a two-dimensional, free electron metal, that the Sommerfeld coefficient would not be expected to increase when more electrons are added.  
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+
+\begin{enumerate}
+  \item The term proportional to $T^1$ is due to the electrons in the metal, while the term proportional to $T^3$ is due to lattice vibrations (phonons).
+  
+
+  \item In the free electron model, with the metal assumed to be a box of volume $V = L^3$ and periodic boundary conditions, we have plane wavefunctions $e^{i\mathbf{k} \cdot \mathbf{r}}$ quantized as $$\mathbf{k} = \frac{2\pi}{L}\mathbf{n} = \frac{2\pi}{L} (n_1, n_2, n_3),~n_i \in \mathbb{N}$$ and energies described by $$ \epsilon(\mathbf{k}) = \frac{\hbar^2 |\mathbf{k}|^2}{2m} $$ with $m$ being the electron mass. Finally, we have the dispersion relation $\omega = v |\mathbf{k}|$.
+  \\
+  \\
+  Then, the total number electrons in the system is $N$ and we have $$ N = \frac{2V}{(2\pi)^3} \int \mathbf{dk}~n_F(\beta(\epsilon(\mathbf{k}) - \mu)) $$ where $\mu$ is the chemical potential (the factor of 2 accounts for the two possible spins).
+  \\
+  \\
+  The total energy of the system is $$ E_{tot} = \frac{2V}{(2\pi)^3} \int \mathbf{dk}~\epsilon(\mathbf{k}) \cdot n_F(\beta(\epsilon(\mathbf{k}) - \mu))  $$
+  \\
+  \\
+  Using the fact that $\epsilon(\mathbf{k})$ only depends on $|\mathbf{k}| =\text{:} k$, we can switch from cartesian $\mathbf{k}$-coordinates to spherical coordinates as write $$ E_{tot} = \frac{2V}{(2\pi)^3} \cdot 4\pi \int_0 ^{\infty} dk~\epsilon(k) \cdot n_F(\beta(\epsilon(k) - \mu))  $$ Switching from $k$ to $\epsilon$ using $$ k = \sqrt{\frac{2m\epsilon}{\hbar^2}} \implies dk = \sqrt{\frac{m}{2\epsilon\hbar^2}} d\epsilon $$ we have 
+  \begin{align*}
+    E_{tot} &= \frac{2V}{2\pi^2} \int_0^{\infty} \left(\sqrt{\frac{m}{2\epsilon\hbar^2}} d\epsilon\right) \cdot \epsilon \cdot n_F(\beta(\epsilon - \mu)) \\
+    &= V \int_{0}^{\infty} d\epsilon~\epsilon \cdot g(\epsilon) \cdot n_F(\beta(\epsilon - \mu))
+  \end{align*} where we have density of states 
+  \begin{align*}
+    g(\epsilon) d\epsilon &= \frac{2}{(2\pi)^3} \cdot 4\pi k^2 dk \\
+    &= \frac{2}{(2\pi)^3} \cdot 4\pi \cdot \left( \frac{2m\epsilon}{\hbar^2} \right) \cdot \left( \sqrt{\frac{m}{2\epsilon \hbar^2}} d\epsilon \right) \\
+    &= \frac{(2m)^{3/2}}{2\pi^2 \hbar^3} \epsilon^{1/2}
+  \end{align*} Now recall that the Fermi Energy was $$ E_F = \frac{\hbar^2 k_F^2}{2m}  $$ and $$ N = \frac{2V}{(2\pi)^3} \int \mathbf{dk}~n_F(\beta(\epsilon(\mathbf{k}) - \mu)) $$ The Fermi-Energy is defined at $T = 0$, and at absolute zero, the Fermi-Dirac Distribution $n_F(\beta(\epsilon - \mu))$ is a step function $\begin{cases}
+    1,~k\leq k_F \\
+    0,~k>k_F \\
+  \end{cases}$. Thus,
+  \begin{align*}
+    & N = \frac{2V}{(2\pi)^3} \int_{k \leq k_F} \mathbf{dk} \\
+    \implies& N = \frac{2V}{(2\pi)^3} \cdot \left(\frac{4}{3}\pi k_F^3\right) \\
+    \implies& k_F = (3\pi^2 n)^{1/3},~~~n \text{:}= N/V \\
+    \implies& E_F = \frac{\hbar^2 (3\pi^2 n)^{2/3} }{2m} \\
+    \implies& \frac{(2m)^{3/2}}{\hbar^3} = \frac{3\pi^2 n}{E_F^{2/3}}
+  \end{align*} and substituting this into the expression for $g(\epsilon)$ we obtain $$ \boxed{g(\epsilon) = \frac{3n_e}{2E_F} \left(\frac{\epsilon}{E_F}\right)^{1/2}}$$ where $n = n_e = $ Carrier density 
+  \\
+  \\
+  Therefore, $$ \boxed{g(E_F) = \frac{3n_e}{2E_F} } $$
+
+
+  \item We have carrier densities $n_{HT}, n_{LT}$ at 145K and 125K respectively. In the Drude model, $R_H = (-1)/ne \implies n = (-1)/(e \cdot R_H)$
+  \begin{center}
+    \includegraphics*[scale=0.45]{q1_figure.png}
+  \end{center}
+  So, looking at the Figure above, we estimate 
+  \begin{align*}
+    \frac{n_{LT}}{n_{HT}} &= \frac{(-1)}{e \cdot (R_H)_{LT}} \cdot \frac{e \cdot (R_H)_{HT}}{(-1)} \\
+    &= \frac{(R_H)_{HT}}{(R_H)_{LT}} \\
+    &= \frac{-0.012  \cdot 10^{-9} \mathrm{m \Omega cm/Oe} }{-0.038 \cdot 10^{-9} \mathrm{m \Omega cm/Oe}} \\
+    &= 0.315789474
+  \end{align*}
+  \begin{note}
+    {We don't need to convert the units from Oe to T, right?}
+  \end{note}
+
+  \item In the figure, $\rho_{ab}$ is the same as $\rho_{xx}$. We know $$ \rho_{xx} = \frac{m}{ne^2 \tau} \implies \tau = \frac{m}{ne^2 \rho_{xx}}  $$ So,
+  \begin{align*}
+    \frac{\tau_{LT}}{\tau_{HT}} &= \frac{n_{HT} \cdot \rho_{xx, HT}}{n_{LT} \cdot \rho_{xx, LT}} \\
+    &= \frac{-0.012}{-0.038} \cdot \frac{-0.020}{-0.034}
+  \end{align*}
+
+
+  \item 
+  
+  \item Write this later.
+  
+  \item 
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 2: Classical Model of Thermal Expansion} \\
+  In classical statistical mechanics, we write the expectation of $x$ as $$ \mean{x}_{\beta} = \frac{\int dx~xe^{-\beta V(x)}}{\int dx~e^{-\beta V(x)}} $$ Although one cannot generally do such integrals for arbitrary potential $V(x)$ as in Eq. 8.1, one can expand the exponentials as $$ e^{-\beta V(x)} = e^{- \frac{\beta \kappa}{2} (x-x_0)^2 } \left[ 1 + \frac{\beta \kappa_3}{6} (x-x_0)^3 + \cdots \right] $$ and let limits of integration go to $\pm \infty$. \\
+  $\triangleright$ Why is this expansion of the exponent and the extension of the limits of integration allowed? \\
+  $\triangleright$ Use this expansion to derive $\mean{x}_{\beta}$ to lowest order in $\kappa_3$, and hence show that the coefficient of thermal expansion is $$ \alpha = \frac{1}{L} \frac{dL}{dT} \approx \frac{1}{x_0} \frac{d\mean{x}_{\beta}}{dT} = \frac{1}{x_0} \frac{k_B \kappa_3}{2\kappa^2} $$ with $k_B$ Boltzmann's constant. \\
+  $\triangleright$ In what temperature range is the above expansion valid? \\
+  $\triangleright$ While this model of thermal expansion in a solid is valid if there are only two atoms, why is it invalid for the case of a many-atom chain? 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+
+$\triangleright$ We know we can do the expansion $$ V(x) = v(x_0) + \frac{\kappa}{2} (x-x_0)^2 + \frac{\kappa^3}{6} (x-x_0)^3 + \cdots $$ when we're very close to $x$. If we further have that $-\beta V(x) \approx \beta \cdot \left[v(x_0) + \frac{\kappa}{2} (x-x_0)^2 + \frac{\kappa^3}{6} (x-x_0)^3 + \cdots\right] $ is small, then we can carry out the expansion of the exponential. 
+\\
+\\
+$\triangleright$ We want to determine the conditions under which calculating $$ \mean{x}_{\beta} = \lim_{b \rightarrow \infty} \frac{\int_{-b}^{+b} dx~xe^{-\beta V(x)}}{\int_{-b}^{+b} dx~e^{-\beta V(x)}} $$ with the approximation $$ e^{-\beta V(x)} = e^{-\frac{\beta \kappa}{2}(x-x_0)^2} \left[ 1 + \frac{\beta \kappa_3}{6}(x-x_0)^3 + \cdots \right] $$ is valid.
+\\
+\\
+Define $y = (x-x_0)$. Then, we have 
+\begin{align*}
+  \mean{x}_{\beta} &= \frac{\int dy~(y+x_0)e^{e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 + \cdots \right]  }}{\int dy~e^{e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 + \cdots \right]  }} \\
+  &= \frac{\int dy~y \cdot {e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 + \cdots \right]  }}{\int dy~{e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 + \cdots \right]  }} + x_0 ~~~ \text{Since $x_0$ is constant} \\
+\end{align*} Now, we're trying to find the region of validity for the approximation where we drop the $\mathcal{O}(y^4)$ terms, so let's drop them and expand to get 
+\begin{align*}
+  \mean{x}_{\beta} &= \frac{\int dy~y \cdot {e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 \right]  }}{\int dy~{e^{-\frac{\beta \kappa}{2}y^2} \left[ 1 + \frac{\beta \kappa_3}{6}y^3 \right]  }} + x_0 ~~~ \text{Since $x_0$ is constant}  \\
+  &= x_0 + \frac{\beta \kappa_3}{6} \frac{\int dy~y^4{e^{-\frac{\beta \kappa}{2}y^2} }}{\int dy~{e^{-\frac{\beta \kappa}{2}y^2} }} 
+\end{align*} Here, we've simplified the expression by using the fact that the integral of an odd function over an interval symmetric about $0$ is zero.
+\\
+\\
+Then, using the fact that $$ \int dy~e^{-ay^2} = \sqrt{\frac{\pi}{a}} $$ and Feynman's trick we have
+\begin{align*}
+  \int dy~y^4 e^{-ay^2} &= \int dy ~ \frac{\partial^2}{\partial a^2} \left(e^{-ay^2}\right) \\
+  &= \frac{d^2}{da^2} \int dy~e^{-ay^2} \\
+  &= \frac{d^2}{da^2} \left(\sqrt{\frac{\pi}{a}}\right) \\
+  &= \frac{3}{4} \sqrt{\frac{\pi}{a^5}}
+\end{align*} Substituting this in, we get 
+\begin{align*}
+  \mean{x}_{\beta} &= x_0 + \frac{\beta \kappa_3}{6} \cdot \frac{\frac{3}{2}\sqrt{\frac{\pi}{(\beta \kappa/2)^5}}}{\sqrt{\frac{\pi}{(\beta \kappa/2)}}} \\
+  &= x_0 + \frac{\kappa_3 (k_B T)}{2\kappa^2}
+\end{align*} Thus,
+$$ \boxed{\frac{1}{x_0} \cdot \frac{d\mean{x}_{\beta}}{dT}  = \frac{1}{x_0} \frac{k_B \kappa_3}{2\kappa^2} } $$\\
+$\triangleright$ In order for the result above to be valid, we need the cubic term to be much less important in contribution than the leading term.
+\\
+\\
+And since we found $\mean{x}_{\beta} \sim k_B T$ we need the leading term $\kappa(x-x_0)^2 \sim k_B T \implies |x-x_0| \sim \sqrt{\frac{k_B T}{\kappa}}$. Then, we need 
+\begin{align*}
+  &\kappa|x-x_0|^2 >> \kappa_3|x-x_0|^3 \\
+  \implies& k_B T >> \kappa_3 \left(\sqrt{\frac{k_B T}{\kappa}}\right)^{3/2} \\
+  \implies& k_B T << \frac{\kappa^3}{\kappa_3^2}
+\end{align*} $\triangleright$ For a many-atom chain, the quadratic term in the potential would introduce interaction (non-linear) terms, which would change the expression.
+
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 3: Normal Modes of a One-Dimensional Monoatomic Chain}\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Explain what is meant by "normal mode" and by "phonon".
+    \item Skip derivation of dispersion relation $\omega(k)$ since it's done in the book and lectures.
+    \item Show that the mode with wavevector $k$ has the same pattern of mass displacements aas the node with wavevector $k + 2\pi/a$. Hence show that the dispersion relation is periodic in reciprocal space (k-space).\\
+    $\triangleright$ How many \textit{different} normal modes are there? 
+    \item Derive the phase and group velocities and sketch them as a function of $k$.\\
+    $\triangleright$ What is the sound velocity? \\
+    $\triangleright$ Show that the sound velocity iss also given by $v_s = 1/\sqrt{\beta \rho}$ where $\rho$ is the chain density and $\beta$ is the compressibility.
+    \item Find the expression for $g(\omega)$, the density of states of modes per angular frequency. \\
+    $\triangleright$ Sketch $g(\omega)$.
+  \end{enumerate} 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+
+\begin{enumerate}[label=(\alph*)]
+  \item A normal mode is a collective oscillation of the atoms/particles in which all particles oscillate with the same frequency, usually denoted $\omega$. A Phonon is a \textit{quantum of vibration} i.e. an excitation of a normal mode up the QHO ladder. This is analogous to how a Photon is an excitation/quantum of an EM Wave.
+  
+
+  \item Skip this.
+  
+
+  \item Consider modes with wavevectors $k$ and $k + 2\pi/a$.
+  \\
+  \\
+  The mass displacement of lattice point $x_n$ is $\delta x_n = Ae^{i\omega t  - ikna}$. Taking $k \rightarrow k + 2\pi/a$ we get 
+  \begin{align*}
+    \delta x_n &= Ae^{i\omega t - i(k + 2\pi/a)na} \\
+    &= Ae^{i\omega t - ikna } \cdot e^{-i2\pi n} 
+  \end{align*}
+  and $e^{2\pi(-1)n} = 1$ so the mass displacements are the same.
+  \\
+  \\
+  $\triangleright$ How many normal modes are there? \\
+  Recall that if we assume periodic boundary conditions then $$ k = \frac{2nm}{L} $$ but $k$ is identified with $k + 2\pi/a$ so there are exactly $N = L/a$ different normal modes.
+
+  \item The phase and group velocities are 
+  \begin{align*}
+  v_{phase} &= \frac{\omega(k)}{k} = 2 \sqrt{\frac{\kappa}{m}} \frac{\left| \sin\left(\frac{ka}{2}\right) \right|}{k} \\
+  v_{group} &= \frac{d\omega(k)}{dk} = \sqrt{\frac{\kappa}{m}} \cdot a \cos\left(\frac{|k|a}{2}\right) = \frac{a}{2} \omega_0 \sqrt{1 - \frac{\omega^2}{\omega_0^2}} 
+  \end{align*} where $\omega_0 = 2 \sqrt{\kappa/m}$
+\end{enumerate}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

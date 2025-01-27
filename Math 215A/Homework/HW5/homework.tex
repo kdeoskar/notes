@@ -1,0 +1,322 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 4} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1: Prove that all fibers of a Hurewicz Fibration with a path-connected base are homotopy equivalent to each other.} 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Let's recall the definition. A triple $(E, B, p)$ is a Hurewicz fibration if  $p \text{ : } E \rightarrow B$ is surjective, and the triple has the Covering Homotopy Property for any topological space $X$ i.e. for mappings
+\begin{enumerate}
+  \item $f \text{ : } X \times [0, 1] \rightarrow B, ~~~F_0 \text{ : } X \cong X \times \{0\} \rightarrow E $
+  \item with $$ \restr{f}{X \times \{0\}} = p \circ F_0 $$
+\end{enumerate} there exists a homotopy 
+$$ F \text{ : } X \times [0, 1] \rightarrow E $$ such that 
+\begin{enumerate}
+  \item $ \restr{F}{X \times \{0\}} = F_0 $ and 
+  \item $p \circ F = f$
+\end{enumerate} Suppose the base space $B$ is path-connected. Consider points $b, b' \in B$. Denote the inclusion of $p^{-1}(b)$ into $E$ as $g$, and $h$ be a continuous map from $p^{-1}(b) \times I$ to $B$.  \[\begin{tikzcd}
+	{p^{-1}(b)} & E \\
+	{p^{-1}(b) \times I} & B
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{i_0}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["h"', from=2-1, to=2-2]
+\end{tikzcd}\] Since $B$ is path-connected there must exist a path $\gamma(t) \text{ : } I \rightarrow X$ between $b$ and $b'$. Notice that $g \circ p$ sends every point in $p^{-1}(b)$ to $b \in B$ i.e. $h(x, 0) = b$ for any $x \in p^{-1}(b)$
+\\
+\\
+Let's choose $h$ to be
+\begin{align*}
+  h \text{ : } p^{-1}(b) \times I &\rightarrow B \\
+              (x, t) &\mapsto \gamma(t)
+\end{align*} where $\gamma(t)$ is a path connecting $b$ and $b'$. Then, since $(E, B, p)$ is a Hurewicz fibration, the CHP gives us $\tilde{H} \text{ : } p^{-1}(b) \times I \rightarrow E$ which defines a homotopy between $p^{-1}(b)$ and $p^{-1}(b')$ (the continuous maps in either direction are obtained by varying the parameter $t$).
+
+
+
+
+% \[\begin{tikzcd}
+% 	{p^{-1}(b)} & E \\
+% 	{p^{-1}(b) \times I} & B
+% 	\arrow["g", from=1-1, to=1-2]
+% 	\arrow["{i_0}"', from=1-1, to=2-1]
+% 	\arrow["p", from=1-2, to=2-2]
+% 	\arrow["{\tilde{H}}"{description}, dashed, from=2-1, to=1-2]
+% 	\arrow["h"', from=2-1, to=2-2]
+% \end{tikzcd}\] Now, $\tilde{H}$ defines a homotopy from $$
+
+
+
+% Consider a Hurewicz fibration $(E, B, p)$ with path-connected base $B$. That is, for any $x_0, x_1 \in B$ there exists a path from $x_0$ to $x_1$.
+% \\
+% \\
+% Consider any topological space $X$ and let $f \text{ : } X \rightarrow p^{-1}(x_0)$ bw a continuous map, $s \text{ : } I \rightarrow B$ be a path connecting $x_0$ with $x_1$.
+% \\
+% \\
+% Let's define $\tilde{\varphi} \text{ : } X \rightarrow E$ to be the composition of $f$ with the inclusion of $p^{-1}(x_0)$ into $E$, and define $\Phi \text{ : } X \times I \rightarrow B $ by $\v$
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 2: Prove that if the fiber $F$ of a Serre Fibration $f \text{ : } E \to B$ is contractible in $E$, then $\pi_n(B)$ is the direct sum of $\pi_n(E)$ and $\pi_{n-1}(F)$.} 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+This follows directly from the following two results: 
+
+\begin{redbox}
+  \textsc{Exercise 14, Section 8.8:} If $A$ is contractible within $X$, then
+  $$ \pi_n(X, A) \cong \pi_n(X) \oplus \pi_{n-1}(A) $$
+\end{redbox}
+
+\begin{redbox}
+  \textsc{Lemma from Section 9.8:} Let $(E, B, p)$ be a Serre fibration, let $e_0 \in E$ be an arbitrary point, let $b_0 = p(e_0)$, and let $F = p^{-1}(b_0)$. Then the map $$ p_* \text{ : } \pi_n(E, F, e_0) = \pi_n(B, b_0) $$ is an isomorphism for all $n$.
+\end{redbox} 
+
+\vskip 0.5cm
+\textbf{Proof of Exercise 14:}
+\\
+Suppose $A$ is contractible in $X$. Let $j$ denote the identity map $X \rightarrow X$ regarded as a map $(X, x_0) \rightarrow (X, A)$ and the induced homomorphism is $j_* \text{ : } \pi_n(X, x_0) \rightarrow \pi_n(X, A, x_0)$ $i \text{ : } A \rightarrow X$ is the inclusion map, $\partial$ denotes the connecting homomorphism.
+\\
+\\
+Then, we have the homotopy sequence of the pair: 
+\begin{align*}
+  &\cdots \xrightarrow{\partial} \pi_n(A, x_0) \xrightarrow{i_*} \pi_n(X, x_0) \xrightarrow{j_*} \pi_n(X, A, x_0) \xrightarrow{\partial} \pi_{n-1}(A, x_0) \\
+  &\cdots \xrightarrow{i_*} \pi_1(X, x_0) \xrightarrow{j_*} \pi_1(X, A, x_0) \xrightarrow{\partial} \pi_{0}(A, x_0) \xrightarrow{i_*} \pi_0(X, x_0) \\
+\end{align*}
+which we know is exact.
+\\
+\\
+Consider this part of the sequence: 
+$$ \cdots \rightarrow \pi_n(A, x_0) \xrightarrow{i_*} \pi_n(X, x_0) \xrightarrow{j_*} \pi_n(X, A, x_0) \xrightarrow{\partial} \pi_{n-1}(A, x_0) \rightarrow \cdots  $$ Recall that we say $A$ is contractible in $X$ if the inclusion $i \text{ : } A \rightarrow X$ is homotopic to a constant map $A \rightarrow X$. So, clearly, $i_* \text{ : } \pi_n(A) \rightarrow \pi_n(X)$ is a zero homomorphism.
+\\
+\\
+Now, $j_*$ is injective and $\partial$ is surjective. Thus, we have $\pi_n(X, A, x_0) \cong \pi_n(X) \oplus \pi_{n-1}(A)$.
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+\begin{bluebox}
+  \textbf{Question 3: Compute the third homotopy groups of the Unitary groups $U(n)$ for all $n$.} 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Let's first find the 3rd homotopy groups for $U(1)$ and $U(2)$ using the fibration provided by the determinant map $\mathrm{det} \text{ : } U(2) \rightarrow U(1)$. Under $\mathrm{det}$, each $c \in U(1)$ has fiber $SU(2) \cong \sph^2$ (intuitively, because we can rotate by any amount without impacting the determinant)
+\\
+\\
+The fibration induces the homotopy sequence:
+$$ \pi_4(U(1)) \rightarrow \pi_3(\sph^3) \rightarrow \pi_3(U(2)) \rightarrow \pi_3(U(1)) $$
+Note that since $U(1)$ is homeomorphic to $\sph^1$, we have $\pi_3(U(1)) \cong \pi_3(\sph^1) = 0$ and also $\pi_4(U(1)) \cong \pi_4(\sph^1) = 0$ so our sequence is 
+$$ 0 \rightarrow \pi_3(\sph^3) \rightarrow \pi_3(U(2)) \rightarrow 0 $$ Thus, $\pi_3(U(2)) \cong \pi_3(\sph^3) = \mathbb{Z}$.
+\\
+\\
+Now for larger $n$, let's use the fact that $$ \sph^{2n-1} = U(n)/U(n-1) $$ and so we have fiber bundle structure $U(n-1) \xhookrightarrow{} U(n) \rightarrow \sph^{2n-1} $ which induces the sequence 
+$$  \pi_{k+1}(\sph^{2n-1}) \rightarrow \pi_k(U(n)) \rightarrow  \pi_k(U(n-1)) \rightarrow \pi_{k}(\sph^{2n-1}) $$ so, for $k < 2n$ we have $$ \pi_k(U(n)) = \pi_k(U(n-1)) $$
+
+Thus, $\pi_3(U(n)) = \mathbb{Z}$ for $n > 1$.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

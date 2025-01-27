@@ -1,0 +1,370 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 4} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+\begin{bluebox}
+  \textbf{Question 1:} Do the following exercises: 
+  \\
+  \textsc{Exercise 7:} Prove that the join of two nonempty path connected spaces is simply connected.
+  \\
+  \\
+  \textsc{Exercise 8:} Prove that the join of two nonempty spaces, of which one is path connected, is simply connected. 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \href{https://math.stackexchange.com/questions/187562/proving-that-the-join-of-a-path-connected-space-with-an-arbitrary-space-is-simpl}{this answer by Kyle Miller})
+\\
+\\
+Let's just do exercise 8, since it's a generalization of exercise 7. Suppose $X, Y$ are non-empty spaces and $X$ is path-connected and $Y$ is any non-empty space.
+\\
+\\
+Recall that the join of two spaces $X, Y$ is the space of segments joining each point of $X$ with each point of $Y$. The formal definition is $$ X * Y = \bigslant{(X \times Y \times I)}{\sim} $$ where we make the identifications 
+\begin{align*}
+  &(x, y, 0) \sim (x, y', 0) \text{ for all } x \in X \text{ and } y,y' \in Y \\
+  &(x, y, 1) \sim (x', y, 1) \text{ for all } x, x' \in X \text{ and } y \in Y 
+\end{align*} For example, the join of two lines would be 
+\begin{center}
+  \includegraphics*[scale=0.35]{Join_of_top_spaces.png} \\
+  \textbf{Source of figure: Fomenko and Fuchs, Homotopical Topology}
+\end{center} 
+
+\begin{dottedbox}
+  \underline{Observation:} We can assume $Y$ is also path-connected. Why? 
+  \\
+  \\
+  $Y$ is not path-connected, so let's consider the collection of its path-connected components $\{Y_i\}_{i \in I}$ for some index set $I$. Then, $$ X * Y = \bigcup_{i \in I} X * Y_i $$
+  \\
+  \\
+  Let $Z$ denote the open subset of $X * Y$ corresponding to $[0, 1/2) \subset I$. Now, let's define $A_i \text{:}= Z \cup (X * Y_i) $. Since the $Y_i$'s are disjoint, we have $A_i \cap A_j = Z, ~i \neq j$. So, if we are able to prove that each $X * Y_i$ is simply connected, $X * Y$ will be simply connected due to (inductive use of) Van-Kampen's theorem.
+  \\
+  \\
+  \begin{note}
+  {Although it's true that each $A_i$ is not necessarily open (which would be an issue for Van-Kampen's theorem), we don't have to worry about that here.
+  \\
+  \\
+  The role played by openness of each $A_i$ in the proof of Van-Kampen's theorem is in showing surjectivity, which relies on $f^{-1}(A_i)$ for any continuous $f \text{ : } [0, 1] \rightarrow X * Y $ being open in $[0, 1]$. This holds even though $A_i$ is not open, as seen below: 
+  \\
+  \\
+  $Z$ is open in $X*Y$ so for any path $f \text{ : } [0, 1] \rightarrow X * Y$ we have $f^{-1}(Z) \subseteq_{\text{open}} [0, 1]$. Now, take a point $s \in [0, 1]$ so that $f(s) = (x, y, t) \in X * Y$ has $t > 0$. Complete this.
+  }
+  \end{note}
+  \\
+  \\
+  Thus, for the rest of the question, let's assume $Y$ is also path-connected and show that $X * Y$ is simply connected.
+\end{dottedbox} Now, let's consider the two open sets $U, V$ of $X * Y$ such that $U$ corresponds to $[0, 2/3) \subset I$ and $V$ corresponds to $(1/3,1]$. Then, $U$ deformation retracts onto $X$, $V$ deformation retracts onto $Y$, and their intersection $U \cap V$ deformation retracts onto $X \times Y$. Let's take the base point of $X * Y$ to be $(x_0,y_0,1/2) =\text{:} b$ where $x_0,y_0$ are the base-points of $X$ and $Y$.
+\\
+\\
+Then, Van-Kampen's theorem gives us 
+\begin{align*}
+  \pi_1(X * Y, b) &= \pi_1(U, b) *_{\pi_1(U \cap V, b)} \pi_1(V, b)
+\end{align*} Or, in other words, if we consider the inclusions and and induced homomorphisms as shown below,
+\[\begin{tikzcd}
+	& U &&&& {\pi_1(U, b)} \\
+	{U \cap V} && {X * Y} && {\pi_1(U \cap V, b)} && {\pi_1(X * Y, b)} \\
+	& V &&&& {\pi_1(V, b)}
+	\arrow["{i_1}", from=1-2, to=2-3]
+	\arrow["{(i_1)_*}", from=1-6, to=2-7]
+	\arrow["{j_1}", from=2-1, to=1-2]
+	\arrow["{j_2}"', from=2-1, to=3-2]
+	\arrow["{(j_1)_*}", from=2-5, to=1-6]
+	\arrow["{(j_2)_*}"', from=2-5, to=3-6]
+	\arrow["{i_2}"', from=3-2, to=2-3]
+	\arrow["{(i_2)_*}"', from=3-6, to=2-7]
+\end{tikzcd}\] then $\pi_1(X * Y, b)$ is the free product $\pi_1(U, b) * \pi_1(V, b)$ modulo the subgroup generated by all $i_{1*}(\gamma) (i_{2*}(\gamma))^{-1} $ for $\gamma \in \pi_1(U \cap V, b)$.
+\\
+\\
+Now, since $U, V, U \cap V$ respectively deformation retract onto $X, Y, X \times Y$ we have 
+\begin{align*}
+  &\pi_1(U, b) \cong \pi_1(X, x_0) \\
+  &\pi_1(V, b) \cong \pi_1(Y, y_0) \\
+  &\pi_1(U \cap V, b) \cong \pi_1(X \times Y, (x_0, y_0)) \cong \pi_1(X, x_0) \times \pi_1(Y, y_0) \\
+\end{align*} Thus, when we evaluate the amalgamated project, the fact that $\pi_1(U \cap V, b) \cong \pi_1(X, x_0) \times \pi_1(Y, y_0)$ forces the amalgamated product to be trivial. i.e. $\pi_1(X * Y) \cong \{1\}$. Thus, the join $X * Y$ is simply connected. 
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Let X be the space obtained by attaching one end of a 2-dimensional cylinder to the other end by the double cover map of the circle. (This space is sometimes called the "mapping torus" of the doble-cover map of $\sph^1$ to $\sph^1$.) Compute all homotopy groups of X. {\emph{Hint:}} First solve the problem for the regular $Z$-covering of $X$ obtained by unwinding the mapping cylinder along the generator.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \href{https://www.homepages.ucl.ac.uk/~ucahjde/tg/html/vkt03.html}{Johnathan Evans's UCL Topology and Groups course}.)
+\\
+\\
+Let's do this by thinking about Mapping tori. Given a space $X$ and a continuous map $\phi \text{ : } X  \rightarrow X$, we can define the \textbf{Mapping Torus} $$ MT(\phi) = (X \times I)/\sim $$ where $(\phi(x), 0) \sim (x, 1)$.
+\\
+\\
+Let's prove a general-ish theorem. 
+
+\begin{theorem}
+  Let $X$ be a CW Complex, and $\phi \text{ : } X \rightarrow X$ be a cellular map. Then, the mapping torus $MT(\phi)$ has CW Structure where eack $k-$cell $e$ in $X$ 
+  \begin{itemize}
+    \item gives a $k-$cell $e \times \{0\} \in X \times \{0\}$
+    \item gives a $(k+1)-$cell, $e \times [0, 1]$, in $(X \times I)/\sim$ 
+  \end{itemize}
+\end{theorem}
+
+\begin{redbox}
+  \begin{theorem}
+    Suppose $X$ has only one $0-$cell, $e$ and $\phi \text{ : } X \rightarrow X$ is a cellular map. Then, 
+    $$ \pi_1(MT(\phi), (x, 0)) = \Big\langle \begin{matrix} \text{generators of } \pi_1(X, x), \\ \text{and a new generator }c \end{matrix} \;\Big|\; \begin{matrix}
+      \text{relations in } \pi_1(X, x), \\
+       \text{and a new relation for each 1-cell in } X 
+    \end{matrix} \Big\rangle $$ where $c$ is a new generator coming from the 1-cell $\{x\} \times [0, 1]$. For each $1-$cell $e$ in $X$, we get a new relation $c^{-1} \phi(e)^{-1} ce = 1$.
+  \end{theorem}
+\end{redbox}
+
+The space that $X$ we're considering in this question is a mapping torus of $\sph^{1}$ with $\phi \text{ : } \sph^{1} \rightarrow \sph^{1}$ being the double-cover map $\phi(z) = z^2$ for $z \in \sph^1$ viewing $\sph^{1}$ as $U(1) \subseteq \C$.
+\\
+\\
+\begin{center}
+  \includegraphics*[scale=0.15]{Double-cover-21 5A -HW4-Q2.png}
+  \includegraphics*[scale=0.25]{Extra-relation-fund-grp-of-mapping-space.png}  \\
+  The relation $c^{-1}$ 
+\end{center}
+$\sph^{1}$ is indeed a CW Complex with only one $0-$cell, and $\phi$ is indeed a cellular map. Denote the basepoint of $\sph^1$ as $x_0$ (this is the $0$-cell). The fundamental group of $\sph^{1}$ is $\mathbb{Z} = \langle a \rangle$. So, the fundamental group is given by (since the double cover map sends $a \mapsto a^2$),
+\begin{align*}
+  \pi_1(X, (x_0, 0)) &= \Big\langle a, c \;\Big|\; c^{-1}a^{-2}ca = 1 \Big\rangle \\
+  \implies \pi_1(X, (x_0, 0)) &= \Big\langle a, c \;\Big|\; a^{-1}ba = ab \Big\rangle \\
+\end{align*} Since $X$ has no $3-$cells, $\pi_n(X)$ is trivial for $n \geq 3$. 
+\\
+\\
+(Collaborated with Finn Fraser Grathwol) For the $n = 2$ case, we can use the long exact sequence of the fibration $\sph^2 \rightarrow X \rightarrow \sph^1$, which gives 
+$$ \cdots \rightarrow \pi_2(\sph^1) \rightarrow \pi_1(X) \rightarrow \pi_2(\sph^1) \rightarrow \cdots $$ and $\pi_2(\sph^1)$ is trivial, which tells us $\pi_2(X)$ is trivial. 
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} If one removes the arrow $\varphi_3$ from the diagram in the five-lemma, leaving all other assumptions intact, will it be true that $A_3 \cong B_3$? i.e. if we have the following diagram:
+\[\begin{tikzcd}
+	{A_1} & {A_2} & {A_3} & {A_4} & {A_5} \\
+	{B_1} & {B_2} & {B_3} & {B_4} & {B_5}
+	\arrow["{f_1}", from=1-1, to=1-2]
+	\arrow["{\varphi_1}", from=1-1, to=2-1]
+	\arrow["{f_2}", from=1-2, to=1-3]
+	\arrow["{\varphi_2}", from=1-2, to=2-2]
+	\arrow["{f_3}", from=1-3, to=1-4]
+	\arrow["{f_4}", from=1-4, to=1-5]
+	\arrow["{\varphi_4}", from=1-4, to=2-4]
+	\arrow["{\varphi_5}", from=1-5, to=2-5]
+	\arrow["{g_1}"', from=2-1, to=2-2]
+	\arrow["{g_2}"', from=2-2, to=2-3]
+	\arrow["{g_3}"', from=2-3, to=2-4]
+	\arrow["{g_4}"', from=2-4, to=2-5]
+\end{tikzcd}\]
+where the rows are exact, $\varphi_5$ is a monomorphism, $\varphi_2, \varphi_4$ are epimorphisms, will it be true that $A_3 \cong B_3$?
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+No. It's not necessarily true that $A_3 \cong B_3$ if we remove $\varphi_3$. For a counterexample, consider the following:
+
+\[\begin{tikzcd}
+	0 & {\mathbb{Z}_2} & {\mathbb{Z}_4} & {\mathbb{Z}_2} & 0 \\
+	0 & {\mathbb{Z}_2} & {\mathbb{Z}_2 \times \mathbb{Z}_2} & {\mathbb{Z}_2} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\] It's well known that $\mathbb{Z}_4 \not\cong \mathbb{Z}_2 \times \mathbb{Z}_2 $ because $\mathbb{Z}_4$ has an element of order $4$ while $\mathbb{Z}_2 \times \mathbb{Z}_2$ has elements of order only up to $2$.
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  19 JUL 2024 11:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  27 AUG 2024 12:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -419,7 +419,9 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \g__lipsum_par_int=\count308
 \l__lipsum_a_int=\count309
 \l__lipsum_b_int=\count310
- (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+ (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
+Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
+ (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks38
 \pgfutil@tempdima=\dimen178
 \pgfutil@tempdimb=\dimen179
@@ -596,7 +598,18 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@expandcount=\count331
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+))) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen284
+\pgfarrowlength=\dimen285
+\pgfarrowwidth=\dimen286
+\pgfarrowlinewidth=\dimen287
+)))
+(c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
@@ -616,7 +629,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \c@tcblayer=\count333
 \c@tcolorbox@number=\count334
 \l__tcobox_tmpa_box=\box75
-\l__tcobox_tmpa_dim=\dimen284
+\l__tcobox_tmpa_dim=\dimen288
 \tcb@temp=\box76
 \tcb@temp=\box77
 \tcb@temp=\box78
@@ -653,9 +666,9 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '6.2.0'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.2.0'
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
-\tcbfitdim=\dimen285
-\tcb@lowerfitdim=\dimen286
-\tcb@upperfitdim=\dimen287
+\tcbfitdim=\dimen289
+\tcb@lowerfitdim=\dimen290
+\tcb@upperfitdim=\dimen291
 \tcb@cur@hbadness=\count339
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
@@ -666,14 +679,14 @@ Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
 \lst@gtempboxa=\box84
 \lst@token=\toks52
 \lst@length=\count341
-\lst@currlwidth=\dimen288
+\lst@currlwidth=\dimen292
 \lst@column=\count342
 \lst@pos=\count343
-\lst@lostspace=\dimen289
-\lst@width=\dimen290
+\lst@lostspace=\dimen293
+\lst@width=\dimen294
 \lst@newlines=\count344
 \lst@lineno=\count345
-\lst@maxwidth=\dimen291
+\lst@maxwidth=\dimen295
  (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 ) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty
@@ -832,7 +845,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./Notes.toc
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--69
+
+ []
+
+(./Notes.toc
 
 [1
 
@@ -846,25 +864,123 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 [3]
 
-[4]
-
 Package microtype Warning: I cannot find a spacing list for font
 (microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
-(microtype)                spacing for this font on input line 169.
+(microtype)                spacing for this font on input line 110.
+
+<pictures/LeeSM_fig10.1.png, id=239, 560.8453pt x 346.29375pt>
+File: pictures/LeeSM_fig10.1.png Graphic file (type png)
+<use pictures/LeeSM_fig10.1.png>
+Package pdftex.def Info: pictures/LeeSM_fig10.1.png  used on input line 118.
+(pdftex.def)             Requested size: 336.50978pt x 207.77785pt.
+<pictures/Cylinder_and_Mobius_strip.png, id=243, 1980.39874pt x 1003.75pt>
+File: pictures/Cylinder_and_Mobius_strip.png Graphic file (type png)
+<use pictures/Cylinder_and_Mobius_strip.png>
+Package pdftex.def Info: pictures/Cylinder_and_Mobius_strip.png  used on input line 143.
+(pdftex.def)             Requested size: 297.047pt x 150.556pt.
+
+
+[4 <./pictures/LeeSM_fig10.1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 145--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--190
+
+ []
 
 
 
-[5]
-<multiple_slits.png, id=158, 624.08156pt x 401.24907pt>
-File: multiple_slits.png Graphic file (type png)
-<use multiple_slits.png>
-Package pdftex.def Info: multiple_slits.png  used on input line 192.
-(pdftex.def)             Requested size: 312.04001pt x 200.62404pt.
+[5 <./pictures/Cylinder_and_Mobius_strip.png>]
+
+[6]
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 216.
 
 
-[6 <./multiple_slits.png>]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 216.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rightarrow' on input line 216.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 216.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 220.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rightarrow' on input line 220.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 220.
+
+
 
 [7]
+Underfull \hbox (badness 10000) in paragraph at lines 230--237
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--237
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--259
+
+ []
+
+
 
 [8]
 
@@ -872,31 +988,202 @@ Package pdftex.def Info: multiple_slits.png  used on input line 192.
 
 [10]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 364.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 364.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 377--381
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+euf on input line 397.
+(c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) (c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-euf.cfg
+File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
+)
+Underfull \hbox (badness 10000) in paragraph at lines 410--414
+
+ []
+
+
+
 [11]
+Underfull \hbox (badness 10000) in paragraph at lines 416--420
 
-[12] (./Notes.bbl)
+ []
 
-[13] (./Notes.aux)
+
+Underfull \hbox (badness 1014) in paragraph at lines 416--420
+\OT1/cmr/m/n/10.95 (+10) The set of left-invariant vec-tor fields is a par-tic-u-larly im-por-tant lie-algebra and so
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 434.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 434.
+
+<pictures/Schuller_orbit_ofSO(2).png, id=319, 457.71pt x 430.60875pt>
+File: pictures/Schuller_orbit_ofSO(2).png Graphic file (type png)
+<use pictures/Schuller_orbit_ofSO(2).png>
+Package pdftex.def Info: pictures/Schuller_orbit_ofSO(2).png  used on input line 458.
+(pdftex.def)             Requested size: 137.31406pt x 129.18361pt.
+
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 484--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--501
+
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 503.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 503.
+
+
+
+[13 <./pictures/Schuller_orbit_ofSO(2).png>]
+Underfull \hbox (badness 10000) in paragraph at lines 522--526
+
+ []
+
+
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 545--551
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--551
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--551
+
+ []
+
+<pictures/Infinitessimally_close_fibers.png, id=343, 1300.86pt x 1003.75pt>
+File: pictures/Infinitessimally_close_fibers.png Graphic file (type png)
+<use pictures/Infinitessimally_close_fibers.png>
+Package pdftex.def Info: pictures/Infinitessimally_close_fibers.png  used on input line 554.
+(pdftex.def)             Requested size: 195.12057pt x 150.556pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--569
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--569
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--569
+
+ []
+
+<pictures/Hor-and-Ver-vectors.png, id=345, 1214.5375pt x 1002.74625pt>
+File: pictures/Hor-and-Ver-vectors.png Graphic file (type png)
+<use pictures/Hor-and-Ver-vectors.png>
+Package pdftex.def Info: pictures/Hor-and-Ver-vectors.png  used on input line 570.
+(pdftex.def)             Requested size: 182.17276pt x 150.40544pt.
+
+
+[15 <./pictures/Infinitessimally_close_fibers.png>]
+<pictures/VpP-and-HpP.png, id=353, 1465.475pt x 1003.75pt>
+File: pictures/VpP-and-HpP.png Graphic file (type png)
+<use pictures/VpP-and-HpP.png>
+Package pdftex.def Info: pictures/VpP-and-HpP.png  used on input line 584.
+(pdftex.def)             Requested size: 219.81177pt x 150.556pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--596
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--596
+
+ []
+
+
+
+[16 <./pictures/Hor-and-Ver-vectors.png> <./pictures/VpP-and-HpP.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 612--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--622
+
+ []
+
+
+
+[17]
+
+[18]
+
+[19]
+
+[20] (./Notes.bbl)
+
+[21] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: 65DC073519BC9B0F95C6E4616FEB1765;2742.
+(rerunfilecheck)             Checksum: 34BD998BF6CCE1D8E27DD7536DD11AB4;6456.
  ) 
 Here is how much of TeX's memory you used:
- 32383 strings out of 475517
- 648328 string characters out of 5775029
- 1939908 words of memory out of 5000000
- 54318 multiletter control sequences out of 15000+600000
- 573776 words of font info for 135 fonts, out of 8000000 for 9000
+ 33710 strings out of 475517
+ 686029 string characters out of 5775029
+ 1948908 words of memory out of 5000000
+ 55532 multiletter control sequences out of 15000+600000
+ 581872 words of font info for 181 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 90i,14n,96p,1074b,624s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Notes.pdf (13 pages, 236478 bytes).
+ 98i,15n,101p,1074b,1060s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/euler/eufb10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Notes.pdf (21 pages, 769181 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 35 named destinations out of 1000 (max. 500000)
- 45842 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 512 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 50159 words of extra memory for PDF output out of 51595 (max. 10000000)
 

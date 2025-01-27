@@ -3,47 +3,49 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Notes.aux
 The style file: plain.bst
 Database file #1: refs.bib
+Warning--empty publisher in SkinnerAQFT
+Warning--empty year in SkinnerAQFT
 Warning--empty publisher in 232AdiscussionNotes
 Warning--empty journal in Weinberg97
-You've used 4 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            519 strings with 4427 characters,
-and the built_in function-call counts, 871 in all, are:
-= -- 75
-> -- 28
+            529 strings with 4710 characters,
+and the built_in function-call counts, 1291 in all, are:
+= -- 111
+> -- 42
 < -- 0
-+ -- 13
-- -- 8
-* -- 36
-:= -- 160
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 13
++ -- 19
+- -- 12
+* -- 55
+:= -- 230
+add.period$ -- 17
+call.type$ -- 6
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 46
-empty$ -- 84
-format.name$ -- 8
-if$ -- 178
+cite$ -- 10
+duplicate$ -- 65
+empty$ -- 128
+format.name$ -- 12
+if$ -- 267
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 7
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 31
+int.to.str$ -- 6
+missing$ -- 9
+newline$ -- 32
+num.names$ -- 12
+pop$ -- 50
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 18
 quote$ -- 0
-skip$ -- 25
+skip$ -- 37
 stack$ -- 0
-substring$ -- 21
-swap$ -- 3
+substring$ -- 31
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
-warning$ -- 2
-while$ -- 8
-width$ -- 5
-write$ -- 40
-(There were 2 warnings)
+type$ -- 16
+warning$ -- 4
+while$ -- 12
+width$ -- 7
+write$ -- 57
+(There were 4 warnings)

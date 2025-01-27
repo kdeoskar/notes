@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 10} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Prove that the cap-product between $H_{m+n}(X, A \cup B; R)$ and $H^m(X, B; R)$ is well-defined to take values in $H_{n}(X, A; R)$ and the cup-product between $H^m(X, A; R)$ and $H^n(X, B; R)$ is well-defined to take values in $H^{m+n}(X, A \cup B; R)$ \emph{provided that} $A$ and $B$ are deformational retracts of their neighborhoods $U_{A}$ and $U_{B}$ inside $A \cup B$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (I read through Allen Hatcher's Algebraic Topology Sections 2.2, 3.3 for this question)
+\\
+\\
+We consider spaces $A, B$ and $U_A, U_B \subseteq A \cup B$ so that $U_A, U_B$ deformation retract onto $A, B$ respectively. There are two things we want to prove:
+\begin{enumerate}[(a)]
+  \item The Cap-Product $ H_{m + n}(X, A \cup B; R) \smile H^m(X, B; \R) $ is well-defined to take values in $H_{n}(X,A; R)$, and
+  \item The Cup-Product $ H^{m}(X,A; R) \frown H^n(X, B;R) $ is well-defined to take values in $H^{m+n}(X, A \cup B; R)$
+\end{enumerate} I'm going to swap the order.
+
+
+\begin{enumerate}[(a)]
+  \item \underline{\textbf{Cup-product}:}
+  
+  \begin{dottedbox}
+    Let's first recall the definitions of Relative Cohomology groups. To define $H^n(X, A; G)$ for a pair $(X,A)$ we take the exact sequence 
+    $$ 0 \rightarrow C_n(A) \rightarrow C_n(X) \rightarrow C_n(X, A) \rightarrow 0 $$ and dualize it by applying $\mathrm{Hom}(-, G)$ to get 
+    $$ 0 \leftarrow C^n(A; G) \xleftarrow{i^*} C^n(X; G) \xleftarrow{j^*} C^n(X, A; G) \leftarrow 0 $$
+    where $C^n(X, A; G) \text{:}= \mathrm{Hom}(C_n(X, A), G)$. This sequence is exact for the following reasons: 
+    \\
+    \\
+    The map $i^*$ restricts cochains on $X$ to cochains on $A$. So for a function from the singular $n$-simplices on $X$ to $G$, the image of the function under $i^*$ is exactly the same function - just with its domain restricted to $A$ rather than $X$. Any functions from singular $n-$simplices on $A$ to $G$ can be extended to a function from the singular $n-$simplices on $X$ to $G$ - eg. just by assigning value $0$ to those simplices not in $A$. Thus, $i^*$ is surjective. So the composition of $i^*$ with the zero map sending $C^{n}(A; G) \mapsto 0$ is exact.
+    \\
+    \\
+    Now, the kernel of $i^*$ is all those cochains on $X$ which take value $0$ on singular $n-$simplices in $A$. Thus, such cochains can be thought of as homomorphisms $$C_{n}(X, A) = C_n(X)/C_n(A) \rightarrow G$$ so the kernel is exactly $C^n(X, A; G) = \mathrm{Hom}(C_n(X, A), G)$, giving us exactness of the entire sequence.
+    \\
+    \\
+    The main thing to remember from this discuss is that \color{blue} \textbf{$C^n(X, A; G)$ can be viewed as the functions from singular $n-$simplices on $X$ which vanish on simplices in $A$.} \color{black}
+  \end{dottedbox} 
+  
+  \begin{dottedbox}
+    Let's also quickly recall the absolute versions:
+    \\
+    \\
+    The \underline{absolute} cup-product on cochains $\varphi \in C^m(X; G)$ and $\psi \in C^{n}(X; G)$ is defined to be the cochain $\varphi \smile \psi \in C^{m+n}(X; G)$ which acts on $\sigma \text{ : } \Delta^{k+l} \rightarrow X$ as $$ \left(\varphi \smile \psi\right)(\sigma) = \varphi\left([v_0, \cdots, v_k]\right) \psi([v_{k+1},\cdots,v_{k+l}]) $$
+    \\
+    The coboundary map $\delta$ acts on the cup-product as $$ \delta(\varphi \smile \psi) = (\delta \varphi) \smile \psi + (-1)^k \varphi \smile (\delta \psi) $$
+    \\
+    From this formula, we can tell that 
+    \begin{itemize}
+      \item the cup-product of two cocycles is again a cocycle.
+      \item the cup-product a cocycle and a coboundary (in either order) is again a coboundary.
+    \end{itemize}
+    Thus, there is an induced Cup-Product on the Cohomology groups $$ H^k(X; R) \times H^l(X; R) \xrightarrow{\smile} H^{k+l}(X; R) $$
+  \end{dottedbox}
+
+  \vskip 0.5cm
+  The relative cup product is obtained by noticing that the absolute cup-product on the cochains $$ C^m(X; R) \times C^n(X; R) \xrightarrow{\smile} C^{m+n}(X; R) $$ restricts to a cup-product $$ C^m(X, A; R) \times C^n(X, B; R) \xrightarrow{\smile} C^{m+n}(X, A + B; R) $$ where $C^{m+n}(X, A + B; R)$ is the subgroup of $C^{m+n}(X; R)$ consisting of cochains vanishing on sums of chains in $A$ and $B$. The inclusions $C^n(X, A \cup B; R) \hookrightarrow C^n(X, A+B; R)$ induce isomorphisms on the cohomology via the Five-lemma and the fact that the restriction maps $C^n(A \cup B; R) \hookrightarrow C^n(A + B; R)$ induce isomorphismss on Cohomology via excision.
+  \\
+  \\
+  Therefore the cup-product $$ C^m(X, A; R) \times C^n(X, B; R) \xrightarrow{\smile} C^{m+n}(X, A + B; R) $$ induces the relative cup-product of the cohomology groups $$ H^m(X, A; R) \times H^n(X, B; R) \xrightarrow{\smile} H^{m+n}(X, A \cup B; R) $$
+  \vskip 0.5cm
+
+  \item \underline{\textbf{Cap-Product}:} Again, let's recall that the cap-product for absolute chains and cochains is defined as follows: For Arbitrary space $X$ and coefficient ring $R$, we have $$\frown \text{ : } C_{k}(X; R) \times C^l(X; R) \rightarrow C_{k-l}(X; R)$$ where $k \geq l$ defined as $$ \sigma \frown \varphi = \varphi \left( \restr{\sigma}{[v_0, \cdots, v_l]} \right) \restr{\sigma}{[v_{l}, \cdots, v_k]} $$ form $\sigma \text{ : } \Delta^{k} \rightarrow X$ and $\varphi \in C^l(X; R)$ 
+  \\
+  \\
+  This induces a cap-product in Homology and Cohomolgy due to the formula $$\partial\left( \sigma \frown \varphi \right) = (-1)^l \left( \partial\sigma \frown \varphi - \sigma \frown \delta \varphi \right) $$ in the sense that this formula tells us 
+  \begin{itemize}
+    \item The cap-product of a cycle $\sigma$ and a cocycle $\varphi$ is a cycle. 
+    \item The cap-product of a cycle and a coboundary is a coboundary.
+    \item The cap-product of a boundary and a cocycle is a boundary.
+  \end{itemize}
+  These facts induce the cap-product $$ H_k(X; R) \times H^l(X; R) \xrightarrow{\frown} H_l(X; R) $$ which is $R-$linear in each variable.
+  \\
+  \\
+  The Relative Cap-Product $$ H_k(X, A \cup B; R) \times H^l(X, B; R) \xrightarrow{\frown} H_{l}(X, A; R) $$ is defined when $A, B$ are open subsets of $X$ and using the fact that $H_k(X, A \cup B; R)$ can be computed using the chain groups 
+  $$ C_n(X, A+B; R) = C_n(X; R)/C_n(A+B; R) $$
+
+  Our question is slightly different, however. We have $A$ and $B$ not necessarily being open subsets, but we have open neighborhoods $U_A, U_B \subseteq U$ which deformation retract onto $A, B$ respectively.
+  \\
+  \\
+  What we've described above works perfectly well for $U_A, U_B$. So, we need to show isomorphism between the relative homology groups using $U_A, U_B$ and the relative homology groups using $A, B$.
+  \\
+  \\
+  The quotient map $$ C_{\bullet}(X)/[C_{\bullet}(A + B)] \rightarrow C_{\bullet}(X)/C_{\bullet}(A \cup B) $$ induces isomorphism between the homology groups. 
+\end{enumerate}
+
+% We have $U_A, U_B \subseteq A \cup B$ deformation-retracts of $A \cup B$. The Cap-Product $$ H_{m+n}(X, A \cup B; \R) \frown H^{m}(X, B; \R)$$ is defined via the chain groups. Namely, if we have $a = \sum_{i} g_i f_i \in C_{m+n}(X, A \cup B; \R)$ and $c \in C^{m}(X, A; \R)$
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Call a degree-$n$ integer homology class $[M]$ of a closed oriented $n-$dimensional manifold $M$ the \textbf{\emph{fundamental class}} if for every point $x \in m$ the projection of this class from $H_{n}(M)$ to $H_n(M, M-\{x\}) = H_{n}(\sph^n) = \mathbb{Z}$ equals $1$. Embed $M$ into an oriented sphere $\sph^N$ and let $U$ be a tubular neighborhood of $M$ in $\sph^N$ considered as a disk bundle over $M$. Show that the composition of the natural map from $H_N(\sph^N) = \mathbb{Z}$ to $H_N{(\sph^N, \sph^N - U)}$ (= $H_N(U, \partial U)$ by excision) while the Thom Isomorphism between $H_{N}(U, \partial U)$ and $H_{n}(M)$ maps $[\sph^N]$ to $[M]$ (thus proving the existence of the latter). 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} 
+\\
+\\
+text
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Use Morse Theory to show that a Morse function on $\mathbb{RP}^n$ has at least $n+1$ critical points. Give an example of a Morse function on $\mathbb{RP}^n$ with exactly $n+1$ critical points, and find critical values and Morse indices of the critical points in your example.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \href{https://stanford.edu/~sfh/morse.pdf}{these Morse Theory notes} 
+% and \href{https://www.math.toronto.edu/mgualt/Morse%20Theory/Notes14-15.pdf#:~:text=Note%20that%20RPn%20has%20Hk%28RPn%3B%20R%29%20vanishes%20except,yield%20at%20least%20n%20%2B%201%20critical%20points.}{these other Morse Theory notes}
+; Missed lecture this week but I heard the Weak Morse Inequality was covered in class)
+\\
+\\
+Recall that for a smooth manifold $M$, a smooth function $f \in C^{\infty}(M), ~f \text{ : } M \rightarrow \R$ is said to be a \emph{Morse Function} if it has no degenerate critical points on $M$.
+\\
+\begin{redbox}
+  \begin{theorem}
+    \textbf{(Weak Morse Inequalities:)} Let $f$ be a Morse function on a manifold $M$. Let $N_k$ denote the number of index $k$ critical points of $f$. Then, $$ N_k \geq b_k(M) $$ where $b_k(M)$ is the $k^{th}$ Betti Number.
+  \end{theorem}
+\end{redbox}
+
+
+\begin{redbox}
+  \begin{theorem} \textbf{(Corollary of the Weak Morse Inequality):} Let $f$ be a Morse function on $M$. Then, $f$ has at least as many critical points as the sum of the ranks of the homology groups on $M$ (i.e. the betti numbers).
+  \end{theorem}
+\end{redbox} 
+
+\vskip 0.5cm
+Recall that the homology groups of projective spaces are slightly different for $n$ odd and $n$ even:
+\\
+\\
+\underline{$n$ odd:}
+$$ H_i \left( \mathbb{RP}^n \right) = \begin{cases}
+  \mathbb{Z},~i = 0, n\\
+  \mathbb{Z}/2\mathbb{Z},~i \text{ odd }, 1 \leq i \leq n-1 \\
+  0, \text{ otherwise }
+\end{cases} $$ 
+\\
+\underline{$n$ even:}
+$$ H_i \left( \mathbb{RP}^n \right) = \begin{cases}
+  \mathbb{Z},~i = 0 \\
+  \mathbb{Z}/2\mathbb{Z},~i \text{ odd }, 1 \leq i \leq n-1 \\
+  0, \text{ otherwise }
+\end{cases} $$
+Namely, the top-homology group vanishes when $n$ is even, so the sum of the ranks of the homology groups for $n$ is less that that of $n$ odd.
+\\
+\\
+Now, for $n$ odd, we have the betti numbers of the homology groups $$ b_i = \begin{cases}
+  1,~~0 \leq 1 \leq n \\
+  0,~~\text{otherwise}
+\end{cases} $$
+Thus, any Morse function on $\mathbb{RP}^n$ has at least $$ \sum_{i} b_i = n+1 $$ critical points.
+\\
+\\
+A Morse function $f \text{ : } \mathbb{RP}^n \rightarrow \R$ with exactly $n+1$ critical points is $$ f(x) = \sum_{i=1}^{n+1} i\cdot|x|^2 $$
+% \\
+% \\
+% \textbf{Proof of the Weak Morse Inequality:}
+% \\
+% \\
+% \textbf{Calculation of Homology Groups for Projective Spaces:}
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

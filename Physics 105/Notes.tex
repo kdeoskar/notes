@@ -13,6 +13,8 @@
 \usepackage[most]{tcolorbox}
 \usepackage{xcolor}
 \usepackage{mdframed}
+\usepackage{calligra}
+
 
 % page formatting
 \usepackage{fancyhdr}
@@ -33,11 +35,16 @@
 \setcounter{secnumdepth}{2} % no numbered subsubsections
 \setcounter{tocdepth}{2} % no subsubsections in ToC
 
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CUSTOM BOXES AND STUFF
-\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
-\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black, breakable}
 
 \definecolor{lightblue}{RGB}{173,216,230} % Light blue color
 \definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
@@ -773,7 +780,7 @@ which implies that \textbf{Angular momentum is conserved.} This marks the end of
 \begin{note}
 {No lectures on July 10, 11 because of the midterm.}
 \end{note}
-
+\hrule
 
 \pagebreak
 \section{July 15, 2024: Obtaining Lagrangians from Symmetries}
@@ -937,7 +944,7 @@ Also, when we switch from Spherical Coordinates to Cartesian Coordinates we use
   z = r\cos\phi \\
 \end{cases} \]
 which have no time dependence, and so $H = E$. Aaaaaand... we're out of time so w'll continue tomorrow.
-
+\hrule
 
 \pagebreak
 \section{July 16, 2024: Central Forces and Orbital Shapes}
@@ -1134,7 +1141,7 @@ we get
 \end{align*}
 
 We're out of time now, but next  time we'll see how this gives us an orbital shape which is an ellipse.
-
+\hrule
 
 \pagebreak
 \section{July 17, 2024: Orbital Shape continued}
@@ -1331,6 +1338,7 @@ This describes a hyperbola, and $r \rightarrow \infty$ at $\phi_1, \phi_2$ such 
 \[ \cos(\phi_{1,2}) = -\frac{1}{e}  \]
 
 We can use $\phi_1, \phi_2$ to find the deflection angle and write it in terms of $b$ (which is our goal).
+\hrule
 
 \pagebreak
 \section{July 18, 2024: Scattering Theory}
@@ -1539,7 +1547,7 @@ Plugging this into the equation above gives us
 
 \vskip 0.5cm
 Looking at the behavior of $\csc^4 \left(\frac{\Theta}{2}\right)$ vs $\frac{\Theta}{2}$, we see that \emph{most} particles just travel straight.
-
+\hrule
 
 \pagebreak
 \section{July 22, 2024: Virial Theorem}
@@ -1777,6 +1785,7 @@ This is due to Coriolis force.
       V_z \\
   \end{pmatrix}
 \end{align*}
+\hrule
 
 \pagebreak
 \section{July 23, 2024: }
@@ -1959,6 +1968,7 @@ The expression obtained by the textbook includes not just the components but als
 
 \vskip 0.5cm
 Fill in the rest of this crap later. 
+\hrule
 
 \pagebreak
 \section{July 24, 2024: More involved examples}
@@ -2131,7 +2141,7 @@ Then,
 Putting these into the Lagrangian and only keeping terms to first order in $x^2/R^2$ and $y^2/R^2$ we have 
 \\
 \begin{align*}
-  L &= \frac{1}{2}m\left(\dot{x}^2 + \dot{y}^2\right) - mg \left(-\frac{x^2}{R^2}-\frac{y^2}{R^2}\right) - m\Omega\sin\lambda \left(\dot{x}y - \dot{y}x\right)
+  L &= \frac{1}{2}m\left(\dot{x}^2 + \dot{y}^2\right) - \frac{1}{2}mg \left(+\frac{x^2}{R^2}+\frac{y^2}{R^2}\right) - m\Omega\sin\lambda \left(\dot{x}y - \dot{y}x\right)
 \end{align*}
 (dropping constant terms and terms that are 2nd order in small parameters)
 \\
@@ -2154,6 +2164,458 @@ We have a set of coupled second order differential equations. This is annoying! 
 \]
 \\
 We'll continue this tomorrow, but the approach will be to solve for the system's evolution in terms of $(x', y')$ and then use a rotation to get $(x,y)$.
+\hrule
+
+\pagebreak
+\section{July 25, 2024: Continuing with Foucault's Pendulum} 
+
+\begin{note}
+  {Write a recap if there's time for it}
+\end{note}
+\\
+\\
+\begin{align*}
+  L &\approx \frac{1}{2}m(\dot{x}^2 + \dot{y}^2) - \frac{1}{2}mgR \left[ \frac{x^2}{R^2} + \frac{y^2}{R^2} \right] - m\omega\sin\lambda (\dot{x} y - \dot{y} x) \\
+  \implies& \begin{cases}
+    \ddot{x} - 2\omega\sin\lambda \dot{y} + \omega_0^2 x = 0 \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(1)\\
+    \ddot{y} + 2\omega\sin\lambda \dot{x} + \omega_0^2 y = 0 \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(2)\\
+  \end{cases}
+\end{align*}
+where $\omega_0^2 = \frac{g}{R}$
+\\
+\\
+These look like the equations of motion of a 2D Isotropic Harmonic Oscillator, but with an interaction term containing $(\dot{x}y - \dot{y}x)$. This makes the EL equations \emph{coupled} second order differential equations.
+\\
+\\
+To guess the ansatz, we expect that the solution when $\lambda = \frac{\pi}{2}$ should have the simple form 
+\begin{align*}
+  \begin{pmatrix}
+    x \\ y
+  \end{pmatrix} = \begin{pmatrix}
+    \cos(\Omega t) & \sin(\Omega t) \\
+    -\sin(\Omega t) & \cos(\Omega t)  \\
+  \end{pmatrix} \begin{pmatrix}
+    x' \\ y'
+  \end{pmatrix}
+\end{align*}
+\\
+where $x'$ and $y'$ should satisfy the Equations of Motion 
+\begin{align*}
+  \ddot{x'} + \omega_0^2 x' &= 0 \\
+  \ddot{y'} + \omega_0^2 y' &= 0 \\
+\end{align*}
+\\
+The reason we expect this to be the case is that our inertial reference frame $(x', y', z')$ in outer space
+\begin{note}
+  {Watch the recording again. Didn't understand why we should expect this}
+\end{note}
+\\
+So, we can very easily find $\begin{pmatrix}
+  x ' \\ y'
+\end{pmatrix}$ which satisfy these simply EoM, and then obtain the $\begin{pmatrix}
+  x \\ y
+\end{pmatrix}$ in the rotating frame using a rotation matrix transformation.
+\\
+\\
+Okay. Let's check to see if our guess is true.
+\begin{align*}
+  \begin{pmatrix}
+    \dot{x} \\ \dot{y}
+  \end{pmatrix} &= \Omega \begin{pmatrix}
+    -\sin(\Omega t) & \cos(\Omega t) \\
+    -\cos(\Omega t) & -\sin(\Omega t) \\
+  \end{pmatrix} \begin{pmatrix}
+    x' \\ y'
+  \end{pmatrix} + \begin{pmatrix}
+    \cos(\Omega t) & -\sin(\Omega t) \\
+    -\sin(\Omega t) & \cos(\Omega t) \\
+  \end{pmatrix} \begin{pmatrix}
+    \dot{x'} \\ \dot{y'}
+  \end{pmatrix} \\
+  \implies \begin{pmatrix}
+    \ddot{x} \\ \ddot{y}
+  \end{pmatrix} &= \begin{pmatrix}
+    \cos(\Omega t) & \sin(\Omega t) \\
+    -\sin(\Omega t) & \cos(\Omega t) \\
+  \end{pmatrix} \begin{pmatrix}
+    \ddot{x'} + \ddot{y'}
+  \end{pmatrix} + 2 \Omega \begin{pmatrix}
+    -\sin(\Omega t) & \cos(\Omega t) \\
+    -\cos(\Omega t) & -\sin(\Omega t) \\
+  \end{pmatrix} \begin{pmatrix}
+    x' \\ y'
+  \end{pmatrix} + \mathcal{O}(\Omega^2) \\
+  &\text{ (We only worry about terms that are linear in $\Omega$)}
+\end{align*} 
+\\
+\\
+Plugging this into Equation $(1)$ gives us 
+\begin{align*}
+  0 &= \underbrace{\left( \cos(\Omega t )\ddot{x'} + \sin(\Omega t) \ddot{y'} \right) + 2\Omega \left(-\sin(\Omega t )\dot{x'} + \cos(\Omega t)\dot{y'} \right)}_{\ddot{x}} - 2\Omega\underbrace{\sin\lambda}_{=1\text{ as } \lambda=\frac{\pi}{2}} \underbrace{\left(-\sin(\Omega t) \dot{x'} + \cos(\Omega t) \dot{y'} \right)}_{\dot{y}\text{ terms, but only those linear in } \Omega} + \\&\;\;\;\;\;\omega_0^2 \underbrace{\left( \cos(\Omega t) x' + \sin(\Omega t) y'\right)}_{x}  \\
+  &= \cos(\Omega t) \ddot{x'} + \sin(\Omega t) \ddot{y'} + \omega_0^2 \cos(\Omega t) x' + \omega_0^2 \sin(\Omega t) y' \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(3)
+\end{align*}
+\\
+Similarly, if we plug it into Equation $(2)$ we get
+\begin{align*}
+  0 &= -\sin(\Omega t) \ddot{x'} + \cos(\Omega t) \ddot{y'} - \omega_0^2 \sin(\Omega t) x' + \omega_0^2 \cos(\Omega t) y' \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(4)
+\end{align*}
+\\
+These equations give us a way to decouple $x$ and $y$. For eg. If we want to eliminate $\ddot{x}$ we can do $[(3) \times \sin(\Omega t) + (4) \times \cos(\Omega t)]$ because then the coefficients multiplying $\ddot{x}$ are $\pm \cos(\Omega t) \sin(\Omega t)$ and thus they cancel. 
+\\
+\\
+Eliminating $\ddot{x'}$ and $x'$, we find that indeed 
+\[ \ddot{y'} + \omega_0^2 y' = 0 \]
+\\
+Similarly, we can eliminate $\ddot{y'}$ and $y'$. Doing so, we would find
+\[ \ddot{x'} + \omega_0^2 x' = 0 \]
+\begin{note}
+  {Write this stuff out explicitly if there's time for it.}
+\end{note}
+\\
+For $\lambda = \frac{\pi}{2}$ we indeed have the solution 
+\begin{align*}
+  \begin{pmatrix}
+    x \\ y
+  \end{pmatrix} = \begin{pmatrix}
+    \cos(\Omega t) & \sin(\Omega t) \\
+    -\sin(\Omega t) & \cos(\Omega t)
+  \end{pmatrix} \begin{pmatrix}
+    x' \\ y'
+  \end{pmatrix}
+\end{align*}
+where $\begin{pmatrix}
+  x' & y'
+\end{pmatrix}$ is the solution for 
+\[ \begin{cases}
+  \ddot{x'} + \omega_0^2 x' = 0 \\
+  \ddot{y'} + \omega_0^2 y' = 0 
+\end{cases} \]
+\\
+So we've solved the system for $\lambda = \frac{\pi}{2}$. 
+\\
+For other values of $\lambda$, formally, we just have a "new" $\tilde{\Omega}$ such that $x, y$ satisfy equations of motion 
+\begin{align*}
+  \ddot{x} - 2\tilde{\Omega} \dot{y} + \omega_0^2 x &= 0 \\
+  \ddot{y} + 2\tilde{\Omega} \dot{x} + \omega_0^2 y &= 0 
+\end{align*}
+where $\tilde{\Omega} = \Omega \sin\lambda$. This has the same form as the equation of motion when $\lambda = \frac{\pi}{2}$. We just need to swap $\Omega \rightarrow \tilde{\Omega}$.
+\\
+\\
+Mathematically, this just means that with 
+\begin{align*}
+  \begin{pmatrix}
+    x \\ y
+  \end{pmatrix} \begin{pmatrix}
+    \cos(\tilde{\Omega} t) & \sin(\Tilde{\Omega t}) \\
+    -\sin(\tilde{\Omega} t) & \cos(\Tilde{\Omega t})
+  \end{pmatrix} \begin{pmatrix}
+    x' \\ y'
+  \end{pmatrix}
+\end{align*}
+then the coordinate $\begin{pmatrix}
+  x' \\ y'
+\end{pmatrix}$ will have the same simple EoM
+\[ \begin{cases}
+  \ddot{x'} + \omega_0^2 x' = 0 \\
+  \ddot{y'} + \omega_0^2 y' = 0 
+\end{cases} \]
+\\
+\\
+\textbf{Caveat:} This is a mathematical trick. The $\begin{pmatrix}
+x' \\ y
+\end{pmatrix}$ here \textbf{\emph{is no longer the initial position in the initial reference frame above the north pole.}}
+\\
+\\
+in this case, the plane of oscillation rotates with an angular speed $\tilde{\Omega}$.
+\\
+\begin{redbox}
+  Since we don't have much time and we're already taking about rotation, we will continue on with Rigid Body Dynamics and cover Hamiltonian Mechanics towards the end.
+\end{redbox}
+
+\vskip 1cm
+\subsection{Rigid Body Dynamics}
+[include picture]
+\\
+\\
+\textbf{Question:} How do we describe rigid body motion? 
+\\
+\\
+First off, it's good to have an inertial reference frame and a tagged point (on the body). We can look at the position $\vec{R} = (x, y, z)$ (so we have three d.o.f's) of the tagged point as it moves in time.
+\\
+\\
+Usually we choose the Center-of-Mass as the tagged point, or if the object is fixed we use the the well... fixed point.
+\\
+\\
+Include picture
+\\
+\\
+\textbf{Question:} How do we describe rigid body rotation? 
+\\
+\\
+We can choose another (primed) coordinate system with its origin at the Tagged point which is fixed with respect to the point. As the body rotates, so does the primed coordinate system.
+\\
+\\
+Suppose we have a particle whose position vector in the primed coordinates is 
+\[ \vec{r}' = r_i' \hat{e'}_i  \] 
+This $\vec{r}'$ is time-independent (since the body is rigid). The position $\vec{r}$ of the same point in the body (in the original interial frame) is given by 
+\begin{align*}
+  &\vec{r} = \vec{R} - \vec{r}' \\
+  \implies& r_i \hat{e}_i = R_i \hat{e}_i + r_i' \hat{e'}_i \text{  (Note, we do not have $r_i = R_i + r_i'$ ) }
+\end{align*}
+We know that $\hat{e'}_i$ is related to $\hat{e}_i$ via a rotational matrix.
+\[ \hat{e}_i = \mathcal{R}_{ji} \hat{e}_j \]
+\begin{note}
+  {Ask Chien-I about this.}
+\end{note}
+\\
+\textbf{Question:} What properties do we have for this rotational matrix $\mathcal{R}_{ij}$ and how many d.o.f's do we have?
+\\
+\\
+These rotational matrices are elements of $SO(3)$ i.e. the Special Orthogonal Group of dimension $3$. The matrices must satisfy the following conditions:
+\begin{enumerate}
+  \item \underline{\textit{Orthogonal:}} $\delta_{ij} R_{im} R_{jn} = \delta_{mn}$ \\
+  \item \underline{\textit{Special:}} $\mathrm{det}(R_{ij}) = 1$
+\end{enumerate}
+
+\vskip 0.5cm
+\textbf{Why?} 
+\begin{itemize}
+  \item No matter how we rotate the frame, we do NOT change the lengths and angles $\implies$ the dot product $\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos(\theta)$ should be invariant under rotations. If we write the vectors in component form, $\vec{A} = A_i \hat{e}_i, \; \vec{B} = B_j \hat{e}_j$ then
+  \[ \vec{A} \cdot \vec{B} = A_i B_j \underbrace{\hat{e_i} \cdot \hat{e}_j}_{\delta_{ij}} = A_i B_i \]
+  Thus, if under rotation, $A_i \rightarrow A_i' = \mathcal{R}_{ij} A_k$, $B_j \rightarrow B_j' = \mathcal{R}_{jm} B_m$, then requiring that the dot product remains invariant means 
+  \begin{align*}
+    &A_i B_i = A_i B_i\\
+    \implies& \delta_{ij} A_i' B_j' = \delta_{ij} A_i B_j \\
+    \implies& \delta_{ij} \mathcal{R}_{ik} A_{k} \mathcal{R}_{jm} A_{m} = \delta_{ij} A_{i} B_{j} \\
+    \implies& \delta_{ij} \mathcal{R}_{ik} \mathcal{R}_{jm} A_{k} B_{m} = \delta_{km} A_{k} B_{m} \\
+    &\text{ (We can do this since we're dealing with components, not the actual matrices.)} 
+  \end{align*} 
+  And requiring that this relation holds true for any $\vec{A}, \vec{B}$ means that $\mathcal{R}_{ik}, \mathcal{R}_{jm}$ must satisfy the equation
+  \[ \boxed{\delta_{ij} \mathcal{R}_{ik}  \mathcal{R}_{jm} = \delta_{km}} \]
+
+  \textbf{Why do we call this relation orthogonal?} We don't change the lengths or (relative) angles, so vectors that start off being orthogonal remain orthogonal. \begin{note}
+    {Chien-I included more explicit calculations. Include if there's time.}
+  \end{note}
+
+  \item Secondly, why do we require $\mathrm{det}(\mathcal{R}_{ij}) = 1$? 
+  \\
+  \\
+  The orthogonal condition implies that our rotation matrices must have determinant of either $+1$ or $-1$. However, if we want to maintain the \textbf{chirality} of our coordinate system i.e. if we want a right-handed system to remain right handed after rotation, we must restrict to those matrices whose determinant is $+1$.
+\end{itemize}
+\hrule
+
+\pagebreak
+\section{July 29, 2024: Laptop died, writing on paper. Type it up later}
+
+\hrule
+
+\pagebreak
+\section{July 30, 2024: Inertia Tensor and Examples}
+
+\subsection{Moment of Inertia Matrix}
+Yesterday we ended off by speaking about Spin Angular Momentum. We said that if we have a rigid body viewed in a \emph{lab frame} and \emph{body frame}, 
+\\
+\\
+Include picture
+\\
+\\
+Then the Spin Angular Momentum, defined as 
+\begin{align*}
+  \vec{L}_{\text{spin}} &= \int dm \vec{\scriptr} \times \left( \vec{\omega} \times \vec{\scriptr} \right)
+\end{align*}
+can be expressed (in index notation) as 
+\begin{align*}
+  L_{\text{spin}, \;i} &= \int dm \epsilon_{ijk} \scriptr_{j} (\omega \times \scriptr)_{k} \\
+  &= \int dm \epsilon_{ijk} \scriptr_{j} (\epsilon_{kmn} \omega_{m} \scriptr_{n}) \\
+  &= \int dm \epsilon_{ijk}  \epsilon_{mnk} \scriptr_{j} \scriptr_{n} \omega_{m}  \\
+  &= \int dm \left( \delta_{im} \delta_{jn} - \delta_{in} \delta_{jm} \right) \scriptr_{j} \scriptr_{n} \omega_{m}  \\
+  &= \int dm \left( \scriptr^2 \delta_{im} - \scriptr_i \scriptr_{m} \right) \omega_{m}
+\end{align*}
+where in the last step we're using the notation $\scriptr^2$ to denote $\sum_{j} \scriptr_{j} \scriptr_{j}$ which we got because of the $\delta_{jn}$ factor.
+\begin{redbox}
+  We have 
+\begin{align*}
+  L_{\text{spin}, \;i} &= I_{im} \omega_{m} \text{ where} \\
+  I_{im} &\equiv \int dm \left( \scriptr^2 \delta_{im} - \scriptr_i \scriptr_{m} \right) 
+\end{align*} This $I_{im}$ matrix is called the \textbf{Moment of Inertia matrix}. This is a generalization of $\vec{L} = I\vec{\omega}$ (which is only true for symmetric objects rotating about the symmetry axis).
+\end{redbox}
+Generally, $\vec{L_{\text{spin}}} = \hat{I} \vec{\omega}$ and $\vec{L}$ is generally NOT parallel to $\vec{\omega}$.
+\\
+\\
+Now, if we look at the definition of the inertia matrix, $\delta_{im} = \delta_{mi}$ and $\scriptr_{i} \scriptr_{m} = \scriptr_{m} \scriptr_{i}$, so the 
+\[  I_{ab} = \int dm \left( \scriptr^2 \delta_{ab} - \scriptr_a \scriptr_{b} \right)   \]
+matrix is \textbf{Real and Symmetric}. Thus, its eigenvectors form an \textbf{orthonormal basis}. We can always choose the direction of these eigenbasis vectors $\hat{e}'_{i}$ such that $\{ \hat{e}'_i \}$ forms a \textbf{right-handed coordinate system}.
+\\
+\\
+$\implies$ We can \textbf{always} go from a body frame to another frame by rotation such that, in the new frame, the $I_{ab}$ matrix is diagonal. We call this frame the \textbf{Principle Axis (Body) Frame}.
+\\
+\\
+In the principal axis frame, 
+\begin{align*}
+  L_{i} &= \begin{pmatrix}
+    I_{xx} & 0 & 0 \\
+    0 & I_{yy} & 0 \\
+    0 & 0 & I_{zz} \\
+  \end{pmatrix} \begin{pmatrix}
+    \omega_x \\ 
+    \omega_y \\ 
+    \omega_z \\ 
+  \end{pmatrix}
+\end{align*}
+Note that $\vec{L}$ is only parallel to $\vec{\omega}$ if $I_{xx} = I_{yy} = I_{zz}$.
+
+\vskip 1cm
+\subsection{Example: }
+If we have a rigid ring of radius $R$ in $\mathbb{R}^3$, 
+\\
+\\
+Include picture
+\\
+\\
+a position on the ring is of the form 
+\[ \vec{\scriptr} = (x, y, z) = (R\cos\phi, R\sin\phi, 0)  \]
+\\
+\\
+Complete this 
+\hrule
+
+
+\pagebreak
+\section{July 31, 2024: Continuing on from yesterday}
+
+\subsection{Torque-free Dynamics of a Symmetric Top}
+
+Yesterday, we wrote down the Lagrangian, and found that the non-trivial part is
+\[ L = \frac{1}{2} \omega_i I_{ij} \omega_{j} \]
+
+Note that this quantity is a \textbf{scalar}, so its value should be invariant if we rotate our frame. Thus, we can write it in the principle axis body frame in terms of 
+\[ \hat{I} = \begin{pmatrix}
+  I & 0 & 0 \\
+  0 & I & 0 \\
+  0 & 0 & I_{zz} \\
+\end{pmatrix}  \]
+where $I_{xx} = I_{yy} = I$ because of the symmetry of the object.
+\\
+\\
+We also know that, in terms of Euler Angles, the angular velocity in the body frame is 
+\begin{align*}
+  \vec{\omega}' &= \begin{pmatrix}
+    \dot{\phi} \sin\theta\sin\psi + \dot{\theta}\cos\psi \\
+    \dot{\phi} \sin\theta\cos\psi - \dot{\theta}\sin\psi \\
+    \dot{\psi} + \dot{\phi} \cos\theta
+  \end{pmatrix}
+\end{align*}
+[Include picture reminding us what the Euler Angles $\theta, \phi, \psi$ are]
+\\
+\\
+So, expanding the Lagrangian out in the Principle Axis body frame,
+\begin{align*}
+  L &= \frac{1}{2} \omega_{i}' I_{ij}' \omega_j' \\
+  &= \frac{1}{2} I {\omega_x'}^2 + \frac{1}{2} I {\omega'}_{y}^2 + \frac{1}{2} I_3 {\omega'}_z^2 \\
+  &= \frac{1}{2} I \left( \dot{\phi}^2 \sin^2\theta + \dot{\theta}^2 \right) + \frac{1}{2} I_3 \left( \dot{\psi} + \dot{\phi} \cos\theta \right)^2
+\end{align*}
+Note that we have two cyclic coordinates: $\phi$ and $\psi$
+\begin{align*}
+  \implies p_{\psi} \equiv \frac{\partial L}{\partial \dot{\psi}} &= I_3 \left( \dot{\psi} + \dot{\varphi} \cos\theta \right) = \text{ const} \\
+  \implies p_{\varphi} \equiv \frac{\partial L}{\partial \dot{\varphi}} &= I \dot{\varphi} \sin^2\theta + I_3 \left(\dot{\psi} + \dot{\varphi}\cos\theta\right) \cos\theta \\
+  &= I \dot{\varphi} \sin^2\theta + p_{\psi} \cos\theta = \text{ const.}
+\end{align*}
+Algebraically, we can solve for $(p_{\psi}, p_{\varphi})$ in terms of $(\dot{\psi}, \dot{\varphi})$ and so they're basically interchangeable.
+\\
+\\
+Since $\frac{\partial L}{\partial t} = 0$, $H = K =$ const as well i.e. 
+\begin{align*}
+  H = \frac{1}{2}I\dot{\phi}^2 \sin^2\theta + \frac{1}{2}I \dot{\theta}^2 + \frac{p_{\psi}^2}{2I_3} = \text{ const}
+\end{align*}
+
+\vskip 1cm
+\subsection{Some Physical Considerations}
+\begin{itemize}
+  \item There is no torque wrt the C.M $\implies$ the Spin Angular Momentum $\vec{L}$ is constant in the inertial frame.
+  \item On the other hand, in the Pricniple Axis body frame, 
+  \begin{align*}
+    \begin{pmatrix}
+      L_x' \\ L_y' \\ L_z'
+    \end{pmatrix} &= \begin{pmatrix}
+    I & 0 & 0 \\
+    0 & I & 0 \\
+    0 & 0 & I_3 \\
+    \end{pmatrix} \begin{pmatrix}
+      \omega_x' \\ \omega_y' \\ \omega_z'
+    \end{pmatrix} = \begin{pmatrix}
+      I \omega_x' \\
+      I \omega_y' \\
+      I_3 \omega_z' \\
+    \end{pmatrix}
+  \end{align*}
+
+  Note that 
+  \begin{align*}
+    \begin{pmatrix}
+      L_x' \\ L_y' 
+    \end{pmatrix} = I \begin{pmatrix}
+      \omega_x' \\ \omega_y'
+    \end{pmatrix}
+  \end{align*}
+  so, \textbf{for just the $x', y'$ components}, we have $\vec{L}$ parallet to $\vec{\omega'}$
+  \\
+  \item In the body frame, (include picture).
+  \\
+  The $x', y'$ components of $\vec{\omega}$ are parallel to the $x', y'$ components fo $\vec{L}$. This is \textbf{always true} $\implies$ as $\vec{L}$ evolves $\vec{\omega'}$ evolves in a way such that the $z'-$axis, $\vec{L}$, $\vec{\omega'}$ lie in the same plane. 
+\end{itemize}
+
+On the other hand, we have 
+\begin{align*}
+  \text{const. } = p_{\psi} &= I_3 \left( \dot{\psi} + \dot{\varphi} \cos\theta \right) \\
+  &= I_3 \omega_{z}' \\
+  &= L_z' 
+\end{align*}
+(The $z-$component of the angular momentum in the body frame)
+\\
+\\
+Fill in from lecture and pictures
+
+\vskip 1cm
+\section{Hamiltonian Formulation}
+Recall that when $\frac{\partial L}{\partial t} = 0$, the quantity 
+\[ H \equiv \frac{\partial L}{\partial \dot{q}_k} dot{q}_k - L \] is a conserved quantity. We can also think of this as a \textbf{Legendre Transformation} where we go from $L(q_{k}, \dot{q}_{k}, t)$ (a function of generalized coordinates and velocities) to $H(q_{k}, p_{k}, t)$ where $p_{k} \equiv \frac{\partial L}{\partial \dot{q}_k}$ (so $H$ is a function of generalized coordinates and \textit{momenta}).
+
+\begin{redbox}
+  \textbf{What do we mean by Legendre Transformation?}
+  \\
+  It's basically when we go from one set of independent coordinates that describe our system to another. Consider the function $H = p_{k} \dot{q}_k - L$ 
+  \\
+  \\
+  Complete this 
+  \\
+  \\
+  So, naturally, we should think about $H$ as $H(q_k, p_k, t)$ i.e. a functions whose independent variables are coordinates and momenta.
+  \\
+  \\
+  Such transforms show up a ton in Thermodynamics.
+\end{redbox}
+
+But if we do think about $H$ this waty, we also have
+\begin{align*}
+  dH &= \frac{\partial H}{\partial q_k} d(q_k) + \frac{\partial H}{\partial p_k} d(p_k) + \frac{\partial H}{\partial t} dt \;\;\;\;\;\;(2)
+\end{align*}
+So, (1) and (2) give us 
+
+\begin{align*}
+  \dot{q}_{k} &= \frac{\partial H}{\partial p_k},\;\;\; \frac{\partial L}{\partial q_{k}} = - \frac{\partial H}{\partial q_k}
+\end{align*}
+
+If $q_k$ satisfies the E-L equations, then 
+\[ \frac{\partial H}{\partial q_{k}} = \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_k} \right) = \dot{p_k} \]
+So, 
+\begin{bluebox}
+  \begin{align*}
+    \dot{q}_k &= \frac{\partial H}{\partial p_{k}},\\
+    \dot{p}_k &= - \frac{\partial H}{\partial q_{k}}
+  \end{align*}
+  These are known as \textbf{Hamilton's Equation}.
+\end{bluebox}
+
 
 
 \end{document}

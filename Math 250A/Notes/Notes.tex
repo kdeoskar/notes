@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Lecturer: Richard Borcherds}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 250A: Groups, Rings, and Fields}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Notes taken by Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+These are some lecture notes taken from the Fall 2024 semester offering of Math 250A: Groups, Rings, and Fields taught by Richard Borcherds at UC Berkeley. The primary reference is \cite{Lang02}. This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\setcounter{tocdepth}{3}
+\tableofcontents 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{August 29, 2024:}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Logistics:}
+First third of the course will be groups, next third will be rings, and we'll conclude with fields.
+
+\subsection{Groups}
+
+\begin{bluebox}
+  \begin{definition}
+    (Group, Concrete): A Group os a \textbf{symmetry} of some math object.
+  \end{definition}
+\end{bluebox}
+where by "symmetry" we mean a bijection $X \rightarrow X$ "preserving the structure of the object". This is all a bit vague, but we get the idea.
+\\
+\\
+\begin{definition}
+  The \textbf{Order} of a group is the number of elements.
+\end{definition}
+
+\begin{bluebox}
+  \begin{definition}
+    (Group, Abstract): A set $X$ along with a binary operation $\cdot \text{ : } X \times X \rightarrow X$, Identity map $\mathbb{Id}$, and inverse map $X \rightarrow X$ such that 
+    \begin{enumerate}[label=(\alph*)]
+      \item A
+      \item $a a^{-1} = a^{-1} a = 1$
+      \item $(ab)c = a(bc)$
+    \end{enumerate}
+    fill this in.
+  \end{definition}
+\end{bluebox}
+
+How do we show the equivalence of these two definitions? one direction (symmetry $\implies$ axiomatic definition) is obvious. \begin{note}
+  {Elaborate.}
+\end{note} But can we go the other way around?
+
+\subsection{Cayley Graphs}
+\begin{dottedbox}
+  \textbf{Problem:} Given an abstract group $G$, find an object $X$ where the symmetries are \textit{isomorphic} to $G$.
+\end{dottedbox}
+
+The object $X$ will turns out to be a \textbf{Cayley Graph} - which is a colored, directed graph whose points correspond to the elements of the abstract group $G$. So, the set of points $S$ of the graph is really just the same as $G$.
+\\
+\\
+What about the arrows? These will represent \textbf{left-actions of $G$ on $S$}.
+
+\begin{redbox}
+  A \textbf{left-action} of a group $G$ on a set $S$ is a map $G \times S \rightarrow S$ such that 
+  \begin{enumerate}[label=(\alph*)]
+    \item $(g_1 g_2) \cdot s = g_1 \cdot (g_2 \cdot s)$
+    \item $1 \cdot s = s$
+  \end{enumerate}
+\end{redbox}
+
+In the Cayley Graph, we consider the left-action \[ g(s) = g \underbrace{\cdot}_{\text{mult. in the grp.}} s  \] We notice that the Action is \textbf{Faithful} i.e. if $g(s) = s$ for all $s \in S$ then $g = 1$.
+\\
+\\
+So, \underline{$G \subseteq $ all symmetries of the set $S$}. What we've shown is a weak version of \textbf{Cayley's Theorem.}
+\\
+\\
+To complete our goal we have to tackle the following:
+\begin{dottedbox}
+  \textbf{Problem:} Add extra structure to $S$ in order to cut down the symmetry group to that of $G$.
+\end{dottedbox} The extra structure we'll be adding is a \textbf{right-action} of $G$ on $S$ defined by \[ s \cdot g = sg \]
+We check that the left-action preserves structure. From the associative law of $G$, we have
+\[ (gs)h = g(sh)  \] i.e. left-actions \textbf{commutes} with right-actions.
+
+\begin{redbox}
+  Note that left-actions \textbf{do NOT} commute with left-actions as $g(hs) \neq h(gs)$.
+\end{redbox} So, finally, we define the \textbf{Cayley Graph} by the following rule:
+\\
+For each $g \in G$, for a point $s \in S$, draw a lie from $s$ to $sg$ and demarcate it with the \textit{color} $g$.
+
+\subsection*{Eg. Cayley Graph of the Klein 4-group}
+Draw the cayley table and cayleg graph. 
+\\
+\begin{bluebox}
+  What we've shown above is that Abstract Groups are the same as Symmetries.
+\end{bluebox} In showing this result we used the notion of group actions. A reasonable question to ask would be "What kind of actions does a group have on \textit{itself}?"
+
+\subsection{Actions of $G$ on itself}
+There are 8 ways in which a group $G$ naturally acts on itself. 
+\\
+\\
+Include picture.
+\\
+\\
+\begin{remark}
+  {The adjoint action will come up again in a lecture or two.}
+\end{remark}
+
+\subsection{Goals}
+Okay, so we now have two definitions for groups. The ultimate goal would then be to:
+\begin{enumerate}[label=(\alph*)]
+  \item Classify all groups.
+  \item Find all representations of a group.
+\end{enumerate}
+It turns out this is far too difficult to be done! So, we restrict to all \textbf{simple groups}, and find that again the problem is too difficult!
+\\
+But if we decide to classify all \textbf{abelian simple groups}, then we can get somewhere. There are other types of Groups that have been successfully classified, and we'll discuss some of them in this course.
+
+\subsection{What is a representation?}
+Write this soon.
+
+\subsection{An attempt at the impossible: Catalog of All Groups}
+Let's begin trying to classify groups according to their \textbf{orders}... though of course we'll eventually stop when it becomes too difficult to continue. 
+\\
+\\
+Our initial observations are kind of boring.
+\begin{align*}
+  &\text{Order 1: } \;\;\;&\text{TRIVIAL} \\
+  &\text{Order 2: } \;\;\;&\mathbb{Z}/2\mathbb{Z} \\
+  &\text{Order 3: } \;\;\;&\mathbb{Z}/3\mathbb{Z} \\
+\end{align*} In fact, for any prime $p$, we can show that there exists precisely \textbf{\textit{one}} group of order $p$ up to isomorphism (consistent with our findings for $p = 2,3$). The way to do this is via \textbf{Lagrange's Theorem}.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

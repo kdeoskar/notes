@@ -1,49 +1,57 @@
 \babel@toc {american}{}\relax 
-\contentsline {section}{\numberline {1}Topological Spaces and Manifolds}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Open sets in $\mathbb {R}^n$}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Continuity of functions between $\mathbb {R}^n$ and $\mathbb {R}^m$}{3}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Topological Manifolds}{3}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Differentiable Structure: Topological Manifolds $\rightarrow $ Smooth Manifolds}{3}{subsection.1.4}%
-\contentsline {section}{\numberline {2}Tangent, Cotangent, and Tensor Spaces (+Bundles)}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Tangent Vectors}{4}{subsection.2.1}%
-\contentsline {subsubsection}{Isomorphisms between Geometric Tangent Vectors, Derivations, and Velocity Vectors on a Curve}{5}{section*.2}%
-\contentsline {subsection}{\numberline {2.2}Cotangent Space}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Tangent Bundles and Vector Fields}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Cotangent Bundle and Covector Fields}{7}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Tensor Spaces and Tensor Bundles}{7}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Vector Fields, Flows, Lie Derivatives.}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Vector and Covector Fields}{8}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Flow of a field}{8}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Lie Derivative}{8}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Lie Groups and Lie Algebras}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Lie Groups}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Lie Algebras}{9}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Classification and Dynkin Diagrams}{9}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Reconstruction of Lie Groups from Lie Algebras}{9}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Representations of Lie Groups and Lie Algebras}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}What is a Representation?}{10}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Reducible and Irreducible Representations}{11}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Covariant Derivatives, Connections, and Parallel Transport}{12}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Motivation for the Covariant Derivative and Connection}{12}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Why do Covariant Derivatives take this form? Are they unique? (Optional)}{13}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Covariant Derivatives of Vector Fields}{13}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Extending the Covariant Derivative to Covector Fields}{14}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Covariant derivatives of General Tensors}{15}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Parallel Transport}{16}{subsection.6.6}%
-\contentsline {section}{\numberline {7}Appendix: Some important results from Multivariable Calculus}{17}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Inverse Function Theorem}{17}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Implicit Function Theorem}{17}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Appendix: Linear Algebra}{18}{section.8}%
-\contentsline {section}{\numberline {9}Appendix: Group Theory}{19}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Subgroup}{20}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Coset}{20}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Lagrange's Theorem}{21}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Normal subgroups}{21}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Quotient Groups}{22}{subsection.9.5}%
-\contentsline {subsection}{\numberline {9.6}Group Homomorphisms}{22}{subsection.9.6}%
-\contentsline {subsection}{\numberline {9.7}Kernel, Image, and the First Isomorphism Theorem:}{23}{subsection.9.7}%
-\contentsline {subsection}{\numberline {9.8}Group Presentations (TO DO)}{23}{subsection.9.8}%
-\contentsline {section}{\numberline {10}Extra: Measure Theory}{24}{section.10}%
-\contentsline {section}{\numberline {11}Extra: Category Theory}{25}{section.11}%
-\contentsline {section}{\numberline {12}Extra: Homotopy and Homology}{26}{section.12}%
-\contentsline {section}{\numberline {13}Extra: Cohomology and Spectral Sequences}{27}{section.13}%
+\contentsline {section}{\numberline {1}Topological Spaces}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation: Continuous functions in $\mathbb {R}^n$}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Manifolds and Differential structure}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}}{5}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Tangent, Cotangent, and Tensor Spaces (+Bundles)}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Tangent Vectors}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Cotangent Space}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Tangent Bundles and Vector Fields}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Cotangent Bundle and Covector Fields}{9}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Pullbacks and Pushforwards}{9}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Tensor Spaces, Tensor Fields, and Tensor Bundles}{9}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Example: Vectors and Covectors Electrodynamics}{9}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Example: Vectors and Covectors in Quantum Mechanics}{9}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Lie Groups and Lie Algebras}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Lie Groups}{10}{subsection.4.1}%
+\contentsline {subsubsection}{The Left Translation map}{11}{section*.3}%
+\contentsline {subsection}{\numberline {4.2}Lie Algebras}{12}{subsection.4.2}%
+\contentsline {subsubsection}{Some properties of the Bracket}{13}{section*.4}%
+\contentsline {subsubsection}{Lie Algebra of a Lie Group}{14}{section*.5}%
+\contentsline {subsection}{\numberline {4.3}*Classification of Lie Groups}{15}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}*Dynkin Diagrams}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Reconstruction of Lie Groups from Lie Algebras}{15}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Flows and the Lie Derivative}{16}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Flow of a field}{16}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Lie Derivative}{16}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Exterior Derivative and Exterior Algebra}{17}{section.6}%
+\contentsline {section}{\numberline {7}Representations of Lie Groups and Lie Algebras}{18}{section.7}%
+\contentsline {subsection}{\numberline {7.1}What is a Representation?}{18}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Reducible and Irreducible Representations}{19}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Covariant Derivatives, Connections, and Parallel Transport}{20}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Motivation for the Covariant Derivative and Connection}{20}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Looking at the connection more closely}{21}{subsection.8.2}%
+\contentsline {subsubsection}{Covariant Derivatives of Vector Fields}{22}{section*.6}%
+\contentsline {subsubsection}{Covariant Derivatives of Covector Field}{23}{section*.7}%
+\contentsline {subsubsection}{Covariant derivatives of General Tensors}{24}{section*.8}%
+\contentsline {subsection}{\numberline {8.3}Torsion}{25}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Levi-Civita Connection}{26}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Curvature}{27}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Parallel Transport and Geodesics}{27}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Appendix: Some important results from Multivariable Calculus}{28}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Inverse Function Theorem}{28}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Implicit Function Theorem}{28}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Appendix: Linear Algebra}{29}{section.10}%
+\contentsline {section}{\numberline {11}Appendix: Group Theory}{30}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Subgroup}{30}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Coset}{31}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Lagrange's Theorem}{31}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Normal subgroups}{31}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Quotient Groups}{32}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Group Homomorphisms}{32}{subsection.11.6}%
+\contentsline {subsection}{\numberline {11.7}Kernel, Image, and the First Isomorphism Theorem:}{33}{subsection.11.7}%
+\contentsline {subsection}{\numberline {11.8}Group Presentations (TO DO)}{34}{subsection.11.8}%
+\contentsline {section}{\numberline {12}Extra: Measure Theory}{35}{section.12}%
+\contentsline {section}{\numberline {13}Extra: Category Theory}{36}{section.13}%
+\contentsline {section}{\numberline {14}Extra: Homotopy and Homology}{37}{section.14}%
+\contentsline {section}{\numberline {15}Extra: Cohomology and Spectral Sequences}{38}{section.15}%

@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!15!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black, breakable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Physics Directed Reading Program}
+\vskip 16pt
+{\fontsize{36}{36} \selectfont \bf \sffamily UG seminar misc. latex}
+\vskip 24pt
+{\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+\newpage
+
+\section{Abstract Definition of a group}
+
+\begin{bluebox}
+    \begin{definition}
+        A set $G$ with some operation $* \text{ : } G \times G \rightarrow G$ is said to be a group if it satisfies the following three conditions:
+        \begin{itemize}
+            \item There exists an \textbf{identity element} $e \in G$ such that for any other $g \in G$ we have $$ g * e = e * g = g $$
+            \item For every $g \in G$, there exists an \textbf{inverse} i.e. some other element $h$ such that $g * h = h * g = e$ We denote such an element as $g^{-1}$
+            \item The map $*$ is \textbf{associative} i.e. for any $a,b,c \in G$ we have $$ a * (b*c) = (a*b)*c $$ 
+        \end{itemize}
+    \end{definition}
+\end{bluebox}
+
+
+\begin{bluebox}
+    \begin{definition}
+        Two groups $(G_1, \cdot)$ and $(G_2, \star)$ are \textbf{homomorphic} if there exists some function $f \text{ : } G_1 \rightarrow G_2$ which preserves the group structure i.e. for any $x, y \in G_1$
+        $$ f(x \cdot y) = f(x) \star f(y) $$ The map $f$ is called a \textbf{Group Homomorphism.}
+    \end{definition}
+\end{bluebox}
+
+\begin{bluebox}
+    \begin{definition}
+        If we have a group homomorphism $f$ between $(G_1, \cdot)$ and $(G_2, \star)$ are \textbf{homomorphic} which is \textbf{bijective} (i.e. one-to-one and onto), then the two groups are \textbf{isomorphic} and $f$ is a \textbf{group isomorphism}.
+    \end{definition}
+\end{bluebox}
+
+
+\begin{bluebox}
+    \begin{definition}
+        A \textbf{Topological Manifold} $M$ is a topological 
+    \end{definition}
+\end{bluebox}
+
+\begin{redbox}
+    \begin{definition}
+        We say two paths $\gamma_1, \gamma_2 \text{ : } [0, 1] \rightarrow M $ on a space are \textbf{homotopic to each other} if there's a way to go from one to the other \textbf{continuously}. 
+        \\
+        \\
+        We denote this as $\gamma_1 \sim \gamma_2$.
+    \end{definition}
+\end{redbox}
+
+\begin{bluebox}
+    \begin{definition}
+        (More precise definition): Two maps $\gamma_0, \gamma_1 \text{ : } [0, 1] \rightarrow M$ are homotopic to each other if there exists some continuous map $F \text{ : } [0, 1] \times [0, 1] \rightarrow X $ such that $$ F(x, 0) = \gamma_0(x),~F(x, 1) = \gamma_0(x)  $$ 
+    \end{definition}
+\end{bluebox}
+
+\begin{bluebox}
+    \begin{definition}
+        Given a topological space $X$ and some point $x_0 \in X$, we define the \textbf{Fundamental Group} to be the set of \textbf{equivalence classes} $[\gamma]$ of loops starting at $x_0$, $\gamma \text{ : } [0, 1] \rightarrow M$ which are homotopic to each other. That is, $$ \pi_1(X, x_0) = \left\{ [\gamma] ~|~ \alpha \in [\gamma] \text{ if } \alpha \sim \gamma \right\}$$
+    \end{definition}
+\end{bluebox}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{refs} % Entries are in the refs.bib file
+
+
+\end{document}

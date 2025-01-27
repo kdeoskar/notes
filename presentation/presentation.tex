@@ -1,0 +1,332 @@
+\documentclass[12pt, aspectratio=169]{beamer}
+\usetheme{Darmstadt}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{multicol}
+
+\hypersetup{pdfpagemode=FullScreen}
+\title{A Brief Intro to Topological Phases}
+\subtitle{SPS UG Seminar}
+\author{Keshav Deoskar}
+\date{November 21, 2024}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent}
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{citations.bib}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Contents}
+    \begin{multicols}{2}
+    \tableofcontents
+    \end{multicols}
+\end{frame}
+
+
+\section{Introduction}
+
+\subsection{What is a Phase?}
+
+\begin{frame}{What is a Phase of Matter?}
+    Historically,  "phase of matter" has meant many things:
+    \vskip 0.5cm
+    \begin{itemize}
+        \item <2->{Naive classifications: Earth, Wind, Water, Fire} 
+        \item <3->{Slightly more modern: Solids, Liquids, Gases}
+        \item <4->{Taught in HS: Above 3 + Plasma(?) + Bose-Einstein Condensate(?)}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Frame Title}
+    
+\end{frame}
+
+\subsection{Landau's Symmetry Classification}
+\begin{frame}{Landau's Symmetry Breaking Theory}
+    \begin{itemize}
+        \item <1->{In the 50's, Landau gave a definition of phases in terms of \textbf{symmetries}}
+        \item <1->{We define a symmetry as a transformation under which our system loos the same}
+        \item <1->{Quiz: what is more symmetric - a sphere or a cube?}
+        \begin{center}
+            \includegraphics<2->[scale=0.1]{pictures/More sym.png}
+        \end{center}
+        \item <2->{The sphere is more symmetric!}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Heuristic Example: Water}
+    \begin{itemize}
+        \item \only<1>{The vacuum is, in some sense, maximally symmetric.}
+        \item \only<1>{Liquid water, at equilibrium, has continuous symmetries (Eg. Continuous translation)}
+        \item \only<1>{Ice crystals has discrete crystalline symmetries (Eg.Discrete Translational symmetry)}
+    \end{itemize}
+    
+        \begin{center}
+            \includegraphics<2->[scale=0.1]{pictures/Water.png}
+        \end{center}
+
+    \begin{itemize}
+        \item \only<2>{The idea is that Different symmetry $\implies$ Different phase}
+        \item \only<2>{\underline{Note:} Different phase $\not\implies$ Different symmetry eg. water (liquid) and water vapor (gas) have the same symmetries - because of this we can go transition smoothly from water to gas rather (ADD MORE DETAIL).}
+    \end{itemize}
+\end{frame}
+
+\subsection{Symmetry is not enough!}
+\begin{frame}{von Klitzing's surprising observation (IQHE)}
+    \only<1>{\begin{multicols}{2}
+        \begin{itemize}
+            \item In 1980, Klaus von Klitzing observed the following (Hall) Revistivity vs. Magnetic Field behavior for Si-MOSFET samples.
+            \item These "plateaux" remain remarkably stable even with imperfect, noisy samples!
+        \end{itemize}
+        \includegraphics[scale=0.4]{pictures/von Klitzing IQHE data.png} \\
+        \cite{TongQHE}
+    \end{multicols}}
+
+    \only<2>{\begin{multicols}{2}
+        \begin{itemize}
+            \item Resistivity is quantized as 
+            $\rho_{xy} = \frac{2\pi \hbar}{e^2} \frac{1}{\nu},~\nu \in \mathbb{Z}$
+            
+            \item Each plateau corresponds to a value of $\nu$.
+        \end{itemize}
+        \includegraphics[scale=0.4]{pictures/von Klitzing IQHE data.png} \\
+        \cite{TongQHE}
+    \end{multicols}}
+
+    \only<3>{
+    \begin{itemize}
+        \item The fact that the quantization is maintained under small (continuous) deformations (noise) hints at some underlying \textbf{topological nature}.
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{What is Topology?}
+    text
+\end{frame}
+
+\begin{frame}{The role of Topology}
+    text
+\end{frame}
+
+\section{Different Kinds of Topological Matter}
+
+\subsection{Types of Topological Matter}
+\begin{frame}{Not all topological matter is created equal!}
+    Three main classes of Topological Matter:
+    \vskip 0.25cm
+    \begin{enumerate}
+        \item <2->Non-interacting, protected by non-spatial symmetries
+        \begin{itemize}
+            \item <3->{Eg. IQHE, 2D Topological Insulators}
+        \end{itemize}
+        \vskip 0.25cm
+        
+        \item <4->Non-interacting, protected by spatial symmetries
+        \begin{itemize}
+            \item <5->{Eg. Crystalline Topological Insulators}
+        \end{itemize}
+        \vskip 0.25cm
+        
+        \item <6->Interacting topological systems
+        \begin{itemize}
+            \item <7->{Eg. Fractional Quantum Hall Effect}
+        \end{itemize}
+    \end{enumerate} 
+    \vskip 0.25cm
+    \onslide<8->{We'll discuss only the first type! \cite{Stanescu24} has great exposition for each of these.}
+\end{frame}
+
+
+
+% \subsection{Symmetries}
+
+\begin{frame}{What do we mean by a symmetry?}
+    text
+\end{frame}
+
+\begin{frame}{Spatial vs. Non-spatial symmetries}
+    
+\end{frame}
+
+
+% \subsubsection{Time-Reversal Symmetry}
+\begin{frame}{Time-Reversal $\mathcal{T}$}
+    text
+\end{frame}
+
+% \subsubsection{Particle-Hole Symmetry}
+\begin{frame}{Particle-Hole Symmetry $\mathcal{C}$}
+    text
+\end{frame}
+
+% \subsection{IQHE: Big Picture}
+
+\subsection{Recalling ideas from QM and E\&M}
+
+\begin{frame}{}
+    \begin{center}
+        \textbf{Recalling some Ideas from E\&M and Quantum Mechanics} 
+    \end{center}
+\end{frame}
+
+\begin{frame}{Lorentz Force, Cyclotron Frequency}
+    \begin{itemize}
+        \item <1->{Recall: force on charge $q$ moving with velocity $\mathbf{v}$ in magnetic field $\mathbf{B}$ is $$\mathbf{F} = q(\mathbf{v} \times \mathbf{B})$$}
+        \item <2->{Then, due to $\mathbf{F}$ the direction of $\mathbf{v}$ changes and in response $\mathbf{F}$ also gets updated. This happens continuously as time progresses, causing the electron to move in a \textbf{cycle}.}
+        \item <3->{Setting this lorentz force equal to centripetal force, we can solve for the frequency at which the charge rotates. Doing so, we obtain the \textbf{cyclotron frequency} $$\omega_{B} = \frac{eB}{m}$$}
+    \end{itemize}
+    \cite{MoessnerMoore21}
+\end{frame}
+
+\begin{frame}{Vector Potential, Gauge Transformations}
+    \begin{itemize}
+        \item <1->{Recall that the \textbf{Vector Potential} in E\&M is $$\mathbf{B} = \nabla \times \mathbf{A}$$} 
+        \item <2->{Recall from Math 53 that the Curl of the Gradient is zero i.e. $\nabla \times (\nabla f) = 0$ for any scalar function $f$. Thus, the Vector potential is not unique. Changing $A$ to $A + \nabla f$ for any scalar $f$ leaves the magnetic field $B$ the same.}
+        \item <3->{$A \rightarrow A + \nabla f$ is a \textbf{Gauge Transformation}. The specific choice of $f$ is called a \textbf{choice of gauge}.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Landau Gauge, Symmetric Gauge}
+    Consider a magnetic field $\mathbf{B} = B\hat{z}$. Then, $A$ must satisfy $$ \nabla \times A = B \hat{z}$$ Two nice choices of gauge we'll use later are:
+    \begin{itemize}
+        \item Landau Gauge: $A = x B \hat{y}$
+        \item Symmetric Gauge: $\mathbf{A} = -\frac{1}{2} \mathbf{r} \times \mathbf{B} = -\frac{yB}{2}\hat{x} + \frac{xB}{2} \hat{y}$  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{States and Operators in QM}
+    text
+\end{frame}
+
+\begin{frame}{Eigenvalues and Eigenstates}
+    text
+\end{frame}
+
+\begin{frame}{Band Structures}
+    text
+\end{frame}
+
+\begin{frame}{Brillouin Zones}
+    text
+\end{frame}
+
+
+\begin{frame}{Cartoon: 2D Top. Insulators}
+    text
+\end{frame}
+
+
+\subsection{Berry Connection, Curvature, Phase}
+\begin{frame}{Berry Connection, Curvature, Phase}
+    text
+\end{frame}
+
+\section{IQHE}
+
+\subsection{Classical Hall}
+\begin{frame}{Classical Hall Effect}
+    text
+\end{frame}
+
+\subsection{Landau Levels}
+\begin{frame}{Landau Levels}
+    text
+\end{frame}
+
+\begin{frame}{IQHE via Landau Levels}
+    text
+\end{frame}
+
+\subsection{Disorder and Localization}
+\begin{frame}{Thinking about Disorder}
+    text
+\end{frame}
+
+\begin{frame}{Laughlin's Gauge-Invariant argument: Aside - Corbino Ring}
+    \begin{itemize}
+        \item <1->{Suppose we have the following annulus with flux $\Phi$ going "threaded" through the center}
+        \item <2->{Suppose we start off with $\Phi = 0$ and slowly increase the flux to $\Phi_0 = 2\pi\hbar /e $ at a constant rate}. 
+        \item <3->{This induces an EMF $\varepsilon = -\frac{d\Phi}{dt} = -\frac{\Phi}{T}$} where $T$ is the time taken. 
+        \item <3->{The way to do this is using \textbf{spectral flow}.}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Aside - Corbino Ring}
+    \begin{itemize}
+        \item <1->{If we can show that $n$-electrons are transferred from the inner circle to the outer circle, then there would be a radial current $I_r = -ne/T$ which would give us $$\rho_{xy} = \frac{\varepsilon}{I_r} = \frac{2\pi\hbar}{e} \frac{1}{n}$$} 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Aside - Corbino Ring: Using Spectral Flow}
+    \begin{itemize}
+        \item <1->{We can just consider the lowest landau level (LLL); the argument can be extended to higher LL's.}
+        \item <2->{The LLL wavefunctions look like $$\psi_m \sim z^m e^{-|z|^2/l_B^2} = e^{-im\phi}r^m e^{r^2/l_B^2}$$ where $z = re^{im\phi}$}
+        \item <3->{The $m^{th}$ wavefunction is strongly peaked at $r = \sqrt{2ml_B^2}$}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Aside - Corbino Ring: Using Spectral Flow}
+    \begin{itemize}
+
+        \item <1->{Using spectral flow, as discussed earlier, when we vary $\Phi, 0 \rightarrow \Phi_0$ the wavefunctions shift from $m$ to $m+1$ as $$\psi_m(\Phi = 0) \rightarrow \psi_m(\Phi = \Phi_0) = \psi_{m+1}(\Phi = 0)$$}
+        \item <2->{So, the peak of each state moves from $r_m = \sqrt{2ml_B^2}$ to $r_{m+1} = \sqrt{2(m+1)l_B^2}$} 
+        \item <3->{Net Result: All states within one Landau Level are filled $\implies$ a single electron moves from inner to outer ring}
+        \item <4->{$nn$ Landau Level are filled $\implies$ $n$ electron moves from inner to outer ring}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Adding Disorder?}
+    \item <1->{If we have disorder, implemented via some potential $V$, then our hamiltonian (generally) looks like $$H_{\Phi=0} = \frac{1}{2m} \left[ -\hbar^2 \frac{1}{r} \frac{\partial}{\partial r} \left(r \frac{\partial}{\partial r}\right) + \left(-i \frac{\hbar}{r} \frac{\partial}{\partial \phi} + \frac{eBr}{2} + \frac{e\Phi}{2\pir} \right)^2 \right] + V(r, \phi) $$}
+    \item <2->{Only extended states change. We can undo the flux by a gauge-transformation $$\psi(r,\phi) \rightarrow e^{-ie\Phi\phi/2\pi\hbar} \psi(r, \phi)$$}
+    \item <3->{For localized states, where $\psi$ has local support, this is fine.}
+    \item <3->{For extended states, we als orequire $\psi$ to be single valued as $\phi \rightarrow \phi + 2\pi$. Then $\Phi$ must be an integer multiple of $\Phi_0$.}
+\end{frame}
+
+
+\begin{frame}{Adding Disorder?}
+    \item <1->{The point is the spectrum is once again left unchanged when $\Phi$ is an integer multiple of $\Phi_0$, but this time when we transition $\Phi, 0 \rightarrow \Phi_0$ only the extended states undergo spectral flow. Localised states don't change.}
+\end{frame}
+
+\begin{frame}{Alternate Approach: Kubo Formula}
+    \begin{itemize}
+        \item <1->{Starting point: Kubo Formula, $$ \sigma_{xy} = i\hbar sum_{n\neq0} \frac{\langle 0 | J_y | n \rangle \langle n | J_x | 0 \rangle - \langle 0 | J_x | n \rangle \langle n | J_y | 0 \rangle}{(E_n - E_0)^2} $$ (derivation in \cite{TongQHE})} 
+    \end{itemize}
+\end{frame}
+
+
+
+
+
+\subsection{Chern Number}
+\begin{frame}{Chern Number}
+    text    
+\end{frame}
+
+\subsection{Bulk-Boundary Correspondence}
+\begin{frame}{Bulk-Boundary Correspondence}
+    
+\end{frame}
+
+\begin{frame}{References}
+\printbibliography    
+\end{frame}
+
+
+\end{document}

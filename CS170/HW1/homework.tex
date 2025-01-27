@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+\usepackage{cs170}
+
+\def\title{Homework 1}
+\def\duedate{Friday 9/6/204, at 10:00 pm (grace period until 11:59pm)}
+
+\begin{document}
+\maketitle
+Due \textbf{\duedate}
+
+
+\question{Study Group}
+List the names and SIDs of the members in your study group.
+If you have no collaborators, explicitly write ``none''.
+
+
+\question{Course Policies}
+
+\begin{subparts}
+    \subpart What dates and times are the exams for CS170 this semester? Are there planned alternate exams?
+
+    \begin{solution}
+        The dates and times for the exams are:
+        \begin{itemize}
+            \item Midterm 1: October 2, 2024 7:00-9:00 pm
+            \item Midterm 2: November 5, 2024 7:00-9:00 pm
+            \item Final 1: December 18, 2024 3:00-6:00 pm
+        \end{itemize}
+    \end{solution}
+
+    \subpart Homework is due Fridays at 10:00pm, with a late deadline at 11:59pm. At what time do we recommend you have your homework finished?
+
+    \begin{solution}
+        Before 10:00 pm on Fridays.
+    \end{solution}
+
+    \subpart We provide 2 homework drops for cases of emergency or technical issues that may arise due to homework submission. 
+    If you miss the Gradescope late deadline (even by a few minutes) and need to submit the homework, what should you do?
+
+    \begin{solution}
+        Treat it as using one of the two homework drops since absolutely no submissions are taken after 11:59pm.    
+    \end{solution}
+    
+    \subpart What is the primary source of communication for CS170 to reach students? 
+    We will send out all important deadlines through this medium, and you are responsible for checking your emails and reading each announcement fully.
+
+    \begin{solution}
+        EdStem.
+    \end{solution}
+
+    \subpart Please read all of the following: 
+
+    \begin{enumerate}[(i)]
+        \item \textbf{Syllabus and Policies:} \url{https://cs170.org/policies/}
+        \item \textbf{Homework Guidelines:} \url{https://cs170.org/resources/homework-guidelines/}
+        \item \textbf{Regrade Etiquette:} \url{https://cs170.org/resources/regrade-etiquette/}
+        \item \textbf{Forum Etiquette:} \url{https://cs170.org/resources/ed-etiquette/}
+    \end{enumerate}
+
+    Once you have read them, copy and sign the following sentence on your homework submission.
+
+    ``I have read and understood the course syllabus and policies.''
+
+    \begin{solution}
+        I have read and understoo the course syllabus and policies.\\
+        - Keshav Balwant Deoskar, 09/01/2024.
+    \end{solution}
+
+\end{subparts}
+
+
+\newpage
+\question{Understanding Academic Integrity}
+
+Before you answer any of the following questions, make sure you have read over the syllabus and course policies (\url{https://cs170.org/policies/}) carefully.
+For each statement below, write \textit{OK} if it is allowed by the course policies and \textit{Not OK} otherwise.
+
+\begin{subparts}
+    \subpart You ask a friend who took CS 170 previously for their homework solutions, 
+    some of which overlap with this semester's problem sets. 
+    You look at their solutions, then later write them down in your own words.
+
+    \begin{solution}
+        Not OK.
+    \end{solution}
+
+    \subpart You had 5 midterms on the same day and are behind on your homework. 
+    You decide to ask your classmate, who's already done the homework, for help. 
+    They tell you how to do the first three problems.
+
+    \begin{solution}
+        Not OK.
+    \end{solution}
+
+    \subpart You're a serial procrastinator and started working on the homework at 8:00 PM on Monday, and out of desperation searched up a homework problem online and find the exact solution. 
+    You then write it in your words and cite the source.
+
+    \begin{solution}
+        Not OK.
+    \end{solution}
+
+    \subpart You were looking up Dijkstra's on the internet, and inadvertently run into a website with a problem very similar to one on your homework. 
+    You read it, including the solution, and then you close the website, 
+    write up your solution, and cite the website URL in your homework writeup.
+
+    \begin{solution}
+        OK.
+    \end{solution}
+\end{subparts}
+
+
+\newpage
+\question{Log Identities}
+
+The following subparts will cover several math identities, tricks, and techniques that will be useful throughout the rest of this course.
+
+Simplify the following expressions into a single logarithm (i.e. in the form $\log_a b$):
+\begin{enumerate}[(a)]
+
+    \item $\frac{\ln x}{\ln y}$ 
+
+    \item $\ln x + \ln y$
+
+    \item $\ln x - \ln y$
+
+    \item $170 \ln x$ 
+
+\end{enumerate}
+
+
+\newpage
+\question{Asymptotics Practice}
+For each pair of functions $f$ and $g$, specify whether $f= O(g)$, $g = O(f)$, or both. 
+No justification needed. 
+\begin{enumerate}
+
+    \item $f(n) = n^2 + 5n$, $g(n) = 1000(n+1)^2$.
+
+    \item $f(n) = 5 n^3$, $g(n) = n^3 + (\log n)^{10}$.
+
+    \item $f(n) = n^{100}$, $g(n) = (1.01)^n$.
+
+    \item $f(n) = \left(\log n\right)^{10}$, $g(n) = n^{0.1}$.
+
+    \item $f(n) = n \cdot 2^n$, $g(n) = 3^n$ for some constant $a > 1$. 
+
+    \item Consider the factorial function: $n! = 1 \cdot 2 \cdot \hdots \cdot n$.
+    $f(n) = n!$, $g(n) = n^n$.
+
+    \item $f(n) = 1 + b + b^2 + \hdots + b^n$, $g(n) = b^n$ for arbitrary constant $b > 0$. 
+    
+    Does your answer change depending on the value of $b$? If so, specify the range of $b$ for which each statement holds.
+
+\end{enumerate}
+
+\newpage
+\question{Recurrence Relations}
+
+For each part, find the asymptotic order of growth of $T$; that is, find a function $g$ such that $T(n) = \Theta(g(n))$. Show your reasoning and \textbf{do not directly apply the Master Theorem; doing so will yield 0 credit}.
+
+In all subparts, you may ignore any issues arising from whether a number is an integer.
+
+\begin{subparts}
+    \subpart \(T(n)=2T(n/3)+5n\)
+
+    \subpart An algorithm $\mathcal{A}$ takes $\Theta(n^2)$ time to partition the input into $5$ sub-problems of size $n/5$ each and then recursively runs itself on $3$ of those subproblems. Describe the recurrence relation for the run-time $T(n)$ of $\mathcal{A}$ and find its asymptotic order of growth. 
+
+    \subpart \(T(n) = T(3n/5)+T(4n/5)\) (We have $T(1) = 1$)
+
+    \textit{Hint: first, compute a reasonable upper and lower bound for $T(n)$. Then, try to guess a $T(n)$ of the form $an^b$ and then use induction to argue that it is correct.}
+
+\end{subparts}
+
+\end{document}

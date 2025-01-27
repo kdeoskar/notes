@@ -1,0 +1,264 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 7} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Show that the tautological embedding of $\mathbb{CP}^{\infty}$ into $G_+(\infty, 2)$ is a homotopy equivalence. 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Collaborated with Finn Fraser Grathwol)
+\\
+\\
+An element in $\mathbb{CP}^{\infty} \cong \mathbb{RP}^{2\infty}$ is a complex line i.e. a copy of $\mathbb{C} \cong \mathbb{R}^{2}$. So each such element $L \in \mathbb{CP}^{\infty}$ can be thought of as the $\mathrm{span}\left\{ \mathrm{Re}(v), i \cdot \mathrm{Im}(v) \right\}$ ($i$ is the imaginary unit) for some $v \in \C \cong \R^2$. This defines an embedding $\mathbb{CP}^{\infty} \hookrightarrow G_+(\infty, 2)$, the elements of which are oriented planes of (real) dimension $2$.
+\\
+\\
+The orientation of the $C-$line is given by noting that multiplying by $i$ gives a counterclockwise rotation so we can use, say, a righthand rule to obtain a normal vector to the surface.
+\\
+\\
+Now, the spaces $\mathbb{CP}^{\infty}, \mathrm{Gr}_2(\infty, 2)$ are the classifying spaces $BU(1)$ and $BSO(2)$ respectively, and it's a well known fact that indeed $U(1) \cong SO(2)$.
+\\
+\\
+Our embeddings induces the universal $U(1)$-bundle from the universal $SO(2)$-bundle when we consider the right-oriented orthonormal bases in $L$ as a euclidean plan of the form $(u, i \cdot u)$ where $u$ is a unit vector in $L$. Thus, we have a weak homotopy equivalence between the two spaces, and since we're dealing with CW-complexes, this is the same as homotopy equivalence.
+
+
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Prove that a continuous group homomorphism $f$ from $G$ to $G'$ induces a map from $BG$ to $BG'$, which is a weak homotopy equivalence provided that $f$ is.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Answer inspired by that of Finn Fraser Grathwol - follow student in Math 215A)
+\\
+\\
+We have a group homomorphism $f \text{ : } G \rightarrow G'$ which is a Weak Homotopy Equivalence (WHE). Now, we can use $f$ to construct a map between associated fiber bundles $\tilde{f} \text{ : } EG \times_{G} G \rightarrow \times EG \times_G G'$
+\\
+\\
+Each of these are the total spaces obtained from taking the universal principal bundle $EG \xrightarrow{G} BG$ and replacing the fiber $G$ with either $G$ or $G'$ via translations by $g$ and $f(g)$ for $g \in G$.
+\\
+\\
+Since left and right translations commute, $G$ and $G'$ (resp.) act freely on $EG \times_G G$ and $EG \times_G G'$ via right translations. So, we have principal $G-$ and $G'-$ bundle structures over $BG = EG/G$ with the equivariant map $\tilde{f}$ being fiberwise equivalent to $f$.
+\\
+\\
+Now, $f$ is a WHE, meaning that $f_*$ is an isomorphism between homotopy groups. Applying the 5-lemma to the morphism induced between the exact homotopy sequences of the bundles, and noting that $\pi_n(EG) = 0$ because it is contractible, we see that the $G'$-bundle over $BG$ $$ G' \hookrightarrow EG \times_G G' \rightarrow BG $$ is universal, and so $BG' = BG$.
+
+% We have a group homomorphism $f \text{ : } G \rightarrow G'$. Consider any principal $G-$bundle $E \xrightarrow{\pi} B$, where we have open cover $\{U_i\}$ for $B$ and transition maps $g_{\alpha \beta} \text{ : } U_{\alpha} \cap U_{\beta} \rightarrow G $. This Principal $G-$bundle then defines a Principal $G'-$bundle with transition functions defined by $f \circ g_{\alpha \beta} \text{ : } U_{\alpha} \cap U_{\beta} \rightarrow G'$.
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Classify principal $\mathrm{SL}_2(\C)$-bundles over $\mathbb{CP}^2$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Answer inspired by Finn Fraser Grathwol)
+\\
+\\
+Recall that, by Milnor's theorem, the isomorphism classes of principal $\mathrm{SL}_2(\C)-$bundles over $\mathbb{CP}^2$ are in bijective correspondence with homotopy classes of maps $\mathbb{CP}^2 \rightarrow B(\mathrm{SL}_2(\C))$ i.e. 
+$$ \mathcal{P}(\mathbb{CP}^2, \mathrm{SL}_2(\C)) \cong [\mathbb{CP}^2, B(\mathrm{SL}_2(\C ))]  $$
+\\
+Now, note that $\mathrm{SL}_2(\C)$ deformation retracts onto $\mathrm{SU}(2) \cong \mathrm{Sp}(1)$. The classifying space for these two is $\mathbb{HP}^{\infty}$. So, principal $\mathrm{SL}_2(\C)-$bundles over $\mathbb{CP}^2$ are classified by homotopy classes of maps $[\mathbb{CP}^{2}, \mathbb{HP}^{\infty}] = \pi(\mathbb{CP}^{\infty}, \mathbb{HP}^{\infty})$.
+\\
+\\
+Now, it'd be nice if we could get this down to a homotopy group that we can compute. 
+\\
+\\
+Recall that $\mathbb{H} \cong \R^4, \mathbb{C} \cong \R^2$. The CW Complexes $\mathbb{CP}^{2}$ and $\mathbb{HP}^{\infty}$ have cells of dimensions $\{0,4,8,\cdots\}$ and $\{0,2\}$ respectively. By the Cell Approximation Theorem, $$ \pi(\mathbb{CP}^{\infty}, \mathbb{HP}^{\infty}) = \pi(\mathbb{CP}^2, \sph^4) $$
+\\
+We can assume, by Borsuk's Theorem, that maps $\mathbb{CP}^2 \rightarrow \sph^4$ factor homotopically through the projection $p \text{ : }\mathbb{CP}^2 \rightarrow \mathbb{CP}^2 / \mathbb{CP}^1 = \sph^4$. So, we really only need to consider the homotopy classes of maps $\sph^4 \rightarrow \sph^4$ i.e. the bundles are classified by $\pi_4(\sph^4) = \mathbb{Z}$.
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

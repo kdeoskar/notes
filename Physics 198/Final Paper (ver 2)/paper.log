@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  25 JUL 2024 19:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  27 AUG 2024 15:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -841,54 +841,74 @@ Package microtype Info: Loading generic protrusion settings for font family
 [1
 
 {c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 70--83
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--83
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--83
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--83
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
-[2] (./paper.bbl
+ []
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-)
+Underfull \hbox (badness 10000) in paragraph at lines 72--89
 
-[3] (./paper.aux)
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 98.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 98.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 98.
+
+
+
+[2]
+
+[3] (./paper.bbl)
+
+[4] (./paper.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 14336862873E7DF9D84A49D94480774C;1256.
+(rerunfilecheck)             Checksum: 409D9018ED4A71CF7A9E772E345DB7A2;1548.
  ) 
 Here is how much of TeX's memory you used:
- 32238 strings out of 475517
- 645898 string characters out of 5775029
- 1935908 words of memory out of 5000000
- 54231 multiletter control sequences out of 15000+600000
- 571808 words of font info for 114 fonts, out of 8000000 for 9000
+ 32303 strings out of 475517
+ 646748 string characters out of 5775029
+ 1938908 words of memory out of 5000000
+ 54257 multiletter control sequences out of 15000+600000
+ 575724 words of font info for 142 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  90i,13n,96p,1089b,469s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on paper.pdf (3 pages, 132516 bytes).
+<c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on paper.pdf (4 pages, 153530 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 37573 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
+ 16 named destinations out of 1000 (max. 500000)
+ 49885 words of extra memory for PDF output out of 51595 (max. 10000000)
 

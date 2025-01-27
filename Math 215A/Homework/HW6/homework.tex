@@ -1,0 +1,342 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 6} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Compute $\pi_2(\sph^1 \vee \sph^2)$ and the action of $\pi_1(\sph^1 \vee \sph^2)$ on it.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \href{https://math.stackexchange.com/questions/1675337/calculate-pi-2s2-vee-s1}{this stackexchange post}.)
+\\
+\\
+To compute $\pi_2(\sph^1 \vee \sph^2)$ we'll use the following lemma:
+
+\begin{redbox}
+  \begin{lemma}
+    For the universal cover $\widetilde{U} \rightarrow U$ of a CW Complex $U$, we have $$ \pi_n(\widetilde{X}) \cong \pi_n(X) $$ for all $n \in \mathbb{N}$.
+  \end{lemma}
+\end{redbox}
+\vskip 0.25cm
+\begin{proof}
+  
+\end{proof} \\
+\\
+Going back to the computation, we have $$ \pi_2(\sph^1 \vee \sph^2) \cong \pi_2(\widetilde{ \sph^1 \vee \sph^2 }) $$ where $\widetilde{\sph^1 \vee \sph^2}$ is the universal covering of $\sph^1 \vee \sph^2$, visualized as:
+\begin{center}
+  Include picture
+\end{center} Then, contracting each of the segments between the consecutive integers, we have $$ \widetilde{\sph^1 \vee \sph^2} \cong {\bigvee}_{k \in \mathbb{Z}} \sph^2_{k} $$ where each $\sph^2_k$ is a copy of $\sph^2$, labelled by the integer $k$. 
+\\
+\\
+So, we have 
+\begin{align*}
+  \pi_2\left(\widetilde{\sph^1 \vee \sph^2}\right) &\cong \pi_2 \left( {\bigvee}_{k \in \mathbb{Z}} \sph^2_{k} \right) 
+\end{align*} What is this space? \begin{note}
+  {Fill this in.}
+\end{note}
+\\
+\\
+Thus,
+\[ \boxed{ \pi_2(\sph^1 \vee \sph^2) \cong \bigoplus_{k \in \mathbb{Z}} \mathbb{Z} } \] \\
+\\
+\underline{Action of $\pi_1$:} Generally, $\pi_1(X)$ acts on $\pi_n(X)$ ($n \geq 1$) by "prepending" a loop i.e. move along a circle before an $n-$spheriod.
+\\
+\\
+The inclusion of $\sph^2 \hookrightarrow X \text{:}= \sph^1 \vee \sph^2$ gives us an element $\alpha \in \pi_2(X)$, which generates a cyclic subgroup of $\pi_2(X)$. 
+\\
+\\
+However, notice that if we consider a loop $\gamma$ that goes around the $\sph^1$ factor once in $\sph^1 \vee \sph^2$ then first moving along $\gamma$ brings us back to the basepoint in $\sph^1 \vee \sph^2$ so following it up with some $\alpha \in \pi_2(X)$ is just another element of 2-spheroid i.e. $\alpha \cdot \gamma \in \pi_2(X)$. This $\gamma \cdot \alpha$ also generates a cyclic subgroup of $\pi_2(X)$. Continuing on with this patter we can see that $\gamma^n \circ \alpha \in \pi_2(X)$ for every $n \in \mathbb{N}$ and each of these generate (disjoint) cyclic subgroups.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} Compute the 2nd Homotopy Groups of Grassmannians $G(n, k)$ when $k, n-k > 1$
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+Let $G(n, k)$ denote the set of $k-$dimensionl subspaces of $\R^n$. We know that $$ G(n,k)\cong O(n) / ( O(n) \times O(n-k) ) $$
+so we have a (serre) fibration $$ O(n-k) \hookrightarrow O(n) \rightarrow G(n,k) $$ which induces the exact sequence $$
+\pi_2\left( O(n) \right) \rightarrow \pi_2(G(n,k)) \rightarrow \pi_1 \left(O(n) \times O(n-k)\right) = \pi_1(O(n)) \times \pi_1(O(n-k)) \rightarrow \pi_1(O(n))
+$$ 
+\\
+\\
+Now, to actually calculate $\pi_2(G(n,k))$ for the different $n, k$ values we'll need to use the following results (common in the literature) which can be obtained using fibrations as well:
+\\
+\\
+\begin{enumerate}[label=(\alph*)]
+  \item $$\pi_1(O(N)) = \begin{cases}
+    \mathbb{Z}_2,~n = 1 \\
+    \mathbb{Z},~n = 2 \\
+    \mathbb{Z}_2,~n \geq 3 \\
+  \end{cases}$$
+
+  \item $$
+  \pi_2(O(2)) = 0
+  $$
+
+  \item $$
+  \pi_2(O(3)) = 0
+  $$
+
+  \item When it comes to the homotopy groups of $O(N)$ for $N \in \mathbb{Z}$ we have, for $n \geq k + 2$, by \textbf{Bott Periodicity}:
+  $$ 
+  \pi_k(O(N)) \cong \pi_k(SO(N)) = \begin{cases}
+    0,~~k = 2,4,5,6~\text{(mod 8)} \\
+    \mathbb{Z}_2,~~k = 0,1~\text{(mod 8)} \\
+    \mathbb{Z},~~k = 7~\text{(mod 8)}
+  \end{cases}
+  $$ 
+\end{enumerate}
+
+Now, in our question, we have the following cases (we're considering $n, n-k > 1$)
+
+\begin{enumerate}
+  \item \underline{$n, k$ such that $n, (n-k) \geq 3$ $n - k > 2$ and:}
+  \begin{align*}
+    &\pi_2(O(n)) \rightarrow \pi_2(G(n, k)) \rightarrow \pi_1(O(n)) \times \pi_1(O(n-k)) \rightarrow \pi_1(O(n)) \\
+    % \text{i.e. } & 0 \rightarrow \pi_2(G(n, k)) \rightarrow \pi_1()
+  \end{align*}
+\end{enumerate}
+
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Let $X$ be a $K(G, n)$ and $Y$ a cellular $K(H, n)$. Show that the map of $Y$ to $X$ inducing a given group homomorphism $\phi \text{ : } H \rightarrow G$ exists, and is unique up to homotopy.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+We know there exists group homomorphism $\phi \text{ : } H \rightarrow G$ and recall that an Eilenberg-Maclane Space $X = K(F, n)$ is one for which
+\begin{align*}
+  \pi_k(X) &= \begin{cases}
+    F,~ k = n \\
+    0,~ k \neq n
+  \end{cases}
+\end{align*}
+Now, we have $X = K(G, n)$, $Y = K(H, n)$, and $Y$ is known to be a CW complex. We can assume that $Y$ is a CW Complex obtained from $\mathrm{sk_n} Y \text{:}= \bigwedge_{\alpha} \sph^n_{\alpha}$ where each $\alpha$ corresponds to a generator of $H$ and attaching all cells (attach $(n+1)-$cells according to the relations in $H$ and \begin{note}{Fill in some more.}\end{note})
+\\
+\\
+We can define $f_n \text{ : } \mathrm{sk}_n Y \rightarrow X $ by mapping each $S_{\alpha}^{n}$ to a corresponding spheroid $f_n(\alpha) \in \pi_n(X, x_0)$.
+\\
+\\
+Also, the attaching maps $\partial D^{n+1} \rightarrow \mathrm{sk}_n Y$ for $(n+1)-$dimensional cells represent the identity element in $H$ (so its image under $f_n$ is trivial in $G$
++), which we can use to extend $f_n$ to $f_{n+1} \text{ : } \mathrm{sk}_{n+1} Y \rightarrow X$. 
+\\
+\\
+We can do this inductively to extend $f_{n+1}$ to $f_{n+k} \text{ : } \mathrm{sk}_{n+k} X \rightarrow Y$ with $k > 1$.
+\\
+\\
+We want to show that any two maps $f, g \text{ : } X \rightarrow Y$ which induce a given homomorphism $\phi \text{ : } H \rightarrow G$ are the same up to homotopy. To do so, let's use cell induction.
+\\
+\\
+Suppose $y_0$ and $x_0$ are the basepoints on $Y$ and $X$ respectively. For the base case, let's assume there exists some path in $X$ between $f(y_0)$ and $g(y_0)$. This path then gives us the homotopy between $\restr{f}{\mathrm{sk}_0  Y} \text{ : } \mathrm{sk}_0 Y \rightarrow X$ and $\restr{g}{\mathrm{sk}_0 Y} \text{ : } \mathrm{sk}_0 Y \rightarrow X$.
+\\
+\\
+For the induction step, suppose we already have a homotopy $h_{k-1} \times [0, 1] \text{ : }
+\mathrm{sk}_{k-1} Y \rightarrow X $ between $\restr{f}{\mathrm{sk}_{k-1} Y}$ and $\restr{g}{\mathrm{sk}_{k-1} Y}$ and a $k-$cell $D^k$ of $Y$ with characteristic map $\Phi \text{ : } D^k \rightarrow \mathrm{sk}_k Y$. We want to extend this to a map $D^k \times [0, 1] \rightarrow X$ such that the map agrees with $f \circ \Phi$ on $D^k \times \{0\}$, with $g \circ \Phi$ on $D^k \times \{1\}$, and with $\restr{h \circ \Phi}{partial D^{k}}$ on $\partial D^k \times [0, 1]$.
+\\
+\\
+Note that $(D^k \times \{0\}) \cup (D^k \times \{1\}) \cup (\partial D^k \times [0, 1]) \approx \partial \left(D^k \times [0, 1]\right)$, so all of the conditions listed above together encode a $k-$spheroid $\partial \left( D^k \times [0, 1] \right) \rightarrow X$, and the extension to $D^k \times [0, 1]$ we desired can be define if the spheroid can be contracted in $X$. Since we're working with Eilenberg-Maclane spaces, we have $\pi_k(X) = 0$ for $k \neq n$, so we can make the extension. For the $k = n$ case we can argue that the claim holds because $\restr{f}{\mathrm{sk}_{n} Y}$ and $\restr{g}{\mathrm{sk}_{n} Y}$ represent the same element in $G = \pi_n(X)$ and are thus homotopic.
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

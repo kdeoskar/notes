@@ -1,0 +1,314 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: Alexander Givental}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Math 215A: Algebraic Topology}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 8} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\begin{bluebox}
+  \textbf{Question 1:} Prove that over a finite CW-complex, for every vector bundle, there is another vector bundle such that their direct sum is trivial (Note: In this context, a vector bundle is not necessarily assumed to have fibers of the same dimension over different connected components of the base.)
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Inspired by \href{https://ncatlab.org/nlab/show/direct+sum+of+vector+bundles#whitney_summands_of_trivial_vector_bundles}{this nCatLab page}.)
+\\
+\\
+Recall that given a topological space $X$ and two topological vector bundles $E_1 \xrightarrow{p_1} X$, $E_2 \xrightarrow{p_2} X$ the \textbf{direct sum} of the two bundles is the vector bundle $E_1 \oplus E_2 \xrightarrow{p} X$ whose fiber over any point $x \in X$ is $E_{1, x} \oplus E_{2, x}$ where $E_{i, x}$ is the fiber $p^{-1}_i(x)$.
+\\
+\\
+Since we're dealing with finite CW Complexes we can make use of a number of properties. In particular, finite CW Complexes are 
+\begin{itemize}
+  \item Hausdorff
+  \item Paracompact
+  \item Compact
+\end{itemize}
+
+We'll use the following lemmas:
+
+\begin{redbox}
+  \begin{lemma}
+    Given a Hausdorff and Paracompact topological space $X$, for every topological vector bundle $E \rightarrow X$ there exists an inner product.
+  \end{lemma}
+\end{redbox}
+
+\begin{redbox}
+  \begin{lemma}
+    Given a Hausdorff and Paracompact topological space $X$ and topological vector bundle $E \rightarrow X$, for any vector subbundle $E_1 \hookrightarrow E$ there exists another vector subbundle $E_2 \hookrightarrow E$ such that their direct sum is $E$ $$E_1 \oplus E_2 \cong E$$
+  \end{lemma}
+\end{redbox}
+
+\begin{redbox}
+  \begin{lemma}
+    Given a Hausdorff Paracompact Topological space $X$, for any topological vector bundle $E_1 \rightarrow X$, there exists another vector bundle $\tilde{E} \rightarrow X$ such that their sum is the trivial bundle $$ E \oplus \tilde{E} \cong X \times \R^n $$
+  \end{lemma}
+\end{redbox} Then, since CW Complexes are indeed Hausdorff Paracompact Topological spaces, the original problem is solved.
+\\
+\\
+\begin{dottedbox}
+  \textbf{Proof of Lemma 0.0.1:} Let $\{U_i\}_{i \in I}$ be an open cover of $X$ for which we have local trivializations $$\left\{ \phi_{i} \text{ : } \restr{E}{U_{i}} \xrightarrow{\cong} U_i \times R^n \right\}$$ of the vector bundle $E$. Paracompact spaces admit partitions of unity subordinate to open covers. Let $\{f_i \text{ : } X \rightarrow [0, 1] \}_{i \in I}$ be the partition of unity subordinate to $\{U_i\}_{i \in I}$. Denote the standard euclidean metric in $\R^n$ as 
+  $$ \langle -,-\rangle_{\R^{n}} \text{ : } \R^n \otimes \R^n \rightarrow \R $$ Then, consider the set of functions 
+  $$ \langle -,- \rangle_{i} \text{ : } \restr{E}{U_{i}} \otimes \restr{E}{U_{i}} \xrightarrow{\phi_i \otimes_{U_{i}} \phi_i} (U_i \times \R^n) \otimes (U_i \times \R^n) $$
+  Since $f_i$ is compactly supported on $U_i$, these functions extend to continuous functions over all of $E \otimes_{X} E$ as $f_i\cdot \langle -,-\rangle_{i}$. Then, the sum 
+  $$ \sum_{i \in I} f_i \cdot \langle -,- \rangle_{i} $$ serves as the inner product on $E \otimes_X E$ (the sum is well defined due to the local finiteness of the partitions of functions).
+\end{dottedbox}
+
+
+
+\begin{dottedbox}
+  \textbf{Proof of Lemma 0.0.2:} By Lemma 0.0.1, we know that there exists an inner product on the vector bundle $E$. Then, given another vector subbundle $E_x' \hookrightarrow E$ we can construct the orthogonal complement $(E_x)^T \subset E_x$ to $E_x' \subset E_x$. Then, by construction 
+  $$ E \cong E' \oplus (E')^T $$ 
+\end{dottedbox}
+
+
+\begin{dottedbox}
+  \textbf{Proof of Lemma 0.0.3:} Here the idea is to show that for any vector bundle $E$ on Compact Hausdorff, $E$ is a subbundle of the trivial bundle $X \times \R^n$, and then by Lemma 0.0.2 we have the desired result.
+  \\
+  \\
+  Again, consider an open cover $\{U_i\}_{i \in I}$ of $X$ associated to which we have local trivializations of $E \rightarrow X$ $$ \left\{ \phi_i \text{ : } \restr{E}{U_{i}} \rightarrow U_i \times \R^n \right\} $$ Since $X$ is compact there exists a finite subcover $\{U_{j}\}_{j \in J}, J \subseteq I, |J| < \infty$ of $X$ which $E$ trivializes.
+  \\
+  \\
+  Since our space is (Para)compact and hausdorff, the open cover $\{U_j\}_{j \in J}$ admits a partition of unity $$ \left\{ f_{j} \text{ : } X \rightarrow [0, 1] \right\}_{j \in J} $$ each of which have compact support i.e. $\mathrm{supp}(f_i) \subset \bar{U}_{i}$ so the function
+  \begin{align*}
+    \restr{E}{U_{i}} \rightarrow &U_i \times \R^n \\
+    v \mapsto &f_i(x) \cdot \phi_i(v)
+  \end{align*}
+  extends by the zero function to a vector bundle homomorphism of the form $$ f_i \cdot \phi_i \text{ : } E \rightarrow X \times \R^n $$ Taking the direct sum of each $f_j \cdot \phi_j$ for $j \in J$ we get a vector bundle homomorphism of the form
+  $$ \bigoplus_{j \in J} \left(f_i \cdot \phi_i\right) \text{ : } E \rightarrow X \times \left( \bigoplus_{j \in J} \R^n \right) = X \times \R^{n|J|} $$
+  At each point, because at least one of the $f_i$ is non-vanishing, this map is fiber-wise injective; as opposed to just a single $(f_i \cdot \phi_i)$. Hence this map gives us an injection of $E$ into a trivial bundle over $X$.  
+\end{dottedbox}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:} For a finite complex of finitely generated abelian groups (or of vector spaces over a given field), prove that the alternated sum of the ranks (resp. dimensions) of the terms of the complex is equal to the alternated sum of the ranks of its homology groups (resp. dimensions of the homology spaces).
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}} (Read Hatcher's Algebraic Topology book for this question)
+\\
+\\
+The proposition for vector spaces over a given field is pretty much a special case of the proposition for finitely generated abelian groups, so let's just deal with the latter.
+\\
+\begin{redbox}
+  \begin{lemma}
+    If $$ 0 \rightarrow A \rightarrow B \rightarrow C \rightarrow 0 $$ is a short exact sequence of finitely generated abelian groups, then $$ \mathrm{rank} B = \mathrm{rank} A + \mathrm{rank} C $$
+  \end{lemma}
+\end{redbox} Now, consider a finite complex of finitely generated abelian groups $$ 0 \rightarrow C_{k} \xrightarrow{\partial_{k}} C_{k-1} \xrightarrow{\partial_{k-1}} \cdots \xrightarrow{\partial_{3}} C_2 \xrightarrow{2} C_1 \rightarrow 0 $$ with cycles $Z_n = \mathrm{ker} \partial_{n}$, boundaries $B_{n} = \mathrm{im} \partial_{n+1}$ and homology groups $H_n = Z_n/B_n $. Thus we have short exact sequences of the form $$ 0 \rightarrow Z_n \rightarrow C_n \rightarrow B_{n-1} \rightarrow 0 $$ and $$0 \rightarrow B_n \rightarrow Z_n \rightarrow H_n \rightarrow 0$$ So, by the lemma, 
+\begin{align*}
+  \mathrm{rank} C_n &= \mathrm{rank} Z_n + \mathrm{rank} B_{n-1} \\
+  \mathrm{rank} Z_n &= \mathrm{rank} B_n + \mathrm{rank} H_n
+\end{align*} Then, substituting the second equation into the first and multiplying by $(-1)^n$ we get $$(-1)^n \mathrm{rank} C_n = (-1)^n \mathrm{rank} B_n + (-1)^n \mathrm{rank} H_n + (-1)^{n} \mathrm{rank} B_{n-1} $$ Summing these equations for all values of $n$ we get $$ \sum_{n = 1}^{k} (-1)^{n} \mathrm{rank} C_n = \sum_{n = 1}^{k} (-1)^n \mathrm{rank} H_n $$ where most of the $\mathrm{rank} B_n$ and $\mathrm{rank} B_{n-1}$ terms annihilate each other because of the opposite signs, and the remaining ones are trivial. 
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} Classify homotopy classes of maps from $\mathbb{T}^2$ to $\sph^2$.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+The homotopy classes of maps from $\mathbb{T}^2$ to $\sph^2$ are actually exactly the same as the homotopy classes of maps $\sph^2 \rightarrow \sph^2$ i.e. they are given by $$\boxed{\pi_2(\sph^2) = \mathbb{Z}}$$
+\\
+The reason for this is that any continuous map $\mathbb{T}^2 \rightarrow \sph^2$ can be homotoped such that all of $\sph^1 \vee \sph^1$ is mapped to a point. This is easy enough to see when we think about the planar diagram representation of $\mathbb{T}^2$.
+\begin{center}
+  \includegraphics*[scale=0.15]{Torus 215A HW8 Q3.png}
+\end{center} Then, since we can homotope any continuous map to one that sends all of $\sph^1 \vee \sph^1$ to the same point in $\sph^2$, we essentially just need to think of the homotopy classes of maps $\mathbb{T}/(\sph^1 \vee \sph^1) \rightarrow \sph^2$.
+\\
+\\
+Again, looking at the planar diagram, it's easy enough to see that $$ \mathbb{T}/(\sph^1 \vee \sph^1) = \sph^2 $$ since all of the edges of the square get collapsed down to the same point. Thus, the homotopy classes we're interested in are exactly the homotopy classes of maps $\sph^2 \rightarrow \sph^2$.
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,18 +1,18 @@
 # Fdb version 4
-["bibtex Notes"] 1721990342.59452 "Notes.aux" "Notes.bbl" "Notes" 1721990367.18399 0
-  "./citation.bib" 1721989145 561 db7c8d55a43367dae566211eeee36a2e ""
-  "Notes.aux" 1721990366 7085 a24dbc15df0103ece7698e22cb8fd4ee "pdflatex"
+["bibtex Notes"] 1723825781.07281 "Notes.aux" "Notes.bbl" "Notes" 1723825820.62081 0
+  "./citation.bib" 1723825780 1417 8ee5cb29cef567397fb15cd518e81080 ""
+  "Notes.aux" 1723825820 8038 4db4078e4981dcc6fbcb234d961d7de6 "pdflatex"
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/bibtex/bst/base/plain.bst" 1718579752 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   (generated)
   "Notes.bbl"
   "Notes.blg"
   (rewritten before read)
-["pdflatex"] 1721990364.96187 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" "Notes.pdf" "Notes" 1721990367.18476 0
-  "Notes.aux" 1721990366 7085 a24dbc15df0103ece7698e22cb8fd4ee "pdflatex"
-  "Notes.bbl" 1721990342 386 939c20a657ef2d372ba57a8c2d7749f8 "bibtex Notes"
-  "Notes.out" 1721990366 10222 4b2a7946cf7e773e11014afda4ec1d85 "pdflatex"
-  "Notes.tex" 1721990364 44025 6d565ade7daa64fa890f879b89ae56a0 ""
-  "Notes.toc" 1721990366 4674 5604f811c2a8a323dafe43ca7196bf64 "pdflatex"
+["pdflatex"] 1723825818.15615 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" "Notes.pdf" "Notes" 1723825820.62157 0
+  "Notes.aux" 1723825820 8038 4db4078e4981dcc6fbcb234d961d7de6 "pdflatex"
+  "Notes.bbl" 1723825781 641 b1e4cee58a5f03e00777938e5edc42f5 "bibtex Notes"
+  "Notes.out" 1723825820 11545 123e290761a28855bcb48a1def9ff959 "pdflatex"
+  "Notes.tex" 1723825817 68189 c580c2780e9c27c85ae30a0d9ddb135c ""
+  "Notes.toc" 1723825820 5152 ed71c92fd9e437ed433d17e57b1956bd "pdflatex"
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1718579756 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1718579750 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -276,8 +276,8 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1718663021 12644 704ce0e0f0aca537d3725655ca3cf52d ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" 1721990364 44025 6d565ade7daa64fa890f879b89ae56a0 ""
-  "custom.sty" 1721982638 10769 9c5b4934d7de6353137efaf43a4d1252 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Fall '24 Diff Geom DeCal/Notes/Notes.tex" 1723825817 68189 c580c2780e9c27c85ae30a0d9ddb135c ""
+  "custom.sty" 1722938133 10917 02e25296d57f632890b8af156b580361 ""
   (generated)
   "Notes.aux"
   "Notes.log"

@@ -1,6 +1,9 @@
 \babel@toc {american}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Symmetry-Breaking Phases and the Order Parameter}{2}{section.2}%
-\contentsline {section}{\numberline {3}Beyond the Landau-Ginzburg Paradigm: Fractional Quantum Hall States and Topological Order}{2}{section.3}%
-\contentsline {section}{\numberline {4}Topological Insulators}{2}{section.4}%
-\contentsline {section}{\numberline {5}Topological Superconductors}{2}{section.5}%
+\contentsline {section}{\numberline {3}Berry Connection, Curvature, and Phase}{3}{section.3}%
+\contentsline {section}{\numberline {4}Integer Quantum Hall Effect (IQHE)}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Landau Levels}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}TKNN Invariant = $1^{\text {st}}$ Chern Number}{3}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Chiral Edge States}{3}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Topological Insulators}{3}{section.5}%

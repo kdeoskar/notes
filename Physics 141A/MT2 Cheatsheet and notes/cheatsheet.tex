@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: James Analitis}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics 141A: Solid State Physics}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily MT2 Review} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+\tableofcontents
+\newpage
+
+\section{Chapter 5: The Periodic Table}
+
+\begin{itemize}
+  \item To solve for the dynamics of a quantum mechanical system we need to solve Schroedinger's Equation $\hat{H}\psi = E \psi$ but this is intractable for atoms with a dozen-or-so electrons, let alone solids with $~10^{23}$ particles in them.
+  \item Instead, we try to draw conclusions from simplified models of atoms.
+  \item Recall that an electron in an atom is described by a set of quantum numbers $\ket{n, l, l_z, s_z}$ where
+  \begin{align*}
+    n &= 1,2,3,\cdots \\
+    l &= 0,1,\cdots,n-1 \\
+    l_z &= -l,\cdots,0,\cdots,l \\
+    s_z &= \pm \frac{1}{2}
+  \end{align*}
+  \item \textbf{Aufbau Principle:}
+  \item \textbf{Madelung's Rule:}
+  \item \textbf{Effective Nuclear Charge}
+  \item \textbf{Ionization Energy}
+  \item \textbf{Electron Affinity}
+\end{itemize}
+
+\newpage
+\section{Chapter 6: Chemical Bonding}
+There are a number of different ways atoms bond together to form molecules and materials.
+
+\subsection{Ionic Bonding}
+\begin{itemize}
+  \item Essentially, the complete transfer of one (or more) electron(s) from one atom to another. Eg. $Na + Cl \rightarrow Na^{+} + Cl^{-} \rightarrow NaCl$
+  \item We define the following: 
+  \begin{align*}
+    \text{Ionization Energy } &= \text{ Energy required to remove one electron from a neutral atom} \\
+    \text{Electron Affinity } &= \text{ Energy gain resulting from adding an electron to a neutral atom} 
+  \end{align*}
+  \item The energy required to transfer an electron from $A$ to $B$ (when the two atoms are far apart) is $$\Delta_{A + B \rightarrow A^+ + B^{-}} = \text{(Ionization Energy)}_{A} + \text{(Electron Affinity)}_B $$
+  \item However that's not the full story. We also have a \textbf{Cohesive Energy} which is a classical result of the coulomb interactions between the two ions as they get closer to each other, which is $$ \text{Cohesive Energy of AB } = \text{ Energy gain from } A+B \rightarrow A^+ + B^- $$
+  \item Thus, $$ \Delta E_{A + B \rightarrow AB} = \Delta E_{A + B \rightarrow A^+ + B^-} + \text{ Energy gain from } A^+ + B^- $$ i.e. $$ \boxed{\Delta E_{A+B \rightarrow AB} = \text{(Ionization Energy)}_A - \text{(Electron Affinity)}_{B} - \text{(Cohesive Energy of AB)} }$$
+  \item \textbf{An Ionic Bond forms if $\Delta E_{A+B \rightarrow AB} < 0$. }
+  \item \underline{Note:} Why $\Delta < 0$? Due to our sign convention.
+  \begin{itemize}
+    \item Ionization Energy is energy we put into the system, but we denote it as $+$ve.
+    \item Electron Affinity is energy that comes out of the system, but we denote it as $-$ve.
+    \item Similarly, Cohesive Energy is energy gain so it's energy that comes out of the system. Thus, just like Electron Affinity, we denote it as $-$ve.
+    \item So, when electron affinity overpowers ionization energy i.e. more energy comes out than we put in, we have $\Delta E < 0$ and this is Energetically Favorable.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Covalent Bonding}
+
+\subsection{Wan der Vaal's forces}
+
+\subsection{Metallic Bonding}
+
+\subsection{Hydrogen Bonding}
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

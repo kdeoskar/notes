@@ -1,0 +1,350 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+% {\fontsize{22}{22} \selectfont Lecturer: Alexander Givental}
+% \vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Some Notes on Algebraic Topology and Physics}
+% \vskip 24pt
+% {\fontsize{14}{14} \selectfont \rmfamily Random tidbits} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+This is a collection of random facts, theorems, exercises, and illustrations during my journey of learning Algebraic Topolgy, along with some applications in Physics. Mainly just to clarify my own understanding. Most of it comes from \cite{FomenkoFuchs16} - a book I'd highly recommend (as reading with another more commonly used book though; not alon. It can get real terse sometimes).
+\\
+\\
+There's a lot missing. Any errors are due to my own ignorance - please feel free to reach out and correct me!
+\\
+\\
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\setcounter{tocdepth}{3}
+\tableofcontents 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{A bit about CW Complexes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{Different ways to compute Homotopy groups}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Exact Sequences}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Homology and Cohomology with Coefficients}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cite{Wilson12}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Different ways to compute Homology groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Relative Homology Groups}
+
+
+\subsection{Excision}
+
+
+\subsection{Mayer-Vietoris}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{What's the point of Reduced Homology?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Simplicial vs. Singular vs. Cellular Homology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The idea remains pretty much the same in each of these, so why bother with the various types of homologies?
+\\
+\\
+The reason is there's a trade-off when it comes to homology groups - ease of working abstractly (eg. proving theorems) vs ease of computation \cite{TizkovaMSEPost}.
+\\
+\\
+Singular homology is requires less extra structure on the space (no triangulation or cellular decomposition required, unlike Simplicial and Cellular homology), and easy to show that it's a homotopy and homeomorphism invariant. However the large, often infinite, nature of the set of chains $C_n(X)$ causes these homology groups to usually be difficult to calculate.
+\\
+\\
+Simplicial and Cellular Homology groups, on the other hand, are much easier to calculate. \begin{note}
+  {Include the definitions for each of the three homologies.}
+\end{note}
+
+\subsection{What even is the difference between Singular and Simplicial?}
+
+Consider a topological space $X$, and recall that a standard $n-$simplex is 
+$$\Delta^n = \{(x_0, x_1, \cdots, x_n) \in \R^{n+1} \text{ : } \sum_{i = 1}^{n} x_i = 1,~~x_i \leq 0\}$$
+and an $n-$dimensional chain $\sigma$ is a formal finite linear combination $$\sum_{i} k_i f_i $$ where each $$ \sigma_i \text{ : } \Delta^n \rightarrow X $$ is an $n-$simplex with coefficients in $X$.
+\\
+\\
+As mentioned in Chapter 2 of \cite{HatcherAlgTop}, the word \textbf{Singular} tells us that $\sigma_i$ need not be a nice embedding of the standard $n-$simplex into $X$ i.e. there can be "singularities" where the image doesn't look like the standard simplex. In contrast to this, simplicial homology restricts to $\sigma_i$ being nice embeddings. So, simplicial homology is in a sense a special case of singular homology.
+\\
+\\
+Of course, \textbf{Cellular Homology} is also a special case in that it's defined using relative \emph{singular} homology groups of a \textbf{CW complex}. 
+
+\subsection{Definition of Cellular Homology:}
+As a reminder, given a CW Complex $X$ let's denote its $n-$skeleton as $X^n \text{:}= \mathrm{sk}_n(X)$. Then, $X^n / X^{n-1}$ is homeomorphic to the bouquet $\bigvee_{\alpha \in A_n} S_{\alpha}^n $ where $\{e^n_{\alpha} \text{ : } \alpha \in A_{n}\}$ is the set of $n-$cells. 
+\\
+\\
+The relative homology group $H_m(X^n, X^{n-1})$ can be shown to be trivial when $m \neq n$ and a free Abelian group generated by the $n-$cells of $X$ when $m = n$, which motivates us to consider it to be the \emph{set of \textbf{cellular chains} on $X$} and use the notation $\mathcal{C}_n(X) \text{:=} H_n(X^n, X^{n-1})$.
+\\
+\\
+The cellular boundary operator $\delta = \delta_n \text{ : } \mathcal{C}_n(X) \rightarrow \mathcal{C}_{n-1}(X)$ is defined as the connecting homomorphism from the homology sequence of the triple $(X^n, X^{n-1}, X^{n-2})$. \begin{note}
+  {Do this explicitly; namely do Exercise 7 from Section 12.3 4 of \cite{FomenkoFuchs16}}
+\end{note} \[\begin{tikzcd}
+	{H_n(X^n, X^{n-1})} & {H_n(X^{n-1}, X^{n-2})} \\
+	{\mathcal{C}_n(X)} & {\mathcal{C}_{n-1}(X)}
+	\arrow["{\partial_{*}}", from=1-1, to=1-2]
+	\arrow[Rightarrow, no head, from=1-1, to=2-1]
+	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+\end{tikzcd}\] The following theorem gives us confidence that defining cellular complexes and their homologies is a useful thing to do:
+
+\begin{theorem}
+  For an arbitrary CW Complex $X$, the homology of the cellular complex $\{\mathcal{C}_n(X), \delta_n\}$ (as defined above) \textbf{coincides} with the singular homology $H_n(X0)$
+\end{theorem}
+
+\subsection{Example: $\sph^2$}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Different ways to compute Cohomology groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Principal $G-$bundles and Classifying Spaces $BG$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 0.5cm
+\subsection{What's a Fiber Bundle?}
+
+\begin{redbox}
+  A collection of $(E, M, \pi, F)$ where $E, M, F$ are topological spaces and $\pi \text{ : } E \rightarrow M $ is a surjective continuous map is a Fiber bundle if 
+  \begin{itemize}
+    \item For any open cover $\{U_{\alpha}\}$ of $M$, there exist \emph{\underline{local trivializations}} $\Phi_{\alpha} \text{ : } \pi^{-1}(U) \rightarrow U_{\alpha} \times F $ such that the following diagram commutes
+    \[\begin{tikzcd}
+	{\pi^{-1}(U_{\alpha})} && {U_{\alpha} \times F} \\
+	& {U_{\alpha}}
+	\arrow["{\Phi_{\alpha}}", from=1-1, to=1-3]
+	\arrow["\pi"', from=1-1, to=2-2]
+	\arrow["{\pi_{PR}}", from=1-3, to=2-2]
+\end{tikzcd}\]
+  \end{itemize}
+\end{redbox} \vskip 0.5cm \textbf{What does this mean?}
+\begin{itemize}
+  \item It means that locally, the \textbf{total space} $E$ looks something like the product $U_{\alpha} \times F$ - this generalizes the \textbf{trivial bundle} $E = M \times F$, adding interesting global structures such as twists. 
+  \item Also, around each point $p \in M$ in the \textbf{base space`'} the pre-image is isomorphic to $F$. Thus, $F$ is called the \textbf{Fiber space}.
+\end{itemize}
+
+\begin{bluebox}
+  Include examples.
+\end{bluebox}
+
+\vskip 1cm
+\subsection{Principal $G-$bundles}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{What the hell is a Spectral Sequence?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{remark}
+  For an interesting discussion about the name "Spectral" sequence see \href{https://mathoverflow.net/questions/17357/what-is-so-spectral-about-spectral-sequences#:~:text=They%20were%20introduced%20by%20Leray,terrifying%2C%20evil%2C%20and%20dangerous.}{this stackexchange post}.
+\end{remark}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,248 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+\usepackage{csquotes}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Bibliography formatting
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{ref.bib}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{18}{18} \selectfont Nov 21 UG Seminar Notes}
+\vskip 16pt
+{\fontsize{22}{22} \selectfont \bf \sffamily Intro to IQHE and Topological Matter}
+\vskip 24pt
+{\fontsize{16}{16} \selectfont \rmfamily Keshav Balwant Deoskar} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+\begin{abstract}
+These are notes summarizing all of the content I planned on talking about during my UG seminar on Nov 21. Any errors/false claims made are a result of me being silly-goofy. Please feel free to contact me with corrections, criticism, concerns, etc.
+\end{abstract}
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+\microtoc
+% \tableofcontents 
+\newpage
+
+% main content
+
+
+%%%%%%%%%%%%%%%%
+% New version
+%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cite{MooreMoessner21}
+
+\subsection{What we'll cover}
+
+
+\subsection{What we won't cover}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Recalling some E\&M}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Recalling some QM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Crash Course in Condensed Matter Physics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Crash Course in Topology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Integer Quantum Hall Effect}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Landau Levels}
+
+\subsection{Laughlin's pumping argument}
+
+\subsection{The Role of Topology}
+
+\begin{redbox}
+    \textbf{Why can we ignore electron-electron interactions in the IQHE?}
+\end{redbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{2D Topological Insulators}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%
+% Old version
+%%%%%%%%%%%%%%%%
+
+% \section{Introduction}
+% In every-day life, we often talk about different phases of matter such as "solids, liquids, and gases" because each of them display different properties. But we know that, for instance, a solid ferromagnet behaves differently from a solid insulator. How do we classify materials that display similar characteristics, in a more nuanced way? 
+% \\
+% \\
+% One method to classify them based on their \textbf{\emph{symmetries}}. Intuitively it makes sense that different symmetries would imply different properties. For instnce, a gas at equilibrium has translational symmetry because if we move from one point to any other the properties of the material (pressure, density, temperature, etc.) remain the same. In contrast to this, a crystal like $NaCl$ composed of a lattice of $Na^+, Cl^-$ does not have translational symmetry because if we move from an $Na^+$ site to a $Cl^-$ site, the electric charge of the site is different. This incredibly successful paradigm was introduced in the 1950s and is known as the Landau-Ginzburg theory of Symmetry-Breaking Phases.
+% \\
+% \\
+% Separate from this, but following closely after in terms of chronology, topological effects began showing up in physics. In the 1980s, the Integer Quantum Hall Effect (IQHE) was discovered, and it was found that the origin for the amazing adherence to quantization of the hall conductance is topological in origin. Soon after, the Fractional Quantum Hall Effect in which the hall conductance is quantized with fractional values rather than only integers, was discovered, and with it the first example of a phenomenon \emph{beyond} the Landau-Ginzburg paradigm. 
+% \\
+% \\
+% Fractional Quantum Hall Liquids cannot be understood solely based on their symmetries, but rather require a new \textbf{\emph{topological order}} to be fully described. Fractional Quantum Hall Effect (QHE) states are an example of Thouless-type topological order, but another important one is Wen-type topological order. 
+% \\
+% \\
+% More recently, since the early 2000s, new and fascinating classes of materials known as Topological Insulators and Superconductors have been the garnering more and more research interest across the globe. In Topological Insulators, rather than some quantized transport quantity, the thing that is quantized is a kind of magnetoelectric effect \cite{MooreMoessner21}. Aside from being interesting purely from a scholarly point of view,these materials have great potential for applications in new types of low energy electroniscs. 
+% % \\
+% % \\
+% % The goal of this expository paper is to try and summarize some of the important topological concepts in this amazing field lying at the intersection of Physics, Mathematics, and (possibly sometime soon) Computing \& Low Level Electronics.
+% \\
+% \\
+% The goal of this expository paper is to discuss the Integer Quantum Hall Effect and the TKNN number. In particular, one goal is to prove that the TKNN number is in fact the \textbf{first Chern number}.
+% \begin{note}
+%     {Re-write this introduction to focus more on the Chern number}
+% \end{note}
+
+% \pagebreak
+% \section{Symmetries}
+
+% \subsection{Time-Reversal Symmetry}
+
+% \subsection*{Parity Symmetry}
+
+% \subsection{A word on the Landau-Ginzburg Paradigm}
+
+% \pagebreak
+% \section{Brief Introduction to Characteristic Classes}
+% Principal bundles play a huge role in Physics, being the object used to describe Gauge Theories. Bundles, in general, are defined by their \textbf{local trivializations}; they all \emph{locally} look like trivial products $M \times \mathbb{R}^n$ where $M$ is the base manifold, however they have different global structure. 
+% \\
+% \\
+% A basic result in Manifold theory is that a vector bundle is trivial if there exists a \textit{global} frame on it. But how else can we think about Triviality? What about more complicated structures like Fiber Bundles and Principal Bundles? 
+% \\
+% \\
+% Characteristic Classes are subsets of the \textbf{cohomology ring} of a bundle and, in a sense, they measure the non-triviality of a bundle.
+% \\
+% \\
+% Associated with Characteristic Classes are \textbf{Characteristic Numbers}, which are topological invariants. And, in fact, the Chern number(s) is really one such number - corresponding to the Chern Class.
+
+% \pagebreak
+% \section{Chern Classes}
+
+% \subsection{Quick aside: Gauss-Bonnet Theorem}
+
+% \subsection{Chern Numbers}
+
+% \pagebreak
+% \section{Brillouin Zones, Band Theory, and Bloch Bundles}
+
+% \subsection*{Energy Bands}
+
+% \subsection*{Insulators and Conductors in terms of Band Structure}
+
+% \subsection{Dirac Nodes and Dirac Cone}
+
+% \pagebreak
+% \section{Berry Connection, Curvature, and Phase}
+
+% \pagebreak
+% \section{Integer Quantum Hall Effect (IQHE)}
+
+% \pagebreak
+% \subsection{Landau Levels}
+
+% \pagebreak
+% \subsection{TKNN Invariant = $1^{\text{st}}$ Chern Number}
+
+% \subsection{Chiral Edge States}
+
+
+% \pagebreak
+% \section{Fracional Quantum Hall Effect (FQHE)}
+
+% \subsection{Note: Thouless- vs Wen-type Topological Order}
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{ref} % Entries are in the refs.bib file
+
+
+\printbibliography    
+
+
+\end{document}

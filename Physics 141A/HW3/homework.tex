@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{22}{22} \selectfont Professor: James Analitis}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics 141A: Solid State Physics}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 3} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+
+\begin{bluebox}
+  \textbf{Question 1:} (4.4) from Simon. \\
+  - What is the \textit{free electron model} of a metal.\\
+  - Define \textit{Fermi energy} and \textit{Fermi temperature}.\\
+  - Why do metals held at room temperatures feel cold to the touch even though their Fermi temperatures are much higher than room temperature?
+  \begin{enumerate}[label=(\alph*)]
+    \item A $d-$dimensional sample with volume $L^d$ contains $N$ electrons and can be described as a free electron model. Show that the Fermi energy is given by 
+    $$ E_F = \frac{\hbar^2}{2mL^2} (Na_d)^{2/d}$$ Find the numerical values of $a_d$ for $d = 1,2,3$.
+
+    \item Show also that the density of states at the Fermi energy is given by $$ g(E_F) = \frac{Nd}{2L^d E_F} $$ - Assuming the free electron model is applicable, estimate the Fermi energy and Fermi temperature of a one-dimensional organic conductor which has unit cell of length $0.8$ nm, where each unit cell contributes one mobile electron.
+    
+    \item Consider relativistic electrons where $E = c|\mathbf{p}|$. Calculate the Fermi energy as a function of the density for electrons in $d = 1,2,3$ and calcukate the density of states at the Fermi energy in each case.
+  \end{enumerate}
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+- The free electron model of a metal is one in which we assume the electrons do not interact with each other.\\
+- The Fermi Energy can be defined as the chemical potential at $T = 0$ and denoted by $ E_F $. The Fermi-temperature is defined as $T_F = E_F / k_B$. \\
+- Because, although the Fermi energy is much higher than room temperature, the fraction of electrons/states in the metal which actually have such high temperatures is very small due to the Fermi-Dirac statistics $$ n_{F}(\beta(E_F - \mu)) = \frac{1}{e^{\beta(E_F - \mu)} - 1} $$
+
+\begin{enumerate}[label=(\alph*)]
+  \item For a box of $d-$dimensions and side-length $L$, we have plane-waves $e^{i\mathbf{k}\cdot\mathbf{r}}$ quantized (due to periodic boundary conditions) as $$ \mathbf{k} = \frac{2\pi}{L} \left(n_1, \cdots, n_d\right) $$  with their energies quantized as $$ E = \frac{\hbar^2|\mathbf{k}|^2}{2m} $$ so we have a \textbf{Fermi momentum} corresponding to the Fermi energy $$ E_F = \frac{\hbar^2|\mathbf{k_F}|^2}{2m} $$ and the total number of electrons in the system is given by $$ N = \underbrace{2}_{spin} \sum_{\mathbf{k}} n_{F}\left(\beta(E-\mu)\right) = 2 \frac{L^d}{(2\pi)^d} \int \mathbf{dk} ~ n_{F}\left(\beta(E(\mathbf{k})-\mu)\right) $$
+  
+  Now, at $T = 0$, the Fermi-Dirac distribution becomes a step function $\Theta(E(\mathbf{k}) - \mu)$ so $$ N = 2 \frac{L^d}{(2\pi)^d} \int \mathbf{dk}~\Theta(E(\mathbf{k}) - \mu) = 2 \frac{L^d}{(2\pi)^d} \int^{|k| < |k_F|} \mathbf{dk} $$\\
+  \\ 
+  This integral is essentially just integrating over a (solid) ball of radius $k_F$ and it's a fairly well known result that the volume of a $d-$dimensional solid sphere of radius $r$ is $$ V_d(r) = C_d \cdot r^d,~C_d = \frac{\pi^{d/2}}{(d/2)!},~(d/2)! = \Gamma(\frac{d}{2} + 1) $$ so we have $$ N = 2 \frac{L^d}{(2\pi)^d} \left( \frac{\pi^{d/2}}{(d/2)!} (k_F)^d \right) $$ which lets us write 
+  \begin{align*}
+    &k_F = \sqrt[d]{\frac{(2\pi)^d}{2L^d} \frac{(d/2)!}{\pi^{d/2}} \cdot N } \\ 
+    \implies&k_F = \frac{2\pi}{L} \left( \frac{N}{2} \cdot \left(\frac{d}{2}\right)!\right)^{1/d} \cdot \frac{1}{\sqrt{\pi}} 
+  \end{align*} \\
+  \\
+  Thus we can write the Fermi energy for our $d-$dimensional sample as 
+  \begin{align*}
+    &E_F = \frac{\hbar^2 k_F^2}{2m} \\
+    \implies & \boxed{E_F = \frac{\hbar^2}{2mL^2} \left( \frac{N}{2} \Gamma\left(\frac{d}{2} + 1\right) \times (4\pi)^{d/2} \right)^{2/d} } 
+  \end{align*} 
+  \vskip 0.5cm
+  So, we have $a_d = \frac{1}{2} \Gamma\left( \frac{d}{2} + 1 \right) \times (4\pi)^{d/2}$.
+\end{enumerate}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 2:}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let us approximate an electron in the $n^{th}$ shell (i.e. principal quantum number $n$) of an atom as being like an electron in the $n^{th}$ shell of a hydrogen atom with an effective nuclear charge $Z$. Use your knowledge of the hydrogen atom to calculate the ionization energy of this electron (i.e. the energy required to pull the electron away from the atom) as a function of $Z$ and $n$.
+    
+    \item Consider the two approximations discussed in the text for estimating the effective nuclear charge: 
+    \begin{itemize}
+      \item (Approximation a) $$ Z = Z_{nuc} - N_{inside} $$
+      \item (Approximation b) $$ Z = Z_{nuc} - N_{inside} - \left(N_{same} - 1\right)/2 $$ where $Z_{nuc}$ is the actual nuclear charge (or atomic number), $N_{inside}$ is the number of electrons in shells inside of $n$ (i.e. the electrons with principal quantum numbers $n' < n$), and $N_{same}$ is the total number of electrons in the $n^{th}$ principal shell (including the electron we are trying to remove from the atom, hence the $-1$).
+    \end{itemize}
+  \end{enumerate} - Explain the reasoning behind these two approximations. \\
+  - Use these approximations to calculate the ionization energies for the atoms with atomic number 1 through 21. Make a plot of your results and compare them to the actual ionization energies.
+  \\
+  \\
+  Your results should be qualitatively quite good. If you try this for higher atomic numbers, the simple approximations begin to break down. Why is this? 
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+\\
+\begin{enumerate}[label=(\alph*)]
+  \item The energy of an electron in the $n^{th}$ shell of a hydrogen atom is $$ E_n = \frac{-13.6}{n^2} \text{eV} $$ Now, if we approximate electron in $n^{th}$ shell as being an electron in the $n^{th}$ shell of a hydrogen atom with an effective nuclear charge $Z$, the coulomb interaction is stronger than that in a hydrogen atom by a factor of $Z$. How much stronger is the binding then?
+  \\
+  \\
+  Heuristically, the bound state is a balancing of the kinetic and potential energies i.e. they are roughly of the same strength. So, we can guess
+  $$ KE = \frac{\hbar^2}{ma^2} = PE = \frac{Ze^2}{4\pi\epsilon_0 a} $$ where $a$ is the length scale of the atom.
+  \\
+  \\
+  Then, $a$ should scale as $a \sim \frac{1}{Z}$, which makes $KE \sim Z^2$, so the amount of energy required to free such an electron is roughly of the form $$\frac{-13.6 \cdot Z^2}{n^2} \text{eV}$$
+
+  \item The reasoning behind both approximations is that electrons shield each other. \\
+  \\
+  -The first approximation is mainly for atoms where there are only one or two valence electrons (Eg. Na, which has 1 valence electron). Here, the electrons in the shells before the valence shell ($N_{inside}$ many of them) shield the valence electrons, so we just subtract $N_{inside}$ from $Z_{nu}$. \\
+  \\
+  - In atoms whose valence shells contain many electrons however (Eg. Cl, which has 7 valence electrons), the electrons within the inner orbitals of the valence shell also shield the electrons in the outer orbitals, so the effective nuclear charge is even smaller. To account for this in our estimate, we also subtract off the $(N_{same} - 1)/2$ factor.
+  \\
+  \\
+  Now let's use the approximations to estimate Ionization energies for atoms with atomic numbers 1 to 21. \begin{note}{Complete this}\end{note}
+\end{enumerate}
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+\begin{bluebox}
+  \textbf{Question 3:} For exercise 6.2.b consider now the case where the atomic orbitals $\ket{1}$ and $\ket{2}$ have unequal energies $\epsilon_{0,1}$ and $\epsilon_{0,2}$. As the difference in these two energies increases show that the bonding orbital becomes more localized on the lower-energy atom. For simplicity you may use the orthogonality assumption $\braket{1}{2} = 0$. Explain how this calculation can be used to describe a crossover between covalent and ionic binding.
+\end{bluebox}
+
+\vskip 0.5cm
+\textbf{\underline{Solution:}}
+\\
+Considering the hamiltonian $$ H = \frac{\mathbf{p}^2}{2m} + V(\mathbf{r} - \mathbf{R_1}) + V(\mathbf{r} - \mathbf{R_2}) = K + V_1 + V_2 $$ where $V$ is the coulomb interaction, $R_1$ is the position of the first nucleus, $R_2$ is the position of the second nucleus, and we have atomic orbitals $\ket{1}, \ket{2}$ which are orthonormal $\braket{1}{2} = 0$ so that 
+\begin{align*}
+  (K + V_1)\ket{1} &= \epsilon_{0, 1} \ket{1} \\
+  (K + V_2)\ket{2} &= \epsilon_{0, 2} \ket{2} \\
+\end{align*} Our hamiltonian matrix now has the form 
+\begin{align*}
+  H = \begin{pmatrix}
+    \epsilon_1 & t \\
+    t* & \epsilon_2
+  \end{pmatrix}
+\end{align*}
+
+Diagonalizing the matrix, we find the lower-energy eigenvalue to be $$ E_{lower} = \frac{1}{2} \left( \epsilon_1 + \epsilon_2 + \sqrt{(\epsilon_1 - \epsilon_2)^2 + 4t^2} \right) $$ with normalized eigenvector $$ \psi = \frac{X \cdot \ket{1} + 2t \cdot \ket{2}}{\sqrt{X^2 + 4t^2}} $$ where $$ X = E_2 - E_1 + \sqrt{(E_1 - E_2)^2 + 4t^2} $$ \\
+\\
+\textbf{\underline{Observations:}}
+\begin{itemize}
+  \item When $E_2 - E_1 >> t$, then $X >> 2t$ so the wavefunction is pretty much just $\ket{1}$. Similarly if $E_1 - E_2 >> t$ then the wavefunction lies pretty much only in the second atom.
+  \item When the energies on the two sites are the same, the wavefunction is equally shared between the two nuclei. However, if more energy is attributed to one atom, then the wavefunction shifts towards the other atom (sice it has lower energy).
+\end{itemize}
+
+
+\vskip 0.5cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

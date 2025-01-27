@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+% {\fontsize{22}{22} \selectfont Lecturer: Alexander Givental}
+% \vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Miscellaneous Notes on Solid State Physics}
+% \vskip 24pt
+% {\fontsize{14}{14} \selectfont \rmfamily Random tidbits} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+This is a collection of random facts, theorems, exercises, and illustrations during my journey of learning Solid State Physics. Topics may be organized in a slightly nonsensical manner (sorry). Any errors are due to my own ignorance - please feel free to reach out and correct me!
+\\
+\\
+This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% \microtoc
+\setcounter{tocdepth}{3}
+\tableofcontents 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Why are there exactly 14 possible Bravais Lattices?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The different types of lattice structures possible for a (ideal) crystalline material are called the \textbf{Bravais Lattices}. It's often mentioned that there are 14 such distinct 3-Dimensional Bravais Lattices, but why is this the case? 
+\\
+\\
+The main characteristic of the Bravais Lattices is that they are the "building blocks" in our repeating crystalline structure. Thus, they should have certain properties like translational symmetry \begin{note}{Add more detail}\end{note}.
+\\
+\\ 
+When it comes to actual materials, we live in 3D i.e. $\R^n$ so any Bravais Lattice is (equivalent to) some subset of $\zee^3$. As mentioned above, we want the lattices to have spatial symmetries i.e. invariance under certain elements of $GL(3, \zee)$.
+\\
+\\
+It turns out that Bravais lattices are identified with conjugacy classes of certain finite subgroups of $GL(3,\zee)$ called \textbf{Bravais Subgroups}, and it follows from a theorem by Jordan that there are 14 such conjugacy classes. In general, Jordan's theorem tells us $GL(n, \zee)$ has finitely many conjugacy classes of finite subgroups \cite{Burde13}.
+\\
+\\
+\begin{thought}
+{Need to add much more; good discussion of crystallographic groups and possibly proof of special case $n=3$.}
+\end{thought} See \cite{Whitman11}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{What is the Berry Phase? Is it topological or geometrical?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Given a system with hilbert space $\mathcal{H}$, starting off in some eigenstate $\ket{n}$ whose hamiltonian remains constant, we can solve for the time-evolution of the state by solving the Time-Dependent Schr\"{o}dinger Equation. We know that $t$ moments after the start, the system will be in the state $e^{-\frac{i}{\hbar}\hat{H} t}\ket{n}$.
+\\
+\\
+But what if the Hamiltonian also changes with respect to some set of parameters $\mathbf{\lambda} = (\lambda_1, \cdots, \lambda_N)$ as $\hat{H}(\mathbf{\lambda})$? If the hamiltonian changes \emph{slowly} from $\hat{H}(0)$ to $\hat{H}(T)$, the Adiabatic Theorem tells us that the $n^{th}$ eigenstate $\ket{n}$ of $\hat{H}(0)$ evolves such that it is the $n^{th}$ eigenstate of $\hat{H}(t)$ for each $t \in [0, T]$.
+\\
+\\
+Now, rather than just $e^{-\frac{i}{\hbar}\hat{H}(0)t}$, it picks up the phase: $$ e^{-\frac{i}{\hbar}\theta_n(t) } \text{ where } \theta_n(t) \equiv \int_{0}^{t} E_n(t') \mathrm{d}t'$$ This $\theta_n$ is called the \textbf{Dynamical Phase}. But this may not be the entire story. Although $\ket{n}$ remains an eigenstate, it may not be exactly the same i.e. it may pick up an additional phase $e^{i\gamma_n}$ where $\gamma_n$ is called the \textbf{Geometrical Phase}, since such a state would be physically equivalent.
+\\
+\\
+Berry purportedly described the Dynamical and Geometrical Phases, respectively, as answering the two questions "How long have you been moving?" and "Where have you gone?" \cite{GriffithsQM}.
+
+\subsection{Motivation/Expression for the Geometric Phase $\gamma$}
+Consider the Hamiltonian above $H(\mathbf{\lambda}(t))$ where the parameter $\mathbf{\lambda}$ is varying with time, causing the hamiltonian to vary as well. Let $\ket{\psi(t)}$ denote an eigenstate of $$H(\mathbf{\lambda}(t)) \ket{\psi(t)} = E(t)\ket{\psi(t)} $$
+Schr\"odinger's Equation states that $$ i\hbar\frac{d\ket{\psi}}{dt} = H(t)\ket{\psi(t)} $$
+\\
+\\
+At first, we might try the usual ansatz of $\ket{\psi} = e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n}$ but plugging this into Schro\"odinger's Equation, we see that it fails to be a solution because of the differential on the LHS.
+\\
+\\
+Instead let's the ansatz $\ket{\psi} = e^{i\gamma_n(t)} e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n}$. Plugging this in,
+\begin{align*}
+  &i\hbar \left\{ e^{-\frac{i}{\hbar}\theta_n(t)} \frac{d\ket{n}}{dt} + \left( i \dot{\gamma}_n(t) - \frac{i}{\hbar} E(t) \right) e^{i\gamma_n(t)} e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n} \right\} = E(t)e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n} \\
+  \implies& i\hbar e^{-\frac{i}{\hbar}\theta_n(t)}  \frac{d\ket{n}}{dt} -\hbar \dot{\gamma}_n(t) e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n}  + E(t)e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n} = E(t)e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n} \\
+\end{align*}
+Dotting both sides with $\bra{n}$ then gives us 
+\begin{align*}
+  &i\hbar e^{-\frac{i}{\hbar}\theta_n(t)} \braket{n}{\frac{dn}{dt}} = \hbar \dot{\gamma}_n(t)e^{-\frac{i}{\hbar}\theta_n(t)} \ket{n}  \\
+  \implies& \dot{\gamma}_n(t) = i\braket{n}{\frac{dn}{dt}}
+\end{align*}
+giving us 
+\begin{align*}
+  \gamma_n(t) &= \int_0^{t} A(t') dt' \\
+  A(t) &= i \braket{n}{\frac{dn}{dt}}
+\end{align*}
+\begin{note}
+  {Write about the relation with gauge transformations and how this geometrical factor cannot be ignored when we have a closed loop in parameter space.}
+\end{note}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Quantum Geometrical Tensor and Quantum Metric}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \section{}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.5cm
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{citation} % Entries are in the refs.bib file
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

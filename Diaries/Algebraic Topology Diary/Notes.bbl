@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{TizkovaMSEPost}
+What is the difference between cellular, simplicial, and singular homology?
+\newblock https://math.stackexchange.com/questions/4500541/what-is-the-difference-between-cellular-simplicial-and-singular-homology-and-th.
+
+\bibitem{FomenkoFuchs16}
+Dmitry~Fuchs Anatoly~Fomenko.
+\newblock {\em Homotopical Topology, Second Edition}.
+\newblock Springer International Publishing Switzerland, 2016.
+
+\bibitem{HatcherAlgTop}
+Allen Hatcher.
+\newblock {\em Algebraic Topology}.
+\newblock Cambridge University Press, 2002.
+
+\bibitem{Wilson12}
+Dylan Wilson.
+\newblock Intuition behind homology with general coefficients.
+\newblock https://math.stackexchange.com/questions/105693/intuition-behind-homology-with-general-coefficients, 2012.
+
+\end{thebibliography}
