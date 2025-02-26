@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1740564970.95572 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 141B/HW1/homework.tex" "homework.pdf" "homework" 1740564972.67756 0
+["pdflatex"] 1740565188.82169 "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 141B/HW1/homework.tex" "homework.pdf" "homework" 1740565190.4308 0
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1718579750 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1718579750 1120 200be8b775682cdf80acad4be5ef57e4 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1718579750 1004 54797486969f23fa377b128694d548df ""
@@ -233,11 +233,11 @@
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1725209379 95134 0cbf4af0abe12ac225ba41f3ba656a91 ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1718712831 6878015 c034ec16de2644964c5d5255b44607af ""
   "c:/Users/kesha/AppData/Roaming/TinyTeX/texmf.cnf" 1718579732 903 164c5b127cd0d6dc91abad2f62421ea2 ""
-  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 141B/HW1/homework.tex" 1740564970 8154 b0cd376da783c9b390fbc15a1a23da05 ""
+  "c:/Users/kesha/OneDrive/Desktop/Fall '23/LaTeX notes/Physics 141B/HW1/homework.tex" 1740565188 8307 d2238fdfaaf72d515381e8ae6bafff88 ""
   "custom.sty" 1726428122 11078 50a1f44f9d50513d82cdca26cb7d6e25 ""
-  "homework.aux" 1740564972 278 d1450dbb6a52f97c09d7463952a7bf44 "pdflatex"
-  "homework.out" 1740564972 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "homework.tex" 1740564970 8154 b0cd376da783c9b390fbc15a1a23da05 ""
+  "homework.aux" 1740565190 278 d1450dbb6a52f97c09d7463952a7bf44 "pdflatex"
+  "homework.out" 1740565189 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "homework.tex" 1740565188 8307 d2238fdfaaf72d515381e8ae6bafff88 ""
   "plots/Q2plot.png" 1740562310 26400 7ac5cccfc86ffde15b82a3d6798bf047 ""
   "plots/Q3part1.png" 1740564077 30251 9ac0f50895e363c353e92085d0c98466 ""
   "plots/Q3part2.png" 1740564187 31617 6f36a162a512a853bff7828e39bcc334 ""
