@@ -1,0 +1,278 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{calligra}
+
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{3} % no numbered subsubsections
+\setcounter{tocdepth}{3} % no subsubsections in ToC
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black, breakable}
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=blue!5!white, % Light blue background
+  colframe=blue!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% % make title page
+% \thispagestyle{empty}
+% \bigskip \
+% \vspace{0.1cm}
+
+% \begin{center}
+% {\fontsize{22}{22} \selectfont (Instructor: James Analytis)}
+% \vskip 16pt
+% {\fontsize{36}{36} \selectfont \bf \sffamily Physics 141B: Introduction to Solid State II Notes}
+% \vskip 24pt
+% {\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+% \vskip 6pt
+% {\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+% \vskip 24pt
+% \end{center} These are some notes taken from UC Berkeley's Physics 141B during the Fall '24 session, taught by James Analytis. This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% % \microtoc
+% \tableofcontents 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{Feb 21, 2025: More about RISC-V instructions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Last time, we spoke about three RISC-V instruction types.
+\\
+\\
+Today, we're going to discuss Jump instructions.
+
+\vskip 1cm
+\subsection{Jump-and-link-register, $\mathrm{jalr}$}
+
+\begin{itemize}
+  \item The Jump-and-link-register or $\mathrm{jalr}$ is actually an $I-$type instruction, as briefly mentioned during the previous lecture.
+  
+  \item The syntax for this instruction is 
+  \begin{align*}
+    \mathrm{jalr} ~ \mathrm{rd} ~ \mathrm{rs1} ~ \mathrm{imm}
+  \end{align*} What does it do? 
+
+  \begin{itemize}
+    \item First it saves the current Program Counter, incremented by 4 bytes, into the destination register $\mathrm{rd}$ i.e. it sets $$ R[\mathrm{rd}] = \mathrm{PC} + 4 $$
+    \item Then, it lets us jump unconditionally to the destination of $\mathrm{rs1}$ offset by $\mathrm{imm}$ by setting the program counter $$\mathrm{PC} = R[\mathrm{rs1}] + \mathrm{imm}$$
+  \end{itemize}
+  
+  \item Note: the Jump-register $\mathrm{jr}$ instruction is actually a pseudo instruction, which uses $\mathrm{jalr}$ as the underlying "true" instruction, just with the destination register $\mathrm{rd}$ as $x0$ and with $0$ as the $\mathrm{imm}$ offset. What does this mean?
+  
+  \begin{itemize}
+    \item Since $x0$ is hardwired to zero, effectively we don't store a return address and just unconditionally jumo to $R[\mathrm{rs1}]$ (since $\mathrm{imm}$ is zero).
+  \end{itemize}
+
+  \item Since it's an I-type instruction, the 32 bit word for the $\mathrm{jalr}$ instruction uses the same format.
+\end{itemize}
+
+\begin{center}
+  Include figure of the $\mathrm{jalr}$ instruction  as a 32 bit word
+\end{center}
+
+\vskip 1cm
+\subsection{$U-$ type Instructions}
+
+\begin{itemize}
+  \item Recall that we had an issue with $I-$ type instructions in that we could only use 12 bits for the immediate, thus limiting its range of values. The $U-$ type instructions fix this issue.
+  \item The $U$ stands for "upper".
+  \item There are only two $U-$ type instructions: $\mathrm{lui}$ and $\mathrm{aui}$.
+\end{itemize}
+
+\subsubsection{Load Upper Immediate, $\mathrm{lui}$}
+\begin{itemize}
+  \item Syntax:
+  \begin{align*}
+    \mathrm{lui} ~ \mathrm{rd} ~ \mathrm{immu}
+  \end{align*} 
+  \item This has the action of: 
+  \begin{align*}
+    &\mathrm{imm} = \mathrm{immu} << 12  &\text{ Bitshift an immediate by 12 places } \\ 
+    &R[\mathrm{rd}] = \mathrm{imm}  &\text{ Store the shifted immediate into rd}
+  \end{align*}
+  Note that since the immediate is shifted to the left by 12 places, its 12 least significant bits are now zeros. Thus, this operation clears the first 12 bits of the register $\mathrm{rd}$.
+\end{itemize}
+
+\subsubsection{Add Upper Immediate to PC, $\mathrm{aui}$}
+
+\begin{itemize}
+  \item Syntax: 
+  \begin{align*}
+    \mathrm{aui} ~ \mathrm{rd} ~ \mathrm{immu}
+  \end{align*}
+  \item This has the action of: 
+  \begin{align*}
+    &\mathrm{imm} = \mathrm{immu} << 12  &\text{ Bitshift an immediate by 12 places } \\ 
+    &R[\mathrm{rd}] = \mathrm{PC} + \mathrm{imm}  &\text{ Store the shifted immediate into rd}
+  \end{align*} i.e. it adds an upper immediate to the PC.
+
+  \item How is this useful? We'll seein the near future.
+\end{itemize}
+
+\begin{redbox}
+  \begin{remark}
+    {Just to avoid confusion, the $\mathrm{u}$ in $\mathrm{immu}$ stands for "upper", not "unsigned".}
+  \end{remark}
+\end{redbox}
+
+\begin{redbox}
+  \begin{remark}
+    {${\mathrm{\textbf{auipc}}}$ is similar, but different from $\mathbf{\mathrm{\textbf{aui}}}$. We will cover it later.}
+  \end{remark}
+\end{redbox}
+
+\subsubsection{U- Type Instruction Format}
+
+\begin{center}
+  Include figure of instruction format for lui and auipc.
+\end{center}
+
+\begin{bluebox}
+\underline{\textbf{Where does the load-immediate instruction come from?}} 
+\\
+\\
+$\mathrm{\textbf{lui}}$ + $\mathrm{\textbf{addi}}$ can create any 32-bit value in a register, and using them together allows us to load any immediate:
+\begin{itemize}
+  \item $\mathrm{\textbf{lui}}$: set upper 20 bits (and zero out lower 12 bits) within a register
+  \item $\mathrm{\textbf{addi}}$: set lower 12 bits by adding sign-extended 12 bit immediate to the same register.
+  \item The $\mathrm{\textbf{li}}$ pseudoinstruction (load immediate) resolves to $\mathrm{\textbf{lui}} + \mathrm{\textbf{addi}}$ as needed.
+  \item For example,
+  \begin{align*}
+    \mathrm{\textbf{li x10 0x87654321}} \implies \begin{cases}
+      \mathrm{\textbf{lui x10 0x87654}} \\
+      \mathrm{\textbf{addi x10 x10 0x321}}
+    \end{cases} 
+  \end{align*}
+\end{itemize}
+\end{bluebox}
+
+\begin{redbox}
+  \begin{itemize}
+    \item However, things are not always so simple. For example, if we're trying to carry out the instruction $$ \mathrm{\textbf{li x10 0xBOBACAFE}} $$ we might naively try to do it as 
+    \begin{align*}
+      \mathrm{\textbf{li x10 0xBOBACAFE}} \implies \begin{cases}
+        \mathrm{\textbf{lui x10 0xBOBAC}} \\
+        \mathrm{\textbf{addi x10 x10 0xAFE}}
+      \end{cases}
+    \end{align*}
+
+    \item Unforunately, $$ \mathrm{\textbf{addi}} $$ sign extends and $\mathrm{\textbf{0xAFE}}$ has a $1$ as its topmost bit, so it gets sign-extended to $\mathrm{\textbf{0x11111AFE}}$. Thus, when we add it to $\mathrm{\textbf{0xBOBAC000}}$ we actually get 
+    \begin{align*}
+      &\mathrm{\textbf{0xBOBAC000}}\\
+      +~&\mathrm{\underline{\textbf{0x11111AFE}}} 
+    \end{align*} which we can calculate by summing the smallest 3 bits separately, summing the the largest 5 bits separately, and then adding them up. Doing so gives us 
+    \begin{align*}
+      &\mathrm{\textbf{0xBOBAC}}\\
+      +~&\mathrm{\underline{\textbf{0x11111}}} \\
+      &\mathrm{\textbf{0xBOBAB}}
+    \end{align*} and     \begin{align*}
+      &\mathrm{\textbf{0x000}}\\
+      +~&\mathrm{\underline{\textbf{0xAFE}}}  \\
+      &\mathrm{\textbf{0xAFE}}
+    \end{align*} whose sum is $\mathrm{\textbf{0xBOBA\underline{B}AFE}}$ wherein the lowest entry in the upper-immediate is $1$ less than it should be (this problem of the $-1$ holds in general when the lower $12$-bit number is negative).
+  \end{itemize}
+\end{redbox}
+
+\begin{bluebox}
+  \underline{\textbf{What's the solution?}} \\
+  If the $12-$bit immediate is negative, we \textbf{proactively add 1} to the upper 20-bit load, and this fixes the issue.
+\end{bluebox} \vskip 1cm
+Now that we've discussed unconditional jumps, the next kind of instruction to talk about are conditional jumps, or, \textbf{branches}! Before we do so, however, we need to go deeper into the inner workings of RISC-V by discussing what \textbf{labels} are.
+
+\vskip 1cm
+\subsection{Updating the Program Counter ($\mathrm{\textbf{PC}}$)}
+
+\textbf{had to leave class suddenly; will upload updates notes soon}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \pagebreak
+% \section{ }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
+
+
+
+
+
+
+

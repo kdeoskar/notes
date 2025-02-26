@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}February 12 - Proof of Cauchy's Theorem (Sketch)}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Sketch}{2}{subsection.1.1}%

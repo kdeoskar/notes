@@ -1,0 +1,295 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{calligra}
+
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{3} % no numbered subsubsections
+\setcounter{tocdepth}{3} % no subsubsections in ToC
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black, breakable}
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=blue!5!white, % Light blue background
+  colframe=blue!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% % make title page
+% \thispagestyle{empty}
+% \bigskip \
+% \vspace{0.1cm}
+
+% \begin{center}
+% {\fontsize{22}{22} \selectfont (Instructor: James Analytis)}
+% \vskip 16pt
+% {\fontsize{36}{36} \selectfont \bf \sffamily Physics 141B: Introduction to Solid State II Notes}
+% \vskip 24pt
+% {\fontsize{18}{18} \selectfont \rmfamily Keshav Balwant Deoskar} 
+% \vskip 6pt
+% {\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+% \vskip 24pt
+% \end{center} These are some notes taken from UC Berkeley's Physics 141B during the Fall '24 session, taught by James Analytis. This template is based heavily off of the one produced by \href{https://knzhou.github.io/}{Kevin Zhou}.
+
+% % \microtoc
+% \tableofcontents 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{Feb 24, 2025: Caches I, AMAT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Today's agenda: 
+% \begin{itemize}
+%   \item Memory, Storage, and Prefixes
+%   \item The Memory Hierarchy
+%   \item Caches
+%   \item Multi-level Caches
+%   \item AMAT: Average Memory Access Time
+%   \item Optional Material
+% \end{itemize}
+
+% \vskip 1cm
+\subsection{Memory, Storage, and Prefixes}
+
+\begin{itemize}
+  \item DRAM: Dynamic Random Access Memory
+  \begin{itemize}
+    \item Volatile (data is lost if power supply interrupted)
+    \item Far away from the processor.
+  \end{itemize}
+
+  \item SRAM: Static Random Access Memory
+  \begin{itemize}
+    \item Non-volatile
+  \end{itemize}
+  
+  \item Disk:
+  \begin{itemize}
+    \item Outdated; used to be physical disks (eg. CDs) rotating inside a computer.
+  \end{itemize}
+  
+  \item Cache: Small memory area close to the processor.
+\end{itemize}
+
+\vskip 1cm
+\subsection{Memory Hierarchy}
+\begin{itemize}
+  \item We want to balance ease/convenience of accessing stored data vs. capacity to store large amounts of data.
+  \item The way we do this is via the \textbf{memory hierarchy} - we have different types of memory storage at different "distances" from the CPU, with data relevant to current task being stored closer.
+  \item The memory hierarchy makes the processor seem like it has a very large and fast memory.
+  \item The hierarchy makes it seem fast.
+  \item What makes it seem large? \textbf{Principle of Locality:} we \underline{cache} the "right data" in higher levels (higher being closer to the CPU in the pyramid-diagram of the hierarchy)
+\end{itemize}
+
+\vskip 1cm
+\subsection{Memory Cache}
+
+\begin{itemize}
+  \item The mismatch between the CPU and memory (like, full on memory like SDD or HDD drives) cause slowdowns. To solve this, we add smaller memory units closer to the processor, which are referred to as \textbf{Memory Cache}.
+  \item These are usually on the same chip as the CPU.
+  \item They're faster but more expensive than DRAM memory.
+  \item The way the cache works is almost like a photocopier. If we imagine the main memory as being a library with books, then the cache is like a photocopier which contains copies of a few pages.
+  \item Most processors have different caches for instructions vs. for data.
+  \item The Cache consists of smaller units called \textbf{Blocks}, which can be thought of as paragraphs on a page within our library analogy.
+\end{itemize}
+
+
+\subsection*{Memory access with and without cache}
+
+Without Cache, we have to access main memory every time. If we do have Cache then we first check if the required memory blocks are already stored in Cache; if not then we pull the data from main memory.
+\begin{note}
+  {Please see the slides comparing memory Access with and without Cache for more info.}
+\end{note}
+
+\subsection{How does cache access some block from main memory?}
+It uses \textbf{Cache Controller Hardware}, which is also a processor. However, it is not as general purpose as a CPU. It's specialized and optimized for memory collection.
+
+\begin{bluebox}
+  \begin{remark}
+    {The dollar sign $ \$ $ is used to denote Cache (pun intended).}
+  \end{remark}
+\end{bluebox}
+
+\begin{redbox}
+  \begin{itemize}
+    \item Please take a look at the scientific notation and units for memory in the lecture slides.
+    \item Also please take a look at the Cache-size Demo towards the end of the lecture.
+  \end{itemize}
+\end{redbox}
+
+\vskip 1cm
+\subsection{AMAT: Average Memory Access Time}
+\begin{itemize}
+  \item So far we've spoken about things in terms of spatial measures like "distances". What about temporal measures?
+  \item AMAT is one such measure of "temporal locality", and is the first real \underline{performance metric} discussed in this class.
+  \item When the CPU asks for some data from the Cache, there are two things that can happen: \textbf{Cache Hit} and \textbf{Cache Miss}.
+\end{itemize}
+
+\vskip 0.5cm
+\subsection*{Cache Hit}
+The data being looked for is already in the cache; it is then retrieved from the cache into the processor.
+\\
+\\
+We can quantify our system's performance using two metrics:
+\begin{enumerate}
+  \item \textbf{Hit Rate:} Fraction of access that hit in the cache i.e. the probability of out attempt to access memory directly from the cache being successful.
+  \item \textbf{Hit time:} the time taken to access cache memory, including tag comparison \begin{note}
+  {What is tag comparison? We'll see later in the course.}
+  \end{note}
+\end{enumerate}
+
+\subsection{Cache Miss}
+The data being looked for is \textbf{not} in the cache; then we have to retrieve the data from a lower layer in the memory-hierarchy, put the data in the cache, and \emph{then} bring the data to the processor.
+\\
+\\
+Again, we can quantify our system's performance using two metrics:
+\begin{enumerate}
+  \item \textbf{Miss Rate:} Just defined as $1-\text{Hit Rate}$ (since these are both probabilities).
+  \item \textbf{Miss Penalty:} The time taken/latency incurred when we need to pull a block from a lower level in the memory hierarchy to the cache.
+\end{enumerate}
+
+\subsection{Typical scale: L1, L2 Caches}
+\begin{note}
+  {Please see the slides to see the comparison between L1 and L2 cache; these terms weren't really properly defined in lecture}
+\end{note}
+
+\vskip 1cm
+\subsection*{Example: Calculation Average Memory Access Time}
+
+Consider a system without L2 Cache and assume:
+\begin{itemize}
+  \item L1 Hit Time = 1 cycle
+  \item L1 Miss rate = 5\%
+  \item L1 Miss Penalty = 200 Cycles
+\end{itemize} where "Cycle" refers to a CPU Clock cycle.
+\\
+\\
+\textbf{In this case, what is the \underline{Average} Memory Acces Time, in terms of CPU Clock Cycles?}
+\\
+The correct answer is $11$. 
+\\
+\\
+The idea is that 
+\begin{align*}
+  \mathrm{AMAT} &= \text{Hit Rate} \cdot \text{Hit Time} + \text{Miss Rate} \cdot \text{Time spent if we miss} \\
+\end{align*}
+
+A common error people make is forgetting to account for the hit time in case we miss. The correct expression is $$\text{Time spent if we miss} = \text{Hit time} + \text{Miss penalty} $$ Thus, we have 
+
+\begin{align*}
+  \text{AMAT} &= \text{Hit Rate} \cdot \left(\text{Hit Time}\right) + \text{Miss Rate} \cdot \left(\text{Hit time} + \text{Miss penalty}\right) \\
+  &= \underbrace{\left( \text{Hit Rate} + \text{Miss Rate} \right)}_{=1} \cdot \text{Hit Time} + \text{Miss Rate} \cdot \text{Miss penalty} \\
+  &= \text{Hit Time} + \text{Miss Rate} \cdot \text{Miss penalty} \\
+  &= 1 + (0.5)(200) \\
+  &= 11 \text{ cycles}
+\end{align*}
+
+\begin{bluebox}
+  \textbf{\underline{Is it possible to miss multiple times?}} \\
+  Yes. This is where L2 Cache becomes relevant.
+\end{bluebox}
+
+
+
+% \begin{note}
+%   {There really wasn't much to note down from this lecture. Please go through the lecture slides.}
+% \end{note}
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \pagebreak
+% \section{ }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
+
+
+
+
+
+
+

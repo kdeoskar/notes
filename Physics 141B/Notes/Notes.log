@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  24 JAN 2025 13:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  24 FEB 2025 12:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -954,126 +954,327 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./Notes.toc)
+ (./Notes.toc
+
+[1
+
+{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write5
 \openout5 = `Notes.toc'.
 
 
 
-[1
-
-{c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2]
 
 Package microtype Warning: I cannot find a spacing list for font
 (microtype)                `TS1/cmr/m/n/10.95' (context: `nonfrench'). Switching off
-(microtype)                spacing for this font on input line 125.
+(microtype)                spacing for this font on input line 118.
 
-<Pictures/Jan 22/Tight-binding.png, id=85, 4047.12pt x 3035.34pt>
+<Pictures/Jan 22/Tight-binding.png, id=256, 4047.12pt x 3035.34pt>
 File: Pictures/Jan 22/Tight-binding.png Graphic file (type png)
 <use Pictures/Jan 22/Tight-binding.png>
-Package pdftex.def Info: Pictures/Jan 22/Tight-binding.png  used on input line 153.
+Package pdftex.def Info: Pictures/Jan 22/Tight-binding.png  used on input line 146.
 (pdftex.def)             Requested size: 202.36786pt x 151.7759pt.
 
 
-[2 <./Pictures/Jan 22/Tight-binding.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 158--161
+[3 <./Pictures/Jan 22/Tight-binding.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 151--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--164
+Underfull \hbox (badness 10000) in paragraph at lines 154--157
 
  []
 
-<Pictures/Jan 22/Tight-binding Dispersion.png, id=97, 3035.34pt x 4047.12pt>
+<Pictures/Jan 22/Tight-binding Dispersion.png, id=267, 3035.34pt x 4047.12pt>
 File: Pictures/Jan 22/Tight-binding Dispersion.png Graphic file (type png)
 <use Pictures/Jan 22/Tight-binding Dispersion.png>
-Package pdftex.def Info: Pictures/Jan 22/Tight-binding Dispersion.png  used on input line 165.
+Package pdftex.def Info: Pictures/Jan 22/Tight-binding Dispersion.png  used on input line 158.
 (pdftex.def)             Requested size: 151.7759pt x 202.36786pt.
 
 
-[3]
-<Pictures/Jan 22/SSH Model.png, id=103, 4047.12pt x 3035.34pt>
+[4]
+<Pictures/Jan 22/SSH Model.png, id=273, 4047.12pt x 3035.34pt>
 File: Pictures/Jan 22/SSH Model.png Graphic file (type png)
 <use Pictures/Jan 22/SSH Model.png>
-Package pdftex.def Info: Pictures/Jan 22/SSH Model.png  used on input line 172.
+Package pdftex.def Info: Pictures/Jan 22/SSH Model.png  used on input line 165.
 (pdftex.def)             Requested size: 202.36786pt x 151.7759pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--177
+Underfull \hbox (badness 10000) in paragraph at lines 167--170
 
  []
 
 
 
-[4 <./Pictures/Jan 22/Tight-binding Dispersion.png> <./Pictures/Jan 22/SSH Model.png>]
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 218--222
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 229--232
-
- []
-
-
+[5 <./Pictures/Jan 22/Tight-binding Dispersion.png> <./Pictures/Jan 22/SSH Model.png>]
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 261--265
+Underfull \hbox (badness 10000) in paragraph at lines 214--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--308
+Underfull \hbox (badness 10000) in paragraph at lines 225--228
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 339--348
+Underfull \hbox (badness 10000) in paragraph at lines 257--261
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 339--348
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--348
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 348--352
+Underfull \hbox (badness 10000) in paragraph at lines 299--304
 
  []
 
 
 
-[8] (./Notes.aux)
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 335--344
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--344
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--344
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 344--351
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 344--351
+
+ []
+
+
+
+[9]
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 435--439
+
+ []
+
+
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 455--459
+
+ []
+
+
+
+[12]
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 544--548
+
+ []
+
+
+
+[14]
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 562--566
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--609
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 609--615
+
+ []
+
+
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 653--662
+
+ []
+
+
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 662--671
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 662--671
+
+ []
+
+
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 692--696
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 699--703
+
+ []
+
+
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 720--724
+
+ []
+
+
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--761
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--761
+
+ []
+
+
+
+[21]
+
+[22]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\begingroup' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\endgroup' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@@over' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 777.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 777.
+
+
+
+[23]
+
+[24]
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 883--886
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 904--908
+
+ []
+
+
+
+[26]
+
+[27]
+
+[28]
+
+[29]
+
+[30]
+
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 1026--1029
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1037--1040
+
+ []
+
+
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1086
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1086
+
+ []
+
+
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 1089--1103
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1089--1103
+
+ []
+
+
+
+[34] (./Notes.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: AEE181EF1EDA3678B8D3F5C590268588;1044.
+(rerunfilecheck)             Checksum: D28972F023FC5F3B525B3141067F4406;7444.
  ) 
 Here is how much of TeX's memory you used:
- 34128 strings out of 475517
- 695580 string characters out of 5775029
+ 34317 strings out of 475517
+ 697922 string characters out of 5775029
  1949908 words of memory out of 5000000
- 56040 multiletter control sequences out of 15000+600000
- 573893 words of font info for 133 fonts, out of 8000000 for 9000
+ 56113 multiletter control sequences out of 15000+600000
+ 578229 words of font info for 165 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 98i,15n,101p,1076b,666s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Notes.pdf (8 pages, 34434474 bytes).
+ 98i,18n,101p,1076b,666s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/Users/kesha/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Notes.pdf (34 pages, 34561358 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
- 137 compressed objects within 2 object streams
- 18 named destinations out of 1000 (max. 500000)
- 47836 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 536 PDF objects out of 1000 (max. 8388607)
+ 425 compressed objects within 5 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 54244 words of extra memory for PDF output out of 61914 (max. 10000000)
 

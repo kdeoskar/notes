@@ -1,0 +1,386 @@
+\documentclass[11pt]{article}
+
+% basic packages
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{custom}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% page formatting
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\arabic{section}. #1}}}
+\renewcommand{\subsectionmark}[1]{}
+\lhead{\textbf{\thepage} \ \ \nouppercase{\rightmark}}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\setlength{\headheight}{14pt}
+
+\linespread{1.03} % give a little extra room
+\setlength{\parindent}{0.2in} % reduce paragraph indent a bit
+\setcounter{secnumdepth}{2} % no numbered subsubsections
+\setcounter{tocdepth}{2} % no subsubsections in ToC
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM BOXES AND STUFF
+\newtcolorbox{redbox}{colback=red!5!white,colframe=red!75!black, breakable}
+\newtcolorbox{bluebox}{colback=blue!5!white,colframe=blue!75!black,breakable}
+
+\newtcolorbox{dottedbox}[1][]{%
+    colback=white,    % Background color
+    colframe=white,    % Border color (to be overridden by dashrule)
+    sharp corners,     % Sharp corners for the box
+    boxrule=0pt,       % No actual border, as it will be drawn with dashrule
+    boxsep=5pt,        % Padding inside the box
+    enhanced,          % Enable advanced features
+    breakable,         % Enables it to span multiple pages
+    overlay={\draw[dashed, thin, black, dash pattern=on \pgflinewidth off \pgflinewidth, line cap=rect] (frame.south west) rectangle (frame.north east);}, % Dotted line
+    #1                 % Additional options
+}
+
+% Define the colors
+\definecolor{boxheader}{RGB}{0, 51, 102}  % Dark blue
+\definecolor{boxfill}{RGB}{173, 216, 230}  % Light blue
+
+
+% Define the tcolorbox environment
+\newtcolorbox{mathdefinitionbox}[2][]{%
+    colback=boxfill,   % Background color
+    colframe=boxheader, % Border color
+    fonttitle=\bfseries, % Bold title
+    coltitle=white,     % Title text color
+    title={#2},         % Title text
+    enhanced,           % Enable advanced features
+    breakable,
+    attach boxed title to top left={yshift=-\tcboxedtitleheight/2}, % Center title
+    boxrule=0.5mm,      % Border width
+    sharp corners,      % Sharp corners for the box
+    #1                  % Additional options
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{lightblue}{RGB}{173,216,230} % Light blue color
+\definecolor{darkblue}{RGB}{0,0,139} % Dark blue color
+
+% Define the custom proof environment
+\newtcolorbox{ex}[2][Example]{
+  colback=red!5!white, % Light blue background
+  colframe=red!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+% Define the custom proof environment
+\newtcolorbox{defn}[2][Definition]{
+  colback=green!5!white, % Light blue background
+  colframe=green!75!black, % Darker blue border
+  coltitle=white, % Title color
+  fonttitle=\bfseries, % Title font style
+  title={{#2}},
+  arc=1mm, % Rounded corners with 4mm radius,
+  boxrule=0.5mm,
+  left=2mm, right=2mm, top=2mm, bottom=2mm, % Padding inside the box
+  breakable, % Allow box to be broken across pages
+  before=\vspace{10pt}, % Padding above the box
+  after=\vspace{10pt}, % Padding below the box
+  before upper={\parindent15pt} % Ensure indentation
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% make title page
+\thispagestyle{empty}
+\bigskip \
+\vspace{0.1cm}
+
+\begin{center}
+{\fontsize{14}{14} \selectfont Instructors: Birgit K Whaley, Alp Sipahigil, Geoffrey Pennington}
+\vskip 16pt
+{\fontsize{30}{30} \selectfont \bf \sffamily Physics c191: Introduction to Quantum Computing}
+\vskip 24pt
+{\fontsize{14}{14} \selectfont \rmfamily Homework 3} 
+\vskip 6pt
+{\fontsize{14}{14} \selectfont \ttfamily kdeoskar@berkeley.edu} 
+\vskip 24pt
+\end{center}
+
+% {\parindent0pt \baselineskip=15.5pt \lipsum[1-4]} 
+
+% make table of contents
+% \newpage
+
+
+\subsection*{Question 1}
+
+\begin{enumerate}[(a).]
+  \item This cannot be used for instantaneous communication because the measurement process is probabilistic and no information is transferred when Alice takes her measurement.
+  
+  
+  \item For operators  $A, B \in \mathcal{B}(\C^2)$ and $$ \ket{\Omega} = \frac{1}{\sqrt{2}} \left( \ket{00} + \ket{11} \right) $$ we have 
+  \begin{align*}
+    \braket{\Omega}{A \otimes B | \Omega} &= \frac{1}{2} \braket{00}{A \otimes B | 00} +  \frac{1}{2} \braket{00}{A \otimes B | 11} +  \frac{1}{2} \braket{11}{A \otimes B | 00} +  \frac{1}{2} \braket{11}{A \otimes B | 11}  \\
+    &= \frac{1}{2} \text{(Diagonal elements of $A \otimes B$)} \\
+    &= \frac{1}{2} \tr(A \otimes B) \\
+    &= \frac{1}{2} \tr(A) \tr(B) \\
+    &= \frac{1}{2} \tr(A^T) \tr(B) \\
+    &= \frac{1}{2} \tr(A^T B)
+  \end{align*} 
+
+  \item In the case $A = \cos\alpha Z + \sin\alpha X$, $B = \cos\beta Z + \sin \beta X$ we have
+  
+  \begin{align*}
+    A &= \begin{pmatrix}
+      \cos\alpha & 0 \\
+      0 & -\cos\alpha
+    \end{pmatrix} + \begin{pmatrix}
+      0 & \sin\alpha \\
+      \sin\alpha & 0
+    \end{pmatrix} = \begin{pmatrix}
+      \cos\alpha & \sin\alpha \\
+      \sin\alpha & -\cos\alpha
+    \end{pmatrix} 
+  \end{align*} and similarly,
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      \cos\beta & \sin\beta \\
+      \sin\beta & -\cos\beta
+    \end{pmatrix}
+  \end{align*}
+
+  We know that $\mathrm{tr}(A B) = (\tr A) (\tr B) $ and $\tr A^T = \tr A$. So, 
+
+  \begin{align*}
+    \tr(A^T B) &= \tr \left[ \begin{pmatrix}
+      \cos\alpha & \sin\alpha \\
+      \sin\alpha & -\cos\alpha
+    \end{pmatrix} \begin{pmatrix}
+      \cos\beta & \sin\beta \\
+      \sin\beta & -\cos\beta
+    \end{pmatrix}  \right] \\
+    &= \tr \left[ \begin{pmatrix}
+      \cos\alpha \cos\beta + \sin\alpha \sin \beta & \cos\alpha \sin\beta - \sin\alpha \cos\beta \\
+      \sin\alpha \cos\beta - \cos\alpha \sin \beta & \sin\alpha \sin\beta + \cos\alpha \cos\beta
+    \end{pmatrix}  \right] \\
+    &= \left(\cos\alpha\cos\beta + \sin\alpha\sin\beta\right) + \left( \sin\alpha \sin\beta + \cos\alpha \cos\beta \right) \\
+    &= 2 \left( \sin\alpha \sin\beta + \cos\alpha \cos\beta \right) \\
+    &= 2 \cdot \cos(\alpha - \beta)
+  \end{align*} So, 
+  \begin{align*}
+    \braket{\Omega}{A \otimes B | \Omega} &= \frac{1}{2} \tr(A^T B) = \cos(\alpha - \beta)
+  \end{align*} Now, since $A$ and $B$ are linear combinations of $X$ and $Z$, which each have eigenvalues $\pm 1$, the same will hold for $A$ and $B$. \begin{note}
+    {Will it really? Double check}
+  \end{note}. Hence $A \otimes B$ will have eigenvalues $\pm 1$ where the observable value is $+1$ if the measurement outcomes for both Alice and Bob are the same, and $-1$ otherwise. 
+  \\
+  \\
+  Let $p$ denote the probability that their measurements are identical. Then the expected value of $A \otimes B$ upon measurement is $p(1) + (1-p)(-1) = 2p-1$, and this should be exactly $\braket{\Omega}{A \otimes B | \Omega}$. Thus,
+  \begin{align*}
+    &\cos(\alpha - \beta) = 2p - 1 \\
+    \implies& p = \frac{1}{2} \left[ 1 + \cos(\alpha - \beta)  \right]
+  \end{align*} and using the identity $1 + \cos(\theta) = 2\cos^2(\theta/2) $ we have 
+  \begin{align*}
+    &p = \frac{1}{2} \cdot 2 \cos\left( \frac{\alpha - \beta}{2} \right) \\
+    \implies& \boxed{p = \cos^2\left(\frac{\alpha - \beta}{2}\right)}
+  \end{align*} 
+
+  \item $A_1, A_2, B_1, B_2$ are defined by the angles $\alpha_1 = \pi/2, ~\alpha_2 = 0, \beta_1 = \pi/4, ~\beta_2 = 3\pi/4$ respectively. The chance of success is then,
+  \begin{align*}
+    P_s &= \frac{1}{4} \cdot \underbrace{\cos^2\left(\frac{\alpha_1 - \beta_1}{2}\right)}_{A_1 = B_1} + \frac{1}{4} \cdot \underbrace{ \cos^2\left(\frac{\alpha_1 - \beta_2}{2}\right)}_{P(A_1 = B_2)} + \frac{1}{4} \cdot \underbrace{\cos^2\left(\frac{\alpha_2 - \beta_1}{2}\right)}_{P(A_2 = B_1)} + \frac{1}{4} \cdot \underbrace{\left[1 - \cos^2\left(\frac{\alpha_2 - \beta_2}{2}\right)\right]}_{P(A_2 \neq B_2)} \\
+    &= \frac{1}{4} \cdot \cos^2\left(\frac{\pi}{8}\right) + \frac{1}{4} \cdot \cos^2\left(-\frac{\pi}{8}\right) + \frac{1}{4} \cdot \cos^2\left(-\frac{\pi}{8}\right) + \frac{1}{4} \cdot \left[1 - \cos^2\left(-\frac{3\pi}{8}\right)\right] \\
+    &= \frac{3}{4} \cos^2\left(\frac{\pi}{8}\right) - \frac{1}{4} \cos^2\left(\frac{3\pi}{8}\right) + \frac{1}{4}
+  \end{align*} and we note that $$ \frac{3\pi}{8} = \frac{\pi}{4} + \frac{\pi}{8} $$ Then using the identity $$ \cos(\alpha + \beta) = \cos\alpha \cos \beta - \sin\alpha \sin \beta $$ we have $$ \cos(\frac{3\pi}{8}) = \frac{1}{\sqrt{2}} \left[\cos\left(\frac{\pi}{8}\right) - \sin\left(\frac{\pi}{8}\right)\right] $$ Doing some more algebra we can find that $$  1 - \cos^2\left(\frac{3\pi}{8}\right) = \cos^2\left(\frac{\pi}{8}\right) $$ Thus giving us 
+  \begin{align*}
+  \boxed{    P_s = \cos^2\left(\frac{\pi}{8}\right)} 
+  \end{align*}
+
+  \item If we were dealing with classically preprogrammed and predetermined values of $A_1, A_2, B_1, B_2$ then the maximal average success probability would be $3/4$ since it's possible to simultaneously satisfy three of the four conditions.
+\end{enumerate}
+
+
+
+\vskip 1cm
+\hrule
+\pagebreak
+
+\subsection*{Question 2}
+
+\begin{enumerate}[(a).]
+  \item We want to show that the n-qubit Hadamard gate acts as $$ H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x, y} (-1)^{x \cdot y} \ket{x} \bra{y} $$ Recall that the Hadamard Gate acting on a single qubit can be expressed as 
+  \begin{align*}
+    H &= \ket{+}\bra{0} + \ket{-}\bra{1} \\
+    &= \frac{1}{\sqrt{2}} \left[ \left(\ket{0} + \ket{1}\right) \bra{0} + \left( \ket{0} - \ket{1} \right) \bra{1} \right] \\
+    &= \frac{1}{\sqrt{2^1}} \sum_{x \in \{0, 1\}} \sum_{y \in \{0, 1\}} (-1)^{x \cdot y} \ket{x} \bra{y}
+  \end{align*}
+
+  Now, the hilbert space for an $n-$qubit system is $\mathcal{H} = \C^n$ and has (tensor-product) basis vectors of the form  $\ket{x} = \ket{x_1 \cdots x_n} = \otimes_{i = 1}^{n} \ket{x_i}$, for $x \in \{0, 1\}^n$ or equivalently $x_i \in \{0, 1\}$. \\
+  \\
+  The Hadamard gate acting on $n-$qubits can thus be written as 
+  \begin{align*}
+    \left[H^{\otimes n}\left(\sum_{x} \ket{x}\right)\right] \left(\sum_{y} \bra{y}\right) &= \sum_y \left\{\sum_{x = x_1\cdots x_n}  \left(H\ket{x_1}  \otimes \cdots \otimes  H \ket{x_n}\right)\right\} \bra{y} \\
+    &= \sum_{y} \left[\sum_{x = x_1\cdots x_n} \frac{1}{\sqrt{2}}\left(\ket{\pm}_i \right)  \right]\bra{y} \\
+    &= \left(\frac{1}{\sqrt{2}}\right)^n \sum_{y = y_1 \cdots y_n} \sum_{x = x_1 \cdots x_n} (-1)^{x \cdot y} \ket{x} \bra{y}
+  \end{align*} where, in the third line, $\ket{\pm}_i$ is supposed to denote that $H$ maps $\ket{x_i}$ to $\ket{+}$ if $x_1 = 0$ and $\ket{-}$ if $x_i = 1$. We go from the third to the fourth line via the exact same logic as the $1-$qubit case. Thus, we have that 
+  \begin{align*}
+    \boxed{H = \frac{1}{\sqrt{2^n}} \sum_{x, y} (-1)^{x \cdot y} \ket{x}\bra{y}}
+  \end{align*}
+  \vskip 1cm 
+
+  \item Explicitly calculating the tensor product $H \otimes H$, we have
+  \begin{align*}
+    H^{\otimes 2} &= H \otimes H \\
+    &= \frac{1}{\sqrt{2}} \begin{pmatrix}
+      1 & 1 \\
+      1 & -1
+    \end{pmatrix} \otimes \frac{1}{\sqrt{2}} \begin{pmatrix}
+      1 & 1 \\
+      1 & -1
+    \end{pmatrix} \\
+    &= \frac{1}{2} \begin{pmatrix}
+      1 & 1 & 1 & 1 \\
+      1 & -1 & 1 & -1 \\
+      1 & 1 & -1 & -1 \\
+      1 & -1 & -1 & 1 
+    \end{pmatrix}
+  \end{align*}
+
+  Using the formula from (a), we have
+  \begin{align*}
+    H^{\otimes 2} &= \frac{1}{\sqrt{2^2}} \sum_{x \in \{0, 1\}^2} \sum_{y \in \{0, 1\}^2} (-1)^{x \cdot y} \ket{x} \bra{y} 
+  \end{align*} The only time the $(-1)$ factor survives is when $x, y$ have a different number of ones. Evaluating the formula for each bitstring $x, y$ we have:
+
+  \begin{enumerate}[1.]
+    \item $x = 00, y = 00 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^0 \ket{00} \bra{00}$
+    \item $x = 00, y = 01 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^1 \ket{00} \bra{01}$
+    \item $x = 00, y = 10 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^1 \ket{00} \bra{10}$
+    \item $x = 00, y = 11 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^0 \ket{00} \bra{11}$
+    
+    \item $x = 01, y = 00 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{01} \bra{00}$
+    \item $x = 01, y = 01 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{01} \bra{01}$
+    \item $x = 01, y = 10 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{01} \bra{10}$
+    \item $x = 01, y = 11 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{01} \bra{11}$
+    
+    \item $x = 10, y = 00 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{10} \bra{00}$
+    \item $x = 10, y = 01 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{10} \bra{01}$
+    \item $x = 10, y = 10 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{10} \bra{10}$
+    \item $x = 10, y = 11 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{10} \bra{11}$
+    
+    \item $x = 11, y = 00 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{11} \bra{00}$
+    \item $x = 11, y = 01 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{11} \bra{01}$
+    \item $x = 11, y = 10 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{0} \ket{11} \bra{10}$
+    \item $x = 11, y = 11 \implies (-1)^{x \cdot y} \ket{x} \bra{y} = (-1)^{1} \ket{11} \bra{11}$
+  \end{enumerate}
+
+  giving us
+
+  \begin{align*}
+    H^{\otimes 2} &= \frac{1}{2} \begin{pmatrix}
+      1 & 1 & 1 & 1 \\
+      1 & -1 & 1 & -1 \\
+      1 & 1 & -1 & -1 \\
+      1 & -1 & -1 & 1 
+    \end{pmatrix}
+  \end{align*}
+
+
+
+\end{enumerate}
+
+\vskip 1cm
+\hrule
+\pagebreak
+
+
+
+\subsection*{Question 3}
+
+\begin{enumerate}[(a)]
+  \item The circuit can be shown as 
+  \begin{center}
+    \includegraphics*[scale=0.4]{C191 HW3 Q3a.png}
+  \end{center}
+
+  \vskip 1cm
+  \item Yes, because the qubits held by all three individuals just before the classical measurements are entangled. \begin{note}{I'm not quite sure how to phrase it, but it's almost like they must be entangled by transitivity.}\end{note}
+\end{enumerate}
+
+\vskip 1cm
+\hrule
+\pagebreak
+
+
+
+
+
+
+% \subsection*{Question 1}
+
+
+% \vskip 1cm
+% \hrule
+% \pagebreak
+
+
+
+% \begin{bluebox}
+%   \textbf{Question 1:} 
+% \end{bluebox}
+
+% \vskip 0.5cm
+% \textbf{\underline{Solution:}}
+% \\
+% \\
+% text
+% \vskip 0.5cm
+% \hrule
+% \pagebreak
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% % \section{References}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \vskip 0.5cm
+% \bibliographystyle{plain} % We choose the "plain" reference style
+% \bibliography{citation}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
